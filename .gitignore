@@ -1,0 +1,4 @@
+#ignore pyc files
+*.pyc
+#ignore .ipynb_checkpoints
+.ipynb_checkpoints
