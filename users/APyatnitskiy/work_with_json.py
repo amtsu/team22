@@ -10,7 +10,7 @@ def write(data, json_file):
 
 def read(json_file): 
     with open(json_file, 'r', encoding = 'utf-8') as file: 
-        return json.load(file) 
+        return json.load(file)
 
 data = {
     'tasks_js' : []
@@ -19,16 +19,16 @@ data = {
  # Решение без классов.
 
 
-class Task:
-    def __init__(self):
-        self.task = ch(['First', 'Second', 'Third'])
-        self.planned_date = rd(0, 70)
-        self.done_date = rd(0, 1000)
+# class Task:
+#     def __init__(self):
+#         self.task = ch(['First', 'Second', 'Third'])
+#         self.planned_date = rd(0, 70)
+#         self.done_date = rd(0, 1000)
 
 
-data = {
-    'tasks_js' : []
-}
+# data = {
+#     'tasks_js' : []
+# }
 
 class Task:
     def __init__(self, task, task_name, planned_date, done_date): #инициирует создание новго экземпляра этого класса
