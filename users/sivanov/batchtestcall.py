@@ -4,15 +4,13 @@
 #функция batch_test_call вызывает функции с именем test_func_pattern и следующим за ним номером, 
 #начинающимся с нуля и до test_func_count-1. Функции являются тестами для чего-то и возвращают строку,
 # в которой должно содержаться либо значение "выполнено", либо значение "не выполнено"
-class btc:
-    @staticmethod
-    def batch_test_call(test_func_pattern, test_func_count):
-        i=0
-        while(i < test_func_count):
-            exec('tmpstr ='+test_func_pattern+str(i)+'()')
-            print('результат выполнения теста #'+str(i)+': ' + tmpstr)
-            i += 1
-        return
+def batch_test_call(test_func_pattern, test_func_count):
+    i=0
+    while(i < test_func_count):
+        exec('tmpstr ='+test_func_pattern+str(i)+'()')
+        print('результат выполнения теста #'+str(i)+': ' + tmpstr)
+        i += 1
+    return
 # пример исходных данных:
 #def test0():
 #    return 'done'
