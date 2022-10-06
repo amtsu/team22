@@ -174,3 +174,43 @@
 
 # MoonWeightFn(92, 15, 1)
 
+
+# ------------ ПРИМЕР ФУНКЦИИ -----------
+
+from xml.etree.ElementInclude import FatalIncludeError
+
+
+def has_delo_in_list(title_delo, list_del):
+    for element in list_del:
+        if element == title_delo:
+            return True
+    return False
+# ---------------------------------------
+
+colors = ['red', 'black', 'pink', 'brown']  # Исходный лист
+
+def one_color(nomer, colors):
+    color = colors[nomer]
+    return color
+
+print(one_color(2, colors))
+
+# ---------------------------------------
+
+def sravnenie_1(x,y):
+    res_1 = False
+    if x == y:
+        res_1 = True
+    return res_1
+
+print('Числа равны 1: ',sravnenie_1(8,9))
+
+def sravnenie_2(x,y):
+    if x != y:
+        return False
+    else:
+        return True
+
+print('Числа равны 2: ',sravnenie_2(7,7))
+
+# ---------------------------------------
