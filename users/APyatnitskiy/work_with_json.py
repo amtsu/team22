@@ -1,22 +1,29 @@
+ # В локальной папке лежит файл 'data.json'
+
 import json
 # from pprint import pprint
 
-
 def write(data, json_file):
-    data = json.dumps(data) # dumps приводит данные (из файла) в json string формат. (если передаём PY объект, то строки 6 и 7 не нужны)
-    data = json.loads(data)  # loads - превращает json string в питонячий объект. Разница например: JSON "", PY ''
-    with open(json_file, 'w', encoding = 'utf-8') as file:
-        json.dump(data, file, indent = 4) # damp - преобразует объект PY в json string и записывает в файл.
+    data = json.dumps(data, separators=(',',':')) # separators=(',',':') - заменяет разделители в фале на указанные, в нашем случае мы заменяем стоковые JSON разделители с пробелом [1, 2, 3], на такие же без пробела [1,2,3] для экономии памяти. 
+                # dumps - сериализует (приводит) данные (из файла) в json string формат. (если передаём PY объект, то строки 6 и 7 не нужны)
+    data = json.loads(data, separators=(',',':'))
+                # loads - ериализует (приводит) json string в питонячий объект. Разница например: JSON "", PY ''
+    with open(json_file, 'w', encoding = 'utf-8') as write_file:
+        json.dump(data, write_file, indent = 4) # damp - преобразует объект PY в json string и записывает в файл.
+                                 # indent - отступ. По умолчанию None. Если indent = строчное значение, то оно будет использоваться как отступ. Если indent <= 0, будет использоваться новая строка.
+def read(json_file):
+    with open(json_file, 'r', encoding = 'utf-8') as read_file:
+        return json.load(read_file)
 
-def read(json_file): 
-    with open(json_file, 'r', encoding = 'utf-8') as file: 
-        return json.load(file)
+# read(data, 'data.json')
+# write(data, 'data.json')
 
 # data = {
 #     'tasks_js' : []
 # }
 
-#  # Решение без классов.
+
+
 
 
 # class Task:
@@ -48,18 +55,9 @@ def read(json_file):
 # Ride_2 = Task('Ride_2','Today', 'Taday2')
 # Ride_3 = Task('Ride_3','Today', 'Taday2')
 
-
 # write(data, 'data.json')
 # print(Ride_1)
-
-
-data = {
-    'tasks_js' : []
-}
-
- превращает 
 
 # n_data = read('data.json')
 # print(n_data['tasks'][0][1])
 # input()
-x = 
