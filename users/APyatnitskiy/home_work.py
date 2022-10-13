@@ -54,14 +54,12 @@ print('B. Boolean solution: работает неправильно, тк выв
 
 def BuyBreadFinder(bbf_cycle): # Создаём цикл выдающий логическое решение.
     for Task in bbf_cycle:
-        if bbf_cycle.count(Task) == 'buy_bread':
+        if bbf_cycle.count(Task) == 'buy_bread11':
             return True
-        break
-    return False
 if BuyBreadFinder(Todo_List): # Если цикл выполнился успешно - Да;
-    print("Yes")
+    print("No")
 else:
-    print("No"), "\n" # Иначе - Нет.
+    print("Yes"), "\n" # Иначе - Нет.
 
 print('------------')
 
