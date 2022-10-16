@@ -1,0 +1,13 @@
+root     14537  0.0  1.8 133972 38600 ?        S    Sep26   0:36 uwsgi --ini /home/www/101catalog/101katok.ini
+root     14540  0.0  1.6 120216 33168 ?        S    Sep26   0:19 uwsgi --ini /home/www/101catalog/helpfriend.ini
+root     14543  0.0  1.6 120216 33192 ?        S    Sep26   0:19 uwsgi --ini /home/www/101catalog/people_world.ini
+root     14546  0.0  1.5 105152 31572 ?        S    Sep26   0:19 uwsgi --ini /home/www/b-flower/b-flower.ini
+root     14549  0.0  1.6 120508 34180 ?        S    Sep26   0:22 uwsgi --ini /home/www/ms4m/ms4m.ini
+root     14574  0.0  2.4 274860 49276 ?        Sl   Sep26   0:05 uwsgi --ini /home/www/b-flower/b-flower.ini
+root     14575  0.4  5.3 360500 109164 ?       Sl   Sep26  58:05 uwsgi --ini /home/www/101catalog/helpfriend.ini
+root     14576  0.0  3.0 319324 62608 ?        Sl   Sep26   4:09 uwsgi --ini /home/www/101catalog/people_world.ini
+root     25436  3.1  4.0 345604 83712 ?        Sl   04:44  27:38 uwsgi --ini /home/www/101catalog/101katok.ini
+root     26444  6.0  4.2 348548 86664 ?        Sl   06:32  46:28 uwsgi --ini /home/www/101catalog/101katok.ini
+root     27419  6.5  4.1 346124 85596 ?        Sl   09:25  39:09 uwsgi --ini /home/www/101catalog/101katok.ini
+root     29553  3.6  3.6 335636 75484 ?        Sl   14:20  11:07 uwsgi --ini /home/www/ms4m/ms4m.ini
+root     30629  5.5  3.4 331220 70248 ?        Sl   16:53   8:32 uwsgi --ini /home/www/ms4m/ms4m.ini
