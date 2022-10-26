@@ -1,0 +1,25 @@
+total 452
+drwxr-xr-x 11 amtsurkov education   4096 Oct 26 19:28 .
+drwxr-xr-x 13 amtsurkov education   4096 Sep 27 19:36 ..
+drwxr-xr-x  2 amtsurkov education   4096 Oct 19 19:45 .ipynb_checkpoints
+drwxr-xr-x  4 amtsurkov education   4096 Oct 13 20:01 lesson_10
+drwxr-xr-x  4 amtsurkov education   4096 Oct 16 23:09 lesson_11
+drwxr-xr-x  3 amtsurkov education   4096 Oct 20 08:45 lesson_12
+drwxr-xr-x  3 amtsurkov education   4096 Oct 24 23:02 lesson_13
+drwxr-xr-x  2 amtsurkov education   4096 Oct 26 19:29 lesson_14
+-rw-r--r--  1 amtsurkov education  25624 Sep 27 19:36 lesson_1.ipynb
+-rw-r--r--  1 amtsurkov education   5444 Sep 27 19:36 lesson_1_work_1.ipynb
+-rw-r--r--  1 amtsurkov education   9742 Sep 27 19:36 lesson_1_work_1_v2.ipynb
+-rw-r--r--  1 amtsurkov education   9742 Sep 27 19:36 lesson_1_work_1_v3.ipynb
+-rw-r--r--  1 amtsurkov education  19053 Sep 27 19:36 lesson_2.ipynb
+-rw-r--r--  1 amtsurkov education 227043 Sep 27 19:36 lesson_3.ipynb
+drwxr-xr-x  3 amtsurkov education   4096 Oct 16 14:50 lesson_6
+-rw-r--r--  1 amtsurkov education  39854 Oct  5 19:46 lesson_6.ipynb
+drwxr-xr-x  2 amtsurkov education   4096 Sep 25 19:59 lesson_6_v2
+-rw-r--r--  1 amtsurkov education   2159 Oct 16 14:52 lesson_6_work.ipynb
+-rw-r--r--  1 amtsurkov education  27947 Sep 28 21:41 lesson_7.ipynb
+-rw-r--r--  1 amtsurkov education  11815 Oct  2 20:49 lesson_8.ipynb
+drwxr-xr-x  3 amtsurkov education   4096 Oct  5 20:15 lesson_9
+-rw-r--r--  1 amtsurkov education   1484 Oct  5 20:40 lesson_9_1.ipynb
+-rw-r--r--  1 amtsurkov education  12480 Oct  5 20:39 lesson_9.ipynb
+-rw-r--r--  1 amtsurkov education      0 Sep 27 19:36 README.md
