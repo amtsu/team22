@@ -2,7 +2,19 @@ import csv
 
 with open('tasks_lists', mode='r', newline='') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
+
     all_strings = list(csv_reader)
+    #print(all_strings)
+
+    spisok_spiskov = []
+    for task_number in range(len(all_strings[0])):
+        spisok_iz3 = []
+        for strings in all_strings:
+            spisok_iz3.append(strings[task_number])
+        #print(spisok_iz3)
+        spisok_spiskov.append(spisok_iz3)
+    print(spisok_spiskov)
+
     todo_list = all_strings[0]
     deadline = all_strings[1]
     done_date = all_strings[2]
@@ -35,5 +47,4 @@ def task_symbol_count_(given_list):
 
 
 print(task_symbol_count_(todo_list))
-
 
