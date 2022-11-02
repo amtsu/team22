@@ -4,7 +4,7 @@
 ДОБАВИТЬ КОММЕНТАРИЙ
 это модуль с классом про список дел
 '''
-from sivanov_lib.makedate import make_date_ustring_from_numbers  #функция
+from sivanov_lib.usefulstuff import make_date_ustring_from_numbers  #функция
 from sivanov_lib.taskliststuff import TaskListElement             #класс
 class MyTaskList:
     
@@ -20,7 +20,7 @@ class MyTaskList:
     # добавляет действие в конец списка 
     def append(self, task_name, task_date_planned):
         task = TaskListElement()
-        task.set_name_and_date_planned(task_name, task_date_planned)
+        task.add_task(task_name, task_date_planned)
         self.__tasks.append(task)
         return None
     

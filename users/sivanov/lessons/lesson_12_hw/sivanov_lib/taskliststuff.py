@@ -43,9 +43,9 @@ class AbstractTaskListElement():
     @abstractmethod
     def set_done(self, timetobedone):
         pass
-    #добавить делу время выполнения
+    #добавить дело и планируемое его время выполнения
     @abstractmethod
-    def set_name_and_date_planned(self, task_name, task_date_planned):
+    def add_task(self, task_name, task_date_planned):
         pass
     
     # возвращает имя дела
@@ -133,8 +133,8 @@ class TaskListElement(AbstractTaskListElement):
         self.__date_completed = (timetobedone) # и никаких проверок
         return None
     
-    #добавить делу время выполнения
-    def set_name_and_date_planned(self, task_name, task_date_planned):
+    #добавить дело и  время его  выполнения
+    def add_task(self, task_name, task_date_planned):
         self.__task = task_name
         self.__date_planned = task_date_planned
         return None

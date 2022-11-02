@@ -1,7 +1,7 @@
 #!/usr/local/bin/python
 # coding: utf-8
     # формирует строку с датой из 3 чисел - дня,месяца и года
-def make_date_ustring_from_numbers(self,day, month, year):
+def make_date_ustring_from_numbers(day, month, year):
     return unicode(day)+u'-'+unicode(month)+u'-'+unicode(year)
 #---------------------------------------------------------------------------------
 # эта штука тоже пригодится (печать списков c указанием разделителя)
