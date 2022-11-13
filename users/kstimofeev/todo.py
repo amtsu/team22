@@ -1,4 +1,4 @@
-class todo():
+class Todo():
     def __init__(self, task, plan, executed):
         self.__task_name = task
         self.__plane_date = plan

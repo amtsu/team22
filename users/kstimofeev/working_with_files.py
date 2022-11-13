@@ -1,4 +1,5 @@
 import csv
+from todo import Todo
 
 with open('tasks_lists', mode='r', newline='') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
@@ -19,6 +20,11 @@ with open('tasks_lists', mode='r', newline='') as csv_file:
     deadline = all_strings[1]
     done_date = all_strings[2]
 
+new_obj_list = []
+for i in range(len(spisok_spiskov)):
+    new_obj_list.append(Todo(*spisok_spiskov[i]))
+
+print(new_obj_list)
 
 todo_list.extend(("buy_flight_ticket", "leave_russia"))
 deadline.extend(("27-09-2022", "24-02-2022"))
