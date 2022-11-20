@@ -1,4 +1,4 @@
- # В локальной папке лежит файл 'data.json'
+# В локальной папке лежит файл 'data.json'
 
 import json
 # from pprint import pprint
@@ -32,10 +32,10 @@ def read(json_file):
 #         self.planned_date = rd(0, 70)
 #         self.done_date = rd(0, 1000)
 
-
 # data = {
 #     'tasks_js' : []
 # }
+
 
 # class Task:
 #     def __init__(self, task, task_name, planned_date, done_date): #инициирует создание новго экземпляра этого класса

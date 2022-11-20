@@ -151,7 +151,6 @@ def SameDayCycle(x):
                 SameDayIndexList.append(SameDateIndex)
 print(SameDayIndexList)
 
-
 print('------------')
 print('Вес на луне: на земле 92кг, лунный коэф. 0,165, на 15 лет.')
 print('------------')
