@@ -53,3 +53,11 @@ class SpisokDel():
                 duplicate_dict[task.task_name()] = 1
         duplicate_dict = {task: count for task, count in duplicate_dict.items() if count > 1}
         return duplicate_dict
+
+    def read_file(self, filename):
+        with open(filename, 'rb') as handle:
+            self.__list = pickle.load(handle)
+
+    def write_file(self, filename):
+        with open(filename, 'wb') as handle:
+            pickle.dump(self.__list, handle)

@@ -1,4 +1,5 @@
 import csv
+import pickle
 from todo import Todo
 from spisok_del import SpisokDel
 
@@ -81,3 +82,13 @@ print(spisok_del_obj.count_dupl_tasks())
 print("----------------")
 
 print(spisok_del_obj.count_dupl_tasks2())
+print("----------------")
+
+#with open('task_list.pickle', 'wb') as handle:
+#    pickle.dump(spisok_del_obj, handle)
+
+with open('task_list.pickle', 'rb') as handle:
+    readed_spisok_del_obj = pickle.load(handle)
+print(readed_spisok_del_obj)
+
+#spisok_del_obj.write_file("test_write.pickle")
