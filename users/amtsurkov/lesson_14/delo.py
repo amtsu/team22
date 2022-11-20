@@ -10,10 +10,10 @@ class Delo():
             return True
         return False
     
-    1 == 1 __eq__
-    1 > 0  __gt__
-    2 < 10 __lt__  delo1 < delo2
-    1 != 2 __ne__  delo1 != delo2
+#    1 == 1 __eq__
+#    1 > 0  __gt__
+#    2 < 10 __lt__  delo1 < delo2
+#    1 != 2 __ne__  delo1 != delo2
     
     
     
