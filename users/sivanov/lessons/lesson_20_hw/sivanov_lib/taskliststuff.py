@@ -33,8 +33,7 @@ class AbstractTaskListElement(ABC):
     #преобразовать данные в список 
     @abstractmethod
     def _as_list(self): # кто-то определяет список параметров прямо тут в абстракте, кто-то этого не делает.
-        pass
-    
+        pass 
     #взять из списка, состоящего из трех строчек
     @abstractmethod
     def _from_list(self, list_of_three_strings): #как указать, что я хочу тут именн лист а не что-то ещё?
@@ -55,6 +54,15 @@ class AbstractTaskListElement(ABC):
     @abstractmethod
     def _name(self):
         pass
+    @abstractmethod
+    def _is_done_same_day(self):
+        pass
+    @abstractmethod
+    def _clone(self):
+        pass
+    @abstractmethod
+    def _has_same_name_as(self, other):
+        pass
     # теперь пусть будет интерфейс в рамках NVI (ему всё-таки быть)
     # возвращает дело в виде списка
     def as_list(self): 
@@ -69,12 +77,18 @@ class AbstractTaskListElement(ABC):
     #устанавливает данному делу дату завершения
     def set_done(self, timetobedone):
         return self._set_done(timetobedone)
-    #подумать надо 
-    #def (self, task_name, task_date_planned):
-    #    return self.__add_task(task_name, task_date_planned)
+    #проверка совпадает ли дата начала и конца задачи 
+    def is_done_same_day(self):
+        return self._is_done_same_day()
     #возвращает имя дела
     def name(self):
         return self._name()
+    #делает deepcopy
+    def clone(self):
+        return self._clone()
+    #сравнивает имена у дел
+    def has_same_name_as(self, other):
+        return self._has_same_name_as(other)
     pass # закончили
     
 #=================================================================================================================================    
@@ -110,7 +124,7 @@ class TaskListElement(AbstractTaskListElement):
     #вынужден определить __eq__
     #проверка экземпляров на равенство друг другу
     def __eq__(self, other):
-        return ((type(self) == type(other)) and (self.__task == other.__task))
+        return ((type(self) == type(other)) and (self.__task == other.__task) and (self.__date_completed == other.__date_completed) and (self.__date_planned == other.__date_planned))
     
     #проверяет является ли параметр функции списком из трех строк.
     #можно добавлять до бесконечности
@@ -162,10 +176,20 @@ class TaskListElement(AbstractTaskListElement):
     # возвращает имя дела
     def _name(self):
         return (self.__task)
+    
+    #проверка совпадает ли дата начала и конца задачи 
+    def _is_done_same_day(self):
+        return self.__date_planned == self.__date_completed
+    # возвращает копию экземпляра
+    def _clone(self):
+        return TaskListElement(self.as_list())
+    # сравнивает дела только по имени
+    def _has_same_name_as(self, other):
+        return ((type(self) == type(other)) and (self.__task == other.__task))    
     pass
 #==================================================================================================================================
 #напишу тесты прямо в модуле
-def main():
+def tests():
     rbstr = ColoredStr("red, bold")
     gbstr = ColoredStr("green, bold")
     testiter = ('test {} '.format(i) for i in range(1,100))
@@ -212,7 +236,7 @@ def main():
         result = failed
     print(next(testiter) + result + "tle.set_done('frying pan'); str(tle): " + str(tle))
     #------------------------------------------------
-    tle_2 = tle
+    tle_2 = tle.clone()  # нужна дипкопи тут. Вообще, нужна всегда дипкопи. как так сделать - хз
     if(tle_2.as_list() == tle.as_list()):
         result = worked
     else:
@@ -250,8 +274,45 @@ def main():
         result = failed
     print(next(testiter) + result + "tle != tle_2 : " + str(tle != tle_2))
     #------------------------------------------------
+    tle_2.set_done('сковорода')
+    if((tle_2 == tle) == False):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + "tle_2.set_done('frying pan'),  tle_2 == tle: " + str(tle_2 == tle))
+    llog(tle)
+    llog(tle_2)
+    #------------------------------------------------
+    if( (tle.is_done_same_day()) == False):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + "tle.is_done_same_day() : " + str(tle.is_done_same_day()))
+    #------------------------------------------------
+    tle.set_done('cunt')
+    if( (tle.is_done_same_day()) == True):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + "tle.set_done('cunt'), tle.is_done_same_day() : " + str(tle.is_done_same_day()))
+    #------------------------------------------------
+    if((tle_2.has_same_name_as(tle)) == True):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + "tle_2.has_same_name_as(tle): " + str(tle_2.has_same_name_as(tle)))
+    #------------------------------------------------
+    if((tle_3.has_same_name_as(tle)) == False):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + "tle_3.has_same_name_as(tle): " + str(tle_3.has_same_name_as(tle)))
+    #------------------------------------------------
     print('end testing')
     return
+#==================================================================================================================================
+def main():
+    return tests()
 #==================================================================================================================================
 if __name__ == '__main__':
     #llog = LocalLog(True)
