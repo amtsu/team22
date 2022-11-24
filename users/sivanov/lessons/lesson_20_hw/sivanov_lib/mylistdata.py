@@ -1,8 +1,13 @@
 #!/usr/local/bin/python
 # coding: utf-8
 '''
-ДОБАВИТЬ КОММЕНТАРИЙ
-это модуль с классом про список дел
+это модуль с классом MyTaskList про список дел
+решает задачки из первых заданий
+обеспечивает какой-то интерфейс к классу
+тесты модуля - функция tests()
+демка по работе с файлами - функция files_work() для нее нужно создать папки json и pickle рядом с вызывающим модулем
+демка по работе с другими методами - функция work()
+
 '''
 from usefulstuff import LocalLog
 from usefulstuff import ColoredStr
@@ -157,6 +162,182 @@ class MyTaskList:
     pass
     
 #==================================================================================================================================
+def tests():
+    rbstr = ColoredStr("red, bold") #красный жирный текст
+    gbstr = ColoredStr("green, bold") # зеленый жирный текст
+    testiter = ('Test {} '.format(i) for i in range(1,100)) # генератор нормеров тестов
+    failed = rbstr("!!!FAILED!!! : ")
+    worked = gbstr("PASSED : ")
+    #-------------------------------------------------
+    print('begin testing')
+    datastorage = MyTaskList()
+    print(next(testiter) + worked + 'creating datastorage = MyTaskList() object')
+    #-------------------------------------------------
+    task = datastorage.append('buy bread','5-3-2022')
+    if(task == TaskListElement(['buy bread','5-3-2022',''])):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'appending a task: datastorage.append(\'buy bread\',\'5-3-2022\'), result is:')
+    print(datastorage)
+    #-------------------------------------------------
+    datastorage.set_done(datastorage.index(task),'6-3-2022')
+    if(task == TaskListElement(['buy bread','5-3-2022','6-3-2022'])):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'setting completion time for a task: set_done(datastorage.index(task),\'6-3-2022\')')
+    #------------------------------------------------ 
+    print(' appeding 2 more tasks, the result is:')
+    task2 = datastorage.append('go for a walk in a park','10-3-2022')
+    task3 = datastorage.append('пойти поспать','11-3-2022')
+    print(datastorage)
+    #------------------------------------------------
+    tmptask = datastorage[1]
+    if(tmptask == task2):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'checking datastorage.index(),  tmptask = datastorage[1]')
+    #------------------------------------------------
+    names = datastorage.names()
+    if(names == [task.name(),task2.name(),task3.name()]):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'getting task names list: datastorage.names():')
+    print(names)
+    #------------------------------------------------
+    datastorage.set_done(datastorage.index(task2),'10-3-2022')
+    print('setting completion time for a task: datastorage.set_done(datastorage.index(task2),\'10-3-2022\')')
+    one_day_tasks = datastorage.one_day_tasks()
+    if(one_day_tasks == [task2]):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'calling datastorage.one_day_tasks(), result is [task2]')
+    #------------------------------------------------
+    datastorage.set_all_actions_done()
+    result = worked
+    for item in datastorage:
+        if(len(item.as_list()[2]) == 0):
+            result = failed
+    print(next(testiter) + result + 'calling datastorage.set_all_actions_done(), result is:')        
+    print(datastorage)
+    #------------------------------------------------
+    if(len(datastorage)== 3):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'calling __len__(), len(datastorage) == 3 is %s' % (len(datastorage)== 3))    
+    #------------------------------------------------
+    datastorage.save_to_json('tmp.json')
+    result = worked
+    print(next(testiter) + result + 'calling datastorage.save_to_json(\'tmp.json\') ')
+    #------------------------------------------------
+    datastorage.clear()
+    result = worked
+    if(len(datastorage) > 0):
+        result = failed
+    print(next(testiter) + result + 'calling datastorage.clear(), now len(datastorage) is %d' % (len(datastorage)))    
+    #------------------------------------------------
+    datastorage.load_from_json('tmp.json')
+    if(len(datastorage)== 3):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'calling datastorage.load_from_json(\'tmp.json\')')
+    print('now len(datastorage) is %d, datastorage contains:' % (len(datastorage)))
+    print(datastorage)
+    #------------------------------------------------ 
+    datastorage.pickle('tmp.pickle')
+    result = worked
+    print(next(testiter) + result + 'calling datastorage.pickle(\'tmp.pickle\')')
+    #------------------------------------------------
+    datastorage.clear()
+    print('calling datastorage.clear(), now len(datastorage) is %d, datastorage contains: ' % (len(datastorage)))  
+    print(datastorage)
+    #------------------------------------------------
+    datastorage.unpickle('tmp.pickle')
+    if(len(datastorage)== 3):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'calling datastorage.unpickle(\'tmp.pickle\')')
+    print('now len(datastorage) is %d, datastorage contains:' % (len(datastorage)))
+    print(datastorage)
+    #------------------------------------------------
+    result = failed
+    if(datastorage.check_by_name('buy bread') == 'Yes '):
+        result = worked
+    print(next(testiter) + result + 'datastorage.check_by_name(\'buy bread\') = \'%s\'' % (datastorage.check_by_name('buy bread')))    
+    if(datastorage.check_by_name('go for a walk in a park') == 'Yes '):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'datastorage.check_by_name(\'go for a walk in a park\') = \'%s\'' % (datastorage.check_by_name('go for a walk in a park')))       
+    if(datastorage.check_by_name('пойти поспать') == 'Yes '):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'datastorage.check_by_name(\'пойти поспать\') = \'%s\'' % (datastorage.check_by_name('пойти поспать')))
+    if(datastorage.check_by_name('выгулять собаку') == ''):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'datastorage.check_by_name(\'выгулять собаку\') = \'%s\'' % (datastorage.check_by_name('выгулять собаку')))
+    print('append another \' go for a walk in a park\'')
+    datastorage.append('go for a walk in a park','9-3-2022')
+    if(datastorage.check_by_name('go for a walk in a park') == 'Yes Yes '):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'datastorage.check_by_name(\'go for a walk in a park\') = \'%s\'' % (datastorage.check_by_name('go for a walk in a park')))
+    datastorage.clear()
+    datastorage.unpickle('tmp.pickle')
+    #------------------------------------------------
+    print('Restoring data; datastorage now contains:')
+    print(datastorage)
+    if(datastorage.check_by_namelen(40) == ''):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'calling datastorage.check_by_namelen(40) = \'%s\'' % (datastorage.check_by_namelen(40)) )
+    if(datastorage.check_by_namelen(0) == 'Yes Yes Yes '):
+        result = worked
+    else:
+        result = failed 
+    print(next(testiter) + result + 'calling datastorage.check_by_namelen(0) = \'%s\'' % (datastorage.check_by_namelen(0)))
+    if(datastorage.check_by_namelen(10) == 'Yes Yes '):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'calling datastorage.check_by_namelen(10) = \'%s\'' % (datastorage.check_by_namelen(10)))    
+    if(datastorage.check_by_namelen(13) == 'Yes '):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'calling datastorage.check_by_namelen(13) = \'%s\'' % (datastorage.check_by_namelen(13)))
+    #------------------------------------------------
+    repeaties = datastorage.repeaties()
+    result = worked
+    for key in repeaties.keys():
+        if repeaties[key] != 1:
+            result = failed
+        
+    print(next(testiter) + result + 'calling datastorage.repeaties() (no repeaties in datastorage)')
+    #------------------------------------------------
+    print('append another \' пойти поспать\'')
+    datastorage.append('пойти поспать','9-3-2022')
+    repeaties = datastorage.repeaties()
+    result = failed
+    if repeaties['пойти поспать'] == 2:
+            result = worked        
+    print(next(testiter) + result + 'calling datastorage.repeaties() (\'пойти поспать\' repeated twice )')
+    #------------------------------------------------
+    print('testing end')
+    return
+#==================================================================================================================================
 def files_work():
     r = (i for i in range(1,100))# устарело
     #rbstr = ColoredStr("red, bold")
@@ -166,7 +347,7 @@ def files_work():
     #worked = gbstr("PASSED : ")
     #создать экземпляр хранилища
     print('--------------------------------%d-----------------------------------------' % (next(r)))
-    print('begin testing')
+    print('begin files work')
     datastorage = MyTaskList()
     #закинуть что-то
     datastorage.append('buy bread','5-2-2022')
@@ -198,7 +379,7 @@ def files_work():
     print('-----unpickle------show()-------%d-----------------------------------------' % (next(r)))
     datastorage.unpickle('./pickle/task_list.pickle')
     print(datastorage)
-    print('testing end')
+    print('files work end')
     return None
 #==================================================================================================================================
 def work():
@@ -254,7 +435,6 @@ def work():
     print(('\n').join(('%3d : %s' % (i, datastorage[i])) for i in [1,4]))
     print('--------------------------------%d-----------------------------------------' % (next(r)))
     print(bstr(next(hw_list_iter)))
-    #print(datastorage.one_day_tasks())
     print(('\n').join((str(datastorage.index(task)) for task in datastorage.one_day_tasks())))
     print('--------------------------------%d-----------------------------------------' % (next(r)))
     print(bstr(next(hw_list_iter)))
@@ -270,7 +450,7 @@ def work():
 
 #==================================================================================================================================
 def main():
-    return work()
+    return tests()
 #==================================================================================================================================
 if __name__ == '__main__':
     #llog = LocalLog(True)
