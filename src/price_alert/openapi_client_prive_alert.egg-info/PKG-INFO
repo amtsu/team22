@@ -1,0 +1,13 @@
+Metadata-Version: 1.2
+Name: openapi-client-prive-alert
+Version: 0.0.1
+Summary: Price alert API
+Home-page: UNKNOWN
+Author: amtsu
+Author-email: amtsu@absrent.ru
+License: UNKNOWN
+Description:     Your project description  # noqa: E501
+            
+Keywords: Price Alertr,Project API
+Platform: UNKNOWN
+Requires-Python: >=3.7
