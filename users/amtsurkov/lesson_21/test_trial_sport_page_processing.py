@@ -21,6 +21,7 @@ def test_web_page_title_goods_1179889():
             "title": 'Блин вратаря DR X6 GOALIE BLOKER',
             'price': 6864,
             'price_sale': 2402,
+            'brand': 'Главная / Каталог / Коньки ледовые / Снаряжение / Блины вратаря / DR',
         },
     ]
     assert p.list_dict() == expected
@@ -42,6 +43,7 @@ def test_page_title_goods_1179889(read_from_flie_responce_goods_1179889):
             "title": 'Блин вратаря DR X6 GOALIE BLOKER',
             'price': 6864,
             'price_sale': 2402,
+            'brand': 'Главная / Каталог / Коньки ледовые / Снаряжение / Блины вратаря / DR',
         },
     ]
 
@@ -60,7 +62,8 @@ def test_page_title_goods_2174237(read_from_flie_responce_goods_2174237):
         {
             "title": "Горнолыжные ботинки Dalbello LUPO PRO HD",
             "price": 87360,
-            'price_sale': 56784
+            'price_sale': 56784,
+            'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Dalbello',
         },
     ]
 
@@ -72,6 +75,7 @@ def test_web_page_title_goods_2175792():
             "title": "Горнолыжные ботинки Dalbello CHAKRA ELEVATE 115 T.I. ID",
             "price": 66142,
             'price_sale': 42992,
+            'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Dalbello',
         },
     ]
     assert p.list_dict() == expected
@@ -83,6 +87,7 @@ def test_web_page_title_goods_2175355():
             "title": "Горнолыжные ботинки Dalbello LUPO AX 120",
             "price": 68640,
             'price_sale': 44616,
+            'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Dalbello',
         },
     ]
     assert p.list_dict() == expected
@@ -94,6 +99,7 @@ def test_web_page_title_goods_2174687():
             "title": "Горнолыжные ботинки Dalbello QUANTUM FREE 110",
             "price": 69887,
             'price_sale': 45426,
+            'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Dalbello',
         },
     ]
     assert p.list_dict() == expected
@@ -105,6 +111,7 @@ def test_web_page_title_goods_2174362():
             "title": "Горнолыжные ботинки Dalbello KRYPTON 130 T.I. ID",
             "price": 74880,
             'price_sale': 48672,
+            'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Dalbello'
         },
     ]
     assert p.list_dict() == expected
@@ -116,6 +123,7 @@ def test_web_page_title_goods_1525157():
             "title": "Горнолыжные ботинки Lange WORLD CUP RS ZB",
             "price": 67120,
             'price_sale': 53696,
+            'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Lange'
         },
     ]
     assert p.list_dict() == expected
@@ -127,6 +135,7 @@ def test_web_page_title_goods_1525371():
             "title": "Горнолыжные ботинки Rossignol ALLTRACK ELITE 130 LT GW",
             "price": 62559,
             'price_sale': 50047,
+            'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Rossignol'
         },
     ]
     assert p.list_dict() == expected
@@ -138,6 +147,7 @@ def test_web_page_title_goods_2174317():
             "title": "Горнолыжные ботинки Lange XT3 130 LV",
             'price': 81119,
             'price_sale': 52727,
+            'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Lange',
         },
     ]
     assert p.list_dict() == expected
