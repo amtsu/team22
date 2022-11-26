@@ -1,5 +1,6 @@
 #import urllib3 as urllib
 #import urllib as urllib
+import re
 import urllib.request
 import urllib
 from bs4 import BeautifulSoup
@@ -161,10 +162,10 @@ class BrandElement(Element):
         self.__soup = soup
 
     def __is_page_ok(self):
-        list_reports_data = self.__soup.findAll('h2')
+        list_reports_data = self.__soup.findAll('div', class_="bread")
         print(list_reports_data)
-        assert len(list_reports_data) == 5
-        if len(list_reports_data) != 5:
+        assert len(list_reports_data) == 1
+        if len(list_reports_data) != 1:
             return False
         return True
     
@@ -193,15 +194,50 @@ class BrandUrlElement(Element):
         self.__soup = soup
 
     def __is_page_ok(self):
-        list_reports_data = self.__soup.findAll('h2')
-        print(list_reports_data)
-        assert len(list_reports_data) == 5
-        if len(list_reports_data) != 5:
+        list_price_data = self.__soup.findAll('div', class_='bread')
+        assert len(list_price_data) == 1
+        list_reports_data = list_price_data[0].find_all('a')
+        assert len(list_reports_data) == 6
+        if len(list_reports_data) != 6:
             return False
         return True
     
     def __normalization(self, price_bad):
         return price_bad
+    
+    def __type_convert(self, text):
+        return text
+ 
+
+class ImageUrlElement(Element):
+    def get(self):
+        assert self.__is_page_ok()
+        text = self.__get_text()
+        normalization_text = self.__normalization(text)
+        return self.__type_convert(normalization_text)
+
+    def __get_text(self):
+        list_price_data = self.__soup.findAll('script')
+        script = list_price_data[10]
+        #"big": "\/images\/catalog\/lbj7000_xt3_130_lv_storm_blue_rgb300dpi_2539265.jpg"
+        return re.search(r'big": "(.+)"', script.text).group(1)
+
+    def __init__(self, soup):
+        self.__soup = soup
+
+    def __is_page_ok(self):
+        #list_price_data = self.__soup.findAll('script')
+        #script = list_price_data[10]
+        ##"big": "\/images\/catalog\/lbj7000_xt3_130_lv_storm_blue_rgb300dpi_2539265.jpg"
+        #image_url = re.search(r'big": "(.+)"', script.text).group(1)
+
+        #assert len(list_price_data) == 49
+        #if len(list_price_data) != 49:
+        #    return False
+        return True
+    
+    def __normalization(self, price_bad):
+        return price_bad.replace('\\', '')
     
     def __type_convert(self, text):
         return text
@@ -222,6 +258,7 @@ class OnePageProcessor():
                 "price_sale": PriceSaleElement(self.__soup).get(),
                 "brand": BrandElement(self.__soup).get(),
                 "brand_url": BrandUrlElement(self.__soup).get(),
+                "image_url": ImageUrlElement(self.__soup).get(),
             }
         ]
 

@@ -22,7 +22,8 @@ def test_web_page_title_goods_1179889():
             'price': 6864,
             'price_sale': 2402,
             'brand': 'Главная / Каталог / Коньки ледовые / Снаряжение / Блины вратаря / DR',
-            'brand_url': '/gds.php?s=51530&c1=1070639&brand=189643&c2=1084245'
+            'brand_url': '/gds.php?s=51530&c1=1070639&brand=189643&c2=1084245',
+            'image_url': '/images/catalog/_12_13_dr_blin_x6_goalie_bloker_1232831.jpg',
         },
     ]
     assert p.list_dict() == expected
@@ -45,7 +46,8 @@ def test_page_title_goods_1179889(read_from_flie_responce_goods_1179889):
             'price': 6864,
             'price_sale': 2402,
             'brand': 'Главная / Каталог / Коньки ледовые / Снаряжение / Блины вратаря / DR',
-            'brand_url': '/gds.php?s=51530&c1=1070639&brand=189643&c2=1084245'
+            'brand_url': '/gds.php?s=51530&c1=1070639&brand=189643&c2=1084245',
+            'image_url': '/images/catalog/_12_13_dr_blin_x6_goalie_bloker_1232831.jpg',
         },
     ]
 
@@ -67,6 +69,7 @@ def test_page_title_goods_2174237(read_from_flie_responce_goods_2174237):
             'price_sale': 56784,
             'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Dalbello',
             'brand_url': '/gds.php?s=51527&c1=1070485&brand=192987&c2=1078207',
+            'image_url': '/images/catalog/D210700100-Dalbello-skiboot-Lupo_Pro_HD-caraibiblue-_2199100.jpg',
         },
     ]
 
@@ -80,6 +83,7 @@ def test_web_page_title_goods_2175792():
             'price_sale': 42992,
             'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Dalbello',
             'brand_url': '/gds.php?s=51527&c1=1070485&brand=192987&c2=1078207',
+            'image_url': '/images/catalog/d210720100_dalbello_skiboot_chakra_elevate_115_id_ti_2538672.jpg',
         },
     ]
     assert p.list_dict() == expected
@@ -93,6 +97,7 @@ def test_web_page_title_goods_2175355():
             'price_sale': 44616,
             'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Dalbello',
             'brand_url': '/gds.php?s=51527&c1=1070485&brand=192987&c2=1078207',
+            'image_url': '/images/catalog/d210700300_dalbello_skiboot_lupo_ax_120_grey_black_2199083.jpg',
         },
     ]
     assert p.list_dict() == expected
@@ -106,6 +111,7 @@ def test_web_page_title_goods_2174687():
             'price_sale': 45426,
             'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Dalbello',
             'brand_url': '/gds.php?s=51527&c1=1070485&brand=192987&c2=1078207',
+            'image_url': '/images/catalog/d210800700_dalbello_skiboot_quantum_free_110_black_a_2538725.jpg',
         },
     ]
     assert p.list_dict() == expected
@@ -119,6 +125,7 @@ def test_web_page_title_goods_2174362():
             'price_sale': 48672,
             'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Dalbello',
             'brand_url': '/gds.php?s=51527&c1=1070485&brand=192987&c2=1078207',
+            'image_url': '/images/catalog/d210710100_dalbello_skiboot_krypton_130_id_ti_racegr_2538668.jpg',
         },
     ]
     assert p.list_dict() == expected
@@ -131,7 +138,8 @@ def test_web_page_title_goods_1525157():
             "price": 67120,
             'price_sale': 53696,
             'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Lange',
-            'brand_url': '/gds.php?s=51527&c1=1070485&brand=263003&c2=1078207'
+            'brand_url': '/gds.php?s=51527&c1=1070485&brand=263003&c2=1078207',
+            'image_url': '/images/catalog/lbi9250_world_cup_rs_zb_power_blue_rvb72dpi_01_1534667_15347.jpg',
         },
     ]
     assert p.list_dict() == expected
@@ -145,6 +153,7 @@ def test_web_page_title_goods_1525371():
             'price_sale': 50047,
             'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Rossignol',
             'brand_url': '/gds.php?s=51527&c1=1070485&brand=465845&c2=1078207',
+            'image_url': '/images/catalog/rbj3000_alltrack_elite_130_l_rgb72dpi_01_1543978.jpg',
         },
     ]
     assert p.list_dict() == expected
@@ -158,6 +167,7 @@ def test_web_page_title_goods_2174317():
             'price_sale': 52727,
             'brand': 'Главная / Каталог / Лыжи горные / Обувь / Горнолыжные ботинки / Lange',
             'brand_url': '/gds.php?s=51527&c1=1070485&brand=263003&c2=1078207',
+            'image_url': '/images/catalog/lbj7000_xt3_130_lv_storm_blue_rgb300dpi_2539265.jpg',
         },
     ]
     assert p.list_dict() == expected
