@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 class Element():
     def get(self):
-        #assert self.__is_page_ok()
+        assert self.__is_page_ok()
         text = self.__get_text()
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
@@ -34,26 +34,29 @@ class Element():
 
 class PriceElement(Element):
     def get(self):
-        #assert self.__is_page_ok()
+        assert self.__is_page_ok()
         text = self.__get_text()
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
     
     def __get_text(self):
-        list_reports_data = self.__soup.findAll('div', class_='price')
+        list_price_data = self.__soup.findAll('div', class_='prices_for_popup')
+        assert len(list_price_data) == 1
+        list_reports_data = list_price_data[0].find_all('div', class_='price')
         element_1 = list_reports_data[0]
         return element_1.text
 
     def __init__(self, soup):
         self.__soup = soup
 
-    #def __is_page_ok(self):
-    #    list_reports_data = self.__soup.findAll('div', class_='price')
-    #    print(list_reports_data)
-    #    assert len(list_reports_data) == 10
-    #    if len(list_reports_data) != 10:
-    #        return False
-    #    return True
+    def __is_page_ok(self):
+        list_price_data = self.__soup.findAll('div', class_='prices_for_popup')
+        assert len(list_price_data) == 1
+        list_reports_data = list_price_data[0].find_all('div', class_='price')
+        assert len(list_reports_data) == 2
+        if len(list_reports_data) != 2:
+            return False
+        return True
     
     def __normalization(self, price_bad):
         price_bad = price_bad.replace(u'\u2009', '') # ' '
@@ -72,26 +75,29 @@ class PriceElement(Element):
 
 class PriceSaleElement(Element):
     def get(self):
-        #assert self.__is_page_ok()
+        assert self.__is_page_ok()
         text = self.__get_text()
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
     
     def __get_text(self):
-        list_reports_data = self.__soup.findAll('div', class_='price price_disc')
-        #list_reports_data = self.__soup.findAll('span', id_='price price_disc')
+        list_price_data = self.__soup.findAll('div', class_='prices_for_popup')
+        assert len(list_price_data) == 1
+        list_reports_data = list_price_data[0].find_all('div', class_='price price_disc')
         element_1 = list_reports_data[0]
         return element_1.text
 
     def __init__(self, soup):
         self.__soup = soup
 
-    #def __is_page_ok(self):
-    #    list_reports_data = self.__soup.findAll('div', class_='price price_disc')
-    #    assert len(list_reports_data) == 1
-    #    if len(list_reports_data) != 1:
-    #        return False
-    #    return True
+    def __is_page_ok(self):
+        list_price_data = self.__soup.findAll('div', class_='prices_for_popup')
+        assert len(list_price_data) == 1
+        list_reports_data = list_price_data[0].find_all('div', class_='price price_disc')
+        assert len(list_reports_data) == 1
+        if len(list_reports_data) != 1:
+            return False
+        return True
 
     def __normalization(self, price_bad):
         price_bad = price_bad.replace(u'\u2009', '') # ' '
@@ -109,10 +115,9 @@ class PriceSaleElement(Element):
         return 'z'
 
 
-
 class TitleElement(Element):
     def get(self):
-        #assert self.__is_page_ok()
+        assert self.__is_page_ok()
         text = self.__get_text()
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
@@ -125,13 +130,13 @@ class TitleElement(Element):
     def __init__(self, soup):
         self.__soup = soup
 
-    #def __is_page_ok(self):
-    #    list_reports_data = self.__soup.findAll('h2')
-    #    print(list_reports_data)
-    #    assert len(list_reports_data) == 5
-    #    if len(list_reports_data) != 5:
-    #        return False
-    #    return True
+    def __is_page_ok(self):
+        list_reports_data = self.__soup.findAll('h2')
+        print(list_reports_data)
+        assert len(list_reports_data) == 5
+        if len(list_reports_data) != 5:
+            return False
+        return True
     
     def __normalization(self, price_bad):
         return price_bad
