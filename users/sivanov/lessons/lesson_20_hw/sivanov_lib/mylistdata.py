@@ -24,11 +24,14 @@ class MyTaskList:
         self.__tasks = list()
         return None    
     #--------------------------------------------------------------------------------------------
-    # добавляет действие в конец списка 
+    # добавляет действие в конец списка, если этого дела нет в списке
     def append(self, task_name, task_date_planned):
         task = TaskListElement()
         task.from_list([task_name, task_date_planned,''])
-        self.__tasks.append(task)
+        if(task not in self.__tasks):
+            self.__tasks.append(task)
+        else:
+            task = self.__tasks[self.__tasks.index(task)]
         return task
     #--------------------------------------------------------------------------------------------
     # выставляет для нужного действия время окончания
@@ -179,6 +182,10 @@ def tests():
     else:
         result = failed
     print(next(testiter) + result + 'appending a task: datastorage.append(\'buy bread\',\'5-3-2022\'), result is:')
+    print(datastorage)
+    #-------------------------------------------------
+    task = datastorage.append('buy bread','5-3-2022')
+    print('appending the same task, result is')
     print(datastorage)
     #-------------------------------------------------
     datastorage.set_done(datastorage.index(task),'6-3-2022')
@@ -334,6 +341,17 @@ def tests():
     if repeaties['пойти поспать'] == 2:
             result = worked        
     print(next(testiter) + result + 'calling datastorage.repeaties() (\'пойти поспать\' repeated twice )')
+    #------------------------------------------------
+    print('another \' buy bread\' test')
+    task = datastorage.append('buy bread','5-3-2022')
+    print(datastorage)
+    print(datastorage.index(task))
+    datastorage.set_done(datastorage.index(task),'6-3-2022')
+    if(task == TaskListElement(['buy bread','5-3-2022','6-3-2022'])):
+        result = worked
+    else:
+        result = failed
+    print(next(testiter) + result + 'setting completion time for a task: set_done(datastorage.index(task),\'6-3-2022\')')
     #------------------------------------------------
     print('testing end')
     return
