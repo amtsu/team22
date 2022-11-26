@@ -43,4 +43,22 @@ def test_page_title_goods_1179889(read_from_flie_responce_goods_1179889):
         },
     ]
 
+@pytest.fixture()
+def read_from_flie_responce_goods_2174237():
+    #before write code you shell download responce https://trial-sport.ru/goods/51527/2174237.html
+    #curl https://trial-sport.ru/goods/51527/2174237.html -O
+    text = ''
+    with open('download/2174237.html','r') as response:
+        text = response.read() 
+    return text
+
+def test_page_title_goods_2174237(read_from_flie_responce_goods_2174237):
+    p = OnePageProcessor(read_from_flie_responce_goods_2174237)
+    assert p.list_dict() == [
+        {
+            "title": "Горнолыжные ботинки Dalbello LUPO PRO HD",
+            "price": 56784,
+        },
+    ]
+
 
