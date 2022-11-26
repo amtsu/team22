@@ -61,4 +61,75 @@ def test_page_title_goods_2174237(read_from_flie_responce_goods_2174237):
         },
     ]
 
+# add online checker
+def test_web_page_title_goods_2175792():
+    p = OnePage("https://trial-sport.ru/goods/51527/2175792.html")
+    expected = [
+        {
+            "title": "Горнолыжные ботинки Dalbello CHAKRA ELEVATE 115 T.I. ID",
+            "price": 66142,
+        },
+    ]
+    assert p.list_dict() == expected
+
+def test_web_page_title_goods_2175355():
+    p = OnePage("https://trial-sport.ru/goods/51527/2175355.html")
+    expected = [
+        {
+            "title": "Горнолыжные ботинки Dalbello LUPO AX 120",
+            "price": 68640,
+        },
+    ]
+    assert p.list_dict() == expected
+
+def test_web_page_title_goods_2174687():
+    p = OnePage("https://trial-sport.ru/goods/51527/2174687.html")
+    expected = [
+        {
+            "title": "Горнолыжные ботинки Dalbello QUANTUM FREE 110",
+            "price": 69887,
+        },
+    ]
+    assert p.list_dict() == expected
+
+def test_web_page_title_goods_2174362():
+    p = OnePage("https://trial-sport.ru/goods/51527/2174362.html")
+    expected = [
+        {
+            "title": "Горнолыжные ботинки Dalbello KRYPTON 130 T.I. ID",
+            "price": 74880,
+        },
+    ]
+    assert p.list_dict() == expected
+
+def test_web_page_title_goods_1525157():
+    p = OnePage("https://trial-sport.ru/goods/51527/1525157.html")
+    expected = [
+        {
+            "title": "Горнолыжные ботинки Lange WORLD CUP RS ZB",
+            "price": 67120,
+        },
+    ]
+    assert p.list_dict() == expected
+
+def test_web_page_title_goods_1525371():
+    p = OnePage("https://trial-sport.ru/goods/51527/1525371.html")
+    expected = [
+        {
+            "title": "Горнолыжные ботинки Rossignol ALLTRACK ELITE 130 LT GW",
+            "price": 62559,
+        },
+    ]
+    assert p.list_dict() == expected
+
+def test_web_page_title_goods_2174317():
+    p = OnePage("https://trial-sport.ru/goods/51527/2174317.html")
+    expected = [
+        {
+            "title": "Горнолыжные ботинки Lange XT3 130 LV",
+            "price": 52727,
+        },
+    ]
+    assert p.list_dict() == expected
+
 
