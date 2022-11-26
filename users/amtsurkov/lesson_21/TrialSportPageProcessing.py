@@ -99,26 +99,46 @@ class TitleElement(Element):
         return text
         
 
+class OnePageProcessor():
+    """
+        Not good use BeautifulSoup object, and then use them in coheshe object
+    """
+    def __init__(self, text_page):
+        self.__soup = BeautifulSoup(text_page, features="html.parser")
+
+    def list_dict(self):
+        return [
+            {
+                "title": TitleElement(self.__soup).get(),
+                "price": PriceElement(self.__soup).get(),
+            }
+        ]
+
+
 # модуль trial-sport.ru
 class OnePage():
-    def get_price(self):
-        e = PriceElement(self.__soup)
-        #print(e._w())
-        #print(e.__z())
-        return e.get()
-
+#    def get_price(self):
+#        e = PriceElement(self.__soup)
+#        #print(e._w())
+#        #print(e.__z())
+#        return e.get()
+#
     def __init__(self, url):
         self.__url = url
         #print(help(urllib.request))
         with urllib.request.urlopen(self.__url) as response:
         #with urllib.urlopen(self.__url) as response:
             self.__page = response.read()
-            self.__soup = BeautifulSoup(self.__page, features="html.parser")
+            self.__one_page_processor = OnePageProcessor(self.__page)
             
-    def get_title(self):
-        e = TitleElement(self.__soup)
-        return e.get()
+#    def get_title(self):
+#        e = TitleElement(self.__soup)
+#        return e.get()
+
+    def list_dict(self):
+        return self.__one_page_processor.list_dict()
     
+
 class ListPage():
     pass
 
