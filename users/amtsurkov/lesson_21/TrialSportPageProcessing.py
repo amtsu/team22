@@ -113,7 +113,7 @@ class OnePage():
         with urllib.request.urlopen(self.__url) as response:
         #with urllib.urlopen(self.__url) as response:
             self.__page = response.read()
-            self.__soup = BeautifulSoup(self.__page)
+            self.__soup = BeautifulSoup(self.__page, features="html.parser")
             
     def get_title(self):
         e = TitleElement(self.__soup)
