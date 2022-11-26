@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 class Element():
     def get(self):
-        assert self.__is_page_ok()
+        #assert self.__is_page_ok()
         text = self.__get_text()
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
@@ -31,29 +31,29 @@ class Element():
         
     def __z(self):
         return 'z'
-    
 
 class PriceElement(Element):
     def get(self):
-        assert self.__is_page_ok()
+        #assert self.__is_page_ok()
         text = self.__get_text()
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
     
     def __get_text(self):
-        list_reports_data = self.__soup.findAll('div', class_='price price_disc')
-        #list_reports_data = self.__soup.findAll('span', id_='price price_disc')
+        list_reports_data = self.__soup.findAll('div', class_='price')
         element_1 = list_reports_data[0]
         return element_1.text
 
     def __init__(self, soup):
         self.__soup = soup
 
-    def __is_page_ok(self):
-        list_reports_data = self.__soup.findAll('div', class_='price price_disc')
-        if len(list_reports_data) != 1:
-            return False
-        return True
+    #def __is_page_ok(self):
+    #    list_reports_data = self.__soup.findAll('div', class_='price')
+    #    print(list_reports_data)
+    #    assert len(list_reports_data) == 10
+    #    if len(list_reports_data) != 10:
+    #        return False
+    #    return True
     
     def __normalization(self, price_bad):
         price_bad = price_bad.replace(u'\u2009', '') # ' '
@@ -70,14 +70,53 @@ class PriceElement(Element):
     def __z(self):
         return 'z'
 
-    
-class TitleElement(Element):
+class PriceSaleElement(Element):
     def get(self):
-        assert self.__is_page_ok()
+        #assert self.__is_page_ok()
         text = self.__get_text()
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
     
+    def __get_text(self):
+        list_reports_data = self.__soup.findAll('div', class_='price price_disc')
+        #list_reports_data = self.__soup.findAll('span', id_='price price_disc')
+        element_1 = list_reports_data[0]
+        return element_1.text
+
+    def __init__(self, soup):
+        self.__soup = soup
+
+    #def __is_page_ok(self):
+    #    list_reports_data = self.__soup.findAll('div', class_='price price_disc')
+    #    assert len(list_reports_data) == 1
+    #    if len(list_reports_data) != 1:
+    #        return False
+    #    return True
+
+    def __normalization(self, price_bad):
+        price_bad = price_bad.replace(u'\u2009', '') # ' '
+        price_bad = price_bad.replace(u'\u20bd', '') # '₽'
+        price_bad = price_bad.replace(u' ', '') # ' '
+        return price_bad
+        price_good = int(price_bad)
+        return price_good
+
+    def __type_convert(self, text):
+        assert text.isnumeric()
+        return int(text)
+
+    def __z(self):
+        return 'z'
+
+
+
+class TitleElement(Element):
+    def get(self):
+        #assert self.__is_page_ok()
+        text = self.__get_text()
+        normalization_text = self.__normalization(text)
+        return self.__type_convert(normalization_text)
+
     def __get_text(self):
         list_reports_data = self.__soup.findAll('h2')
         element_1 = list_reports_data[0]
@@ -86,11 +125,13 @@ class TitleElement(Element):
     def __init__(self, soup):
         self.__soup = soup
 
-    def __is_page_ok(self):
-        list_reports_data = self.__soup.findAll('h2')
-        if len(list_reports_data) != 5:
-            return False
-        return True
+    #def __is_page_ok(self):
+    #    list_reports_data = self.__soup.findAll('h2')
+    #    print(list_reports_data)
+    #    assert len(list_reports_data) == 5
+    #    if len(list_reports_data) != 5:
+    #        return False
+    #    return True
     
     def __normalization(self, price_bad):
         return price_bad
@@ -111,6 +152,7 @@ class OnePageProcessor():
             {
                 "title": TitleElement(self.__soup).get(),
                 "price": PriceElement(self.__soup).get(),
+                "price_sale": PriceSaleElement(self.__soup).get(),
             }
         ]
 

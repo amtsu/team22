@@ -19,7 +19,8 @@ def test_web_page_title_goods_1179889():
     expected = [
         {
             "title": 'Блин вратаря DR X6 GOALIE BLOKER',
-            "price": 2402,
+            'price': 6864,
+            'price_sale': 2402,
         },
     ]
     assert p.list_dict() == expected
@@ -39,7 +40,8 @@ def test_page_title_goods_1179889(read_from_flie_responce_goods_1179889):
     assert p.list_dict() == [
         {
             "title": 'Блин вратаря DR X6 GOALIE BLOKER',
-            "price": 2402,
+            'price': 6864,
+            'price_sale': 2402,
         },
     ]
 
@@ -57,7 +59,8 @@ def test_page_title_goods_2174237(read_from_flie_responce_goods_2174237):
     assert p.list_dict() == [
         {
             "title": "Горнолыжные ботинки Dalbello LUPO PRO HD",
-            "price": 56784,
+            "price": 87360,
+            'price_sale': 56784
         },
     ]
 
@@ -68,6 +71,7 @@ def test_web_page_title_goods_2175792():
         {
             "title": "Горнолыжные ботинки Dalbello CHAKRA ELEVATE 115 T.I. ID",
             "price": 66142,
+            'price_sale': 42992,
         },
     ]
     assert p.list_dict() == expected
@@ -78,6 +82,7 @@ def test_web_page_title_goods_2175355():
         {
             "title": "Горнолыжные ботинки Dalbello LUPO AX 120",
             "price": 68640,
+            'price_sale': 44616,
         },
     ]
     assert p.list_dict() == expected
@@ -88,6 +93,7 @@ def test_web_page_title_goods_2174687():
         {
             "title": "Горнолыжные ботинки Dalbello QUANTUM FREE 110",
             "price": 69887,
+            'price_sale': 45426,
         },
     ]
     assert p.list_dict() == expected
@@ -98,6 +104,7 @@ def test_web_page_title_goods_2174362():
         {
             "title": "Горнолыжные ботинки Dalbello KRYPTON 130 T.I. ID",
             "price": 74880,
+            'price_sale': 48672,
         },
     ]
     assert p.list_dict() == expected
@@ -108,6 +115,7 @@ def test_web_page_title_goods_1525157():
         {
             "title": "Горнолыжные ботинки Lange WORLD CUP RS ZB",
             "price": 67120,
+            'price_sale': 53696,
         },
     ]
     assert p.list_dict() == expected
@@ -118,6 +126,7 @@ def test_web_page_title_goods_1525371():
         {
             "title": "Горнолыжные ботинки Rossignol ALLTRACK ELITE 130 LT GW",
             "price": 62559,
+            'price_sale': 50047,
         },
     ]
     assert p.list_dict() == expected
@@ -127,7 +136,8 @@ def test_web_page_title_goods_2174317():
     expected = [
         {
             "title": "Горнолыжные ботинки Lange XT3 130 LV",
-            "price": 52727,
+            'price': 81119,
+            'price_sale': 52727,
         },
     ]
     assert p.list_dict() == expected
