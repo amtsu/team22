@@ -179,5 +179,6 @@ def test_trial_sport_service_processing():
     tssp.load_url_by_default()
     tssp.process()
     tssp.save_in_file_with_current_datetime()
+    tssp.send_in_api()
 
 

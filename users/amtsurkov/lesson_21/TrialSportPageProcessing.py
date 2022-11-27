@@ -6,6 +6,14 @@ import urllib
 from bs4 import BeautifulSoup
 import json
 
+import time
+import openapi_client
+from pprint import pprint
+from openapi_client.apis.tags import history_api
+from openapi_client.model.history import History
+from openapi_client.model.paginated_history_list import PaginatedHistoryList
+from openapi_client.model.patched_history import PatchedHistory
+
 class Element():
     def get(self):
         assert self.__is_page_ok()
@@ -327,3 +335,58 @@ class TrialSportServiceProcessing(ServiceProcessing):
         file_name = self.__create_file_name_with_current_datetime()
         with open(file_name, 'w') as outfile:
             json.dump(json_string, outfile)
+
+    def send_in_api(self):
+        configuration = openapi_client.Configuration(
+            host = "http://absrent.ru:8000"
+        )
+
+        with openapi_client.ApiClient(configuration) as api_client:
+            api_instance = history_api.HistoryApi(api_client)
+            for e in self.__list_dict:
+                print(e)
+                history = History(
+                    pk=1,
+                    title=e['title'],
+                    #quantity=1,
+                    price=str(e['price']),
+                    price_sale=str(e['price_sale']),
+                    datetime_create="1970-01-01T00:00:00.00Z",
+                    #score="-807",
+                    #count_comments=1,
+                    #count_likes=1,
+                    #count_stars_all=1,
+                    #count_stars_1=1,
+                    #count_stars_2=1,
+                    #count_stars_3=1,
+                    #count_stars_4=1,
+                    #count_stars_5=1,
+                    #count_how_much_buy=1,
+                    #count_questions=1,
+                    #count_photo=1,
+                    #category="category_example",
+                    #category_url="category_url_example",
+                    brand=e["brand"],
+                    brand_url=e["brand_url"],
+                    #day_to_delivery=1,
+                    #sku="sku_example",
+                    #url="url_example",
+                    #canonical_url="canonical_url_example",
+                    img_url=e["image_url"],
+                    #description="description_example",
+                    #params="params_example",
+                    #seller="seller_example",
+                    #seller_url="seller_url_example",
+                    #source_url="source_url_example",
+                    #urls_other_products_on_the_page="urls_other_products_on_the_page_example",
+                    #worker="worker_example",
+                    #task="task_example",
+                ) # History |  (optional)
+
+                try:
+                    api_response = api_instance.history_create(body=history)
+                    pprint(api_response)
+                except openapi_client.ApiException as e:
+                    print("Exception when calling HistoryApi->history_create: %s\n" % e)
+
+
