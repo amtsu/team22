@@ -4,6 +4,7 @@ import re
 import urllib.request
 import urllib
 from bs4 import BeautifulSoup
+import json
 
 class Element():
     def get(self):
@@ -291,6 +292,38 @@ class ListPage():
     pass
 
 
+class ServiceProcessing():
+    pass
 
-dir(urllib)
-#dir(urllib.request)
+class TrialSportServiceProcessing(ServiceProcessing):
+    """
+    when we have many ServiceProcessing, we nead create one Modeul with configuration 
+    """
+    def load_url_by_default(self):
+        self.__urls = [
+            "https://trial-sport.ru/goods/51530/1179889.html",
+            "https://trial-sport.ru/goods/51527/2175792.html",
+            "https://trial-sport.ru/goods/51527/2175355.html",
+            "https://trial-sport.ru/goods/51527/2174687.html",
+            "https://trial-sport.ru/goods/51527/2174362.html",
+            "https://trial-sport.ru/goods/51527/1525157.html",
+            "https://trial-sport.ru/goods/51527/1525371.html",
+            "https://trial-sport.ru/goods/51527/2174317.html",
+        ]
+
+    def process(self):
+        self.__list_dict = []
+        for url in self.__urls:
+            for object_params in OnePage(url).list_dict():
+                self.__list_dict.append(object_params)
+        #create file with name current datetime
+        # whene trabsfer to airflow we need change save file, becouse runner may start in any server
+
+    def __create_file_name_with_current_datetime(self):
+        return 'trialsport_fresh.json'
+
+    def save_in_file_with_current_datetime(self):
+        json_string = json.dumps(self.__list_dict)
+        file_name = self.__create_file_name_with_current_datetime()
+        with open(file_name, 'w') as outfile:
+            json.dump(json_string, outfile)

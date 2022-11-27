@@ -1,5 +1,5 @@
 import pytest
-from TrialSportPageProcessing import OnePage, OnePageProcessor
+from TrialSportPageProcessing import OnePage, OnePageProcessor, TrialSportServiceProcessing
 
 #def test_price_goods_1179889():
 #    import sys
@@ -171,5 +171,13 @@ def test_web_page_title_goods_2174317():
         },
     ]
     assert p.list_dict() == expected
+
+    
+#TrialSportServiceProcessing
+def test_trial_sport_service_processing():
+    tssp =  TrialSportServiceProcessing()
+    tssp.load_url_by_default()
+    tssp.process()
+    tssp.save_in_file_with_current_datetime()
 
 
