@@ -1,27 +1,28 @@
 #!/usr/local/bin/python
 # coding: utf-8
 #pip install mypy
-#работа с абстрактными классами
-from abc import ABCMeta, abstractmethod 
+#pip install pylint
+"""работа с абстрактными классами"""
+from abc import ABCMeta, abstractmethod
 #---------------------------------------------
 class Test(metaclass=ABCMeta):
+    """ абстрактный класс -  интерфейс (ну, я надеялся) """
     @abstractmethod
-    def foo(self):
-        pass
+    def a_method(self):
+        """ просто метод, без параметров """
     @abstractmethod
-    def foo_par(self, parameter:bool) -> bool:
-        pass
-    pass
+    def a_second_method(self, parameter:bool) -> bool:
+        """ метод с параметрами. указанные типы используются только для справочной информации"""
 #--------------------------------------------
 class TestChild(Test):
-    def __init__(self):
-        return None
-    #def foo(self):
-    #    print('foo')
-    #    return None
-    #def foo_par(self, parameter:bool):
-    #    print('foo_par')
-    #    return parameter
+    """ конкретный класс, реализующий интерфейс, задаваемый абстрактным классом """
+    def a_method(self):
+        """ реализация простого метода"""
+        print('a_method')
+    def a_second_method(self, parameter:bool) -> bool:
+        """ реализация метода с параметрами """
+        print('a_second_method')
+        return parameter
     #def foo_par(self, parameter:bool) -> str: # неверный параметр
     #    print('foo_par %s'%(parameter))
     #    return 'True'
@@ -34,12 +35,12 @@ class TestChild(Test):
     #pass
 #--------------------------------------------
 def main():
-    t = TestChild()
-    t.foo()
-    param = str('jiggles') #нормально
+    """ функция, вызываемая при выполнении модуля """
+    test_class = TestChild()
+    test_class.a_method()
+    #param = str('jiggles') #нормально
     #t.foo_par(param)       #нормально, но не сработает когда foo_par это property
-    print(t.foo_par) 
+    print(test_class.a_second_method(True))
 #--------------------------------------------
 if __name__ == '__main__':
     main()
-pass  
