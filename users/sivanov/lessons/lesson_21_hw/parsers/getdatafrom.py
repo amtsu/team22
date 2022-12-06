@@ -3,9 +3,9 @@
 import urllib.request
 from bs4 import BeautifulSoup
 import pytest
-from usefulstuff import LocalLog
-from usefulstuff import ColoredStr
-from usefulstuff import HandmadeTestDecorator
+#from usefulstuff import LocalLog
+#from usefulstuff import ColoredStr
+#from usefulstuff import HandmadeTestDecorator
 class webpage:
     """
     класс вебстраница
@@ -44,27 +44,7 @@ class webpage:
     pass
     
 
-#--------------------------------------------------------------------------------------------------------
-#тесты
-def test_webpage_str_1():
-    assert str(webpage('test')) == 'url: test, opened: False, error code: 0'
-    return None
-def test_webpage_str_2():
-    assert str(webpage('test')) != 'url: test, opened: True, error code: 0'
-    return None
-def test_webpage_open_1():
-    test_html = '<html><head><meta charset="utf-8"></head><body><div class=\"test\">some text</div><div class=\"price\">1 345р.</div></body></html>'
-    with open('test.html','w') as f:
-        f.write(test_html)
-    
-    #КОСТЫЛИНА КАПЕЦ ПРОСТО
-    test_page = webpage('file:///home/jupyter-isergy/github/team22/users/sivanov/lessons/lesson_21_hw/parsers/test.html')
-    
-    text = test_page.open().decode('utf-8')
-    assert text == test_html# + 'fail'
-    return None
-    
-    
+
 #==================================================================================================================================
 class get_data_from:
     #initiate
@@ -137,21 +117,21 @@ class ultra_strip:
     pass
 #==================================================================================================================================
 # тесты модуля
-def _tests():
-    rbstr = ColoredStr("red, bold")
-    gbstr = ColoredStr("green, bold")
-    failed = rbstr("!!!FAILED!!! : ")
-    passed = gbstr("PASSED : ")
-    htc = HandmadeTestDecorator(failed, passed)
-    print("begin testing")
-    print(htc(test_webpage_str_1)())
-    print(htc(test_webpage_str_2)())
-    print(htc(test_webpage_open_1)())   
-    print("testing end")
-    return None
+#def _tests():
+#    rbstr = ColoredStr("red, bold")
+#    gbstr = ColoredStr("green, bold")
+#    failed = rbstr("!!!FAILED!!! : ")
+#    passed = gbstr("PASSED : ")
+#    htc = HandmadeTestDecorator(failed, passed)
+#    print("begin testing")
+#    print(htc(test_webpage_str_1)())
+#    print(htc(test_webpage_str_2)())
+#    print(htc(test_webpage_open_1)())   
+#    print("testing end")
+#    return None
 #==================================================================================================================================
 def main():
-    return _tests()
+    return None
 #==================================================================================================================================
 if __name__ == '__main__':
     #llog = LocalLog(True)
