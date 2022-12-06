@@ -5,12 +5,17 @@
 """
 import urllib.request
 from bs4 import BeautifulSoup
+import bs4
+from abc import ABCMeta, abstractmethod
+import json
+import os
+ 
 import pytest
 from usefulstuff import LocalLog
 #from usefulstuff import ColoredStr
 #from usefulstuff import HandmadeTestDecorator
 llog = LocalLog(False)
-class webpage:
+class WebPage:
     """
     класс вебстраница
     работаем как с файлом: передаем путь, или не передаем
@@ -27,11 +32,11 @@ class webpage:
         return None
     #--------------------------------------------
     @property
-    def last_HTTP_error_code(self):
+    def last_http_error_code(self):
         return self.__last_HTTP_error
     #--------------------------------------------
     @property
-    def last_URL_error_code(self):
+    def last_url_error_code(self):
         return self.__last_URL_error
     
     #--------------------------------------------
@@ -71,7 +76,7 @@ class webpage:
     #--------------------------------------------
     pass
 #==================================================================================================================================
-class ultra_strip:
+class UltraStrip:
     '''
     удалить заданные символы из списка символов,формируемого при создании 
     '''
@@ -91,25 +96,60 @@ class ultra_strip:
         return result
     pass
 #==================================================================================================================================
-class page_element:
+#return element_1['href'] - это как вытащить значение
+# возможн нужно сделать геттекст и гетвалюе, ну или написать два класса обработчика, это на подумать.
+#==================================================================================================================================
+class SimpleGetter:
+    __metaclass__ = ABCMeta
+    @abstractmethod
+    def get(self, tag: bs4.element.Tag):
+        pass
+    pass
+#==================================================================================================================================
+class TagParameter(SimpleGetter):
+    """
+    забрать значение параметра тега, то есть то что внутри и имеет соответствующее имя
+    """
+    def __init__(self, param_name: str):
+        self.__param_name = param_name
+    def get(self, tag: bs4.element.Tag):
+        result = ''
+        if(tag.has_key(self.__param_name)):
+            result = tag[self.__param_name]        
+        return result
+#        pass
+    pass
+#==================================================================================================================================
+class TagValue(SimpleGetter):
+    """
+    забрать значение тега, то есть то что между открывающимся и закрывающимся тегом
+    """
+    def __init__(self):
+        pass
+    def get(self, tag: bs4.element.Tag):
+        return tag.text
+    pass
+#==================================================================================================================================
+class PageElement:
     #initiate
     #--------------------------------------------------------------------------------
-    def __init__(self, item_alias: str, item_name:str, item_type:str, item_num:int, stripper:ultra_strip) -> str:
+    def __init__(self, item_alias: str, item_name:str, item_type:str, item_num:int, getter:SimpleGetter,  stripper:UltraStrip) -> str:
         self.__item_alias = item_alias
         self.__item_type = item_type
         self.__item_name = item_name  
         self.__item_num = item_num 
         self.__stripper = stripper
+        self.__getter = getter
     #--------------------------------------------------------------------------------
     @property
     def item_alias(self):
         return self.__item_alias
     #--------------------------------------------------------------------------------
     def __call__(self, soup):
-        dirty_value = self._getitemvalues_(soup)
-        llog(dirty_value)
-        clean_value = self.__stripper(dirty_value[self.__item_num].text) 
-        llog(clean_value)
+        dirty_value = self._get_item_values_(soup)
+        #llog(dirty_value)
+        clean_value = self.__stripper(dirty_value) 
+        #llog(clean_value)
         return clean_value
     #--------------------------------------------------------------------------------
     def __str__(self):
@@ -118,15 +158,17 @@ class page_element:
     def __repr__(self):
         return self.__str__()
     #--------------------------------------------------------------------------------
-    def _getitemvalues_(self, soup) -> str:
+    def _get_item_values_(self, soup) -> str:
         value = ['']
         llog('_getitemvalues_, <%s class=%s>' %(self.__item_type, self.__item_name))
-        value = soup.findAll(self.__item_type, class_=self.__item_name)
+        all_data = soup.findAll(self.__item_type, class_=self.__item_name)
+        correct_item = all_data[self.__item_num]
+        value = self.__getter.get(correct_item)
         return value
     #--------------------------------------------------------------------------------
     pass
 #==================================================================================================================================
-class product_info:
+class ProductInfo:
     """
     Класс, ответственный за получение корректных данных с одной веб странички
     должен предоставлять интерфейс к заполнению полей, которые потом нужно будет выдрать.
@@ -138,7 +180,7 @@ class product_info:
         инициализируется урлом, с которого нужно забирать данные.
         """
         self.__url = url
-        self.__page = webpage(self.__url) #сразу докинем читалку страниц
+        self.__page = WebPage(self.__url) #сразу докинем читалку страниц
         self.__soup = None
         self.__data_loaded = False
         self.__elements = []
@@ -157,7 +199,7 @@ class product_info:
         """
         self.__elements = []
         for key in elements.keys():
-            self.__elements.append(page_element(key,elements[key][0],elements[key][1],elements[key][2],elements[key][3]))
+            self.__elements.append(PageElement(key,elements[key][0],elements[key][1],elements[key][2],elements[key][3],elements[key][4]))
         
     #------------------------------------------------------------------------------------
     def load_page(self):
@@ -172,7 +214,7 @@ class product_info:
         else:
             self.__data_loaded = False
     #------------------------------------------------------------------------------------ 
-    def get_all(self):
+    def get(self):
         result = {}
         if(self.__data_loaded):
             for element in self.__elements:
@@ -186,16 +228,27 @@ class product_info:
 
 #==================================================================================================================================
 def main():
-    #llog = LocalLog(True)
-    superstripper = ultra_strip([u" ",u"\u20bd",u"\xa0"])
-    nostrip = ultra_strip([])
-    smara1_data_2_get = {"Цена":("catalog-detail__price","div", 0, superstripper),
-                  "Название товара":("catalog-detail__name","h1", 0, nostrip)
-                  }
-    smara1 = product_info("https://sport-marafon.ru/catalog/gamaki/gamak-eno-doublenest-print-tie-dye-red/",smara1_data_2_get)
+    """
+    пример загрузки информации со см
+    """
+    llog = LocalLog(True)
+    superstripper = UltraStrip([u" ",u"\u20bd",u"\xa0"])
+    nostrip = UltraStrip([])
+    smara_data_2_get = { "Цена":("catalog-detail__price","div", 0, TagValue(),superstripper),
+                         "Название товара":("catalog-detail__name","h1", 0, TagValue(),nostrip),
+                         "Бренд":("catalog-detail__brand","a", 0,TagParameter("href"),nostrip),
+                         "Код товара" : ("black", "span", 0, TagValue(), nostrip)   
+                        }       
+    smara1 = ProductInfo("https://sport-marafon.ru/catalog/gamaki/gamak-eno-doublenest-print-tie-dye-red/",smara_data_2_get)
+    smara2 = ProductInfo("https://sport-marafon.ru/catalog/turisticheskie-palatki/palatka-alexika-rondo-2-plus-green/", smara_data_2_get)
     smara1.load_page()
-    data = smara1.get_all()
-    print(data)
+    smara2.load_page()
+    print(smara1.get())
+    print(smara2.get())
+    
+    
+    
+    
                                                                                                        
     
     return None
