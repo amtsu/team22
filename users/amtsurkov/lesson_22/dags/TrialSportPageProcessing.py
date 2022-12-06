@@ -268,8 +268,68 @@ class OnePageProcessor():
                 "brand": BrandElement(self.__soup).get(),
                 "brand_url": BrandUrlElement(self.__soup).get(),
                 "image_url": ImageUrlElement(self.__soup).get(),
+                "url": 'u',
             }
         ]
+    
+class ListPageProcessor():
+    def __init__(self, text_page):
+        self.__soup = BeautifulSoup(text_page, features="html.parser")
+
+    def list_dict(self):
+        l = []
+        list_data = self.__soup.findAll('div', class_='object ga')
+        for i in list_data:
+            #print(i)
+            d = i.find_all('a', class_='title')
+            url = d[0]['href']
+            title = d[0].text
+            
+            d = i.find_all('span', class_='price')
+            #1&thinsp;274 &#8381;
+            price = d[0].text
+            price = price.replace(u'&thinsp;', '')
+            price = price.replace('&thinsp;', '')
+            price = price.replace(u' &#8381', '')
+            price = price.replace(' &#8381', '')
+            price = price.replace('\n', '')
+            #146 &#8381;
+#            print(price)
+#            print(len(price))
+            if len(price) > 6:
+                #print(price[:-6] + price[-5:-2])
+                try:
+                    price = int(price[:-6] + price[-5:-2])
+                except:
+                    price = int(price[:-7] + price[-6:-3])
+            else:
+                price = int(price[:-2])
+            #price = int(d[0].text[:-2])
+            
+            d = i.find_all('span', class_='discount discountsale')
+            price_sale = 0
+            if d:
+                price_sale_s = d[0].text
+                if len(price_sale_s) > 6:
+                    try:
+                        price_sale = int(price_sale_s[:-6] + price_sale_s[-5:-2])
+                    except:
+                        price_sale = int(price_sale_s[:-7] + price_sale_s[-6:-3])
+                else:
+                    price_sale = int(d[0].text[:-2])
+            
+            
+            l.append({
+                "url": url,
+                "title": title,
+                "price": price,
+                "price_sale": price_sale,
+                "url": url,
+                "brand": 'b',
+                'brand_url': 'bu',
+                'image_url': 'iu',
+            })
+        return l
 
 
 # модуль trial-sport.ru
@@ -318,6 +378,24 @@ class TrialSportServiceProcessing(ServiceProcessing):
             "https://trial-sport.ru/goods/51527/1525371.html",
             "https://trial-sport.ru/goods/51527/2174317.html",
         ]
+        
+        self.__url_list = [
+            #"https://trial-sport.ru/gds.php?s=51530&sort=price&gpp=100&pg=2",
+            #"https://trial-sport.ru/gds.php?s=51530&sort=price&gpp=100",
+            #https://trial-sport.ru/gds.php?s=51528&discount=1&sort=price&gpp=100&pg=51
+            'https://trial-sport.ru/gds.php?s=51530',
+            'https://trial-sport.ru/gds.php?s=51533',
+            'https://trial-sport.ru/gds.php?s=51527',
+            'https://trial-sport.ru/gds.php?s=51526',
+            'https://trial-sport.ru/gds.php?s=51528',
+            'https://trial-sport.ru/gds.php?s=761611',
+            'https://trial-sport.ru/gds.php?s=51516',
+            'https://trial-sport.ru/gds.php?s=1256729',
+            'https://trial-sport.ru/gds.php?s=51525',
+            'https://trial-sport.ru/gds.php?s=1546522',
+            'https://trial-sport.ru/gds.php?s=1340407',
+            'https://trial-sport.ru/gds.php?s=51534',
+        ]
 
     def process(self):
         self.__list_dict = []
@@ -326,6 +404,16 @@ class TrialSportServiceProcessing(ServiceProcessing):
                 self.__list_dict.append(object_params)
         #create file with name current datetime
         # whene trabsfer to airflow we need change save file, becouse runner may start in any server
+        
+        
+        for url in self.__url_list:
+            for i in range(1, 20):
+                print(url + '&sort=price&gpp=100' + '&pg=' + str(i))
+                with urllib.request.urlopen(url + '&sort=price&gpp=100' + '&pg=' + str(i)) as response:
+                    self.__page = response.read()
+                    self.__list_page_processor = ListPageProcessor(self.__page)
+                    for object_params in self.__list_page_processor.list_dict():
+                        self.__list_dict.append(object_params)
 
     def __create_file_name_with_current_datetime(self):
         return 'trialsport_fresh.json'
@@ -370,7 +458,7 @@ class TrialSportServiceProcessing(ServiceProcessing):
                     brand_url=e["brand_url"],
                     #day_to_delivery=1,
                     #sku="sku_example",
-                    #url="url_example",
+                    url=e["url"],
                     #canonical_url="canonical_url_example",
                     img_url=e["image_url"],
                     #description="description_example",
