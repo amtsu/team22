@@ -388,5 +388,6 @@ class TrialSportServiceProcessing(ServiceProcessing):
                     #pprint(api_response)
                 except openapi_client.ApiException as e:
                     print("Exception when calling HistoryApi->history_create: %s\n" % e)
+            print('Count load object =', len(self.__list_dict))
 
 
