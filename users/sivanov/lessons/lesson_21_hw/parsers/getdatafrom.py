@@ -252,38 +252,11 @@ def CreateProductInfo(filename:str)->ProductInfo:
 #==================================================================================================================================
 def main():
     """
-    пример загрузки информации со см
-    """
-#    strip_string = ",".join([" ","\u20bd","\xa0"])
-#    smara_data = { "Цена":{"id":"catalog-detail__price","tagname":"div","index": 0,"what": "","stripper_setting":strip_string},
-#                   "Название товара":{"id":"catalog-detail__name","tagname":"h1","index": 0,"what": "","stripper_setting":""},
-#                   "Бренд":{"id":"catalog-detail__brand","tagname":"a","index": 0,"what":"href","stripper_setting":""},
-#                   "Код товара" : {"id":"black", "tagname":"span","index": 0, "what":"","stripper_setting": ""}   
-#                        }
-#    smara_all_data_1 = {"url":"https://sport-marafon.ru/catalog/gamaki/gamak-eno-doublenest-print-tie-dye-red/", 
-#                      "data":smara_data}
-#    smara_all_data_2 = {"url":"https://sport-marafon.ru/catalog/turisticheskie-palatki/palatka-alexika-rondo-2-plus-green/", 
-#                     "data":smara_data}
-    pi_list = []    
-    pi_list.append(CreateProductInfo(os.getcwd()+'/json/smara1.json')) 
-    pi_list.append(CreateProductInfo(os.getcwd()+'/json/smara2.json'))
-    pi_list.append(CreateProductInfo(os.getcwd()+'/json/uley1.json'))
-    pi_list.append(CreateProductInfo(os.getcwd()+'/json/uley2.json'))
-    #pi_list.append(CreateProductInfo(os.getcwd()+'/json/smstr1.json')) #403
-    #pi_list.append(CreateProductInfo(os.getcwd()+'/json/smstr2.json')) #403
-    pi_list.append(CreateProductInfo(os.getcwd()+'/json/220v1.json'))
-    pi_list.append(CreateProductInfo(os.getcwd()+'/json/220v2.json'))
-    #pi_list.append(CreateProductInfo(os.getcwd()+'/json/ctlnk1.json'))# не отдает цены, но было полезно
-    #pi_list.append(CreateProductInfo(os.getcwd()+'/json/metrocc1.json'))# 403
-    pi_list.append(CreateProductInfo(os.getcwd()+'/json/tkturin1.json'))
-    pi_list.append(CreateProductInfo(os.getcwd()+'/json/tkturin2.json'))
-    
-    for product_info in pi_list:
-        product_info.load()
-        print(product_info.get())    
+    наверное, пригодится
+    """  
     return None
 #==================================================================================================================================
 if __name__ == '__main__':
     #llog = LocalLog(True)
     main()
-pass    
+    
