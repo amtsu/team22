@@ -13,6 +13,9 @@ with DAG(dag_id="price_alert", start_date=datetime(2022, 12, 5), schedule="0 3 *
 
     @task()
     def airflow():
+        """
+        Находим поциции цена по кототорым зменилась по сравнению с ценой за вчера.
+        """
         print("start price alert")
         
         days_before = 2
@@ -40,9 +43,11 @@ with DAG(dag_id="price_alert", start_date=datetime(2022, 12, 5), schedule="0 3 *
                 price_sale,  
                 prev_price_sale,
                 diff,
+                ROUND(diff / price_sale * 100) as per,
                 row_number
             FROM sales_numbered
-            WHERE row_number = 1 and diff !=0  ;
+            WHERE row_number = 1 and diff !=0 and diff != price_sale and (diff + prev_price_sale) != 0
+            Order by per;
 
         """
         cursor.execute(q)
