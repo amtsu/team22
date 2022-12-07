@@ -310,7 +310,7 @@ class ListPageProcessor():
             #price = int(d[0].text[:-2])
             
             d = i.find_all('span', class_='discount discountsale')
-            price_sale = 0
+            price_sale = price
             if d:
                 price_sale_s = d[0].text
                 if len(price_sale_s) > 6:
@@ -320,6 +320,17 @@ class ListPageProcessor():
                         price_sale = int(price_sale_s[:-7] + price_sale_s[-6:-3])
                 else:
                     price_sale = int(d[0].text[:-2])
+            else:
+                d = i.find_all('span', class_='discount')
+                if d:
+                    price_sale_s = d[0].text
+                    if len(price_sale_s) > 6:
+                        try:
+                            price_sale = int(price_sale_s[:-6] + price_sale_s[-5:-2])
+                        except:
+                            price_sale = int(price_sale_s[:-7] + price_sale_s[-6:-3])
+                    else:
+                        price_sale = int(d[0].text[:-2])
             
             
             l.append({
@@ -384,6 +395,9 @@ class TrialSportServiceProcessing(ServiceProcessing):
         ]
         
         self.__url_list = [
+             #'https://trial-sport.ru/gds.php?s=761611&sort=price&gpp=100&pg=9'
+        #]
+        #dd = [
             #"https://trial-sport.ru/gds.php?s=51530&sort=price&gpp=100&pg=2",
             #"https://trial-sport.ru/gds.php?s=51530&sort=price&gpp=100",
             #https://trial-sport.ru/gds.php?s=51528&discount=1&sort=price&gpp=100&pg=51
@@ -399,6 +413,7 @@ class TrialSportServiceProcessing(ServiceProcessing):
             'https://trial-sport.ru/gds.php?s=1546522',
             'https://trial-sport.ru/gds.php?s=1340407',
             'https://trial-sport.ru/gds.php?s=51534',
+            
         ]
 
     def process(self):
@@ -414,6 +429,7 @@ class TrialSportServiceProcessing(ServiceProcessing):
             for i in range(1, 68):
             #for i in range(1, 2):
                 r_url = url + '&sort=price&gpp=100' + '&pg=' + str(i)
+                #r_url = url
                 print(r_url)
                 with urllib.request.urlopen(r_url) as response:
                     self.__page = response.read()
