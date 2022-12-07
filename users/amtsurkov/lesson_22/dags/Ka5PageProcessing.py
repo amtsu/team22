@@ -98,12 +98,12 @@ class Ka5ServiceProcessing(ServiceProcessing):
                 with urllib.request.urlopen(url) as response:
                     self.__page = response.read()
                     jsons = json.loads(self.__page)
-                    yield jsons
+                    yield (jsons, url)
                     next_url = jsons.get('next', '')
         
     def process(self):
         self.__list_dict = []
-        for jsons in self.__generate_jsons():
+        for jsons, source_url in self.__generate_jsons():
             print(jsons)
             for e in jsons['results']:
                 el = {}
@@ -114,6 +114,7 @@ class Ka5ServiceProcessing(ServiceProcessing):
                 el['datetime_create'] = "1970-01-01T00:00:00.00Z"
                 el['url'] = 'https://5ka.ru/api/v2/special_offers/' + str(e['id']) + '/'
                 el['image_url'] = e['img_link']
+                el['source_url'] = source_url
 
                 self.__list_dict.append(el)
 
@@ -167,7 +168,7 @@ class Ka5ServiceProcessing(ServiceProcessing):
                     #params="params_example",
                     #seller="seller_example",
                     #seller_url="seller_url_example",
-                    #source_url="source_url_example",
+                    source_url=e["source_url"],
                     #urls_other_products_on_the_page="urls_other_products_on_the_page_example",
                     #worker="worker_example",
                     #task="task_example",

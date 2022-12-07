@@ -184,7 +184,7 @@ class AuchanServiceProcessing(ServiceProcessing):
 "https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=1",
 "https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=2",
 #        ]
-#        ss =[
+#        ss = [
 "https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=3",
 "https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=4",
 "https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=5",
@@ -308,13 +308,13 @@ class AuchanServiceProcessing(ServiceProcessing):
                 with urllib.request.urlopen(url) as response:
                     self.__page = response.read()
                     jsons = json.loads(self.__page)
-                yield jsons
+                yield (jsons, url)
             except urllib.error.HTTPError:
                 print('Error url = ', url)
         
     def process(self):
         self.__list_dict = []
-        for jsons in self.__generate_jsons():
+        for jsons, source_url in self.__generate_jsons():
             for e in jsons['items']:
                 el = {}
                 #el['title'] = f"{e['project']} {e['building']} {str(e['floor'])} {str(e['area'])} {e['address']} {e['location']}"
@@ -329,6 +329,7 @@ class AuchanServiceProcessing(ServiceProcessing):
                 el['url'] = "https://www.auchan.ru/product/" + e['code']
                 el['image_url'] = e['catalogImageUrl']
                 el['description'] = e['description']['content']
+                el['source_url'] = source_url
 
                 self.__list_dict.append(el)
 
@@ -382,7 +383,7 @@ class AuchanServiceProcessing(ServiceProcessing):
                     #params="params_example",
                     #seller="seller_example",
                     #seller_url="seller_url_example",
-                    #source_url="source_url_example",
+                    source_url=e["source_url"],
                     #urls_other_products_on_the_page="urls_other_products_on_the_page_example",
                     #worker="worker_example",
                     #task="task_example",

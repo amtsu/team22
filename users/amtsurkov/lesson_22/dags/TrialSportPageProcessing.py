@@ -256,8 +256,9 @@ class OnePageProcessor():
     """
         Not good use BeautifulSoup object, and then use them in coheshe object
     """
-    def __init__(self, text_page):
+    def __init__(self, text_page, url):
         self.__soup = BeautifulSoup(text_page, features="html.parser")
+        self.__url = url
 
     def list_dict(self):
         return [
@@ -268,13 +269,15 @@ class OnePageProcessor():
                 "brand": BrandElement(self.__soup).get(),
                 "brand_url": BrandUrlElement(self.__soup).get(),
                 "image_url": ImageUrlElement(self.__soup).get(),
-                "url": 'u',
+                "url": self.__url,
+                'source_url': self.__url,
             }
         ]
     
 class ListPageProcessor():
-    def __init__(self, text_page):
+    def __init__(self, text_page, url):
         self.__soup = BeautifulSoup(text_page, features="html.parser")
+        self.__url = url
 
     def list_dict(self):
         l = []
@@ -324,10 +327,11 @@ class ListPageProcessor():
                 "title": title,
                 "price": price,
                 "price_sale": price_sale,
-                "url": url,
+                "url": 'https://trial-sport.ru' + url,
                 "brand": 'b',
                 'brand_url': 'bu',
                 'image_url': 'iu',
+                'source_url': self.__url,
             })
         return l
 
@@ -346,7 +350,7 @@ class OnePage():
         with urllib.request.urlopen(self.__url) as response:
         #with urllib.urlopen(self.__url) as response:
             self.__page = response.read()
-            self.__one_page_processor = OnePageProcessor(self.__page)
+            self.__one_page_processor = OnePageProcessor(self.__page, self.__url)
             
 #    def get_title(self):
 #        e = TitleElement(self.__soup)
@@ -408,10 +412,12 @@ class TrialSportServiceProcessing(ServiceProcessing):
         
         for url in self.__url_list:
             for i in range(1, 68):
-                print(url + '&sort=price&gpp=100' + '&pg=' + str(i))
-                with urllib.request.urlopen(url + '&sort=price&gpp=100' + '&pg=' + str(i)) as response:
+            #for i in range(1, 2):
+                r_url = url + '&sort=price&gpp=100' + '&pg=' + str(i)
+                print(r_url)
+                with urllib.request.urlopen(r_url) as response:
                     self.__page = response.read()
-                    self.__list_page_processor = ListPageProcessor(self.__page)
+                    self.__list_page_processor = ListPageProcessor(self.__page, r_url)
                     for object_params in self.__list_page_processor.list_dict():
                         self.__list_dict.append(object_params)
 
@@ -465,7 +471,7 @@ class TrialSportServiceProcessing(ServiceProcessing):
                     #params="params_example",
                     #seller="seller_example",
                     #seller_url="seller_url_example",
-                    #source_url="source_url_example",
+                    source_url=e["source_url"],
                     #urls_other_products_on_the_page="urls_other_products_on_the_page_example",
                     #worker="worker_example",
                     #task="task_example",

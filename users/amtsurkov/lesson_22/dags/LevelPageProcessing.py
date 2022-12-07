@@ -99,7 +99,7 @@ class LevelServiceProcessing(ServiceProcessing):
     def load_url_by_default(self):
         self.__urls = [
             "https://level.ru/api/flat/",
-            #"https://level.ru/api/flat/?limit=8&offset=1088",
+            #"https://level.ru/api/flat/?limit=8&offset=1070",
         ]
         
     def __generate_jsons(self):
@@ -112,12 +112,12 @@ class LevelServiceProcessing(ServiceProcessing):
                 with urllib.request.urlopen(url) as response:
                     self.__page = response.read()
                     jsons = json.loads(self.__page)
-                    yield jsons
+                    yield (jsons, url)
                     next_url = jsons.get('next', '')
         
     def process(self):
         self.__list_dict = []
-        for jsons in self.__generate_jsons():
+        for jsons, source_url in self.__generate_jsons():
             for e in jsons['results']:
                 el = {}
                 el['title'] = f"{e['project']} {e['building']} {str(e['floor'])} {str(e['area'])} {e['address']} {e['location']}"
@@ -131,6 +131,7 @@ class LevelServiceProcessing(ServiceProcessing):
                 el['url'] = e['url']
                 el['image_url'] = e['plan']
                 el['description'] = json.dumps(e['specialmortgageoffer_set'])
+                el['source_url'] = source_url
                 #el['description'] = json.dumps(e['specialmortgageoffer_set'])[0:100]
                 #el['description'] = "json.dumps(e['specialmortgageoffer_set'])"[0:10]
                 #el['description'] = "json.dumps"
@@ -187,7 +188,7 @@ class LevelServiceProcessing(ServiceProcessing):
                     #params="params_example",
                     #seller="seller_example",
                     #seller_url="seller_url_example",
-                    #source_url="source_url_example",
+                    source_url=e["source_url"],
                     #urls_other_products_on_the_page="urls_other_products_on_the_page_example",
                     #worker="worker_example",
                     #task="task_example",

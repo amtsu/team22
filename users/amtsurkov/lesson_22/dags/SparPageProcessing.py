@@ -253,8 +253,9 @@ class OnePageProcessor():
 
     
 class ListPageProcessor():
-    def __init__(self, text_page):
+    def __init__(self, text_page, url):
         self.__soup = BeautifulSoup(text_page, features="html.parser")
+        self.__url = url
 
     def list_dict(self):
         ll = []
@@ -265,14 +266,23 @@ class ListPageProcessor():
             
 
             list_reports_data_price_sale = e.find_all('span', class_="prices__cur js-item-price")
-            price_sale = int(list_reports_data_price_sale[0].text[:-4]) if list_reports_data_price_sale else 0
+            price_sale = list_reports_data_price_sale[0].text[:-4] if list_reports_data_price_sale else 0
+            if len(price_sale) > 3:
+                price_sale = price_sale[:-4] + price_sale[-3:]
+            price_sale = int(price_sale)
             #print('---',price_sale,'===')
             #for d in price_sale:
             #    print(d)
             #price_sale = price_sale.split('<em>')[0]            
             
             list_reports_data_price = e.find_all('span', class_="prices__old")
-            price = int(list_reports_data_price[0].text[:-5]) if list_reports_data_price else price_sale
+            if list_reports_data_price and len(list_reports_data_price[0].text)>5:
+                price = list_reports_data_price[0].text[:-5]
+                if len(price) > 3:
+                    price = price[:-4] + price[-3:]
+                price = int(price)
+            else:
+                price = price_sale
             #price = price.split('<em>')[0]   
             #print('---',price,'===')
                 
@@ -289,6 +299,7 @@ class ListPageProcessor():
                 'price_sale': price_sale,
                 'price': price,
                 'url': url,
+                'source_url': self.__url,
             })
         return ll
     
@@ -310,11 +321,11 @@ class ListPage():
     def __init__(self, url):
         self.__l = []
         self.__url = url
-        print(url)
+        #print(url)
         try:
             with urllib.request.urlopen(self.__url) as response:
                 self.__page = response.read()
-                self.__one_page_processor = ListPageProcessor(self.__page)
+                self.__one_page_processor = ListPageProcessor(self.__page, self.__url)
                 self.__l = self.__one_page_processor.list_dict()  
         except:
             print("Error url =", url)
@@ -335,6 +346,8 @@ class SparServiceProcessing(ServiceProcessing):
  '/catalog/Super-Pricenew/',
 
  '/catalog/aksessuary-dlya-sporta/',
+#        ]
+#        ss= [
  '/catalog/aksessuary-dlya-uborki/',
 
  '/catalog/aksessuary-dlya-volos-3/',
@@ -873,8 +886,11 @@ class SparServiceProcessing(ServiceProcessing):
         self.__list_dict = []
         for url in self.__urls:
             url = 'https://myspar.ru' + url + '?sort=price-asc'
-            for object_params in ListPage(url).list_dict():
-                self.__list_dict.append(object_params)
+            #&PAGEN_1=5
+            for i in range(1,6):
+                url_r = url + '&PAGEN_1=' + str(i)
+                for object_params in ListPage(url_r).list_dict():
+                    self.__list_dict.append(object_params)
         #create file with name current datetime
         # whene trabsfer to airflow we need change save file, becouse runner may start in any server
 
@@ -928,7 +944,7 @@ class SparServiceProcessing(ServiceProcessing):
                     #params="params_example",
                     #seller="seller_example",
                     #seller_url="seller_url_example",
-                    #source_url="source_url_example",
+                    source_url=e["source_url"],
                     #urls_other_products_on_the_page="urls_other_products_on_the_page_example",
                     #worker="worker_example",
                     #task="task_example",
