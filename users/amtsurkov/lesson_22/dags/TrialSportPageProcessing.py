@@ -407,7 +407,7 @@ class TrialSportServiceProcessing(ServiceProcessing):
         
         
         for url in self.__url_list:
-            for i in range(1, 20):
+            for i in range(1, 68):
                 print(url + '&sort=price&gpp=100' + '&pg=' + str(i))
                 with urllib.request.urlopen(url + '&sort=price&gpp=100' + '&pg=' + str(i)) as response:
                     self.__page = response.read()
