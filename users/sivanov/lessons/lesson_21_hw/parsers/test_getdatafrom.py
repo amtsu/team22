@@ -5,20 +5,20 @@
 """
 import os
 from getdatafrom import WebPage
-from getdatafrom import UltraStrip
+from getdatafrom import UltraStripper
 from getdatafrom import PageElement
 #тесты
 def test_webpage_str_1():
     """
     Тест создания экземпляра webpage и работоспособности его метода __str__
     """
-    assert str(WebPage('test')) == 'url: test, opened: False, , error codes: HTTP: 0, URL: 0'
+    assert str(WebPage('test')) == 'url: test, opened: False, error codes: HTTP: 0, URL: 0'
 #--------------------------------------------------------------------------------------------------
 def test_webpage_str_2():
     """
     Тест создания экземпляра webpage и работоспособности его метода __str__
     """
-    assert str(WebPage('test')) != 'url: test, opened: True, , error codes: HTTP: 0, URL: 0'
+    assert str(WebPage('test')) != 'url: test, opened: True, error codes: HTTP: 0, URL: 0'
 #--------------------------------------------------------------------------------------------------
 def test_webpage_last_url_error_1():
     """
@@ -75,14 +75,14 @@ def test_ultra_stripper_1():
     тест работы стриппера - очистка строки от нежелательных символов
     """
     inputdata = '6 500 ₽    '
-    superstripper = UltraStrip([' ','\u20bd','\xa0'])
+    superstripper = UltraStripper([' ','\u20bd','\xa0'])
     assert superstripper(inputdata) == '6500'
 #--------------------------------------------------------------------------------------------------
 def test_ultra_stripper_2():
     """
     тест работы стриппера - метода __str__
     """
-    superstripper = UltraStrip([' ','\u20bd','\xa0'])
+    superstripper = UltraStripper([' ','\u20bd','\xa0'])
     assert str(superstripper) == ' ,\u20bd,\xa0'
 #--------------------------------------------------------------------------------------------------
 def test_ultra_stripper_3():
@@ -90,7 +90,7 @@ def test_ultra_stripper_3():
     тест работы стриппера - очистка строки от нежелательных символов
     """
     inputdata = 'h1e2l3l4o5 6w7o8r9l0d'
-    superstripper = UltraStrip(list('hello world'))
+    superstripper = UltraStripper(list('hello world'))
     assert superstripper(inputdata) == '1234567890'
 #--------------------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------------------

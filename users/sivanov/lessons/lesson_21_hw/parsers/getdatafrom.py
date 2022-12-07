@@ -8,8 +8,7 @@ from bs4 import BeautifulSoup
 import bs4
 from abc import ABCMeta, abstractmethod
 import json
-import os
- 
+import os 
 import pytest
 from usefulstuff import LocalLog
 #from usefulstuff import ColoredStr
@@ -41,7 +40,7 @@ class WebPage:
     
     #--------------------------------------------
     def __str__(self):
-        return ('url: %s, opened: %s, , error codes: HTTP: %d, URL: %d' % 
+        return ('url: %s, opened: %s, error codes: HTTP: %d, URL: %d' % 
                 (self.__url, 
                  str(self.__is_opened),
                  self.__last_HTTP_error,
@@ -76,7 +75,7 @@ class WebPage:
     #--------------------------------------------
     pass
 #==================================================================================================================================
-class UltraStrip:
+class UltraStripper:
     '''
     удалить заданные символы из списка символов,формируемого при создании 
     '''
@@ -93,7 +92,7 @@ class UltraStrip:
         result = input_data
         for item in self.__trash_to_remove:
             result = result.replace(item, "")
-        return result
+        return result.strip()
     pass
 #==================================================================================================================================
 #return element_1['href'] - это как вытащить значение
@@ -106,40 +105,51 @@ class SimpleGetter:
         pass
     pass
 #==================================================================================================================================
-class TagParameter(SimpleGetter):
-    """
-    забрать значение параметра тега, то есть то что внутри и имеет соответствующее имя
-    """
-    def __init__(self, param_name: str):
-        self.__param_name = param_name
-    def get(self, tag: bs4.element.Tag):
-        result = ''
-        if(tag.has_key(self.__param_name)):
-            result = tag[self.__param_name]        
-        return result
-#        pass
-    pass
-#==================================================================================================================================
 class TagValue(SimpleGetter):
     """
-    забрать значение тега, то есть то что между открывающимся и закрывающимся тегом
+    забрать значение параметра тега (то есть то что внутри и имеет соответствующее имя)
+    если имя параметра не задано, для данного тега возвращается значение самого тега
+    (то есть то что между открывающимся и закрывающимся тегом)
     """
-    def __init__(self):
-        pass
+    #---------------------------------------------------  
+    def __init__(self, param_name:str = ""):
+        if(len(param_name) == 0):
+            self.__get_value = True
+        else:
+            self.__get_value = False
+        self.__param_name = param_name
+    #---------------------------------------------------    
     def get(self, tag: bs4.element.Tag):
-        return tag.text
+        result = ''
+        if(self.__get_value):
+            result = tag.text
+        else:    
+            if(tag.has_key(self.__param_name)):
+                result = tag[self.__param_name]        
+        return result
     pass
+#==================================================================================================================================
+#class TagValue(SimpleGetter):
+#    """
+#    забрать значение тега, то есть то что между открывающимся и закрывающимся тегом
+#    """
+#    def __init__(self):
+#        pass
+#    def get(self, tag: bs4.element.Tag):
+#        return tag.text
+#    pass
 #==================================================================================================================================
 class PageElement:
     #initiate
     #--------------------------------------------------------------------------------
-    def __init__(self, item_alias: str, item_name:str, item_type:str, item_num:int, getter:SimpleGetter,  stripper:UltraStrip) -> str:
+    def __init__(self, item_alias: str, element_data:dict) -> str:
         self.__item_alias = item_alias
-        self.__item_type = item_type
-        self.__item_name = item_name  
-        self.__item_num = item_num 
-        self.__stripper = stripper
-        self.__getter = getter
+        self.__item_type = element_data['tagname']
+        self.__item_name = element_data['id']  
+        self.__item_num = element_data['index'] 
+        self.__stripper = UltraStripper(element_data['stripper_setting'].split(","))
+        self.__getter = TagValue(element_data['what'])
+        
     #--------------------------------------------------------------------------------
     @property
     def item_alias(self):
@@ -159,11 +169,15 @@ class PageElement:
         return self.__str__()
     #--------------------------------------------------------------------------------
     def _get_item_values_(self, soup) -> str:
-        value = ['']
+        value = ''
         llog('_getitemvalues_, <%s class=%s>' %(self.__item_type, self.__item_name))
         all_data = soup.findAll(self.__item_type, class_=self.__item_name)
-        correct_item = all_data[self.__item_num]
-        value = self.__getter.get(correct_item)
+        llog('-----------------')
+        llog(all_data)
+        llog('-----------------')
+        if(self.__item_num < len(all_data)):
+            correct_item = all_data[self.__item_num]
+            value = self.__getter.get(correct_item)
         return value
     #--------------------------------------------------------------------------------
     pass
@@ -175,16 +189,16 @@ class ProductInfo:
     должен возвращать словарь с именованными данными.
     """
     #------------------------------------------------------------------------------------
-    def __init__(self, url:str, elements:dict):
+    def __init__(self, elements:dict):
         """
         инициализируется урлом, с которого нужно забирать данные.
         """
-        self.__url = url
+        self.__url = elements['url']
         self.__page = WebPage(self.__url) #сразу докинем читалку страниц
         self.__soup = None
         self.__data_loaded = False
         self.__elements = []
-        self.setup(elements)
+        self.setup(elements['data'])
     #------------------------------------------------------------------------------------
     def __str__(self):
         return ('\n').join((str(element) for element in self.__elements))
@@ -199,10 +213,10 @@ class ProductInfo:
         """
         self.__elements = []
         for key in elements.keys():
-            self.__elements.append(PageElement(key,elements[key][0],elements[key][1],elements[key][2],elements[key][3],elements[key][4]))
+            self.__elements.append(PageElement(key,elements[key]))
         
     #------------------------------------------------------------------------------------
-    def load_page(self):
+    def load(self):
         """
         Долгий метод, будет загружать страницу и отдавать её в суп.
         на выходе либо заполнит суп данными, либо не заполнит
@@ -213,6 +227,7 @@ class ProductInfo:
             self.__soup = BeautifulSoup(self.__page.text,features="html.parser") 
         else:
             self.__data_loaded = False
+            print(str(self.__page))
     #------------------------------------------------------------------------------------ 
     def get(self):
         result = {}
@@ -221,36 +236,51 @@ class ProductInfo:
                 result[element.item_alias] = element(self.__soup)
         else:
             pass #TODO хз, может и просто надо удалить
+        result['url'] = self.__url
         return result 
                                    
     #------------------------------------------------------------------------------------                               
     pass
-
+#==================================================================================================================================
+def CreateProductInfo(filename:str)->ProductInfo:
+    """
+    функция создания экземпляров класса ProductInfo, основываясь на json-файлах
+    """
+    with open(filename,"r") as fin:
+        data = json.loads(fin.read())
+    return ProductInfo(data)
 #==================================================================================================================================
 def main():
     """
     пример загрузки информации со см
     """
-    llog = LocalLog(True)
-    superstripper = UltraStrip([u" ",u"\u20bd",u"\xa0"])
-    nostrip = UltraStrip([])
-    smara_data_2_get = { "Цена":("catalog-detail__price","div", 0, TagValue(),superstripper),
-                         "Название товара":("catalog-detail__name","h1", 0, TagValue(),nostrip),
-                         "Бренд":("catalog-detail__brand","a", 0,TagParameter("href"),nostrip),
-                         "Код товара" : ("black", "span", 0, TagValue(), nostrip)   
-                        }       
-    smara1 = ProductInfo("https://sport-marafon.ru/catalog/gamaki/gamak-eno-doublenest-print-tie-dye-red/",smara_data_2_get)
-    smara2 = ProductInfo("https://sport-marafon.ru/catalog/turisticheskie-palatki/palatka-alexika-rondo-2-plus-green/", smara_data_2_get)
-    smara1.load_page()
-    smara2.load_page()
-    print(smara1.get())
-    print(smara2.get())
+#    strip_string = ",".join([" ","\u20bd","\xa0"])
+#    smara_data = { "Цена":{"id":"catalog-detail__price","tagname":"div","index": 0,"what": "","stripper_setting":strip_string},
+#                   "Название товара":{"id":"catalog-detail__name","tagname":"h1","index": 0,"what": "","stripper_setting":""},
+#                   "Бренд":{"id":"catalog-detail__brand","tagname":"a","index": 0,"what":"href","stripper_setting":""},
+#                   "Код товара" : {"id":"black", "tagname":"span","index": 0, "what":"","stripper_setting": ""}   
+#                        }
+#    smara_all_data_1 = {"url":"https://sport-marafon.ru/catalog/gamaki/gamak-eno-doublenest-print-tie-dye-red/", 
+#                      "data":smara_data}
+#    smara_all_data_2 = {"url":"https://sport-marafon.ru/catalog/turisticheskie-palatki/palatka-alexika-rondo-2-plus-green/", 
+#                     "data":smara_data}
+    pi_list = []    
+    pi_list.append(CreateProductInfo(os.getcwd()+'/json/smara1.json')) 
+    pi_list.append(CreateProductInfo(os.getcwd()+'/json/smara2.json'))
+    pi_list.append(CreateProductInfo(os.getcwd()+'/json/uley1.json'))
+    pi_list.append(CreateProductInfo(os.getcwd()+'/json/uley2.json'))
+    #pi_list.append(CreateProductInfo(os.getcwd()+'/json/smstr1.json')) #403
+    #pi_list.append(CreateProductInfo(os.getcwd()+'/json/smstr2.json')) #403
+    pi_list.append(CreateProductInfo(os.getcwd()+'/json/220v1.json'))
+    pi_list.append(CreateProductInfo(os.getcwd()+'/json/220v2.json'))
+    #pi_list.append(CreateProductInfo(os.getcwd()+'/json/ctlnk1.json'))# не отдает цены, но было полезно
+    #pi_list.append(CreateProductInfo(os.getcwd()+'/json/metrocc1.json'))# 403
+    pi_list.append(CreateProductInfo(os.getcwd()+'/json/tkturin1.json'))
+    pi_list.append(CreateProductInfo(os.getcwd()+'/json/tkturin2.json'))
     
-    
-    
-    
-                                                                                                       
-    
+    for product_info in pi_list:
+        product_info.load()
+        print(product_info.get())    
     return None
 #==================================================================================================================================
 if __name__ == '__main__':

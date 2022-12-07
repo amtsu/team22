@@ -1,0 +1,33 @@
+{
+	"url": "https://sport-marafon.ru/catalog/gamaki/gamak-eno-doublenest-print-tie-dye-red/",
+	"data": {
+		"Цена": {
+			"id": "catalog-detail__price",
+			"tagname": "div",
+			"index": 0,
+			"what": "",
+			"stripper_setting": " ,₽, "
+		},
+		"Название товара": {
+			"id": "catalog-detail__name",
+			"tagname": "h1",
+			"index": 0,
+			"what": "",
+			"stripper_setting": ""
+		},
+		"Бренд": {
+			"id": "catalog-detail__brand",
+			"tagname": "a",
+			"index": 0,
+			"what": "href",
+			"stripper_setting": ""
+		},
+		"Код товара": {
+			"id": "black",
+			"tagname": "span",
+			"index": 0,
+			"what": "",
+			"stripper_setting": ""
+		}
+	}
+}
