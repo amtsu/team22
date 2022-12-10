@@ -4,12 +4,7 @@ from airflow import DAG
 from airflow.decorators import task
 from airflow.operators.bash import BashOperator
 
-###from users.jupyter-amtsu.TrialSportPageProcessing import TrialSportServiceProcessing
-#import importlib  
-#TrialSportPageProcessing = importlib.import_module("sers.jupyter-amtsu.TrialSportPageProcessing")
-##from TrialSportPageProcessing import TrialSportServiceProcessing
 from users.amtsu.d221204t1902.TrialSportPageProcessing import TrialSportServiceProcessing
-
 
 with DAG(dag_id="trialsport_5_items", start_date=datetime(2022, 1, 1), schedule="0 0 * * *") as dag:
 
@@ -17,8 +12,8 @@ with DAG(dag_id="trialsport_5_items", start_date=datetime(2022, 1, 1), schedule=
 
     @task()
     def airflow():
+        pass
         print("start TrialSportServiceProcessing")
-        #tssp =  TrialSportPageProcessing.TrialSportServiceProcessing()
         tssp = TrialSportServiceProcessing()
         tssp.load_url_by_default()
         tssp.process()

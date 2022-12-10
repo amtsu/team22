@@ -14,7 +14,7 @@ with DAG(dag_id="level_all_items", start_date=datetime(2022, 12, 3), schedule="0
     def airflow():
         print("start levelServiceProcessing")
         tssp = LevelServiceProcessing()
-        tssp.load_url_by_default()
+        #tssp.load_url_by_default()
         tssp.process()
         tssp.send_in_api()
         print("end levelServiceProcessing")

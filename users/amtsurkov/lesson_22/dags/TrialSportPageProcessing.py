@@ -283,31 +283,24 @@ class ListPageProcessor():
         l = []
         list_data = self.__soup.findAll('div', class_='object ga')
         for i in list_data:
-            #print(i)
             d = i.find_all('a', class_='title')
             url = d[0]['href']
             title = d[0].text
             
             d = i.find_all('span', class_='price')
-            #1&thinsp;274 &#8381;
             price = d[0].text
             price = price.replace(u'&thinsp;', '')
             price = price.replace('&thinsp;', '')
             price = price.replace(u' &#8381', '')
             price = price.replace(' &#8381', '')
             price = price.replace('\n', '')
-            #146 &#8381;
-#            print(price)
-#            print(len(price))
             if len(price) > 6:
-                #print(price[:-6] + price[-5:-2])
                 try:
                     price = int(price[:-6] + price[-5:-2])
                 except:
                     price = int(price[:-7] + price[-6:-3])
             else:
                 price = int(price[:-2])
-            #price = int(d[0].text[:-2])
             
             d = i.find_all('span', class_='discount discountsale')
             price_sale = price
@@ -330,8 +323,7 @@ class ListPageProcessor():
                         except:
                             price_sale = int(price_sale_s[:-7] + price_sale_s[-6:-3])
                     else:
-                        price_sale = int(d[0].text[:-2])
-            
+                        price_sale = int(d[0].text[:-2])            
             
             l.append({
                 "url": url,
@@ -347,38 +339,18 @@ class ListPageProcessor():
         return l
 
 
-# модуль trial-sport.ru
 class OnePage():
-#    def get_price(self):
-#        e = PriceElement(self.__soup)
-#        #print(e._w())
-#        #print(e.__z())
-#        return e.get()
-#
     def __init__(self, url):
         self.__url = url
-        #print(help(urllib.request))
         with urllib.request.urlopen(self.__url) as response:
-        #with urllib.urlopen(self.__url) as response:
             self.__page = response.read()
             self.__one_page_processor = OnePageProcessor(self.__page, self.__url)
             
-#    def get_title(self):
-#        e = TitleElement(self.__soup)
-#        return e.get()
-
     def list_dict(self):
         return self.__one_page_processor.list_dict()
     
-
-class ListPage():
-    pass
-
-
-class ServiceProcessing():
-    pass
-
-class TrialSportServiceProcessing(ServiceProcessing):
+    
+class TrialSportServiceProcessing():
     """
     when we have many ServiceProcessing, we nead create one Modeul with configuration 
     """
@@ -412,18 +384,14 @@ class TrialSportServiceProcessing(ServiceProcessing):
             'https://trial-sport.ru/gds.php?s=51525',
             'https://trial-sport.ru/gds.php?s=1546522',
             'https://trial-sport.ru/gds.php?s=1340407',
-            'https://trial-sport.ru/gds.php?s=51534',
-            
+            'https://trial-sport.ru/gds.php?s=51534',        
         ]
 
     def process(self):
         self.__list_dict = []
         for url in self.__urls:
             for object_params in OnePage(url).list_dict():
-                self.__list_dict.append(object_params)
-        #create file with name current datetime
-        # whene trabsfer to airflow we need change save file, becouse runner may start in any server
-        
+                self.__list_dict.append(object_params)        
         
         for url in self.__url_list:
             for i in range(1, 68):
@@ -499,5 +467,3 @@ class TrialSportServiceProcessing(ServiceProcessing):
                 except openapi_client.ApiException as e:
                     print("Exception when calling HistoryApi->history_create: %s\n" % e)
             print('Count load object =', len(self.__list_dict))
-
-
