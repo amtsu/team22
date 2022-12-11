@@ -9,6 +9,7 @@ from openapi_client.model.history import History
 #from openapi_client.model.paginated_history_list import PaginatedHistoryList
 #from openapi_client.model.patched_history import PatchedHistory
 from getdatafrom import CreateProductInfo
+import json
 class parser:
 #===============================================================================================
     def send_to_api(data:list):
@@ -82,21 +83,27 @@ class parser:
         pi_list = []
         result = []
         # создадим список для настроечных файлов,которые потом возьму из ./json
-        json_dir = './json/'
+        json_dir = os.path.dirname(os.path.abspath(__file__))+'/json/'#os.getcwd()+'/json/'
         with os.scandir(json_dir) as files:
             filename_list = [file.name for file in files if file.is_file() and file.name.startswith('parse_')]
         for filename in filename_list:
-            pi_list.append(CreateProductInfo(os.getcwd()+'/json/'+filename))
+            pi_list.append(CreateProductInfo(json_dir+filename))#os.getcwd()+'/json/'
 #---------------------------------------------------------------------------
     # парсим и печатаем результат
         for product_info in pi_list:
             product_info.load()
             if product_info.is_loaded():
                 result.append(product_info.get())
+            #if(len(result)>0):    
+            #    with open(json_dir + 'result.pickle', 'wb') as fout:
+            #        pickle.dump(result,fout)
         return result    
 #===============================================================================================
 def main():
+    result = parser.do_parse() 
     print(parser.do_parse())
+    parser.send_to_api(result)
+    
 #===============================================================================================
 if __name__ == '__main__':
     main()
