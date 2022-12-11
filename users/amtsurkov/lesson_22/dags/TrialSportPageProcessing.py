@@ -431,6 +431,10 @@ class TrialSportServiceProcessing():
     
     when we have many ServiceProcessing, we nead create one Modeul with configuration 
     """
+
+    def __init__(self):
+        self.__list_dict = []
+
     def load_url_by_default(self):
         """
         Инициализирует списки urls для послеющего их получения с веб ресрса и их обработки
