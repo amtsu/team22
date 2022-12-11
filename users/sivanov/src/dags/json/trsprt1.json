@@ -1,0 +1,33 @@
+{
+	"url": "https://trial-sport.ru/goods/51530/1179889.html",
+	"data": {
+		"Цена": {
+			"id": "price price_disc",
+			"tagname": "div",
+			"index": 0,
+			"what": "",
+			"stripper_setting": " ,₽, , "
+		},
+		"Название товара": {
+			"id": "",
+			"tagname": "",
+			"index": 0,
+			"what": "",
+			"stripper_setting": ""
+		},
+		"Бренд": {
+			"id": "",
+			"tagname": "",
+			"index": 0,
+			"what": "",
+			"stripper_setting": ""
+		},
+		"Код товара": {
+			"id": "",
+			"tagname": "",
+			"index": 0,
+			"what": "",
+			"stripper_setting": ""
+		}
+	}
+}

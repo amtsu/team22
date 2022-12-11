@@ -239,14 +239,17 @@ class ProductInfo:
             self.__data_loaded = False
             print(str(self.__page))
     #------------------------------------------------------------------------------------ 
+    def is_loaded(self):
+        return self.__data_loaded
+    #------------------------------------------------------------------------------------ 
     def get(self):
         result = {}
         if(self.__data_loaded):
             for element in self.__elements:
                 result[element.item_alias] = element(self.__soup)
+            result['url'] = self.__url
         else:
             pass #TODO хз, может и просто надо удалить
-        result['url'] = self.__url
         return result 
                                    
     #------------------------------------------------------------------------------------                               
