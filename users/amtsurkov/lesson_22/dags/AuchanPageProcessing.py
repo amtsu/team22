@@ -1,5 +1,3 @@
-#import urllib3 as urllib
-#import urllib as urllib
 import re
 import urllib.request
 import urllib
@@ -179,8 +177,6 @@ class AuchanServiceProcessing(ServiceProcessing):
             #"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=1",
             #"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=",            
         #]
-        
-        
 "https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=1",
 "https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=2",
 #        ]

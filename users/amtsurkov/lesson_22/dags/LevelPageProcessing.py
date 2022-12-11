@@ -1,6 +1,4 @@
-#import urllib3 as urllib
-#import urllib as urllib
-import re
+#import re
 import urllib.request
 import urllib
 from bs4 import BeautifulSoup
@@ -14,40 +12,8 @@ from openapi_client.model.history import History
 from openapi_client.model.paginated_history_list import PaginatedHistoryList
 from openapi_client.model.patched_history import PatchedHistory
 
-class Element():
-    pass
 
-class PriceElement(Element):
-    pass
-
-class PriceSaleElement(Element):
-    pass
-
-class TitleElement(Element):
-    pass
-
-class BrandElement(Element):
-    pass
-
-class BrandUrlElement(Element):
-    pass
-
-class ImageUrlElement(Element):
-    pass
-        
-class OnePageProcessor():
-    pass
-
-class OnePage():
-    pass
-
-class ListPage():
-    pass
-
-class ServiceProcessing():
-    pass
-
-class LevelServiceProcessing(ServiceProcessing):
+class LevelServiceProcessing():
     """ 
     "count": 1097,
     "next": "https://level.ru/api/flat/?limit=8&offset=108",
@@ -96,11 +62,11 @@ class LevelServiceProcessing(ServiceProcessing):
     img_url = plan
     description = to_str(specialmortgageoffer_set)
     """
-    def load_url_by_default(self):
-        self.__urls = [
-            "https://level.ru/api/flat/",
-            #"https://level.ru/api/flat/?limit=8&offset=1070",
-        ]
+    #def load_url_by_default(self):
+    #    self.__urls = [
+    #        "https://level.ru/api/flat/",
+    #        #"https://level.ru/api/flat/?limit=8&offset=1070",
+    #    ]
         
     def __generate_jsons(self):
         for url_base in self.__urls:
@@ -116,6 +82,11 @@ class LevelServiceProcessing(ServiceProcessing):
                     next_url = jsons.get('next', '')
         
     def process(self):
+        self.__urls = [
+            "https://level.ru/api/flat/",
+            #"https://level.ru/api/flat/?limit=8&offset=1070",
+        ]
+        
         self.__list_dict = []
         for jsons, source_url in self.__generate_jsons():
             for e in jsons['results']:
@@ -137,15 +108,18 @@ class LevelServiceProcessing(ServiceProcessing):
                 #el['description'] = "json.dumps"
 
                 self.__list_dict.append(el)
+    
+    #def pp(self):
+    #    return self.__list_dict
 
-    def __create_file_name_with_current_datetime(self):
-        return 'trialsport_fresh.json'
+    #def __create_file_name_with_current_datetime(self):
+    #    return 'lelev_fresh.json'
 
-    def save_in_file_with_current_datetime(self):
-        json_string = json.dumps(self.__list_dict)
-        file_name = self.__create_file_name_with_current_datetime()
-        with open(file_name, 'w') as outfile:
-            json.dump(json_string, outfile)
+    #def save_in_file_with_current_datetime(self):
+    #    json_string = json.dumps(self.__list_dict)
+    #    file_name = self.__create_file_name_with_current_datetime()
+    #    with open(file_name, 'w') as outfile:
+    #        json.dump(json_string, outfile)
 
     def send_in_api(self):
         configuration = openapi_client.Configuration(

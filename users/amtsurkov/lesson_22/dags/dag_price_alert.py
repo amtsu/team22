@@ -29,9 +29,9 @@ with DAG(dag_id="price_alert", start_date=datetime(2022, 12, 5), schedule="0 3 *
                     id, 
                     title,
                     price_sale,  
-                    LEAD(price_sale,1,0) OVER (PARTITION BY title ORDER BY  title, id desc ) AS prev_price_sale,  
-                    price_sale - LEAD(price_sale,1,0) OVER (PARTITION BY title  ORDER BY title, id desc ) AS diff,
-                    ROW_NUMBER() OVER(PARTITION BY title ORDER BY id desc) AS row_number
+                    LEAD(price_sale,1,0) OVER (PARTITION BY title, url ORDER BY  title, id desc ) AS prev_price_sale,  
+                    price_sale - LEAD(price_sale,1,0) OVER (PARTITION BY title, url  ORDER BY title, id desc ) AS diff,
+                    ROW_NUMBER() OVER(PARTITION BY title, url ORDER BY id desc) AS row_number
                 FROM products_history
                 where datetime_create >= "{d.date()}"
                 ORDER BY id desc

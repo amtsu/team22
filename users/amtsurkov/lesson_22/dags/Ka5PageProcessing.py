@@ -6,6 +6,8 @@ import urllib
 from bs4 import BeautifulSoup
 import json
 
+from decimal import Decimal
+
 import time
 import openapi_client
 from pprint import pprint
@@ -107,10 +109,10 @@ class Ka5ServiceProcessing(ServiceProcessing):
             print(jsons)
             for e in jsons['results']:
                 el = {}
-                el['title'] = e['name']
+                el['title'] = e['name'][:199]
                 el['quantity'] = 1
-                el['price'] = e['current_prices']['price_reg__min']
-                el['price_sale'] = e['current_prices']['price_promo__min']
+                el['price'] = Decimal(e['current_prices']['price_reg__min']).quantize(Decimal("1.00"))
+                el['price_sale'] = Decimal(e['current_prices']['price_promo__min']).quantize(Decimal("1.00"))
                 el['datetime_create'] = "1970-01-01T00:00:00.00Z"
                 el['url'] = 'https://5ka.ru/api/v2/special_offers/' + str(e['id']) + '/'
                 el['image_url'] = e['img_link']

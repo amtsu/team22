@@ -1,5 +1,3 @@
-#import urllib3 as urllib
-#import urllib as urllib
 import re
 import urllib.request
 import urllib
@@ -14,243 +12,6 @@ from openapi_client.model.history import History
 from openapi_client.model.paginated_history_list import PaginatedHistoryList
 from openapi_client.model.patched_history import PatchedHistory
 
-class Element():
-    def get(self):
-        assert self.__is_page_ok()
-        text = self.__get_text()
-        normalization_text = self.__normalization(text)
-        return self.__type_convert(normalization_text)
-    
-    def __get_text(self):
-        assert Flase
-
-    def __init__(self, soup):
-        self.__soup = soup
-
-    def __is_page_ok(self):
-        return True
-    
-    def __normalization(self, price_bad):
-        return price_bad
-    
-    def __type_convert(self, text):
-        return text
-    
-    def _w(self):
-        return 'w'
-        
-    def __z(self):
-        return 'z'
-
-class PriceElement(Element):
-    def get(self):
-        assert self.__is_page_ok()
-        text = self.__get_text()
-        normalization_text = self.__normalization(text)
-        return self.__type_convert(normalization_text)
-    
-    def __get_text(self):
-        #prices__old
-        list_reports_data = self.__soup.findAll('span', class_="catalog-tile__area")
-        list_reports_data_2 = list_reports_data[0].find_all('span', class_="prices__old")
-        element_1 = list_reports_data_2[0]
-        return element_1.text
-
-    def __init__(self, soup):
-        self.__soup = soup
-
-    def __is_page_ok(self):
-        return True
-    
-    def __normalization(self, price_bad):
-        #<span class="prices__cur js-item-price">42<em>90</em>&nbsp;₽</span>
-        #print(price_bad)
-        price_bad = price_bad.replace(u'<em>', '.') # ' '
-        #print(price_bad)
-        #price_bad = price_bad.replace(u'</em>&nbsp;₽', '') # '₽'
-        #price_bad = price_bad.replace(u' ', '') # ' '
-        #print(price_bad)
-        #print(price_bad[:-5])
-        return price_bad[:-5]
-        price_good = int(price_bad)
-        return price_good
-    
-    def __type_convert(self, text):
-        #print(text)
-        assert text.isnumeric()
-        return int(text)
-    
-    def __z(self):
-        return 'z'
-
-class PriceSaleElement(Element):
-    def get(self):
-        assert self.__is_page_ok()
-        text = self.__get_text()
-        normalization_text = self.__normalization(text)
-        return self.__type_convert(normalization_text)
-    
-    def __get_text(self):
-        #class="prices__cur js-item-price"
-        list_reports_data = self.__soup.findAll('span', class_="catalog-tile__area")
-        list_reports_data_2 = list_reports_data[0].find_all('span', class_="prices__cur js-item-price")
-        element_1 = list_reports_data_2[0]
-        return element_1.text
-
-    def __init__(self, soup):
-        self.__soup = soup
-
-    def __is_page_ok(self):
-        return True
-
-    def __normalization(self, price_bad):
-        price_bad = price_bad.replace(u'<em>', '.') # ' '
-        #price_bad = price_bad.replace(u'</em>&nbsp;₽', '') # '₽'
-       # price_bad = price_bad.replace(u' ', '') # ' '
-        return price_bad[:-5]
-        price_good = int(price_bad)
-        return price_good
-
-    def __type_convert(self, text):
-        assert text.isnumeric()
-        return int(text)
-
-    def __z(self):
-        return 'z'
-
-
-class TitleElement(Element):
-    def get(self):
-        assert self.__is_page_ok()
-        text = self.__get_text()
-        normalization_text = self.__normalization(text)
-        return self.__type_convert(normalization_text)
-
-    def __get_text(self):
-        #class="catalog-tile__area"
-        list_reports_data = self.__soup.findAll('span', class_="catalog-tile__area")
-        list_reports_data_2 = list_reports_data[0].find_all('span', class_="catalog-tile__name js-cut-text")
-        element_1 = list_reports_data_2[0]
-        return element_1.text
-
-    def __init__(self, soup):
-        self.__soup = soup
-
-    def __is_page_ok(self):
-        return True
-    
-    def __normalization(self, text):
-        return text
-    
-    def __type_convert(self, text):
-        return text
-
-
-class BrandElement(Element):
-    def get(self):
-        assert self.__is_page_ok()
-        text = self.__get_text()
-        normalization_text = self.__normalization(text)
-        return self.__type_convert(normalization_text)
-
-    def __get_text(self):
-        list_reports_data = self.__soup.findAll('div', class_="bread")
-        element_1 = list_reports_data[0]
-        return element_1.text
-
-    def __init__(self, soup):
-        self.__soup = soup
-
-    def __is_page_ok(self):
-        return True
-    
-    def __normalization(self, price_bad):
-        return price_bad.replace('\n', '')
-    
-    def __type_convert(self, text):
-        return text
-
-
-class BrandUrlElement(Element):
-    def get(self):
-        assert self.__is_page_ok()
-        text = self.__get_text()
-        normalization_text = self.__normalization(text)
-        return self.__type_convert(normalization_text)
-
-    def __get_text(self):
-        list_price_data = self.__soup.findAll('div', class_='bread')
-        assert len(list_price_data) == 1
-        list_reports_data = list_price_data[0].find_all('a')
-        element_1 = list_reports_data[-1]
-        return element_1['href']
-
-    def __init__(self, soup):
-        self.__soup = soup
-
-    def __is_page_ok(self):
-        return True
-    
-    def __normalization(self, price_bad):
-        return price_bad
-    
-    def __type_convert(self, text):
-        return text
- 
-
-class ImageUrlElement(Element):
-    def get(self):
-        assert self.__is_page_ok()
-        text = self.__get_text()
-        normalization_text = self.__normalization(text)
-        return self.__type_convert(normalization_text)
-
-    def __get_text(self):
-        list_price_data = self.__soup.findAll('script')
-        script = list_price_data[10]
-        #"big": "\/images\/catalog\/lbj7000_xt3_130_lv_storm_blue_rgb300dpi_2539265.jpg"
-        return re.search(r'big": "(.+)"', script.text).group(1)
-
-    def __init__(self, soup):
-        self.__soup = soup
-
-    def __is_page_ok(self):
-        #list_price_data = self.__soup.findAll('script')
-        #script = list_price_data[10]
-        ##"big": "\/images\/catalog\/lbj7000_xt3_130_lv_storm_blue_rgb300dpi_2539265.jpg"
-        #image_url = re.search(r'big": "(.+)"', script.text).group(1)
-
-        #assert len(list_price_data) == 49
-        #if len(list_price_data) != 49:
-        #    return False
-        return True
-    
-    def __normalization(self, price_bad):
-        return price_bad.replace('\\', '')
-    
-    def __type_convert(self, text):
-        return text
-        
-
-class OnePageProcessor():
-    """
-        Not good use BeautifulSoup object, and then use them in coheshe object
-    """
-    def __init__(self, text_page):
-        self.__soup = BeautifulSoup(text_page, features="html.parser")
-
-    def list_dict(self):
-        return [
-            {
-                "title": TitleElement(self.__soup).get(),
-                "price": PriceElement(self.__soup).get(),
-                "price_sale": PriceSaleElement(self.__soup).get(),
-                #"brand": BrandElement(self.__soup).get(),
-                #"brand_url": BrandUrlElement(self.__soup).get(),
-                #"image_url": ImageUrlElement(self.__soup).get(),
-            }
-        ]
-
     
 class ListPageProcessor():
     def __init__(self, text_page, url):
@@ -259,21 +20,15 @@ class ListPageProcessor():
 
     def list_dict(self):
         ll = []
-#        for e in self.__soup.findAll('span', class_="catalog-tile__area"):
         for e in self.__soup.findAll('div', class_="catalog-tile js-element"):
             list_reports_data_title = e.find_all('span', class_="catalog-tile__name js-cut-text")
             title = list_reports_data_title[0].text
             
-
             list_reports_data_price_sale = e.find_all('span', class_="prices__cur js-item-price")
             price_sale = list_reports_data_price_sale[0].text[:-4] if list_reports_data_price_sale else 0
             if len(price_sale) > 3:
                 price_sale = price_sale[:-4] + price_sale[-3:]
             price_sale = int(price_sale)
-            #print('---',price_sale,'===')
-            #for d in price_sale:
-            #    print(d)
-            #price_sale = price_sale.split('<em>')[0]            
             
             list_reports_data_price = e.find_all('span', class_="prices__old")
             if list_reports_data_price and len(list_reports_data_price[0].text)>5:
@@ -283,16 +38,11 @@ class ListPageProcessor():
                 price = int(price)
             else:
                 price = price_sale
-            #price = price.split('<em>')[0]   
-            #print('---',price,'===')
                 
             list_reports_data_url = e.find_all('a', class_="catalog-tile__link js-analytic-click")   
-            #for i in list_reports_data_url:
-            #    print(i)
             url = ''
             if list_reports_data_url:
                 url = 'https://myspar.ru' + list_reports_data_url[0]['href']
-
             
             ll.append({
                 'title': title,
@@ -301,22 +51,9 @@ class ListPageProcessor():
                 'url': url,
                 'source_url': self.__url,
             })
-        return ll
-    
-
-# модуль trial-sport.ru
-class OnePage():
-    def __init__(self, url):
-        self.__url = url
-        with urllib.request.urlopen(self.__url) as response:
-            self.__page = response.read()
-            self.__one_page_processor = OnePageProcessor(self.__page)
-            
-    def list_dict(self):
-        return self.__one_page_processor.list_dict()
+        return ll    
 
     
-# модуль
 class ListPage():
     def __init__(self, url):
         self.__l = []
@@ -886,16 +623,13 @@ class SparServiceProcessing(ServiceProcessing):
         self.__list_dict = []
         for url in self.__urls:
             url = 'https://myspar.ru' + url + '?sort=price-asc'
-            #&PAGEN_1=5
             for i in range(1,6):
                 url_r = url + '&PAGEN_1=' + str(i)
                 for object_params in ListPage(url_r).list_dict():
                     self.__list_dict.append(object_params)
-        #create file with name current datetime
-        # whene trabsfer to airflow we need change save file, becouse runner may start in any server
 
     def __create_file_name_with_current_datetime(self):
-        return 'trialsport_fresh.json'
+        return 'spar_fresh.json'
 
     def save_in_file_with_current_datetime(self):
         json_string = json.dumps(self.__list_dict)
@@ -956,5 +690,3 @@ class SparServiceProcessing(ServiceProcessing):
                 except openapi_client.ApiException as e:
                     print("Exception when calling HistoryApi->history_create: %s\n" % e)
             print('Count load object =', len(self.__list_dict))
-
-
