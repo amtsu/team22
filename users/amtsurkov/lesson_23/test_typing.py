@@ -1,6 +1,9 @@
 # def calculate_sum(price: int, count: int) -> int:
 # def calculate_sum(price, count) -> int:
 def calculate_sum(price, count) -> str:
+    """
+    This method calculte sum for product
+    """
     return price * count
 
 
@@ -11,7 +14,17 @@ final_price_2 = calculate_sum("Moloko", 4)
 
 
 def test_2(long_string: str):
+    """
+    Test
+    """
     print(long_string)
+
+def test_2():
+    """
+    Test
+    """
+    print('dddd')
+
 
 
 test_2(calculate_sum("Moloko", 2))
