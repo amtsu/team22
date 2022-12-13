@@ -1,5 +1,3 @@
-#import urllib3 as urllib
-#import urllib as urllib
 import re
 import urllib.request
 import urllib
@@ -15,41 +13,76 @@ from openapi_client.model.paginated_history_list import PaginatedHistoryList
 from openapi_client.model.patched_history import PatchedHistory
 
 class Element():
+    """
+    Попытка сделать интерфей, для последующего построения на его основе классов обработки различных элементов на странице, таких как название, цена, ...
+    """
     def get(self):
+        """
+        Получить значение элемента
+        """
         assert self.__is_page_ok()
         text = self.__get_text()
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
     
     def __get_text(self):
+        """
+        Достать строку содержашую значение элемента
+        """
         assert Flase
 
     def __init__(self, soup):
+        """
+        инициализация обекта
+        """
         self.__soup = soup
 
     def __is_page_ok(self):
+        """
+        проверить что на данной странице(в данном блоке) есть неободимый элемент
+        """
         return True
     
     def __normalization(self, price_bad):
+        """
+        Очисть элемент от лишнего
+        
+        В случае с ценой это может быть: какие то выделения основной части, разделитили, символы валюты
+        """
         return price_bad
     
     def __type_convert(self, text):
+        """
+        Преобразовать элемент к требуемому типу
+        """
         return text
     
     def _w(self):
+        """
+        Этот метод был введен чтобы показать как работает наследование
+        """
         return 'w'
         
     def __z(self):
+        """
+        Этот метод был введен чтобы показать как работает наследование
+        """
         return 'z'
 
 class PriceElement(Element):
     def get(self):
+        """
+        Получить значение элемента
+        """
         assert self.__is_page_ok()
         text = self.__get_text()
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
     
     def __get_text(self):
+        """
+        Достать строку содержашую значение элемента
+        """
         list_price_data = self.__soup.findAll('div', class_='prices_for_popup')
         assert len(list_price_data) == 1
         list_reports_data = list_price_data[0].find_all('div', class_='price')
@@ -57,9 +90,15 @@ class PriceElement(Element):
         return element_1.text
 
     def __init__(self, soup):
+        """
+        инициализация обекта
+        """
         self.__soup = soup
 
     def __is_page_ok(self):
+        """
+        проверить что на данной странице(в данном блоке) есть неободимый элемент
+        """
         list_price_data = self.__soup.findAll('div', class_='prices_for_popup')
         assert len(list_price_data) == 1
         list_reports_data = list_price_data[0].find_all('div', class_='price')
@@ -69,14 +108,22 @@ class PriceElement(Element):
         return True
     
     def __normalization(self, price_bad):
+        """
+        Очисть элемент от лишнего
+        
+        В случае с ценой это может быть: какие то выделения основной части, разделитили, символы валюты
+        """
         price_bad = price_bad.replace(u'\u2009', '') # ' '
         price_bad = price_bad.replace(u'\u20bd', '') # '₽'
         price_bad = price_bad.replace(u' ', '') # ' '
         return price_bad
-        price_good = int(price_bad)
-        return price_good
+        #price_good = int(price_bad)
+        #return price_good
     
     def __type_convert(self, text):
+        """
+        Преобразовать элемент к требуемому типу
+        """
         assert text.isnumeric()
         return int(text)
     
@@ -254,6 +301,8 @@ class ImageUrlElement(Element):
 
 class OnePageProcessor():
     """
+    Класс формиует, на основе текста html, страницы список словарей содержаший объеты найденные на данной странице.
+    Используется для страниц на которых есть только одни основной обект  (пример https://trial-sport.ru/goods/51530/1179889.html)
         Not good use BeautifulSoup object, and then use them in coheshe object
     """
     def __init__(self, text_page, url):
@@ -261,6 +310,9 @@ class OnePageProcessor():
         self.__url = url
 
     def list_dict(self):
+        """
+        Формиует список состоящий из одного словаря с занчениями найденными на странице товара
+        """
         return [
             {
                 "title": TitleElement(self.__soup).get(),
@@ -275,11 +327,22 @@ class OnePageProcessor():
         ]
     
 class ListPageProcessor():
+    """
+    Класс формиует, на основе текста html страницы, список словарей содержаший объеты найденные на данной странице.
+    Используется для страниц на которых есть список оьбектов (пример https://trial-sport.ru/gds.php?s=51528)
+    
+    Не использует ранее созданные классы конкртеных элеменотов, а формирует все в одном месте.
+    Можно сравнить какой подзод проще к прочтению и пониманию.
+    """    
     def __init__(self, text_page, url):
         self.__soup = BeautifulSoup(text_page, features="html.parser")
         self.__url = url
 
     def list_dict(self):
+        """
+        Формирует список слловарей, где каждый словарь представляет товар найденный на странице.
+        Поиск элемента, его очистка, и преобразование также происходят на в данном методе.
+        """
         l = []
         list_data = self.__soup.findAll('div', class_='object ga')
         for i in list_data:
@@ -340,6 +403,14 @@ class ListPageProcessor():
 
 
 class OnePage():
+    """
+    Класс необходим для позода в вею сервис за получением конкртеной старницы и проследюущим ее процессиногом.
+    
+    Дальнейшее расширение: 
+    - учитывать время иземения доуемента используя запрос head, чтобы лишний раз не скачивать документы.
+    - в качестве параметра инциализации принимать обект(класс) для процессинга чтобы можно было динамически менять исполнителее(DI)
+    - 
+    """
     def __init__(self, url):
         self.__url = url
         with urllib.request.urlopen(self.__url) as response:
@@ -347,14 +418,23 @@ class OnePage():
             self.__one_page_processor = OnePageProcessor(self.__page, self.__url)
             
     def list_dict(self):
+        """
+        Возращает список, содержащий словарь с данными взями с страницы.
+        """
         return self.__one_page_processor.list_dict()
     
     
 class TrialSportServiceProcessing():
     """
+    Основной класс по работе с поставщиком данных TrialSport.
+    Нужен для получения данных от поставщик, их отрансормации, и последующей отправки в долговрменное хранилище.
+    
     when we have many ServiceProcessing, we nead create one Modeul with configuration 
     """
     def load_url_by_default(self):
+        """
+        Инициализирует списки urls для послеющего их получения с веб ресрса и их обработки
+        """
         self.__urls = [
             "https://trial-sport.ru/goods/51530/1179889.html",
             "https://trial-sport.ru/goods/51527/2175792.html",
@@ -388,6 +468,9 @@ class TrialSportServiceProcessing():
         ]
 
     def process(self):
+        """
+        Формирует финальный список ссылок на документы для обработки и преобразовыает их в нужный формат.
+        """
         self.__list_dict = []
         for url in self.__urls:
             for object_params in OnePage(url).list_dict():
@@ -406,15 +489,24 @@ class TrialSportServiceProcessing():
                         self.__list_dict.append(object_params)
 
     def __create_file_name_with_current_datetime(self):
+        """
+        Формирует имя файла для сохранния полученных данных
+        """
         return 'trialsport_fresh.json'
 
     def save_in_file_with_current_datetime(self):
+        """
+        Сохраняет полученные данные в локальный фаил
+        """
         json_string = json.dumps(self.__list_dict)
         file_name = self.__create_file_name_with_current_datetime()
         with open(file_name, 'w') as outfile:
             json.dump(json_string, outfile)
 
     def send_in_api(self):
+        """
+        Отправляет полученные данные в олговремнное хранилище
+        """
         configuration = openapi_client.Configuration(
             host = "http://absrent.ru:8000"
         )
