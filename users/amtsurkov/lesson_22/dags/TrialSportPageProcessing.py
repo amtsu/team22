@@ -5,12 +5,13 @@ from bs4 import BeautifulSoup
 import json
 
 import time
-import openapi_client
-from pprint import pprint
-from openapi_client.apis.tags import history_api
-from openapi_client.model.history import History
-from openapi_client.model.paginated_history_list import PaginatedHistoryList
-from openapi_client.model.patched_history import PatchedHistory
+import openapi_client # type: ignore
+from pprint import pprint # type: ignore
+
+from openapi_client.apis.tags import history_api # type: ignore
+from openapi_client.model.history import History # type: ignore
+from openapi_client.model.paginated_history_list import PaginatedHistoryList # type: ignore
+from openapi_client.model.patched_history import PatchedHistory # type: ignore
 
 class Element():
     """
@@ -25,11 +26,13 @@ class Element():
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
     
-    def __get_text(self):
+
+    def __get_text(self) -> str:
         """
         Достать строку содержашую значение элемента
         """
-        assert Flase
+        assert False
+        return ''
 
     def __init__(self, soup):
         """
@@ -43,7 +46,7 @@ class Element():
         """
         return True
     
-    def __normalization(self, price_bad):
+    def __normalization(self, price_bad: str) -> str:
         """
         Очисть элемент от лишнего
         
@@ -70,7 +73,7 @@ class Element():
         return 'z'
 
 class PriceElement(Element):
-    def get(self):
+    def get(self) -> int:
         """
         Получить значение элемента
         """
@@ -79,7 +82,7 @@ class PriceElement(Element):
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
     
-    def __get_text(self):
+    def __get_text(self) -> str:
         """
         Достать строку содержашую значение элемента
         """
@@ -95,7 +98,7 @@ class PriceElement(Element):
         """
         self.__soup = soup
 
-    def __is_page_ok(self):
+    def __is_page_ok(self) -> bool:
         """
         проверить что на данной странице(в данном блоке) есть неободимый элемент
         """
@@ -107,7 +110,7 @@ class PriceElement(Element):
             return False
         return True
     
-    def __normalization(self, price_bad):
+    def __normalization(self, price_bad: str) -> str:
         """
         Очисть элемент от лишнего
         
@@ -120,7 +123,7 @@ class PriceElement(Element):
         #price_good = int(price_bad)
         #return price_good
     
-    def __type_convert(self, text):
+    def __type_convert(self, text: str) -> int:
         """
         Преобразовать элемент к требуемому типу
         """
@@ -411,13 +414,13 @@ class OnePage():
     - в качестве параметра инциализации принимать обект(класс) для процессинга чтобы можно было динамически менять исполнителее(DI)
     - 
     """
-    def __init__(self, url):
+    def __init__(self, url: str):
         self.__url = url
         with urllib.request.urlopen(self.__url) as response:
             self.__page = response.read()
             self.__one_page_processor = OnePageProcessor(self.__page, self.__url)
             
-    def list_dict(self):
+    def list_dict(self) -> list[dict]:
         """
         Возращает список, содержащий словарь с данными взями с страницы.
         """
