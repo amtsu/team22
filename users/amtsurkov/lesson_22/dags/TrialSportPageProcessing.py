@@ -26,6 +26,7 @@ class Element():
         normalization_text = self.__normalization(text)
         return self.__type_convert(normalization_text)
     
+
     def __get_text(self) -> str:
         """
         Достать строку содержашую значение элемента
