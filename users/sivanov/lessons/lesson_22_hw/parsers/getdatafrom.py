@@ -5,12 +5,14 @@
 выделение интересующей информации
 """
 import urllib.request
-from bs4 import BeautifulSoup
+import json
+import socket
 import bs4
 from abc import ABCMeta, abstractmethod
-import json
-#import os
-#import pytest
+from bs4 import BeautifulSoup
+
+# import os
+# import pytest
 from usefulstuff import LocalLog
 
 # from usefulstuff import ColoredStr
@@ -56,12 +58,10 @@ class WebPage:
         """
         Конвертер экземпляра класса WebPage  в строку (такой себе, конечно)
         """
-        return "url: %s, opened: %s, error codes: HTTP: %d, URL: %d, socket: %d" % (
-            self.__url,
-            str(self.__is_opened),
-            self.__last_http_error,
-            self.__last_url_error,
-            self.__socket_timeout,
+        return (
+            f"url: {self.__url}, opened: {self.__is_opened}, "
+            f"error codes: HTTP: {self.__last_http_error}, "
+            f"URL: {self.__last_url_error}, socket: {self.__socket_timeout}"
         )
 
     # -------------------------------------------------------------------------------
@@ -76,26 +76,26 @@ class WebPage:
         self.__last_url_error = 0
         self.__socket_timeout = 0
         try:
-            page = urllib.request.urlopen(self.__url)
-        except urllib.error.HTTPError as e:
-            self.__last_http_error = e.code
+            with urllib.request.urlopen(self.__url) as page:
+                # self.__last_http_error =  # TODO: разобраться что с этим делать
+                self.__last_url_error = page.status
+                self.__text = page.read()
+                self.__is_opened = True
+
+        except urllib.error.HTTPError as http_error:
+            self.__last_http_error = http_error.code
             self.__text = ""
             self.__is_opened = False
-            pass
-        except urllib.error.URLError as e:
-            self.__last_url_error = e.reason
+        except urllib.error.URLError as url_error:
+            self.__last_url_error = url_error.reason
             self.__text = ""
             self.__is_opened = False
-            pass
         except socket.timeout:
             self.__socket_timeout = 1
             self.__text = ""
             self.__is_opened = False
         else:
-            # self.__last_http_error =  # TODO: разобраться что с этим делать
-            self.__last_url_error = page.status
-            self.__text = page.read()
-            self.__is_opened = True
+            pass
         return self.__text
 
     # -------------------------------------------------------------------------------
@@ -115,7 +115,6 @@ class WebPage:
         return self.__is_opened
 
     # -------------------------------------------------------------------------------
-    pass
 
 
 # ===================================================================================
@@ -131,7 +130,6 @@ class UltraStripper:
         потом удалять
         """
         self.__trash_to_remove = trash_to_remove
-        return
 
     def __str__(self):
         """
@@ -161,8 +159,6 @@ class UltraStripper:
             result = result.replace(item, "")
         return result.strip()
 
-    pass
-
 
 # ===================================================================================
 # return element_1['href'] - это как вытащить значение
@@ -187,7 +183,6 @@ class SimpleGetter:
         абстрактный метод, получающий значение класса.
         "типа private", насколько это тут возможно
         """
-        pass
 
     def get(self, tag: bs4.element.Tag) -> str:
         """
@@ -197,8 +192,6 @@ class SimpleGetter:
         _get_tag_value_or_tag_parameter_value. Надеюсь, это будет строка.
         """
         return self._get_tag_value_or_tag_parameter_value(tag)
-
-    pass
 
 
 # ===================================================================================
@@ -238,8 +231,6 @@ class TagValue(SimpleGetter):
             if tag.has_key(self.__param_name):
                 result = str(tag[self.__param_name])
         return result
-
-    pass
 
 
 # ===================================================================================
@@ -314,15 +305,9 @@ class PageElement:
         """
         печать информации о себе (что ищем на странице)
         """
-        return str(
-            "Ищем "
-            + self.__item_alias
-            + " <"
-            + self.__item_type
-            + " class='"
-            + self.__item_name
-            + "'>. под номером "
-            + str(self.__item_num)
+        return (
+            f"Ищем {self.__item_alias} <{self.__item_type} class='"
+            f"{self.__item_name}'>. под номером {self.__item_num}"
         )
 
     # -------------------------------------------------------------------------------
@@ -420,7 +405,7 @@ class ProductInfo:
         return self.__data_loaded
 
     # -------------------------------------------------------------------------------
-    def get(self) -> list:
+    def get(self) -> dict:
         """
         метод, в соответствии с настройками, возвращающий словарик с необходимой
         информацией, полученной со странички
@@ -444,10 +429,12 @@ def CreateProductInfo(filename: str) -> ProductInfo:
     функция создания экземпляров класса ProductInfo, основываясь на json-файле
     с настройками, типа такого:
     {
-        "url": "https://delivery.metro-cc.ru/metro/vino-matsu-el-picaro-toro-do-krasnoe-suhoe-14-5-0-75-l-ispaniya-0459ac3",
+        "url": "https://delivery.metro-cc.ru/metro/
+        vino-matsu-el-picaro-toro-do-krasnoe-suhoe-14-5-0-75-l-ispaniya-0459ac3",
         "data": {
                 "Цена": {
-                        "id": "price_cell_priceRow__WPJQk price_root__niT7G price_default__sNIab price_default__sNIab",
+    "id": "price_cell_priceRow__WPJQk price_root__niT7G
+    price_default__sNIab price_default__sNIab",
                         "tagname": "div",
                         "index": 0,
                         "what": "",
