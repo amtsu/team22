@@ -135,7 +135,7 @@ class TagValue(SimpleGetter):
             result = tag.text
         else:    
             if(tag.has_key(self.__param_name)):
-                result = tag[self.__param_name]        
+                result = str(tag[self.__param_name])     
         return result
     pass
 #==================================================================================================================================
@@ -152,14 +152,14 @@ class TagValue(SimpleGetter):
 class PageElement:
     #initiate
     #--------------------------------------------------------------------------------
-    def __init__(self, item_alias: str, element_data:dict) -> str:
+    def __init__(self, item_alias: str, element_data:dict) -> None:
         self.__item_alias = item_alias
         self.__item_type = element_data['tagname']
         self.__item_name = element_data['id']  
         self.__item_num = element_data['index'] 
         self.__stripper = UltraStripper(element_data['stripper_setting'].split(","))
         self.__getter = TagValue(element_data['what'])
-        
+        return None
     #--------------------------------------------------------------------------------
     @property
     def item_alias(self):
@@ -207,7 +207,7 @@ class ProductInfo:
         self.__page = WebPage(self.__url) #сразу докинем читалку страниц
         self.__soup = None
         self.__data_loaded = False
-        self.__elements = []
+        self.__elements : list[PageElement] = []
         self.setup(elements['data'])
     #------------------------------------------------------------------------------------
     def __str__(self):
