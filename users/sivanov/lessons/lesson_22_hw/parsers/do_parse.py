@@ -8,7 +8,7 @@ from openapi_client.apis.tags import history_api
 from openapi_client.model.history import History
 #from openapi_client.model.paginated_history_list import PaginatedHistoryList
 #from openapi_client.model.patched_history import PatchedHistory
-from getdatafrom import CreateProductInfo
+from getdatafrom import create_product_info
 import json
 class parser:
 #===============================================================================================
@@ -87,7 +87,7 @@ class parser:
         with os.scandir(json_dir) as files:
             filename_list = [file.name for file in files if file.is_file() and file.name.startswith('parse_')]
         for filename in filename_list:
-            pi_list.append(CreateProductInfo(json_dir+filename))#os.getcwd()+'/json/'
+            pi_list.append(create_product_info(json_dir+filename))#os.getcwd()+'/json/'
 #---------------------------------------------------------------------------
     # парсим и печатаем результат
         for product_info in pi_list:

@@ -7,8 +7,8 @@
 import urllib.request
 import json
 import socket
-import bs4
 from abc import ABCMeta, abstractmethod
+import bs4
 from bs4 import BeautifulSoup
 
 # import os
@@ -277,7 +277,6 @@ class PageElement:
         self.__item_num = element_data["index"]
         self.__stripper = UltraStripper(element_data["stripper_setting"].split(","))
         self.__getter = TagValue(element_data["what"])
-        return None
 
     # -------------------------------------------------------------------------------
     @property
@@ -325,7 +324,7 @@ class PageElement:
         Если не в порядке - пустую строку, или упадет, как повезёт
         """
         value = ""
-        llog("_getitemvalue_, <%s class=%s>" % (self.__item_type, self.__item_name))
+        llog(f"_getitemvalue_, <{self.__item_type} class={self.__item_name}>")
         all_data = soup.findAll(self.__item_type, class_=self.__item_name)
         llog("-----------------")
         llog(all_data)
@@ -336,7 +335,6 @@ class PageElement:
         return value
 
     # -------------------------------------------------------------------------------
-    pass
 
 
 # ===================================================================================
@@ -420,11 +418,10 @@ class ProductInfo:
         return result
 
     # -------------------------------------------------------------------------------
-    pass
 
 
 # ===================================================================================
-def CreateProductInfo(filename: str) -> ProductInfo:
+def create_product_info(filename: str) -> ProductInfo:
     """
     функция создания экземпляров класса ProductInfo, основываясь на json-файле
     с настройками, типа такого:
@@ -464,7 +461,7 @@ def CreateProductInfo(filename: str) -> ProductInfo:
         }
     }
     """
-    with open(filename, "r") as fin:
+    with open(filename, "r", encoding="utf-8") as fin:
         data = json.loads(fin.read())
     return ProductInfo(data)
 
