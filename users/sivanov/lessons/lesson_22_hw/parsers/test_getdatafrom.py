@@ -4,9 +4,8 @@
 Тесты для модуля getddatafrom
 """
 import os
-from getdatafrom import WebPage
-from getdatafrom import UltraStripper
-from getdatafrom import PageElement
+from getdatafrom import WebPage # pylint: disable=E0401 #не проверять на корректность импорта
+from getdatafrom import UltraStripper # pylint: disable=E0401 #не проверять на корректность импорта
 
 # тесты
 def test_webpage_str_1():

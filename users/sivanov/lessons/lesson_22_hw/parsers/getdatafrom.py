@@ -8,12 +8,14 @@ import urllib.request
 import json
 import socket
 from abc import ABCMeta, abstractmethod
+from dataclasses import dataclass
 import bs4
 from bs4 import BeautifulSoup
 
 # import os
 # import pytest
-from usefulstuff import LocalLog
+# не проверять на корректность импорта
+from usefulstuff import LocalLog  # pylint: disable=E0401
 
 # from usefulstuff import ColoredStr
 # from usefulstuff import HandmadeTestDecorator
@@ -165,6 +167,7 @@ class UltraStripper:
 # возможн нужно сделать геттекст и гетвалюе, ну или написать два класса обработчика,
 # это на подумать.
 # ===================================================================================
+@dataclass  # декоратор, автоматически добавляет init repr и прочее
 class SimpleGetter:
     """
     абстрактный класс, задающий интерфейс для возможных потомков, создаваемых
@@ -173,6 +176,9 @@ class SimpleGetter:
     раньше потомков было 2, сейчас один, можно обойтись и без этого интерфейса
 
     или перепишу-ка я его под NVI
+
+    про датаклассы:
+    https://docs.python.org/3/library/dataclasses.html
     """
 
     __metaclass__ = ABCMeta
@@ -195,6 +201,7 @@ class SimpleGetter:
 
 
 # ===================================================================================
+@dataclass
 class TagValue(SimpleGetter):
     """
     единственный наследник симпл геттера
