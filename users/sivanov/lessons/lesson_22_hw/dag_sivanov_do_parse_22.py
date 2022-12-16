@@ -14,7 +14,8 @@ from users.sivanov.dags.parsers.do_parse import parser
 # про расписание смотри тут https://en.wikipedia.org/wiki/Cron
 # про datetime наверное тут https://pendulum.eustace.io/
 with DAG(
-    dag_id="sivanov_parse_22", start_date=datetime(2022, 12, 9), schedule="0 0 * * *"
+    dag_id="sivanov_parse_22", start_date=datetime(2022, 12, 9), schedule="0 0 * * *",
+    tags=["sivanov","parse_22"]
 ) as dag:
 
     start = BashOperator(task_id="start", bash_command="echo sivanov_parse_22")

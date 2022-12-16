@@ -11,7 +11,8 @@ from airflow.operators.bash import BashOperator
 # про расписание смотри тут https://en.wikipedia.org/wiki/Cron
 # про datetime наверное тут https://pendulum.eustace.io/
 with DAG(
-    dag_id="sivanov_test_1", start_date=datetime(2022, 12, 2), schedule="0 0 * * *"
+    dag_id="sivanov_test_1", start_date=datetime(2022, 12, 2), schedule="0 0 * * *",
+    tags=["sivanov","test"]
 ) as dag:
 
     start = BashOperator(task_id="start", bash_command="echo sivanov_test_1")
