@@ -3,9 +3,9 @@
 Вытащил из main`a модуля getdatafrom, чтобы было понятно где что поменялось при коммитах
 """
 import os
-import openapi_client
-from openapi_client.apis.tags import history_api
-from openapi_client.model.history import History
+import openapi_client # type: ignore
+from openapi_client.apis.tags import history_api # type: ignore
+from openapi_client.model.history import History # type: ignore
 from getdatafrom import create_product_info
 from usefulstuff import LocalLog
 
