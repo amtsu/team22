@@ -31,7 +31,7 @@ class WebPage:
     метод text возвращает полученный методом open результат
     """
 
-    def __init__(self, url=""):
+    def __init__(self, url: str = ""):
         self.__url = url
         self.__is_opened = False
         self.__last_http_error = 0
@@ -125,7 +125,7 @@ class UltraStripper:
     удалить заданные символы из списка символов,формируемого при создании
     """
 
-    def __init__(self, trash_to_remove):
+    def __init__(self, trash_to_remove: list[str]):
         """
         типа конструктор.
         класс инициализируется списком, содержащим в себе всё что нужно будет
@@ -145,13 +145,13 @@ class UltraStripper:
         """
         return self.__str__()
 
-    def __call__(self, input_data):
+    def __call__(self, input_data: str) -> str:
         """
         превращает объект класса UltraStripper в callable
         """
         return self.__do_damage(input_data)
 
-    def __do_damage(self, input_data):
+    def __do_damage(self, input_data: str) -> str:
         """
         скрытый метод, делающий всю работу по очистке входной строки от нежелательной
         информации, в соответствии с данными, которыми класс был инициализирован
@@ -212,7 +212,7 @@ class TagValue(SimpleGetter):
     """
 
     # -------------------------------------------------------------------------------
-    def __init__(self, param_name: str = ""):
+    def __init__(self, param_name: str = "") -> None:
         """
         инициализация.
         На вход хочет получить имя параметра тэга, значение которого нужно вернуть,
@@ -225,17 +225,19 @@ class TagValue(SimpleGetter):
         self.__param_name = param_name
 
     # -------------------------------------------------------------------------------
-    def _get_tag_value_or_tag_parameter_value(self, tag: bs4.element.Tag):
+    def _get_tag_value_or_tag_parameter_value(self, tag: bs4.element.Tag) -> str:
         """
         Переопределение родительского абстрактного метода
         Потомок возвращает значение тэга или параметра тэга из переданного ему
         параметра tag
+        листья тополя падают с ясеня - в процессе тестирования вылезло предупреждение
+        что has_key больше не стоит использоватьб, вместо него теперь has_attr
         """
         result = ""
         if self.__get_value:
             result = tag.text
         else:
-            if tag.has_key(self.__param_name):
+            if tag.has_attr(self.__param_name):
                 result = str(tag[self.__param_name])
         return result
 
@@ -279,11 +281,17 @@ class PageElement:
 
         """
         self.__item_alias = item_alias
-        self.__item_type = element_data["tagname"]
-        self.__item_name = element_data["id"]
-        self.__item_num = element_data["index"]
-        self.__stripper = UltraStripper(element_data["stripper_setting"].split(","))
-        self.__getter = TagValue(element_data["what"])
+        self.__item_type = ""
+        self.__item_name = ""
+        self.__item_num = ""
+        self.__stripper = UltraStripper("")
+        self.__getter = TagValue("")
+        if(set(["tagname","id","index","stripper_setting","what"]).issubset(set(element_data.keys()))):
+            self.__item_type = element_data["tagname"]
+            self.__item_name = element_data["id"]
+            self.__item_num = element_data["index"]
+            self.__stripper = UltraStripper(element_data["stripper_setting"].split(","))
+            self.__getter = TagValue(element_data["what"])
 
     # -------------------------------------------------------------------------------
     @property
@@ -294,7 +302,7 @@ class PageElement:
         return self.__item_alias
 
     # -------------------------------------------------------------------------------
-    def __call__(self, soup):
+    def __call__(self, soup: bs4.BeautifulSoup):
         """
         делает объекты класса PageElement - callable
         работает в два этапа - добывает значение элемента,
@@ -324,7 +332,7 @@ class PageElement:
         return self.__str__()
 
     # -------------------------------------------------------------------------------
-    def __get_item_value(self, soup) -> str:
+    def __get_item_value(self, soup: bs4.BeautifulSoup) -> str:
         """
         метод, работающий с супом и выбирающий из него нужное значение. Если все в порядке,
         возвращает значение элемента в соответствтии с настройками.
@@ -336,7 +344,7 @@ class PageElement:
         llog("-----------------")
         llog(all_data)
         llog("-----------------")
-        if self.__item_num < len(all_data):
+        if (self.__item_num < len(all_data)) and (soup is not None):
             correct_item = all_data[self.__item_num]
             value = self.__getter.get(correct_item)
         return value
@@ -360,7 +368,14 @@ class ProductInfo:
         """
         self.__url = elements["url"]
         self.__page = WebPage(self.__url)  # сразу докинем читалку страниц
-        self.__soup = None
+        #        self.__soup = BeautifulSoup("")  # нужно обсудить как тут быть TODO
+        self.__soup = None  # TODO: обсудить как тут быть
+        """
+        если оставить self.__soup = None, ругается mypy
+        если совсем убрать - ругается pylint
+        self.__soup = BeautifulSoup("") - прокатит, но мне вообще не
+        нравится просто так делать обЪект, которыйц 146% не нужен
+        """
         self.__data_loaded = False
         self.__elements: list[PageElement] = []
         self.setup(elements["data"])
