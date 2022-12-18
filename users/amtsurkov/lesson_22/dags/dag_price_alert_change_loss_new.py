@@ -84,7 +84,29 @@ with DAG(dag_id="price_alert_change", start_date=datetime(2022, 12, 5), schedule
                 url
             FROM sales_numbered
 --            where datetime_create <= "{d1.date()}"
-            where datetime_create <= "{d0.date()}"
+            where datetime_create < "{d0.date()}"
+        """
+        
+        
+        
+        q = f"""
+                SELECT 
+                    title, 
+                    url
+                FROM products_history
+                where datetime_create >= "{d1.date()}" 
+                    and datetime_create < "{d0.date()}" 
+                    and url not like "https://myspar.ru%" 
+            EXCEPT
+                SELECT 
+                    title, 
+                    url
+                FROM products_history
+                where  datetime_create > "{d0.date()}" 
+                    and url not like "https://myspar.ru%" 
+        order by url asc
+        limit 1000000
+
         """
         cursor.execute(q)
         print(q)
@@ -135,6 +157,28 @@ with DAG(dag_id="price_alert_change", start_date=datetime(2022, 12, 5), schedule
 --            where datetime_create >= "{d1.date()}"
             where datetime_create >= "{d0.date()}"
         """
+        
+        q = f"""
+
+                SELECT 
+                    title, 
+                    url
+                FROM products_history
+                where  datetime_create > "{d0.date()}" 
+                    and url not like "https://myspar.ru%" 
+            EXCEPT             
+                SELECT 
+                    title, 
+                    url
+                FROM products_history
+                where datetime_create >= "{d1.date()}" 
+                    and datetime_create < "{d0.date()}" 
+                    and url not like "https://myspar.ru%" 
+
+        order by url asc
+        limit 1000000
+        """
+
         cursor.execute(q)
         count = 0
         print(q)

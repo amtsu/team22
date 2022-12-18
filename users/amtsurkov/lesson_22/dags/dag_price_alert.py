@@ -18,7 +18,7 @@ with DAG(dag_id="price_alert", start_date=datetime(2022, 12, 5), schedule="0 3 *
         """
         print("start price alert")
         
-        days_before = 2
+        days_before = 1
         d = datetime.today() - timedelta(days=days_before)
         
         connection = sqlite3.connect('/home/jupyter-amtsu/project/price_alert/db.sqlite3')
