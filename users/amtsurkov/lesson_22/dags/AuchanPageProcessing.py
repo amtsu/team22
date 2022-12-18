@@ -322,17 +322,17 @@ class AuchanServiceProcessing(ServiceProcessing):
                 current_url = url + str(current_page)
                 print(current_url)
                 try:
-                    with urllib.request.urlopen(url) as response:
+                    with urllib.request.urlopen(current_url) as response:
                         self.__page = response.read()
                         jsons = json.loads(self.__page)
-                    yield (jsons, url)
+                    yield (jsons, current_url)
                 except urllib.error.HTTPError:
-                    print('Error url = ', url)
+                    print('Error url = ', current_url)
                     
                 current_page += 1
                 if current_page > 1000:
                     break
-                if jsons["range"] < (current_page - 1) * count_from_url:
+                if jsons["range"] < (current_page - 2) * count_from_url:
                     break
 
     def process(self):
