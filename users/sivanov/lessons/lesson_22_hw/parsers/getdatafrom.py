@@ -9,6 +9,8 @@ import json
 import socket
 from abc import ABCMeta, abstractmethod
 from dataclasses import dataclass
+from typing import List
+from typing import Any
 import bs4
 from bs4 import BeautifulSoup
 
@@ -125,7 +127,7 @@ class UltraStripper:
     удалить заданные символы из списка символов,формируемого при создании
     """
 
-    def __init__(self, trash_to_remove: list[str]):
+    def __init__(self, trash_to_remove: List[Any]) -> None:
         """
         типа конструктор.
         класс инициализируется списком, содержащим в себе всё что нужно будет
@@ -283,13 +285,18 @@ class PageElement:
         self.__item_alias = item_alias
         self.__item_type = ""
         self.__item_name = ""
-        self.__item_num = ""
-        self.__stripper = UltraStripper("")
+        self.__item_num = 0
+        self.__stripper = UltraStripper([""])
         self.__getter = TagValue("")
-        if(set(["tagname","id","index","stripper_setting","what"]).issubset(set(element_data.keys()))):
+        if set(["tagname", "id", "index", "stripper_setting", "what"]).issubset(
+            set(element_data.keys())
+        ):
             self.__item_type = element_data["tagname"]
             self.__item_name = element_data["id"]
-            self.__item_num = element_data["index"]
+            self.__item_num = int(
+                element_data["index"]
+            )  # TODO добавить проверку корректности
+            print(type(element_data["index"]))
             self.__stripper = UltraStripper(element_data["stripper_setting"].split(","))
             self.__getter = TagValue(element_data["what"])
 
@@ -344,7 +351,7 @@ class PageElement:
         llog("-----------------")
         llog(all_data)
         llog("-----------------")
-        if (self.__item_num < len(all_data)) and (soup is not None):
+        if self.__item_num < len(all_data):
             correct_item = all_data[self.__item_num]
             value = self.__getter.get(correct_item)
         return value
@@ -368,8 +375,8 @@ class ProductInfo:
         """
         self.__url = elements["url"]
         self.__page = WebPage(self.__url)  # сразу докинем читалку страниц
-        #        self.__soup = BeautifulSoup("")  # нужно обсудить как тут быть TODO
-        self.__soup = None  # TODO: обсудить как тут быть
+        self.__soup = BeautifulSoup("")  # TODO нужно обсудить как тут быть
+        # self.__soup = None  # TODO: обсудить как тут быть
         """
         если оставить self.__soup = None, ругается mypy
         если совсем убрать - ругается pylint

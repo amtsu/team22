@@ -306,8 +306,7 @@ def test_page_element_4():
     тест item_alias
     """
     item_alias = "Цена"
-    item_data = {
-    }
+    item_data = {}
     page_element = PageElement(item_alias, item_data)
     assert page_element.item_alias == item_alias
 

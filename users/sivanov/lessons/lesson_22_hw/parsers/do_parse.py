@@ -47,7 +47,7 @@ class Parser:
                     title=element["Название товара"],
                     quantity=1,
                     price=str(element["Цена"]),
-                    # price_sale=str(e['price_sale']),
+                    price_sale=str(element["Цена"]),  # TODO сделать цену со скидкой
                     datetime_create="1970-01-01T00:00:00.00Z",
                     # score="-807",
                     # count_comments=1,
