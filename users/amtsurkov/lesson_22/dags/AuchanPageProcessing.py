@@ -173,6 +173,10 @@ class AuchanServiceProcessing(ServiceProcessing):
     description = description['content']
     """
     def load_url_by_default(self):
+        self.__sokolniki_urls = [
+            "https://www.auchan.ru/v1/catalog/products?perPage=100&merchantId=15&page=", 
+        ]
+        
         self.__urls = [
             #"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=1",
             #"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=",            
@@ -189,7 +193,7 @@ class AuchanServiceProcessing(ServiceProcessing):
 #"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=8",
 #"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=9",
 #"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=14",
-"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=15", 
+"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=15",
 #"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=16",
 #"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=17",
 #"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=18",
@@ -307,10 +311,34 @@ class AuchanServiceProcessing(ServiceProcessing):
                 yield (jsons, url)
             except urllib.error.HTTPError:
                 print('Error url = ', url)
-        
+
+    def __generate_sokolniki_shop_jsons(self):
+        for url in self.__sokolniki_urls:
+            page = 1
+            count_from_url = 100
+            current_page = page
+            current_url = ''
+            while current_page:
+                current_url = url + str(current_page)
+                print(current_url)
+                try:
+                    with urllib.request.urlopen(url) as response:
+                        self.__page = response.read()
+                        jsons = json.loads(self.__page)
+                    yield (jsons, url)
+                except urllib.error.HTTPError:
+                    print('Error url = ', url)
+                    
+                current_page += 1
+                if current_page > 1000:
+                    break
+                if jsons["range"] < (current_page - 1) * count_from_url:
+                    break
+
     def process(self):
         self.__list_dict = []
-        for jsons, source_url in self.__generate_jsons():
+        #for jsons, source_url in self.__generate_jsons():
+        for jsons, source_url in self.__generate_sokolniki_shop_jsons():
             for e in jsons['items']:
                 el = {}
                 #el['title'] = f"{e['project']} {e['building']} {str(e['floor'])} {str(e['area'])} {e['address']} {e['location']}"
