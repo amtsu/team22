@@ -12,7 +12,8 @@ from datetime import datetime
 import telebot
 from telebot import types
 #from functions import message_handler
-
+#=========================================================================
+# ВОТ ТАК ВОТ ДЕЛАТЬ НИКОГДА НЕ НУЖНО
 bot = telebot.TeleBot("5949080313:AAHE8ikdvHc5q30R1EeFa2se-j9F5dqokoo")
 # ========================================================================
 @bot.message_handler(content_types=["text"])
