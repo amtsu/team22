@@ -43,7 +43,7 @@ with DAG(dag_id="price_alert", start_date=datetime(2022, 12, 5), schedule="0 3 *
                 price_sale,  
                 prev_price_sale,
                 diff,
-                ROUND(diff / price_sale * 100) as per,
+                ROUND(100 * diff / price_sale) as per,
                 row_number
             FROM sales_numbered
             WHERE row_number = 1 and diff !=0 and diff != price_sale and (diff + prev_price_sale) != 0
