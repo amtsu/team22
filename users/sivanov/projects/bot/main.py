@@ -11,10 +11,11 @@ https://pypi.org/project/pyTelegramBotAPI
 from datetime import datetime
 import telebot
 from telebot import types
+import superhomosecret
 #from functions import message_handler
 #=========================================================================
 # ВОТ ТАК ВОТ ДЕЛАТЬ НИКОГДА НЕ НУЖНО
-bot = telebot.TeleBot("5949080313:AAHE8ikdvHc5q30R1EeFa2se-j9F5dqokoo")
+bot = telebot.TeleBot(superhomosecret.SUPERHOMOSECRET)
 # ========================================================================
 @bot.message_handler(content_types=["text"])
 def get_text_messages(message):
@@ -47,20 +48,14 @@ def get_text_messages(message):
     else:
         print("unknown message")
     return None
-
-
 # ========================================================================
-# Обработчик нажатий на кнопки
-@bot.callback_query_handler(func=lambda call: True)
-def callback_worker(call):
-    pass
 
-
-# ========================================================================
-bot.polling(none_stop=True, interval=0)
 
 
 def main():
+    bot.send_message(102739674, "Бот запущен!")
+    bot.send_message(-1001418430207,"Эй, группа, бот запущен!")
+    bot.polling(none_stop=True, interval=5)    
     return None
 
 
