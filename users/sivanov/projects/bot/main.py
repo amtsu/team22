@@ -10,16 +10,21 @@ https://pypi.org/project/pyTelegramBotAPI
 """
 from datetime import datetime
 import telebot
-from telebot import types
+
+# from telebot import types
 import superhomosecret
-#from functions import message_handler
-#=========================================================================
-# ВОТ ТАК ВОТ ДЕЛАТЬ НИКОГДА НЕ НУЖНО
+
+# from functions import message_handler
+# =========================================================================
+# так можно
 bot = telebot.TeleBot(superhomosecret.SUPERHOMOSECRET)
 # ========================================================================
 @bot.message_handler(content_types=["text"])
-def get_text_messages(message):
-    #message_handler(message)
+def get_text_messages(message: telebot.types.Message) -> None:
+    """
+    функция, обрабатывающая сообщения, принимаемые ботом
+    """
+    # message_handler(message)
     if message.chat.type == "private":
         with open("bot.log", "a", encoding="utf-8") as fout:
             print(
@@ -31,15 +36,12 @@ def get_text_messages(message):
         if message.text.lower() == "привет":
             # bot.send_message(message.from_user.id, "Привет пидор.")
             bot.reply_to(message, "Привет пидор.")
-        # elif message.text == "/help":
-        #    bot.send_message(message.from_user.id, "Напиши Привет")
-        # else:
-        #    bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help.")
-    elif message.chat.type == "group" or message.chat.type == "supergroup":
+    elif message.chat.type in ("group", "supergroup"):
         # print("group chat message")
         with open("bot.log", "a", encoding="utf-8") as fout:
             print(
-                f"{datetime.now()}: FROM {message.from_user.id} in {message.chat.id} comes text: {message.text}",
+                f"{datetime.now()}: FROM {message.from_user.id} in"
+                / "{message.chat.id} comes text: {message.text}",
                 file=fout,
             )
         if message.text.lower() == "привет":
@@ -47,16 +49,21 @@ def get_text_messages(message):
         print(f"group message in {message.chat.id}")
     else:
         print("unknown message")
-    return None
+
+
 # ========================================================================
 
 
-
 def main():
+    """
+    запускаем бота!
+    """
     bot.send_message(102739674, "Бот запущен!")
-    bot.send_message(-1001418430207,"Эй, группа, бот запущен!")
-    bot.polling(none_stop=True, interval=5)    
-    return None
+    bot.send_message(-1001418430207, "Эй, группа, бот запущен!")
+    bot.polling(none_stop=True, interval=5)
+
+
+# =========================================================================
 
 
 if __name__ == "__main__":
