@@ -7,6 +7,7 @@
 https://otus.ru/journal/bot-v-telegram-na-pitone-ot-a-do-ya/
 описание модуля тут
 https://pypi.org/project/pyTelegramBotAPI
+https://digitology.tech/posts/zapusk-python-skripta-v-vide-sluzhby-cherez-systemctlsystemd/
 """
 from datetime import datetime
 import telebot
@@ -41,7 +42,7 @@ def get_text_messages(message: telebot.types.Message) -> None:
         with open("bot.log", "a", encoding="utf-8") as fout:
             print(
                 f"{datetime.now()}: FROM {message.from_user.id} in"
-                / "{message.chat.id} comes text: {message.text}",
+                 "{message.chat.id} comes text: {message.text}",
                 file=fout,
             )
         if message.text.lower() == "привет":
@@ -58,8 +59,9 @@ def main():
     """
     запускаем бота!
     """
-    bot.send_message(102739674, "Бот запущен!")
-    bot.send_message(-1001418430207, "Эй, группа, бот запущен!")
+    for receiver in superhomosecret.SUPERHOMOOUTPUT:
+        bot.send_message(receiver, "Бот запущен!")
+    #bot.send_message(-1001418430207, "Эй, группа, бот запущен!")
     bot.polling(none_stop=True, interval=5)
 
 
