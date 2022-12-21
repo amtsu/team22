@@ -1,25 +1,37 @@
 #!/usr/local/bin/python
 # coding: utf-8
-# формирует строку с датой из 3 чисел - дня,месяца и года
+"""
+    модуль с полезными функциями/классами, которые когда-то были написаны
+    на момент написания коммента было три класса:
+    LocalLog - управление отладочной печатью. можно быстро включить-отключить
+    ColoredStr - печать в консоль цветного текста на цветном фоне
+    HandmadeTestDecorator - декоратор для тестов пайтеста, чтобы можно было их вызывать как
+функции внутри модуля последовательно (наверное, больше не нужен)
+"""
 # ---------------------------------------------------------------------------------
-# LocalLog выводит сообщения в консоль. Или не выводит, смотря как его инициализировать
 class LocalLog:
+    """
+    LocalLog выводит сообщения в консоль. Или не выводит, смотря как его инициализировать
+    """
+
     def __init__(self, show_messages=True):
         self.__show_messages = show_messages
-        return None
 
     def __call__(self, a_message):
         if self.__show_messages:
             print(a_message)
-            return None
 
-    pass
+    def __str__(self):
+        return f"Showing log messages: {self.__show_messages}"
 
 
 # ---------------------------------------------------------------------------------
-# выводит текст в соответствующем модном формате, потом отменяет его
-# коды можно посмотреть в https://habr.com/ru/sandbox/158854/
 class ColoredStr:
+    """
+    Выводит текст в соответствующем модном формате, потом отменяет его
+    коды можно посмотреть в https://habr.com/ru/sandbox/158854/
+    """
+
     def __init__(self, format_string):
         self.__format_string = str("")
         colours_and_style = {
@@ -54,10 +66,10 @@ class ColoredStr:
         lcase_format_string = format_string.lower()
         lcase_format_list = lcase_format_string.split(",")
         for specifier in lcase_format_list:
-            if specifier.strip() in colours_and_style.keys():
+            if specifier.strip() in colours_and_style:  # keys() is not necessary
+                # for iteration
                 self.__format_string += colours_and_style[specifier.strip()]
         self.__format_string += "{}\033[0m"
-        return None
 
     def __call__(self, text):
         return (self.__format_string).format(text)
@@ -65,32 +77,33 @@ class ColoredStr:
     def __str__(self):
         return self.__format_string.format("test")
 
-    pass
-
 
 # ---------------------------------------------------------------------------------
-# декоратор для тестов с assert, чтобы и пайтест работал, и ручные поделки
 class HandmadeTestDecorator:
+    """
+    декоратор для тестов с assert, чтобы и пайтест работал, и ручные поделки
+    """
+
     def __init__(self, failed, passed):
         self.__failed = failed
         self.__passed = passed
-        return None
 
-    def __call__(self, foo):
+    def __call__(self, decorated_function):
         def wrapper(*args, **kvargs):
             try:
-                foo(*args, **kvargs)
-            except:  # не только AssertionError а вообще любые исключения
+                decorated_function(*args, **kvargs)
+            except:  # pylint: disable=bare-except # не только AssertionError а вообще любые исключения
                 result = self.__failed
                 # raise #дальше ошибку пускать не будем, дадим остальным тестам тоже поработать
             else:
                 result = self.__passed
-            result += " : " + str(foo.__name__)
+            result += " : " + str(decorated_function.__name__)
             return result
 
         return wrapper
 
-    pass
+    def __str__(self):
+        return "HandmadeTestDecorator"
 
 
 # ---------------------------------------------------------------------------------
