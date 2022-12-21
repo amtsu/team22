@@ -296,7 +296,7 @@ class PageElement:
             self.__item_num = int(
                 element_data["index"]
             )  # TODO добавить проверку корректности
-            print(type(element_data["index"]))
+            # print(type(element_data["index"]))
             self.__stripper = UltraStripper(element_data["stripper_setting"].split(","))
             self.__getter = TagValue(element_data["what"])
 
