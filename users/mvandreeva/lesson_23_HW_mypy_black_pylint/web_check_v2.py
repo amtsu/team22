@@ -35,6 +35,7 @@ class CheckPrice:
             text = page.read()
             return text
 
+
     def __init__(self, link: str):
         self.__url = link
 
@@ -95,6 +96,7 @@ class ClearDataChitaiGorod(ClearData): #наследование здесь не
 
 class SendMail: #Too few public methods (1/2)
     """ Класс для отправки e-mail"""
+
     def __init__(self, price: int):
         self.__price = price
 
@@ -110,6 +112,7 @@ class SendMail: #Too few public methods (1/2)
             msg = MIMEText("Price is higher then %s" % discount_price)
 
         me = from_whom #Variable name "me" doesn't conform to snake_case naming style
+
         you = to_whom
 
         msg["Subject"] = subject
@@ -117,5 +120,6 @@ class SendMail: #Too few public methods (1/2)
         msg["To"] = you
 
         s = smtplib.SMTP("localhost") #Variable name "me" doesn't conform to snake_case naming style
+
         s.sendmail(me, [you], msg.as_string())
         s.quit()
