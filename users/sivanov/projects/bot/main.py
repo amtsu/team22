@@ -42,7 +42,7 @@ def get_text_messages(message: telebot.types.Message) -> None:
         with open("bot.log", "a", encoding="utf-8") as fout:
             print(
                 f"{datetime.now()}: FROM {message.from_user.id} in"
-                 "{message.chat.id} comes text: {message.text}",
+                "{message.chat.id} comes text: {message.text}",
                 file=fout,
             )
         if message.text.lower() == "привет":
@@ -61,7 +61,6 @@ def main():
     """
     for receiver in superhomosecret.SUPERHOMOOUTPUT:
         bot.send_message(receiver, "Бот запущен!")
-    #bot.send_message(-1001418430207, "Эй, группа, бот запущен!")
     bot.polling(none_stop=True, interval=5)
 
 
