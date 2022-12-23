@@ -174,7 +174,7 @@ class AuchanServiceProcessing(ServiceProcessing):
     """
     def load_url_by_default(self):
         self.__sokolniki_urls = [
-            "https://www.auchan.ru/v1/catalog/products?perPage=100&merchantId=15&page=", 
+            "https://www.auchan.ru/v1/catalog/products?perPage=100&merchantId=15&orderField=price&orderDirection=as&page=", 
         ]
         
         self.__urls = [
@@ -343,7 +343,7 @@ class AuchanServiceProcessing(ServiceProcessing):
                 el = {}
                 #el['title'] = f"{e['project']} {e['building']} {str(e['floor'])} {str(e['area'])} {e['address']} {e['location']}"
                 el['title'] = e['title']
-                el['quantity'] = e['stock']['qty']
+                el['quantity'] = int(e['stock']['qty']) # скорее всего не верно для товаров продающихся на вес, в далльнейгем нуджно переделать
                 el['price'] = e['oldPrice']
                 el['price_sale'] = e['price']['value']
                 el['datetime_create'] = "1970-01-01T00:00:00.00Z"
