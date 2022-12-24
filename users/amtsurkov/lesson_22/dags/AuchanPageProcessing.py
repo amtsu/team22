@@ -1,4 +1,5 @@
 import re
+from urllib.request import Request, urlopen 
 import urllib.request
 import urllib
 from bs4 import BeautifulSoup
@@ -174,8 +175,10 @@ class AuchanServiceProcessing(ServiceProcessing):
     """
     def load_url_by_default(self):
         self.__sokolniki_urls = [
-            "https://www.auchan.ru/v1/catalog/products?perPage=100&merchantId=15&orderField=price&orderDirection=as&page=", 
+            "https://www.auchan.ru/v1/catalog/products?perPage=100&merchantId=15&orderField=price&orderDirection=asc&page=", 
+            #"https://www.auchan.ru/v1/catalog/products?perPage=100&merchantId=15&page=", 
         ]
+        
         
         self.__urls = [
             #"https://www.auchan.ru/v1/catalog/products?page=1&perPage=40000&merchantId=1",
@@ -328,7 +331,34 @@ class AuchanServiceProcessing(ServiceProcessing):
                     yield (jsons, current_url)
                 except urllib.error.HTTPError:
                     print('Error url = ', current_url)
+                current_page += 1
+                if current_page > 1000:
+                    break
+                if jsons["range"] < (current_page - 2) * count_from_url:
+                    break
                     
+    def __generate_sokolniki_shop_jsons_with_header(self):
+        for url in self.__sokolniki_urls:
+            page = 1
+            count_from_url = 100
+            current_page = page
+            current_url = ''
+            while current_page:
+                current_url = url + str(current_page)
+                print(current_url)
+                try:
+                    req = Request(current_url)
+                    req.add_header('User-Agent', 'Wget/1.20.3 (linux-gnu)')
+                    req.add_header('Accept', '*/*')
+                    req.add_header('Accept-Encoding', 'identity')
+                    #content = urlopen(req).read()
+                    #self.__page = content
+                    with urllib.request.urlopen(req) as f:
+                        self.__page = f.read()
+                    jsons = json.loads(self.__page)
+                    yield (jsons, current_url)
+                except urllib.error.HTTPError:
+                    print('Error url = ', current_url)                    
                 current_page += 1
                 if current_page > 1000:
                     break
@@ -338,7 +368,7 @@ class AuchanServiceProcessing(ServiceProcessing):
     def process(self):
         self.__list_dict = []
         #for jsons, source_url in self.__generate_jsons():
-        for jsons, source_url in self.__generate_sokolniki_shop_jsons():
+        for jsons, source_url in self.__generate_sokolniki_shop_jsons_with_header():
             for e in jsons['items']:
                 el = {}
                 #el['title'] = f"{e['project']} {e['building']} {str(e['floor'])} {str(e['area'])} {e['address']} {e['location']}"
