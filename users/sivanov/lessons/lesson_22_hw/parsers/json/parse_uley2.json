@@ -1,0 +1,33 @@
+{
+	"url": "https://i-uley.pro/catalog/pchelopakety/pchelopaket_4_ramki_karnika/",
+	"data": {
+		"Цена": {
+			"id": "price_value",
+			"tagname": "span",
+			"index": 0,
+			"what": "",
+			"stripper_setting": " ,₽, "
+		},
+		"Название товара": {
+			"id": "animate-load cheaper",
+			"tagname": "span",
+			"index": 0,
+			"what": "data-name",
+			"stripper_setting": ""
+		},
+		"Бренд": {
+			"id": "no_id",
+			"tagname": "no_tag",
+			"index": 0,
+			"what": "",
+			"stripper_setting": ""
+		},
+		"Код товара": {
+			"id": "animate-load cheaper",
+			"tagname": "span",
+			"index": 0,
+			"what": "data-item",
+			"stripper_setting": ""
+		}
+	}
+}
