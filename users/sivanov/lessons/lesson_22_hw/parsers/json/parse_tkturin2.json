@@ -1,0 +1,33 @@
+{
+	"url": "https://www.tk-turin.ru/shop/turizm/gazobenzinovoe_oborudovanie/gorelki/gazovye_gorelki/gazovaya_gorelka_expedition_stove_camp_1_tkb_n9703_1l/",
+	"data": {
+		"Цена": {
+			"id": "price",
+			"tagname": "div",
+			"index": 0,
+			"what": "",
+			"stripper_setting": " ,₽, ,a"
+		},
+		"Название товара": {
+			"id": "main-title",
+			"tagname": "div",
+			"index": 0,
+			"what": "",
+			"stripper_setting": "<h1>,</h1>"
+		},
+		"Бренд": {
+			"id": "",
+			"tagname": "",
+			"index": 0,
+			"what": "",
+			"stripper_setting": ""
+		},
+		"Код товара": {
+			"id": "article",
+			"tagname": "span",
+			"index": 0,
+			"what": "",
+			"stripper_setting": "Артикул: "
+		}
+	}
+}
