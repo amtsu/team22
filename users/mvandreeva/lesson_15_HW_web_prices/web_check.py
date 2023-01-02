@@ -5,8 +5,8 @@ from email.mime.text import MIMEText
 
 class CheckPrice():
 
-    def get_price(self, tag, class_name):
-        page = urllib.urlopen(self.__url)
+    def get_price(self, tag: str, class_name: str) -> list:
+        page = urllib.request.urlopen(self.__url)
         if page.getcode() == 200:
             text = page.read()
             if not text == []:
@@ -18,17 +18,17 @@ class CheckPrice():
                     print ((i+1), price_list[i].text)
                 return prices
             else:
-                print "Text download failed"
+                print ("Text download failed")
         else:
-            print "Failed to download page"
+            print ("Failed to download page")
     
     def read_page(self):
-        page = urllib.urlopen(self.__url)
+        page = urllib.request.urlopen(self.__url)
         print ('Page code: ', page.getcode())
         text = page.read()
         return text
     
-    def __init__(self, link):
+    def __init__(self, link: str):
         self.__url = link
             
     def __repr__(self):
@@ -39,7 +39,7 @@ class CheckPrice():
     
 class ClearData():
     
-    def clean_data(self, remove, to_int = False):
+    def clean_data(self, remove: str, to_int: bool = False) -> int: 
         if to_int:
             data = self.__data.replace(remove, '')
             data = int(data)
@@ -47,7 +47,7 @@ class ClearData():
             data = self.__data.replace(remove, '')
         return data
     
-    def __init__(self, data):
+    def __init__(self, data: str):
         self.__data = data
             
     def __repr__(self):
@@ -58,14 +58,14 @@ class ClearData():
     
 class ClearDataChitaiGorod(ClearData):
     
-    def clean_data_chitai_gorod(self):
+    def clean_data_chitai_gorod(self) -> int:
         data = self.__data.replace(u'\n          ', '')
         data = self.__data.replace(u'\xa0', '')
         data = self.__data.replace(u'\u20bd\n', '')
         data = int(data)
         return data
     
-    def __init__(self, data):
+    def __init__(self, data: str):
         self.__data = data
             
     def __repr__(self):
@@ -77,10 +77,10 @@ class ClearDataChitaiGorod(ClearData):
     
 class SendMail():
     
-    def __init__(self, price):
+    def __init__(self, price: int):
         self.__price = price
 
-    def is_discount(self, discount_price, from_whom, to_whom, subject = 'The price discount test'):
+    def is_discount(self, discount_price: int, from_whom: str, to_whom: str, subject: str = 'The price discount test'):
         if self.__price < discount_price:
             msg = MIMEText('Price less then %s' % discount_price)
         else:
