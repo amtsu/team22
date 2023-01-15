@@ -1,0 +1,10 @@
+total 108
+drwxr-xr-x  3 jupyter-adkazdym jupyter-adkazdym  4096 Jan 15 21:37 [0m[01;34m.[0m/
+drwxr-xr-x 15 jupyter-adkazdym jupyter-adkazdym  4096 Dec 27 19:09 [01;34m..[0m/
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym     0 Jan 15 21:40 a1.txt
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym     6 Jan 15 21:34 a2.txt
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym 22803 Jan  2 23:21 domashka1.ipynb
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym  7976 Jan 15 21:37 github.ipynb
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym 41805 Jan 13 12:03 home work 2.ipynb
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym 14224 Jan 15 12:16 homework_spiski.ipynb
+drwxr-xr-x  2 jupyter-adkazdym jupyter-adkazdym  4096 Jan 15 16:01 [01;34m.ipynb_checkpoints[0m/
