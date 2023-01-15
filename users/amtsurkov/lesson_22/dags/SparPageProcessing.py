@@ -618,6 +618,28 @@ class SparServiceProcessing(ServiceProcessing):
  '/catalog/zhevatelnye-konfety-iris/',
         ]
         
+        
+    #url = "https://myspar.ru/catalog/zhevatelnye-konfety-iris/"
+    #req = Request(url)
+    #req.add_header('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9')
+    #req.add_header('Accept-Encoding', 'gzip, deflate, br')
+    #req.add_header('Accept-Language', 'ru-RU,ru;q=0.9')
+    #req.add_header('Cache-Control', 'no-cache')
+    #req.add_header('Connection', 'keep-alive')
+    #req.add_header('Host', 'myspar.ru')
+    #req.add_header('Pragma', 'no-cache')
+    #req.add_header('sec-ch-ua', '" Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98"')
+    ##req.add_header('sec-ch-ua-mobile:', '?0')
+    #req.add_header('sec-ch-ua-platform', '"macOS"')
+    #req.add_header('Sec-Fetch-Dest', 'document')
+    #req.add_header('Sec-Fetch-Mode', 'navigate')
+    #req.add_header('Sec-Fetch-Site', 'none')
+    #req.add_header('Sec-Fetch-User', '?1')
+    #req.add_header('Upgrade-Insecure-Requests', '1')
+    #req.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) #Chrome/98.0.4758.109 Safari/537.36')
+    #content = urlopen(req).read()
+    #print(content)
+
 
     def process(self):
         self.__list_dict = []
