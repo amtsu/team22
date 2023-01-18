@@ -7,7 +7,7 @@ and у меня больше нет проблемм с русским язык�
 это про обсудить https://github.com/search?p=99&q=telebot.TeleBot&type=Code
 """
 from datetime import datetime
-import telebot # type: ignore
+import telebot  # type: ignore
 
 # from telebot import types
 import superhomosecret
@@ -90,7 +90,9 @@ def get_text_messages(message: telebot.types.Message) -> None:
             bot.reply_to(message, f"Привет {message.from_user.first_name}, ты пидор")
         if message.from_user.id in superhomosecret.COMMANDERS:
             if message.text.lower() == "log":
-                with open(superhomosecret.TESTBENCHLOGFILEPATH, "r", encoding="utf-8") as fin:
+                with open(
+                    superhomosecret.TESTBENCHLOGFILEPATH, "r", encoding="utf-8"
+                ) as fin:
                     file_contents = fin.read()
                     bot.reply_to(message, file_contents[-4000:])
     elif (
