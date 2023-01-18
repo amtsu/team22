@@ -386,6 +386,7 @@ class ProductInfo:
         self.__data_loaded = False
         self.__elements: list[PageElement] = []
         self.setup(elements["data"])
+        #TODO разобраться с elements["seller"]
 
     # -------------------------------------------------------------------------------
     def __str__(self):
@@ -487,7 +488,8 @@ def create_product_info(filename: str) -> ProductInfo:
                         "what": "",
                         "stripper_setting": ""
                 }
-        }
+        },
+        "seller" : "example_seller"
     }
     """
     with open(filename, "r", encoding="utf-8") as fin:

@@ -1,34 +1,33 @@
 {
-	"url": "https://i-uley.pro/catalog/pchelopakety/pchelopaket_4_ramki_karnika/",
+	"url": "https://www.sportmaster.ru/product/26595100299/",
 	"data": {
 		"Цена": {
-			"id": "price_value",
+			"id": "sm-amount__value",
 			"tagname": "span",
 			"index": 0,
 			"what": "",
 			"stripper_setting": " ,₽, "
 		},
 		"Название товара": {
-			"id": "animate-load cheaper",
-			"tagname": "span",
+			"id": "sm-text name sm-text--text-24 sm-text--medium",
+			"tagname": "h1",
 			"index": 0,
-			"what": "data-name",
+			"what": "",
 			"stripper_setting": ""
 		},
 		"Бренд": {
-			"id": "no_id",
-			"tagname": "no_tag",
+			"id": "sm-text brand_name sm-text--text-16 sm-text--medium",
+			"tagname": "span",
 			"index": 0,
 			"what": "",
 			"stripper_setting": ""
 		},
 		"Код товара": {
-			"id": "animate-load cheaper",
+			"id": "sm-product-sku-code__codes",
 			"tagname": "span",
 			"index": 0,
-			"what": "data-item",
+			"what": "",
 			"stripper_setting": ""
 		}
-	},
-    "seller" : "Магазин Улей"
+	}
 }
