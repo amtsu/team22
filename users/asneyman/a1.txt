@@ -1,0 +1,19 @@
+total 164
+drwxr-x--- 12 jupyter-cipperok jupyter-cipperok  4096 Jan  8 15:06 [0m[01;34m.[0m/
+drwxr-xr-x 32 root             root              4096 Jan 18 17:52 [01;34m..[0m/
+-rw-------  1 jupyter-cipperok jupyter-cipperok  3510 Jan  4 22:02 .bash_history
+-rw-r--r--  1 jupyter-cipperok jupyter-cipperok   220 Feb 25  2020 .bash_logout
+-rw-r--r--  1 jupyter-cipperok jupyter-cipperok  3771 Feb 25  2020 .bashrc
+drwxr-xr-x  4 jupyter-cipperok jupyter-cipperok  4096 Jan  8 14:55 [01;34m.cache[0m/
+drwxr-xr-x  7 jupyter-cipperok jupyter-cipperok  4096 Nov 29 16:07 [01;34mdel[0m/
+-rw-r--r--  1 jupyter-cipperok jupyter-cipperok    60 Nov 29 15:39 .gitconfig
+drwxr-xr-x  3 jupyter-cipperok jupyter-cipperok  4096 Jan  4 21:49 [01;34mgithub[0m/
+drwxr-xr-x  3 jupyter-cipperok jupyter-cipperok  4096 Nov 26 17:08 [01;34mgithub_old[0m/
+drwxr-xr-x  3 jupyter-cipperok jupyter-cipperok  4096 Jan 18 18:16 [01;34mHOMEWORK[0m/
+drwxr-xr-x  2 jupyter-cipperok jupyter-cipperok  4096 Nov 29 16:06 [01;34m.ipynb_checkpoints[0m/
+drwxr-xr-x  3 jupyter-cipperok jupyter-cipperok  4096 Nov 26 15:40 [01;34m.ipython[0m/
+drwxr-xr-x  2 jupyter-cipperok jupyter-cipperok  4096 Nov 26 16:53 [01;34m.jupyter[0m/
+drwxr-xr-x  3 jupyter-cipperok jupyter-cipperok  4096 Nov 26 15:31 [01;34m.local[0m/
+-rw-r--r--  1 jupyter-cipperok jupyter-cipperok   807 Feb 25  2020 .profile
+-rw-r--r--  1 root             root             96167 Dec 21 22:16 python_basics.ipynb
+drwx------  3 jupyter-cipperok jupyter-cipperok  4096 Nov 26 17:04 [01;34m.ssh[0m/
