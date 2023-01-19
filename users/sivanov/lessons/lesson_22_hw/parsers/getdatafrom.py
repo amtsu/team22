@@ -386,7 +386,7 @@ class ProductInfo:
         self.__data_loaded = False
         self.__elements: list[PageElement] = []
         self.setup(elements["data"])
-        #TODO разобраться с elements["seller"]
+        self.__seller = elements["seller"]
 
     # -------------------------------------------------------------------------------
     def __str__(self):
@@ -443,6 +443,7 @@ class ProductInfo:
             for element in self.__elements:
                 result[element.item_alias] = element(self.__soup)
             result["url"] = self.__url
+            result["seller"] = self.__seller
         else:
             pass  # TODO хз, может и просто надо удалить
         return result
