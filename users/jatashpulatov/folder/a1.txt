@@ -1,16 +1,7 @@
-total 152
-drwxr-x--- 10 jupyter-jatashpulatov jupyter-jatashpulatov  4096 Jan 11 00:35 [0m[01;34m.[0m/
-drwxr-xr-x 32 root                  root                   4096 Jan 18 17:52 [01;34m..[0m/
--rw-------  1 jupyter-jatashpulatov jupyter-jatashpulatov  1129 Dec 27 11:31 .bash_history
--rw-r--r--  1 jupyter-jatashpulatov jupyter-jatashpulatov   220 Feb 25  2020 .bash_logout
--rw-r--r--  1 jupyter-jatashpulatov jupyter-jatashpulatov  3771 Feb 25  2020 .bashrc
-drwxr-xr-x  4 jupyter-jatashpulatov jupyter-jatashpulatov  4096 Dec 26 11:39 [01;34m.cache[0m/
-drwxr-xr-x  4 jupyter-jatashpulatov jupyter-jatashpulatov  4096 Dec 25 23:50 [01;34mdont_pay_attention_i_cant_remove_it) [0m/
-drwxr-xr-x  3 jupyter-jatashpulatov jupyter-jatashpulatov  4096 Dec 26 10:27 [01;34mgithub[0m/
-drwxr-xr-x  2 jupyter-jatashpulatov jupyter-jatashpulatov  4096 Dec 21 22:30 [01;34m.ipynb_checkpoints[0m/
-drwxr-xr-x  3 jupyter-jatashpulatov jupyter-jatashpulatov  4096 Dec 21 22:30 [01;34m.ipython[0m/
-drwxr-xr-x  2 jupyter-jatashpulatov jupyter-jatashpulatov  4096 Dec 21 16:20 [01;34m.jupyter[0m/
-drwxr-xr-x  3 jupyter-jatashpulatov jupyter-jatashpulatov  4096 Dec 21 16:04 [01;34m.local[0m/
--rw-r--r--  1 jupyter-jatashpulatov jupyter-jatashpulatov   807 Feb 25  2020 .profile
--rw-r--r--  1 root                  root                  96167 Dec 21 22:17 python_basics.ipynb
-drwx------  2 jupyter-jatashpulatov jupyter-jatashpulatov  4096 Dec 25 23:50 [01;34m.ssh[0m/
+total 24
+drwxr-xr-x  6 jupyter-jatashpulatov jupyter-jatashpulatov 4096 Jan 17 19:52 [0m[01;34m.[0m/
+drwxr-xr-x 19 jupyter-jatashpulatov jupyter-jatashpulatov 4096 Jan 22 17:22 [01;34m..[0m/
+drwxr-xr-x  3 jupyter-jatashpulatov jupyter-jatashpulatov 4096 Jan 22 19:04 [01;34mfolder[0m/
+drwxr-xr-x  3 jupyter-jatashpulatov jupyter-jatashpulatov 4096 Dec 27 21:59 [01;34mhw_1[0m/
+drwxr-xr-x  3 jupyter-jatashpulatov jupyter-jatashpulatov 4096 Jan 22 16:03 [01;34mhw_2[0m/
+drwxr-xr-x  2 jupyter-jatashpulatov jupyter-jatashpulatov 4096 Dec 27 21:58 [01;34m.ipynb_checkpoints[0m/
