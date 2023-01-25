@@ -72,7 +72,7 @@ class Parser:
                     # img_url=e["image_url"],
                     # description="description_example",
                     # params="params_example",
-                    # seller="seller_example",
+                    seller=element["seller"],
                     # seller_url="seller_url_example",
                     # source_url=e["source_url"],
                     # urls_other_products_on_the_page="urls_other_products_on_the_page_example",

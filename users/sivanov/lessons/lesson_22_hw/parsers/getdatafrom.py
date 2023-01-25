@@ -386,6 +386,7 @@ class ProductInfo:
         self.__data_loaded = False
         self.__elements: list[PageElement] = []
         self.setup(elements["data"])
+        self.__seller = elements["seller"]
 
     # -------------------------------------------------------------------------------
     def __str__(self):
@@ -442,6 +443,7 @@ class ProductInfo:
             for element in self.__elements:
                 result[element.item_alias] = element(self.__soup)
             result["url"] = self.__url
+            result["seller"] = self.__seller
         else:
             pass  # TODO хз, может и просто надо удалить
         return result
@@ -487,7 +489,8 @@ def create_product_info(filename: str) -> ProductInfo:
                         "what": "",
                         "stripper_setting": ""
                 }
-        }
+        },
+        "seller" : "example_seller"
     }
     """
     with open(filename, "r", encoding="utf-8") as fin:
