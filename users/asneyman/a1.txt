@@ -1,0 +1,6 @@
+total 16
+drwxr-xr-x  2 jupyter-cipperok jupyter-cipperok 4096 Jan 18 18:17 [0m[01;34m.[0m/
+drwxr-xr-x 17 jupyter-cipperok jupyter-cipperok 4096 Jan 18 18:12 [01;34m..[0m/
+-rw-r--r--  1 jupyter-cipperok jupyter-cipperok    0 Jan 18 18:37 a1.txt
+-rw-r--r--  1 jupyter-cipperok jupyter-cipperok    6 Jan 18 18:17 a2.txt
+-rw-r--r--  1 jupyter-cipperok jupyter-cipperok   52 Jan  4 21:49 README.md
