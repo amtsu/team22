@@ -5,6 +5,8 @@ from HW_functions import arithmetic
 
 test_cases_math = [
     (2, 3, "+", 5),
+    (0, 0, "+", 0),
+    (0.1, 0.001, "+", 0.101),
     (2, 3, "-", -1),
     (2, 3, "*", 6),
     (6, 3, "/", 2),     
@@ -18,8 +20,8 @@ def test_math(num_one, num_two, operator, expected):
 
 def test_operator_not_math():
     """Проверяется, operator является одним из валидных
-    арифметических операторов. Если нет, то вызывается исключение KeyError."""
-    with pytest.raises(KeyError):
+    арифметических операторов. Если нет, то вызывается исключение ValueError."""
+    with pytest.raises(ValueError):
         arithmetic(2, 2, "not_math_operator")
 
 def test_params_not_digits():

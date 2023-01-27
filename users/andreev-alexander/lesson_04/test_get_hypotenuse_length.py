@@ -5,7 +5,8 @@ from HW_functions import get_hypotenuse_length
 
 test_cases_math = [
     (2, 3, 3.605551275463989),
-    (12, 33, 35.11409973215888)
+    (12, 33, 35.11409973215888),
+    (0.1, 0.2, 0.223606797749979)
 ]
 
 @pytest.mark.parametrize("cathet_one, cathet_two, expected", test_cases_math)

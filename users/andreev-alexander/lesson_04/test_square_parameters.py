@@ -5,7 +5,8 @@ from HW_functions import square_parameters
 
 test_cases_math = [
     (2, 8, 4, 2.8284271247461903),
-    (1.2, 4.8, 1.44, 1.697056274847714)     
+    (1.2, 4.8, 1.44, 1.697056274847714),
+    (0.1, 0.4, 0.01, 0.14142135623730953)  
 ]
 
 @pytest.mark.parametrize("side_length, perimeter, square_are, diagonal", test_cases_math)
