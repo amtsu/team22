@@ -26,7 +26,7 @@ phone_book = {
 «Такого имени нет» при попытке найти несуществующее имя.
 - Ввод имени пользователем реализуется функцией input().
 """
-def phone_book_func():
+def phone_book_func() -> str:
 
     phone_book = {
         "Ivan": "1234",
@@ -40,15 +40,13 @@ def phone_book_func():
     except KeyError:
         return "Такого имени нет"
     
-# print(phone_book_func())
-
 
 """
 Реализовать телефонный справочник, который выводит сообщение «Такого имени нет»
 при попытке найти несуществующее имя и в любом случае в завершении выводит
 сообщение «Конец работы программы.»
 """
-def phone_book_func():
+def phone_book_func_finally() -> str:
 
     phone_book = {
         "Ivan": "1234",
@@ -64,8 +62,6 @@ def phone_book_func():
     finally:
         return "Конец работы программы."
     
-# print(phone_book_func())
-
 
 """
 - Реализовать функцию safe_divide, которая принимает от пользователя два целых
@@ -74,7 +70,7 @@ def phone_book_func():
 - Ввод числа пользователем реализуется функцией input().
 - Синтаксис преобразования типов: a = float(input("Делимое:"))
 """
-def safe_divide() -> float:
+def safe_divide() -> float | str:
     
     input_numbers: list = input("Введите два чила через пробел: ").split(" ")
     if len(input_numbers) != 2:
@@ -89,9 +85,7 @@ def safe_divide() -> float:
     try:
         return number_one / number_two
     except ZeroDivisionError:
-        return "На ноль делить нельзя"
-
-# print(safe_divide())
+        return "На ноль делить нельзя."
 
 
 """
@@ -114,7 +108,7 @@ def safe_divide() -> float:
 или нечисловые символы.
 - Ожидаемый результат и часть решения:
 """
-def calc_plus_minus() -> float:
+def calc_plus_minus() -> float | str:
 
     input_data: list = input("Введите операцию, например, '12 + 8': ").split(" ")
     if len(input_data) != 3:
@@ -135,14 +129,12 @@ def calc_plus_minus() -> float:
         case _:
             return "Значение оператора должо быть: + или -."
 
-# print(calc_plus_minus())
-
 
 """
 Доработать предыдущую программу, чтобы она распознавала операторы деления (/)
 и умножения (*), а также выводила сообщение в случае деления на 0.
 """
-def calc_all() -> float:
+def calc_all() -> float | str:
 
     input_data: list = input("Введите операцию, например, '12 + 8': ").split(" ")
     if len(input_data) != 3:
@@ -168,5 +160,3 @@ def calc_all() -> float:
             return number_one / number_two
         case _:
             return "Значение оператора должо быть: +, -, *, /."
-
-# print(calc_all())
