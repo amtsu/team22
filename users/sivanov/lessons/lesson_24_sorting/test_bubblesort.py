@@ -13,14 +13,20 @@ def test_bubble_sorty_1():
     """
     assert bubble_sort([1,0])==[0,1]
     
-def test_bubble_sorty_1():
+def test_bubble_sorty_2():
     """
     один из тестов баблсорта
     """
-    assert True
+    assert bubble_sort([3,2,1]) == [1,2,3]
     
-def test_bubble_sorty_1():
+def test_bubble_sorty_3():
     """
     один из тестов баблсорта
     """
-    assert True
+    assert bubble_sort([5]) == [5]
+
+def test_bubble_sorty_4():
+    """
+    один из тестов баблсорта
+    """
+    assert bubble_sort([5,5,3,4,2,2,1,5]) == [1,2,2,3,4,5,5,5]
