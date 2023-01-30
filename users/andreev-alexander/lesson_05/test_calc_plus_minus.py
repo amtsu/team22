@@ -1,5 +1,6 @@
 from hw_exclusion import calc_plus_minus
 
+
 def test_calc_plus_int(monkeypatch):
     """Проверяется, что отдается правильный ответ."""
     monkeypatch.setattr("builtins.input", lambda _: "10 + 2")

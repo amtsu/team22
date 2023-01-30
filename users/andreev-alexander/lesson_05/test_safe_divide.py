@@ -1,5 +1,6 @@
 from hw_exclusion import safe_divide
 
+
 def test_safe_divide_math_int(monkeypatch):
     """Проверяется, что отдается правильный ответ."""
     monkeypatch.setattr("builtins.input", lambda _: "10 2")
