@@ -18,11 +18,10 @@ def arithmetic(a,b,z):
     else:
         return ("Неизвестная операция")
 
-def a(x, y):
+def summ_sqrt(x, y):
     return x**2 + y**2
 
-def c(a,b):
+def gipotenuza(a,b):
     return (a**2 + b**2)**0.5
-
 def square_parameters(a):
     return 4*a , a**2 , a*(2**0.5)
