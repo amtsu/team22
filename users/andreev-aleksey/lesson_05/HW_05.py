@@ -27,8 +27,7 @@ def phone_numbers():
     try:
         print(phones[name])
         return phones[name]
-    except:
-        KeyError
+    except KeyError:
         print("Такого имени нет")
         return "Такого имени нет"
 
@@ -43,8 +42,7 @@ def phone_numbers_finally():
     try:
         print(phones[name])
         return phones[name]
-    except:
-        KeyError
+    except KeyError:
         print("Такого имени нет")
         return "Такого имени нет"
     finally:
@@ -132,8 +130,8 @@ def calculation() -> float:
         check = formula.split(" ")
         if len(check) == 3:
             try:
-                arg1 = float(int(check[0]))
-                arg2 = float(int(check[2]))
+                arg1 = float(check[0])
+                arg2 = float(check[2])
 
                 if check[1] == "+":
                     print(arg1 + arg2)
@@ -169,9 +167,9 @@ def calculation_all() -> float:
         check = formula.split(" ")
         if len(check) == 3:
             try:
-                arg1 = float(int(check[0]))
+                arg1 = float(check[0])
 
-                arg2 = float(int(check[2]))
+                arg2 = float(check[2])
                 
                 char = check[1]
                 if char in ["+", "-", "/", "*"]:
@@ -211,4 +209,4 @@ def calculation_all() -> float:
             print("Введите данные вида 'число_+/-_число'")
             #return "Введите данные вида 'число_+/-_число'"
 
-calculation_all()
+#calculation_all()
