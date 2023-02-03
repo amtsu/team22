@@ -9,7 +9,7 @@ class ChitaiGorodGetElement:
     Класс получает данные со страницы товара, "очищает" эти данные для последующей обработки
     """
     
-    def clean_data(self) -> int: 
+    def clean_data(self): 
         """ метод очистки данных"""
         if not self.__to_int:    
             if not len(self.__remove) == 1:
@@ -32,7 +32,7 @@ class ChitaiGorodGetElement:
         Метод получения текстового значения искомого элемента (не очищенного)
         """
         data_list = self.__b_soup.findAll(self.__tag, class_ = self.__class_name)
-        if data_list == []
+        if data_list == []:
             assert False
         else:
             data = []
@@ -92,13 +92,13 @@ class ChitaiGorodGetTitle(ChitaiGorodGetElement): # не работает:
         bad_data = self.__get_text()
         bad_data = bad_data.replace("\n      ", "")
         bad_data = bad_data.replace("\xa0", "")
-        bad_data = bad_data.replace(" ₽\n    ", "")
-        good_data = int(bad_data)
+        good_data = bad_data.replace(" ₽\n    ", "")
+        
         return good_data
     
     def __get_text(self):
         #print(self.__b_soup)
-        data_list = self.__b_soup.find_next("h1", {"class" : "product-detail-title__header vue-content-placeholders vue-content-placeholders-is-rounded vue-content-placeholders-is-animated"}) #Не находит!
+        data_list = self.__b_soup.findAll("div", class_ = "product-title__head") #Не находит!
         print (data_list)
         print (len(data_list))
         assert len(data_list) == 1

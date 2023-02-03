@@ -18,6 +18,14 @@ from chitai_gorod_items_list import ChitaiGorodItemsList
 
 # test_clean_data для price из chitai_gorod - ChitaiGorodGetPrice
 def test_clean_data_price_chitai_gorod():
+    """
+    если использовать pytest, то достаточно писать
+    assert <истинное_условие>
+    например тут
+    assert price == 1100
+
+    еще если цена в интернете изменится, тест сломается
+    """
     page_text = OnePageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391').read_page()
     price = ChitaiGorodGetPrice(page_text).clean_data()
     if price == 1100:
