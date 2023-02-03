@@ -15,8 +15,8 @@ def bubble_sort(data:list) -> list :
     """
     функция простой  сортировки входного массива пузырьком
     """
-    bald_red_text = ColoredStr("red, bold")
-    bald_blue_text = ColoredStr("blue, bold")
+    bold_red_text = ColoredStr("red, bold")
+    bold_blue_text = ColoredStr("blue, bold")
     data_size = len(data)
     swapped = True
     #for index2 in range(0, data_size):
@@ -32,9 +32,9 @@ def bubble_sort(data:list) -> list :
                 blue_index = index + 1
             for index_p in range(0, data_size):
                 if index_p == red_index:
-                    str_to_print += bald_red_text(str(data[index_p])) + " "
+                    str_to_print += bold_red_text(str(data[index_p])) + " "
                 elif index_p == blue_index:
-                    str_to_print += bald_blue_text(str(data[index_p])) + " "
+                    str_to_print += bold_blue_text(str(data[index_p])) + " "
                 else:    
                     str_to_print += str(data[index_p]) + " " 
             if data[index] > data[index+1] :
