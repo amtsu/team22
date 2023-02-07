@@ -1,8 +1,6 @@
 """
 file with functions for homework3
 """
-
-
 def gip(num1: float, num2: float) -> float:
     """
     func for finding hypotenuza
@@ -14,7 +12,6 @@ def arithmetic(num1: float, num2: float, sign: str):
     """
     func for calc
     """
-    result = None
     if sign == "+":
         res = num1 + num2
     elif sign == "-":
