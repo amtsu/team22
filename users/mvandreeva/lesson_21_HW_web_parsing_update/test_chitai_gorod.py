@@ -4,6 +4,8 @@
 import pytest
 from chitai_gorod_one_item import ChitaiGorodGetPrice, ChitaiGorodGetTitle, ChitaiGorodGetAuthor, ChitaiGorodGetAuthorURL
 from chitai_gorod_items_list import ChitaiGorodItemsList
+from web_parsing import OnePageParsing
+from bs4 import BeautifulSoup
 
 
 # test_get_text_price из chitai_gorod - ChitaiGorodGetPrice
@@ -26,7 +28,8 @@ def test_clean_data_price_chitai_gorod():
 
     еще если цена в интернете изменится, тест сломается
     """
-    page_text = OnePageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391').read_page()
+    page = OnePageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391')
+    page_text = page.read_page()
     price = ChitaiGorodGetPrice(page_text).clean_data()
     if price == 1100:
         print ("passed")

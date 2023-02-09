@@ -3,6 +3,9 @@
 
 import pytest
 from web_parsing import OnePageParsing
+import urllib
+import urllib.request
+from bs4 import BeautifulSoup
 
 def test_one_page_parsing_read():
     quke_one_page_parsing = OnePageParsing("https://quke.ru/shop/UID_70281___306_.html").read_page()

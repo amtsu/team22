@@ -99,8 +99,8 @@ class ChitaiGorodGetTitle(ChitaiGorodGetElement): # не работает:
     def __get_text(self):
         #print(self.__b_soup)
         data_list = self.__b_soup.findAll("div", class_ = "product-title__head") #Не находит!
-        print (data_list)
-        print (len(data_list))
+        #print (data_list)
+        #print (len(data_list))
         assert len(data_list) == 1
         element = data_list[0]
         #print(element)
