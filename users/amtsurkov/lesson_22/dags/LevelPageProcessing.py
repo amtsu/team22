@@ -48,6 +48,16 @@ class LevelServiceProcessing:
                     {
                     },
                 ],
+                #230211
+                "area": 17.7, # площадь
+                "completion_quarter": 2, # кваратл сдачи строительства
+                "completion_year": 2026, # год сдачи строительства
+                --"project": "Южнопортовая", # название проекта
+                "floor": 3, # этаж
+                "floors_total": 24, # этажей в здании
+                "ceilingheight": "2.90", # высота потолков
+                "room": 1, # количество комнат
+                "ppm": 398598 # цена за квадртыный метр
             }
         ]
 
@@ -61,6 +71,20 @@ class LevelServiceProcessing:
         url = url
         img_url = plan
         description = to_str(specialmortgageoffer_set)
+        #230211
+        apartment 
+        apartment_area = area
+        apartment_completion_quarter = completion_quarter
+        apartment_completion_year = completion_year
+        --apartment_project = project
+        apartment_floor = floor
+        apartment_floors_total = floors_total
+        apartment_ceilingheight = ceilingheight
+        apartment_room = room
+        apartment_ppm = ppm
+        apartment_address = address
+        apartment_location_lat = location.split(',')[0]
+        apartment_location_lon = location.split(',')[1]
     """
 
     # def load_url_by_default(self):
@@ -109,6 +133,22 @@ class LevelServiceProcessing:
                 # el['description'] = json.dumps(e['specialmortgageoffer_set'])[0:100]
                 # el['description'] = "json.dumps(e['specialmortgageoffer_set'])"[0:10]
                 # el['description'] = "json.dumps"
+                
+                el["apartment_area"] = e["area"]
+                el["apartment_completion_quarter"] = int(e["completion_quarter"])
+                el["apartment_completion_year"] = int(e["completion_year"])
+                el["apartment_floor"] = int(e["floor"])
+                el["apartment_floors_total"] = int(e["floors_total"])
+                el["apartment_ceilingheight"] = e["ceilingheight"]
+                el["apartment_room"] = int(e["room"])
+                el["apartment_ppm"] = int(e["ppm"])
+                el["apartment_address"] = e["address"]
+                el["apartment_location"] = e["location"]
+                el["apartment_location_lat"] = e["location"].split(',')[0][:9]
+                el["apartment_location_lon"] = e["location"].split(',')[1][:9]
+                print(el["apartment_location_lat"])
+                print(e["floor"])
+                
 
                 self.__list_dict.append(el)
 
@@ -164,6 +204,19 @@ class LevelServiceProcessing:
                     # seller="seller_example",
                     # seller_url="seller_url_example",
                     source_url=e["source_url"],
+                    apartment_area=e["apartment_area"],
+                    apartment_completion_quarter=e["apartment_completion_quarter"],
+                    apartment_completion_year=e["apartment_completion_year"],
+                    apartment_floor=e["apartment_floor"],
+                    apartment_floors_total=e["apartment_floors_total"],
+                    apartment_ceilingheight=e["apartment_ceilingheight"],
+                    apartment_room=e["apartment_room"],
+                    apartment_ppm=e["apartment_ppm"],
+                    apartment_address=e["apartment_address"],
+                    apartment_location=e["apartment_location"],
+                    apartment_location_lat=e["apartment_location_lat"],
+                    apartment_location_lon=e["apartment_location_lon"],
+                    
                     # urls_other_products_on_the_page="urls_other_products_on_the_page_example",
                     # worker="worker_example",
                     # task="task_example",
