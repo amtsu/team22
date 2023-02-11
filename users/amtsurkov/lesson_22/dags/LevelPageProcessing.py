@@ -146,8 +146,8 @@ class LevelServiceProcessing:
                 el["apartment_location"] = e["location"]
                 el["apartment_location_lat"] = e["location"].split(',')[0][:9]
                 el["apartment_location_lon"] = e["location"].split(',')[1][:9]
-                print(el["apartment_location_lat"])
-                print(e["floor"])
+                #print(el["apartment_location_lat"])
+                #print(e["floor"])
                 
 
                 self.__list_dict.append(el)
