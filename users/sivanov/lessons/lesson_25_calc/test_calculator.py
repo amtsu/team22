@@ -106,6 +106,7 @@ def test_calculator_11():
     """
     calc = calculator.Calculator()
     assert calc("'fuck ' * -5") == ""
+<<<<<<< HEAD
 
 def test_calculator_12():
     """
@@ -132,3 +133,5 @@ def test_calculator_14():
     with pytest.raises(SyntaxError):
          calc("/4 * -5")
 
+=======
+>>>>>>> добавил тесты
