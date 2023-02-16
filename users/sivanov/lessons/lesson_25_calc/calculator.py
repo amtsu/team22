@@ -1,5 +1,8 @@
 """
 файл с описанием класса калькулятор для вычисления простых бинарных операторов
+https://stackoverflow.com/questions/15197673/using-pythons-eval-vs-ast-literal-eval
+    тут есть готовый более универсального вычислителя, блин,
+    обидно, искал инфу как работает нашел готовое решение посередине поисков
 """
 import ast
 import operator
@@ -9,10 +12,8 @@ class Calculator:
     """
     Класс калькулятор, инициализируется строкой с простым выражением типа
     const operator const, где const - любое числовое выражение,
-    а operator это одна из операций : сложение, вычитание, деление или умножение
-    https://stackoverflow.com/questions/15197673/using-pythons-eval-vs-ast-literal-eval
-    тут есть готовый более универсального вычислителя, блин,
-    обидно, искал инфу как работает нашел готовое решение посередине поисков
+    а operator это одна из операций : сложение, вычитание,
+    деление или умножение
     """
 
     def __init__(self):
@@ -26,7 +27,7 @@ class Calculator:
             ast.Mult: operator.mul,
             ast.Div: operator.truediv,
         }
-        self.un_ops = {  # операции с одним параметром
+        self.__un_ops = {  # операции с одним параметром
             ast.USub: operator.neg,
             ast.UAdd: operator.pos,
         }
@@ -50,14 +51,16 @@ class Calculator:
             assert isinstance(
                 value.body.left.operand, ast.Constant
             )  # корректность левого аргумента
-            left = self.un_ops[type(value.body.left.op)](value.body.left.operand.value)
+            left = self.__un_ops[type(value.body.left.op)](
+                value.body.left.operand.value
+            )
         else:
             left = value.body.left.value
         if isinstance(value.body.right, ast.UnaryOp):
             assert isinstance(
                 value.body.right.operand, ast.Constant
             )  # корректность правого аргумента
-            right = self.un_ops[type(value.body.right.op)](
+            right = self.__un_ops[type(value.body.right.op)](
                 value.body.right.operand.value
             )
         else:
@@ -67,7 +70,7 @@ class Calculator:
         )  # пытаемся вычислить результат
 
     def __repr__(self):
-        return "Класс калькулятор, инициализируется строкой с простым выражением"
+        return "Класс калькулятор, вычисляет значения бинарных операций"
 
 
 if __name__ == "__main__":
