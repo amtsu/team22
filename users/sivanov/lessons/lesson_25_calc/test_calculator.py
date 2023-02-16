@@ -106,3 +106,29 @@ def test_calculator_11():
     """
     calc = calculator.Calculator()
     assert calc("'fuck ' * -5") == ""
+
+def test_calculator_12():
+    """
+    один из тестов  класса калькулятор
+    умножение двух унарных операторов
+    """
+    calc = calculator.Calculator()
+    assert calc("+4 * -5") == -20
+
+def test_calculator_13():
+    """
+    один из тестов  класса калькулятор
+    вычитание двух унарных операторов
+    """
+    calc = calculator.Calculator()
+    assert calc("+4 - -5") == 9
+
+def test_calculator_14():
+    """
+    один из тестов  класса калькулятор
+    плохой унарный оператор
+    """
+    calc = calculator.Calculator()
+    with pytest.raises(SyntaxError):
+         calc("/4 * -5")
+
