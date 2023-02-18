@@ -139,7 +139,7 @@ class TestInteractiveCalculator:
 
     def test_input_float(self):
         """Testing AttributeError with float on input"""
-        assert interactive_calculator(2.0 + 0) == str("Принимается только строка!")
+        assert interactive_calculator("2.0 + 0") == str("Необходимо ввести целые числа!")
 
     def test_input_float_in_string(self):
         """Testing ValueError with float dividend and zero divider on input"""

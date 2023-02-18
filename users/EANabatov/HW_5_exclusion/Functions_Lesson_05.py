@@ -1,4 +1,4 @@
-def search_by_name(name: str) -> str | int:
+def search_by_name(name: str) -> str:
     """
     Search by name in dictionary with exceptions and output of the end of the program
     """
@@ -9,48 +9,51 @@ def search_by_name(name: str) -> str | int:
         "DnKr": 7_007_007_7777,
     }
     try:
-        return dictionary[name.title()]
+        result = dictionary[name.title()]
     except KeyError:
-        return 'Такого имени нет'
+        result = 'Такого имени нет'
     except AttributeError:
-        return "Некорректный тип данных, принимаются только строки"
-    # finally:
-    # return 'Конец работы программы.'
+        result = "Некорректный тип данных, принимаются только строки"
+    finally:
+        print('Конец работы программы.')
+    return result
 
 
-def safe_divide(dividend: int | float, divider: int | float) -> float | str:
+def safe_divide(dividend, divider):
     """
     Takes two integer or float numbers to divide with exceptions ZeroDivisionError and ValueError
     """
     try:
-        return f"{dividend / divider:.3f}"
+        result = f"{dividend / divider:.3f}"
     except ZeroDivisionError:
-        return "На ноль делить нельзя"
+        result = "На ноль делить нельзя"
     except TypeError:
-        return "Некорректный тип данных, принимаются только числа"
+        result = "Некорректный тип данных, принимаются только числа"
+    return result
 
 
-def interactive_calculator(input_box: str) -> int | float | str:
+def interactive_calculator(input_box):
     """
     A function that summarizes or subtracts or multiplies or divides two integers
     """
     try:
         splitting_box = input_box.split(" ")  # Разделяет полученное выражение на числа и математический оператор
         if len(splitting_box) != 3:  # Проверка введенного выражения на корректность
-            return """Введено неверное выражение! \nВыражение должно иметь вид: А +/- В ! \nГде А и В целые числа! 
+            result = """Введено неверное выражение! \nВыражение должно иметь вид: А +/- В ! \nГде А и В целые числа! 
                 \nЗнак математической операции должен быть отделен пробелами!"""
         else:
             if splitting_box[1] == "+":
-                return int(int(splitting_box[0]) + int(splitting_box[2]))
+                result = int(int(splitting_box[0]) + int(splitting_box[2]))
             elif splitting_box[1] == "-":
-                return int(splitting_box[0]) - int(splitting_box[2])
+                result = int(splitting_box[0]) - int(splitting_box[2])
             elif splitting_box[1] == "/":
-                return int(splitting_box[0]) / int(splitting_box[2])
+                result = int(splitting_box[0]) / int(splitting_box[2])
             elif splitting_box[1] == "*":
-                return int(splitting_box[0]) * int(splitting_box[2])
+                result = int(splitting_box[0]) * int(splitting_box[2])
     except ValueError:
-        return "Необходимо ввести целые числа!"
+        result = "Необходимо ввести целые числа!"
     except AttributeError:
-        return "Принимается только строка!"
+        result = "Принимается только строка!"
     except ZeroDivisionError:
-        return "На ноль делить нельзя!"
+        result = "На ноль делить нельзя!"
+    return result
