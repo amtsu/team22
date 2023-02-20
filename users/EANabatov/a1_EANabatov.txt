@@ -1,5 +1,0 @@
-total 12
-drwxr-xr-x  2 jupyter-eanabatov jupyter-eanabatov 4096 Jan 28 22:01 .
-drwxr-xr-x 22 jupyter-eanabatov jupyter-eanabatov 4096 Jan 28 21:53 ..
--rw-r--r--  1 jupyter-eanabatov jupyter-eanabatov    0 Jan 28 22:10 a1_EANabatov.txt
--rw-r--r--  1 jupyter-eanabatov jupyter-eanabatov    6 Jan 28 22:01 a2_EANabatov.txt
