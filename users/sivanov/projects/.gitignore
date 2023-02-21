@@ -1,0 +1,5 @@
+# минус лог
+*.log
+# минус секретики
+superhomosecret.py
+

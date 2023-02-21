@@ -1,0 +1,33 @@
+{
+	"url": "https://www.citilink.ru/product/noutbuk-lenovo-thinkpad-l390-i5-8265u-8gb-ssd256gb-13-3-wva-fhd-dos-1809360/",
+	"data": {
+		"Цена": {
+			"id": "_current-price js--_current-price ",
+			"tagname": "span",
+			"index": 0,
+			"what": "",
+			"stripper_setting": " ,₽, "
+		},
+		"Название товара": {
+			"id": "Heading Heading_level_1 ProductPageTitleSection__text",
+			"tagname": "h1",
+			"index": 0,
+			"what": "",
+			"stripper_setting": "₽,для членов клуба Ситилинк,\n"
+		},
+		"Бренд": {
+			"id": "text-muted text-sm text-underline",
+			"tagname": "a",
+			"index": 0,
+			"what": "",
+			"stripper_setting": ""
+		},
+		"Код товара": {
+			"id": "ProductPageUsersActivity__product-id",
+			"tagname": "div",
+			"index": 0,
+			"what": "",
+			"stripper_setting": "Код товара: "
+		}
+	}
+}
