@@ -15,7 +15,3 @@ class QuaPiRow:
 
 	def __next__(self):
 		return f"{next(self.__divident)}/{next(self.__divider)}"
-# проверка
-a_row_20 = QuaPiRow(20)
-for element in a_row_20:
-	print(element)
