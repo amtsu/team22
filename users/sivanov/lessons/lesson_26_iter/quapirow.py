@@ -7,11 +7,10 @@ class QuaPiRow:
 	всех натуральный n меньше заданного
 	"""
 	def __init__(self, count):
-		self.__divident = ((-1 + 2*(i%2)) for i in range(count))
-		self.__divider = ((2*i+1) for i in range(count))
-	
+		self.__result = (f"{(-1 + 2*(i%2))}/{2*i+1}" for i in range(count))
+
 	def __iter__(self):
 		return self
 
 	def __next__(self):
-		return f"{next(self.__divident)}/{next(self.__divider)}"
+		return next(self.__result)
