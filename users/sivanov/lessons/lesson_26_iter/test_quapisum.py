@@ -1,5 +1,5 @@
 """
-функции, тестирующие класс quapirow
+функции, тестирующие класс quapisum
 """
 from quapisum import QuaPiSum
 
