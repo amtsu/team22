@@ -135,7 +135,11 @@ class LevelServiceProcessing:
                 # el['description'] = "json.dumps"
                 
                 el["apartment_area"] = e["area"]
-                el["apartment_completion_quarter"] = int(e["completion_quarter"])
+                if e.get("completion_quarter"):
+                    el["apartment_completion_quarter"] = int(e["completion_quarter"])
+                else:
+                    print("not have completion_quarter in =", source_url)
+                #    el["apartment_completion_quarter"] = None
                 el["apartment_completion_year"] = int(e["completion_year"])
                 el["apartment_floor"] = int(e["floor"])
                 el["apartment_floors_total"] = int(e["floors_total"])
