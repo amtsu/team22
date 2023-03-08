@@ -367,7 +367,9 @@ class ListPageProcessor:
             if len(d) < 1:    
                 # same product have not price
                 print('product have not price =', title)
-                price_sale = None
+                #TODO need fix API
+                price_sale = 0
+                price = 0
             else:
                 price = d[0].text
                 price = price.replace("&thinsp;", "")
