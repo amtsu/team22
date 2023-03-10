@@ -1,7 +1,8 @@
 #!/usr/local/bin/python
 # coding: utf-8
 
-from web_parsing import OnePageParsing
+from bs4 import BeautifulSoup
+from web_parsing import PageParsing
 
 class ChitaiGorodGetElement:
     
@@ -65,7 +66,7 @@ class ChitaiGorodGetPrice(ChitaiGorodGetElement):
         good_data = int(bad_data)
         return good_data
     
-    def __get_text(self): # сделать privat 
+    def __get_text(self): 
         data_list = self.__b_soup.findAll('span', class_='product-detail-offer-header__price-currency')
         #print (len(data_list))
         assert len(data_list) == 1
@@ -78,8 +79,8 @@ class ChitaiGorodGetPrice(ChitaiGorodGetElement):
         #print(prices)
         return element.text
     
-    def __init__(self, url: str):
-        self.__b_soup = OnePageParsing(url).read_page()
+    def __init__(self, page_text: str, url: str):
+        self.__b_soup = BeautifulSoup(page_text, features="html.parser")
         
 class ChitaiGorodGetTitle(ChitaiGorodGetElement): # не работает: 
     # При загрузке страницы вручную заголовок находится в теге h1, а при загрузке через BS данного тега нет.
@@ -111,8 +112,8 @@ class ChitaiGorodGetTitle(ChitaiGorodGetElement): # не работает:
         #print(prices)
         return element.text
     
-    def __init__(self, url: str):
-        self.__b_soup = OnePageParsing(url).read_page()
+    def __init__(self, page_text: str, url: str):
+        self.__b_soup = BeautifulSoup(page_text, features="html.parser")
         
 
 class ChitaiGorodGetAuthor(ChitaiGorodGetElement):
@@ -142,8 +143,8 @@ class ChitaiGorodGetAuthor(ChitaiGorodGetElement):
         #print(data)
         return element.text
     
-    def __init__(self, url: str):
-        self.__b_soup = OnePageParsing(url).read_page()
+    def __init__(self, page_text: str, url: str):
+        self.__b_soup = BeautifulSoup(page_text, features="html.parser")
         
         
 class ChitaiGorodGetAuthorURL(ChitaiGorodGetElement):
@@ -168,5 +169,5 @@ class ChitaiGorodGetAuthorURL(ChitaiGorodGetElement):
         #print(data)
         return element
     
-    def __init__(self, url: str):
-        self.__b_soup = OnePageParsing(url).read_page()
+    def __init__(self, page_text: str, url: str):
+        self.__b_soup = BeautifulSoup(page_text, features="html.parser")

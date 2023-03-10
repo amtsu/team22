@@ -4,55 +4,45 @@
 import pytest
 from chitai_gorod_one_item import ChitaiGorodGetPrice, ChitaiGorodGetTitle, ChitaiGorodGetAuthor, ChitaiGorodGetAuthorURL
 from chitai_gorod_items_list import ChitaiGorodItemsList
-from web_parsing import OnePageParsing
+from web_parsing import PageParsing
 from bs4 import BeautifulSoup
 
 
 # test_get_text_price из chitai_gorod - ChitaiGorodGetPrice
 #def test_get_text_price_chitai_gorod():
-#    page_text = OnePageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391').read_page()
+#    page = PageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391')
+#    page_text = page.read_page()
 #    get_text_price = ChitaiGorodGetPrice(page_text).get_text()
 #    #print("text=",get_text_price)
-#    if get_text_price == """\n      1\xa0100 ₽\n    """:
-#        print ("passed")
-#    else:
-#        assert False
+#    assert get_text_price == """\n      1\xa0100 ₽\n    """
 
 # test_clean_data для price из chitai_gorod - ChitaiGorodGetPrice
 def test_clean_data_price_chitai_gorod():
-    """
-    если использовать pytest, то достаточно писать
-    assert <истинное_условие>
-    например тут
-    assert price == 1100
-
-    еще если цена в интернете изменится, тест сломается
-    """
-    page = OnePageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391')
-    page_text = page.read_page()
-    price = ChitaiGorodGetPrice(page_text).clean_data()
-    if price == 1100:
-        print ("passed")
-    else:
-        assert False    
+    page = PageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391')
+    page_text = page.get_page()
+    page_url = page.get_url()
+    chitai_gorod = ChitaiGorodGetPrice(page_text, page_url)
+    price = chitai_gorod.clean_data()
+    assert isinstance(price, int)
+   
     #print(type(price), price)
 
     
 # test_get_text для author из chitai_gorod_one_item - ChitaiGorodGetAuthor
 #def test_get_text_author_chitai_gorod():
+#    
 #    get_text_author = ChitaiGorodGetAuthor('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391').get_text()
-#    if get_text_author == """\n          Роберт С. Мартин\n        """:
-#        print ("passed")
-#    else:
-#        assert False
+#    assert get_text_author == """\n          Роберт С. Мартин\n        """
+
         
 # test_clean_data для author из chitai_gorod_one_item - ChitaiGorodGetAuthor
 def test_clean_data_author_chitai_gorod():
-    author = ChitaiGorodGetAuthor('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391').clean_data()
-    if author == "Роберт С. Мартин":
-        print ("passed")
-    else:
-        assert False    
+    page = PageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391')
+    page_text = page.get_page()
+    page_url = page.get_url()
+    chitai_gorod = ChitaiGorodGetAuthor(page_text, page_url)
+    author = chitai_gorod.clean_data() 
+    assert author == "Роберт С. Мартин"
     #print(type(author), author)
     
 
@@ -60,19 +50,13 @@ def test_clean_data_author_chitai_gorod():
 #def test_get_text_author_url_chitai_gorod():
 #    get_text_author_url = ChitaiGorodGetAuthorURL('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391').get_text()
 #    print("text=",get_text_author_url)
-#    if get_text_author_url == "/author/martin-robert-s-586375":
-#        print ("passed")
-#    else:
-#        assert False
+#    assert get_text_author_url == "/author/martin-robert-s-586375"
 
 
 # test_get_items_data из chitai_gorod_items_list
-def test_get_items_data_chitai_gorod_2(): # не сработает, пока не разберусь с author_url
-    items_data = ChitaiGorodItemsList("https://new.chitai-gorod.ru/catalog/books/nauka-i-tehnika-9170?sort=price&order=asc").get_items_data()
+def test_get_items_chitai_gorod():
+    chitai_gorod_list = ChitaiGorodItemsList("https://new.chitai-gorod.ru/catalog/books/nauka-i-tehnika-9170?sort=price&order=asc")
+    items_data = chitai_gorod_list.get_items_data()
     #print (items_data) # выдает последнюю позицию текущей страницы, а не первую
-    data_for_test = {'url': 'https://new.chitai-gorod.ru/product/zadachi-seminara-2003-2004-2828128', 'title': 'Задачи семинара. 2003 - 2004', 'price': 35, 'author': 'Владимир Арнольд', 'source_url': 'https://new.chitai-gorod.ru/catalog/books/nauka-i-tehnika-9170?sort=price&order=asc'}
-    if data_for_test in items_data:
-        print ("passed")
-    else:
-        assert False
-        
+    data_for_test = {'url': 'https://new.chitai-gorod.ru/product/vospalenie-pridatkov-adneksit-sovremennyy-vzglyad-na-lechenie-i-profilaktiku-2069025', 'title': 'Воспаление придатков - аднексит. Современный взгляд на лечение и профилактику', 'price': 31, 'price_sale': 31, 'author': 'Виктория Россошанская', 'author_url': '/author/rossoshanskaya-viktoriya-7518434', 'source_url': 'https://new.chitai-gorod.ru/catalog/books/nauka-i-tehnika-9170?sort=price&order=asc'}
+    assert data_for_test in items_data
