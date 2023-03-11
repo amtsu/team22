@@ -1,0 +1,16 @@
+total 152
+drwxr-x---  9 jupyter-eawolkov jupyter-eawolkov  4096 Dec 25 21:18 [0m[01;34m.[0m/
+drwxr-xr-x 31 root             root              4096 Jan 14 17:40 [01;34m..[0m/
+-rw-------  1 jupyter-eawolkov jupyter-eawolkov   909 Dec 27 11:00 .bash_history
+-rw-r--r--  1 jupyter-eawolkov jupyter-eawolkov   220 Feb 25  2020 .bash_logout
+-rw-r--r--  1 jupyter-eawolkov jupyter-eawolkov  3771 Feb 25  2020 .bashrc
+drwxr-xr-x  4 jupyter-eawolkov jupyter-eawolkov  4096 Jan 11 14:13 [01;34m.cache[0m/
+drwxr-xr-x  3 jupyter-eawolkov jupyter-eawolkov  4096 Dec 25 21:49 [01;34mgithub[0m/
+drwxr-xr-x  2 jupyter-eawolkov jupyter-eawolkov  4096 Dec 21 19:38 [01;34m.ipynb_checkpoints[0m/
+drwxr-xr-x  3 jupyter-eawolkov jupyter-eawolkov  4096 Dec 21 19:38 [01;34m.ipython[0m/
+drwxr-xr-x  2 jupyter-eawolkov jupyter-eawolkov  4096 Dec 21 19:19 [01;34m.jupyter[0m/
+drwxr-xr-x  3 jupyter-eawolkov jupyter-eawolkov  4096 Dec 21 18:25 [01;34m.local[0m/
+-rw-r--r--  1 jupyter-eawolkov jupyter-eawolkov   807 Feb 25  2020 .profile
+-rw-r--r--  1 root             root             96167 Dec 21 22:16 python_basics.ipynb
+drwx------  2 jupyter-eawolkov jupyter-eawolkov  4096 Dec 25 21:54 [01;34m.ssh[0m/
+-rw-r--r--  1 jupyter-eawolkov jupyter-eawolkov   588 Dec 21 19:40 Untitled.ipynb

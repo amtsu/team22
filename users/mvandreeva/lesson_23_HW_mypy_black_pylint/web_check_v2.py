@@ -28,7 +28,7 @@ class CheckPrice:
     #        else:
     #            assert False
 
-    def read_page(self):
+    def read_page(self): 
         """ метод обрабатывает web-страницу """
         with urllib.request.urlopen(self.__url) as page:
             print("Page code: ", page.getcode())
@@ -66,7 +66,7 @@ class ClearData:
         return self.__data
 
 
-class ClearDataChitaiGorod(ClearData):
+class ClearDataChitaiGorod(ClearData): #наследование здесь не нужно, просто так добавила, чтоб учиться
     """ Класс очистки данных для сайта читай-город """
     def clean_data_chitai_gorod(self) -> int:
         """ метод получения итоговой цены """
@@ -78,6 +78,8 @@ class ClearDataChitaiGorod(ClearData):
 
     def __init__(self, bad_data: str): #__init__ method from base class 'ClearData' is not called
         self.__data = bad_data
+#    def __init__(self, bad_data: str): #__init__ method from base class 'ClearData' is not called
+#                 = bad_data
 #class Fruit:
 #    def __init__(self, name="fruit"):
 #        self.name = name
@@ -86,11 +88,11 @@ class ClearDataChitaiGorod(ClearData):
 #    def __init__(self):
 #        super().__init__("apple")
 
-    def __repr__(self):
-        return self.__data
+#    def __repr__(self):
+#        return self.__data
 
-    def __str__(self):
-        return self.__data
+#    def __str__(self):
+#        return self.__data
 
 
 class SendMail: #Too few public methods (1/2)

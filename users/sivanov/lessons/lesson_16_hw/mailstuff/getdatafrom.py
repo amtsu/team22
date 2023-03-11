@@ -15,7 +15,7 @@ class get_data_from:
         return str("Адрес объекта: "+self.__url+" ; ищем <"+self.__itemtype+" class='"+ self.__item+"'>")
     def _getitemvalue_(self):
         value = [""]
-        page = urllib.urlopen(self.__url)
+        page = urllib.request.urlopen(self.__url)
         page.getcode()
         if page.getcode() == 200:
             text = page.read()

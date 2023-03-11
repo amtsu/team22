@@ -1,0 +1,3 @@
+  GNU nano 4.8                                            .gitignore
+#ignore pylint folder
+pylint
