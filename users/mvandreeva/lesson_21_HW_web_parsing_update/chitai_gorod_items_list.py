@@ -176,6 +176,7 @@ class ChitaiGorodURLConfiguration:
                     except:
                         continue
          
+       
         if args:
             for arg in args:
                 if isinstance(arg, dict):
