@@ -6,7 +6,8 @@ from web_parsing import PageParsing
 from chitai_gorod_one_item import ChitaiGorodGetAuthorURL
 import json
 
-
+# лезет на сайт
+# 
 class ChitaiGorodItemsList:
     """ Класс обработки страницы со списком элементов """
     
@@ -14,6 +15,7 @@ class ChitaiGorodItemsList:
         self.__url = url
         page = PageParsing(self.__url)
         page_text = page.get_page()
+        #print(page_text)
         self.__b_soup = BeautifulSoup(page_text, features="html.parser")
         
     def get_items_data(self) ->list :
@@ -23,8 +25,10 @@ class ChitaiGorodItemsList:
         #print(items_list)
         for item in items_list:
             title_data = item.findAll("div", class_ = "product-title__head")
-            if not title_data:
-                title = None
+            print(title_data)
+#            if not title_data:
+            if title_data == []:
+                title = "No data"
             else:
                 title_bad = title_data[0].text
                 title_bad = title_bad.replace("\n    ", "")
@@ -32,14 +36,18 @@ class ChitaiGorodItemsList:
             
             
             url_data = item.findAll("a", class_ = "product-card__picture product-card__row")
-            if not url_data:
-                url = None
+            print(url_data)
+#            if not url_data:
+            if url_data == []:
+                url = "No data"
             else:
                 url = url_data[0]["href"]
             
             price_data = item.findAll("div", class_ = "product-price__value")
-            if not price_data:
-                price = None
+            print(price_data)
+#            if not price_data:
+            if price_data == []:
+                price = "No data"
             else:
                 price_bad = price_data[0].text
                 price_bad = price_bad.replace("\n    ", "")
@@ -47,8 +55,10 @@ class ChitaiGorodItemsList:
                 price = int(price_bad)
             
             author_data = item.findAll("div", class_ = "product-title__author")
-            if not author_data:
-                author = None
+            print(author_data)
+#            if not author_data:
+            if author_data == []:
+                author = "No data"
             else:
                 author_bad = author_data[0].text
                 author_bad = author_bad.replace("\n    ", "")
@@ -64,9 +74,10 @@ class ChitaiGorodItemsList:
                 #print(author_url_page)
                 author_url_soup = BeautifulSoup(author_url_page_text, features="html.parser")
                 author_url_data = author_url_soup.findAll("a", class_ = "product-detail-title__author")
-                if not author_url_data:
+#                if not author_url_data:
+                if author_url_data == []:
                     #print(f"Not find author in {item_url}")
-                    author_url = None
+                    author_url = "No data"
                     continue
                 else:
                     author_url = author_url_data[0]["href"]
@@ -158,7 +169,7 @@ class ChitaiGorodURLConfiguration:
 #        """
         return self.__urls_list
     
-    def get_urls_list(self, *args):
+    def get_urls_list(self, *args): # сделать несколько функций
         """
         Формирует список URLs и скачивает данные с соответствующих страниц
         """  
@@ -166,7 +177,8 @@ class ChitaiGorodURLConfiguration:
             urls_dict = self.__load_default_urls()
             for url, pages in urls_dict.items():
                 url = url + "?sort=price&order=asc"
-                for i in range(1, pages):
+                #for i in range(1, pages):
+                for i in range(1, 2):
                     url_p = url + "&page=" + str(i) 
                     print(url_p)
                     try:
@@ -175,11 +187,9 @@ class ChitaiGorodURLConfiguration:
                         self.__list_dict.append(dict_list)
                     except:
                         continue
-         
-       
-        if args:
+        else:
             for arg in args:
-                if isinstance(arg, dict):
+                if isinstance(arg, dict): # не стоит так делать
                     for url in arg:
                         url = url + "?sort=price&order=asc" 
                         for i in range(1, arg[url]):
@@ -194,10 +204,11 @@ class ChitaiGorodURLConfiguration:
                 if isinstance(arg, list):
                     for url in arg:
                         url = url + "?sort=price&order=asc" 
-                        for i in range(1, 2022):
+                        #for i in range(1, 2022):
+                        for i in range(1, 2):
                             url_p = url + "&page=" + str(i)
                             print(url_p)
-                            try:
+                            try: # не стоит использовать try для этих целей
                                 page_parsing = ChitaiGorodItemsList(url_p)
                                 dict_list = page_parsing.get_items_data()
                                 self.__list_dict.append(dict_list)
@@ -235,6 +246,21 @@ class ChitaiGorodURLConfiguration:
                     print("Incorrect input data")
         print(self.__list_dict)
         return self.__list_dict
+    
+    def __create_file_name(self):
+        """
+        Формирует имя файла для сохранния полученных данных
+        """
+        return "chitai_gorod.json"
+
+    def save_to_file(self):
+        """
+        Сохраняет полученные данные в локальный фаил
+        """
+        json_string = json.dumps(self.__list_dict)
+        file_name = self.__create_file_name()
+        with open(file_name, "w") as outfile:
+            outfile.write(json_string) # у Артёма по-другому, почему?
     
     def __init__(self):
         self.__urls_list = []
