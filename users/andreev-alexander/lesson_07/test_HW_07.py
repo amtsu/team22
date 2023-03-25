@@ -26,33 +26,34 @@ phonebook_test_cases = [
         }
     ]
 
-
-pb = Phonebook()
-
-def test_add_new_record():
-    """В справочник добавляются записи."""
+@pytest.fixture
+def phonebook() -> Phonebook:
+    pb = Phonebook()
     for item in phonebook_test_cases:
         pb.add_new_record(**item)
-    assert pb.person_list() == phonebook_test_cases
+    return pb
 
-def test_add_new_record_with_not_string():
+def test_add_new_record(phonebook: Phonebook):
+    """В справочник добавляются записи."""
+    assert phonebook.person_list() == phonebook_test_cases
+
+def test_add_new_record_with_not_string(phonebook: Phonebook):
     """В справочник добавляются записи не строкой."""
-    pb_not_string = Phonebook()
     with pytest.raises(ValueError):
-        pb_not_string.add_new_record(name=123, phone=[], city={})
+        phonebook.add_new_record(name=123, phone=[], city={})
 
-def test_sort_phonebook_by_name():
+def test_sort_phonebook_by_name(phonebook: Phonebook):
     """Справочник сортируется по имени по алфавиту."""
     expected = sorted(phonebook_test_cases, key=lambda name: name["name"])
-    assert pb.sort_phonebook_by_name() == expected
+    assert phonebook.sort_phonebook_by_name() == expected
 
-def test_sort_phonebook_by_name_assert_with_sort_by_phone():
+def test_sort_phonebook_by_name_assert_with_sort_by_phone(phonebook: Phonebook):
     """Справочник отсортированный по имени по алфавиту не совпадает
     с отсортированным по номеру телефона."""
     expected = sorted(phonebook_test_cases, key=lambda phone: phone["phone"])
-    assert pb.sort_phonebook_by_name() != expected
+    assert phonebook.sort_phonebook_by_name() != expected
 
-def test_search_by_name_with_lowercase_letters():
+def test_search_by_name_with_lowercase_letters(phonebook: Phonebook):
     """Поиск в справочнике по части имени строчными буквами
     выполняется корректно."""
     expected = [
@@ -66,9 +67,9 @@ def test_search_by_name_with_lowercase_letters():
         }
     ]
 
-    assert pb.search_by_name("ol") == expected
+    assert phonebook.search_by_name("ol") == expected
 
-def test_search_by_name_with_uppercase_letters():
+def test_search_by_name_with_uppercase_letters(phonebook: Phonebook):
     """Поиск в справочнике по части имени заглавными буквами
     выполняется корректно."""
     expected = [
@@ -82,9 +83,9 @@ def test_search_by_name_with_uppercase_letters():
         }
     ]
 
-    assert pb.search_by_name("OL") == expected
+    assert phonebook.search_by_name("OL") == expected
 
-def test_search_by_name_with_uppercase_and_lowercase_letters():
+def test_search_by_name_with_uppercase_and_lowercase_letters(phonebook: Phonebook):
     """Поиск в справочнике по части имени заглавными и строчными
     буквами выполняется корректно."""
     expected = [
@@ -98,26 +99,26 @@ def test_search_by_name_with_uppercase_and_lowercase_letters():
         }
     ]
 
-    assert pb.search_by_name("Ol") == expected
+    assert phonebook.search_by_name("Ol") == expected
 
-def test_search_by_name_with_empty_string():
+def test_search_by_name_with_empty_string(phonebook: Phonebook):
     """Поиск в справочнике по части имени с пустой строкой
     возвращает пустой список."""
-    result = pb.search_by_name("")
+    result = phonebook.search_by_name("")
     assert result == []
 
-def test_search_by_name_with_not_match_string():
+def test_search_by_name_with_not_match_string(phonebook: Phonebook):
     """Поиск в справочнике по части имени без совпадения в имени
     в справочнике возвращает пустой список."""
-    result = pb.search_by_name("hasn't name")
+    result = phonebook.search_by_name("hasn't name")
     assert result == []
 
-def test_search_by_name_with_not_string():
+def test_search_by_name_with_not_string(phonebook: Phonebook):
     """Поиск в справочнике по части имени не строкой."""
     with pytest.raises(ValueError):
-        pb.search_by_name(123)
+        phonebook.search_by_name(123)
 
-def test_search_by_city_with_lowercase_letters():
+def test_search_by_city_with_lowercase_letters(phonebook: Phonebook):
     """Поиск в справочнике по части города строчными буквами
     выполняется корректно."""
     expected = [
@@ -129,9 +130,9 @@ def test_search_by_city_with_lowercase_letters():
         }
     ]
 
-    assert pb.search_by_city("mos") == expected
+    assert phonebook.search_by_city("mos") == expected
 
-def test_search_by_city_with_uppercase_letters():
+def test_search_by_city_with_uppercase_letters(phonebook: Phonebook):
     """Поиск в справочнике по части города заглавными буквами
     выполняется корректно."""
     expected = [
@@ -143,9 +144,9 @@ def test_search_by_city_with_uppercase_letters():
         }
     ]
 
-    assert pb.search_by_city("MOS") == expected
+    assert phonebook.search_by_city("MOS") == expected
 
-def test_search_by_name_with_uppercase_and_lowercase_letters():
+def test_search_by_name_with_uppercase_and_lowercase_letters(phonebook: Phonebook):
     """Поиск в справочнике по части города заглавными и строчными
     буквами выполняется корректно."""
     expected = [
@@ -157,21 +158,21 @@ def test_search_by_name_with_uppercase_and_lowercase_letters():
         }
     ]
 
-    assert pb.search_by_city("Mos") == expected
+    assert phonebook.search_by_city("Mos") == expected
 
-def test_search_by_city_with_empty_string():
+def test_search_by_city_with_empty_string(phonebook: Phonebook):
     """Поиск в справочнике по части города с пустой строкой
     возвращает пустой список."""
-    result = pb.search_by_city("")
+    result = phonebook.search_by_city("")
     assert result == []
 
-def test_search_by_city_with_not_match_string():
+def test_search_by_city_with_not_match_string(phonebook: Phonebook):
     """Поиск в справочнике по части имени без совпадения в имени
     в справочнике возвращает пустой список."""
-    result = pb.search_by_city("hasn't city")
+    result = phonebook.search_by_city("hasn't city")
     assert result == []
 
-def test_search_by_city_with_not_string():
+def test_search_by_city_with_not_string(phonebook: Phonebook):
     """Поиск в справочнике по части города не строкой."""
     with pytest.raises(ValueError):
-        pb.search_by_city(123)
+        phonebook.search_by_city(123)
