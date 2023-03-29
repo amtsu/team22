@@ -6,7 +6,7 @@ def test_page_parser_open():
     page_text = page_data.open_page()
     assert not page_text == ""
     
-def test_page_parser_open_text():
+def test_page_parser_open_file():
     page_data = PagePerser("https://www.pik.ru/search")
     page_text = page_data.open_page()
     with open("sources/pik", "rb") as page:
