@@ -8,17 +8,39 @@
 """
 
 
+class PhonebookRecord:
+    def __init__(self, name: str, phone: str, city: str) -> None:
+        if not (isinstance(name, str) and isinstance(phone, str) and isinstance(city, str)): 
+            raise ValueError("Must be str")
+        self.__name = name
+        self.__phone = phone
+        self.__city = city
+
+    def name(self):
+        return self.__name
+    
+    def phone(self):
+        return self.__phone
+    
+    def city(self):
+        return self.__city
+
+
 class Phonebook():
     def __init__(self) -> None:
         self.__phonebook: list = []
 
-    def add_new_record(self, name: str, phone: str, city: str) -> None:
+    def add_new_record(self, record: PhonebookRecord) -> None:
         """Добавление записи в телефонную книгу."""
-        if not (isinstance(name, str) or isinstance(phone, str) or isinstance(city, str)): 
-            raise ValueError
-        self.__phonebook.append({"name": name, "phone": phone, "city": city})
+        self.__phonebook.append(
+            {
+            "name": record.name(),
+            "phone": record.phone(),
+            "city": record.city()
+            }
+        )
 
-    def sort_phonebook_by_name(self) -> list[dict[str, str]]:
+    def sort_phonebook_by_name(self) -> list[dict[str, str, str]]:
         """Сортировка записей в справочнике по имени по алфавиту."""
         sorted_phonebook = sorted(self.__phonebook, key=lambda name: name["name"])
         return sorted_phonebook
@@ -40,7 +62,7 @@ class Phonebook():
                     )
         return items_from_phonebook
 
-    def search_by_city(self, part_city: str) -> list[dict[str, str]]:
+    def search_by_city(self, part_city: str) -> list[dict[str]]:
         """Поиск человека в справочник по части города."""
         if not isinstance(part_city, str):
             raise ValueError
@@ -56,38 +78,22 @@ class Phonebook():
                     )
         return items_from_phonebook
     
-    def person_list(self) -> list[dict[str, str, str]]:
+    def all_records(self) -> list[dict[str, str, str]]:
         """Возвращает список всех записей в объекте."""
         return self.__phonebook
 
 phonebook = [
-        {
-        "name": "Alexander",
-        "phone": "123321",
-        "city": "Moscow"
-        },
-        {
-        "name": "Oleg",
-        "phone": "43241121",
-        "city": "Moscow"
-        },
-        {
-        "name": "Anna",
-        "phone": "901329439",
-        "city": "Ryazan"
-        },
-        {
-        "name": "Olga",
-        "phone": "0331111134e121",
-        "city": "Khimki"
-        }
+        ["Alexander", "123321", "Moscow"],
+        ["Oleg", "43241121", "Moscow"],
+        ["Anna", "901329439", "Ryazan"],
+        ["Olga", "0331111134e121", "Khimki"]
     ]
 
-pb = Phonebook()
 
+# pb = Phonebook()
 # наполнение объекта записями из подготовленного словаря
-for contact in phonebook:
-    pb.add_new_record(**contact)
-print(pb.sort_phonebook_by_name())
-print(pb.search_by_name(""))
-print(pb.search_by_city("Moscow"))
+# for contact in phonebook:
+#     pb.add_new_record(PhonebookRecord(contact[0], contact[1], contact[2]))
+# print(pb.sort_phonebook_by_name())
+# print(pb.search_by_name("A"))
+# print(pb.search_by_city("Moscow"))

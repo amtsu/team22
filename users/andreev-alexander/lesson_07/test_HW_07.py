@@ -1,6 +1,6 @@
 import pytest
 
-from HW_07 import Phonebook
+from HW_07 import Phonebook, PhonebookRecord
 
 
 phonebook_test_cases = [
@@ -26,21 +26,28 @@ phonebook_test_cases = [
         }
     ]
 
+phonebook_contacts = [
+        ["Alexander", "123321", "Moscow"],
+        ["Oleg", "43241121", "Moscow"],
+        ["Anna", "901329439", "Ryazan"],
+        ["Olga", "0331111134e121", "Khimki"]
+    ]
+
 @pytest.fixture
 def phonebook() -> Phonebook:
     pb = Phonebook()
-    for item in phonebook_test_cases:
-        pb.add_new_record(**item)
+    for item in phonebook_contacts:
+        pb.add_new_record(PhonebookRecord(item[0], item[1], item[2]))
     return pb
+
+def test_create_phonebook_record_with_not_string():
+    """Создание объекта Запись не строкой."""
+    with pytest.raises(ValueError):
+        PhonebookRecord(name=123, phone=[], city={})
 
 def test_add_new_record(phonebook: Phonebook):
     """В справочник добавляются записи."""
-    assert phonebook.person_list() == phonebook_test_cases
-
-def test_add_new_record_with_not_string(phonebook: Phonebook):
-    """В справочник добавляются записи не строкой."""
-    with pytest.raises(ValueError):
-        phonebook.add_new_record(name=123, phone=[], city={})
+    assert phonebook.all_records() == phonebook_test_cases
 
 def test_sort_phonebook_by_name(phonebook: Phonebook):
     """Справочник сортируется по имени по алфавиту."""

@@ -9,17 +9,18 @@ class IterBySymbol:
     def __init__(self, iter_string):
         self.iter_string = iter_string
         self.position = -1
+        self.__length = len(self.iter_string)
         
     def __iter__(self):
         return self
     
     def __next__(self):
         self.position += 1
-        if self.position == len(self.iter_string):
+        if self.position == self.__length:
             raise StopIteration
         return self.iter_string[self.position]
 
-# item = ReturnSymbol("stroka")
+# item = IterBySymbol("stroka")
 # for i in item:
 #     print(i)
 
