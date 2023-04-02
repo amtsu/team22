@@ -1,10 +1,14 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4d90bcd72986d3845438d9a5eb1ce1544a44de8c
 """
 файл с описанием класса калькулятор для вычисления простых бинарных операторов
 https://stackoverflow.com/questions/15197673/using-pythons-eval-vs-ast-literal-eval
     тут есть готовый более универсального вычислителя, блин,
     обидно, искал инфу как работает нашел готовое решение посередине поисков
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 """
@@ -12,21 +16,27 @@ https://stackoverflow.com/questions/15197673/using-pythons-eval-vs-ast-literal-e
 >>>>>>> прогнал через линтер
 =======
 >>>>>>> исправил область видимости члена класса Calculator, откорректировал комментарии, применил flake8, добавил несколько тестов
+=======
+>>>>>>> 4d90bcd72986d3845438d9a5eb1ce1544a44de8c
 """
 import ast
 import operator
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import ast, operator
 >>>>>>> первая ревизия калькулятора, до тестов
 =======
 >>>>>>> прогнал через линтер
+=======
+>>>>>>> 4d90bcd72986d3845438d9a5eb1ce1544a44de8c
 class Calculator:
     """
     Класс калькулятор, инициализируется строкой с простым выражением типа
     const operator const, где const - любое числовое выражение,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     а operator это одна из операций : сложение, вычитание,
@@ -48,6 +58,12 @@ class Calculator:
 =======
 
 >>>>>>> прогнал через линтер
+=======
+    а operator это одна из операций : сложение, вычитание,
+    деление или умножение
+    """
+
+>>>>>>> 4d90bcd72986d3845438d9a5eb1ce1544a44de8c
     def __init__(self):
         """
         инициализация
@@ -55,8 +71,11 @@ class Calculator:
         """
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> прогнал через линтер
+=======
+>>>>>>> 4d90bcd72986d3845438d9a5eb1ce1544a44de8c
         self.__bin_ops = {  # операции с двумя параметрами
             ast.Add: operator.add,
             ast.Sub: operator.sub,
@@ -65,10 +84,14 @@ class Calculator:
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4d90bcd72986d3845438d9a5eb1ce1544a44de8c
         self.__un_ops = {  # операции с одним параметром
             ast.USub: operator.neg,
             ast.UAdd: operator.pos,
         }
+<<<<<<< HEAD
 =======
         self.__bin_ops = { # операции с двумя параметрами
             ast.Add  : operator.add,
@@ -90,6 +113,8 @@ class Calculator:
             ast.UAdd: operator.pos,
         }
 >>>>>>> прогнал через линтер
+=======
+>>>>>>> 4d90bcd72986d3845438d9a5eb1ce1544a44de8c
 
     def __call__(self, operation):
         """
@@ -97,8 +122,11 @@ class Calculator:
         """
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> прогнал через линтер
+=======
+>>>>>>> 4d90bcd72986d3845438d9a5eb1ce1544a44de8c
         value = ast.parse(operation, mode="eval")
         assert isinstance(value.body, (ast.BinOp))  # ожидаем бинарный операнд
         assert isinstance(
@@ -114,6 +142,7 @@ class Calculator:
             assert isinstance(
                 value.body.left.operand, ast.Constant
             )  # корректность левого аргумента
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             left = self.__un_ops[type(value.body.left.op)](
@@ -158,6 +187,11 @@ if __name__ == "__main__":
                 value.body.left.operand.value
             )
 >>>>>>> исправил область видимости члена класса Calculator, откорректировал комментарии, применил flake8, добавил несколько тестов
+=======
+            left = self.__un_ops[type(value.body.left.op)](
+                value.body.left.operand.value
+            )
+>>>>>>> 4d90bcd72986d3845438d9a5eb1ce1544a44de8c
         else:
             left = value.body.left.value
         if isinstance(value.body.right, ast.UnaryOp):
@@ -179,6 +213,7 @@ if __name__ == "__main__":
 
 if __name__ == "__main__":
 <<<<<<< HEAD
+<<<<<<< HEAD
    do_calc = Calculator()
    print(f"результат выполнения (1-4) = {do_calc('1-4')}")
 >>>>>>> первая ревизия калькулятора, до тестов
@@ -186,3 +221,7 @@ if __name__ == "__main__":
     do_calc = Calculator()
     print(f"результат выполнения (1-4) = {do_calc('1-4')}")
 >>>>>>> прогнал через линтер
+=======
+    do_calc = Calculator()
+    print(f"результат выполнения (1-4) = {do_calc('1-4')}")
+>>>>>>> 4d90bcd72986d3845438d9a5eb1ce1544a44de8c
