@@ -20,6 +20,10 @@ class Third:
         if self.iteration == self.count_of_iterations:
             raise StopIteration
         return "{}/{}".format(self.dividend, self.divider)
+    
+# test = Third(7)
+# for _ in test:
+#     print(_)
 
 """
 Доработать предыдущее задание так, чтобы итератор возвращал не члены последовательности, а их суммы от первого до n-го:
@@ -28,7 +32,32 @@ class Third:
 1/1 -1/3 +1/5,
 """
 
+class Third_summ:
+    summ = []
+    res = 0
 
+    def __init__(self, count_of_iterations):
+        self.iteration = -1
+        self.dividend = -1
+        self.divider = -1
+        self.count_of_iterations = count_of_iterations
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        self.dividend = self.dividend * -1
+        self.divider += 2
+        self.iteration += 1
+        self.summ.append(self.dividend/self.divider)
+        if self.iteration == self.count_of_iterations:
+            raise StopIteration
+        return sum(self.summ)
+
+# item = Third_summ(17)
+# for _ in item:
+#     pass
+#     print(_)
 
 """"
 Замечание. Справедлива следующая формула (ряд Лейбница):
