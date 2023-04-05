@@ -14,6 +14,8 @@ class Phone_book:
     
     def search_by_name(self, name_part: str) -> list[dict[str, str]]:
         result = []
+        if name_part == "":
+            return self.__phone_book
         for person in self.__phone_book:
             len_part = len(name_part)
             if name_part.lower() in (person["name"][:len_part]).lower():
@@ -26,6 +28,8 @@ class Phone_book:
 
     def search_by_city(self, city: str) -> list[dict[str, str]]:
         result = []
+        if city == "":
+            return self.__phone_book
         for person in self.__phone_book:
             len_part = len(city)
             if city.lower() in (person["city"][:len_part]).lower():
@@ -38,7 +42,8 @@ class Phone_book:
         return result
     
     def sort_phone_book(self, key: str) -> None:
-        sorted(self.__phone_book, key=lambda record: record[key])
+        sort_phone_book = sorted(self.__phone_book, key=lambda record: record[key])
+        self.__phone_book = sort_phone_book
 
     def add_contact(self, name: str, phone: str, city: str) -> None:
         self.__phone_book.append({'name': name, "phone": phone, 'city': city})
@@ -46,17 +51,17 @@ class Phone_book:
     def phone_book_list(self) -> list[dict[str, str, str]]:
         return self.__phone_book
 
-pb = Phone_book()
+# pb = Phone_book()
 
-pb.add_contact(name="Oksana", phone="111111", city="piter")
-pb.add_contact(name="Aleksey", phone="888888888", city="Moscow")
-pb.add_contact(name="Sveta", phone="9999999", city="Chelyaba")
-pb.add_contact(name="Anna", phone="7777777", city="Murom")
-pb.add_contact(name="Sergey", phone="66666666", city="Vladik")
+# pb.add_contact(name="Oksana", phone="111111", city="piter")
+# pb.add_contact(name="Aleksey", phone="888888888", city="Moscow")
+# pb.add_contact(name="Sveta", phone="9999999", city="Chelyaba")
+# pb.add_contact(name="Anna", phone="7777777", city="Murom")
+# pb.add_contact(name="Sergey", phone="66666666", city="Vladik")
 
-print(pb.search_by_name("a"))
-print(pb.search_by_city("Moscow"))
-print(pb.phone_book_list())
+# print(pb.search_by_name("a"))
+# print(pb.search_by_city("Moscow"))
+# print(pb.phone_book_list())
 
 
 # phone_book = [
