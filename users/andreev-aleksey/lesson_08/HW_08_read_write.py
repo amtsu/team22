@@ -32,7 +32,3 @@ with open("name.txt", "r") as read_file:
     print(data)
     with open("name.txt", "w") as write_file:
         write_file.write(data + " Petya")
-
-
-# Задание 2
-import pickle
