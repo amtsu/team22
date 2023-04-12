@@ -24,7 +24,7 @@ class SingletonPhonebook:
 
     def __copy(self, file_for_open: str):
         with open(file_for_open, "rb") as file:
-            self.__phonebook.append(pickle.load(file))
+            self.__phonebook.extend(pickle.load(file))
 
     def __add_in_phonebook(self, name: str, phone_number: str, city: str):
         self.__phonebook.append({
