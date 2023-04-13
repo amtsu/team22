@@ -9,10 +9,12 @@ import urllib.request
 Парсер для сайта застройщика 'CapitalGroup', проект 'Триколор'
 """
 
+
 class PagePerser:
     """
     Производит открытие страницы, её первичную обработку
     """
+
     def __init__(self, url: str):
         self.__url = url
         self.__page = ""
