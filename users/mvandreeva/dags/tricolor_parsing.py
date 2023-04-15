@@ -1,18 +1,16 @@
 #!/usr/local/bin/python
 # coding: utf-8
 
+from typing import Any, Dict, Optional
 from bs4 import BeautifulSoup
-import urllib
-import urllib.request
 
 import openapi_client
 from pprint import pprint
 from openapi_client.apis.tags import history_api
 from openapi_client.model.history import History
-from openapi_client.model.paginated_history_list import PaginatedHistoryList
-from openapi_client.model.patched_history import PatchedHistory
 
-from typing import Any, Dict, Union
+# from openapi_client.model.paginated_history_list import PaginatedHistoryList
+# from openapi_client.model.patched_history import PatchedHistory
 
 from page_parsing import PagePerser
 
@@ -35,8 +33,7 @@ class TricolorParser:
         except:
             print("Error in getting items_list", self.__url)
         self.__dict_list = []  # type: list[dict]
-        # self.__dict: Dict[str, Any] = {}
-        
+
     CATEGORY = "Новостройки"
     CEILINGHEIGHT = 3  # здесь написано в тексте https://cg-tricolor.ru/catalog
     COMPLETION_QUARTER = 4  # нашла на циане
@@ -51,9 +48,7 @@ class TricolorParser:
         """
         Метод наполняет данными словарь
         """
-        item_dict = (
-            {}
-        )  # приходится копировать словарь и все наполнение в аналогичный метод class TricolorParserFFile(TricolorParser)
+        item_dict: Dict[str, Any] = {}
         # item_dict["quantity"] = 1
         item_dict["bulding"] = self._get_bulding(item)
         bulding_str = str(item_dict["bulding"])
@@ -124,7 +119,7 @@ class TricolorParser:
             address = None
         return address
 
-    def _get_bulding(self, item: object) -> int:
+    def _get_bulding(self, item: object) -> Optional[int]:
         """
         Получает номер корпуса
         """
@@ -135,8 +130,6 @@ class TricolorParser:
         else:
             building = None
         return building
-
-
 
     def get_dict_list(self) -> list:
         """
@@ -152,9 +145,9 @@ class TricolorParser:
             self.__dict_list.append(item_dict)
         return self.__dict_list
 
-    def _get_floor(self, item: object) -> int:
+    def _get_floor(self, item: object) -> Optional[int]:
         """
-        Получает этаж 
+        Получает этаж
         """
         flat_data = item.findAll("td")
         if flat_data:
@@ -164,9 +157,9 @@ class TricolorParser:
             floor = None
         return floor
 
-    def _get_item_url(self, item: object) -> str: 
+    def _get_item_url(self, item: object) -> str:
         """
-        Получает URL для конкретой квартиры 
+        Получает URL для конкретой квартиры
         """
         flat_data = item.findAll("a", class_="results__link")
         if flat_data:
@@ -184,7 +177,7 @@ class TricolorParser:
 
     def _get_plan(self, item: object) -> str:
         """
-        Получает ссылку на план конкретой квартиры 
+        Получает ссылку на план конкретой квартиры
         """
         plan_data = item.findAll("img")
         if plan_data:
@@ -193,9 +186,9 @@ class TricolorParser:
             plan = None
         return plan
 
-    def _get_price(self, item: object) -> int:
+    def _get_price(self, item: object) -> Optional[int]:
         """
-        Получает цену квартиры 
+        Получает цену квартиры
         """
         flat_data = item.findAll("td", {"sorttable_customkey": "37775845"})
         if flat_data:
@@ -214,7 +207,7 @@ class TricolorParser:
 
     def _get_project(self):
         """
-        Получает название проекта 
+        Получает название проекта
         """
         try:
             project_data = self.__b_soup.findAll("div", class_="site-aside__container")
@@ -227,11 +220,9 @@ class TricolorParser:
             project = None
         return project
 
-    # def _det_rooms_data(self, item: object) -> int: # добавлю в _get_title(), т.к. есть только в title
-
-    def _get_square(self, item: object) -> int:
+    def _get_square(self, item: object) -> Optional[int]:
         """
-        Получает площадь квартиры 
+        Получает площадь квартиры
         """
         flat_data = item.findAll("td")
         if flat_data:
@@ -241,7 +232,7 @@ class TricolorParser:
             square = None
         return square
 
-    def _get_title_flat_page(self, item: object) -> str: # не используется
+    def _get_title_flat_page(self, item: object) -> str:  # не используется
         """
         Метод получает наименование квартиры, переходя на сайт с отдельной квартирой
         """
@@ -336,7 +327,7 @@ class TricolorParser:
 
 class TricolorParserFFile(TricolorParser):
     """
-    Собирает данные страницы, скачанной с сайта https://cg-tricolor.ru/catalog/flats в файл 'sources/tricolor' очищает их, сохряняет
+    Получает данные из файла 'sources/tricolor' очищает их, сохряняет
     """
 
     def __init__(self, page_text):
@@ -380,10 +371,11 @@ class TricolorParserFFile(TricolorParser):
             return self.__dict_list
         else:
             print("Error in getting Items List")
+            return self.__dict_list
 
     def _get_project(self):
         """
-        Получает название проекта 
+        Получает название проекта
         """
         try:
             project_data = self.__b_soup.findAll("div", class_="site-aside__container")

@@ -10,7 +10,7 @@ from tricolor_parsing import TricolorParser
 # from users.amtsu.d221204t1902.TrialSportPageProcessing import TrialSportServiceProcessing
 
 with DAG(
-    dag_id="tricolor", start_date=datetime(2023, 4, 14), schedule="0 0 * * *"
+    dag_id="tricolor", start_date=datetime(2023, 3, 14), schedule="0 0 * * *"
 ) as dag:
 
     start = BashOperator(
