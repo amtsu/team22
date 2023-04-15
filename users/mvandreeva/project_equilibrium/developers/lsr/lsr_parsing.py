@@ -28,7 +28,7 @@ class LSRParser:
         except:
             print("Error in getting items_list", self.__url)
         self.__dict_list = []  # type: list[dict]
-
+        
     CATEGORY = "Новостройки"
     # CEILINGHEIGHT = 3  # здесь написано в тексте https://cg-tricolor.ru/catalog
     # COMPLETION_QUARTER = 4  # нашла на циане
@@ -95,34 +95,40 @@ class LSRParser:
 #         # item_dict["apartment_location_lon"] = e["location"].split(',')[1][:9]
 #         return item_dict
 
-    def _get_address(self, project_name) -> str: # брать со страницы квартиры или прописать жестко или из контактов брать
+    def get_address(self, project_name) -> str: # брать со страницы квартиры или прописать жестко или из контактов брать
         """
         Получает адрес ЖК
         """
         
-        try:
-            # print(self.__b_soup)
-            contacts_data = self.__b_soup.findAll("a", class_="col-prefix-2 col-suffix-2 col-md-prefix-1 col-md-suffix-1 col-bg-suffix-0 col-xlg-suffix-0 col-xlg-prefix-1 b-footer__ttl-link")
-            contacts_url_data = contacts_data[0]["href"]
-            contacts_url = "https://www.lsr.ru/" + contacts_url_data
-            contacts_page = PagePerser(contacts_url)
-            contacts_b_soup = contacts_page.use_b_soup()
-            address_data = contacts_b_soup.findAll("div", class_ = "col-32 col-md-16 col-bg-10 col-lg-7 col-lg-post-1 col-xlg-7 col-xlg-post-1 b-contacts__item j-map-address")
-            for data in address_data:
-                if project_name in data:
-                    # address = # подумать, как вытянуть адрес (вычесть вначале длину названия проекта и до "+"
-            # print(address_data)
-            address_bad = address_data[0].text
-            address_bad = address_bad.replace("\n", "")
-            address_bad = address_bad.replace(
-                "                            +7 (495) 771 77 52                        ",
-                "",
-            )
-            address = address_bad.strip()
-            # pprint(address_bad)
-        except:
-            print("Error in getting address")  # , self.__url)
-            address = None
+        # try:
+            
+        print(self.__b_soup)
+        contacts_data = self.__b_soup.findAll("a", class_="col-prefix-2 col-suffix-2 col-md-prefix-1 col-md-suffix-1 col-bg-suffix-0 col-xlg-suffix-0 col-xlg-prefix-1 b-footer__ttl-link")
+        # pprint(contacts_data)
+        contacts_url_data = contacts_data[0]["href"]
+        contacts_url = "https://www.lsr.ru/" + contacts_url_data
+        contacts_page = PagePerser(contacts_url)
+        contacts_b_soup = contacts_page.use_b_soup()
+        address_data = contacts_b_soup.findAll("div", class_ = "col-32 col-md-16 col-bg-10 col-lg-7 col-lg-post-1 col-xlg-7 col-xlg-post-1 b-contacts__item j-map-address")
+        for data in address_data:
+            if project_name in data:
+                cut_begin = len(project_name) + 2
+                cut_stop = find("+",cut_begin)
+                address_full = data[0].text
+                address_bad = address_full[cut_begin:cut_stop]# подумать, как вытянуть адрес (вычесть вначале длину названия проекта и до "+"
+        # print(address_data)
+        # address_bad = address_data[0].text
+                address_bad = address_bad.replace("\n", "")
+        # address_bad = address_bad.replace(
+        #     "                            +7 (495) 771 77 52                        ",
+        #     "",
+        # )
+        # address = address_bad.strip()
+                pprint(address_bad)
+                
+        # except:
+        #     print("Error in getting address")  # , self.__url)
+        #     address = None
         return address
 
 #     def _get_bulding(self, item: object) -> int:
