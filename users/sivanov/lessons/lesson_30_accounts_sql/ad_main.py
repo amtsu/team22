@@ -245,7 +245,6 @@ def show_interface():
     пользовательский крутой консольный интерфейс к базе.
     пока будет как одна функция, может быть имеет смысл его разбить
     """
-    database = AdDatabase("Accounts.db")
     indexer = (str(i) for i in range(1, 100))
     interface_contents = [
         {
@@ -284,16 +283,17 @@ def show_interface():
         #        },
     ]
     is_working = True
-    while is_working:
-        for task in interface_contents:
-            print(f"{task['key']}:{task['name']}")
-        user_responce = input("Введите номер желаемого действия:")
-        user_responce = user_responce.strip()
-        for task in interface_contents:
-            if task["key"] == user_responce:
-                # print("=============================")
-                if task["foo"](db=database) is False:
-                    is_working = False
+    with AdDatabase("Accounts.db") as database: #TODO E1129
+        while is_working:
+            for task in interface_contents:
+                print(f"{task['key']}:{task['name']}")
+            user_responce = input("Введите номер желаемого действия:")
+            user_responce = user_responce.strip()
+            for task in interface_contents:
+                if task["key"] == user_responce:
+                    # print("=============================")
+                    if task["foo"](db=database) is False:
+                        is_working = False
 
 
 # ==============================================================================
