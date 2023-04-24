@@ -66,6 +66,19 @@ class AdDatabase:
         Интерфейс для sqlite3.connection.create_function
         """
         self.__conn.create_function(args, kwargs)
-
-
+    # ==============================================================================    
+    def __enter__(self):
+        """
+        начало контекста
+        """
+        pass
+    # ==============================================================================  
+    def __exit__(self, exc_type, exc_value, traceback):
+        """
+        конец контекста
+        """
+        self.__cur = None
+        self.__conn.close()
+        print('exit exception text: %s' % exc_value)
+        return True
 # ==============================================================================
