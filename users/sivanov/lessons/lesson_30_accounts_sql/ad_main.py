@@ -207,20 +207,26 @@ def import_data_from_excel_csv(*args, **kwargs):
     filename = input("Введите имя файла с данными: ")
     employees = []
     departments = []
-    with open(filename, "r",encoding="utf-8") as fin:
-        for line in fin:
-            raw_data = line.strip().split(";")
-            employees.append(
-                (
+    try:
+        with open(filename, "r",encoding="utf-8") as fin:
+            for line in fin:
+                raw_data = line.strip().split(";")
+                employees.append(
+                    (
                     raw_data[0],
                     raw_data[1],
                     raw_data[2],
                     raw_data[4],
                     raw_data[3],
+                    )
                 )
-            )
-            if (raw_data[4],) not in departments:
-                departments.append((raw_data[4],))
+                if (raw_data[4],) not in departments:
+                    departments.append((raw_data[4],))
+    except FileNotFoundError:
+        print("="*30)
+        print("Файл не найден, импорт не выполнен!")
+        print("="*30)
+        return
     # заполнить таблицу отделов
     dep_sql_template = "INSERT INTO Departments (name) values(?)"
     kwargs["db"].executemany(dep_sql_template, departments)
