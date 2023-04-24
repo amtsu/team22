@@ -156,10 +156,11 @@ def show_average_salary_by_deps(*args, **kwargs):
     """
     average_data = kwargs["db"].execute(
         """
-        SELECT d.name, avg(e.salary)
+        SELECT d.name, avg(e.salary) avg_sal
         FROM Employees e
         JOIN  Departments d WHERE e.dep_id = d.id
         GROUP BY d.name
+        ORDER BY avg_sal DESC
         """
     )
     width = 1 + 30 + 1 + 20 + 1
