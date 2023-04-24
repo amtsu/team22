@@ -1,7 +1,7 @@
 """
 основной файл работы с базой данных бухгалтерии (accounts department)
 """
-from AdDatabaseStuff import AdDatabase
+from ad_database_stuff import AdDatabase
 
 # ==============================================================================
 def go_away(*args, **kwargs):
@@ -19,7 +19,8 @@ def show_all_employees_data(*args, **kwargs):
     """
     result = kwargs["db"].execute(
         """
-        SELECT e.id, e.name, e.secname, e.surname, e.salary, d.name  FROM Employees e
+        SELECT e.id, e.name, e.secname, e.surname, e.salary, d.name
+        FROM Employees e
         JOIN  Departments d WHERE e.dep_id = d.id
         """
     )
@@ -34,12 +35,14 @@ def show_all_employees_data(*args, **kwargs):
         "Название отдела",
     )
     print(
-        f"|{t_caption[0]:4}|{t_caption[1]:20}|{t_caption[2]:20}|{t_caption[3]:20}|{t_caption[4]:^10}|{t_caption[5]:^30}|"
+        f"|{t_caption[0]:4}|{t_caption[1]:20}|{t_caption[2]:20}|"
+        f"{t_caption[3]:20}|{t_caption[4]:^10}|{t_caption[5]:^30}|"
     )
     print("=" * width)
     for record in result:
         print(
-            f"|{record[0]:4}|{record[3]:20}|{record[1]:20}|{record[2]:20}|{record[4]:^10}|{record[5]:^30}|"
+            f"|{record[0]:4}|{record[3]:20}|{record[1]:20}|{record[2]:20}|"
+            f"{record[4]:^10}|{record[5]:^30}|"
         )
     print("=" * width)
 
@@ -79,7 +82,7 @@ def enter_department_id_interactive(*args, **kwargs):
     departments = kwargs["db"].execute("SELECT id FROM Departments")
     department_id = None
     trash_input = False
-    while type(department_id) != type(1):
+    while not isinstance(department_id, int):
         department_id = input("Номер отдела (hint для вывода списка отделов): ")
         department_id = department_id.strip().lower()
         if department_id == "hint":
@@ -107,8 +110,8 @@ def add_employee(*args, **kwargs):
     secname = input("Отчество: ")
     dep_id = enter_department_id_interactive(db=kwargs["db"])
     salary = input("Зарплата: ")
-    result = kwargs["db"].execute(
-        f"""
+    kwargs["db"].execute(
+        """
         INSERT INTO Employees (name, secname, surname, dep_id, salary)
         values(?,?,?,?,?)
         """,
@@ -137,8 +140,8 @@ def add_department(*args, **kwargs):
     добавить новый отдел в БД
     """
     name = input("Название отдела: ")
-    result = kwargs["db"].execute(
-        f"""
+    kwargs["db"].execute(
+        """
         INSERT INTO Departments (name)
         values(?)
         """,
@@ -183,7 +186,7 @@ def export_data_to_excel_csv(*args, **kwargs):
         JOIN  Departments d WHERE e.dep_id = d.id
         """
     )
-    with open("export.csv", "w") as fout:
+    with open("export.csv", "w",encoding="utf-8") as fout:
         for record in result:
             out_str = ""
             for element in record:
@@ -197,13 +200,6 @@ def export_data_to_excel_csv(*args, **kwargs):
 
 
 # ==============================================================================
-def get_departement_id(departement_name: str) -> int:
-    dep_id = 0
-
-    return dep_id
-
-
-# ==============================================================================
 def import_data_from_excel_csv(*args, **kwargs):
     """
     импорт данных из экселевского csv - с разделителями - ";"
@@ -211,7 +207,7 @@ def import_data_from_excel_csv(*args, **kwargs):
     filename = input("Введите имя файла с данными: ")
     employees = []
     departments = []
-    with open(filename, "r") as fin:
+    with open(filename, "r",encoding="utf-8") as fin:
         for line in fin:
             raw_data = line.strip().split(";")
             employees.append(
@@ -227,10 +223,12 @@ def import_data_from_excel_csv(*args, **kwargs):
                 departments.append((raw_data[4],))
     # заполнить таблицу отделов
     dep_sql_template = "INSERT INTO Departments (name) values(?)"
-    result = kwargs["db"].executemany(dep_sql_template, departments)
-    # тут узкое место, я знаю как сделать это средствами питона, но интересно как сделать это средствами sql
-    emp_sql_template = "INSERT INTO Employees (name, secname, surname, dep_id, salary) values(?,?,?,(SELECT id FROM Departments WHERE name like ?),?)"
-    result = kwargs["db"].executemany(emp_sql_template, employees)
+    kwargs["db"].executemany(dep_sql_template, departments)
+    # тут узкое место, я знаю как сделать это средствами питона,
+    # но интересно как сделать это средствами sql
+    emp_sql_template = "INSERT INTO Employees (name, secname, surname, dep_id, salary) \
+                        values(?,?,?,(SELECT id FROM Departments WHERE name like ?),?)"
+    kwargs["db"].executemany(emp_sql_template, employees)
     print("Импорт завершен!")
     print("=" * 20)
 

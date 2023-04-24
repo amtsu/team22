@@ -25,8 +25,14 @@ class AdDatabase:
             pass
         try:
             self.__cur.execute(
-                """CREATE TABLE Employees (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, secname TEXT, 
-                surname TEXT, dep_id INTEGER, salary INTEGER, FOREIGN KEY (dep_id) REFERENCES Departments(id))"""
+                """CREATE TABLE Employees (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT,
+                secname TEXT,
+                surname TEXT,
+                dep_id INTEGER,
+                salary INTEGER,
+                FOREIGN KEY (dep_id) REFERENCES Departments(id))"""
             )
         except sqlite3.OperationalError:
             pass
