@@ -24,8 +24,14 @@ class SqlRequester:
         Интерфейс для cursor.execute
         """
         # print(template_request)
-        self.__cur.execute(template_request, data)
-        return self.__cur.fetchall()
+        result = []
+        try:
+            self.__cur.execute(template_request, data)
+            result = self.__cur.fetchall()
+        except sqlite3.OperationalError as e:
+            print(f"Фигня случилась...{e}")
+            pass
+        return result
 
     # ==============================================================================
     def executemany(self, template_request, data):
