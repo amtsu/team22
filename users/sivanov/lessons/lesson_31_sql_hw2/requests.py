@@ -289,7 +289,13 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Найти сколько раз встречается в таблице записи с одинаковым названием и ценой",
         "sql": """
-                SELECT 1
+            SELECT COUNT(1) AS "number of entries"
+                ,title
+                ,price_sale
+            FROM products_history
+            GROUP BY title
+                ,price_sale
+            ORDER BY title
                 """,
     }
     interface_contents.append(item)
@@ -298,7 +304,13 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Найти максимальную и минимальную дату появления товара в таблице",
         "sql": """
-                SELECT 1
+            SELECT min(datetime_create) AS MinDate
+                ,max(datetime_create) AS MaxDate
+                ,title
+                ,count(1) AS Entities
+            FROM products_history ph
+            GROUP BY title
+            ORDER BY MinDate LIMIT 50
                 """,
     }
     interface_contents.append(item)
@@ -308,7 +320,11 @@ def initialize_requests():
         "name": """Найти количество товаров и их среднюю стоимость (округленную до двух знаков после запятой)
     появившихся в таблице в перод с 13 часов 7-го декабря 2022, до 10 декабря 2022 (не включая его)""",
         "sql": """
-                SELECT 1
+            SELECT count(1) AS Entities
+                ,ROUND(AVG(price_sale), 2) AS Average_price
+            FROM products_history
+            WHERE datetime_create >= '2022-12-07 13:00:00.00'
+                AND datetime_create < '2022-12-10'
                 """,
     }
     interface_contents.append(item)
@@ -320,7 +336,16 @@ def initialize_requests():
     если длина title больше 10 символов, но меньше 20, вывести "норм"; 
     в любом другом случае вывести "мало букв";""",
         "sql": """
-                SELECT 1
+            SELECT COUNT(1) AS Entities
+                ,CASE 
+                    WHEN LENGTH(title) < 10
+                        THEN 'мало букв'
+                    WHEN LENGTH(title) > 20
+                        THEN 'много букв'
+                    ELSE 'Норм'
+                    END AS Name
+            FROM products_history ph
+            GROUP BY Name
                 """,
     }
     interface_contents.append(item)
@@ -329,7 +354,7 @@ def initialize_requests():
         "key": next(indexer),
         "name": "В sql решить пример (100+99)/2 + (95-5)/3.",
         "sql": """
-                SELECT 1
+                SELECT (100+99)/2. + (95-5)/3. AS result
                 """,
     }
     interface_contents.append(item)
