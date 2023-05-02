@@ -136,7 +136,7 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Добавить столбец \"Количество товаров в магазине\"",
         "sql": """
-                SELECT 1
+            ALTER TABLE products_history ADD goods_quantity INTEGER NOT NULL DEFAULT 0
                 """,
     }
     interface_contents.append(item)
@@ -145,7 +145,10 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Посчитать количество товаров в названиях которых есть \"Лыжный комплект\" и \"Игрушка для собак\".",
         "sql": """
-                SELECT 1
+            SELECT count(1)
+            FROM products_history ph
+            WHERE title LIKE "Лыжный комплект%"
+                OR title LIKE "Игрушка для собак%";
                 """,
     }
     interface_contents.append(item)
@@ -154,7 +157,11 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Вывести среднюю стоимость товаров типа виски",
         "sql": """
-                SELECT 1
+            SELECT DISTINCT title
+                ,price_sale
+            FROM products_history ph
+            WHERE title LIKE "Виски%"
+
                 """,
     }
     interface_contents.append(item)
@@ -417,6 +424,16 @@ def initialize_requests():
                 """,
     }
     interface_contents.append(item)
+    # ============================================================================
+    item = {
+        "key": next(indexer),
+        "name": "Вывести информацию о структуре таблицы products_history",
+        "sql": """
+                    PRAGMA table_info(products_history)
+                    """,
+    }
+    interface_contents.append(item)
+
     # ============================================================================
     # item = {
     #     "key": next(indexer),
