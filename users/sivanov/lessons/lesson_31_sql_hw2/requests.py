@@ -181,7 +181,9 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Упорядочить товары по цене",
         "sql": """
-                SELECT 1
+            SELECT DISTINCT title, price_sale FROM products_history ph 
+            ORDER BY price_sale DESC
+            LIMIT 200
                 """,
     }
     interface_contents.append(item)
@@ -190,7 +192,22 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Вывести 5 самых дорогих и самых дешевых товара",
         "sql": """
-                SELECT 1
+            SELECT DISTINCT title
+                ,price_sale
+            FROM products_history
+            WHERE id IN (
+                    SELECT id
+                    FROM products_history ph
+                    GROUP BY ph.title
+                    ORDER BY max(ph.price_sale) DESC limit 5
+                    )
+                OR id IN (
+                    SELECT id
+                    FROM products_history ph
+                    GROUP BY ph.title
+                    ORDER BY min(ph.price_sale) ASC limit 5
+                    )
+            ORDER BY price_sale ASC
                 """,
     }
     interface_contents.append(item)
@@ -199,7 +216,9 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Дать псевдоним столбцу 'price_sale' и вывести цену 2 товаров из таблицы",
         "sql": """
-                SELECT 1
+            SELECT price_sale AS price
+                ,title
+            FROM products_history ph LIMIT 2
                 """,
     }
     interface_contents.append(item)
@@ -244,7 +263,14 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Вывести не более 50 записей для товаров, цена которых не больше чем цена товара, пятого по дешевизне",
         "sql": """
-                SELECT 1
+            SELECT *
+            FROM products_history ph
+            WHERE price_sale IN (
+                    SELECT DISTINCT price_sale
+                    FROM products_history
+                    ORDER BY price_sale ASC limit 5
+                    )
+            ORDER BY price_sale limit 50
                 """,
     }
     interface_contents.append(item)
@@ -253,7 +279,11 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Вывести название и среднюю цену всех товаров, у которых со временем цена менялась",
         "sql": """
-                SELECT 1
+            SELECT ph.title
+                ,avg(ph.price_sale)
+            FROM products_history ph
+            GROUP BY title
+            HAVING MIN(price_sale) < MAX(price_sale);
                 """,
     }
     interface_contents.append(item)
@@ -262,7 +292,18 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Вывести среднюю цену соленых огурцов за 6 декабря",
         "sql": """
-                SELECT 1
+            SELECT avg(price_sale)
+            FROM products_history ph
+            WHERE (
+                    title LIKE "Огур%"
+                    OR title LIKE "% огур%"
+                    )
+                AND (
+                    title LIKE "%соленые%"
+                    OR title LIKE "Соленые%"
+                    )
+                AND datetime_create > ('2022-12-06')
+                AND datetime_create < ('2022-12-07')
                 """,
     }
     interface_contents.append(item)
@@ -271,7 +312,25 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Вывести название и среднюю цену всех товаров, у которых со временем цена изменилась",
         "sql": """
-                SELECT 1
+            WITH price_checker
+            AS (
+                SELECT title
+                    ,FIRST_VALUE(price_sale) OVER (
+                        PARTITION BY title ORDER BY datetime_create ASC
+                        ) AS first_price
+                    ,FIRST_VALUE(price_sale) OVER (
+                        PARTITION BY title ORDER BY datetime_create DESC
+                        ) AS last_price
+                FROM products_history
+                )
+            SELECT pc.title
+                ,first_price
+                ,last_price
+                ,avg(ph.price_sale)
+            FROM price_checker pc
+            JOIN products_history ph ON pc.title = ph.title
+            GROUP BY ph.title
+            HAVING first_price <> last_price
                 """,
     }
     interface_contents.append(item)
@@ -280,7 +339,7 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Заменить во всей таблице в названии товара слово \"вино\" на \"винишко\" (а \"Вино\" на \"Винишко\", чтобы красиво было)",
         "sql": """
-                SELECT 1
+                SELECT "Не готово"
                 """,
     }
     interface_contents.append(item)
