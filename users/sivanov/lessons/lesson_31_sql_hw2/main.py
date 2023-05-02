@@ -24,6 +24,7 @@ def user_interface(interface_contents):
                 else:
                     result = auchan_sql_requester.execute(task["sql"])
                     print("\n".join(map(str, result)))
+                    dummy_responce = input("Нажмите Enter чтобы продолжить...")
 
     auchan_sql_requester.close()
 
