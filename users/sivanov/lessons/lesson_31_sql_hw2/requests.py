@@ -12,12 +12,12 @@ def initialize_requests():
             SELECT title
             FROM products_history
             WHERE (
-		            title LIKE "Молоко %"
-		            OR title LIKE "% молоко"
-		            OR title LIKE "% молоко %"
-		            OR title LIKE "% молоко,%"
-		    )
-	        AND price_sale > 50
+                    title LIKE "Молоко %"
+                    OR title LIKE "% молоко"
+                    OR title LIKE "% молоко %"
+                    OR title LIKE "% молоко,%"
+                    )
+                AND price_sale > 50
         """,
     }
     interface_contents.append(item)
@@ -102,11 +102,11 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Выбрать 50 товаров, цена которых больше 50'000 и отсортировать по убыванию по цене",
         "sql": """
-                SELECT title
-                    ,price_sale
-                FROM products_history
-                WHERE price_sale > 50000
-                ORDER BY price_sale DESC LIMIT 50
+            SELECT title
+                ,price_sale
+            FROM products_history
+            WHERE price_sale > 50000
+            ORDER BY price_sale DESC LIMIT 50
                 """,
     }
     interface_contents.append(item)
@@ -115,9 +115,9 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Изменить все названия в которых есть слово \"Вино\" в столбце \"title\" на \"Винишко\"",
         "sql": """
-                UPDATE products_history
-                SET title = "Винишко"
-                WHERE title LIKE 'Вино%' 
+            UPDATE products_history
+            SET title = "Винишко"
+            WHERE title LIKE 'Вино%' 
                 """,
     }
     interface_contents.append(item)
@@ -173,7 +173,6 @@ def initialize_requests():
                 ,price_sale
             FROM products_history ph
             WHERE title LIKE "Виски%"
-
                 """,
     }
     interface_contents.append(item)
@@ -246,7 +245,10 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Вывести 5 названий шоколадок с ценой до 120 рублей",
         "sql": """
-                SELECT 1
+            SELECT title
+            FROM products_history ph
+            WHERE title LIKE "Шоколад %"
+                AND price_sale < 120
                 """,
     }
     interface_contents.append(item)
@@ -255,7 +257,9 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Вывести максимальную стоимость шоколадки",
         "sql": """
-                SELECT 1
+            SELECT max(price_sale)
+            FROM products_history ph
+            WHERE title LIKE "Шоколад %"
                 """,
     }
     interface_contents.append(item)
@@ -264,7 +268,11 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Вывести 3 названия шоколадок и цен на них, отфильтрованных по убыванию по цене",
         "sql": """
-                SELECT 1
+            SELECT DISTINCT title
+                ,price_sale
+            FROM products_history ph
+            WHERE title LIKE "Шоколад %"
+            ORDER BY price_sale DESC LIMIT 3
                 """,
     }
     interface_contents.append(item)
@@ -273,7 +281,13 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Вывести названия шоколадок, у которых повторяющиеся цены - 5 шт",
         "sql": """
-                SELECT 1
+            SELECT title
+                ,price_sale
+                ,COUNT(price_sale) AS repeats
+            FROM products_history ph
+            WHERE title LIKE "Шоколад %"
+            GROUP BY price_sale
+            HAVING repeats > 1 LIMIT 5
                 """,
     }
     interface_contents.append(item)
