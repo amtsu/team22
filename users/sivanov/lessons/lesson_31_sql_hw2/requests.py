@@ -249,6 +249,7 @@ def initialize_requests():
             FROM products_history ph
             WHERE title LIKE "Шоколад %"
                 AND price_sale < 120
+            LIMIT 5
                 """,
     }
     interface_contents.append(item)
