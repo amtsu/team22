@@ -391,7 +391,8 @@ def initialize_requests():
             FROM products_history
             GROUP BY title
                 ,price_sale
-            ORDER BY title
+            ORDER BY "number of entries" DESC
+            LIMIT 50
                 """,
     }
     interface_contents.append(item)
