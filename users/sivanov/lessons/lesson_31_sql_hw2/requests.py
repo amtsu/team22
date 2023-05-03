@@ -116,9 +116,8 @@ def initialize_requests():
         "name": "Изменить все названия в которых есть слово \"Вино\" в столбце \"title\" на \"Винишко\"",
         "sql": """
                 UPDATE products_history
-                SET title = replace(title, 'Вино', 'Винишко')
-                WHERE title LIKE 'Вино%'
-
+                SET title = "Винишко"
+                WHERE title LIKE 'Вино%' 
                 """,
     }
     interface_contents.append(item)
@@ -127,7 +126,10 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Посчитать сумму стоимости товаров с id от 2877 до 2922",
         "sql": """
-                SELECT 1
+            SELECT sum(price_sale)
+            FROM products_history ph
+            WHERE id >= 2876
+                AND id <= 2922
                 """,
     }
     interface_contents.append(item)
@@ -356,7 +358,10 @@ def initialize_requests():
         "key": next(indexer),
         "name": "Заменить во всей таблице в названии товара слово \"вино\" на \"винишко\" (а \"Вино\" на \"Винишко\", чтобы красиво было)",
         "sql": """
-                SELECT "Не готово"
+            UPDATE products_history
+            SET title = replace(title, 'ино', 'инишко')
+            WHERE title LIKE 'Вино%'
+                OR title LIKE '%вино %'
                 """,
     }
     interface_contents.append(item)
