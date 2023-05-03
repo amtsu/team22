@@ -4,6 +4,7 @@
 from stuff import SqlRequester
 from requests import initialize_requests
 
+
 def user_interface(interface_contents):
     """
     пользовательский крутой консольный интерфейс к базе.

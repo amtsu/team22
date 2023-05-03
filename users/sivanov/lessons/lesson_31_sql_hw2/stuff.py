@@ -28,9 +28,8 @@ class SqlRequester:
         try:
             self.__cur.execute(template_request, data)
             result = self.__cur.fetchall()
-        except sqlite3.OperationalError as e:
-            print(f"Фигня случилась...{e}")
-            pass
+        except sqlite3.OperationalError as error:
+            print(f"Фигня случилась...{error}")
         return result
 
     # ==============================================================================
@@ -55,8 +54,7 @@ class SqlRequester:
         """
         self.__conn.create_function(args, kwargs)
 
-
-# ==============================================================================
+    # ==============================================================================
     def close(self):
         """
         Интерфейс для sqlite3.connection.close
@@ -65,4 +63,6 @@ class SqlRequester:
         self.__conn.close()
         self.__cur = None
         self.__conn = None
+
+
 # ==============================================================================
