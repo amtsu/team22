@@ -61,6 +61,7 @@ class SqlRequester:
         """
         Интерфейс для sqlite3.connection.close
         """
+        self.__cur.close()
         self.__conn.close()
         self.__cur = None
         self.__conn = None
