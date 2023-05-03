@@ -1,5 +1,7 @@
 # ==============================================================================
+"""
 это модуль, в который я вынес метод, возвращающий словарик с запросами
+"""
 # ==============================================================================
 def initialize_requests():
     """
@@ -146,14 +148,14 @@ def initialize_requests():
     interface_contents.append(item)
     # ============================================================================
     # лол, это не работает
-    # item = {
-    #     "key": next(indexer),
-    #     "name": "Удалить столбец \"Количество товаров в магазине\"",
-    #     "sql": """
-    #         ALTER TABLE products_history DROP COLUMN goods_quantity
-    #             """,
-    # }
-    # interface_contents.append(item)
+    item = {
+         "key": next(indexer),
+         "name": "Удалить столбец \"Количество товаров в магазине\"",
+         "sql": """
+             ALTER TABLE products_history DROP COLUMN goods_quantity
+                 """,
+    }
+    interface_contents.append(item)
     # ============================================================================
     item = {
         "key": next(indexer),
