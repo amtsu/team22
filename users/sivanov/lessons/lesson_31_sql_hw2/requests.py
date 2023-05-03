@@ -348,7 +348,7 @@ def initialize_requests():
         "sql": """
             WITH price_checker
             AS (
-                SELECT title
+                SELECT DISTINCT title
                     ,FIRST_VALUE(price_sale) OVER (
                         PARTITION BY title ORDER BY datetime_create ASC
                         ) AS first_price
