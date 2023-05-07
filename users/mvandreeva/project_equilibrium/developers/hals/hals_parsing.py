@@ -52,15 +52,10 @@ class HALSParser:
         
     BRAND_URL = "https://hals-development.ru"
     CATEGORY = "Новостройки"
-#     CEILINGHEIGHT = 3  # здесь написано в тексте https://cg-tricolor.ru/catalog
-    # CITY = "Москва"
-    COMPLETION_QUARTER_KOSMO = 4  # на дом.pa
-    COMPLETION_YEAR_KOSMO = 2024  # на дом.pa
-#     DEVELOPER = "Capital Group"
-#     FLOORS_TOTAL_B1 = 58  # нашла на циане
-#     FLOORS_TOTAL_B2 = 10
-#     FLOORS_TOTAL_B3 = 58
-#     FLOORS_TOTAL_B4 = 38
+    COMPLETION_QUARTER_KOSMO = 4  # на дом.pф
+    COMPLETION_YEAR_KOSMO = 2024  # на дом.pф
+    FLOORS_TOTAL_K = 9  # нашла на дом.рф для космо 4/22
+
 
 #     @none_to_zero
     def _fill_dict(self, item: object, item_dict: dict) -> dict:
@@ -82,9 +77,10 @@ class HALSParser:
             "apartment_completion_quarter"
         ] = self.COMPLETION_QUARTER_KOSMO  # на дом.pa
         item_dict["apartment_completion_year"] = self.COMPLETION_YEAR_KOSMO  # на дом.pa
+        one_item_url  = item_dict["url"]
         item_dict[
             "apartment_ceilingheight"
-        ] = self._get_ceilingheight(item_dict["url"])  
+        ] = self._get_ceilingheight(one_item_url)  
 
 #         if item_dict["bulding"] == 1:
 #             item_dict["apartment_floors_total"] = self.FLOORS_TOTAL_B1
@@ -113,7 +109,8 @@ class HALSParser:
         address_data = project.findAll("div", class_ = "index__projects__dop-info--metro")
         if address_data:
             address_bad = address_data[0].text
-            address_bad = address_bad.replace("&nbsp;", "")
+            address_bad = address_bad.replace("&nbsp;", " ")
+            address_bad = address_bad.replace("\xa0", " ")
             address = address_bad.strip()
         else:
             print("Error in getting address")  
@@ -161,20 +158,36 @@ class HALSParser:
             building = None
         return building
     
-    def _get_ceilingheight(self, item_dict_url: str) -> Optional[int]:
-        page = PagePerser(item_dict_url)
+    def _get_ceilingheight(self, one_item_url: str) -> Optional[float]:
+        page = PagePerser(one_item_url)
         b_soup = page.use_b_soup()
         try:
-            ceil_data = b_soup.findAll("div", class_="realty-flat__options2")
-            for data in ceil_data:
-                if not data.find("Высота потолка, м") == -1:
-                    ceil_d = data.findAll("div")
-                    ceil_bad = ceil_d.text
-                    ceil_bad = ceil_bad.replace(",",".")
-                    ceilingheight = float(ceil_bad)
+            full_data = b_soup.findAll("div", class_="realty-flat__options2")
+            for data in full_data:
+                c_data = data.findAll("div")
+                for data in c_data:
+                    # pprint(data)
+                    d_text = data.text
+                    f_text = d_text.find("Высота потолка, м")
+                    print(f_text)
+                    if not f_text == -1:
+                        c_div = data.findAll("div")
+                        # pprint(c_div)
+                        ceil_bad = c_div[0].text
+                        # pprint(ceil_bad)
+                        ceil_bad = ceil_bad.replace(",",".")
+                        ceil_bad = ceil_bad.replace("до ","")
+                        # pprint(ceil_bad)
+                        ceilingheight = float(ceil_bad)
+                        pprint(ceilingheight)
+                    # else:
+                    #     continue
+            return ceilingheight
+            
         except:
             print("Error in getting ceilingheight")
             ceilingheight = None
+            return ceilingheight
     
     # def _get_completion_data(self, b_soup: object) -> Optional[int]: # думала спарсить с дом.рф через кнопку "Документы", но она есть только на космо
 # решила пока отложить
@@ -227,6 +240,8 @@ class HALSParser:
             item_dict["full_address"] = self._get_address(project)
             item_dict["brand"] = brand_name
             item_dict["brand_url"] = self.BRAND_URL
+            if project == 'Космо 4/22':
+                item_dict["apartment_floors_total"] = self.FLOORS_TOTAL_K
             project_url = self._get_project_url(project)
             page = PagePerser(project_url)
             b_soup = page.use_b_soup()
@@ -271,14 +286,8 @@ class HALSParser:
         """
         Получает URL для конкретой квартиры 
         """
-        flat_data = item.findAll("a", class_ = "grid-item grid-item2")
-        print(flat_data)
-        if flat_data:
-            link = flat_data[0]["href"]
-            item_url = "https://hals-development.ru" + link
-        else:
-            print("Error in getting item_url")
-            item_url = None
+        link = item["href"]
+        item_url = "https://hals-development.ru" + link
         return item_url
 
     def _get_plan(self, item: object) -> Optional[str]:
