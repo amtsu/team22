@@ -14,13 +14,12 @@ from openapi_client.model.patched_history import PatchedHistory
 
 from typing import Any, Dict, Optional
 
-from page_parsing import PagePerser
+from users.mvandreeva.d221217_2227.page_parsing import PagePerser
 
 """
 Парсер для сайта застройщика 'ГАЛС'
 """
 def none_to_zero(function):
-    """ Декоратор переводит значения None в 0 или ''"""
     def wrapper(*args, **kwargs):
         d = function(*args, **kwargs)
         for key in d:
@@ -480,62 +479,66 @@ class HALSParser:
             print("Count load object =", len(self.__dict_list))
 
 
-class HALSParserFFile(HALSParser):
-    """
-    Собирает данные страницы, скачанной с сайта https://hals-development.ru/realty/residential в файл 'sources/hals' очищает их, сохряняет
-    """
+# class TricolorParserFFile(TricolorParser):
+#     """
+#     Собирает данные страницы, скачанной с сайта https://cg-tricolor.ru/catalog/flats в файл 'sources/tricolor' очищает их, сохряняет
+#     """
 
-    def __init__(self, page_text):
-        self.__url = None
-        self.__b_soup = BeautifulSoup(page_text, features="html.parser")
-        self.__project_list = self.__b_soup.findAll("div", class_ = "index__projects__item")
-        self.__dict_list = []
+#     def __init__(self, page_text):
+#         self.__url = None
+#         self.__b_soup = BeautifulSoup(page_text, features="html.parser")
+#         self.__items_list = self.__b_soup.findAll("tr", class_="results__tr")
+#         self.__dict_list = []
 
-    def get_dict_list(self) -> list:
-        """
-        Формирует список словарей с данными по квартирам
-        """
-        # self.__dict_list = []
-        brand_name = self._get_brand()
-        for project in self.__project_list:
-            item_dict = {}
-            item_dict["project"] = self._get_project(project)
-            item_dict["description"] = self._get_description(project)
-            item_dict["full_address"] = self._get_address(project)
-            item_dict["brand"] = brand_name
-            item_dict["brand_url"] = self.BRAND_URL
-            # if project == 'Космо 4/22':
-            #     item_dict["apartment_floors_total"] = self.FLOORS_TOTAL_K
-            project_url = self._get_project_url(project)
-            page = PagePerser(project_url)
-            b_soup = page.use_b_soup()
-            try:
-                items_list = b_soup.findAll("a", class_="grid-item grid-item2")
-            except:
-                print("Error in getting items_list", project_url)
-            for item in items_list: # парсит одну квартиру(наверно перезаписывает данные в словаре)
-                item_dict = self._fill_dict(item, item_dict)
-                item_dict[
-                    "source_url"
-                ] = self.__url  # какой указывать - на застройщика или на проект?
-                self.__dict_list.append(item_dict)
-        return self.__dict_list
+#     # @replace_none_to_zero_str
+#     def _get_address(self) -> Optional[str]:
+#         """
+#         Получает адрес ЖК
+#         """
+#         try:
+#             # print(self.__b_soup)
+#             address_data = self.__b_soup.findAll("div", class_="site-nav site-nav--tel")
+#             # print(address_data)
+#             address_bad = address_data[0].text
+#             address_bad = address_bad.replace("\n", "")
+#             address_bad = address_bad.replace(
+#                 "                            +7 (495) 771 77 52                        ",
+#                 "",
+#             )
+#             address = address_bad.strip()
+#             # pprint(address_bad)
+#         except:
+#             print("Error in getting address")  # , self.__url)
+#             address = None
+#         return address
 
-    def _get_brand(self) -> Optional[str]:
-        """
-        Получает наименование застройщика
-        """
-        footer_data = self.__b_soup.findAll("div", class_ = "footer2-copy")
-        if footer_data:
-            for data in footer_data:
-                brand_data = data.find("div")
-                brand_bad = brand_data.text
-                cut_begin = brand_bad.find(",")
-                cut_stop = brand_bad.find(".")
-                brand_bad = brand_bad[cut_begin:cut_stop]
-                brand_bad = brand_bad.replace(",", "")
-                brand = brand_bad.strip()
-        else:
-            print("Error in getting brand")  
-            brand = None
-        return brand
+#     def get_dict_list(self) -> list:
+#         """
+#         Формирует список словарей с данными по квартирам
+#         """
+#         if self.__items_list:
+#             for item in self.__items_list:
+#                 item_dict = self._fill_dict(item)
+#                 item_dict[
+#                     "source_url"
+#                 ] = self.__url  # Вывела отдельно, чтоб не было ошибки при наследовании
+#                 self.__dict_list.append(item_dict)
+#             return self.__dict_list
+#         else:
+#             print("Error in getting Items List")
+
+#     # @replace_none_to_zero_str
+#     def _get_project(self):
+#         """
+#         Получает название проекта 
+#         """
+#         try:
+#             project_data = self.__b_soup.findAll("div", class_="site-aside__container")
+#             # pprint(project_data)
+#             project_bad = project_data[0].text
+#             project = project_bad[-9:-1]
+#             # pprint(project)
+#         except:
+#             print("Error in getting project name")  # , self.__url)
+#             project = None
+#         return project
