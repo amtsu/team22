@@ -2,7 +2,7 @@
 # coding: utf-8
 """
 here is the bot
-and i still have troubles with russian
+team_22 бот выполняет простые sql запросы к тестовой базе
 """
 from datetime import datetime
 import sqlite3
@@ -12,7 +12,6 @@ import logging
 from aiogram import Bot, Dispatcher, executor, types  # type: ignore
 import superhomosecret
 
-# from functions import message_handler
 # =========================================================================
 # allowed
 logging.basicConfig(level=logging.INFO)
@@ -31,7 +30,9 @@ async def start_message_handler(message: types.Message) -> None:
             file=fout,
         )
     # process message
-    await message.reply(f"Привет, получил '{message.text}'")
+    await message.reply(f"Привет, получил '{message.text}', работаем!")
+    await message.reply("Можно выполнять sql запросы к тестовой бд, запросы должны" \
+                        " начинаться с команды /sql")
 
 
 # DBFILEPATH
@@ -58,6 +59,7 @@ async def sql_message_handler(message: types.Message) -> None:
         and ("delete" not in request)
     ):
         # process message
+        logging.info(f"trying to connect to {superhomosecret.DBFILEPATH}")
         with sqlite3.connect(superhomosecret.DBFILEPATH) as connection:
             cursor = connection.cursor()
             try:
