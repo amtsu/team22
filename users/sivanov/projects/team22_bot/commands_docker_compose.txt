@@ -1,0 +1,10 @@
+должен быть корректно настроен docker-compose.yml
+все вызовы из папки, В КОТОРОЙ НАХОДИТСЯ этот самый docker-compose
+
+
+sudo docker-compose build                   : сборка образа
+sudo docker-compose up                      : запуск образа в текущем терминале
+sudo docker-compose up -d                   : запуск образа в фоновом режиме
+sudo docker-compose down                    : остановить образ
+docker-compose up -d --no-deps --build      : пересобрать и запустить образ
+                            --no-deps       : Don’t start linked services. с ней не разбирался
