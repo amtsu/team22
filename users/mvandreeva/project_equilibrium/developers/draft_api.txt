@@ -1,0 +1,43 @@
+        "count": 1097,
+        "next": "https://level.ru/api/flat/?limit=8&offset=108",
+        "previous": "https://level.ru/api/flat/?limit=8&offset=92",
+        "results": [
+            {
+    -            "pk": "32732-0",
+    -            "id": 32732,
+    -            "ref_id": "890cb4b4-9cd2-ec11-80f2-005056010f28",
+    -            "area": 17.8,
+    -            "building": "1",
+    -            "project": "Селигерская",
+    -            "floor": 3,
+                "old_price": 8766862.0,
+                "price": 6136803,
+    -            "ppm": 344764,
+                "plan": "https://storage.yandexcloud.net/level-media/core/flat/plane/1-1-28_TOPxi6m.svg",
+                "url": "https://level.ru/selig/flat/1room/1-1-28/",
+    -            "full_payment_price": 6136803,
+    -            "address": "пр-д Ильменский, вл. 12",
+    -            "location": "55.859441,37.545155",
+    -            "mortgage_payment": 20481.6772347551,
+                "specialmortgageoffer_set": [
+                    {
+                        "name": "Ставка по кредиту 1%, первоначальный взнос от 15%, срок кредитования до 30 лет, сумма кредита до 12 млн руб.",
+                        "amount": "12000000.00",
+                        "term": 360,
+                        "deposit": 15.0,
+                        "mortgage_percent": 1.0,
+                        "mortgage_price": 7890175,
+                    },
+                    {
+                    },
+                ],
+                #230211
+                "area": 17.7, # площадь
+                "completion_quarter": 2, # кваратл сдачи строительства
+                "completion_year": 2026, # год сдачи строительства
+                --"project": "Южнопортовая", # название проекта
+                "floor": 3, # этаж
+                "floors_total": 24, # этажей в здании
+                "ceilingheight": "2.90", # высота потолков
+                "room": 1, # количество комнат
+                "ppm": 398598 # цена за квадртыный метр
