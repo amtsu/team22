@@ -316,6 +316,7 @@ class SamoletServiceProcessing:
                 #print(e["floor"])
                 
                 self.__list_dict.append(el)
+            print(source_url)
 
     # def pp(self):
     #    return self.__list_dict
