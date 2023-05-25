@@ -4,7 +4,7 @@
 import sqlite3
 
 # ==============================================================================
-class AdDatabase:
+class PhDatabase:
     """
     класс-обертка над БД
     """
@@ -16,27 +16,57 @@ class AdDatabase:
         """
         self.__conn = sqlite3.connect(path)
         self.__cur = self.__conn.cursor()
+        # создадим структуру таблиц БД
+        # =======================================================================
         try:
             self.__cur.execute(
-                """CREATE TABLE Departments
-             (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE)"""
+                """
+                CREATE TABLE Cities (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT
+                    ,name TEXT UNIQUE
+                    ,lat FLOAT
+                    ,lon FLOAT
+                    ,major TEXT
+                    )
+                """
             )
+            #create table City(city varchar(10), city_lantitude int, city_longitude int, mayor VARCHAR(20))
         except sqlite3.OperationalError:
+            #print("fucked up with Cities")
             pass
+        # =======================================================================
         try:
             self.__cur.execute(
-                """CREATE TABLE Employees (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT,
-                secname TEXT,
-                surname TEXT,
-                dep_id INTEGER,
-                salary INTEGER,
-                FOREIGN KEY (dep_id) REFERENCES Departments(id))"""
+                """
+                CREATE TABLE Hair_colors (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT
+                    ,color TEXT
+                    )
+                """
             )
         except sqlite3.OperationalError:
+            #print("fucked up with Hairs")
             pass
-
+        # =======================================================================
+        try:
+            self.__cur.execute(
+                """
+                CREATE TABLE Contacts (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT
+                    ,name TEXT
+                    ,secname TEXT
+                    ,surname TEXT
+                    ,city_id INTEGER
+                    ,hair_color_id INTEGER
+                    ,FOREIGN KEY (citi_id) REFERENCES Cities(id)
+                    ,FOREIGN KEY (hair_color_id) REFERENCES Hair_colors(id)
+                    )
+                """
+            )
+        except sqlite3.OperationalError:
+            #print("fucked up with Records")
+            pass
+        # =======================================================================
     # ==============================================================================
     def execute(self, template_request, data=tuple()):
         """
