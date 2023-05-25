@@ -165,7 +165,7 @@ def add_record(*args, **kwargs):
     """
     добавляет запись в  базу телефонной книги
     """
-    secname = input("Номер телефона: ")
+    phone_number = input("Номер телефона: ")
     surname = input("Фамилия: ")
     name = input("Имя: ")
     secname = input("Отчество: ")
@@ -254,26 +254,25 @@ def add_hair_color(*args, **kwargs):
         (color,),
     )
 
-
 # ==============================================================================
-
-def show_average_salary_by_deps(*args, **kwargs):
+def show_all_majors(*args, **kwargs):
     """
-    Посчитать и вывести на экран среднюю зарплату по отделам
+    Вывести количество записей в таблице, сгруппированное по мэру
     """
     average_data = kwargs["db"].execute(
         """
-        SELECT d.name, avg(e.salary) avg_sal
-        FROM Employees e
-        JOIN  Departments d WHERE e.dep_id = d.id
-        GROUP BY d.name
-        ORDER BY avg_sal DESC
+            SELECT major
+                ,count(Contacts.name) AS count_of_contacts
+            FROM Cities 
+            LEFT JOIN Contacts ON Cities.id = Contacts.city_id
+            GROUP BY major
+            ORDER BY count_of_contacts DESC
         """
     )
-    width = 1 + 30 + 1 + 20 + 1
+    width = 1 + 30 + 1 + 30 + 1
     t_caption = (
-        "Название отдела",
-        "Средняя зарплата",
+        "Мэр",
+        "Число контактов",
     )
     print("=" * width)
     print(f"|{t_caption[0]:30}|{t_caption[1]:^20}|")
@@ -281,70 +280,6 @@ def show_average_salary_by_deps(*args, **kwargs):
     for record in average_data:
         print(f"|{record[0]:30}|{record[1]:^20}|")
     print("=" * width)
-
-
-# ==============================================================================
-def export_data_to_excel_csv(*args, **kwargs):
-    """
-    Выгрузка данных в csv для excel - с разделителями ;
-    """
-    result = kwargs["db"].execute(
-        """
-        SELECT e.name, e.secname, e.surname, e.salary, d.name  FROM Employees e
-        JOIN  Departments d WHERE e.dep_id = d.id
-        """
-    )
-    with open("export.csv", "w",encoding="utf-8") as fout:
-        for record in result:
-            out_str = ""
-            for element in record:
-                out_str += f"{element};"
-            print(
-                out_str,
-                file=fout,
-            )
-    print("Экспорт завершен!")
-    print("=" * 20)
-
-
-# ==============================================================================
-def import_data_from_excel_csv(*args, **kwargs):
-    """
-    импорт данных из экселевского csv - с разделителями - ";"
-    """
-    filename = input("Введите имя файла с данными: ")
-    employees = []
-    departments = []
-    try:
-        with open(filename, "r",encoding="utf-8") as fin:
-            for line in fin:
-                raw_data = line.strip().split(";")
-                employees.append(
-                    (
-                    raw_data[0],
-                    raw_data[1],
-                    raw_data[2],
-                    raw_data[4],
-                    raw_data[3],
-                    )
-                )
-                if (raw_data[4],) not in departments:
-                    departments.append((raw_data[4],))
-    except FileNotFoundError:
-        print("="*30)
-        print("Файл не найден, импорт не выполнен!")
-        print("="*30)
-        return
-    # заполнить таблицу отделов
-    dep_sql_template = "INSERT INTO Departments (name) values(?)"
-    kwargs["db"].executemany(dep_sql_template, departments)
-    # тут узкое место, я знаю как сделать это средствами питона,
-    # но интересно как сделать это средствами sql
-    emp_sql_template = "INSERT INTO Employees (name, secname, surname, dep_id, salary) \
-                        values(?,?,?,(SELECT id FROM Departments WHERE name like ?),?)"
-    kwargs["db"].executemany(emp_sql_template, employees)
-    print("Импорт завершен!")
-    print("=" * 20)
 
 
 # ==============================================================================
@@ -373,6 +308,7 @@ def show_interface():
         {"key": next(indexer), "name": "Добавить запись", "foo": add_record},
         {"key": next(indexer), "name": "Добавить город", "foo": add_city},
         {"key": next(indexer), "name": "Добавить цвет волос", "foo": add_hair_color},
+        {"key": next(indexer), "name": "Вывести всех мэров", "foo": show_all_majors},
         # {
         #     "key": next(indexer),
         #     "name": "Вывести среднюю ЗП по отделам",
