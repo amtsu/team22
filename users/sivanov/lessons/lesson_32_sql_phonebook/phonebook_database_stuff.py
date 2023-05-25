@@ -18,6 +18,7 @@ class PhDatabase:
         self.__cur = self.__conn.cursor()
         # создадим структуру таблиц БД
         # =======================================================================
+        # Города
         try:
             self.__cur.execute(
                 """
@@ -32,9 +33,9 @@ class PhDatabase:
             )
             #create table City(city varchar(10), city_lantitude int, city_longitude int, mayor VARCHAR(20))
         except sqlite3.OperationalError:
-            #print("fucked up with Cities")
             pass
         # =======================================================================
+        # Цвета волос
         try:
             self.__cur.execute(
                 """
@@ -45,9 +46,26 @@ class PhDatabase:
                 """
             )
         except sqlite3.OperationalError:
-            #print("fucked up with Hairs")
             pass
         # =======================================================================
+        #Школы
+        try:
+            self.__cur.execute(
+                """
+                CREATE TABLE Schools (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT
+                    ,snumber INTEGER
+                    ,name TEXT
+                    ,address TEXT
+                    ,city_id INTEGER
+                    ,FOREIGN KEY (citi_id) REFERENCES Cities(id)
+                    )
+                """
+            )
+        except sqlite3.OperationalError:
+            pass
+        # =======================================================================
+        # сами записи
         try:
             self.__cur.execute(
                 """
@@ -58,13 +76,13 @@ class PhDatabase:
                     ,surname TEXT
                     ,city_id INTEGER
                     ,hair_color_id INTEGER
+                    ,phone_number TEXT
                     ,FOREIGN KEY (citi_id) REFERENCES Cities(id)
                     ,FOREIGN KEY (hair_color_id) REFERENCES Hair_colors(id)
                     )
                 """
             )
         except sqlite3.OperationalError:
-            #print("fucked up with Records")
             pass
         # =======================================================================
     # ==============================================================================

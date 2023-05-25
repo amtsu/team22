@@ -82,6 +82,38 @@ def show_all_cities_data(*args, **kwargs):
         print(f"|{record[0]:4}|{record[1]:30}|{record[2]:10}|{record[3]:10}|{record[4]:40}|")
     print("=" * width)
 
+# ==============================================================================
+def show_all_schools_data(*args, **kwargs):
+    """
+    выводит на экран список всех городов в базе данных
+    """
+    result = kwargs["db"].execute(
+        """
+            SELECT s.id
+                ,s.snumber
+                ,s.name
+                ,s.address
+                ,c.name
+            FROM Schools s
+            JOIN Cities c ON s.citi_id = c.id
+
+        """
+    )
+    width = 1 + 4 + 1 + 8 + 1 + 30 + 1 + 30 + 1 + 30 + 1
+    t_caption = (
+        "#",
+        "Номер",
+        "Название",
+        "Адрес",
+        "Город",
+    )
+    print("=" * width)
+    print(f"|{t_caption[0]:^4}|{t_caption[1]:^8}|{t_caption[2]:^30}|{t_caption[3]:^30}|{t_caption[4]:^30}|")
+    print("=" * width)
+    for record in result:
+        print(f"|{record[0]:4}|{record[1]:8}|{record[2]:30}|{record[3]:30}|{record[4]:30}|")
+    print("=" * width)
+
 
 # ==============================================================================
 def show_all_hair_color_data(*args, **kwargs):
@@ -240,6 +272,35 @@ def add_city(*args, **kwargs):
 
 
 # ==============================================================================
+def add_school(*args, **kwargs):
+    """
+    добавить новую школу в БД
+    """
+    print("Добавляем новую школу:")
+    snumber = input("Номер: ")
+    name = input("Название: ")
+    address = input("Адрес: ")
+    city_id = enter_citi_id_interactive(db=kwargs["db"])
+    kwargs["db"].execute(
+        """
+            INSERT INTO Schools (
+                snumber
+                ,name
+                ,address
+                ,city_id
+                )
+            VALUES (
+                ?
+                ,?
+                ,?
+                ,?
+                );
+        """,
+        (snumber, name, address, city_id),
+    )
+
+
+# ==============================================================================
 def add_hair_color(*args, **kwargs):
     """
     добавить новый цвет волос в БД
@@ -288,11 +349,12 @@ def show_interface():
     пользовательский крутой консольный интерфейс к базе.
     пока будет как одна функция, может быть имеет смысл его разбить
     """
+    green_text = ColoredStr("green, bold")
     indexer = (str(i) for i in range(1, 100))
     interface_contents = [
         {
             "key": next(indexer),
-            "name": "Вывести все записи",
+            "name": green_text("Вывести все записи"),
             "foo": show_all_employees_data,
         },
         {
@@ -305,8 +367,14 @@ def show_interface():
             "name": "Вывести список всех цветов волос",
             "foo": show_all_hair_color_data,
         },
-        {"key": next(indexer), "name": "Добавить запись", "foo": add_record},
+        {
+            "key": next(indexer),
+            "name": "Вывести список всех школ",
+            "foo": show_all_schools_data,
+        },
+        {"key": next(indexer), "name": green_text("Добавить запись"), "foo": add_record},
         {"key": next(indexer), "name": "Добавить город", "foo": add_city},
+        {"key": next(indexer), "name": "Добавить школу", "foo": add_school},
         {"key": next(indexer), "name": "Добавить цвет волос", "foo": add_hair_color},
         {"key": next(indexer), "name": "Вывести всех мэров", "foo": show_all_majors},
         # {
