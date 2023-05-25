@@ -95,7 +95,7 @@ def show_all_schools_data(*args, **kwargs):
                 ,s.address
                 ,c.name
             FROM Schools s
-            JOIN Cities c ON s.citi_id = c.id
+            JOIN Cities c ON s.city_id = c.id
 
         """
     )
