@@ -1,11 +1,9 @@
-from bs4 import BeautifulSoup
-import urllib
-import urllib.request
-
 """
 Парсер для сайта застройщика 'CapitalGroup', проект 'Триколор'
 """
-
+import urllib
+import urllib.request
+from bs4 import BeautifulSoup
 
 class PagePerser:
     """
@@ -23,10 +21,13 @@ class PagePerser:
         try:
             with urllib.request.urlopen(self.__url) as page:
                 self.__page = page.read()
-        except:
+        except (urllib.request.HTTPError, urllib.request.URLError):
             print("Error url =", self.__url)
         return self.__page
 
     def use_b_soup(self):
+        """
+        Создает объект класса BeautifulSoup
+        """
         b_soup = BeautifulSoup(self.open_page(), features="html.parser")
         return b_soup

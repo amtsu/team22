@@ -1,55 +1,56 @@
-#!/usr/local/bin/python
-# coding: utf-8
-
-from bs4 import BeautifulSoup
-import urllib
-import urllib.request
-
-import openapi_client
-from pprint import pprint
-from openapi_client.apis.tags import history_api
-from openapi_client.model.history import History
-from openapi_client.model.paginated_history_list import PaginatedHistoryList
-from openapi_client.model.patched_history import PatchedHistory
-
-from typing import Any, Dict, Optional
-
-from users.mvandreeva.d221217_2227.page_parsing import PagePerser
-
 """
 Парсер для сайта застройщика 'ГАЛС'
 """
+
+#!/usr/local/bin/python
+# coding: utf-8
+
+import urllib
+import urllib.request
+from typing import Any, Dict, Optional
+# from bs4 import BeautifulSoup
+
+import openapi_client #mypy: Skipping analyzing "openapi_client": module is installed, but missing library stubs or py.typed marker
+from pprint import pprint
+from openapi_client.apis.tags import history_api #mypy: Skipping analyzing...
+from openapi_client.model.history import History #mypy: Skipping analyzing...
+from openapi_client.model.paginated_history_list import PaginatedHistoryList #mypy: Skipping...
+from openapi_client.model.patched_history import PatchedHistory  #mypy: Skipping analyzing...
+
+from users.mvandreeva.d221217_2227.page_parsing import PagePerser
+
 def none_to_zero(function):
+    """
+    Декоратор для перевода значений None в '0' или ''
+    """
     def wrapper(*args, **kwargs):
-        d = function(*args, **kwargs)
+        d = function(*args, **kwargs) # Variable name "d" doesn't conform to snake_case naming style
         for key in d:
-            if d[key] == None:
-                if key in ["bulding", "rooms", "floor", "area", "price", "price_sale", "apartment_ceilingheight", "apartment_ppm", "apartment_floors_total"]:
+            if d[key] is None:
+                if key in [
+                    "bulding",
+                    "rooms",
+                    "floor",
+                    "area",
+                    "price",
+                    "price_sale",
+                    "apartment_ceilingheight",
+                    "apartment_ppm",
+                    "apartment_floors_total",
+                ]:
                     d[key] = 0
                 else:
                     d[key] = ""
         return d
+
     return wrapper
-        
+
+
 class HALSParser:
     """
-    Собирает данные с сайта https://hals-development.ru/realty/residential по всем запущенным проектам очищает их, сохряняет
+    Получает данные с сайта https://hals-development.ru/realty/residential по всем проектам 
     """
-    def __init__(self, url: str):
-        self.__url = url
-        self.__page = PagePerser(self.__url)
-        self.__b_soup = self.__page.use_b_soup()
-        try:
-            self.__project_list = self.__b_soup.findAll("div", class_ = "index__projects__item")
-            # print(self.__project_list)
-        except:
-            print("Error in getting projects_list", self.__url)
-        # try:
-        #     self.__items_list = self.__b_soup.findAll("a", class_="grid-item grid-item2")
-        # except:
-        #     print("Error in getting items_list", self.__url)
-        # self.__dict_list = []  # type: list[dict]
-        
+    
     BRAND_URL = "https://hals-development.ru"
     CATEGORY = "Новостройки"
     COMPLETION_QUARTER_KOSMO = 4  # на дом.pф
@@ -57,6 +58,19 @@ class HALSParser:
     FLOORS_TOTAL_K = 9  # нашла на дом.рф для космо 4/22
     LOCATION_K_8 = "55.745600, 37.638782"
     LOCATION_K_9 = "55.745600, 37.638782"
+    
+    def __init__(self, url: str):
+        self.__url = url
+        self.__page = PagePerser(self.__url)
+        self.__b_soup = self.__page.use_b_soup()
+        try:
+            self.__project_list = self.__b_soup.findAll(
+                "div", class_="index__projects__item"
+            )
+            # print(self.__project_list)
+        except (urllib.request.HTTPError, urllib.request.URLError):
+            print("Error in getting projects_list", self.__url)
+        self.__dict_list = []
 
     @none_to_zero
     def _fill_dict(self, item: object, item_dict: dict) -> dict:
@@ -68,7 +82,7 @@ class HALSParser:
         item_dict["title"] = self._get_title(item)
         item_dict["rooms"] = self._get_rooms(item)
         item_dict["floor"] = self._get_floor(item)
-        item_dict["area"] = self._get_square(item)
+        item_dict["area"] = self._get_area(item)
         item_dict["price"] = self._get_price(item)
         item_dict["url"] = self._get_item_url(item)
         item_dict["category"] = self.CATEGORY
@@ -78,12 +92,14 @@ class HALSParser:
             "apartment_completion_quarter"
         ] = self.COMPLETION_QUARTER_KOSMO  # на дом.pa
         item_dict["apartment_completion_year"] = self.COMPLETION_YEAR_KOSMO  # на дом.pф
-        one_item_url  = item_dict["url"]
-        item_dict[
-            "apartment_ceilingheight"
-        ] = self._get_ceilingheight(one_item_url)  
-        if item_dict["project"] == "Космо 4/22": 
-            item_dict["apartment_floors_total"] = self.FLOORS_TOTAL_K # нужно дополнять условия, если появятся данные в других ЖК
+        one_item_url = item_dict["url"]
+        item_dict["apartment_ceilingheight"] = self._get_ceilingheight(one_item_url)
+        if item_dict["project"] == "Космо 4/22":
+            item_dict[
+                "apartment_floors_total"
+            ] = (
+                self.FLOORS_TOTAL_K
+            )  # нужно дополнять условия, если появятся данные в других ЖК
         else:
             item_dict["apartment_floors_total"] = None
         if item_dict["price"] and item_dict["area"]:
@@ -91,13 +107,19 @@ class HALSParser:
             item_dict["apartment_ppm"] = int(round(apartment_ppm, 0))
         else:
             item_dict["apartment_ppm"] = None
-        if item_dict["project"] == "Космо 4/22": # Нужно добавлять условия для других проектов по мере их запуска
+        if (
+            item_dict["project"] == "Космо 4/22"
+        ):  # Нужно добавлять условия для других проектов по мере их запуска
             if item_dict["bulding"] == 8:
                 item_dict["apartment_location"] = self.LOCATION_K_8
             elif item_dict["bulding"] == 9:
                 item_dict["apartment_location"] = self.LOCATION_K_8
-            item_dict["apartment_location_lat"] = item_dict["apartment_location"].split(',')[0][:9]
-            item_dict["apartment_location_lon"] = item_dict["apartment_location"].split(',')[1][:9]
+            item_dict["apartment_location_lat"] = item_dict["apartment_location"].split(
+                ","
+            )[0][:9]
+            item_dict["apartment_location_lon"] = item_dict["apartment_location"].split(
+                ","
+            )[1][:9]
         else:
             item_dict["apartment_location_lat"] = None
             item_dict["apartment_location_lon"] = None
@@ -107,23 +129,22 @@ class HALSParser:
         """
         Получает адрес ЖК
         """
-        address_data = project.findAll("div", class_ = "index__projects__dop-info--metro")
+        address_data = project.findAll("div", class_="index__projects__dop-info--metro")
         if address_data:
             address_bad = address_data[0].text
             address_bad = address_bad.replace("&nbsp;", " ")
             address_bad = address_bad.replace("\xa0", " ")
             address = address_bad.strip()
         else:
-            print("Error in getting address")  
+            print("Error in getting address")
             address = None
         return address
-    
 
     def _get_brand(self) -> Optional[str]:
         """
         Получает наименование застройщика
         """
-        footer_data = self.__b_soup.findAll("div", class_ = "footer2-copy")
+        footer_data = self.__b_soup.findAll("div", class_="footer2-copy")
         if footer_data:
             for data in footer_data:
                 brand_data = data.find("div")
@@ -134,31 +155,34 @@ class HALSParser:
                 brand_bad = brand_bad.replace(",", "")
                 brand = brand_bad.strip()
         else:
-            print("Error in getting brand")  
+            print("Error in getting brand")
             brand = None
         return brand
-            
-                
+
     def _get_bulding(self, item: object) -> Optional[int]:
         """
         Получает номер корпуса
         """
-        flat_data = item.findAll("div", class_ = "grid-item2__info")
+        flat_data = item.findAll("div", class_="grid-item2__info")
         if flat_data:
             building_data = flat_data[0].text
-            if not building_data.find("Река") == -1: # Проект Космо 4/22 # нужно прописывать условия для новых проектов
+            if (
+                not building_data.find("Река") == -1
+            ):  # Проект Космо 4/22 # нужно прописывать условия для новых проектов
                 building = 8
-            elif not building_data.find("Сад") == -1: # Проект Космо 4/22
+            elif not building_data.find("Сад") == -1:  # Проект Космо 4/22
                 building = 9
-            elif not building_data.find("Секция") == -1: # Проект Театральный дом
+            elif not building_data.find("Секция") == -1:  # Проект Театральный дом
                 building = 1
             else:
-                print("New project started. class HALSParser _get_building method needs review")
+                print(
+                    "New project started. class HALSParser _get_building method needs review"
+                )
         else:
-            print("Error in getting building")  
+            print("Error in getting building")
             building = None
         return building
-    
+
     def _get_ceilingheight(self, one_item_url: str) -> Optional[float]:
         page = PagePerser(one_item_url)
         b_soup = page.use_b_soup()
@@ -176,21 +200,22 @@ class HALSParser:
                         # pprint(c_div)
                         ceil_bad = c_div[0].text
                         # pprint(ceil_bad)
-                        ceil_bad = ceil_bad.replace(",",".")
-                        ceil_bad = ceil_bad.replace("до ","")
+                        ceil_bad = ceil_bad.replace(",", ".")
+                        ceil_bad = ceil_bad.replace("до ", "")
                         # pprint(ceil_bad)
                         ceilingheight = float(ceil_bad)
                         # pprint(ceilingheight)
                     # else:
                     #     continue
             return ceilingheight
-        except:
+        except (urllib.request.HTTPError, urllib.request.URLError):
             print("Error in getting ceilingheight")
             ceilingheight = None
             return ceilingheight
-    
-    # def _get_completion_data(self, b_soup: object) -> Optional[int]: # думала спарсить с дом.рф через кнопку "Документы", но она есть только на космо
-# решила пока отложить
+
+    # def _get_completion_data(self, b_soup: object) -> Optional[int]: 
+    # думала спарсить с дом.рф через кнопку "Документы", но она есть только на космо
+    # решила пока отложить
     #     project_data = b_soup.findAll("a", class_ = "obj-panel__item")
     #     for data in project_data:
     #         is_doc = data.find("Документы")
@@ -209,18 +234,18 @@ class HALSParser:
     #             except:
     #                 print("Error in getting items_list", project_url)
 
-    def _get_description(self, project: object)-> Optional[str]:
+    def _get_description(self, project: object) -> Optional[str]:
         """
-        Получает описания проекта 
+        Получает описания проекта
         """
-        project_data = project.findAll("div", class_ = "index__projects__title")
+        project_data = project.findAll("div", class_="index__projects__title")
         for data in project_data:
             project_bad = data.findAll("div")
-        # pprint(project_data)
+            # pprint(project_data)
             if project_bad:
                 # print("=============================")
                 description_bad = project_bad[1].text
-                description = description_bad.replace("\xa0","")
+                description = description_bad.replace("\xa0", "")
                 # print(project)
             else:
                 description = None
@@ -231,7 +256,6 @@ class HALSParser:
         """
         Формирует список словарей с данными по квартирам
         """
-        self.__dict_list = []
         brand_name = self._get_brand()
         for project in self.__project_list:
             item_dict = {}
@@ -247,9 +271,13 @@ class HALSParser:
             b_soup = page.use_b_soup()
             try:
                 items_list = b_soup.findAll("a", class_="grid-item grid-item2")
-            except:
+            except (urllib.request.HTTPError, urllib.request.URLError):
                 print("Error in getting items_list", project_url)
-            for item in items_list: # парсит одну квартиру(наверно перезаписывает данные в словаре)
+            for (
+                item
+            ) in (
+                items_list
+            ):  # парсит одну квартиру(наверно перезаписывает данные в словаре)
                 item_dict = self._fill_dict(item, item_dict)
                 item_dict[
                     "source_url"
@@ -259,16 +287,16 @@ class HALSParser:
 
     def _get_floor(self, item: object) -> Optional[int]:
         """
-        Получает этаж 
+        Получает этаж
         """
-        flat_data = item.findAll("div", class_ = "grid-item2__info")
+        flat_data = item.findAll("div", class_="grid-item2__info")
         if flat_data:
             floor_data = flat_data[0].text
             cut_begin = floor_data.rfind("/")
-            cut_stop = floor_data.find("э",cut_begin)
+            cut_stop = floor_data.find("э", cut_begin)
             floor_bad = floor_data[cut_begin:cut_stop]
             # cut_begin = floor_bad.find("/")
-            floor_bad = floor_bad.replace("/","")
+            floor_bad = floor_bad.replace("/", "")
             floor_bad = floor_bad.strip()
             floor = int(floor_bad)
         else:
@@ -276,9 +304,9 @@ class HALSParser:
             floor = None
         return floor
 
-    def _get_item_url(self, item: object) -> Optional[str]: 
+    def _get_item_url(self, item: object) -> Optional[str]:
         """
-        Получает URL для конкретой квартиры 
+        Получает URL для конкретой квартиры
         """
         link = item["href"]
         item_url = "https://hals-development.ru" + link
@@ -286,15 +314,15 @@ class HALSParser:
 
     def _get_plan(self, item: object) -> Optional[str]:
         """
-        Получает ссылку на план конкретой квартиры 
+        Получает ссылку на план конкретой квартиры
         """
-        plan_data = item.findAll("span", class_ = "grid-item__image__plan")
+        plan_data = item.findAll("span", class_="grid-item__image__plan")
         if plan_data:
             plan_bad = plan_data[0]["style"]
             cut_begin = plan_bad.find("(")
             plan_bad = plan_bad[cut_begin:]
-            plan_bad = plan_bad.replace("(","")
-            plan = plan_bad.replace(")","")
+            plan_bad = plan_bad.replace("(", "")
+            plan = plan_bad.replace(")", "")
         else:
             print("Error in getting plan")
             plan = None
@@ -302,9 +330,9 @@ class HALSParser:
 
     def _get_price(self, item: object) -> Optional[int]:
         """
-        Получает цену квартиры 
+        Получает цену квартиры
         """
-        price_data = item.findAll("div", class_ = "default-price")
+        price_data = item.findAll("div", class_="default-price")
         if price_data:
             price_bad = price_data[0].text
             # print(price_bad)
@@ -315,15 +343,15 @@ class HALSParser:
             print("Error in getting price")
             price = None
         return price
-    
-    def _get_project(self, project: object)-> Optional[str]:
+
+    def _get_project(self, project: object) -> Optional[str]:
         """
-        Получает название проекта 
+        Получает название проекта
         """
-        project_data = project.findAll("div", class_ = "index__projects__title")
+        project_data = project.findAll("div", class_="index__projects__title")
         for data in project_data:
             project_bad = data.findAll("div")
-        # pprint(project_data)
+            # pprint(project_data)
             if project_bad:
                 # print("=============================")
                 project = project_bad[0].text
@@ -332,82 +360,82 @@ class HALSParser:
                 print("Error in getting project")
                 project = None
         return project
-    
-    def _get_project_url(self, project: object)-> Optional[str]:
+
+    def _get_project_url(self, project: object) -> Optional[str]:
         """
-        Получает URL проекта 
+        Получает URL проекта
         """
-        project_data = project.findAll("a", class_ = "index__projects__img")
+        project_data = project.findAll("a", class_="index__projects__img")
         if project_data:
             project_ref = project_data[0]["href"]
             project_url = "https://hals-development.ru" + project_ref
             # pprint(project_url)
         else:
             print("Error in getting project_url")
-            project_url = None    
+            project_url = None
         return project_url
 
     def _get_rooms(self, item: object) -> Optional[int]:
         """
-        Получает количество комнат 
+        Получает количество комнат
         """
-        flat_data = item.findAll("div", class_ = "grid-item2__info2")
+        flat_data = item.findAll("div", class_="grid-item2__info2")
         # print(flat_data)
         if flat_data:
             data_full = flat_data[0].text
             # print(data_full)
             # print("++++++++++++++++++++++++++++++++++")
             rooms_bad = data_full[0]
-            # print(square_bad)
+            # print(area_bad)
             # print("++++++++++++++++++++++++++++++++++")
-            # square_bad = square_bad.replace('"','')
-            # square_bad = square_bad.replace('/','')
-            # square_bad = square_bad.replace(' ','')
-            # square_bad = square_bad.replace(',','.')
-            # print(square_bad)
+            # area_bad = area_bad.replace('"','')
+            # area_bad = area_bad.replace('/','')
+            # area_bad = area_bad.replace(' ','')
+            # area_bad = area_bad.replace(',','.')
+            # print(area_bad)
             rooms = int(rooms_bad)
         else:
             print("Error in getting rooms")
             rooms = None
         return rooms
 
-    def _get_square(self, item: object) -> Optional[int]:
+    def _get_area(self, item: object) -> Optional[int]:
         """
-        Получает площадь квартиры 
+        Получает площадь квартиры
         """
-        flat_data = item.findAll("div", class_ = "grid-item2__info2")
+        flat_data = item.findAll("div", class_="grid-item2__info2")
         # print(flat_data)
         if flat_data:
             data_full = flat_data[0].text
             # print(data_full)
             # print("++++++++++++++++++++++++++++++++++")
             cut_begin = data_full.find("/")
-            cut_stop = data_full.find("м",cut_begin)
-            square_bad = data_full[cut_begin:cut_stop]
-            # print(square_bad)
+            cut_stop = data_full.find("м", cut_begin)
+            area_bad = data_full[cut_begin:cut_stop]
+            # print(area_bad)
             # print("++++++++++++++++++++++++++++++++++")
-            square_bad = square_bad.replace('"','')
-            square_bad = square_bad.replace('/','')
-            square_bad = square_bad.replace(' ','')
-            square_bad = square_bad.replace(',','.')
-            # print(square_bad)
-            square = float(square_bad)
+            area_bad = area_bad.replace('"', "")
+            area_bad = area_bad.replace("/", "")
+            area_bad = area_bad.replace(" ", "")
+            area_bad = area_bad.replace(",", ".")
+            # print(area_bad)
+            area = float(area_bad)
         else:
-            print("Error in getting square")
-            square = None
-        return square
+            print("Error in getting area")
+            area = None
+        return area
 
     def _get_title(self, item: object) -> Optional[str]:
         """
         Метод получает наименование квартиры со страницы со списком квартир
         """
-        title_data = item.findAll("div", class_ = "grid-item2__info")
+        title_data = item.findAll("div", class_="grid-item2__info")
         # print(title_data)
         if title_data:
             title_bad = title_data[0].text
-            title_bad = title_bad.replace("\n","")
-            title_bad = title_bad.replace(" /",",")
-            title = title_bad.replace('"','')
+            title_bad = title_bad.replace("\n", "")
+            title_bad = title_bad.replace(" /", ",")
+            title = title_bad.replace('"', "")
             # print(title)
         else:
             print("Error in getting title")
@@ -465,7 +493,7 @@ class HALSParser:
                     apartment_ceilingheight=e["apartment_ceilingheight"],
                     apartment_room=e["rooms"],
                     apartment_ppm=e["apartment_ppm"],
-                    apartment_address = e["full_address"],
+                    apartment_address=e["full_address"],
                     # apartment_location=e["apartment_location"],
                     apartment_location_lat=e["apartment_location_lat"],
                     apartment_location_lon=e["apartment_location_lon"],
@@ -477,68 +505,4 @@ class HALSParser:
                 except openapi_client.ApiException as e:
                     print("Exception when calling HistoryApi->history_create: %s\n" % e)
             print("Count load object =", len(self.__dict_list))
-
-
-# class TricolorParserFFile(TricolorParser):
-#     """
-#     Собирает данные страницы, скачанной с сайта https://cg-tricolor.ru/catalog/flats в файл 'sources/tricolor' очищает их, сохряняет
-#     """
-
-#     def __init__(self, page_text):
-#         self.__url = None
-#         self.__b_soup = BeautifulSoup(page_text, features="html.parser")
-#         self.__items_list = self.__b_soup.findAll("tr", class_="results__tr")
-#         self.__dict_list = []
-
-#     # @replace_none_to_zero_str
-#     def _get_address(self) -> Optional[str]:
-#         """
-#         Получает адрес ЖК
-#         """
-#         try:
-#             # print(self.__b_soup)
-#             address_data = self.__b_soup.findAll("div", class_="site-nav site-nav--tel")
-#             # print(address_data)
-#             address_bad = address_data[0].text
-#             address_bad = address_bad.replace("\n", "")
-#             address_bad = address_bad.replace(
-#                 "                            +7 (495) 771 77 52                        ",
-#                 "",
-#             )
-#             address = address_bad.strip()
-#             # pprint(address_bad)
-#         except:
-#             print("Error in getting address")  # , self.__url)
-#             address = None
-#         return address
-
-#     def get_dict_list(self) -> list:
-#         """
-#         Формирует список словарей с данными по квартирам
-#         """
-#         if self.__items_list:
-#             for item in self.__items_list:
-#                 item_dict = self._fill_dict(item)
-#                 item_dict[
-#                     "source_url"
-#                 ] = self.__url  # Вывела отдельно, чтоб не было ошибки при наследовании
-#                 self.__dict_list.append(item_dict)
-#             return self.__dict_list
-#         else:
-#             print("Error in getting Items List")
-
-#     # @replace_none_to_zero_str
-#     def _get_project(self):
-#         """
-#         Получает название проекта 
-#         """
-#         try:
-#             project_data = self.__b_soup.findAll("div", class_="site-aside__container")
-#             # pprint(project_data)
-#             project_bad = project_data[0].text
-#             project = project_bad[-9:-1]
-#             # pprint(project)
-#         except:
-#             print("Error in getting project name")  # , self.__url)
-#             project = None
-#         return project
+            
