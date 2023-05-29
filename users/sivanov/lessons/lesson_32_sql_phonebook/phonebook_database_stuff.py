@@ -31,7 +31,7 @@ class PhDatabase:
                     )
                 """
             )
-            #create table City(city varchar(10), city_lantitude int, city_longitude int, mayor VARCHAR(20))
+            # create table City(city varchar(10), city_lantitude int, city_longitude int, mayor VARCHAR(20))
         except sqlite3.OperationalError:
             pass
         # =======================================================================
@@ -108,9 +108,8 @@ class PhDatabase:
                 """
             )
 
-
         # =======================================================================
-        #Школы
+        # Школы
         try:
             self.__cur.execute(
                 """
@@ -153,6 +152,7 @@ class PhDatabase:
         except sqlite3.OperationalError:
             pass
         # =======================================================================
+
     # ==============================================================================
     def execute(self, template_request, data=tuple()):
         """
@@ -182,19 +182,23 @@ class PhDatabase:
         Интерфейс для sqlite3.connection.create_function
         """
         self.__conn.create_function(args, kwargs)
-    # ==============================================================================    
+
+    # ==============================================================================
     def __enter__(self):
         """
         начало контекста
         """
         pass
-    # ==============================================================================  
+
+    # ==============================================================================
     def __exit__(self, exc_type, exc_value, traceback):
         """
         конец контекста
         """
         self.__cur = None
         self.__conn.close()
-        print('exit exception text: %s' % exc_value)
+        print("exit exception text: %s" % exc_value)
         return True
+
+
 # ==============================================================================
