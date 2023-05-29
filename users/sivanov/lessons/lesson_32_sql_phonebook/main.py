@@ -18,7 +18,7 @@ def go_away(**kwargs):
 
 
 # ==============================================================================
-def show_all_employees_data(**kwargs):
+def show_all_contacts_data(**kwargs):
     """
     выводит на экран список всех записей в базе данных
     """
@@ -58,6 +58,51 @@ def show_all_employees_data(**kwargs):
         print(
             f"|{record[0]:4}|{record[1]:20}|{record[2]:15}|{record[3]:15}|"
             f"{record[4]:25}|{record[5]:15}|{record[6]:20}|"
+        )
+    print("=" * width)
+
+
+# ==============================================================================
+def show_all_contacts_data_additional_info(**kwargs):
+    """
+    выводит на экран список всех записей в базе данных
+    с дополнительной информацией о любимых фруктах и спорте
+    """
+    result = kwargs["db"].execute(
+        """
+            SELECT con.id
+                ,con.phone_number
+                ,con.surname
+                ,con.name
+                ,con.secname
+                ,ff.fruit
+                ,fs.sport
+            FROM Contacts con
+            LEFT JOIN Favourite_fruits ff ON con.fruit_id = ff.id
+            LEFT JOIN Favourite_sports fs ON con.sport_id = fs.id;
+        """
+    )
+    width = 1 + 4 + 1 + 3* 16 + 3 * 21 + 1
+    print("=" * width)
+    t_caption = (
+        "#",
+        "Номер телефона",
+        "Фамилия",
+        "Имя",
+        "Отчество",
+        "Любимый фрукт",
+        "Любимый спорт",
+    )
+    print(
+        f"|{t_caption[0]:^4}|{t_caption[1]:^20}|{t_caption[2]:^15}|"
+        f"{t_caption[3]:^15}|{t_caption[4]:^20}|{t_caption[5]:^15}|"
+        f"{t_caption[6]:^20}|"
+    )
+    print("=" * width)
+    for record in result:
+        print(
+            f"|{record[0]:4}|{record[1]:20}|{record[2]:15}|{record[3]:15}|"
+            f"{record[4]:20}|{record[5]:15}|{record[6]:20}|"
         )
     print("=" * width)
 
@@ -509,7 +554,12 @@ def show_interface():
         {
             "key": next(indexer),
             "name": yellow_text("Вывести все записи"),
-            "foo": show_all_employees_data,
+            "foo": show_all_contacts_data,
+        },
+        {
+            "key": next(indexer),
+            "name": ("Вывести дополнительную информацию для записей (фрукты, спорт)"),
+            "foo": show_all_contacts_data_additional_info,
         },
         {
             "key": next(indexer),
@@ -543,11 +593,6 @@ def show_interface():
         {"key": next(indexer), "name": "Добавить фрукт", "foo": add_fruit},
         {"key": next(indexer), "name": "Добавить вид спорта", "foo": add_sport},
         {"key": next(indexer), "name": "Вывести всех мэров", "foo": show_all_majors},
-        # {
-        #     "key": next(indexer),
-        #     "name": "Вывести среднюю ЗП по отделам",
-        #     "foo": show_average_salary_by_deps,
-        # },
         # {
         #     "key": next(indexer),
         #     "name": "Экспорт данных в csv",
