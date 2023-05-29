@@ -226,6 +226,7 @@ def hello():
       #clone_res_cpu = clone_res.to(dtype=torch.float32).cpu()
       #clone_res_cpu = clone_res.cpu()
 #      clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :])
+      clone_res_cpu[:, [1, 2, 6, 7 ], :, :] = torch.sigmoid(clone_res_cpu[:, [1, 2, 6, 7], :, :])
       #clone_res[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res[:, [0, 1, 2, 5, 6, 7], :, :])
       #clone_res_cpu = clone_res.cpu()
       bboxes = decode_result(clone_res_cpu[0], threshold=0.2, iou_threshold=0.2)
