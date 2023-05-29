@@ -1,5 +1,5 @@
 """
-основной файл работы с базой данных бухгалтерии (accounts department)
+основной файл работы с базой данных записной телефонной книги
 """
 from phonebook_database_stuff import (
     PhDatabase,
@@ -20,7 +20,7 @@ def go_away(*args, **kwargs):
 # ==============================================================================
 def show_all_employees_data(*args, **kwargs):
     """
-    выводит на экран список всех работников в базе данных
+    выводит на экран список всех записей в базе данных
     """
     result = kwargs["db"].execute(
         """
@@ -86,7 +86,7 @@ def show_all_cities_data(*args, **kwargs):
 # ==============================================================================
 def show_all_schools_data(*args, **kwargs):
     """
-    выводит на экран список всех городов в базе данных
+    выводит на экран список всех школ в базе данных
     """
     result = kwargs["db"].execute(
         """
@@ -119,7 +119,7 @@ def show_all_schools_data(*args, **kwargs):
 # ==============================================================================
 def show_all_hair_color_data(*args, **kwargs):
     """
-    выводит на экран список всех городов в базе данных
+    выводит на экран список всех цветов волос в базе данных
     """
     result = kwargs["db"].execute("SELECT * FROM Hair_colors")
     width = 1 + 4 + 1 + 30 + 1
@@ -136,17 +136,47 @@ def show_all_hair_color_data(*args, **kwargs):
 
 
 # ==============================================================================
-def swich_to_test_db(*args, **kwargs):
+def show_all_fruits_data(*args, **kwargs):
     """
-    Переключение на тестовую базу данных
+    выводит на экран список всех фруктов в базе данных
     """
-    kwargs["db"] = AdDatabase(":memory:")
+    result = kwargs["db"].execute("SELECT id, fruit FROM Favourite_fruits;")
+    width = 1 + 4 + 1 + 15 + 1
+    t_caption = (
+        "#",
+        "Любимый фрукт",
+    )
+    print("=" * width)
+    print(f"|{t_caption[0]:^4}|{t_caption[1]:^15}|")
+    print("=" * width)
+    for record in result:
+        print(f"|{record[0]:4}|{record[1]:15}|")
+    print("=" * width)
+
+
+# ==============================================================================
+def show_all_sports_data(*args, **kwargs):
+    """
+    выводит на экран список всех видов спорта в базе данных
+    """
+    result = kwargs["db"].execute("SELECT id, sport FROM Favourite_sports;")
+    width = 1 + 4 + 1 + 20 + 1
+    t_caption = (
+        "#",
+        "Вид спорта",
+    )
+    print("=" * width)
+    print(f"|{t_caption[0]:^4}|{t_caption[1]:^20}|")
+    print("=" * width)
+    for record in result:
+        print(f"|{record[0]:4}|{record[1]:20}|")
+    print("=" * width)
 
 
 # ==============================================================================
 def enter_citi_id_interactive(*args, **kwargs):
     """
-    Ввод номера отдела с контролем корректности и интерактивом
+    Ввод id города с контролем корректности и интерактивом
     """
     cities = kwargs["db"].execute("SELECT id FROM cities")
     citi_id = None
@@ -196,7 +226,7 @@ def enter_hair_color_id_interactive(*args, **kwargs):
 # ==============================================================================
 def enter_school_id_interactive(*args, **kwargs):
     """
-    Ввод индекса цвета волос с контролем корректности и интерактивом
+    Ввод индекса школы с контролем корректности и интерактивом
     """
     schools = kwargs["db"].execute("SELECT id FROM Schools")
     school_id = None
@@ -220,6 +250,56 @@ def enter_school_id_interactive(*args, **kwargs):
 
 
 # ==============================================================================
+def enter_sport_id_interactive(*args, **kwargs):
+    """
+    Ввод индекса любимого спорта с контролем корректности и интерактивом
+    """
+    sports = kwargs["db"].execute("SELECT id FROM Favourite_sports")
+    sport_id = None
+    trash_input = False
+    while not isinstance(sport_id, int):
+        sport_id = input("id вида спорта (hint для вывода списка видов спорта): ")
+        sport_id = sport_id.strip().lower()
+        if sport_id == "hint":
+            show_all_sports_data(db=kwargs["db"])
+            continue
+        try:
+            sport_id = int(sport_id)
+        except ValueError:
+            trash_input = True
+        # print(departments)
+        if (trash_input) or ((sport_id,) not in sports):
+            print("Введите корректный id вида спорта!")
+            sport_id = None
+            trash_input = False
+    return sport_id
+
+# ==============================================================================
+def enter_fruit_id_interactive(*args, **kwargs):
+    """
+    Ввод индекса любимого фрукта с контролем корректности и интерактивом
+    """
+    fruits = kwargs["db"].execute("SELECT id FROM Favourite_fruits")
+    fruit_id = None
+    trash_input = False
+    while not isinstance(fruit_id, int):
+        fruit_id = input("id любимого фрукта (hint для вывода списка фруктов): ")
+        fruit_id = fruit_id.strip().lower()
+        if fruit_id == "hint":
+            show_all_fruits_data(db=kwargs["db"])
+            continue
+        try:
+            fruit_id = int(fruit_id)
+        except ValueError:
+            trash_input = True
+        # print(departments)
+        if (trash_input) or ((fruit_id,) not in fruits):
+            print("Введите корректный id любимого фрукта!")
+            fruit_id = None
+            trash_input = False
+    return fruit_id
+
+# ==============================================================================
 def add_record(*args, **kwargs):
     """
     добавляет запись в  базу телефонной книги
@@ -231,6 +311,8 @@ def add_record(*args, **kwargs):
     citi_id = enter_citi_id_interactive(db=kwargs["db"])
     hair_color_id = enter_hair_color_id_interactive(db=kwargs["db"])
     school_id = enter_school_id_interactive(db=kwargs["db"])
+    sport_id = enter_sport_id_interactive(db=kwargs["db"])
+    fruit_id = enter_fruit_id_interactive(db=kwargs["db"])
     kwargs["db"].execute(
         """
             INSERT INTO Contacts (
@@ -241,9 +323,13 @@ def add_record(*args, **kwargs):
                 ,hair_color_id
                 ,phone_number
                 ,school_id
+                ,sport_id
+                ,fruit_id
                 )
             VALUES (
                 ?
+                ,?
+                ,?
                 ,?
                 ,?
                 ,?
@@ -259,7 +345,9 @@ def add_record(*args, **kwargs):
             int(citi_id),
             int(hair_color_id),
             phone_number,
-            school_id
+            school_id,
+            sport_id,
+            fruit_id
         ),
     )
 
@@ -347,6 +435,38 @@ def add_hair_color(*args, **kwargs):
     )
 
 # ==============================================================================
+def add_fruit(*args, **kwargs):
+    """
+    добавить новый фрукт в БД
+    """
+    print("Добавляем новый фрукт:")
+    fruit = input("Название фрукта: ")
+    kwargs["db"].execute(
+        """
+            INSERT INTO Favourite_fruits
+            (fruit)
+            VALUES (?);
+        """,
+        (fruit,),
+    )
+
+# ==============================================================================
+def add_sport(*args, **kwargs):
+    """
+    добавить новый вид спорта в БД
+    """
+    print("Добавляем новый вид спорта:")
+    sport = input("Название вида спорта: ")
+    kwargs["db"].execute(
+        """
+            INSERT INTO Favourite_sports
+            (sport)
+            VALUES (?);
+        """,
+        (sport,),
+    )
+
+# ==============================================================================
 def show_all_majors(*args, **kwargs):
     """
     Вывести количество записей в таблице, сгруппированное по мэру
@@ -404,10 +524,22 @@ def show_interface():
             "name": "Вывести список всех школ",
             "foo": show_all_schools_data,
         },
+        {
+            "key": next(indexer),
+            "name": "Вывести список всех любимых фруктов",
+            "foo": show_all_fruits_data,
+        },
+        {
+            "key": next(indexer),
+            "name": "Вывести список всех любимых видов спорта",
+            "foo": show_all_sports_data,
+        },
         {"key": next(indexer), "name": yellow_text("Добавить запись"), "foo": add_record},
         {"key": next(indexer), "name": "Добавить город", "foo": add_city},
-        {"key": next(indexer), "name": "Добавить школу", "foo": add_school},
+        {"key": next(indexer), "name": "Добавиь школу", "foo": add_school},
         {"key": next(indexer), "name": "Добавить цвет волос", "foo": add_hair_color},
+        {"key": next(indexer), "name": "Добавить фрукт", "foo": add_fruit},
+        {"key": next(indexer), "name": "Добавить вид спорта", "foo": add_sport},
         {"key": next(indexer), "name": "Вывести всех мэров", "foo": show_all_majors},
         # {
         #     "key": next(indexer),

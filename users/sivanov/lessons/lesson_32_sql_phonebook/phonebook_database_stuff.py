@@ -48,18 +48,80 @@ class PhDatabase:
         except sqlite3.OperationalError:
             pass
         # =======================================================================
+        # любимый спорт
+        try:
+            self.__cur.execute(
+                """
+                    CREATE TABLE Favourite_sports (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT
+                        ,sport TEXT
+                        );
+                """
+            )
+        except sqlite3.OperationalError:
+            pass
+        # =======================================================================
+        # любимый фрукт
+        try:
+            self.__cur.execute(
+                """
+                    CREATE TABLE Favourite_fruits (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT
+                        ,fruit TEXT
+                        );
+                """
+            )
+        except sqlite3.OperationalError:
+            pass
+        else:
+            self.__cur.execute(
+                """
+                    INSERT INTO Favourite_fruits (fruit)
+                    VALUES ('Абрикос')
+                        ,('Айва')
+                        ,('Апельсин')
+                        ,('Арбуз')
+                        ,('Банан')
+                        ,('Виноград')
+                        ,('Гранат')
+                        ,('Грейпфрут')
+                        ,('Груша')
+                        ,('Гуава')
+                        ,('Дыня')
+                        ,('Инжир')
+                        ,('Канталупа')
+                        ,('Карамбола')
+                        ,('Киви')
+                        ,('Красный банан')
+                        ,('Лимон')
+                        ,('Манго')
+                        ,('Марания')
+                        ,('Мушмула')
+                        ,('Пепино')
+                        ,('Персик')
+                        ,('Питайя')
+                        ,('Помело')
+                        ,('Сахарное яблоко')
+                        ,('Физалис')
+                        ,('Финик')
+                        ,('Хурма');
+                """
+            )
+
+
+        # =======================================================================
         #Школы
         try:
             self.__cur.execute(
                 """
-                CREATE TABLE Schools (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT
-                    ,snumber INTEGER
-                    ,name TEXT
-                    ,address TEXT
-                    ,city_id INTEGER
-                    ,FOREIGN KEY (citi_id) REFERENCES Cities(id)
-                    )
+                    CREATE TABLE Schools (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT
+                        ,snumber INTEGER
+                        ,name TEXT
+                        ,address TEXT
+                        ,city_id INTEGER
+                        ,FOREIGN KEY (city_id) REFERENCES Cities(id)
+                        );
                 """
             )
         except sqlite3.OperationalError:
@@ -69,17 +131,23 @@ class PhDatabase:
         try:
             self.__cur.execute(
                 """
-                CREATE TABLE Contacts (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT
-                    ,name TEXT
-                    ,secname TEXT
-                    ,surname TEXT
-                    ,city_id INTEGER
-                    ,hair_color_id INTEGER
-                    ,phone_number TEXT
-                    ,FOREIGN KEY (citi_id) REFERENCES Cities(id)
-                    ,FOREIGN KEY (hair_color_id) REFERENCES Hair_colors(id)
-                    )
+                    CREATE TABLE Contacts (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT
+                        ,name TEXT
+                        ,secname TEXT
+                        ,surname TEXT
+                        ,city_id INTEGER
+                        ,hair_color_id INTEGER
+                        ,phone_number TEXT
+                        ,school_id INTEGER
+                        ,fruit_id INTEGER
+                        ,sport_id INTEGER
+                        ,CONSTRAINT FK_Contacts_Schools FOREIGN KEY (school_id) REFERENCES Schools(id)
+                        ,CONSTRAINT FK_Contacts_Cities FOREIGN KEY (city_id) REFERENCES Cities(id)
+                        ,CONSTRAINT FK_Contacts_Hair_colors FOREIGN KEY (hair_color_id) REFERENCES Hair_colors(id)
+                        ,CONSTRAINT FK_Contacts_Fruits FOREIGN KEY (fruit_id) REFERENCES Favourite_fruits(id)
+                        ,CONSTRAINT FK_Contacts_Sports FOREIGN KEY (sport_id) REFERENCES Favourite_sports(id)
+                        );
                 """
             )
         except sqlite3.OperationalError:
