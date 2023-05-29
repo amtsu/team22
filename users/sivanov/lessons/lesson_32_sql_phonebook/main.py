@@ -77,7 +77,8 @@ def show_all_cities_data(**kwargs):
         "Мэр",
     )
     print("=" * width)
-    print(f"|{t_caption[0]:^4}|{t_caption[1]:^30}|{t_caption[2]:^10}|{t_caption[3]:^10}|{t_caption[4]:^40}|")
+    print(f"|{t_caption[0]:^4}|{t_caption[1]:^30}|{t_caption[2]:^10}|"
+            f"{t_caption[3]:^10}|{t_caption[4]:^40}|")
     print("=" * width)
     for record in result:
         print(f"|{record[0]:4}|{record[1]:30}|{record[2]:10}|{record[3]:10}|{record[4]:40}|")
@@ -109,7 +110,8 @@ def show_all_schools_data(**kwargs):
         "Город",
     )
     print("=" * width)
-    print(f"|{t_caption[0]:^4}|{t_caption[1]:^8}|{t_caption[2]:^30}|{t_caption[3]:^30}|{t_caption[4]:^30}|")
+    print(f"|{t_caption[0]:^4}|{t_caption[1]:^8}|{t_caption[2]:^30}|"
+            f"{t_caption[3]:^30}|{t_caption[4]:^30}|")
     print("=" * width)
     for record in result:
         print(f"|{record[0]:4}|{record[1]:8}|{record[2]:30}|{record[3]:30}|{record[4]:30}|")
@@ -475,7 +477,7 @@ def show_all_majors(**kwargs):
         """
             SELECT major
                 ,count(Contacts.name) AS count_of_contacts
-            FROM Cities 
+            FROM Cities
             LEFT JOIN Contacts ON Cities.id = Contacts.city_id
             GROUP BY major
             ORDER BY count_of_contacts DESC
@@ -503,7 +505,7 @@ def show_interface():
     green_text = ColoredStr("green, bold")
     yellow_text = ColoredStr("yellow, bold")
     indexer = (str(i) for i in range(1, 100))
-    interface_contents = [
+    interface_contents = (
         {
             "key": next(indexer),
             "name": yellow_text("Вывести все записи"),
@@ -558,12 +560,7 @@ def show_interface():
         # },
         {"key": "save", "name": green_text("Сохранить изменения"), "foo": save_database},
         {"key": "exit", "name": green_text("Закончить работу"), "foo": go_away},
-        #        {#TODO это не работает
-        #            "key": "test",
-        #            "name": "Переключиться на тестовую БД",
-        #            "foo": swich_to_test_db,
-        #        },
-    ]
+    )
     is_working = True
     database = PhDatabase("phonebook.sqlite3")
     red_text = ColoredStr("red, bold")
@@ -583,7 +580,7 @@ def show_interface():
         for task in interface_contents:
             if task["key"] == user_responce:
                 if task["foo"](db=database) is False:
-                       is_working = False
+                    is_working = False
                 job_is_done = True
         if(is_working and job_is_done):
             dummy = input("Нажмите Enter чтобы продолжить работу...")
