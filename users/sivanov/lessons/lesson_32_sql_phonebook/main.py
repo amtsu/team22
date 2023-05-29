@@ -9,7 +9,7 @@ from usefulstuff import (
 )
 
 # ==============================================================================
-def go_away(*args, **kwargs):
+def go_away(**kwargs):
     """
     попытка аккуратно закончить с циклом выполнения программы
     """
@@ -18,7 +18,7 @@ def go_away(*args, **kwargs):
 
 
 # ==============================================================================
-def show_all_employees_data(*args, **kwargs):
+def show_all_employees_data(**kwargs):
     """
     выводит на экран список всех записей в базе данных
     """
@@ -63,7 +63,7 @@ def show_all_employees_data(*args, **kwargs):
 
 
 # ==============================================================================
-def show_all_cities_data(*args, **kwargs):
+def show_all_cities_data(**kwargs):
     """
     выводит на экран список всех городов в базе данных
     """
@@ -84,7 +84,7 @@ def show_all_cities_data(*args, **kwargs):
     print("=" * width)
 
 # ==============================================================================
-def show_all_schools_data(*args, **kwargs):
+def show_all_schools_data(**kwargs):
     """
     выводит на экран список всех школ в базе данных
     """
@@ -117,7 +117,7 @@ def show_all_schools_data(*args, **kwargs):
 
 
 # ==============================================================================
-def show_all_hair_color_data(*args, **kwargs):
+def show_all_hair_color_data(**kwargs):
     """
     выводит на экран список всех цветов волос в базе данных
     """
@@ -136,7 +136,7 @@ def show_all_hair_color_data(*args, **kwargs):
 
 
 # ==============================================================================
-def show_all_fruits_data(*args, **kwargs):
+def show_all_fruits_data(**kwargs):
     """
     выводит на экран список всех фруктов в базе данных
     """
@@ -155,7 +155,7 @@ def show_all_fruits_data(*args, **kwargs):
 
 
 # ==============================================================================
-def show_all_sports_data(*args, **kwargs):
+def show_all_sports_data(**kwargs):
     """
     выводит на экран список всех видов спорта в базе данных
     """
@@ -174,7 +174,7 @@ def show_all_sports_data(*args, **kwargs):
 
 
 # ==============================================================================
-def enter_citi_id_interactive(*args, **kwargs):
+def enter_citi_id_interactive(**kwargs):
     """
     Ввод id города с контролем корректности и интерактивом
     """
@@ -198,7 +198,7 @@ def enter_citi_id_interactive(*args, **kwargs):
             trash_input = False
     return citi_id
 # ==============================================================================
-def enter_hair_color_id_interactive(*args, **kwargs):
+def enter_hair_color_id_interactive(**kwargs):
     """
     Ввод индекса цвета волос с контролем корректности и интерактивом
     """
@@ -224,7 +224,7 @@ def enter_hair_color_id_interactive(*args, **kwargs):
 
 
 # ==============================================================================
-def enter_school_id_interactive(*args, **kwargs):
+def enter_school_id_interactive(**kwargs):
     """
     Ввод индекса школы с контролем корректности и интерактивом
     """
@@ -250,7 +250,7 @@ def enter_school_id_interactive(*args, **kwargs):
 
 
 # ==============================================================================
-def enter_sport_id_interactive(*args, **kwargs):
+def enter_sport_id_interactive(**kwargs):
     """
     Ввод индекса любимого спорта с контролем корректности и интерактивом
     """
@@ -275,7 +275,7 @@ def enter_sport_id_interactive(*args, **kwargs):
     return sport_id
 
 # ==============================================================================
-def enter_fruit_id_interactive(*args, **kwargs):
+def enter_fruit_id_interactive(**kwargs):
     """
     Ввод индекса любимого фрукта с контролем корректности и интерактивом
     """
@@ -300,7 +300,7 @@ def enter_fruit_id_interactive(*args, **kwargs):
     return fruit_id
 
 # ==============================================================================
-def add_record(*args, **kwargs):
+def add_record(**kwargs):
     """
     добавляет запись в  базу телефонной книги
     """
@@ -353,7 +353,7 @@ def add_record(*args, **kwargs):
 
 
 # ==============================================================================
-def save_database(*args, **kwargs):
+def save_database(**kwargs):
     """
     Сохраняет изменения в БД
     """
@@ -362,7 +362,7 @@ def save_database(*args, **kwargs):
 
 
 # ==============================================================================
-def add_city(*args, **kwargs):
+def add_city(**kwargs):
     """
     добавить новый город в БД
     """
@@ -391,7 +391,7 @@ def add_city(*args, **kwargs):
 
 
 # ==============================================================================
-def add_school(*args, **kwargs):
+def add_school(**kwargs):
     """
     добавить новую школу в БД
     """
@@ -420,7 +420,7 @@ def add_school(*args, **kwargs):
 
 
 # ==============================================================================
-def add_hair_color(*args, **kwargs):
+def add_hair_color(**kwargs):
     """
     добавить новый цвет волос в БД
     """
@@ -435,7 +435,7 @@ def add_hair_color(*args, **kwargs):
     )
 
 # ==============================================================================
-def add_fruit(*args, **kwargs):
+def add_fruit(**kwargs):
     """
     добавить новый фрукт в БД
     """
@@ -451,7 +451,7 @@ def add_fruit(*args, **kwargs):
     )
 
 # ==============================================================================
-def add_sport(*args, **kwargs):
+def add_sport(**kwargs):
     """
     добавить новый вид спорта в БД
     """
@@ -467,7 +467,7 @@ def add_sport(*args, **kwargs):
     )
 
 # ==============================================================================
-def show_all_majors(*args, **kwargs):
+def show_all_majors(**kwargs):
     """
     Вывести количество записей в таблице, сгруппированное по мэру
     """
@@ -570,9 +570,8 @@ def show_interface():
     if database is None:
         print("Не удалось инициировать работу с телефонной книгой")
         return 1
-    else:
-        print(f"\n{red_text('Телефонная книга v.2')}")
-        print("Добро пожаловать!")
+    print(f"\n{red_text('Телефонная книга v.2')}")
+    print("Добро пожаловать!")
 
     while is_working:
         print("\nЧто делаем?")
