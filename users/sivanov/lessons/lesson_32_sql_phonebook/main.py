@@ -28,35 +28,36 @@ def show_all_employees_data(*args, **kwargs):
                 ,con.phone_number
                 ,con.surname
                 ,con.name
-                ,con.secname
+                ,s.name
                 ,hc.color
                 ,cit.name
             FROM Contacts con
             LEFT JOIN Cities cit ON con.city_id = cit.id
-            LEFT JOIN Hair_colors hc ON con.hair_color_id = hc.id;
+            LEFT JOIN Hair_colors hc ON con.hair_color_id = hc.id
+            LEFT JOIN Schools s ON con.school_id = s.id;
         """
     )
-    width = 1 + 4 + 1 + 5 * 21 + 31 + 1
+    width = 1 + 4 + 1 + 5 * 21 + 31 + 1 - 20
     print("=" * width)
     t_caption = (
         "#",
         "Номер телефона",
         "Фамилия",
         "Имя",
-        "Отчество",
+        "Школа",
         "Цвет волос",
         "Город",
     )
     print(
-        f"|{t_caption[0]:^4}|{t_caption[1]:^20}|{t_caption[2]:^20}|"
-        f"{t_caption[3]:^20}|{t_caption[4]:^20}|{t_caption[5]:^20}|"
-        f"{t_caption[6]:^30}|"
+        f"|{t_caption[0]:^4}|{t_caption[1]:^20}|{t_caption[2]:^15}|"
+        f"{t_caption[3]:^15}|{t_caption[4]:^25}|{t_caption[5]:^15}|"
+        f"{t_caption[6]:^20}|"
     )
     print("=" * width)
     for record in result:
         print(
-            f"|{record[0]:4}|{record[1]:20}|{record[2]:20}|{record[3]:20}|"
-            f"{record[4]:20}|{record[5]:20}|{record[6]:30}|"
+            f"|{record[0]:4}|{record[1]:20}|{record[2]:15}|{record[3]:15}|"
+            f"{record[4]:25}|{record[5]:15}|{record[6]:20}|"
         )
     print("=" * width)
 
@@ -193,6 +194,32 @@ def enter_hair_color_id_interactive(*args, **kwargs):
 
 
 # ==============================================================================
+def enter_school_id_interactive(*args, **kwargs):
+    """
+    Ввод индекса цвета волос с контролем корректности и интерактивом
+    """
+    schools = kwargs["db"].execute("SELECT id FROM Schools")
+    school_id = None
+    trash_input = False
+    while not isinstance(school_id, int):
+        school_id = input("id школы (hint для вывода списка школ): ")
+        school_id = school_id.strip().lower()
+        if school_id == "hint":
+            show_all_schools_data(db=kwargs["db"])
+            continue
+        try:
+            school_id = int(school_id)
+        except ValueError:
+            trash_input = True
+        # print(departments)
+        if (trash_input) or ((school_id,) not in schools):
+            print("Введите корректный id цвета волос!")
+            school_id = None
+            trash_input = False
+    return school_id
+
+
+# ==============================================================================
 def add_record(*args, **kwargs):
     """
     добавляет запись в  базу телефонной книги
@@ -203,6 +230,7 @@ def add_record(*args, **kwargs):
     secname = input("Отчество: ")
     citi_id = enter_citi_id_interactive(db=kwargs["db"])
     hair_color_id = enter_hair_color_id_interactive(db=kwargs["db"])
+    school_id = enter_school_id_interactive(db=kwargs["db"])
     kwargs["db"].execute(
         """
             INSERT INTO Contacts (
@@ -212,9 +240,11 @@ def add_record(*args, **kwargs):
                 ,city_id
                 ,hair_color_id
                 ,phone_number
+                ,school_id
                 )
             VALUES (
                 ?
+                ,?
                 ,?
                 ,?
                 ,?
@@ -228,7 +258,8 @@ def add_record(*args, **kwargs):
             surname,
             int(citi_id),
             int(hair_color_id),
-            phone_number
+            phone_number,
+            school_id
         ),
     )
 
@@ -350,11 +381,12 @@ def show_interface():
     пока будет как одна функция, может быть имеет смысл его разбить
     """
     green_text = ColoredStr("green, bold")
+    yellow_text = ColoredStr("yellow, bold")
     indexer = (str(i) for i in range(1, 100))
     interface_contents = [
         {
             "key": next(indexer),
-            "name": green_text("Вывести все записи"),
+            "name": yellow_text("Вывести все записи"),
             "foo": show_all_employees_data,
         },
         {
@@ -372,7 +404,7 @@ def show_interface():
             "name": "Вывести список всех школ",
             "foo": show_all_schools_data,
         },
-        {"key": next(indexer), "name": green_text("Добавить запись"), "foo": add_record},
+        {"key": next(indexer), "name": yellow_text("Добавить запись"), "foo": add_record},
         {"key": next(indexer), "name": "Добавить город", "foo": add_city},
         {"key": next(indexer), "name": "Добавить школу", "foo": add_school},
         {"key": next(indexer), "name": "Добавить цвет волос", "foo": add_hair_color},
@@ -392,8 +424,8 @@ def show_interface():
         #     "name": "Импорт данных из csv",
         #     "foo": import_data_from_excel_csv,
         # },
-        {"key": next(indexer), "name": "Сохранить изменения", "foo": save_database},
-        {"key": "0", "name": "Закончить работу", "foo": go_away},
+        {"key": "save", "name": green_text("Сохранить изменения"), "foo": save_database},
+        {"key": "exit", "name": green_text("Закончить работу"), "foo": go_away},
         #        {#TODO это не работает
         #            "key": "test",
         #            "name": "Переключиться на тестовую БД",
@@ -414,14 +446,15 @@ def show_interface():
         print("\nЧто делаем?")
         for task in interface_contents:
             print(f"{task['key']}:{task['name']}")
-        user_responce = input("Введите номер желаемого действия:")
+        user_responce = input("Введите номер или команду для выполнения действия:")
         user_responce = user_responce.strip()
+        job_is_done = False
         for task in interface_contents:
             if task["key"] == user_responce:
-                # print("=============================")
                 if task["foo"](db=database) is False:
                        is_working = False
-        if(is_working):
+                job_is_done = True
+        if(is_working and job_is_done):
             dummy = input("Нажмите Enter чтобы продолжить работу...")
     return 0
 
