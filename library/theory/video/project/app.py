@@ -89,45 +89,49 @@ def hello():
 
     ##
     
-#    print(shape)
+    print(shape)
     
     ##
 
-    times_for_preproc = []
-
-    for i in range(2):
-      #torch.cuda.synchronize(device=device)
-      t0 = time.time()
-
-      img = img.resize(size=shape)
-      t_img = (torch.tensor(np.array(img)).permute([2, 0, 1]).unsqueeze(0) / 255.0 - 0.5)/0.25
-      #t_img = t_img.to(device)
-#      t_img = t_img.to(device)#.half()
-
-      #torch.cuda.synchronize(device=device)
-      times_for_preproc.append(time.time() - t0)
-
-    print(f'mean time for preprocessing {np.mean(np.array(times_for_preproc))}')
+    t_img = (torch.tensor(np.array(img)).permute([2, 0, 1]).unsqueeze(0) / 255.0 - 0.5)/0.25
+    
+#    times_for_preproc = []
+#
+#    for i in range(2):
+#      #torch.cuda.synchronize(device=device)
+#      t0 = time.time()
+#
+#      img = img.resize(size=shape)
+#      t_img = (torch.tensor(np.array(img)).permute([2, 0, 1]).unsqueeze(0) / 255.0 - 0.5)/0.25
+#      #t_img = t_img.to(device)
+##      t_img = t_img.to(device)#.half()
+#
+#      #torch.cuda.synchronize(device=device)
+#      times_for_preproc.append(time.time() - t0)
+#
+#    print(f'mean time for preprocessing {np.mean(np.array(times_for_preproc))}')
 
     ##
     
     t_img.shape
     
     ##
-    
-    times_for_inf_torch = []
 
-    for i in range(2):
-      #torch.cuda.synchronize(device=device)
-      t0 = time.time()
+    res = model.forward(t_img)    
 
-      res = model.forward(t_img)
-      #res = model.forward(t_img.half())
-
-      #torch.cuda.synchronize(device=device)
-      times_for_inf_torch.append(time.time() - t0)
-
-    print(f'mean time for inference torch {np.mean(np.array(times_for_inf_torch))}')
+#    times_for_inf_torch = []
+#
+#    for i in range(2):
+#      #torch.cuda.synchronize(device=device)
+#      t0 = time.time()
+#
+#      res = model.forward(t_img)
+#      #res = model.forward(t_img.half())
+#
+#      #torch.cuda.synchronize(device=device)
+#      times_for_inf_torch.append(time.time() - t0)
+#
+#    print(f'mean time for inference torch {np.mean(np.array(times_for_inf_torch))}')
 
     ##
     
@@ -214,27 +218,31 @@ def hello():
     
     ##
     
-    times_for_postproc = []
+    clone_res_cpu = clone_res.cpu()
+    clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :])
+    bboxes = decode_result(clone_res_cpu[0], threshold=0.2, iou_threshold=0.2)
 
-    #for i in range(100):
-    for i in range(2):
-      #torch.cuda.synchronize(device=device)
-      t0 = time.time()
-
-      clone_res_cpu = clone_res.cpu()
-      #clone_res_cpu = clone_res.to(dtype=torch.float16)#.cpu()
-      #clone_res_cpu = clone_res.to(dtype=torch.float32).cpu()
-      #clone_res_cpu = clone_res.cpu()
-#      clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :])
-      clone_res_cpu[:, [1, 2, 6, 7 ], :, :] = torch.sigmoid(clone_res_cpu[:, [1, 2, 6, 7], :, :])
-      #clone_res[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res[:, [0, 1, 2, 5, 6, 7], :, :])
-      #clone_res_cpu = clone_res.cpu()
-      bboxes = decode_result(clone_res_cpu[0], threshold=0.2, iou_threshold=0.2)
-
-      #torch.cuda.synchronize(device=device)
-      times_for_postproc.append(time.time() - t0)
-
-    print(f'mean time for postprocessing {np.mean(np.array(times_for_postproc))}')
+#    times_for_postproc = []
+#
+#    #for i in range(100):
+#    for i in range(2):
+#      #torch.cuda.synchronize(device=device)
+#      t0 = time.time()
+#
+#      clone_res_cpu = clone_res.cpu()
+#      #clone_res_cpu = clone_res.to(dtype=torch.float16)#.cpu()
+#      #clone_res_cpu = clone_res.to(dtype=torch.float32).cpu()
+#      #clone_res_cpu = clone_res.cpu()
+##      clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, #:])
+#      clone_res_cpu[:, [1, 2, 6, 7 ], :, :] = torch.sigmoid(clone_res_cpu[:, [1, 2, 6, 7], :, :])
+#      #clone_res[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res[:, [0, 1, 2, 5, 6, 7], :, :])
+#      #clone_res_cpu = clone_res.cpu()
+#      bboxes = decode_result(clone_res_cpu[0], threshold=0.2, iou_threshold=0.2)
+#
+#      #torch.cuda.synchronize(device=device)
+#      times_for_postproc.append(time.time() - t0)
+#
+#    print(f'mean time for postprocessing {np.mean(np.array(times_for_postproc))}')
 
     ##
     
@@ -261,6 +269,17 @@ def hello():
     #return 'This Compose/Flask demo. %s - %s - %s' % (torch.cuda, shape, t_img.shape)
     return  f"""
         test: {torch.cuda} == {shape} == {t_img.shape} <br>
+        clone_res_cpu {clone_res_cpu.size()}<br>
+        bboxes {bboxes}<br>
+        bboxes['boxes'] {bboxes['boxes'].size()}<br>
+        bboxes['labels'] {bboxes['labels'].size()}<br>
+        bboxes['scores'] {bboxes['scores'].size()}<br>
+        mm.shape {mm.shape}<br>
+        
+        """
+
+    return  f"""
+        test: {torch.cuda} == {shape} == {t_img.shape} <br>
         mean time for preprocessing {np.mean(np.array(times_for_preproc))}<br>
         mean time for inference torch {np.mean(np.array(times_for_inf_torch))}<br>
         mean time for postprocessing {np.mean(np.array(times_for_postproc))}<br>
@@ -275,7 +294,26 @@ def hello():
 # %  torch.cuda.get_device_name(0)
     #return 'This Compose/Flask demo has been viewed time(s)'# % redis.get('hits')
 
+
+import cv2
     
+@app.route('/video')
+def video():
+    driving_out_30sec.mp4
+    cap = cv2.VideoCapture('data/driving_out_30sec.mp4')
+    
+    return  f"""
+        test: {torch.cuda} == {shape} == {t_img.shape} <br>
+        clone_res_cpu {clone_res_cpu.size()}<br>
+        bboxes {bboxes}<br>
+        bboxes['boxes'] {bboxes['boxes'].size()}<br>
+        bboxes['labels'] {bboxes['labels'].size()}<br>
+        bboxes['scores'] {bboxes['scores'].size()}<br>
+        mm.shape {mm.shape}<br>
+        cv2.getBuildInformation() = {cv2.getBuildInformation()}<br>
+        
+        """
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
