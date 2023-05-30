@@ -39,8 +39,83 @@ class PLModel(pl.LightningModule):
     def forward(self, input):
         return self.model.forward(input)
     
-    
-    
+
+def decode_result(datum, threshold=1.0, r=8, iou_threshold=0.7):
+    bboxes = {'boxes': [], 'scores': [], 'labels': []}
+    datum = {0: datum[:5, :, :], 
+             1: datum[5:, :, :]}
+
+    for label in [0, 1]:
+        mask = (datum[label][0, :, :] >= threshold)
+
+        x_cell = torch.arange(mask.shape[1], device=datum[label].device)
+        y_cell = torch.arange(mask.shape[0], device=datum[label].device)
+
+        y_cell, x_cell = torch.meshgrid(y_cell, x_cell)
+
+        x_cell = x_cell[mask]
+        y_cell = y_cell[mask]
+
+        x_shift = datum[label][2, :, :][mask]
+        y_shift = datum[label][1, :, :][mask]
+
+        x = (x_cell + x_shift) * r
+        y = (y_cell + y_shift) * r
+
+        w = datum[label][4, :, :][mask].exp() * r
+        h = datum[label][3, :, :][mask].exp() * r
+
+        scores = datum[label][0, :, :][mask]
+
+
+        for index in range(len(x)):
+            bboxes['boxes'].append([x[index] - w[index]/2, 
+                         y[index] - h[index]/2, 
+                         x[index] + w[index]/2, 
+                         y[index] + h[index]/2])
+            bboxes['scores'].append(scores[index])
+            bboxes['labels'].append(label)
+
+    bboxes['boxes'] = torch.tensor(bboxes['boxes']).reshape([-1, 4])
+    bboxes['scores'] = torch.tensor(bboxes['scores'])
+    bboxes['labels'] = torch.tensor(bboxes['labels'])
+
+    to_keep = torchvision.ops.nms(bboxes['boxes'], bboxes['scores'], iou_threshold=iou_threshold)
+
+    bboxes['boxes'] = bboxes['boxes'][to_keep]
+    bboxes['scores'] = bboxes['scores'][to_keep]
+    bboxes['labels'] = bboxes['labels'][to_keep]
+
+    return bboxes
+
+
+def decode_batch(batch, threshold=0.1, iou_threshold=0.3):
+    res = []
+    for index in range(batch.shape[0]):
+        res.append(decode_result(batch[index], 
+                   threshold=threshold, 
+                   iou_threshold=iou_threshold))
+    return res
+
+def draw_box(coords, label):
+    # print(coords)
+    # print(label)
+    # return None
+    x = np.array((coords[0], coords[2]))
+    y = np.array((coords[1], coords[3]))
+    color = 'g'
+    if label == 0:
+        color = 'r'
+
+    plt.plot(x.mean(), y.mean(), '*' + color)
+
+    plt.plot([x[0], x[0]], [y[0], y[1]], color)
+    plt.plot([x[1], x[1]], [y[0], y[1]], color)
+    plt.plot([x[0], x[1]], [y[0], y[0]], color)
+    plt.plot([x[0], x[1]], [y[1], y[1]], color)
+    # plt.text(x[0], y[0], label, backgroundcolor='red')
+
+
 
 app = Flask(__name__)
 #redis = Redis(host='redis', port=6379)
@@ -134,81 +209,6 @@ def hello():
 #    print(f'mean time for inference torch {np.mean(np.array(times_for_inf_torch))}')
 
     ##
-    
-    def decode_result(datum, threshold=1.0, r=8, iou_threshold=0.7):
-        bboxes = {'boxes': [], 'scores': [], 'labels': []}
-        datum = {0: datum[:5, :, :], 
-                 1: datum[5:, :, :]}
-
-        for label in [0, 1]:
-            mask = (datum[label][0, :, :] >= threshold)
-
-            x_cell = torch.arange(mask.shape[1], device=datum[label].device)
-            y_cell = torch.arange(mask.shape[0], device=datum[label].device)
-
-            y_cell, x_cell = torch.meshgrid(y_cell, x_cell)
-
-            x_cell = x_cell[mask]
-            y_cell = y_cell[mask]
-
-            x_shift = datum[label][2, :, :][mask]
-            y_shift = datum[label][1, :, :][mask]
-
-            x = (x_cell + x_shift) * r
-            y = (y_cell + y_shift) * r
-
-            w = datum[label][4, :, :][mask].exp() * r
-            h = datum[label][3, :, :][mask].exp() * r
-
-            scores = datum[label][0, :, :][mask]
-
-
-            for index in range(len(x)):
-                bboxes['boxes'].append([x[index] - w[index]/2, 
-                             y[index] - h[index]/2, 
-                             x[index] + w[index]/2, 
-                             y[index] + h[index]/2])
-                bboxes['scores'].append(scores[index])
-                bboxes['labels'].append(label)
-
-        bboxes['boxes'] = torch.tensor(bboxes['boxes']).reshape([-1, 4])
-        bboxes['scores'] = torch.tensor(bboxes['scores'])
-        bboxes['labels'] = torch.tensor(bboxes['labels'])
-
-        to_keep = torchvision.ops.nms(bboxes['boxes'], bboxes['scores'], iou_threshold=iou_threshold)
-
-        bboxes['boxes'] = bboxes['boxes'][to_keep]
-        bboxes['scores'] = bboxes['scores'][to_keep]
-        bboxes['labels'] = bboxes['labels'][to_keep]
-
-        return bboxes
-
-
-    def decode_batch(batch, threshold=0.1, iou_threshold=0.3):
-        res = []
-        for index in range(batch.shape[0]):
-            res.append(decode_result(batch[index], 
-                       threshold=threshold, 
-                       iou_threshold=iou_threshold))
-        return res
-
-    def draw_box(coords, label):
-        # print(coords)
-        # print(label)
-        # return None
-        x = np.array((coords[0], coords[2]))
-        y = np.array((coords[1], coords[3]))
-        color = 'g'
-        if label == 0:
-            color = 'r'
-
-        plt.plot(x.mean(), y.mean(), '*' + color)
-
-        plt.plot([x[0], x[0]], [y[0], y[1]], color)
-        plt.plot([x[1], x[1]], [y[0], y[1]], color)
-        plt.plot([x[0], x[1]], [y[0], y[0]], color)
-        plt.plot([x[0], x[1]], [y[1], y[1]], color)
-        # plt.text(x[0], y[0], label, backgroundcolor='red')
 
 
     ##
@@ -299,18 +299,97 @@ import cv2
     
 @app.route('/video')
 def video():
-    driving_out_30sec.mp4
     cap = cv2.VideoCapture('data/driving_out_30sec.mp4')
     
+    times_to_grab_images = []
+    while cap.isOpened():
+      t0 = time.time()
+      ret, image_np = cap.read()
+      times_to_grab_images.append(time.time() - t0)
+
+      if not ret:
+        break
+
+    print(f'mean time for grab image: {np.mean(np.array(times_to_grab_images))}')
+    
     return  f"""
-        test: {torch.cuda} == {shape} == {t_img.shape} <br>
+        mean time for grab image: {np.mean(np.array(times_to_grab_images))}  <br>
+        
+        cv2.getBuildInformation() = {cv2.getBuildInformation()}<br>
+        
+        """
+
+@app.route('/video1')
+def video1():
+
+    device = 'cpu'    
+    state = torch.load(
+        'data/detector_checkpoint.ckpt',
+        map_location='cpu')
+    state = state['state_dict']
+
+    model = PLModel(RetinaRehead())
+    model.load_state_dict(state)
+    model = model.model.to(device).eval()
+    
+    
+    cap = cv2.VideoCapture('data/driving_out_30sec.mp4')
+    for i in range(30*25):
+        ret, img = cap.read()
+    
+    #img2 = Image.open('data/photo1681218949.jpeg')
+    #shape = np.array(img2.size)
+    
+    img3 = torch.tensor(img)
+    img4 = img3.permute([2,0,1]).unsqueeze(0) 
+
+    #shape = (shape / shape[1] * 512).astype(int)
+    #shape = shape // 32 * 32
+    #t_img = (torch.tensor(np.array(img)).permute([2, 0, 1]).unsqueeze(0) / 255.0 - 0.5)/0.25
+       
+     #images = self.data.iloc[idx, 1:-1].values.astype(np.uint8).reshape((1, 16, 16))
+        
+#    return  f"""
+#        ret: {ret}<br>
+#        img {img3.size()}<br>
+#        img2 {shape}<br>
+#        t_img {t_img.size()}<br>
+#        img4 {img4.size()}<br>
+#        """         
+         
+    t_img = (img4 / 255.0 - 0.5 )/0.25
+    
+
+    res = model.forward(t_img)    
+    clone_res = res.clone()
+    
+    clone_res_cpu = clone_res.cpu()
+    clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :])
+    bboxes = decode_result(clone_res_cpu[0], threshold=0.2, iou_threshold=0.2)
+
+
+    imgplot = plt.imshow(img)
+    for index in range(len(bboxes['boxes'])):
+        draw_box(bboxes['boxes'][index], bboxes['labels'][index])
+    
+    plt.savefig('data/test5.jpeg')
+
+#            img2 {shape}<br>
+#        test: {torch.cuda} == {shape} == {t_img.shape} <br>
+
+    return  f"""
+        ret: {ret}<br>
+        img {img3.size()}<br>
+        t_img {t_img.size()}<br>
+        img4 {img4.size()}<br>
+        <br>
+
         clone_res_cpu {clone_res_cpu.size()}<br>
         bboxes {bboxes}<br>
         bboxes['boxes'] {bboxes['boxes'].size()}<br>
         bboxes['labels'] {bboxes['labels'].size()}<br>
         bboxes['scores'] {bboxes['scores'].size()}<br>
-        mm.shape {mm.shape}<br>
-        cv2.getBuildInformation() = {cv2.getBuildInformation()}<br>
+        
         
         """
 
