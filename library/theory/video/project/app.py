@@ -6,13 +6,13 @@ import torch
 import pytorch_lightning as pl
 import torchvision
 
-from PIL import Image
+#from PIL import Image
 
-import numpy as np
+#import numpy as np
 
-import time
+#import time
 
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 #from torch import nn
 #import cv2
@@ -373,6 +373,140 @@ def video1():
         draw_box(bboxes['boxes'][index], bboxes['labels'][index])
     
     plt.savefig('data/test5.jpeg')
+
+#            img2 {shape}<br>
+#        test: {torch.cuda} == {shape} == {t_img.shape} <br>
+
+    return  f"""
+        ret: {ret}<br>
+        img {img3.size()}<br>
+        t_img {t_img.size()}<br>
+        img4 {img4.size()}<br>
+        <br>
+
+        clone_res_cpu {clone_res_cpu.size()}<br>
+        bboxes {bboxes}<br>
+        bboxes['boxes'] {bboxes['boxes'].size()}<br>
+        bboxes['labels'] {bboxes['labels'].size()}<br>
+        bboxes['scores'] {bboxes['scores'].size()}<br>
+        
+        
+        """
+
+
+
+
+
+@app.route('/video2')
+def video2():
+
+    device = 'cpu'    
+    state = torch.load(
+        'data/detector_checkpoint.ckpt',
+        map_location='cpu')
+    state = state['state_dict']
+
+    model = PLModel(RetinaRehead())
+    model.load_state_dict(state)
+    model = model.model.to(device).eval()
+    
+    cap = cv2.VideoCapture('data/driving_out_30sec.mp4')
+    
+    
+    ##cap = cv2.VideoCapture(0)
+    #fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    #out = cv2.VideoWriter('data/output.avi', fourcc, 20.0, (640, 480))
+
+    width, height = (
+        int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
+        int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    )
+    fps = int(cap.get(cv2.CAP_PROP_FPS))
+
+    fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+    out = cv2.VideoWriter()
+    output_file_name = "data/output3.mp4"
+    out.open(output_file_name, fourcc, fps, (width, height), True)
+
+    
+    #while cap.isOpened():
+    for ff in range(200):
+        print(1)
+        ret, img = cap.read()
+        
+        img3 = torch.tensor(img)
+        img4 = img3.permute([2,0,1]).unsqueeze(0) 
+
+
+        t_img = (img4 / 255.0 - 0.5 )/0.25
+
+
+        res = model.forward(t_img)    
+        clone_res = res.clone()
+
+        clone_res_cpu = clone_res.cpu()
+        clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :])
+        bboxes = decode_result(clone_res_cpu[0], threshold=0.2, iou_threshold=0.2)
+
+        #imgplot = plt.imshow(img)
+        
+        for index in range(len(bboxes['boxes'])):
+            #draw_box(bboxes['boxes'][index], bboxes['labels'][index])
+
+            coords = bboxes['boxes'][index]
+            label = bboxes['labels'][index]
+
+            #x = np.array((coords[0], coords[2]))
+            #y = np.array((coords[1], coords[3]))
+            color = 'g'
+            c_l = (0,255,0)
+            if label == 0:
+                color = 'r'
+                c_l = (0,0,255)
+
+
+            #plt.plot(x.mean(), y.mean(), '*' + color)
+
+            #plt.plot([x[0], x[0]], [y[0], y[1]], color)
+            #plt.plot([x[1], x[1]], [y[0], y[1]], color)
+            #plt.plot([x[0], x[1]], [y[0], y[0]], color)
+            #plt.plot([x[0], x[1]], [y[1], y[1]], color)
+            
+            #return  f"""
+            #{coords[0]}
+            #"""
+            
+            #cv2.rectangle(img, (coords[0], coords[2]), (coords[1], coords[3]), (0, 255, 0), 3)
+            #cv2.rectangle(img, (int(coords[0]), int(coords[2])), (int(coords[1]), int(coords[3])), (0, 255, 0), 3)
+            cv2.rectangle(img, (int(coords[0]), int(coords[1])), (int(coords[2]), int(coords[3])), c_l, 3)
+
+            
+        #return  f"""
+        #    imgplot: {imgplot}<br>
+        #    """
+        
+        #plt.savefig('data/test5.jpeg')
+    
+        #ret, frame = cap.read()
+        #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        out.write(img)
+
+        print(2)
+    
+        if not ret:
+            break
+
+        
+    cap.release()
+    out.release()
+    cv2.destroyAllWindows()
+        
+
+    
+    
+
+
+
 
 #            img2 {shape}<br>
 #        test: {torch.cuda} == {shape} == {t_img.shape} <br>
