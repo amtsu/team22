@@ -24,7 +24,7 @@ class PhDatabase:
                 """
                 CREATE TABLE Cities (
                     id INTEGER PRIMARY KEY AUTOINCREMENT
-                    ,name TEXT UNIQUE
+                    ,name VARCHAR(100) UNIQUE
                     ,lat FLOAT
                     ,lon FLOAT
                     ,major TEXT
@@ -40,7 +40,7 @@ class PhDatabase:
                 """
                 CREATE TABLE Hair_colors (
                     id INTEGER PRIMARY KEY AUTOINCREMENT
-                    ,color TEXT
+                    ,color VARCHAR(100)
                     )
                 """
             )
@@ -53,7 +53,7 @@ class PhDatabase:
                 """
                     CREATE TABLE Favourite_sports (
                         id INTEGER PRIMARY KEY AUTOINCREMENT
-                        ,sport TEXT
+                        ,sport VARCHAR(100)
                         );
                 """
             )
@@ -66,47 +66,12 @@ class PhDatabase:
                 """
                     CREATE TABLE Favourite_fruits (
                         id INTEGER PRIMARY KEY AUTOINCREMENT
-                        ,fruit TEXT
+                        ,fruit VARCHAR(100)
                         );
                 """
             )
         except sqlite3.OperationalError:
             pass
-        else:
-            self.__cur.execute(
-                """
-                    INSERT INTO Favourite_fruits (fruit)
-                    VALUES ('Абрикос')
-                        ,('Айва')
-                        ,('Апельсин')
-                        ,('Арбуз')
-                        ,('Банан')
-                        ,('Виноград')
-                        ,('Гранат')
-                        ,('Грейпфрут')
-                        ,('Груша')
-                        ,('Гуава')
-                        ,('Дыня')
-                        ,('Инжир')
-                        ,('Канталупа')
-                        ,('Карамбола')
-                        ,('Киви')
-                        ,('Красный банан')
-                        ,('Лимон')
-                        ,('Манго')
-                        ,('Марания')
-                        ,('Мушмула')
-                        ,('Пепино')
-                        ,('Персик')
-                        ,('Питайя')
-                        ,('Помело')
-                        ,('Сахарное яблоко')
-                        ,('Физалис')
-                        ,('Финик')
-                        ,('Хурма');
-                """
-            )
-
         # =======================================================================
         # Школы
         try:
@@ -115,8 +80,8 @@ class PhDatabase:
                     CREATE TABLE Schools (
                         id INTEGER PRIMARY KEY AUTOINCREMENT
                         ,snumber INTEGER
-                        ,name TEXT
-                        ,address TEXT
+                        ,name VARCHAR(100)
+                        ,address VARCHAR(500)
                         ,city_id INTEGER
                         ,FOREIGN KEY (city_id) REFERENCES Cities(id)
                         );
@@ -131,12 +96,12 @@ class PhDatabase:
                 """
                     CREATE TABLE Contacts (
                         id INTEGER PRIMARY KEY AUTOINCREMENT
-                        ,name TEXT
-                        ,secname TEXT
-                        ,surname TEXT
+                        ,name VARCHAR(100)
+                        ,secname VARCHAR(100)
+                        ,surname VARCHAR(100)
                         ,city_id INTEGER
                         ,hair_color_id INTEGER
-                        ,phone_number TEXT
+                        ,phone_number VARCHAR(100)
                         ,school_id INTEGER
                         ,fruit_id INTEGER
                         ,sport_id INTEGER
