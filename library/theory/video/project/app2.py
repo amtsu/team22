@@ -10,13 +10,19 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-from flask import Flask
+#from flask import Flask
 #from redis import Redis
 
 
 import torch
 import pytorch_lightning as pl
 import torchvision
+
+from PIL import Image
+
+import numpy as np
+
+import matplotlib.pyplot as plt
 
 class RetinaRehead(torch.nn.Module):
     def __init__(self):
@@ -145,73 +151,115 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="Detector newFile")
-
-    new_file = await update.message.effective_attachment.get_file()
-    await new_file.download_to_drive('data/input.mp4')
 
 
-    device = 'cpu'    
+    device = 'cpu'
     state = torch.load(
         'data/detector_checkpoint.ckpt',
         map_location='cpu')
     state = state['state_dict']
-
     model = PLModel(RetinaRehead())
     model.load_state_dict(state)
     model = model.model.to(device).eval()
-    
-    cap = cv2.VideoCapture('data/input.mp4')
-    
-    width, height = (
-        int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
-        int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    )
-    fps = int(cap.get(cv2.CAP_PROP_FPS))
+ 
+    try:
+        try:
+            file_id = update.message.photo[-1].file_id
+            print(file_id)
+            new_file = await context.bot.get_file(file_id)
 
-    fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
-    out = cv2.VideoWriter()
-    output_file_name = "data/output.mp4"
-    out.open(output_file_name, fourcc, fps, (width, height), True)
-    
-    #while cap.isOpened():
-    for ff in range(40):
-        ret, img = cap.read()
+        except:
+            #new_file = await update.message.effective_attachment.get_file()
+            pass
+
+        await new_file.download_to_drive('data/input.jpeg')
+
+        img = Image.open('data/input.jpeg')
+
+        shape = np.array(img.size)
+        shape = (shape / shape[1] * 512).astype(int)
+        shape = shape // 32 * 32
+        t_img = (torch.tensor(np.array(img)).permute([2, 0, 1]).unsqueeze(0) / 255.0 - 0.5)/0.25
         
-        img3 = torch.tensor(img)
-        img4 = img3.permute([2,0,1]).unsqueeze(0) 
-
-        t_img = (img4 / 255.0 - 0.5 )/0.25
+        await context.bot.send_message(chat_id=update.effective_chat.id, text="Detector new photo file")
 
         res = model.forward(t_img)    
-        clone_res = res.clone()
 
+        clone_res = res.clone()
         clone_res_cpu = clone_res.cpu()
         clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :])
         bboxes = decode_result(clone_res_cpu[0], threshold=0.2, iou_threshold=0.2)
 
+        imgplot = plt.imshow(img)
         for index in range(len(bboxes['boxes'])):
-            coords = bboxes['boxes'][index]
-            label = bboxes['labels'][index]
-
-            color = 'g'
-            c_l = (0,255,0)
-            if label == 0:
-                color = 'r'
-                c_l = (0,0,255)
-
-            cv2.rectangle(img, (int(coords[0]), int(coords[1])), (int(coords[2]), int(coords[3])), c_l, 3)
-        out.write(img)
-        if not ret:
-            break
+            draw_box(bboxes['boxes'][index], bboxes['labels'][index])
         
-    cap.release()
-    out.release()
-    cv2.destroyAllWindows()
-        
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="Detector cars")
+        plt.savefig('data/output.jpeg')
 
-    await context.bot.send_document(chat_id=update.effective_chat.id, document=open('data/output.mp4', 'rb'))
+        await context.bot.send_message(chat_id=update.effective_chat.id, text="Detector cars")
+
+        await context.bot.send_document(chat_id=update.effective_chat.id, document=open('data/output.jpeg', 'rb'))
+
+        plt.clf()
+        ax1.cla()
+    except:
+    
+
+        await context.bot.send_message(chat_id=update.effective_chat.id, text="Detector newFile")
+
+        new_file = await update.message.effective_attachment.get_file()
+        await new_file.download_to_drive('data/input.mp4')
+
+        cap = cv2.VideoCapture('data/input.mp4')
+        
+        width, height = (
+            int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
+            int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        )
+        fps = int(cap.get(cv2.CAP_PROP_FPS))
+
+        fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+        out = cv2.VideoWriter()
+        output_file_name = "data/output.mp4"
+        out.open(output_file_name, fourcc, fps, (width, height), True)
+        
+        #while cap.isOpened():
+        for ff in range(40):
+            ret, img = cap.read()
+            
+            img3 = torch.tensor(img)
+            img4 = img3.permute([2,0,1]).unsqueeze(0) 
+
+            t_img = (img4 / 255.0 - 0.5 )/0.25
+
+            res = model.forward(t_img)    
+
+            clone_res_cpu = clone_res.cpu()
+            clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :])
+            bboxes = decode_result(clone_res_cpu[0], threshold=0.2, iou_threshold=0.2)
+
+            for index in range(len(bboxes['boxes'])):
+                coords = bboxes['boxes'][index]
+                label = bboxes['labels'][index]
+
+                color = 'g'
+                c_l = (0,255,0)
+                if label == 0:
+                    color = 'r'
+                    c_l = (0,0,255)
+
+                cv2.rectangle(img, (int(coords[0]), int(coords[1])), (int(coords[2]), int(coords[3])), c_l, 3)
+            out.write(img)
+            if not ret:
+                break
+            
+        cap.release()
+        out.release()
+        cv2.destroyAllWindows()
+            
+        await context.bot.send_message(chat_id=update.effective_chat.id, text="Detector cars")
+
+        await context.bot.send_document(chat_id=update.effective_chat.id, document=open('data/output.mp4', 'rb'))
 
 
 if __name__ == '__main__':
@@ -224,6 +272,7 @@ if __name__ == '__main__':
     application.add_handler(unknown_handler)
     
     application.run_polling()
+
 
 
 
