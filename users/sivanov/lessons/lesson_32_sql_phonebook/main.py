@@ -528,7 +528,7 @@ def show_all_majors(**kwargs):
             ORDER BY count_of_contacts DESC
         """
     )
-    width = 1 + 30 + 1 + 30 + 1
+    width = 1 + 30 + 1 + 20 + 1
     t_caption = (
         "Мэр",
         "Число контактов",
