@@ -1,32 +1,34 @@
+#!/usr/local/bin/python
+# coding: utf-8
+
 """
 Парсер для сайта застройщика 'ГАЛС'
 """
 
-#!/usr/local/bin/python
-# coding: utf-8
-
 import urllib
 import urllib.request
-from typing import Any, Dict, Optional
-# from bs4 import BeautifulSoup
+from geopy.geocoders import Nominatim #Подключаем библиотеку
+from typing import Optional
+from bs4 import BeautifulSoup
 
-import openapi_client #mypy: Skipping analyzing "openapi_client": module is installed, but missing library stubs or py.typed marker
-from pprint import pprint
-from openapi_client.apis.tags import history_api #mypy: Skipping analyzing...
-from openapi_client.model.history import History #mypy: Skipping analyzing...
-from openapi_client.model.paginated_history_list import PaginatedHistoryList #mypy: Skipping...
-from openapi_client.model.patched_history import PatchedHistory  #mypy: Skipping analyzing...
+import openapi_client 
+# from pprint import pprint
+from openapi_client.apis.tags import history_api 
+from openapi_client.model.history import History 
+from openapi_client.model.paginated_history_list import PaginatedHistoryList 
+from openapi_client.model.patched_history import PatchedHistory  
 
-from users.mvandreeva.d221217_2227.page_parsing import PagePerser
+# from page_parsing import PagePerser # для pytest
+from users.mvandreeva.d221217_2227.page_parsing import PagePerser # Unable to import 'users.mvandreeva.d221217_2227.page_parsing' !!!
 
 def none_to_zero(function):
     """
     Декоратор для перевода значений None в '0' или ''
     """
     def wrapper(*args, **kwargs):
-        d = function(*args, **kwargs) # Variable name "d" doesn't conform to snake_case naming style
-        for key in d:
-            if d[key] is None:
+        data_dict = function(*args, **kwargs)
+        for key in data_dict:
+            if data_dict[key] is None:
                 if key in [
                     "bulding",
                     "rooms",
@@ -38,17 +40,17 @@ def none_to_zero(function):
                     "apartment_ppm",
                     "apartment_floors_total",
                 ]:
-                    d[key] = 0
+                    data_dict[key] = 0
                 else:
-                    d[key] = ""
-        return d
+                    data_dict[key] = ""
+        return data_dict
 
     return wrapper
 
 
 class HALSParser:
     """
-    Получает данные с сайта https://hals-development.ru/realty/residential по всем проектам 
+    Получает данные с сайта https://hals-development.ru/realty/residential по всем проектам
     """
     
     BRAND_URL = "https://hals-development.ru"
@@ -58,17 +60,17 @@ class HALSParser:
     FLOORS_TOTAL_K = 9  # нашла на дом.рф для космо 4/22
     LOCATION_K_8 = "55.745600, 37.638782"
     LOCATION_K_9 = "55.745600, 37.638782"
+    PROJECTS_NAMES = ['Космо 4/22', 'Театральный Дом', 'Новый проект на Шлюзовой набережной', 'Новый проект на ул. Фридриха Энгельса', 'Новый проект на ул. Шоссейная'] # прописать функцией, чтоб парсился автоматически
     
     def __init__(self, url: str):
         self.__url = url
         self.__page = PagePerser(self.__url)
         self.__b_soup = self.__page.use_b_soup()
-        try:
-            self.__project_list = self.__b_soup.findAll(
-                "div", class_="index__projects__item"
-            )
-            # print(self.__project_list)
-        except (urllib.request.HTTPError, urllib.request.URLError):
+        self.__project_list = self.__b_soup.findAll(
+            "div", class_="index__projects__item"
+        )
+        # print(self.__project_list)
+        if not self.__project_list:
             print("Error in getting projects_list", self.__url)
         self.__dict_list = []
 
@@ -99,7 +101,7 @@ class HALSParser:
                 "apartment_floors_total"
             ] = (
                 self.FLOORS_TOTAL_K
-            )  # нужно дополнять условия, если появятся данные в других ЖК
+            )  # нужно дополнять условия, если появятся данные в других ЖК!!!!!!!
         else:
             item_dict["apartment_floors_total"] = None
         if item_dict["price"] and item_dict["area"]:
@@ -139,6 +141,32 @@ class HALSParser:
             print("Error in getting address")
             address = None
         return address
+    
+    def _get_area(self, item: object) -> Optional[int]:
+        """
+        Получает площадь квартиры
+        """
+        flat_data = item.findAll("div", class_="grid-item2__info2")
+        # print(flat_data)
+        if flat_data:
+            data_full = flat_data[0].text
+            # print(data_full)
+            # print("++++++++++++++++++++++++++++++++++")
+            cut_begin = data_full.find("/")
+            cut_stop = data_full.find("м", cut_begin)
+            area_bad = data_full[cut_begin:cut_stop]
+            # print(area_bad)
+            # print("++++++++++++++++++++++++++++++++++")
+            area_bad = area_bad.replace('"', "")
+            area_bad = area_bad.replace("/", "")
+            area_bad = area_bad.replace(" ", "")
+            area_bad = area_bad.replace(",", ".")
+            # print(area_bad)
+            area = float(area_bad)
+        else:
+            print("Error in getting area")
+            area = None
+        return area
 
     def _get_brand(self) -> Optional[str]:
         """
@@ -168,7 +196,7 @@ class HALSParser:
             building_data = flat_data[0].text
             if (
                 not building_data.find("Река") == -1
-            ):  # Проект Космо 4/22 # нужно прописывать условия для новых проектов
+            ):  # Проект Космо 4/22 # нужно прописывать условия для новых проектов !!!!!!!!!!
                 building = 8
             elif not building_data.find("Сад") == -1:  # Проект Космо 4/22
                 building = 9
@@ -184,10 +212,13 @@ class HALSParser:
         return building
 
     def _get_ceilingheight(self, one_item_url: str) -> Optional[float]:
+        """
+        Получает высоту потолков (только онлайн)
+        """
         page = PagePerser(one_item_url)
         b_soup = page.use_b_soup()
-        try:
-            full_data = b_soup.findAll("div", class_="realty-flat__options2")
+        full_data = b_soup.findAll("div", class_="realty-flat__options2")
+        if full_data:
             for data in full_data:
                 c_data = data.findAll("div")
                 for data in c_data:
@@ -208,7 +239,7 @@ class HALSParser:
                     # else:
                     #     continue
             return ceilingheight
-        except (urllib.request.HTTPError, urllib.request.URLError):
+        else:
             print("Error in getting ceilingheight")
             ceilingheight = None
             return ceilingheight
@@ -269,15 +300,14 @@ class HALSParser:
             project_url = self._get_project_url(project)
             page = PagePerser(project_url)
             b_soup = page.use_b_soup()
-            try:
-                items_list = b_soup.findAll("a", class_="grid-item grid-item2")
-            except (urllib.request.HTTPError, urllib.request.URLError):
+            items_list = b_soup.findAll("a", class_="grid-item grid-item2")
+            if not items_list:
                 print("Error in getting items_list", project_url)
             for (
                 item
             ) in (
                 items_list
-            ):  # парсит одну квартиру(наверно перезаписывает данные в словаре)
+            ):  
                 item_dict = self._fill_dict(item, item_dict)
                 item_dict[
                     "source_url"
@@ -311,7 +341,18 @@ class HALSParser:
         link = item["href"]
         item_url = "https://hals-development.ru" + link
         return item_url
-
+    
+    def _get_location(self, adress: str) -> list: # не каждый адрес распознает - нужно определенное написание
+        """
+        Получает координаты объекта по адресу
+        """
+        geolocator = Nominatim(user_agent="Tester") #Указываем название приложения (так нужно, да) # списала из интернета
+        location = geolocator.geocode(adress) #Создаем переменную, которая состоит из нужного нам адреса
+        # print(location) #Выводим результат: адрес в полном виде
+        # print(location.latitude, location.longitude) #И теперь выводим GPS-координаты нужного нам адреса
+        location_data = [location.latitude, location.longitude]
+        return location_data
+        
     def _get_plan(self, item: object) -> Optional[str]:
         """
         Получает ссылку на план конкретой квартиры
@@ -399,31 +440,7 @@ class HALSParser:
             rooms = None
         return rooms
 
-    def _get_area(self, item: object) -> Optional[int]:
-        """
-        Получает площадь квартиры
-        """
-        flat_data = item.findAll("div", class_="grid-item2__info2")
-        # print(flat_data)
-        if flat_data:
-            data_full = flat_data[0].text
-            # print(data_full)
-            # print("++++++++++++++++++++++++++++++++++")
-            cut_begin = data_full.find("/")
-            cut_stop = data_full.find("м", cut_begin)
-            area_bad = data_full[cut_begin:cut_stop]
-            # print(area_bad)
-            # print("++++++++++++++++++++++++++++++++++")
-            area_bad = area_bad.replace('"', "")
-            area_bad = area_bad.replace("/", "")
-            area_bad = area_bad.replace(" ", "")
-            area_bad = area_bad.replace(",", ".")
-            # print(area_bad)
-            area = float(area_bad)
-        else:
-            print("Error in getting area")
-            area = None
-        return area
+
 
     def _get_title(self, item: object) -> Optional[str]:
         """
@@ -500,9 +517,87 @@ class HALSParser:
                 )  # History |  (optional)
 
                 try:
-                    api_response = api_instance.history_create(body=history)
+                    api_response = api_instance.history_create(body=history) # написать в лог, что не смог отправить объект
                     # pprint(api_response)
                 except openapi_client.ApiException as e:
-                    print("Exception when calling HistoryApi->history_create: %s\n" % e)
+                    print("Exception when calling HistoryApi->history_create: %s\n" % e) #!!!!
             print("Count load object =", len(self.__dict_list))
             
+class HALSParserFFile(HALSParser):
+    """
+    Собирает данные страницы, скачанной с сайта https://hals-development.ru/realty/residential в файл 'sources/tricolor' очищает их, сохряняет
+    """
+
+    def __init__(self, page_text):
+        self.__url = None
+        self.__b_soup = BeautifulSoup(page_text, features="html.parser")
+        self.__project_list = self.__b_soup.findAll(
+            "div", class_="index__projects__item"
+        )
+        # print(self.__project_list)
+        self.__dict_list = []
+        
+    def _get_brand(self) -> Optional[str]:
+        """
+        Получает наименование застройщика
+        """
+        footer_data = self.__b_soup.findAll("div", class_="footer2-copy")
+        if footer_data:
+            for data in footer_data:
+                brand_data = data.find("div")
+                brand_bad = brand_data.text
+                cut_begin = brand_bad.find(",")
+                cut_stop = brand_bad.find(".")
+                brand_bad = brand_bad[cut_begin:cut_stop]
+                brand_bad = brand_bad.replace(",", "")
+                brand = brand_bad.strip()
+        else:
+            print("Error in getting brand")
+            brand = None
+        return brand
+
+    def get_dict_list(self, pages_dict) -> list:
+        """
+        Формирует список словарей с данными по квартирам
+        """
+        brand_name = self._get_brand()
+        for project in self.__project_list:
+            item_dict = {}
+            item_dict["project"] = self._get_project(project)
+            item_dict["description"] = self._get_description(project)
+            item_dict["full_address"] = self._get_address(project)
+            item_dict["brand"] = brand_name
+            item_dict["brand_url"] = self.BRAND_URL
+            print(item_dict["project"])
+            if item_dict["project"] == self.PROJECTS_NAMES[0]:
+                b_soup = BeautifulSoup(pages_dict["hals_kosmo"], features="html.parser")
+            elif item_dict["project"] == self.PROJECTS_NAMES[1]:
+                b_soup = BeautifulSoup(pages_dict["hals_teatral"], features="html.parser")
+            elif item_dict["project"] == self.PROJECTS_NAMES[2]:
+                b_soup = BeautifulSoup(pages_dict["hals_zamoskvorech"], features="html.parser") 
+            elif item_dict["project"] == self.PROJECTS_NAMES[3]:
+                b_soup = BeautifulSoup(pages_dict["hals_engels"], features="html.parser")
+            elif item_dict["project"] == self.PROJECTS_NAMES[4]:
+                b_soup = BeautifulSoup(pages_dict["hals_shossejnaya"], features="html.parser")
+            else:
+                print("Undefined project", item_dict["project"])
+                b_soup = None
+            items_list = b_soup.findAll("a", class_="grid-item grid-item2")
+            for (
+                item
+            ) in (
+                items_list
+            ):  
+                item_dict = self._fill_dict(item, item_dict)
+                item_dict[
+                    "source_url"
+                ] = self.__url 
+                self.__dict_list.append(item_dict)
+        return self.__dict_list
+    
+    def _get_ceilingheight(self, one_item_url: str) -> Optional[float]:
+        """
+        Получает высоту потолков (только онлайн)
+        """
+        pass
+
