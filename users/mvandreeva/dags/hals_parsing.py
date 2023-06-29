@@ -18,7 +18,7 @@ from openapi_client.model.history import History
 from openapi_client.model.paginated_history_list import PaginatedHistoryList 
 from openapi_client.model.patched_history import PatchedHistory  
 
-# from page_parsing import PagePerser # для pytest
+# from page_parsing import PagePerser # для pytest раскомитить вместо следующей
 from users.mvandreeva.d221217_2227.page_parsing import PagePerser # Unable to import 'users.mvandreeva.d221217_2227.page_parsing' !!!
 
 def none_to_zero(function):
@@ -309,6 +309,10 @@ class HALSParser:
                 items_list
             ):  
                 item_dict = self._fill_dict(item, item_dict)
+                if not item_dict["apartment_location"]:
+                    item_dict["apartment_location"] = self._get_location(item_dict["full_address"])
+                    item_dict["apartment_location_lat"] = item_dict["apartment_location"][0]
+                    item_dict["apartment_location_lon"] = item_dict["apartment_location"][1]
                 item_dict[
                     "source_url"
                 ] = self.__url  # какой указывать - на застройщика или на проект?
