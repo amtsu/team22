@@ -106,7 +106,9 @@ class FondRenovationServiceProcessing:
                 el["brand"] = "fr.mos.ru"
                 el["brand_url"] = "fr.mos.ru"
                 el["category"] = "Реновация"
-                el["url"] = e["auction"]
+                #el["url"] = e["auction"]
+                el["url"] = e.get("auction", '')
+                #print(e.get("auction", 'aaaaaa'))
                 el["image_url"] = "https://fr.mos.ru" + e["plan"]
                 #el["description"] = json.dumps(e["object"])[0:100]
                 #el["description"] = e["object"]

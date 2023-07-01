@@ -233,6 +233,7 @@ async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
             t_img = (img4 / 255.0 - 0.5 )/0.25
 
             res = model.forward(t_img)    
+            clone_res = res.clone()
 
             clone_res_cpu = clone_res.cpu()
             clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :] = torch.sigmoid(clone_res_cpu[:, [0, 1, 2, 5, 6, 7], :, :])
