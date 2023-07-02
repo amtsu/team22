@@ -6,7 +6,7 @@ import pytest
 # from bs4 import BeautifulSoup
 
 from hals_parsing import HALSParser, HALSParserFFile
-# from page_parsing import PagePerser
+# from page_parsing import PageParser
 
 def test_hals_parsing_get_title():
     """

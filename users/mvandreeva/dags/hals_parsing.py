@@ -18,8 +18,8 @@ from openapi_client.model.history import History
 from openapi_client.model.paginated_history_list import PaginatedHistoryList 
 from openapi_client.model.patched_history import PatchedHistory  
 
-# from page_parsing import PagePerser # для pytest раскомитить вместо следующей
-from users.mvandreeva.d221217_2227.page_parsing import PagePerser # Unable to import 'users.mvandreeva.d221217_2227.page_parsing' !!!
+# from page_parsing import PageParser # для pytest раскомитить вместо следующей
+from users.mvandreeva.d221217_2227.page_parsing import PageParser # Unable to import 'users.mvandreeva.d221217_2227.page_parsing' !!!
 
 def none_to_zero(function):
     """
@@ -39,6 +39,9 @@ def none_to_zero(function):
                     "apartment_ceilingheight",
                     "apartment_ppm",
                     "apartment_floors_total",
+                    "apartment_completion_quarter",
+                    "apartment_completion_year",
+                    "apartment_floors_total"
                 ]:
                     data_dict[key] = 0
                 else:
@@ -64,7 +67,7 @@ class HALSParser:
     
     def __init__(self, url: str):
         self.__url = url
-        self.__page = PagePerser(self.__url)
+        self.__page = PageParser(self.__url)
         self.__b_soup = self.__page.use_b_soup()
         self.__project_list = self.__b_soup.findAll(
             "div", class_="index__projects__item"
@@ -215,7 +218,7 @@ class HALSParser:
         """
         Получает высоту потолков (только онлайн)
         """
-        page = PagePerser(one_item_url)
+        page = PageParser(one_item_url)
         b_soup = page.use_b_soup()
         full_data = b_soup.findAll("div", class_="realty-flat__options2")
         if full_data:
@@ -252,7 +255,7 @@ class HALSParser:
     #         is_doc = data.find("Документы")
     #         if not is_doc == -1:
     #             doc_url = data[0]["href"]
-    #             doc_page = PagePerser(doc_url)
+    #             doc_page = PageParser(doc_url)
     #             b_soup = doc_page.use_b_soup()
     #             try:
     #                 compl_data = b_soup.findAll("div", class_="styles__Value-sc-13pfgqd-2 hVswsH")
@@ -298,7 +301,7 @@ class HALSParser:
             # if project == 'Космо 4/22':
             #     item_dict["apartment_floors_total"] = self.FLOORS_TOTAL_K
             project_url = self._get_project_url(project)
-            page = PagePerser(project_url)
+            page = PageParser(project_url)
             b_soup = page.use_b_soup()
             items_list = b_soup.findAll("a", class_="grid-item grid-item2")
             if not items_list:
@@ -354,6 +357,8 @@ class HALSParser:
         location = geolocator.geocode(adress) #Создаем переменную, которая состоит из нужного нам адреса
         # print(location) #Выводим результат: адрес в полном виде
         # print(location.latitude, location.longitude) #И теперь выводим GPS-координаты нужного нам адреса
+        loc_lat = str(location.latitude)
+        loc_lon = str(location.longitude)
         location_data = [location.latitude, location.longitude]
         return location_data
         

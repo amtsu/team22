@@ -5,7 +5,7 @@ import urllib
 import urllib.request
 from bs4 import BeautifulSoup
 
-class PagePerser:
+class PageParser:
     """
     Производит открытие страницы, её первичную обработку
     """
