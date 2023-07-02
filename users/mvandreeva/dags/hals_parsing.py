@@ -77,7 +77,6 @@ class HALSParser:
             print("Error in getting projects_list", self.__url)
         self.__dict_list = []
 
-    @none_to_zero
     def _fill_dict(self, item: object, item_dict: dict) -> dict:
         """
         Метод наполняет данными словарь
@@ -286,6 +285,7 @@ class HALSParser:
                 print("Error in getting description")
         return description
 
+    @none_to_zero
     def get_dict_list(self) -> list:
         """
         Формирует список словарей с данными по квартирам
