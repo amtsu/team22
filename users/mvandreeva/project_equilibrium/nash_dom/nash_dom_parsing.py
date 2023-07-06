@@ -24,7 +24,6 @@ def none_to_zero(function):
     """
     def wrapper(*args, **kwargs):
         data_dict = function(*args, **kwargs)
-        no_data = []
         for key in data_dict:
             if data_dict[key] is None:
                 if key in [
@@ -41,7 +40,7 @@ def none_to_zero(function):
                     data_dict[key] = 0
                 else:
                     data_dict[key] = ""
-                print(key, "is None")
+                # print(key, "is None")
         return data_dict
     return wrapper
 
