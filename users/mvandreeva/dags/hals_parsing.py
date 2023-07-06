@@ -18,36 +18,36 @@ from openapi_client.model.history import History
 from openapi_client.model.paginated_history_list import PaginatedHistoryList 
 from openapi_client.model.patched_history import PatchedHistory  
 
-# from page_parsing import PageParser # для pytest раскомитить вместо следующей
-from users.mvandreeva.d221217_2227.page_parsing import PageParser # Unable to import 'users.mvandreeva.d221217_2227.page_parsing' !!!
+from page_parsing import PageParser # для pytest раскомитить вместо следующей
+# from users.mvandreeva.d221217_2227.page_parsing import PageParser # Unable to import 'users.mvandreeva.d221217_2227.page_parsing' !!!
 
 def none_to_zero(function):
     """
     Декоратор для перевода значений None в '0' или ''
     """
     def wrapper(*args, **kwargs):
-        data_dict = function(*args, **kwargs)
-        for key in data_dict:
-            if data_dict[key] is None:
-                if key in [
-                    "bulding",
-                    "rooms",
-                    "floor",
-                    "area",
-                    "price",
-                    "price_sale",
-                    "apartment_ceilingheight",
-                    "apartment_ppm",
-                    "apartment_floors_total",
-                    "apartment_completion_quarter",
-                    "apartment_completion_year",
-                    "apartment_floors_total"
-                ]:
-                    data_dict[key] = 0
-                else:
-                    data_dict[key] = ""
-        return data_dict
-
+        data_dict_list = function(*args, **kwargs)
+        for item in data_dict_list:
+            for key in item:
+                if item[key] is None:
+                    if key in [
+                        "bulding",
+                        "rooms",
+                        "floor",
+                        "area",
+                        "price",
+                        "price_sale",
+                        "apartment_ceilingheight",
+                        "apartment_ppm",
+                        "apartment_floors_total",
+                        "apartment_completion_quarter",
+                        "apartment_completion_year",
+                        "apartment_floors_total"
+                    ]:
+                        item[key] = 0
+                    else:
+                        item[key] = ""
+        return data_dict_list
     return wrapper
 
 
@@ -220,6 +220,7 @@ class HALSParser:
         page = PageParser(one_item_url)
         b_soup = page.use_b_soup()
         full_data = b_soup.findAll("div", class_="realty-flat__options2")
+        ceilingheight = None
         if full_data:
             for data in full_data:
                 c_data = data.findAll("div")
@@ -312,10 +313,11 @@ class HALSParser:
                 items_list
             ):  
                 item_dict = self._fill_dict(item, item_dict)
-                if not item_dict["apartment_location"]:
+                if not "apartment_location" in item_dict:
                     item_dict["apartment_location"] = self._get_location(item_dict["full_address"])
-                    item_dict["apartment_location_lat"] = item_dict["apartment_location"][0]
-                    item_dict["apartment_location_lon"] = item_dict["apartment_location"][1]
+                    if item_dict["apartment_location"]:
+                        item_dict["apartment_location_lat"] = item_dict["apartment_location"][0]
+                        item_dict["apartment_location_lon"] = item_dict["apartment_location"][1]
                 item_dict[
                     "source_url"
                 ] = self.__url  # какой указывать - на застройщика или на проект?
@@ -357,9 +359,11 @@ class HALSParser:
         location = geolocator.geocode(adress) #Создаем переменную, которая состоит из нужного нам адреса
         # print(location) #Выводим результат: адрес в полном виде
         # print(location.latitude, location.longitude) #И теперь выводим GPS-координаты нужного нам адреса
-        loc_lat = str(location.latitude)
-        loc_lon = str(location.longitude)
-        location_data = [location.latitude, location.longitude]
+        location_data = []
+        if location:
+            loc_lat = str(location.latitude)
+            loc_lon = str(location.longitude)
+            location_data = [location.latitude, location.longitude]
         return location_data
         
     def _get_plan(self, item: object) -> Optional[str]:

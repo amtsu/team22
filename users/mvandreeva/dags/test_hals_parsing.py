@@ -45,5 +45,131 @@ def read_ff_h_projects():
 def test_hals_parsing_ffile(read_ffile_h_main, read_ff_h_projects):
     flats_data = HALSParserFFile(read_ffile_h_main)
     flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
-    pprint(flats_dict_list)
+    print(flats_dict_list)
     assert not flats_dict_list == []
+    
+def test_nash_dom_parsing_ff_nd_price(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["price"] != 0
+    
+def test_nash_dom_parsing_ff_nd_price_sale(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["price_sale"] != 0
+        
+def test_nash_dom_parsing_ff_nd_title(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["title"] != ""
+    
+def test_nash_dom_parsing_ff_nd_category(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["category"] != ""
+    
+def test_nash_dom_parsing_ff_nd_brand(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["brand"] != ""
+    
+def test_nash_dom_parsing_ff_nd_brand_url(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["brand_url"] != ""
+        
+def test_nash_dom_parsing_ff_nd_url(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["url"] != ""
+    
+def test_nash_dom_parsing_ff_nd_img_url(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["plan"] != ""
+        
+def test_nash_dom_parsing_ff_nd_description(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["description"] != ""
+    
+def test_nash_dom_parsing_ff_nd_source_url(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["source_url"] != ""
+        
+def test_nash_dom_parsing_ff_nd_apartment_area(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["area"] != ""
+    
+def test_nash_dom_parsing_ff_nd_apartment_completion_quarter(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["apartment_completion_quarter"] != 0
+    
+def test_nash_dom_parsing_ff_nd_apartment_completion_year(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["apartment_completion_year"] != 0
+    
+def test_nash_dom_parsing_ff_nd_apartment_floor(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["floor"] != 0
+        
+def test_nash_dom_parsing_ff_nd_apartment_floors_total(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["apartment_floors_total"] != 0
+    
+def test_nash_dom_parsing_ff_nd_apartment_ceilingheight(read_ffile_h_main, read_ff_h_projects): # в API строка?
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["apartment_ceilingheight"] != 0 or item["apartment_ceilingheight"] != ""
+        
+def test_nash_dom_parsing_ff_nd_apartment_room(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["rooms"] != 0
+    
+def test_nash_dom_parsing_ff_nd_apartment_ppm(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["apartment_ppm"] != 0
+    
+def test_nash_dom_parsing_ff_nd_apartment_address(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["full_address"] != ""
+        
+def test_nash_dom_parsing_ff_nd_apartment_location_lat(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["apartment_location_lat"] != ""
+    
+def test_nash_dom_parsing_ff_nd_apartment_location_lon(read_ffile_h_main, read_ff_h_projects):
+    flats_data = HALSParserFFile(read_ffile_h_main)
+    flats_dict_list = flats_data.get_dict_list(read_ff_h_projects)
+    for item in flats_dict_list:
+        assert item["apartment_location_lon"] != ""
