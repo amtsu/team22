@@ -18,8 +18,8 @@ from openapi_client.model.history import History
 from openapi_client.model.paginated_history_list import PaginatedHistoryList 
 from openapi_client.model.patched_history import PatchedHistory  
 
-from page_parsing import PageParser # для pytest раскомитить вместо следующей
-# from users.mvandreeva.d221217_2227.page_parsing import PageParser # Unable to import 'users.mvandreeva.d221217_2227.page_parsing' !!!
+# from page_parsing import PageParser # для pytest раскомитить вместо следующей
+from users.mvandreeva.d221217_2227.page_parsing import PageParser # Unable to import 'users.mvandreeva.d221217_2227.page_parsing' !!!
 
 def none_to_zero(function):
     """
