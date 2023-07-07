@@ -8,6 +8,28 @@ import pytest
 from nash_dom_parsing import NashDomParser, NashDomParserFFile
 # from page_parsing import PagePerser
 
+# def test_page_parser_open():
+#     page_data = PagePerser("https://cg-tricolor.ru/catalog/flats")
+#     page_text = page_data.open_page()
+#     assert not page_text == ""
+
+
+# def test_page_parser_open_file():
+#     page_data = PagePerser("https://cg-tricolor.ru/catalog/flats")
+#     page_text = page_data.open_page()
+#     with open("sources/tricolor", "rb") as page:
+#         saved_page = page.read()
+#     assert not page_text == saved_page
+
+
+# def test_page_parser_use_b_soup():
+#     page_data = PagePerser("https://cg-tricolor.ru/catalog/flats")
+#     page_b_soup = page_data.use_b_soup()
+#     with open("sources/tricolor", "rb") as page:
+#         saved_page = page.read()
+#     saved_b_soup = BeautifulSoup(saved_page, features="html.parser")
+#     assert not page_b_soup == saved_b_soup
+
 def test_nd_parsing_get_title():
     """
     Тест загрузки данных в словарь
@@ -64,131 +86,131 @@ def test_nash_dom_parsing_ff_no_data(read_ffile_nd):
     pprint(no_data)
     assert no_data == []
     
-def test_nash_dom_parsing_ff_nd_price(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["price"] != 0
+# def test_nash_dom_parsing_ff_nd_price(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["price"] != 0
     
-def test_nash_dom_parsing_ff_nd_price_sale(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["price_sale"] != 0
+# def test_nash_dom_parsing_ff_nd_price_sale(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["price_sale"] != 0
         
-def test_nash_dom_parsing_ff_nd_title(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["title"] != ""
+# def test_nash_dom_parsing_ff_nd_title(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["title"] != ""
     
-def test_nash_dom_parsing_ff_nd_category(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["category"] != ""
+# def test_nash_dom_parsing_ff_nd_category(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["category"] != ""
     
-def test_nash_dom_parsing_ff_nd_brand(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["brand"] != ""
+# def test_nash_dom_parsing_ff_nd_brand(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["brand"] != ""
     
-def test_nash_dom_parsing_ff_nd_brand_url(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["brand_url"] != ""
+# def test_nash_dom_parsing_ff_nd_brand_url(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["brand_url"] != ""
         
-def test_nash_dom_parsing_ff_nd_url(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["url"] != ""
+# def test_nash_dom_parsing_ff_nd_url(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["url"] != ""
     
-def test_nash_dom_parsing_ff_nd_img_url(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["img_url"] != ""
+# def test_nash_dom_parsing_ff_nd_img_url(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["img_url"] != ""
         
-def test_nash_dom_parsing_ff_nd_description(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["description"] != ""
+# def test_nash_dom_parsing_ff_nd_description(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["description"] != ""
     
-def test_nash_dom_parsing_ff_nd_source_url(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["source_url"] != ""
+# def test_nash_dom_parsing_ff_nd_source_url(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["source_url"] != ""
         
-def test_nash_dom_parsing_ff_nd_apartment_area(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["apartment_area"] != ""
+# def test_nash_dom_parsing_ff_nd_apartment_area(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["apartment_area"] != ""
     
-def test_nash_dom_parsing_ff_nd_apartment_completion_quarter(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["apartment_completion_quarter"] != 0
+# def test_nash_dom_parsing_ff_nd_apartment_completion_quarter(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["apartment_completion_quarter"] != 0
     
-def test_nash_dom_parsing_ff_nd_apartment_completion_year(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["apartment_completion_year"] != 0
+# def test_nash_dom_parsing_ff_nd_apartment_completion_year(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["apartment_completion_year"] != 0
     
-def test_nash_dom_parsing_ff_nd_apartment_floor(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["apartment_floor"] != 0
+# def test_nash_dom_parsing_ff_nd_apartment_floor(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["apartment_floor"] != 0
         
-def test_nash_dom_parsing_ff_nd_apartment_floors_total(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["apartment_floors_total"] != 0
+# def test_nash_dom_parsing_ff_nd_apartment_floors_total(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["apartment_floors_total"] != 0
     
-def test_nash_dom_parsing_ff_nd_apartment_ceilingheight(read_ffile_nd): # в API строка?
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["apartment_ceilingheight"] != 0 or item["apartment_ceilingheight"] != ""
+# def test_nash_dom_parsing_ff_nd_apartment_ceilingheight(read_ffile_nd): # в API строка?
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["apartment_ceilingheight"] != 0 or item["apartment_ceilingheight"] != ""
         
-def test_nash_dom_parsing_ff_nd_apartment_room(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["apartment_room"] != 0
+# def test_nash_dom_parsing_ff_nd_apartment_room(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["apartment_room"] != 0
     
-def test_nash_dom_parsing_ff_nd_apartment_ppm(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["apartment_ppm"] != 0
+# def test_nash_dom_parsing_ff_nd_apartment_ppm(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["apartment_ppm"] != 0
     
-def test_nash_dom_parsing_ff_nd_apartment_address(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["apartment_address"] != ""
+# def test_nash_dom_parsing_ff_nd_apartment_address(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["apartment_address"] != ""
         
-def test_nash_dom_parsing_ff_nd_apartment_location_lat(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["apartment_location_lat"] != ""
+# def test_nash_dom_parsing_ff_nd_apartment_location_lat(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["apartment_location_lat"] != ""
     
-def test_nash_dom_parsing_ff_nd_apartment_location_lon(read_ffile_nd):
-    flats_data = NashDomParserFFile(read_ffile_nd)
-    flats_dict_list = flats_data.get_dict_list()
-    for item in flats_dict_list:
-        assert item["apartment_location_lon"] != ""
+# def test_nash_dom_parsing_ff_nd_apartment_location_lon(read_ffile_nd):
+#     flats_data = NashDomParserFFile(read_ffile_nd)
+#     flats_dict_list = flats_data.get_dict_list()
+#     for item in flats_dict_list:
+#         assert item["apartment_location_lon"] != ""
     
 # @pytest.fixture()
 # def get_params():

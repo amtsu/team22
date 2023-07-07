@@ -115,20 +115,20 @@ class NashDomParser:
 #             item_dict["apartment_location_lon"] = None
 #         return item_dict
 
-#     def _get_address(self, project: object) -> Optional[str]:
-#         """
-#         Получает адрес ЖК
-#         """
-#         address_data = project.findAll("div", class_="index__projects__dop-info--metro")
-#         if address_data:
-#             address_bad = address_data[0].text
-#             address_bad = address_bad.replace("&nbsp;", " ")
-#             address_bad = address_bad.replace("\xa0", " ")
-#             address = address_bad.strip()
-#         else:
-#             print("Error in getting address")
-#             address = None
-#         return address
+    def _get_address(self, project: object) -> Optional[str]:
+        """
+        Получает адрес ЖК
+        """
+        address_data = project.findAll("span", class_="styles__Ellipsis-sc-1fw79ul-0 jYMONF styles__Value-sc-1ajig0k-5 styles__Label-sc-1ajig0k-6 styles__AddressLabel-sc-1ajig0k-7 lodXEI ewpwAU kLIuVv")
+        if address_data:
+            address_bad = address_data[0].text
+            address_bad = address_bad.replace("&nbsp;", " ")
+            address_bad = address_bad.replace("\xa0", " ")
+            address = address_bad.strip()
+        else:
+            print("Error in getting address")
+            address = None
+        return address
     
 #     def _get_area(self, item: object) -> Optional[int]:
 #         """
