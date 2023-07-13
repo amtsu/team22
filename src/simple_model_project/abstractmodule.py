@@ -10,11 +10,11 @@ class AbstractModule(metaclass=ABCMeta):
     Абстрактный класс, описываюший интерфейс конкретного модуля
     """
 
+    @abstractmethod
     def __init__(self):
         """
         Конструктор
         """
-        return None
 
     @abstractmethod
     def name(self) -> str:
