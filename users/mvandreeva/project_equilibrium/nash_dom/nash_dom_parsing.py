@@ -1,10 +1,11 @@
 #!/usr/local/bin/python
 # coding: utf-8
 """
-Парсер для сайта 'наш.дом.рф'
+Парсер для сайта 'наш.дом.рф' - 
 """
 import urllib
 import urllib.request
+from pprint import pprint
 from geopy.geocoders import Nominatim #Подключаем библиотеку
 from typing import Optional
 from bs4 import BeautifulSoup
@@ -50,26 +51,24 @@ class NashDomParser:
     """
     Получает данные с сайта "https://наш.дом.рф/сервисы/каталог-новостроек/список-объектов/список?"
     """
-    def __init__(self, url):
+    def __init__(self, url: str):
         self.__url = url
         self.__page = PageParser(self.__url)
-        self.__b_soup = self.__page.use_b_soup()
+        self.__b_soup = self.__page.open_page_encode()
         self.__projects_list = self.__b_soup.findAll(
-            "a", class_="styles__Container-sc-1ajig0k-0 kUIiCB"
+            "div", class_ = "styles__Item-sc-1tzbhlm-1 cDKZOX"
         )
-        # print(self.__project_list)
         if not self.__projects_list:
-            print("Error in getting projects_list", self.__url)
+            pprint("Error in getting projects_list", self.__url)
         self.__dict_list = []
         
-#     @none_to_zero
-#     def _fill_dict(self, item: object, item_dict: dict) -> dict:
-#         """
-#         Метод наполняет данными словарь
-#         """
-#         item_dict["quantity"] = 1
+    @none_to_zero
+    def _fill_dict(self, item: object, item_dict: dict) -> dict:
+        """
+        Метод наполняет данными словарь
+        """
+        item_dict["quantity"] = 1
 #         item_dict["bulding"] = self._get_bulding(item)
-#         item_dict["title"] = self._get_title(item)
 #         item_dict["rooms"] = self._get_rooms(item)
 #         item_dict["floor"] = self._get_floor(item)
 #         item_dict["area"] = self._get_area(item)
@@ -113,17 +112,15 @@ class NashDomParser:
 #         else:
 #             item_dict["apartment_location_lat"] = None
 #             item_dict["apartment_location_lon"] = None
-#         return item_dict
+        return item_dict
 
     def _get_address(self, project: object) -> Optional[str]:
         """
         Получает адрес ЖК
         """
-        address_data = project.findAll("span", class_="styles__Ellipsis-sc-1fw79ul-0 jYMONF styles__Value-sc-1ajig0k-5 styles__Label-sc-1ajig0k-6 styles__AddressLabel-sc-1ajig0k-7 lodXEI ewpwAU kLIuVv")
+        address_data = project.findAll("span", class_ = "styles__Ellipsis-sc-1fw79ul-0 jYMONF styles__Value-sc-1ajig0k-5 styles__Label-sc-1ajig0k-6 styles__AddressLabel-sc-1ajig0k-7 lodXEI ewpwAU kLIuVv")
         if address_data:
             address_bad = address_data[0].text
-            address_bad = address_bad.replace("&nbsp;", " ")
-            address_bad = address_bad.replace("\xa0", " ")
             address = address_bad.strip()
         else:
             print("Error in getting address")
@@ -156,24 +153,18 @@ class NashDomParser:
 #             area = None
 #         return area
 
-#     def _get_brand(self) -> Optional[str]:
-#         """
-#         Получает наименование застройщика
-#         """
-#         footer_data = self.__b_soup.findAll("div", class_="footer2-copy")
-#         if footer_data:
-#             for data in footer_data:
-#                 brand_data = data.find("div")
-#                 brand_bad = brand_data.text
-#                 cut_begin = brand_bad.find(",")
-#                 cut_stop = brand_bad.find(".")
-#                 brand_bad = brand_bad[cut_begin:cut_stop]
-#                 brand_bad = brand_bad.replace(",", "")
-#                 brand = brand_bad.strip()
-#         else:
-#             print("Error in getting brand")
-#             brand = None
-#         return brand
+    def _get_brand(self, project: object) -> Optional[str]:
+        """
+        Получает наименование застройщика
+        """
+        brand_data = project.findAll("span", class_="styles__Ellipsis-sc-1fw79ul-0 jYMONF styles__Value-sc-1ajig0k-5 cnaeMk")
+        if brand_data:
+            brand_bad = brand_data[0].text
+            brand = brand_bad.strip()
+        else:
+            print("Error in getting brand")
+            brand = None
+        return brand
 
 #     def _get_bulding(self, item: object) -> Optional[int]:
 #         """
@@ -232,26 +223,29 @@ class NashDomParser:
 #             ceilingheight = None
 #             return ceilingheight
 
-#     # def _get_completion_data(self, b_soup: object) -> Optional[int]: 
-#     # думала спарсить с дом.рф через кнопку "Документы", но она есть только на космо
-#     # решила пока отложить
-#     #     project_data = b_soup.findAll("a", class_ = "obj-panel__item")
-#     #     for data in project_data:
-#     #         is_doc = data.find("Документы")
-#     #         if not is_doc == -1:
-#     #             doc_url = data[0]["href"]
-#     #             doc_page = PagePerser(doc_url)
-#     #             b_soup = doc_page.use_b_soup()
-#     #             try:
-#     #                 compl_data = b_soup.findAll("div", class_="styles__Value-sc-13pfgqd-2 hVswsH")
-#     #                 for data in compl_data:
-#     #                     if data.find(" кв. "):
-#     #                         compl_text = data.text
-#     #                         cut_stop = compl_text.find(" кв.")
-#     #                         compl_q = compl_text[:cut_stop]
-#     #                         compl_y = compl_text[-4:]
-#     #             except:
-#     #                 print("Error in getting items_list", project_url)
+    def _get_completion_data(self, project: object) -> Optional[int]: 
+        completion_data = project.findAll("span", class_ = "styles__Ellipsis-sc-1fw79ul-0 jYMONF styles__Value-sc-1ajig0k-5 goWLLI")
+        if completion_data:
+            completion_text = completion_data[0].text
+            q_cut_stop = completion_text.find(" кв.")
+            completion_quarter_bad = completion_text[:q_cut_stop]
+            completion_quarter_bad = completion_quarter_bad.strip()
+            if completion_quarter_bad == "I":
+                completion_quarter = 1
+            elif completion_quarter_bad == "II":
+                completion_quarter = 2
+            elif completion_quarter_bad == "III":
+                completion_quarter = 3
+            elif completion_quarter_bad == "IV":
+                completion_quarter = 4
+            completion_year_bad = completion_text[-4:]
+            completion_year_bad = completion_year_bad.strip()
+            completion_year = int(completion_year_bad)
+            completion_data = [completion_quarter, completion_year]
+        else:
+            print("Error in getting completion_data")
+            completion_data = None
+        return completion_data
 
 #     def _get_description(self, project: object) -> Optional[str]:
 #         """
@@ -271,17 +265,32 @@ class NashDomParser:
 #                 print("Error in getting description")
 #         return description
 
-#     def get_dict_list(self) -> list:
-#         """
-#         Формирует список словарей с данными по квартирам
-#         """
-#         brand_name = self._get_brand()
-#         for project in self.__project_list:
-#             item_dict = {}
+    def get_dict_list(self) -> list:
+        """
+        Формирует список словарей с данными по квартирам
+        """
+        for project in self.__projects_list:
+            item_dict = {}
+            item_dict["title"] = self._get_title(project) # перепутала с проджект для наш.дом
+            item_dict["brand"] = self._get_brand(project)
 #             item_dict["project"] = self._get_project(project)
 #             item_dict["description"] = self._get_description(project)
-#             item_dict["full_address"] = self._get_address(project)
-#             item_dict["brand"] = brand_name
+            item_dict["apartment_address"] = self._get_address(project)
+            item_dict["apartment_floors_total"] = self._get_floors_total(project)
+            item_dict[
+                "apartment_completion_data"
+            ] = self._get_completion_data(project)
+            item_dict[
+                "apartment_completion_quarter"
+            ] = item_dict[
+                "apartment_completion_data"
+            ][0]
+            item_dict[
+                "apartment_completion_year"
+            ] = item_dict[
+                "apartment_completion_data"
+            ][1]
+            item_dict["apartment_status"] = self._get_status(project)
 #             item_dict["brand_url"] = self.BRAND_URL
 #             # if project == 'Космо 4/22':
 #             #     item_dict["apartment_floors_total"] = self.FLOORS_TOTAL_K
@@ -296,12 +305,31 @@ class NashDomParser:
 #             ) in (
 #                 items_list
 #             ):  
-#                 item_dict = self._fill_dict(item, item_dict)
-#                 item_dict[
-#                     "source_url"
-#                 ] = self.__url  # какой указывать - на застройщика или на проект?
-#                 self.__dict_list.append(item_dict)
-#         return self.__dict_list
+                # item_dict = self._fill_dict(item, item_dict)
+
+# !!!!!!!!!!Изменила отступ, ближе влево!!!!!!!!!!
+            item_dict[
+                "source_url"
+            ] = self.__url  # какой указывать - на застройщика или на проект?
+            self.__dict_list.append(item_dict)
+        # pprint(self.__dict_list) # проблема распечатки (кодировки)
+        return self.__dict_list
+
+    def _get_floors_total(self, project: object) -> Optional[int]:
+        """
+        Получает количество этажей
+        """
+        floors_data = project.findAll("span", class_="styles__Ellipsis-sc-1fw79ul-0 jYMONF styles__Value-sc-1ajig0k-5 lodXEI")
+        if floors_data:
+            floors_total = floors_data[0].text
+            cut_stop = floors_total.find("э")
+            floors_bad = floors_total[:cut_stop]
+            floors_bad = floors_bad.strip()
+            floors = int(floors_bad)
+        else:
+            print("Error in getting floor")
+            floors = None
+        return floors
 
 #     def _get_floor(self, item: object) -> Optional[int]:
 #         """
@@ -404,6 +432,8 @@ class NashDomParser:
 #             project_url = None
 #         return project_url
 
+
+
 #     def _get_rooms(self, item: object) -> Optional[int]:
 #         """
 #         Получает количество комнат
@@ -428,24 +458,31 @@ class NashDomParser:
 #             rooms = None
 #         return rooms
 
+    def _get_status(self, project: object) -> Optional[str]:
+        """
+        Получает статус застройки
+        """
+        status_data = project.findAll("label", class_="styles__HouseStatusWrapper-sc-2y8yk1-0 ktZUtE")
+        if status_data:
+            status_bad = status_data[0].text
+            status = status_bad.strip()
+        else:
+            print("Error in getting status")
+            status = None
+        return status
 
-
-#     def _get_title(self, item: object) -> Optional[str]:
-#         """
-#         Метод получает наименование квартиры со страницы со списком квартир
-#         """
-#         title_data = item.findAll("div", class_="grid-item2__info")
-#         # print(title_data)
-#         if title_data:
-#             title_bad = title_data[0].text
-#             title_bad = title_bad.replace("\n", "")
-#             title_bad = title_bad.replace(" /", ",")
-#             title = title_bad.replace('"', "")
-#             # print(title)
-#         else:
-#             print("Error in getting title")
-#             title = None
-#         return title
+    def _get_title(self, project: object) -> Optional[str]:
+        """
+        Метод получает наименование квартиры со страницы со списком квартир
+        """
+        title_data = project.findAll("span", class_="styles__Ellipsis-sc-1fw79ul-0 jYMONF styles__Name-sc-1ajig0k-4 gRAIRo")
+        if title_data:
+            title_bad = title_data[0].text
+            title = title_bad.strip()
+        else:
+            print("Error in getting title")
+            title = None
+        return title
 
 #     def send_to_api(self):
 #         """
@@ -519,41 +556,23 @@ class NashDomParserFFile(NashDomParser):
         self.__url = None
         self.__b_soup = BeautifulSoup(page_text, features="html.parser")
         self.__projects_list = self.__b_soup.findAll(
-            "a", class_="styles__Container-sc-1ajig0k-0 kUIiCB"
+            "div", class_ = "styles__Item-sc-1tzbhlm-1 cDKZOX"
+            # "a", class_="styles__Container-sc-1ajig0k-0 kUIiCB"
         )
-        # print(self.__project_list)
+        # print(self.__projects_list)
         self.__dict_list = []
         
-#     def _get_brand(self) -> Optional[str]:
-#         """
-#         Получает наименование застройщика
-#         """
-#         footer_data = self.__b_soup.findAll("div", class_="footer2-copy")
-#         if footer_data:
-#             for data in footer_data:
-#                 brand_data = data.find("div")
-#                 brand_bad = brand_data.text
-#                 cut_begin = brand_bad.find(",")
-#                 cut_stop = brand_bad.find(".")
-#                 brand_bad = brand_bad[cut_begin:cut_stop]
-#                 brand_bad = brand_bad.replace(",", "")
-#                 brand = brand_bad.strip()
-#         else:
-#             print("Error in getting brand")
-#             brand = None
-#         return brand
-
 #     def get_dict_list(self, pages_dict) -> list:
 #         """
 #         Формирует список словарей с данными по квартирам
 #         """
-#         brand_name = self._get_brand()
-#         for project in self.__project_list:
+#         brand_name = 
+#         for project in self.__projects_list:
 #             item_dict = {}
 #             item_dict["project"] = self._get_project(project)
 #             item_dict["description"] = self._get_description(project)
 #             item_dict["full_address"] = self._get_address(project)
-#             item_dict["brand"] = brand_name
+#             item_dict["brand"] = self._get_brand(project)
 #             item_dict["brand_url"] = self.BRAND_URL
 #             print(item_dict["project"])
 #             if item_dict["project"] == self.PROJECTS_NAMES[0]:

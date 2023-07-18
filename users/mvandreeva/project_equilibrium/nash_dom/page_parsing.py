@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+# coding: utf-8
 """
 Парсер для сайта застройщика 'CapitalGroup', проект 'Триколор'
 """
@@ -15,6 +17,7 @@ class PageParser:
     def __init__(self, url: str):
         self.__url = url
         self.__page = ""
+        self.b_soup = None
 
     def open_page(self):
         """
@@ -40,10 +43,8 @@ class PageParser:
         url = urlunsplit(parts)
         try:
             with urllib.request.urlopen(url) as page:
-                self.b_soup = BeautifulSoup(page, features="html.parser")
-        # try:
-        #     with urllib.request.urlopen(self.__url) as page:
-        #         self.__page = page.read()
+                self.__page = page.read() # отд. скрипт или здесь разово сохранить в файл
+            self.b_soup = BeautifulSoup(self.__page, features="html.parser")
         except (urllib.request.HTTPError, urllib.request.URLError):
             print("Error url =", self.__url)
         return self.b_soup
