@@ -16,12 +16,15 @@ class PlantTrees(AbstractModule):
     # Расстояние между деревьями в ряду должно быть не менее 3м,
     # расстояние между рядами - не менее 5м
 
-    def __init__(self, area, trees_amount):
+    # def __init__(self, area, trees_amount):
+    def __init__(self):
         """
         Конструктор
         """
-        self.__area = area
-        self.__trees_amount = trees_amount
+        # self.__area = area
+        # self.__trees_amount = trees_amount
+        self.__area = 50
+        self.__trees_amount = 5
         self.__planed_trees = 0
         self.__trees_fit = 0
 
@@ -74,8 +77,8 @@ class PlantTrees(AbstractModule):
             is_done = True
         return is_done
 
-def createinstance(area, trees_amount) -> PlantTrees:
+def createinstance() -> PlantTrees:
     """
     создает экземпляр класса PlantTrees
     """
-    return PlantTrees(area, trees_amount)
+    return PlantTrees()
