@@ -1,5 +1,6 @@
 """ Тесты для проверки класса EANabatovModule """
 from EANabatov_module import EANabatovModule
+from EANabatov_module import create_instance
 
 
 class Test:
@@ -15,4 +16,4 @@ class Test:
     def test_create_and_return_object_method(self):
         """Проверка корректной работы метода create_instance"""
         test_object = EANabatovModule()
-        assert test_object.create_instance() == test_object
+        assert create_instance() == test_object
