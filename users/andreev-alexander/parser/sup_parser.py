@@ -3,7 +3,7 @@
 """
 import pprint
 import requests
-from bs4 import BeautifulSoup, ResultSet
+from bs4 import BeautifulSoup
 
 
 def parse_data_from_page() -> list[dict[str, str]]:
