@@ -28,13 +28,13 @@ def test_step():
     """
     # plant_trees = PlantTrees(50, 5)
     plant_trees = PlantTrees()
-    # prepare_trees = plant_trees.prepare()
+    plant_trees.prepare()
     # trees_planted = prepare_trees.step()
     # print(trees_planted)
     # plant_trees.prepare()
     trees_planted = plant_trees.step()
-    print(trees_planted)
-    assert trees_planted == (5,5)
+    # print(trees_planted)
+    assert trees_planted == (1,1)
 
 def test_is_done():
     """
@@ -42,8 +42,12 @@ def test_is_done():
     """
     # plant_trees = PlantTrees(10, 5)
     plant_trees = PlantTrees()
-    # prepare_trees = plant_trees.prepare()
+    plant_trees.prepare()
     # trees_planted = prepare_trees.step()
     plant_trees.step()
-    complete_plant = plant_trees.is_done()
-    assert complete_plant is True
+    plant_trees.step()
+    plant_trees.step()
+    plant_trees.step()
+    plant_trees.step()
+    complete_planting = plant_trees.is_done()
+    assert complete_planting is True

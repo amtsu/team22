@@ -34,7 +34,7 @@ def test_step():
     # plant_trees.prepare()
     trees_planted = plant_trees.step()
     print(trees_planted)
-    assert trees_planted == (5,5)
+    assert trees_planted == (1,1)
 
 def test_is_done():
     """

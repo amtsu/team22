@@ -55,12 +55,13 @@ class PlantTrees(AbstractModule):
         возвращает значение засаженной площади,
         кол-во посаженных деревьев на данном шаге
         """
-        self.prepare()
+        # self.prepare()
         step = 0
-        while self.__trees_fit:
-            self.__planed_trees +=1
-            self.__trees_fit -=1
-            step +=1
+        # while self.__trees_fit:
+        self.__planed_trees +=1
+        self.__trees_fit -=1
+        step +=1
+        print(self.__trees_fit)
         return (self.__planed_trees, step)
 
     def is_done(self) -> bool:
@@ -73,7 +74,6 @@ class PlantTrees(AbstractModule):
         """
         is_done = False
         if self.__trees_fit == 0:
-            print("Посадили, сколько смогли")
             is_done = True
         return is_done
 
