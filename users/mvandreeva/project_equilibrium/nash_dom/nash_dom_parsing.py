@@ -56,10 +56,13 @@ class NashDomParser:
         self.__page = PageParser(self.__url)
         self.__b_soup = self.__page.open_page_encode()
         self.__projects_list = self.__b_soup.findAll(
+            # "div", class_ = "styles__Row-sc-13ibavg-0 styles__Content-sc-gwedej-1 jbUyIl juOdVa"
             "div", class_ = "styles__Item-sc-1tzbhlm-1 cDKZOX"
         )
+        # styles__Item-sc-1tzbhlm-1 cDKZOX
+        # styles__Row-sc-13ibavg-0 styles__Content-sc-gwedej-1 jbUyIl juOdVa
         if not self.__projects_list:
-            pprint("Error in getting projects_list", self.__url)
+            print("Error in getting projects_list", self.__url)
         self.__dict_list = []
         
     @none_to_zero

@@ -38,7 +38,8 @@ def test_page_parser_open():
     url = "https://наш.дом.рф/сервисы/каталог-новостроек/список-объектов/список?page=0&limit=10"
     page_data = PageParser(url)
     page_text = page_data.open_page_encode()
-    assert not page_text == ""
+    print(page_text)
+    assert page_text
 
 
 # def test_page_parser_open_file():

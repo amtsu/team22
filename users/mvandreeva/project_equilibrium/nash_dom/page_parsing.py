@@ -43,7 +43,10 @@ class PageParser:
         url = urlunsplit(parts)
         try:
             with urllib.request.urlopen(url) as page:
-                self.__page = page.read() # отд. скрипт или здесь разово сохранить в файл
+                self.__page = page.read() 
+            # page_text = str(self.__page) # отд. скрипт или здесь разово сохранить в файл
+            # with open("sources/nash_dom" , "w") as w_file:
+            #     w_file.writelines(page_text)
             self.b_soup = BeautifulSoup(self.__page, features="html.parser")
         except (urllib.request.HTTPError, urllib.request.URLError):
             print("Error url =", self.__url)
