@@ -1,8 +1,10 @@
 """
-Парсинг самолого лучшего сайта :)
+Асинхронный парсинг самолого лучшего сайта :)
 """
+import asyncio
 import datetime
 import pprint
+import httpx
 import requests
 from bs4 import BeautifulSoup
 
@@ -47,11 +49,19 @@ def parse_data_from_page() -> list[dict[str, str]]:
             }
         # добавляем сервис (словарь) в список всех сервисов
         services_data.append(service_data)
-
     return services_data
 
 
-def parse_data_from_personal_service_page(services_data: list[dict[str, str]]) -> list[dict[str, str]]:
+async def get_raw_data_from_service_page(URL: str, service_id: str) -> tuple[str, list[str]]:
+    """
+    Запрашиваем данные со страницы сервиса и отдаем `ID` сервиса и сырой HTML.
+    """
+    async with httpx.AsyncClient(base_url=URL) as client:
+            raw_data_from_service_page = await client.get(service_id)
+            return service_id, raw_data_from_service_page
+
+
+async def parse_data_from_personal_service_page(services_data: list[dict[str, str]]) -> list[dict[str, str]]:
     """
     Запрашиваем данные о сервисе с персональной страницы для каждого сервиса
     из доступных в словаре.
@@ -61,44 +71,57 @@ def parse_data_from_personal_service_page(services_data: list[dict[str, str]]) -
     ADDRESS_CLASS = "text-indigo-500 inline-flex items-center ml-auto leading-none"
     QUANTITY_CLASS = "border-b-2 px-4 py-3 text-sm text-gray-900"
 
-    for service in services_data:
-        # получаем ID сервиса
-        service_id = list(service.keys())[0]
-        # формируем ссылку и получаем информацию о сервисе в сыром виде
-        raw_data_from_service_page = requests.get(f"{SERVICE_URL}{service_id}").text
-        # из сырых данных получаем информацию о сервисе
-        html_data_from_service_page = BeautifulSoup(raw_data_from_service_page, "lxml")
+    # получаем список `ID` сервисов
+    service_ids: list[str] = [list(service.keys())[0] for service in services_data]
+    # создаем список задач asyncio, которые будут выполняться параллельно (асинхронно)
+    tasks_with_raw_data_from_service_pages: list[asyncio.Task] = [
+        asyncio.create_task(get_raw_data_from_service_page(SERVICE_URL, service_id)) for service_id in service_ids
+        ]
+    # получаем два списка: завершенные и незавершенные запросы
+    done_tasks_with_raw_data_from_service_pages, pending_tasks = await asyncio.wait(tasks_with_raw_data_from_service_pages, timeout=10)
+    # отменяем незавершенные задачи
+    for task in pending_tasks:
+        task.cancel()
 
-        # получаем и скаченных данных `quantity`, `address`
-        address = html_data_from_service_page.find("a", class_=ADDRESS_CLASS).text
-        # если количества нет, то присваиваем `Unknown_quantity`
-        try:
-            quantity = html_data_from_service_page.find("td", class_=QUANTITY_CLASS).text.strip()
-        except AttributeError:
-            quantity = "Unknown_quantity"
-        # обновляем информацию о сервисе в словаре по ID сервиса
-        service[service_id].update(
-            {
-            "address": address,
-            "quantity": quantity
-        }
-        )
+    for task in done_tasks_with_raw_data_from_service_pages:
+        # если в задаче произошло исключение, то отменяем ее
+        if not task.exception() is None:
+            task.cancel()
+        # получаем результат задачи `ID` и данные в виде сырого HTML
+        task.result()
+        for service_id, raw_data_from_service_page in task:
+            # из сырых данных получаем информацию о сервисе
+            html_data_from_service_page = BeautifulSoup(raw_data_from_service_page, "lxml")
+            # получаем и скаченных данных `quantity`, `address`
+            address = html_data_from_service_page.find("a", class_=ADDRESS_CLASS).text
+            # если количества нет, то присваиваем `Unknown_quantity`
+            try:
+                quantity = html_data_from_service_page.find("td", class_=QUANTITY_CLASS).text.strip()
+            except AttributeError:
+                quantity = "Unknown_quantity"
+            # обновляем информацию о сервисе в словаре по ID сервиса
+            services_data[service_id].update(
+                {
+                "address": address,
+                "quantity": quantity
+            }
+            )
     return services_data
 
 
-def main():
+async def main():
     start = datetime.datetime.now()
     parsed_services = parse_data_from_page()
-    updated_parsed_services = parse_data_from_personal_service_page(parsed_services)
+    updated_parsed_services = await parse_data_from_personal_service_page(parsed_services)
     finish = datetime.datetime.now()
     delta = finish - start
     # добавил продолжительность выполнения скрипта,
-    # чтобы сравнить с асинхронной версией
-    print("sync parse", delta)
+    # чтобы сравнить с синхронной версией
+    print("async parse", delta)
     # красиво принтуем результат
     pp = pprint.PrettyPrinter(indent=4, compact=True)
     # pp.pprint(updated_parsed_services)
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
