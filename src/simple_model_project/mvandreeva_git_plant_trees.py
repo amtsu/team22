@@ -1,5 +1,3 @@
-#!/usr/local/bin/python
-# coding: utf-8
 """
 Класс для участия в моделирующей системе
 """
@@ -25,18 +23,10 @@ class PlantTrees(AbstractModule):
         """
         # self.__area = area
         # self.__trees_amount = trees_amount
-        self.__area = 0
-        self.__trees_amount = 0
+        self.__area = 50
+        self.__trees_amount = 5
         self.__planed_trees = 0
         self.__trees_fit = 0
-
-    def fulfill(self):
-        """
-        Метод выполняет все шаги (добавлен для тестирования метода is_done)
-        """
-        while self.__trees_fit:
-            self.__planed_trees +=1
-            self.__trees_fit -=1
 
     def name(self) -> str:
         """
@@ -48,17 +38,11 @@ class PlantTrees(AbstractModule):
     def prepare(self) -> None:
         """
         Выполняется перед началом цикла вызова методов step
-        Загружает данные из файла.
         Определяет количество деревьев (<= self.__trees_amount),
         которое может быть посажено на заданном участке площадью <=self.__area
         """
         # Предположим, одно дерево занимает 4 кв.м.
-        with open("planting_data.txt","rb") as planting_data:
-            p_data = pickle.load(planting_data)
-        self.__area = p_data["Площадь"]
-        self.__trees_amount = p_data["Количество"]
-        space_between = p_data["Расстояние между"]
-        trees_to_area = self.__area / space_between #сколько деревьев можно посадить
+        trees_to_area = self.__area / 4 #сколько деревьев можно посадить
         if self.__trees_amount <= trees_to_area:
             self.__trees_fit = self.__trees_amount
         elif self.__trees_amount > trees_to_area:
@@ -71,10 +55,12 @@ class PlantTrees(AbstractModule):
         возвращает значение засаженной площади,
         кол-во посаженных деревьев на данном шаге
         """
+        self.prepare()
         step = 0
-        self.__planed_trees +=1
-        self.__trees_fit -=1
-        step +=1
+        while self.__trees_fit:
+            self.__planed_trees +=1
+            self.__trees_fit -=1
+            step +=1
         return (self.__planed_trees, step)
 
     def is_done(self) -> bool:
@@ -87,6 +73,7 @@ class PlantTrees(AbstractModule):
         """
         is_done = False
         if self.__trees_fit == 0:
+            print("Посадили, сколько смогли")
             is_done = True
         return is_done
 

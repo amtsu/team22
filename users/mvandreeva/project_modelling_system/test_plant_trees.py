@@ -4,7 +4,6 @@
 import pytest
 from plant_trees import PlantTrees, createinstance
 
-
 def test_createinstance():
     """
     Тестирует функцию createinstance
@@ -14,7 +13,6 @@ def test_createinstance():
     type_trees = type(trees)
     assert type_trees == PlantTrees
 
-
 def test_name():
     """
     Тестирует метод name
@@ -23,7 +21,6 @@ def test_name():
     trees = createinstance()
     name = trees.name()
     assert name == "plant_trees"
-
 
 def test_step():
     """
@@ -39,7 +36,6 @@ def test_step():
     # print(trees_planted)
     assert trees_planted == (1, 1)
 
-
 def test_is_done():
     """
     Тестирует метод is_done
@@ -49,3 +45,4 @@ def test_is_done():
     plant_trees.fulfill()
     complete_planting = plant_trees.is_done()
     assert complete_planting is True
+
