@@ -5,6 +5,7 @@
 """
 
 from typing import Tuple
+import pickle
 from abstractmodule import AbstractModule
 
 class PlantTrees(AbstractModule):
