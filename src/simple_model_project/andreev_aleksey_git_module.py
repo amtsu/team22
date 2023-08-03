@@ -1,58 +1,64 @@
 """
 Реализация абстрактного класса.
 """
-import random
-
-
 from abstractmodule import AbstractModule
 
 
-class Сountdown(AbstractModule):
-    """Отсчет циклов от заданного числа до 0"""
+class Countdown(AbstractModule):
+    """
+    Основная задача класса - посчитать сколько раз число (self.__number_to_check)
+    содержится в другом числе (self.__main_number).
+    Аналог целочисленного деления, но пошагово.
+    """
 
     def __init__(self):
-        self.__count_of_cycles = 100
-        self.__step = 3
+        self.__main_number = 0
+        self.__number_to_check = 0
+        self.__iteration = 0
 
     def name(self) -> str:
         module_name = self.__class__.__name__
         return module_name
-    
+
     def prepare(self) -> None:
         """
         Выполняется перед началом цикла вызова методов step
         """
-        if self.__count_of_cycles >= 0:
-            return None
+        self.__main_number = 13
+        self.__number_to_check = 5.2
 
     def step(self) -> tuple[float, int]:
         """
         Возвращает состояние модуля на данном шаге,
         выполняется на каждом шаге, пока разрешено
         """
-        self.prepare()
-        cnt = self.__count_of_cycles
-        step = self.__step
-        iteration = 0
-        while cnt >= 0:
-            if cnt - step < 0:
-                break
-            else:
-                cnt -= step
-            iteration += 1
-        return (float(iteration), step)
+        if self.is_done():
+            raise StopIteration
+        self.__main_number -= self.__number_to_check
+        self.__iteration += 1
+        return (float(self.__number_to_check), self.__iteration)
 
     def is_done(self) -> bool:
         """
         Сигнализирует о окончании процесса моделирования
         """
-        return bool(random.choice([0, 1]))
+        if self.__main_number - self.__number_to_check < 0:
+            return True
+        return False
 
 
-def createinstance() -> Сountdown:
+def createinstance() -> Countdown:
     """Создает экземпляр класса"""
-    return Сountdown()
+    return Countdown()
 
+aa = Countdown()
 
-bi = createinstance()
-print(bi)
+aa.prepare()
+print(aa.step())
+print(aa.step())
+
+print(aa.step())
+
+print(aa.step())
+
+print(aa.step())
