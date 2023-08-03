@@ -50,15 +50,3 @@ class Countdown(AbstractModule):
 def createinstance() -> Countdown:
     """Создает экземпляр класса"""
     return Countdown()
-
-aa = Countdown()
-
-aa.prepare()
-print(aa.step())
-print(aa.step())
-
-print(aa.step())
-
-print(aa.step())
-
-print(aa.step())
