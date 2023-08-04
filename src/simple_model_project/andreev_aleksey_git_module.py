@@ -2,7 +2,14 @@
 Реализация абстрактного класса.
 """
 from abstractmodule import AbstractModule
+import pickle
 
+ABSOLUTE_PATH = "/home/aleksey/python_projects/team22/src/simple_model_project"
+
+# подготовка параметров в файл
+# params = {"main_number": 13, "number_to_check": 5.2}
+# with open(f"{ABSOLUTE_PATH}/andreev_aleksey_git_module.pickle", "wb") as f:
+#     pickle.dump(params, f)
 
 class Countdown(AbstractModule):
     """
@@ -24,8 +31,11 @@ class Countdown(AbstractModule):
         """
         Выполняется перед началом цикла вызова методов step
         """
-        self.__main_number = 13
-        self.__number_to_check = 5.2
+        with open(f"{ABSOLUTE_PATH}/andreev_aleksey_git_module.pickle", "rb") as f:
+            param = pickle.load(f)
+
+            self.__main_number = param["main_number"]
+            self.__number_to_check = param["number_to_check"]
 
     def step(self) -> tuple[float, int]:
         """
