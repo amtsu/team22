@@ -1,21 +1,23 @@
 from bs4 import BeautifulSoup
 import urllib.request
 
-book_name = []
-shop_price = []
-internet_price = []
-publisher = []
-info = []
+summary = {}
+
 
 page = urllib.request.urlopen("file:///home/evgeniy/Documents/html/book_parsing.html")
-
 text = page.read()
 soup = BeautifulSoup(text, features="html.parser")
-book_name.append(soup.find("h1"))  # название книги
-shop_price.append(soup.find("span", class_="rubs"))  # цена в магазине
-shop_price.append(soup.find("span", class_="silver rubs rubfont"))  # цена на сайте
-publisher.append(soup.find_all("dt", class_="book__details-value"))  # год и место издания
-info.append(soup.find_all("dl", class_="book__details-item"))  # издательство
-info[0][0].text.split()
 
-# print(publisher)
+book_name = soup.find("h1", class_="page-header__title").text.strip()  # название книги
+print(book_name)
+shop_price = soup.find("span", class_="rubs").text  # цена в магазине
+print(shop_price)
+internet_price = soup.find("span", class_="silver rubs rubfont").text  # цена на сайте
+print(internet_price)
+year = soup.find_all("dt", class_="book__details-value")[0].text.split()  # год и место издания
+print(year)
+publisher = soup.find_all("dl", class_="book__details-item")[0].text.split()
+
+# print(info[0][0].text.split())  # издательство
+
+print(publisher)
