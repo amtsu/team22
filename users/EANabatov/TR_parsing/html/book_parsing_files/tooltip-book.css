@@ -1,0 +1,45 @@
+.tooltip-popup {
+    display:none;
+    position:absolute;
+    left:-1000px;
+    top:-1000px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+    width: 330px;
+    padding:10px 25px 10px 10px;
+    border:1px solid gray;
+    background-color: #fff;
+    color: #32353e;
+    z-index: 1000;
+    text-align: left;
+}
+
+.tooltip_close {
+    position:absolute;
+    top:0;
+    right:0;
+    color:rgba(255,255,255,.5);
+    font-size:11px;
+    text-decoration:none;
+}
+ 
+.tooltip_close:hover,
+.tooltip_close:focus {
+    text-decoration:none;
+    color:rgba(255,255,255,1);
+}
+
+@media (min-width:380px) {
+    .tooltip-popup{
+        width: 350px;
+    }
+}
+
+.tooltip-popup .tooltip_close {
+    position:absolute;
+    top: 5px;
+    right: 5px;
+    color: #d9141c;
+    font-size: 1.5rem;
+}

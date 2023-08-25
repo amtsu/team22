@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'Circe';
+    src: url('Circe-Light.eot');
+    src: local('Circe Light'), local('Circe-Light'),
+        url('Circe-Light.eot?#iefix') format('embedded-opentype'),
+        url('Circe-Light.woff2') format('woff2'),
+        url('Circe-Light.woff') format('woff'),
+        url('Circe-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Circe Extra';
+    src: url('Circe-ExtraBold.eot');
+    src: local('Circe Extra Bold'), local('Circe-ExtraBold'),
+        url('Circe-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('Circe-ExtraBold.woff2') format('woff2'),
+        url('Circe-ExtraBold.woff') format('woff'),
+        url('Circe-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Circe';
+    src: url('Circe-Thin.eot');
+    src: local('Circe Thin'), local('Circe-Thin'),
+        url('Circe-Thin.eot?#iefix') format('embedded-opentype'),
+        url('Circe-Thin.woff2') format('woff2'),
+        url('Circe-Thin.woff') format('woff'),
+        url('Circe-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Circe';
+    src: url('Circe-Regular.eot');
+    src: local('Circe'), local('Circe-Regular'),
+        url('Circe-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Circe-Regular.woff2') format('woff2'),
+        url('Circe-Regular.woff') format('woff'),
+        url('Circe-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Circe';
+    src: url('Circe-Bold.eot');
+    src: local('Circe Bold'), local('Circe-Bold'),
+        url('Circe-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Circe-Bold.woff2') format('woff2'),
+        url('Circe-Bold.woff') format('woff'),
+        url('Circe-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Chevin';
+    src: url('Chevin-Cyrillic-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
