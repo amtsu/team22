@@ -10,67 +10,68 @@ class BookStoreParser:
         self.__parsing()
 
     def __parsing(self):
-        __cw = 0
-        for index in range(1156290, 1156291):
-            __summary = {}
-            # time.sleep(1)
+        cw = 0
+        for index in range(1156290, 1156300):
+            summary = {}
             try:
-                page = urllib.request.urlopen("https://www.moscowbooks.ru/book/" + str(index) + "/")
-                text = page.read()
-                soup = BeautifulSoup(text, features="html.parser")
-                if page.getcode() == 200:
+                self.page = urllib.request.urlopen("https://www.moscowbooks.ru/book/" + str(index) + "/")
+                time.sleep(1)
+                self.text = self.page.read()
+                self.soup = BeautifulSoup(self.text, features="html.parser")
+                if self.page.getcode() == 200:
                     try:
-                        __summary["book_name"] = self.__book_name()
+                        summary["book_name"] = self.__book_name()
                     except:
-                        print("book_name not gound")
+                        print("book_name not found")
                     try:
-                        __summary["author_name"] = self.__author_name()
+                        summary["author_name"] = self.__author_name()
                     except:
-                        print("book_name not gound")
+                        print("author_name not found")
                     try:
-                        __summary["shop_price"] = self.__shop_price()
+                        summary["shop_price"] = self.__shop_price()
                     except:
-                        print("book_name not gound")
+                        print("shop_price not found")
                     try:
-                        __summary["internet_price"] = self.__internet_price()
+                        summary["internet_price"] = self.__internet_price()
                     except:
-                        print("book_name not gound")
+                        print("internet_price not found")
                     try:
-                        __summary["the_year_of_publishing"] = self.__year_of_publishing()
+                        summary["the_year_of_publishing"] = self.__year_of_publishing()
                     except:
-                        print("book_name not gound")
+                        print("the_year_of_publishing not found")
                     try:
-                        __summary["publisher"] = self.__publisher()
+                        summary["publisher"] = self.__publisher()
                     except:
-                        print("book_name not gound")
+                        print("publisher not found")
                     try:
-                    __summary["link"] = self.__link()
+                        summary["link"] = self.__link()
                     except:
-                        print("book_name not gound")
+                        print("link not found")
                     try:
-                        __summary["pages"] = self.__pages()
+                        summary["pages"] = self.__pages()
                     except:
-                        print("book_name not gound")
+                        print("pages not found")
                     try:
-                        __summary["product_code"] = self.__product_code()
+                        summary["product_code"] = self.__product_code()
                     except:
-                        print("book_name not gound")
+                        print("product_code not found")
                     try:
-                        __summary["vendor_code"] = self.__vendor_code()
+                        summary["vendor_code"] = self.__vendor_code()
                     except:
-                        print("book_name not gound")
+                        print("vendor_code not found")
                     try:
-                        __summary["isbn"] = self.__isbn()
+                        summary["isbn"] = self.__isbn()
                     except:
-                        print("book_name not gound")
+                        print("isbn not found")
                 else:
-                    print(page.getcode())
+                    print(self.page.getcode())
             except:
-                print(index, "skiped.", "Download: ", __cw)
-            if __summary != {}:
-                self.__books.append(__summary)
-                __cw = __cw + 1
-                print(__cw)
+                print(index, "skiped.", "Download: ", self.cw)
+
+            if summary != {}:
+                self.__books.append(summary)
+                cw = cw + 1
+                print(cw)
 
     def return_books(self):
         print(self.__books)
@@ -109,13 +110,6 @@ class BookStoreParser:
     def __isbn(self):
         """Find ISBN"""
         return self.soup.find_all("dl", class_="book__details-item")[14].text.split()[1]
-
-# # print(publisher)
-# print(info[0])
-#
-# # soup = BeautifulSoup(text, features="html.parser")
-# # list_tag_h1 = soup.findAll("h1")
-# # print(list_tag_h1[0].text)
 
 
 a2 = BookStoreParser()
