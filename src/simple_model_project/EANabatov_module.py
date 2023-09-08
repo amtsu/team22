@@ -5,6 +5,7 @@ import logging
 
 class EANabatovModule(AbstractModule):
     """реализация абстрактного класса с использованием паттерна Singleton"""
+
     def __new__(cls):
         """Реализация Singleton"""
         if not hasattr(cls, "instance"):

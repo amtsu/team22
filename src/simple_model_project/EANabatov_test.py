@@ -10,10 +10,10 @@ class Test:
         Один объект для любого количества созданных объектов.
         """
         first_object = EANabatovModule()
-        print(first_object)
         second_object = EANabatovModule()
-        print(second_object)
-        assert isinstance(first_object, EANabatovModule) and isinstance(second_object, EANabatovModule)
+        assert isinstance(first_object, EANabatovModule) and isinstance(
+            second_object, EANabatovModule
+        )
 
     def test_object(self):
         """Проверка корректной работы метода create_instance"""
@@ -30,4 +30,3 @@ class Test:
         test_object.step()
         assert test_object.is_done() is False
         assert test_object.the_end() is 1
-
