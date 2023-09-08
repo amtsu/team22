@@ -1,9 +1,10 @@
 """ Тесты для проверки класса EANabatovModule """
-from EANabatov_module import EANabatovModule
-from EANabatov_module import create_instance
+from eanabatov_module import EANabatovModule
+from eanabatov_module import create_instance
 
 
 class Test:
+    """тесты для проверки eanabatov_module"""
     def test_is_singleton(self):
         """
         Проверка на то, что паттерн синглтон действительно реализован правильно.
@@ -21,7 +22,7 @@ class Test:
 
     def test_name(self):
         """Проверка работы метода name"""
-        assert create_instance().name() is "EANabatovModule"
+        assert create_instance().name() == "EANabatovModule"
 
     def test_main_work(self):
         """проверка основного функционала класса"""
@@ -29,4 +30,4 @@ class Test:
         test_object.prepare()
         test_object.step()
         assert test_object.is_done() is False
-        assert test_object.the_end() is 1
+        assert test_object.the_end() == 1

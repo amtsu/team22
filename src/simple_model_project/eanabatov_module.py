@@ -1,6 +1,6 @@
 """ Реализация наследования абстрактного класса от Сергея """
-from abstractmodule import AbstractModule
 import logging
+from abstractmodule import AbstractModule
 
 
 class EANabatovModule(AbstractModule):
@@ -18,7 +18,7 @@ class EANabatovModule(AbstractModule):
         self.number = 0
         logging.basicConfig(
             level=logging.DEBUG,
-            filename="EANabatov_py_log.log",
+            filename="eanabatov_py_log.log",
             filemode="w",
             format="%(asctime)s %(levelname)s %(message)s",
         )
