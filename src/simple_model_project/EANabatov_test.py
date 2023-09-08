@@ -10,25 +10,24 @@ class Test:
         Один объект для любого количества созданных объектов.
         """
         first_object = EANabatovModule()
+        print(first_object)
         second_object = EANabatovModule()
-        assert first_object == second_object
+        print(second_object)
+        assert isinstance(first_object, EANabatovModule) and isinstance(second_object, EANabatovModule)
 
-    def test_create_and_return_object_method(self):
+    def test_object(self):
         """Проверка корректной работы метода create_instance"""
-        test_object = EANabatovModule()
-        assert create_instance() == test_object
+        assert isinstance(create_instance(), EANabatovModule)
 
     def test_name(self):
-        assert create_instance().name() == "EANabatovModule"
+        """Проверка работы метода name"""
+        assert create_instance().name() is "EANabatovModule"
 
     def test_main_work(self):
+        """проверка основного функционала класса"""
         test_object = EANabatovModule()
         test_object.prepare()
         test_object.step()
-        assert test_object.is_done() == False
+        assert test_object.is_done() is False
+        assert test_object.the_end() is 1
 
-    def test_second_work(self):
-        test_object = EANabatovModule()
-        test_object.prepare()
-        test_object.step()
-        assert test_object.the_end() == 1

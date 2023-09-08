@@ -5,9 +5,6 @@ import logging
 
 class EANabatovModule(AbstractModule):
     """реализация абстрактного класса с использованием паттерна Singleton"""
-
-    instance = None
-
     def __new__(cls):
         """Реализация Singleton"""
         if not hasattr(cls, "instance"):
@@ -28,7 +25,7 @@ class EANabatovModule(AbstractModule):
     def name(self) -> str:
         """возвращает название класса"""
         logging.info("name is done")
-        return "EANabatovModule"
+        return self.__class__.__name__
 
     def prepare(self):
         """Выполняется перед началом цикла вызова методов step"""
@@ -49,14 +46,12 @@ class EANabatovModule(AbstractModule):
         logging.info("is_done is done :)")
         return self.__status
 
-    def the_end(self):
-        """Выводит значение переенной number"""
+    def the_end(self) -> int:
+        """Выводит значение переменной number"""
         logging.info("the_end is done")
         return self.number
 
 
-def create_instance():
+def create_instance() -> EANabatovModule:
     """создает экземпляр класса и возвращает его в виде объекта"""
-    nabatov_object = EANabatovModule()
-    return nabatov_object
-
+    return EANabatovModule()
