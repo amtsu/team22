@@ -12,9 +12,7 @@ class Test:
         """
         first_object = EANabatovModule()
         second_object = EANabatovModule()
-        assert isinstance(first_object, EANabatovModule) and isinstance(
-            second_object, EANabatovModule
-        )
+        assert first_object == second_object
 
     def test_object(self):
         """Проверка корректной работы метода create_instance"""
