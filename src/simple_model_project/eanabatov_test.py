@@ -25,7 +25,7 @@ class Test:
     def test_main_work(self):
         """проверка основного функционала класса"""
         test_object = EANabatovModule()
-        test_object.prepare()
+        test_object.__prepare()
         test_object.step()
-        assert test_object.is_done() is False
+        assert test_object.__is_done() is False
         assert test_object.the_end() == 1
