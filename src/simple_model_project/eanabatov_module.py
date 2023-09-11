@@ -1,6 +1,10 @@
 """ Реализация наследования абстрактного класса от Сергея """
+from __future__ import annotations
+
 import logging
-from random import random
+from random import random, randint
+from typing import Tuple
+
 from abstractmodule import AbstractModule
 
 
@@ -16,7 +20,6 @@ class EANabatovModule(AbstractModule):
     def __init__(self):
         """Инициализация атрибутов класса"""
         self.__status = True
-        self.number = []
         logging.basicConfig(
             level=logging.DEBUG,
             filename="eanabatov_py_log.log",
@@ -34,19 +37,16 @@ class EANabatovModule(AbstractModule):
         self.__status = False
         logging.info("prepare is done")
 
-    def step(self) -> [(int, float)]:
+    def step(self) -> Tuple[float, int]:
         """Возвращает состояние модуля на данном шаге,
         выполняется на каждом шаге, пока разрешено"""
+        __step = None
         if self.__status is False:
-            with open("eanabatov_module.txt", "a") as data:
-                data.write(str(random()) + "\n")
-            logging.debug("Ну вроде работает")
-            logging.info("step is done")
-            with open("eanabatov_module.txt", "r") as data:
-                self.number = [float(number.strip()) for number in data]
-                return [line for line in enumerate(self.number)]
+            __step = (randint(1, 10) + random(), randint(1, 100))
         else:
             logging.critical("self.__status is True")
+        logging.info("step is done")
+        return __step
 
     def is_done(self) -> bool:
         """Сигнализирует о окончании процесса моделирования"""
@@ -58,10 +58,3 @@ class EANabatovModule(AbstractModule):
 def create_instance() -> EANabatovModule:
     """создает экземпляр класса и возвращает его в виде объекта"""
     return EANabatovModule()
-
-
-def clear_txt():
-    """очищает файл"""
-    with open("eanabatov_module.txt", "w") as logs:
-        logging.info("txt cleared")
-
