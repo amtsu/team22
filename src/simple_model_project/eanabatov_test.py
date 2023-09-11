@@ -1,10 +1,10 @@
 """ Тесты для проверки класса EANabatovModule """
-from eanabatov_module import EANabatovModule
-from eanabatov_module import create_instance
+from eanabatov_module import EANabatovModule, create_instance, clear_txt
 
 
 class Test:
     """тесты для проверки eanabatov_module"""
+
     def test_is_singleton(self):
         """
         Проверка на то, что паттерн синглтон действительно реализован правильно.
@@ -25,7 +25,16 @@ class Test:
     def test_main_work(self):
         """проверка основного функционала класса"""
         test_object = EANabatovModule()
-        test_object.__prepare()
-        test_object.step()
-        assert test_object.__is_done() is False
-        assert test_object.the_end() == 1
+        test_object.prepare()
+        test_step = test_object.step()
+        with open("eanabatov_module.txt", "r") as test_file:
+            test_data = [float(number.strip()) for number in test_file]
+            test_data_with_line_number = [
+                line_with_numbers for line_with_numbers in enumerate(test_data)
+            ]
+        assert test_step == test_data_with_line_number
+        assert test_object.is_done() is True
+
+    def test_clearing(self):
+        """проверка функции очистки файла"""
+        assert clear_txt() is None
