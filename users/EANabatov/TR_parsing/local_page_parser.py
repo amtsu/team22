@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import urllib.request
 
+from team22.users.EANabatov.TR_parsing.parsing_helper import ultimate_finder
+
 
 class LocalPageParsing:
     def __init__(self):
@@ -29,7 +31,7 @@ class LocalPageParsing:
         self.__summary["shop_price"] = shop_price
         self.__summary["internet_price"] = internet_price
         self.__summary["the_year_of_publishing"] = year
-        self.__summary["publisher"] = publisher
+        self.__summary["publisher"] = ultimate_finder(page, "Издательство:")
         self.__summary["link"] = link
         self.__summary["pages"] = pages
         self.__summary["product_code"] = product_code
@@ -41,4 +43,4 @@ class LocalPageParsing:
 
 
 a1 = LocalPageParsing()
-a1.pars_dictionary()
+print(a1.pars_dictionary())
