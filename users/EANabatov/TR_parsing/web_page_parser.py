@@ -21,6 +21,12 @@ class BookStoreParser:
     def __init__(self, start_parsing_index, end_parsing_index):
         self.__books = []
         self.__parsing(start_parsing_index, end_parsing_index)
+        logging.basicConfig(
+            level=logging.INFO,
+            filename="eanabatov_web_parser.log",
+            filemode="w",
+            format="%(asctime)s %(levelname)s %(message)s",
+        )
 
     def __parsing(self, start_parsing_index, end_parsing_index):
         for identificator in range(start_parsing_index, end_parsing_index + 1):
@@ -71,7 +77,6 @@ class BookStoreParser:
                 )
 
             if __summary != {}:
-                logging.info()
                 self.__books.append(__summary)
             logging.info("OK", __mini_counter)
         print(self.__books)
