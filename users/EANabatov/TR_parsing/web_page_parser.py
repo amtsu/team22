@@ -1,9 +1,18 @@
-"""модуль парсинга сайта книжного магазина (онлайн)"""
-import pickle
+"""
+модуль парсинга сайта книжного магазина
+https://www.moscowbooks.ru/
+(онлайн)
+"""
+import logging
 
 from bs4 import BeautifulSoup
 import urllib.request
 from parsing_helper import ultimate_finder
+
+# todo добавить логирование и признак активности
+# todo добавить остальные возможные параметры с страницы
+# todo тесты
+# todo нормальные докстринги
 
 
 class BookStoreParser:
@@ -17,6 +26,7 @@ class BookStoreParser:
         for identificator in range(start_parsing_index, end_parsing_index + 1):
             __summary = {}
             __link = "https://www.moscowbooks.ru/book/" + str(identificator) + "/"
+            __mini_counter = 0
             try:
                 self.page = urllib.request.urlopen(__link)
                 self.text = self.page.read()
@@ -25,15 +35,15 @@ class BookStoreParser:
                     try:
                         __summary["in_stock"] = self.__in_stock()
                     except:
-                        __summary["in_stock"] = ""
+                        __summary["in_stock"] = None
                     try:
                         __summary["book_name"] = self.__book_name()
                     except:
-                        __summary["book_name"] = ""
+                        __summary["book_name"] = None
                     try:
                         __summary["author_name"] = self.__author_name()
                     except:
-                        __summary["author_name"] = ""
+                        __summary["author_name"] = None
                     try:
                         __summary["shop_price"] = self.__shop_price()
                     except:
@@ -42,6 +52,7 @@ class BookStoreParser:
                         __summary["internet_price"] = self.__internet_price()
                     except:
                         __summary["internet_price"] = None
+
                     __summary["the_year_of_publishing"] = ultimate_finder(
                         __link, "Год издания:"
                     )
@@ -52,15 +63,19 @@ class BookStoreParser:
                     __summary["pegi"] = ultimate_finder(__link, "Возраст:")
                     __summary["link"] = self.__link()
                 else:
-                    print(self.page.getcode())
+                    logging.error(self.page.getcode())
             except:
-                pass
+                logging.error(
+                    "Страшно, очень страшно! Мы не знаем что это такое, если бы мы знали что это такое, "
+                    "но мы не знаем что это такое!"
+                )
 
             if __summary != {}:
+                logging.info()
                 self.__books.append(__summary)
-
-    def return_books(self):
+            logging.info("OK", __mini_counter)
         print(self.__books)
+        return self.__books
 
     def __book_name(self):
         """название книги"""
@@ -72,7 +87,7 @@ class BookStoreParser:
 
     def __author_name(self):
         """имя автора (отсутствует если это журнал)"""
-        return self.soup.find("a", class_="author-name").text
+        return self.soup.find("a", class_="author-name").text.replace(" ", "").strip()
 
     def __shop_price(self):
         """цена в магазине (отсутствует если товара нет в наличии)"""
@@ -110,4 +125,4 @@ class BookStoreParser:
 
 
 a2 = BookStoreParser(1156290, 1156292)
-a2.return_books()
+# a2.return_books()
