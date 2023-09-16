@@ -1,46 +1,113 @@
+"""
+Модуль парсинга сайта книжного магазина
+https://www.moscowbooks.ru/
+(локальная страница)
+"""
 from bs4 import BeautifulSoup
 import urllib.request
-
-from team22.users.EANabatov.TR_parsing.parsing_helper import ultimate_finder
+from parsing_helper import ultimate_finder
 
 
 class LocalPageParsing:
+    """"""
     def __init__(self):
-        self.__summary = {}
-        self.__pars()
+        """"""
+        self.__link = "file:///home/evgeniy/Documents/html/book_parsing.html"
+        self.__page = urllib.request.urlopen(self.__link)
+        self.__text = self.__page.read()
+        self.__soup = BeautifulSoup(self.__text, features="html.parser")
+        self.__pars(self.__link, self.__page, self.__text, self.__soup)
 
-    def __pars(self):
-        page = urllib.request.urlopen("file:///home/evgeniy/Documents/html/book_parsing.html")
-        text = page.read()
-        soup = BeautifulSoup(text, features="html.parser")
+    def __pars(self, link, page, text, soup):
+        """"""
+        __summary = {}
+        __link = link
+        __page = page
+        __text = text
+        __soup = soup
+        try:
+            __summary["in_stock"] = self.__in_stock(self.__soup)
+        except:
+            __summary["in_stock"] = None
+        try:
+            __summary["book_name"] = self.__book_name(self.__soup)
+        except:
+            __summary["book_name"] = None
+        try:
+            __summary["author_name"] = self.__author_name(self.__soup)
+        except:
+            __summary["author_name"] = None
+        try:
+            __summary["shop_price"] = self.__shop_price(self.__soup)
+        except:
+            __summary["shop_price"] = None
+        try:
+            __summary["internet_price"] = self.__internet_price(self.__soup)
+        except:
+            __summary["internet_price"] = None
+        try:
+            __summary["the_year_of_publishing"] = ultimate_finder(
+                __link, "Год издания:"
+            )
+        except:
+            __summary["the_year_of_publishing"] = None
+        __summary["publisher"] = ultimate_finder(__link, "Издательство:")
+        __summary["publish_place"] = ultimate_finder(__link, "Место издания:")
+        __summary["text_language"] = ultimate_finder(__link, "Язык текста:")
+        __summary["cover_type"] = ultimate_finder(__link, "Тип обложки:")
+        __summary["paper_type"] = ultimate_finder(__link, "Бумага:")
+        __summary["Illustrations"] = ultimate_finder(__link, "Иллюстрации:")
+        __summary["Illustrators"] = ultimate_finder(__link, "Иллюстраторы:")
+        __summary["weight"] = ultimate_finder(__link, "Вес:")
+        __summary["Circulation"] = ultimate_finder(__link, "Тираж:")
+        __summary["product_code"] = ultimate_finder(__link, "Код товара:")
+        __summary["vendor_code"] = ultimate_finder(__link, "Артикул:")
+        __summary["isbn"] = ultimate_finder(__link, "ISBN:")
+        __summary["pegi"] = ultimate_finder(__link, "Возраст:")
+        __summary["on_sale_from"] = ultimate_finder(__link, "В продаже с:")
+        return __summary
 
-        book_name = soup.find("h1", class_="page-header__title").text.split(".")[0].strip()  # название книги
-        author_name = soup.find("h1", class_="page-header__title").text.split(".")[1].strip()  # имя автора
-        shop_price = soup.find("span", class_="rubs").text.replace(" ","")  # цена в магазине
-        internet_price = soup.find("span", class_="silver rubs rubfont").text.replace(" ","")  # цена на сайте
-        year = soup.find_all("dt", class_="book__details-value")[1].text.split()[0]  # год издания
-        publisher = soup.find_all("dl", class_="book__details-item")[0].text.split()[1]  # издатель
-        link = soup.find("link").get("href")  # ссылка на книгу
-        pages = soup.find_all("dl", class_="book__details-item")[11].text.split()[1]  # количество страниц в книге
-        product_code = soup.find_all("dl", class_="book__details-item")[12].text.split()[2]  # код товара
-        vendor_code = soup.find_all("dl", class_="book__details-item")[13].text.split()[1]  # артикул
-        isbn = soup.find_all("dl", class_="book__details-item")[14].text.split()[1]  # ISBN
+    def __book_name(self, soup):
+        """Название книги"""
+        return (
+            soup.find("span", class_="link-gray-light")
+            .text.replace(" ", " ")
+            .strip()
+        )
 
-        self.__summary["book_name"] = book_name
-        self.__summary["author_name"] = author_name
-        self.__summary["shop_price"] = shop_price
-        self.__summary["internet_price"] = internet_price
-        self.__summary["the_year_of_publishing"] = year
-        self.__summary["publisher"] = ultimate_finder(page, "Издательство:")
-        self.__summary["link"] = link
-        self.__summary["pages"] = pages
-        self.__summary["product_code"] = product_code
-        self.__summary["vendor_code"] = vendor_code
-        self.__summary["isbn"] = isbn
+    def __author_name(self, soup):
+        """Имя автора"""
+        return soup.find("a", class_="author-name").text.replace(" ", "").strip()
 
-    def pars_dictionary(self):
-        return self.__summary
+    def __shop_price(self, soup):
+        """Цена в магазине (отсутствует если товара нет в наличии)"""
+        return soup.find("span", class_="rubs").text.replace(" ", "").strip()
+
+    def __internet_price(self, soup):
+        """Цена на сайте (отсутствует если товара нет в наличии)"""
+        return (
+            soup.find("span", class_="silver rubs rubfont")
+            .text.replace(" ", "")
+            .strip()
+        )
+
+    def __in_stock(self, soup):
+        """Определяет в наличии ли книга в магазине на данный момент"""
+        __stock = None
+        try:
+            __stock = (
+                soup.find("span", class_="book__shop-instock")
+                .text.replace(" ", " ")
+                .strip()
+            )
+        except:
+            __stock = (
+                soup.find("span", class_="instock1")
+                .text.replace(" ", " ")
+                .strip()
+                .lower()
+            )
+        return __stock
 
 
 a1 = LocalPageParsing()
-print(a1.pars_dictionary())
