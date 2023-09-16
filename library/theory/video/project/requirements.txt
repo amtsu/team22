@@ -1,0 +1,11 @@
+flask
+redis
+mysql
+opencv-python
+Pillow
+numpy
+matplotlib
+torch
+torchvision
+pytorch_lightning
+#cv2
