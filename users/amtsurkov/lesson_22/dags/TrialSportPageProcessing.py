@@ -538,6 +538,7 @@ class TrialSportServiceProcessing:
         configuration = openapi_client.Configuration(host="http://absrent.ru:8000")
 
         with openapi_client.ApiClient(configuration) as api_client:
+            i = 0
             api_instance = history_api.HistoryApi(api_client)
             for e in self.__list_dict:
                 # print(e)
@@ -581,7 +582,10 @@ class TrialSportServiceProcessing:
 
                 try:
                     api_response = api_instance.history_create(body=history)
+                    i += 1
                     # pprint(api_response)
                 except openapi_client.ApiException as e:
                     print("Exception when calling HistoryApi->history_create: %s\n" % e)
+                if i % 100 == False:
+                    print('i=', i)
             print("Count load object =", len(self.__list_dict))

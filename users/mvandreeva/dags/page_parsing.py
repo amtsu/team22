@@ -9,7 +9,6 @@ class PageParser:
     """
     Производит открытие страницы, её первичную обработку
     """
-
     def __init__(self, url: str):
         self.__url = url
         self.__page = ""
