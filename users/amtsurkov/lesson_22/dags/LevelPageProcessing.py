@@ -142,7 +142,11 @@ class LevelServiceProcessing:
                 #    el["apartment_completion_quarter"] = None
                 el["apartment_completion_year"] = int(e["completion_year"])
                 el["apartment_floor"] = int(e["floor"])
-                el["apartment_floors_total"] = int(e["floors_total"])
+                if e.get("floors_total"):
+                    el["apartment_floors_total"] = int(e["floors_total"])
+                else:
+                    print("not have floors_total in =", source_url)
+                    el["apartment_floors_total"] = None
                 el["apartment_ceilingheight"] = e["ceilingheight"]
                 el["apartment_room"] = int(e["room"])
                 el["apartment_ppm"] = int(e["ppm"])
