@@ -12,5 +12,5 @@ def ultimate_finder(page, characteristic=str) -> str:
     base = soup.find_all("dt", class_="book__details-name")
     data = soup.find_all("dt", class_="book__details-value")
     for index, base_info in enumerate(base):
-        if base_info.text.replace(" ", "").strip() == characteristic:
+        if base_info.__text.replace(" ", "").strip() == characteristic:
             return data[index].text.replace(" ", "").strip()

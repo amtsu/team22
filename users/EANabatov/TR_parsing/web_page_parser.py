@@ -15,6 +15,7 @@ from parsing_helper import ultimate_finder
 
 
 def main():
+    """Псевдо фронтэнд для работы с парсером"""
     start_parsing_code = input("Введите начальный код товара для парсинга: ")
     end_parsing_code = input("Введите конечный код товара для парсинга: ")
     if end_parsing_code < start_parsing_code:
@@ -34,22 +35,25 @@ class BookStoreParser:
             filemode="w",
             format="%(asctime)s %(levelname)s %(message)s",
         )
-        self.current_parsing_code = None
         self.__status = False
         self.__books = []
+        self.current_parsing_code = None
+        self.__page = None
+        self.__text = None
+        self.__soup = None
 
     def __parsing(self, link=str) -> dict:
         """Парсит html страницу через запросы"""
         counter = 1
         summary = {}
         try:
-            self.page = urllib.request.urlopen(link)
-            self.text = self.page.read()
-            self.soup = BeautifulSoup(self.text, features="html.parser")
-            if self.page.getcode() == 200:
-                if self.soup.find(
+            self.__page = urllib.request.urlopen(link)
+            self.__text = self.__page.read()
+            self.__soup = BeautifulSoup(self.__text, features="html.parser")
+            if self.__page.getcode() == 200:
+                if self.__soup.find(
                     href=re.compile("__books"), class_="link-gray-light"
-                ) and not self.soup.find(
+                ) and not self.__soup.find(
                     href=re.compile("magazines"), class_="link-gray-light"
                 ):
                     try:
@@ -92,17 +96,17 @@ class BookStoreParser:
                     summary["isbn"] = ultimate_finder(link, "ISBN:")
                     summary["pegi"] = ultimate_finder(link, "Возраст:")
                     summary["on_sale_from"] = ultimate_finder(link, "В продаже с:")
-                    summary["link"] = self.link()
+                    summary["link"] = self.__link()
                     logging.info(
                         f"Process {self.current_parsing_code}: OK (counter: {counter})"
                     )
                     counter += 1
                 else:
                     logging.info(
-                        f"{self.current_parsing_code} не книга ({self.link()})"
+                        f"{self.current_parsing_code} не книга ({self.__link()})"
                     )
             else:
-                logging.error(f"{self.page.getcode()}")
+                logging.error(f"{self.__page.getcode()}")
         except:
             logging.error(
                 f"process {self.current_parsing_code}. Страшно, очень страшно! Мы не знаем что это такое, если бы мы "
@@ -114,43 +118,43 @@ class BookStoreParser:
     def __book_name(self):
         """Название книги"""
         return (
-            self.soup.find("span", class_="link-gray-light")
+            self.__soup.find("span", class_="link-gray-light")
             .text.replace(" ", " ")
             .strip()
         )
 
     def __author_name(self):
         """Имя автора"""
-        return self.soup.find("a", class_="author-name").text.replace(" ", "").strip()
+        return self.__soup.find("a", class_="author-name").text.replace(" ", "").strip()
 
     def __shop_price(self):
         """Цена в магазине (отсутствует если товара нет в наличии)"""
-        return self.soup.find("span", class_="rubs").text.replace(" ", "").strip()
+        return self.__soup.find("span", class_="rubs").text.replace(" ", "").strip()
 
     def __internet_price(self):
         """Цена на сайте (отсутствует если товара нет в наличии)"""
         return (
-            self.soup.find("span", class_="silver rubs rubfont")
+            self.__soup.find("span", class_="silver rubs rubfont")
             .text.replace(" ", "")
             .strip()
         )
 
     def __link(self):
         """Находит ссылку на страницу с книгой"""
-        return self.soup.find("link").get("href")  # ссылка на книгу
+        return self.__soup.find("link").get("href")
 
-    def __in_stock(self):
+    def __in_stock(self) -> str:
         """Определяет в наличии ли книга в магазине на данный момент"""
         stock = None
         try:
             stock = (
-                self.soup.find("span", class_="book__shop-instock")
+                self.__soup.find("span", class_="book__shop-instock")
                 .text.replace(" ", " ")
                 .strip()
             )
         except:
             stock = (
-                self.soup.find("span", class_="instock1")
+                self.__soup.find("span", class_="instock1")
                 .text.replace(" ", " ")
                 .strip()
                 .lower()
