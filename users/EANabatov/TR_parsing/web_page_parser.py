@@ -5,17 +5,28 @@ https://www.moscowbooks.ru/
 """
 import logging
 import re
+
 from bs4 import BeautifulSoup
 import urllib.request
+
+from typing import List
+
 from parsing_helper import ultimate_finder
 
 
-# todo тесты
+def main():
+    start_parsing_code = input("Введите начальный код товара для парсинга: ")
+    end_parsing_code = input("Введите конечный код товара для парсинга: ")
+    if end_parsing_code < start_parsing_code:
+        raise KeyError("End point smaller then starting point")
+    object_one = BookStoreParser()
+    object_one.start_parsing(start_parsing_code, end_parsing_code)
 
 
 class BookStoreParser:
     """Класс парсинга сайта книжного магазина"""
-    def __init__(self, start_parsing_index, end_parsing_index):
+
+    def __init__(self):
         """Конструктор класса парсинга"""
         logging.basicConfig(
             level=logging.INFO,
@@ -23,103 +34,82 @@ class BookStoreParser:
             filemode="w",
             format="%(asctime)s %(levelname)s %(message)s",
         )
-        self.start_parsing_index = start_parsing_index
-        self.end_parsing_index = end_parsing_index
+        self.current_parsing_code = None
+        self.__status = False
         self.__books = []
-        self.__parsing(self.start_parsing_index, self.end_parsing_index)
 
-    def __parsing(self, start_parsing_index=int, end_parsing_index=int):
+    def __parsing(self, link=str) -> dict:
         """Парсит html страницу через запросы"""
-        if end_parsing_index < start_parsing_index:
-            raise KeyError("End point smaller starting point")
-        __counter = 1
-        for identificator in range(start_parsing_index, end_parsing_index + 1):
-            __summary = {}
-            __link = "https://www.moscowbooks.ru/book/" + str(identificator) + "/"
-            try:
-                self.page = urllib.request.urlopen(__link)
-                self.text = self.page.read()
-                self.soup = BeautifulSoup(self.text, features="html.parser")
-                if self.page.getcode() == 200:
-                    if self.soup.find(
-                        href=re.compile("books"), class_="link-gray-light"
-                    ) and not self.soup.find(
-                        href=re.compile("magazines"), class_="link-gray-light"
-                    ):
-                        try:
-                            __summary["in_stock"] = self.__in_stock()
-                        except:
-                            __summary["in_stock"] = None
-                        try:
-                            __summary["book_name"] = self.__book_name()
-                        except:
-                            __summary["book_name"] = None
-                        try:
-                            __summary["author_name"] = self.__author_name()
-                        except:
-                            __summary["author_name"] = None
-                        try:
-                            __summary["shop_price"] = self.__shop_price()
-                        except:
-                            __summary["shop_price"] = None
-                        try:
-                            __summary["internet_price"] = self.__internet_price()
-                        except:
-                            __summary["internet_price"] = None
-                        try:
-                            __summary["the_year_of_publishing"] = ultimate_finder(
-                                __link, "Год издания:"
-                            )
-                        except:
-                            __summary["the_year_of_publishing"] = None
-                        __summary["publisher"] = ultimate_finder(
-                            __link, "Издательство:"
+        counter = 1
+        summary = {}
+        try:
+            self.page = urllib.request.urlopen(link)
+            self.text = self.page.read()
+            self.soup = BeautifulSoup(self.text, features="html.parser")
+            if self.page.getcode() == 200:
+                if self.soup.find(
+                    href=re.compile("__books"), class_="link-gray-light"
+                ) and not self.soup.find(
+                    href=re.compile("magazines"), class_="link-gray-light"
+                ):
+                    try:
+                        summary["in_stock"] = self.__in_stock()
+                    except:
+                        summary["in_stock"] = None
+                    try:
+                        summary["book_name"] = self.__book_name()
+                    except:
+                        summary["book_name"] = None
+                    try:
+                        summary["author_name"] = self.__author_name()
+                    except:
+                        summary["author_name"] = None
+                    try:
+                        summary["shop_price"] = self.__shop_price()
+                    except:
+                        summary["shop_price"] = None
+                    try:
+                        summary["internet_price"] = self.__internet_price()
+                    except:
+                        summary["internet_price"] = None
+                    try:
+                        summary["the_year_of_publishing"] = ultimate_finder(
+                            link, "Год издания:"
                         )
-                        __summary["publish_place"] = ultimate_finder(
-                            __link, "Место издания:"
-                        )
-                        __summary["text_language"] = ultimate_finder(
-                            __link, "Язык текста:"
-                        )
-                        __summary["cover_type"] = ultimate_finder(
-                            __link, "Тип обложки:"
-                        )
-                        __summary["paper_type"] = ultimate_finder(__link, "Бумага:")
-                        __summary["Illustrations"] = ultimate_finder(
-                            __link, "Иллюстрации:"
-                        )
-                        __summary["Illustrators"] = ultimate_finder(
-                            __link, "Иллюстраторы:"
-                        )
-                        __summary["weight"] = ultimate_finder(__link, "Вес:")
-                        __summary["Circulation"] = ultimate_finder(__link, "Тираж:")
-                        __summary["product_code"] = ultimate_finder(
-                            __link, "Код товара:"
-                        )
-                        __summary["vendor_code"] = ultimate_finder(__link, "Артикул:")
-                        __summary["isbn"] = ultimate_finder(__link, "ISBN:")
-                        __summary["pegi"] = ultimate_finder(__link, "Возраст:")
-                        __summary["on_sale_from"] = ultimate_finder(
-                            __link, "В продаже с:"
-                        )
-                        __summary["link"] = self.__link()
-                        logging.info(
-                            f"Process {identificator}: OK (counter: {__counter})"
-                        )
-                        __counter += 1
-                    else:
-                        logging.info(f"{identificator} не книга ({self.__link()})")
+                    except:
+                        summary["the_year_of_publishing"] = None
+                    summary["publisher"] = ultimate_finder(link, "Издательство:")
+                    summary["publish_place"] = ultimate_finder(link, "Место издания:")
+                    summary["text_language"] = ultimate_finder(link, "Язык текста:")
+                    summary["cover_type"] = ultimate_finder(link, "Тип обложки:")
+                    summary["paper_type"] = ultimate_finder(link, "Бумага:")
+                    summary["Illustrations"] = ultimate_finder(link, "Иллюстрации:")
+                    summary["Illustrators"] = ultimate_finder(link, "Иллюстраторы:")
+                    summary["weight"] = ultimate_finder(link, "Вес:")
+                    summary["Circulation"] = ultimate_finder(link, "Тираж:")
+                    summary["product_code"] = ultimate_finder(link, "Код товара:")
+                    summary["vendor_code"] = ultimate_finder(self.link, "Артикул:")
+                    summary["isbn"] = ultimate_finder(link, "ISBN:")
+                    summary["pegi"] = ultimate_finder(link, "Возраст:")
+                    summary["on_sale_from"] = ultimate_finder(link, "В продаже с:")
+                    summary["link"] = self.link()
+                    logging.info(
+                        f"Process {self.current_parsing_code}: OK (counter: {counter})"
+                    )
+                    counter += 1
                 else:
-                    logging.error(f"{self.page.getcode()}")
-            except:
-                logging.error(
-                    f"process {identificator}. Страшно, очень страшно! Мы не знаем что это такое, если бы мы "
-                    f"знали что это такое,"
-                    "но мы не знаем что это такое!"
-                )
-            if __summary != {}:
-                self.__books.append(__summary)
-        print(self.__books)
+                    logging.info(
+                        f"{self.current_parsing_code} не книга ({self.link()})"
+                    )
+            else:
+                logging.error(f"{self.page.getcode()}")
+        except:
+            logging.error(
+                f"process {self.current_parsing_code}. Страшно, очень страшно! Мы не знаем что это такое, если бы мы "
+                f"знали что это такое,"
+                "но мы не знаем что это такое!"
+            )
+        return summary
 
     def __book_name(self):
         """Название книги"""
@@ -151,22 +141,41 @@ class BookStoreParser:
 
     def __in_stock(self):
         """Определяет в наличии ли книга в магазине на данный момент"""
-        __stock = None
+        stock = None
         try:
-            __stock = (
+            stock = (
                 self.soup.find("span", class_="book__shop-instock")
                 .text.replace(" ", " ")
                 .strip()
             )
         except:
-            __stock = (
+            stock = (
                 self.soup.find("span", class_="instock1")
                 .text.replace(" ", " ")
                 .strip()
                 .lower()
             )
-        return __stock
+        return stock
+
+    def __is_done(self) -> List[dict]:
+        self.__status = False
+        print(self.__books)
+
+    def start_parsing(self, start_parsing_code, end_parsing_code) -> None:
+        self.__status = True
+        self.current_parsing_code = int(start_parsing_code)
+        result = None
+        while self.current_parsing_code <= int(end_parsing_code):
+            result = self.__parsing(
+                "https://www.moscowbooks.ru/book/"
+                + str(self.current_parsing_code)
+                + "/"
+            )
+            if result != {}:
+                self.__books.append(result)
+            self.current_parsing_code += 1
+        self.__is_done()
 
 
-a2 = BookStoreParser(1156000, 1157000)
-
+if __name__ == "__main__":
+    main()
