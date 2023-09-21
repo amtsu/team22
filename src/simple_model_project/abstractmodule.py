@@ -2,7 +2,7 @@
 описание абстрактного интерфейса для модуля моделирующей системы
 """
 from abc import ABCMeta, abstractmethod
-from typing import Tuple
+from typing import Dict
 
 
 class AbstractModule(metaclass=ABCMeta):
@@ -29,10 +29,17 @@ class AbstractModule(metaclass=ABCMeta):
         """
 
     @abstractmethod
-    def step(self) -> Tuple[float, int]:
+    def step(self) -> None:
         """
-        Возвращает состояние модуля на данном шаге,
-        выполняется на каждом шаге, пока разрешено
+        выполняет один шаг расчета модуля
+        """
+
+    @abstractmethod
+    def get_state(self) -> Dict[str, str]:
+        """
+        метод возвращает значение переменных, описывающих состояние модуля
+        на текущем шаге в виде словаря {имя переменной:значение}, например
+        {"скорость, м/c" : "15", "пройденный путь, м":"12563"}
         """
 
     @abstractmethod
