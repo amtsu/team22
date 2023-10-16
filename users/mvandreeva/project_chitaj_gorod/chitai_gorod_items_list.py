@@ -34,7 +34,7 @@ class ChitaiGorodItemsList:
                 if not title_data or title_data == []:
                     item_dict["title"] = "No data"
                 else:
-                    title_bad = title_data[0].text
+                    title_bad = title_data[0].__text
                     title_bad = title_bad.replace("\n    ", "")
                     title = title_bad.replace("\n  ", "")
                     title = title_bad.replace("\xa0", " ")
@@ -59,7 +59,7 @@ class ChitaiGorodItemsList:
                    # price = "No data"
                     item_dict["price"] = "No data"
                 else:
-                    price_bad = price_data[0].text
+                    price_bad = price_data[0].__text
                     price_bad = price_bad.replace("\n    ", "")
                     price_bad = price_bad.replace(" ₽\n  ", "")
                     price_bad = price_bad.replace("\xa0", "") 
@@ -72,7 +72,7 @@ class ChitaiGorodItemsList:
                     #author = "No data"
                     item_dict["author"] = "No data" 
                 else:
-                    author_bad = author_data[0].text
+                    author_bad = author_data[0].__text
                     author_bad = author_bad.replace("\n    ", "")
                     author = author_bad.replace("\n  ", "")
                     item_dict["author"] = author
@@ -89,7 +89,7 @@ class ChitaiGorodItemsList:
                     try:
                         author_url_page_text = author_url_page.get_page() 
                     except:
-                        print("Error in getting author_url, web-page is not available")
+                        print("Error in getting author_url, web-__page is not available")
                         # continue
                     #print(author_url_page)
                     if author_url_page_text: # ?? будет ли видна здесь переменная author_url_page_text из блока try / except? 
@@ -218,7 +218,7 @@ class ChitaiGorodURLConfiguration:
             url = url + "?sort=price&order=asc"
             #for i in range(1, pages):
             for i in range(1, 2):
-                url_p = url + "&page=" + str(i) 
+                url_p = url + "&__page=" + str(i)
                 #print(url_p)
                 try: 
                     page_parsing = ChitaiGorodItemsList(url_p)                
@@ -236,7 +236,7 @@ class ChitaiGorodURLConfiguration:
         for url in urls_dict:
             url = url + "?sort=price&order=asc" 
             for i in range(1, urls_dict[url]):
-                url_p = url + "&page=" + str(i) 
+                url_p = url + "&__page=" + str(i)
                 #print(url_p)
                 try: 
                     page_parsing = ChitaiGorodItemsList(url_p)                
@@ -261,7 +261,7 @@ class ChitaiGorodURLConfiguration:
                 for url in self.__url_list:
                     url = url + "?sort=price&order=asc"
                     for i in range(1, self.__url_list[url]):
-                        url_p = url + "&page=" + str(i)
+                        url_p = url + "&__page=" + str(i)
                         print(url_p)
                         try:
                             page_parsing = ChitaiGorodItemsList(url_p)
@@ -270,7 +270,7 @@ class ChitaiGorodURLConfiguration:
                         except:
                             continue
             else:
-                print(f"Incorrect data type in file {file_name}. Should be dict type: url:pages. type(url) = str, type(page) = int.")
+                print(f"Incorrect data type in file {file_name}. Should be dict type: url:pages. type(url) = str, type(__page) = int.")
         print(self.__list_dict)
         return self.__list_dict
     
@@ -279,7 +279,7 @@ class ChitaiGorodURLConfiguration:
     #         url = url + "?sort=price&order=asc" 
     #         #for i in range(1, 2022):
     #         for i in range(1, 2):
-    #             url_p = url + "&page=" + str(i)
+    #             url_p = url + "&__page=" + str(i)
     #             #print(url_p)
     #             try: # не стоит использовать try для остановки перебора страниц
     #                 page_parsing = ChitaiGorodItemsList(url_p)
@@ -300,7 +300,7 @@ class ChitaiGorodURLConfiguration:
     #                         for url in self.__url_list:
     #                             url = url + "?sort=price&order=asc"
     #                             for i in range(1, 2022):
-    #                                 url_p = url + "&page=" + str(i)
+    #                                 url_p = url + "&__page=" + str(i)
     #                                 print(url_p)
     #                                 try:
     #                                     page_parsing = ChitaiGorodItemsList(url_p)

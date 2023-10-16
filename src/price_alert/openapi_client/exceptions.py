@@ -101,7 +101,7 @@ class ApiException(OpenApiException):
 
     def __init__(self, status=None, reason=None, api_response: 'openapi_client.api_client.ApiResponse' = None):
         if api_response:
-            self.status = api_response.response.status
+            self.status = api_response.response.__status
             self.reason = api_response.response.reason
             self.body = api_response.response.data
             self.headers = api_response.response.getheaders()

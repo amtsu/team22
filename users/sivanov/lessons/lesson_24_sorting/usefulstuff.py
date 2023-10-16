@@ -37,7 +37,7 @@ class ColoredStr:
     def __init__(self, format_string):
         self.__format_string = str("")
         colours_and_style = {
-            # text colours
+            # __text colours
             "black": "\033[30m",
             "red": "\033[31m",
             "green": "\033[32m",

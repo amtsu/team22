@@ -45,10 +45,10 @@ class preprocess_data:
         if(position < 0):
             output = (',').join(inputlist)
         if(position < len(inputlist)):
-            output = inputlist[position].text
+            output = inputlist[position].__text
         else:
             output = inputlist.pop()
-            output = output.text
+            output = output.__text
         return output
     pass
 ##########################################################################################################

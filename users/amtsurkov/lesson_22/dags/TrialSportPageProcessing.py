@@ -92,7 +92,7 @@ class PriceElement(Element):
         assert len(list_price_data) == 1
         list_reports_data = list_price_data[0].find_all("div", class_="price")
         element_1 = list_reports_data[0]
-        return element_1.text
+        return element_1.__text
 
     def __init__(self, soup):
         """
@@ -150,7 +150,7 @@ class PriceSaleElement(Element):
             "div", class_="price price_disc"
         )
         element_1 = list_reports_data[0]
-        return element_1.text
+        return element_1.__text
 
     def __init__(self, soup):
         self.__soup = soup
@@ -192,7 +192,7 @@ class TitleElement(Element):
     def __get_text(self):
         list_reports_data = self.__soup.findAll("h2")
         element_1 = list_reports_data[0]
-        return element_1.text
+        return element_1.__text
 
     def __init__(self, soup):
         self.__soup = soup
@@ -222,7 +222,7 @@ class BrandElement(Element):
     def __get_text(self):
         list_reports_data = self.__soup.findAll("div", class_="bread")
         element_1 = list_reports_data[0]
-        return element_1.text
+        return element_1.__text
 
     def __init__(self, soup):
         self.__soup = soup
@@ -286,7 +286,7 @@ class ImageUrlElement(Element):
         list_price_data = self.__soup.findAll("script")
         script = list_price_data[10]
         # "big": "\/images\/catalog\/lbj7000_xt3_130_lv_storm_blue_rgb300dpi_2539265.jpg"
-        return re.search(r'big": "(.+)"', script.text).group(1)
+        return re.search(r'big": "(.+)"', script.__text).group(1)
 
     def __init__(self, soup):
         self.__soup = soup
@@ -295,7 +295,7 @@ class ImageUrlElement(Element):
         # list_price_data = self.__soup.findAll('script')
         # script = list_price_data[10]
         ##"big": "\/images\/catalog\/lbj7000_xt3_130_lv_storm_blue_rgb300dpi_2539265.jpg"
-        # image_url = re.search(r'big": "(.+)"', script.text).group(1)
+        # image_url = re.search(r'big": "(.+)"', script.__text).group(1)
 
         # assert len(list_price_data) == 49
         # if len(list_price_data) != 49:
@@ -361,7 +361,7 @@ class ListPageProcessor:
         for i in list_data:
             d = i.find_all("a", class_="title")
             url = d[0]["href"]
-            title = d[0].text
+            title = d[0].__text
 
             d = i.find_all("span", class_="price")
             if len(d) < 1:    
@@ -371,7 +371,7 @@ class ListPageProcessor:
                 price_sale = 0
                 price = 0
             else:
-                price = d[0].text
+                price = d[0].__text
                 price = price.replace("&thinsp;", "")
                 price = price.replace("&thinsp;", "")
                 price = price.replace(" &#8381", "")
@@ -389,25 +389,25 @@ class ListPageProcessor:
             d = i.find_all("span", class_="discount discountsale")
             price_sale = price
             if d:
-                price_sale_s = d[0].text
+                price_sale_s = d[0].__text
                 if len(price_sale_s) > 6:
                     try:
                         price_sale = int(price_sale_s[:-6] + price_sale_s[-5:-2])
                     except:
                         price_sale = int(price_sale_s[:-7] + price_sale_s[-6:-3])
                 else:
-                    price_sale = int(d[0].text[:-2])
+                    price_sale = int(d[0].__text[:-2])
             else:
                 d = i.find_all("span", class_="discount")
                 if d:
-                    price_sale_s = d[0].text
+                    price_sale_s = d[0].__text
                     if len(price_sale_s) > 6:
                         try:
                             price_sale = int(price_sale_s[:-6] + price_sale_s[-5:-2])
                         except:
                             price_sale = int(price_sale_s[:-7] + price_sale_s[-6:-3])
                     else:
-                        price_sale = int(d[0].text[:-2])
+                        price_sale = int(d[0].__text[:-2])
 
             l.append(
                 {

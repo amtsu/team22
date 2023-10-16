@@ -10,10 +10,10 @@ from bs4 import BeautifulSoup
 
 # test_get_text_price из chitai_gorod - ChitaiGorodGetPrice
 #def test_get_text_price_chitai_gorod():
-#    page = PageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391')
-#    page_text = page.read_page()
+#    __page = PageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391')
+#    page_text = __page.read_page()
 #    get_text_price = ChitaiGorodGetPrice(page_text).get_text()
-#    #print("text=",get_text_price)
+#    #print("__text=",get_text_price)
 #    assert get_text_price == """\n      1\xa0100 ₽\n    """
 
 @pytest.fixture()
@@ -25,7 +25,7 @@ def page_parsing_2640391():
 
 # test_clean_data для price из chitai_gorod - ChitaiGorodGetPrice
 def test_clean_data_price_chitai_gorod():
-#    page = PageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391')
+#    __page = PageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391')
 #    page_text = page_parsing_2640391.get_page()
 #    page_url = page_parsing_2640391.get_url()
     page_parsing = page_parsing_2640391()
@@ -45,7 +45,7 @@ def test_clean_data_price_chitai_gorod():
         
 # test_clean_data для author из chitai_gorod_one_item - ChitaiGorodGetAuthor
 def test_clean_data_author_chitai_gorod():
-#    page = PageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391')
+#    __page = PageParsing('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391')
     page_text = page_parsing_2640391.get_page()
     page_url = page_parsing_2640391.get_url()
     chitai_gorod = ChitaiGorodGetAuthor(page_text, page_url)
@@ -57,7 +57,7 @@ def test_clean_data_author_chitai_gorod():
 # test_get_text для author_url из chitai_gorod_one_item - ChitaiGorodGetAuthorURL
 #def test_get_text_author_url_chitai_gorod():
 #    get_text_author_url = ChitaiGorodGetAuthorURL('https://new.chitai-gorod.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-2640391').get_text()
-#    print("text=",get_text_author_url)
+#    print("__text=",get_text_author_url)
 #    assert get_text_author_url == "/author/martin-robert-s-586375"
 
 

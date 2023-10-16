@@ -54,7 +54,7 @@ class PriceElement(Element):
         assert len(list_price_data) == 1
         list_reports_data = list_price_data[0].find_all('div', class_='price')
         element_1 = list_reports_data[0]
-        return element_1.text
+        return element_1.__text
 
     def __init__(self, soup):
         self.__soup = soup
@@ -95,7 +95,7 @@ class PriceSaleElement(Element):
         assert len(list_price_data) == 1
         list_reports_data = list_price_data[0].find_all('div', class_='price price_disc')
         element_1 = list_reports_data[0]
-        return element_1.text
+        return element_1.__text
 
     def __init__(self, soup):
         self.__soup = soup
@@ -135,7 +135,7 @@ class TitleElement(Element):
     def __get_text(self):
         list_reports_data = self.__soup.findAll('h2')
         element_1 = list_reports_data[0]
-        return element_1.text
+        return element_1.__text
 
     def __init__(self, soup):
         self.__soup = soup
@@ -165,7 +165,7 @@ class BrandElement(Element):
     def __get_text(self):
         list_reports_data = self.__soup.findAll('div', class_="bread")
         element_1 = list_reports_data[0]
-        return element_1.text
+        return element_1.__text
 
     def __init__(self, soup):
         self.__soup = soup
@@ -229,7 +229,7 @@ class ImageUrlElement(Element):
         list_price_data = self.__soup.findAll('script')
         script = list_price_data[10]
         #"big": "\/images\/catalog\/lbj7000_xt3_130_lv_storm_blue_rgb300dpi_2539265.jpg"
-        return re.search(r'big": "(.+)"', script.text).group(1)
+        return re.search(r'big": "(.+)"', script.__text).group(1)
 
     def __init__(self, soup):
         self.__soup = soup
@@ -238,7 +238,7 @@ class ImageUrlElement(Element):
         #list_price_data = self.__soup.findAll('script')
         #script = list_price_data[10]
         ##"big": "\/images\/catalog\/lbj7000_xt3_130_lv_storm_blue_rgb300dpi_2539265.jpg"
-        #image_url = re.search(r'big": "(.+)"', script.text).group(1)
+        #image_url = re.search(r'big": "(.+)"', script.__text).group(1)
 
         #assert len(list_price_data) == 49
         #if len(list_price_data) != 49:

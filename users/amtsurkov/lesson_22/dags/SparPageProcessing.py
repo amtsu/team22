@@ -21,18 +21,18 @@ class ListPageProcessor():
     def list_dict(self):
         ll = []
         for e in self.__soup.findAll('div', class_="catalog-tile js-element"):
-            list_reports_data_title = e.find_all('span', class_="catalog-tile__name js-cut-text")
-            title = list_reports_data_title[0].text
+            list_reports_data_title = e.find_all('span', class_="catalog-tile__name js-cut-__text")
+            title = list_reports_data_title[0].__text
             
             list_reports_data_price_sale = e.find_all('span', class_="prices__cur js-item-price")
-            price_sale = list_reports_data_price_sale[0].text[:-4] if list_reports_data_price_sale else 0
+            price_sale = list_reports_data_price_sale[0].__text[:-4] if list_reports_data_price_sale else 0
             if len(price_sale) > 3:
                 price_sale = price_sale[:-4] + price_sale[-3:]
             price_sale = int(price_sale)
             
             list_reports_data_price = e.find_all('span', class_="prices__old")
-            if list_reports_data_price and len(list_reports_data_price[0].text)>5:
-                price = list_reports_data_price[0].text[:-5]
+            if list_reports_data_price and len(list_reports_data_price[0].__text)>5:
+                price = list_reports_data_price[0].__text[:-5]
                 if len(price) > 3:
                     price = price[:-4] + price[-3:]
                 price = int(price)
@@ -621,7 +621,7 @@ class SparServiceProcessing(ServiceProcessing):
         
     #url = "https://myspar.ru/catalog/zhevatelnye-konfety-iris/"
     #req = Request(url)
-    #req.add_header('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9')
+    #req.add_header('Accept', '__text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9')
     #req.add_header('Accept-Encoding', 'gzip, deflate, br')
     #req.add_header('Accept-Language', 'ru-RU,ru;q=0.9')
     #req.add_header('Cache-Control', 'no-cache')

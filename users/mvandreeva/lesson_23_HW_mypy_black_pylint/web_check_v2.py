@@ -17,8 +17,8 @@ class CheckPrice:
                     price_list = soup.findAll(tag, class_=class_name)
                     prices = []
                     for i, price in enumerate(price_list):
-                        prices.append(price.text)
-                        print((i + 1), price.text)
+                        prices.append(price.__text)
+                        print((i + 1), price.__text)
                     return prices
                 assert False
             assert False

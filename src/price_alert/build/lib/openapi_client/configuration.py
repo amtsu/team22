@@ -309,29 +309,29 @@ conf = openapi_client.Configuration(
 
     @property
     def debug(self):
-        """Debug status
+        """Debug __status
 
-        :param value: The debug status, True or False.
+        :param value: The debug __status, True or False.
         :type: bool
         """
         return self.__debug
 
     @debug.setter
     def debug(self, value):
-        """Debug status
+        """Debug __status
 
-        :param value: The debug status, True or False.
+        :param value: The debug __status, True or False.
         :type: bool
         """
         self.__debug = value
         if self.__debug:
-            # if debug status is True, turn on debug logging
+            # if debug __status is True, turn on debug logging
             for _, logger in self.logger.items():
                 logger.setLevel(logging.DEBUG)
             # turn on http_client debug
             http_client.HTTPConnection.debuglevel = 1
         else:
-            # if debug status is False, turn off debug logging,
+            # if debug __status is False, turn off debug logging,
             # setting log level to default `logging.WARNING`
             for _, logger in self.logger.items():
                 logger.setLevel(logging.WARNING)

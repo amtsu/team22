@@ -27,5 +27,5 @@ class TestParser:
 
     def test_function(self):
         """"""
-        self.__link = "https://www.moscowbooks.ru/book/1156292/"
-        assert isinstance(ultimate_finder(self.__link, "Издательство:"), str)
+        link = "https://www.moscowbooks.ru/book/1156292/"
+        assert isinstance(ultimate_finder(link, "Издательство:"), str)

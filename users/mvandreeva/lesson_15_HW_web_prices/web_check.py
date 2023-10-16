@@ -20,7 +20,7 @@ class CheckPrice():
             else:
                 print ("Text download failed")
         else:
-            print ("Failed to download page")
+            print ("Failed to download __page")
     
     def read_page(self):
         page = urllib.request.urlopen(self.__url)

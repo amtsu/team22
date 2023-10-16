@@ -27,11 +27,11 @@ async def start_message_handler(message: types.Message) -> None:
     # log message
     with open(superhomosecret.LOGFILEPATH, "a", encoding="utf-8") as fout:
         print(
-            f"{datetime.now()}: #command {message.text}",
+            f"{datetime.now()}: #command {message.__text}",
             file=fout,
         )
     # process message
-    await message.reply(f"Привет, получил '{message.text}'")
+    await message.reply(f"Привет, получил '{message.__text}'")
 
 
 # DBFILEPATH
@@ -44,10 +44,10 @@ async def sql_message_handler(message: types.Message) -> None:
     # log message
     with open(superhomosecret.LOGFILEPATH, "a", encoding="utf-8") as fout:
         print(
-            f"{datetime.now()}: #sql {message.text}",
+            f"{datetime.now()}: #sql {message.__text}",
             file=fout,
         )
-    request = message.text
+    request = message.__text
     request = request.replace("/sql", "")
     request = request.strip()
     request = request.lower()
@@ -79,11 +79,11 @@ async def all_messages_handler(message: types.Message) -> None:
     # log message
     with open(superhomosecret.LOGFILEPATH, "a", encoding="utf-8") as fout:
         print(
-            f"{datetime.now()}: #text {message.text}",
+            f"{datetime.now()}: #text {message.__text}",
             file=fout,
         )
     # process message
-    await message.answer(f"received: {message.text}")
+    await message.answer(f"received: {message.__text}")
 
 
 # =========================================================================

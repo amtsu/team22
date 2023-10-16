@@ -113,7 +113,7 @@ def draw_box(coords, label):
     plt.plot([x[1], x[1]], [y[0], y[1]], color)
     plt.plot([x[0], x[1]], [y[0], y[0]], color)
     plt.plot([x[0], x[1]], [y[1], y[1]], color)
-    # plt.text(x[0], y[0], label, backgroundcolor='red')
+    # plt.__text(x[0], y[0], label, backgroundcolor='red')
 
 
 

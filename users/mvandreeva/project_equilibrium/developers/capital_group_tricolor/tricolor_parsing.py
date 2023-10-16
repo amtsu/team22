@@ -160,7 +160,7 @@ class TricolorParser:
             # print(self.__b_soup)
             address_data = self.__b_soup.findAll("div", class_="site-nav site-nav--tel")
             # print(address_data)
-            address_bad = address_data[0].text
+            address_bad = address_data[0].__text
             address_bad = address_bad.replace("\n", "")
             address_bad = address_bad.replace(
                 "                            +7 (495) 771 77 52                        ",
@@ -180,7 +180,7 @@ class TricolorParser:
         """
         flat_data = item.findAll("td")
         if flat_data:
-            building_str = flat_data[0].text
+            building_str = flat_data[0].__text
             building = int(building_str)
         else:
             building = None
@@ -209,7 +209,7 @@ class TricolorParser:
         """
         flat_data = item.findAll("td")
         if flat_data:
-            floor_str = flat_data[1].text
+            floor_str = flat_data[1].__text
             floor = int(floor_str)
         else:
             floor = None
@@ -230,8 +230,8 @@ class TricolorParser:
 
     # def _get_one_item(self, item: object): # рашила пока обойтись без него
     #     item_url = self._get_item_url(item)
-    #     page = PagePerser(item_url)
-    #     b_soup = page.use_b_soup()
+    #     __page = PagePerser(item_url)
+    #     b_soup = __page.use_b_soup()
     #     return
 
     # @replace_none_to_zero_str
@@ -253,7 +253,7 @@ class TricolorParser:
     #     """
     #     flat_data = item.findAll("td", {"sorttable_customkey": "37775845"})
     #     if flat_data:
-    #         price_data = flat_data[0].text
+    #         price_data = flat_data[0].__text
     #         print(price_data)
     #         # price_bad = price_data.replace("\n                        ", "")
     #         # price_bad = price_bad.replace(
@@ -273,7 +273,7 @@ class TricolorParser:
         """
         flat_data = item.findAll("td")
         if flat_data:
-            price_data = flat_data[3].text
+            price_data = flat_data[3].__text
             # print(price_data)
             price_bad = price_data.replace("\n","")
             price_bad = price_bad.replace(" ", "")
@@ -292,7 +292,7 @@ class TricolorParser:
         try:
             project_data = self.__b_soup.findAll("div", class_="site-aside__container")
             # pprint(project_data)
-            project_bad = project_data[0].text
+            project_bad = project_data[0].__text
             project = project_bad[-9:-1]
             # pprint(project)
         except:
@@ -309,7 +309,7 @@ class TricolorParser:
         """
         flat_data = item.findAll("td")
         if flat_data:
-            square_str = flat_data[2].text
+            square_str = flat_data[2].__text
             square = int(square_str)
         else:
             square = None
@@ -325,7 +325,7 @@ class TricolorParser:
         b_soup = page.use_b_soup()
         title_data = b_soup.findAll("h1")
         if title_data:
-            title = title_data[0].text
+            title = title_data[0].__text
         else:
             title = None
         return title
@@ -338,7 +338,7 @@ class TricolorParser:
         title_data = item.findAll("div")
         # print(title_data)
         if title_data:
-            title = title_data[2].text
+            title = title_data[2].__text
             # print(title)
         else:
             title = None

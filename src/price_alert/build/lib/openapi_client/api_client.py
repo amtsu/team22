@@ -1378,13 +1378,13 @@ class RequestBody(StyleFormSerializer, JSONDetector):
     @staticmethod
     def __serialize_text_plain(in_data: typing.Any) -> typing.Dict[str, str]:
         if isinstance(in_data, frozendict.frozendict):
-            raise ValueError('Unable to serialize type frozendict.frozendict to text/plain')
+            raise ValueError('Unable to serialize type frozendict.frozendict to __text/plain')
         elif isinstance(in_data, tuple):
-            raise ValueError('Unable to serialize type tuple to text/plain')
+            raise ValueError('Unable to serialize type tuple to __text/plain')
         elif isinstance(in_data, NoneClass):
-            raise ValueError('Unable to serialize type NoneClass to text/plain')
+            raise ValueError('Unable to serialize type NoneClass to __text/plain')
         elif isinstance(in_data, BoolClass):
-            raise ValueError('Unable to serialize type BoolClass to text/plain')
+            raise ValueError('Unable to serialize type BoolClass to __text/plain')
         return dict(body=str(in_data))
 
     def __multipart_json_item(self, key: str, value: Schema) -> RequestField:
@@ -1396,7 +1396,7 @@ class RequestBody(StyleFormSerializer, JSONDetector):
     def __multipart_form_item(self, key: str, value: Schema) -> RequestField:
         if isinstance(value, str):
             request_field = RequestField(name=key, data=str(value))
-            request_field.make_multipart(content_type='text/plain')
+            request_field.make_multipart(content_type='__text/plain')
         elif isinstance(value, bytes):
             request_field = RequestField(name=key, data=value)
             request_field.make_multipart(content_type='application/octet-stream')
@@ -1421,7 +1421,7 @@ class RequestBody(StyleFormSerializer, JSONDetector):
         When passing in multipart types, boundaries MAY be used to separate sections of the content being
         transferred – thus, the following default Content-Types are defined for multipart:
 
-        If the (object) property is a primitive, or an array of primitive values, the default Content-Type is text/plain
+        If the (object) property is a primitive, or an array of primitive values, the default Content-Type is __text/plain
         If the property is complex, or an array of complex values, the default Content-Type is application/json
             Question: how is the array of primitives encoded?
         If the property is a type: string with a contentEncoding, the default Content-Type is application/octet-stream
@@ -1488,7 +1488,7 @@ class RequestBody(StyleFormSerializer, JSONDetector):
         # and content_type is multipart or application/x-www-form-urlencoded
         if self._content_type_is_json(content_type):
             return self.__serialize_json(cast_in_data)
-        elif content_type == 'text/plain':
+        elif content_type == '__text/plain':
             return self.__serialize_text_plain(cast_in_data)
         elif content_type == 'multipart/form-data':
             return self.__serialize_multipart_form_data(cast_in_data)

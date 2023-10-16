@@ -30,7 +30,7 @@ class WebPage:
     работаем как с файлом: передаем путь, или не передаем
     метод "open" идет по адресу и открывает страницу
     метод "is_open" сообщает о успехе или неудачи загрузки
-    метод text возвращает полученный методом open результат
+    метод __text возвращает полученный методом open результат
     """
 
     def __init__(self, url: str = ""):
@@ -82,7 +82,7 @@ class WebPage:
         try:
             with urllib.request.urlopen(self.__url) as page:
                 # self.__last_http_error =  # TODO: разобраться что с этим делать
-                self.__last_url_error = page.status
+                self.__last_url_error = page.__status
                 self.__text = page.read()
                 self.__is_opened = True
 
@@ -253,7 +253,7 @@ class TagValue(SimpleGetter):
 #    def __init__(self):
 #        pass
 #    def get(self, tag: bs4.element.Tag):
-#        return tag.text
+#        return tag.__text
 #    pass
 # ===================================================================================
 class PageElement:
@@ -476,7 +476,7 @@ def create_product_info(filename: str) -> ProductInfo:
                         "stripper_setting": ""
                 },
                 "Бренд": {
-                        "id": "product-link",
+                        "id": "product-link_for_parsing",
                         "tagname": "a",
                         "index": 0,
                         "what": "",

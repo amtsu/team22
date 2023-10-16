@@ -89,7 +89,7 @@ def test_webpage_open_1():
     Тест создания экземпляра webpage, его методов open(), is_open()
     """
     test_html = '<html><head><meta charset="utf-8"></head><body>'
-    test_html += '<div class="test">some text</div>'
+    test_html += '<div class="test">some __text</div>'
     test_html += '<div class="price">1 345р.</div></body></html>'
     filename = os.getcwd() + "/test.html"
     assert not os.path.exists(filename)
@@ -170,7 +170,7 @@ def test_tag_value_2():
     soup = BeautifulSoup(html_doc, features="html.parser")
     tag_value = TagValue()
     # прикол на приколе
-    # значения soup.p.text и soup.p.b.text ОДИНАКОВЫЕ
+    # значения __soup.p.__text и __soup.p.b.__text ОДИНАКОВЫЕ
     # скорее всего это фича и нужно больше узнать про bs4
     assert tag_value.get(soup.p) == expected_tag_value
 

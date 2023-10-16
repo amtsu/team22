@@ -47,7 +47,7 @@ class SamoletServiceProcessing:
               "seen": false,
               "url": "https://samolet.ru/project/prigorod-lesnoe/flats/250365/",
               "api_url": "https://samolet.ru/api_redesign/flats/250365/",
-              "status": 1,
+              "__status": 1,
               "area": 25.91,
               "rooms": 0,
               "price": 3913887,
@@ -157,7 +157,7 @@ class SamoletServiceProcessing:
                 {
                   "id": 33,
                   "name": "Расположение",
-                  "text": "Рядом лес и пруд",
+                  "__text": "Рядом лес и пруд",
                   "icon": "https://media.samolet.ru/project/traits/raspoloj_nUDsBy1.svg",
                   "order": 1,
                   "for_business_class": false
@@ -165,7 +165,7 @@ class SamoletServiceProcessing:
                 {
                   "id": 34,
                   "name": "Инфраструктура",
-                  "text": "Открыты детские сады и школа. Яблоневый сад и SportHub",
+                  "__text": "Открыты детские сады и школа. Яблоневый сад и SportHub",
                   "icon": "https://media.samolet.ru/project/traits/Namekindergarten_Size64_0PN6lEP.svg",
                   "order": 2,
                   "for_business_class": false
@@ -173,7 +173,7 @@ class SamoletServiceProcessing:
                 {
                   "id": 35,
                   "name": "Транспорт",
-                  "text": "15 минут до метро «Домодедовская»",
+                  "__text": "15 минут до метро «Домодедовская»",
                   "icon": "https://media.samolet.ru/project/traits/car_as383fX.svg",
                   "order": 3,
                   "for_business_class": false
@@ -181,7 +181,7 @@ class SamoletServiceProcessing:
                 {
                   "id": 165,
                   "name": "Улучшенная отделка",
-                  "text": "Повышение класса отделки",
+                  "__text": "Повышение класса отделки",
                   "icon": "https://media.samolet.ru/project/traits/Vector_Stroke_evjOGRb_GTMXjLn.svg",
                   "order": 4,
                   "for_business_class": false

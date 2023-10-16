@@ -15,7 +15,7 @@ from openapi_client.model.patched_history import PatchedHistory
 
 class FondRenovationServiceProcessing:
     """
-        https://fr.mos.ru/pokupka-nedvizhimosti-dlya-vseh/ajax.php?type[]=R&status[]=FINISHED&status[]=PROCESSING&price_min=0&price_max=35000000&floor_min=-1&floor_max=54&open_sale=1&pagesize=100000
+        https://fr.mos.ru/pokupka-nedvizhimosti-dlya-vseh/ajax.php?type[]=R&__status[]=FINISHED&__status[]=PROCESSING&price_min=0&price_max=35000000&floor_min=-1&floor_max=54&open_sale=1&pagesize=100000
         
 {
   "objects": {
@@ -86,7 +86,7 @@ class FondRenovationServiceProcessing:
 
     def process(self):
         self.__urls = [
-            "https://fr.mos.ru/pokupka-nedvizhimosti-dlya-vseh/ajax.php?type[]=R&status[]=FINISHED&status[]=PROCESSING&price_min=0&price_max=35000000&floor_min=-1&floor_max=54&open_sale=1&pagesize=100000",
+            "https://fr.mos.ru/pokupka-nedvizhimosti-dlya-vseh/ajax.php?type[]=R&__status[]=FINISHED&__status[]=PROCESSING&price_min=0&price_max=35000000&floor_min=-1&floor_max=54&open_sale=1&pagesize=100000",
         ]
 
         self.__list_dict = []

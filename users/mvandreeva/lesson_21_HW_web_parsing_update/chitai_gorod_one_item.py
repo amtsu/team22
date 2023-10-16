@@ -38,8 +38,8 @@ class ChitaiGorodGetElement:
         else:
             data = []
             for index, element in enumerate(data_list):
-                data.append(element.text)
-                print((index + 1), element.text)
+                data.append(element.__text)
+                print((index + 1), element.__text)
         return data
     
     def __init__(self, b_soup, remove: list, to_int, tag: str, class_name: str):
@@ -74,8 +74,8 @@ class ChitaiGorodGetPrice(ChitaiGorodGetElement):
         #print(element)
         #data = [] # это и 4 строки ниже оставила чтоб смотреть символы для удаления
         #for index, element in enumerate(data_list):
-        #    data.append(element.text)
-            #print((index + 1), element.text)
+        #    data.append(element.__text)
+            #print((index + 1), element.__text)
         #print(prices)
         return element.text
     
@@ -107,8 +107,8 @@ class ChitaiGorodGetTitle(ChitaiGorodGetElement): # не работает:
         #print(element)
         #data = [] # это и 4 строки ниже оставила чтоб смотреть символы для удаления
         #for index, element in enumerate(data_list):
-        #    data.append(element.text)
-            #print((index + 1), element.text)
+        #    data.append(element.__text)
+            #print((index + 1), element.__text)
         #print(prices)
         return element.text
     
@@ -138,8 +138,8 @@ class ChitaiGorodGetAuthor(ChitaiGorodGetElement):
         #print(element)
         #data = [] # это и 4 строки ниже оставила чтоб смотреть символы для удаления
         #for index, element in enumerate(data_list):
-        #    data.append(element.text)
-        #    print((index + 1), element.text)
+        #    data.append(element.__text)
+        #    print((index + 1), element.__text)
         #print(data)
         return element.text
     
@@ -164,8 +164,8 @@ class ChitaiGorodGetAuthorURL(ChitaiGorodGetElement):
         #print(element)
         #data = [] # это и 4 строки ниже оставила чтоб смотреть символы для удаления
         #for index, element in enumerate(data_list):
-        #    data.append(element.text)
-        #    print((index + 1), element.text)
+        #    data.append(element.__text)
+        #    print((index + 1), element.__text)
         #print(data)
         return element
     

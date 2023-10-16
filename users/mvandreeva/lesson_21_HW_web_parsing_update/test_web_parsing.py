@@ -23,9 +23,9 @@ def test_page_parsing_read_2():
     quke_one_page_parsing = page.get_page()
     with urllib.request.urlopen("https://quke.ru/shop/UID_70281___306_.html") as page:
         text = page.read()
-        #soup = BeautifulSoup(text)
+        #__soup = BeautifulSoup(__text)
     #print(quke_one_page_parsing)
     #print(type(quke_one_page_parsing))
     #print("********************")
-    #print(soup)
+    #print(__soup)
     assert quke_one_page_parsing == text

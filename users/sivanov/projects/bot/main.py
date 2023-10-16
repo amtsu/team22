@@ -29,10 +29,10 @@ def alert_message(message: str) -> None:
 
 
 # ========================================================================
-@bot.message_handler(content_types=["text"])
+@bot.message_handler(content_types=["__text"])
 def get_text_messages(message: telebot.types.Message) -> None:
     """
-    here is the text message handler
+    here is the __text message handler
     """
     # message_handler(message)
     # --------------------------------------------------------------------------------------
@@ -44,33 +44,33 @@ def get_text_messages(message: telebot.types.Message) -> None:
         # тут нужно добавить лог чата
         with open(superhomosecret.FACILITYLOGFILEPATH, "a", encoding="utf-8") as fout:
             print(
-                f"{datetime.now()}: FROM {message.from_user.id} comes text: {message.text}",
+                f"{datetime.now()}: FROM {message.from_user.id} comes __text: {message.__text}",
                 file=fout,
             )
         # ---------------------------------------------------------------------------------
         if message.from_user.id > superhomosecret.NEWCOMERS:  # fresh meat
             alert_message(
                 f"ALARM! User {message.from_user.first_name}"
-                f" ({message.from_user.id}) texted: {message.text}"
+                f" ({message.from_user.id}) texted: {message.__text}"
                 f" ({superhomosecret.CHATHYPERLINK}{message.id})",
             )
         # ---------------------------------------------------------------------------------
         # ----------------------------------------------------------------------------------
         if (
-            (message.text.lower().find("#куплю") < 0)
-            and (message.text.lower().find("#продам") < 0)
-            and (message.text.lower().find("#обмен") < 0)
+            (message.__text.lower().find("#куплю") < 0)
+            and (message.__text.lower().find("#продам") < 0)
+            and (message.__text.lower().find("#обмен") < 0)
         ):  # no #куплю #продам #обмен
 
             alert_message(
                 f"ALARM: no #куплю#продам#обмен! User {message.from_user.first_name}"
-                f" ({message.from_user.id}) texted: {message.text}"
+                f" ({message.from_user.id}) texted: {message.__text}"
                 f" ({superhomosecret.CHATHYPERLINK}{message.id})",
             )
-        elif message.text.lower().find("#видео") < 0:  # no #видео
+        elif message.__text.lower().find("#видео") < 0:  # no #видео
             alert_message(
                 f"ALARM: no #видео! User {message.from_user.first_name}"
-                f" ({message.from_user.id}) texted: {message.text}"
+                f" ({message.from_user.id}) texted: {message.__text}"
                 f" ({superhomosecret.CHATHYPERLINK}{message.id})",
             )
 
@@ -80,16 +80,16 @@ def get_text_messages(message: telebot.types.Message) -> None:
     if message.chat.type == "private":
         with open(superhomosecret.TESTBENCHLOGFILEPATH, "a", encoding="utf-8") as fout:
             print(
-                f"{datetime.now()}: FROM {message.from_user.id} comes text: {message.text}",
+                f"{datetime.now()}: FROM {message.from_user.id} comes __text: {message.__text}",
                 file=fout,
             )
         print(f"message from {message.from_user.id} comes.")
 
-        if message.text.lower() in ("privet", "привет"):
+        if message.__text.lower() in ("privet", "привет"):
             # bot.send_message(message.from_user.id,"")
             bot.reply_to(message, f"Привет {message.from_user.first_name}, ты пидор")
         if message.from_user.id in superhomosecret.COMMANDERS:
-            if message.text.lower() == "log":
+            if message.__text.lower() == "log":
                 with open(
                     superhomosecret.TESTBENCHLOGFILEPATH, "r", encoding="utf-8"
                 ) as fin:
@@ -104,10 +104,10 @@ def get_text_messages(message: telebot.types.Message) -> None:
         with open(superhomosecret.TESTBENCHLOGFILEPATH, "a", encoding="utf-8") as fout:
             print(
                 f"{datetime.now()}: FROM {message.from_user.id} in"
-                f" {message.chat.id} comes text: {message.text}",
+                f" {message.chat.id} comes __text: {message.__text}",
                 file=fout,
             )
-        if message.text.lower() in ("privet", "привет"):
+        if message.__text.lower() in ("privet", "привет"):
             bot.reply_to(message, f"Привет {message.from_user.first_name}, ты пидор!")
         print(f"group message in {message.chat.id}")
     else:

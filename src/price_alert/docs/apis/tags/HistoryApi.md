@@ -267,7 +267,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     # example passing only optional values
     query_params = {
-        'page': 1,
+        '__page': 1,
     }
     try:
         api_response = api_instance.history_list(

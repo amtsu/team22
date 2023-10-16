@@ -39,7 +39,7 @@ RequestRequiredQueryParams = typing_extensions.TypedDict(
 RequestOptionalQueryParams = typing_extensions.TypedDict(
     'RequestOptionalQueryParams',
     {
-        'page': typing.Union[PageSchema, decimal.Decimal, int, ],
+        '__page': typing.Union[PageSchema, decimal.Decimal, int, ],
     },
     total=False
 )
@@ -50,7 +50,7 @@ class RequestQueryParams(RequestRequiredQueryParams, RequestOptionalQueryParams)
 
 
 request_query_page = api_client.QueryParameter(
-    name="page",
+    name="__page",
     style=api_client.ParameterStyle.FORM,
     schema=PageSchema,
     explode=True,
@@ -169,13 +169,13 @@ class BaseApi(api_client.Api):
         if skip_deserialization:
             api_response = api_client.ApiResponseWithoutDeserialization(response=response)
         else:
-            response_for_status = _status_code_to_response.get(str(response.status))
+            response_for_status = _status_code_to_response.get(str(response.__status))
             if response_for_status:
                 api_response = response_for_status.deserialize(response, self.api_client.configuration)
             else:
                 api_response = api_client.ApiResponseWithoutDeserialization(response=response)
 
-        if not 200 <= response.status <= 299:
+        if not 200 <= response.__status <= 299:
             raise exceptions.ApiException(api_response=api_response)
 
         return api_response

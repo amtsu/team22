@@ -30,7 +30,7 @@ class ChitaiGorodItemsList:
             if title_data == []:
                 title = "No data"
             else:
-                title_bad = title_data[0].text
+                title_bad = title_data[0].__text
                 title_bad = title_bad.replace("\n    ", "")
                 title = title_bad.replace("\n  ", "")
             
@@ -49,7 +49,7 @@ class ChitaiGorodItemsList:
             if price_data == []:
                 price = "No data"
             else:
-                price_bad = price_data[0].text
+                price_bad = price_data[0].__text
                 price_bad = price_bad.replace("\n    ", "")
                 price_bad = price_bad.replace(" ₽\n  ", "")
                 price = int(price_bad)
@@ -60,7 +60,7 @@ class ChitaiGorodItemsList:
             if author_data == []:
                 author = "No data"
             else:
-                author_bad = author_data[0].text
+                author_bad = author_data[0].__text
                 author_bad = author_bad.replace("\n    ", "")
                 author = author_bad.replace("\n  ", "")
             
@@ -82,7 +82,7 @@ class ChitaiGorodItemsList:
                 else:
                     author_url = author_url_data[0]["href"]
             except:
-                print("Error in getting author_url, page is unavailable")
+                print("Error in getting author_url, __page is unavailable")
                 continue
             
             #img_data = item.findAll("picture", class_ = "product-picture")
@@ -179,7 +179,7 @@ class ChitaiGorodURLConfiguration:
                 url = url + "?sort=price&order=asc"
                 #for i in range(1, pages):
                 for i in range(1, 2):
-                    url_p = url + "&page=" + str(i) 
+                    url_p = url + "&__page=" + str(i)
                     print(url_p)
                     try:
                         page_parsing = ChitaiGorodItemsList(url_p)                
@@ -193,11 +193,11 @@ class ChitaiGorodURLConfiguration:
                     for url in arg:
                         url = url + "?sort=price&order=asc" 
                         for i in range(1, arg[url]):
-                            url_p = url + "&page=" + str(i) 
+                            url_p = url + "&__page=" + str(i)
                             print(url_p)
-                            #page = PageParsing(url_p):
-                            #page_text = page.get_page()
-                            #page_url = page.get_url()
+                            #__page = PageParsing(url_p):
+                            #page_text = __page.get_page()
+                            #page_url = __page.get_url()
                             page_parsing = ChitaiGorodItemsList(url_p)
                             dict_list = page_parsing.get_items_data()
                             self.__list_dict.append(dict_list)
@@ -206,7 +206,7 @@ class ChitaiGorodURLConfiguration:
                         url = url + "?sort=price&order=asc" 
                         #for i in range(1, 2022):
                         for i in range(1, 2):
-                            url_p = url + "&page=" + str(i)
+                            url_p = url + "&__page=" + str(i)
                             print(url_p)
                             try: # не стоит использовать try для этих целей
                                 page_parsing = ChitaiGorodItemsList(url_p)
@@ -225,7 +225,7 @@ class ChitaiGorodURLConfiguration:
                             for url in self.__url_list:
                                 url = url + "?sort=price&order=asc"
                                 for i in range(1, 2022):
-                                    url_p = url + "&page=" + str(i)
+                                    url_p = url + "&__page=" + str(i)
                                     print(url_p)
                                     try:
                                         page_parsing = ChitaiGorodItemsList(url_p)
@@ -238,7 +238,7 @@ class ChitaiGorodURLConfiguration:
                         #    for url in self.__url_list:
                         #        url = url + "?sort=price&order=asc"
                         #        for i in range(1, 2022):
-                        #            url_p = url + "&page=" + str(i)
+                        #            url_p = url + "&__page=" + str(i)
                         #            page_parsing = ChitaiGorodItemsList(url_p)
                         #            dict_list = page_parsing.get_items_data()
                         #            self.__list_dict.append(dict_list)
