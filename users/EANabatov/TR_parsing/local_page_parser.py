@@ -58,22 +58,28 @@ def parsing() -> dict:
 
 def book_name(soup) -> str:
     """Поиск названия книги"""
-    return soup.find("span", class_="link_for_parsing-gray-light").__text.replace(" ", " ").strip()
+    return (
+        soup.find("span", class_="link-gray-light")
+        .text.replace(" ", " ")
+        .strip()
+    )
 
 
 def author_name(soup) -> str:
     """Поиск имени автора"""
-    return soup.find("a", class_="author-name").__text.replace(" ", "").strip()
+    return soup.find("a", class_="author-name").text.replace(" ", "").strip()
 
 
 def shop_price(soup) -> str:
     """Поиск цены в магазине"""
-    return soup.find("span", class_="rubs").__text.replace(" ", "").strip()
+    return soup.find("span", class_="rubs").text.replace(" ", "").strip()
 
 
 def internet_price(soup) -> str:
     """Поиск цены в интернет магазине"""
-    return soup.find("span", class_="silver rubs rubfont").__text.replace(" ", "").strip()
+    return (
+        soup.find("span", class_="silver rubs rubfont").text.replace(" ", "").strip()
+    )
 
 
 def in_stock(soup) -> str:
@@ -81,15 +87,22 @@ def in_stock(soup) -> str:
     Определяет в наличии ли книга в магазине на данный момент.
     От наличия товара зависит поиск других функций.
     """
+    soup = soup
     stock = None
     try:
         stock = (
             soup.find("span", class_="book__shop-instock")
-            .__text.replace(" ", " ")
+            .text.replace(" ", " ")
             .strip()
         )
     except:
         stock = (
-            soup.find("span", class_="instock1").__text.replace(" ", " ").strip().lower()
+            soup.find("span", class_="instock1")
+            .text.replace(" ", " ")
+            .strip()
+            .lower()
         )
     return stock
+
+
+parsing()
