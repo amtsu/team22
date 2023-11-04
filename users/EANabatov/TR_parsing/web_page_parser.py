@@ -143,7 +143,7 @@ class BookStoreParser:
 
     def __in_stock(self) -> str:
         """Определяет в наличии ли книга в магазине на данный момент"""
-        stock = None
+        stock: str = str
         try:
             stock = (
                 self.__soup.find("span", class_="book__shop-instock")
