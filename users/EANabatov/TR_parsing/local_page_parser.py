@@ -5,87 +5,81 @@ https://www.moscowbooks.ru/
 """
 from bs4 import BeautifulSoup
 import urllib.request
-from parsing_helper import ultimate_finder
+from team22.users.EANabatov.TR_parsing.parsing_helper import ultimate_finder
 
 
 def parsing() -> dict:
     """Основная функция парсинга локальной страницы"""
-    summary = {}
-    link = "file:./book_parsing.html"
-    page = urllib.request.urlopen(link)
-    text = page.read()
-    soup = BeautifulSoup(text, features="html.parser")
+    summary: dict = {}
+    link: str = "file:/home/evgeniy/Tsurkov_repository/team22/users/EANabatov/TR_parsing/html_page/book_parsing.html"
+    page: classmethod = urllib.request.urlopen(link)
+    text: bytes = page.read()
+    soup: object = BeautifulSoup(text, features="html.parser")
     try:
         summary["in_stock"] = in_stock(soup)
-    except:
+    except Exception:
         summary["in_stock"] = None
     try:
         summary["book_name"] = book_name(soup)
-    except:
+    except Exception:
         summary["book_name"] = None
     try:
         summary["author_name"] = author_name(soup)
-    except:
+    except Exception:
         summary["author_name"] = None
     try:
         summary["shop_price"] = shop_price(soup)
-    except:
+    except Exception:
         summary["shop_price"] = None
     try:
         summary["internet_price"] = internet_price(soup)
-    except:
+    except Exception:
         summary["internet_price"] = None
     try:
-        summary["the_year_of_publishing"] = ultimate_finder(link, "Год издания:")
-    except:
+        summary["the_year_of_publishing"] = ultimate_finder("Год издания:", soup)
+    except Exception:
         summary["the_year_of_publishing"] = None
-    summary["publisher"] = ultimate_finder(link, "Издательство:")
-    summary["publish_place"] = ultimate_finder(link, "Место издания:")
-    summary["text_language"] = ultimate_finder(link, "Язык текста:")
-    summary["cover_type"] = ultimate_finder(link, "Тип обложки:")
-    summary["paper_type"] = ultimate_finder(link, "Бумага:")
-    summary["Illustrations"] = ultimate_finder(link, "Иллюстрации:")
-    summary["Illustrators"] = ultimate_finder(link, "Иллюстраторы:")
-    summary["weight"] = ultimate_finder(link, "Вес:")
-    summary["Circulation"] = ultimate_finder(link, "Тираж:")
-    summary["product_code"] = ultimate_finder(link, "Код товара:")
-    summary["vendor_code"] = ultimate_finder(link, "Артикул:")
-    summary["isbn"] = ultimate_finder(link, "ISBN:")
-    summary["pegi"] = ultimate_finder(link, "Возраст:")
-    summary["on_sale_from"] = ultimate_finder(link, "В продаже с:")
+    summary["publisher"] = ultimate_finder("Издательство:", soup)
+    summary["publish_place"] = ultimate_finder("Место издания:", soup)
+    summary["text_language"] = ultimate_finder("Язык текста:", soup)
+    summary["cover_type"] = ultimate_finder("Тип обложки:", soup)
+    summary["paper_type"] = ultimate_finder("Бумага:", soup)
+    summary["Illustrations"] = ultimate_finder("Иллюстрации:", soup)
+    summary["Illustrators"] = ultimate_finder("Иллюстраторы:", soup)
+    summary["weight"] = ultimate_finder("Вес:", soup)
+    summary["Circulation"] = ultimate_finder("Тираж:", soup)
+    summary["product_code"] = ultimate_finder("Код товара:", soup)
+    summary["vendor_code"] = ultimate_finder("Артикул:", soup)
+
+    summary["isbn"] = ultimate_finder("ISBN:", soup)
+    summary["pegi"] = ultimate_finder("Возраст:", soup)
+    summary["on_sale_from"] = ultimate_finder("В продаже с:", soup)
     return summary
 
 
-def book_name(soup) -> str:
+def book_name(soup: object) -> str:
     """Поиск названия книги"""
-    return (
-        soup.find("span", class_="link-gray-light")
-        .text.replace(" ", " ")
-        .strip()
-    )
+    return soup.find("span", class_="link-gray-light").text.replace(" ", " ").strip()
 
 
-def author_name(soup) -> str:
+def author_name(soup: object) -> str:
     """Поиск имени автора"""
     return soup.find("a", class_="author-name").text.replace(" ", "").strip()
 
 
-def shop_price(soup) -> str:
+def shop_price(soup: object) -> str:
     """Поиск цены в магазине"""
     return soup.find("span", class_="rubs").text.replace(" ", "").strip()
 
 
-def internet_price(soup) -> str:
+def internet_price(soup: object) -> str:
     """Поиск цены в интернет магазине"""
-    return (
-        soup.find("span", class_="silver rubs rubfont").text.replace(" ", "").strip()
-    )
+    return soup.find("span", class_="silver rubs rubfont").text.replace(" ", "").strip()
 
 
-def in_stock(soup) -> str:
+def in_stock(soup: object) -> str:
     """
     Определяет в наличии ли книга в магазине на данный момент.
-    От наличия товара зависит поиск других функций.
     """
     soup = soup
     stock = None
@@ -95,12 +89,9 @@ def in_stock(soup) -> str:
             .text.replace(" ", " ")
             .strip()
         )
-    except:
+    except Exception:
         stock = (
-            soup.find("span", class_="instock1")
-            .text.replace(" ", " ")
-            .strip()
-            .lower()
+            soup.find("span", class_="instock1").text.replace(" ", " ").strip().lower()
         )
     return stock
 

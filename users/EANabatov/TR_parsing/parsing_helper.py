@@ -3,12 +3,10 @@
 """
 import urllib.request
 from bs4 import BeautifulSoup
+from typing import Type
 
 
-def ultimate_finder(link, characteristic=str) -> str:
-    page = urllib.request.urlopen(link)
-    text = page.read()
-    soup = BeautifulSoup(text, features="html.parser")
+def ultimate_finder(characteristic: str, soup: Type[object]) -> str:
     base = soup.find_all("dt", class_="book__details-name")
     data = soup.find_all("dt", class_="book__details-value")
     for index, base_info in enumerate(base):
