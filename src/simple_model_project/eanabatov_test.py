@@ -40,7 +40,7 @@ class Test:
     def test_get_state(self, monkeypatch):
         """Тест проверки процедуры get_state()"""
 
-        def monk_state(*args):
+        def monk_state():
             return {"var A": "10.235667", "var B": "73"}
 
         monkeypatch.setattr(target=EANabatovModule, name="get_state", value=monk_state)

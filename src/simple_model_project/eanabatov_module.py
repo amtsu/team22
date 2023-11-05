@@ -49,14 +49,14 @@ class EANabatovModule(AbstractModule):
                 "var A": str(randint(1, 10) + random()),
                 "var B": str(randint(1, 100)),
             }
-            logging.info("step is done. " "counter is: %s", self.__counter)
+            logging.info("step is done. counter is: %s", self.__counter)
             if self.__counter >= self.__limit:
                 self.__status = True
         else:
             self.__counter -= 1
             self.__status = True
             logging.critical("self.__status is %s", self.__status)
-            logging.info("step dont done. " "counter is: %s", self.__counter)
+            logging.info("step dont done. counter is: %s", self.__counter)
         logging.info("step is over")
 
     def get_state(self) -> Dict[str, str]:
