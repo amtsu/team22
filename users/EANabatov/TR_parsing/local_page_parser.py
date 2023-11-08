@@ -81,8 +81,6 @@ def in_stock(soup: object) -> str:
     """
     Определяет в наличии ли книга в магазине на данный момент.
     """
-    soup = soup
-    stock = None
     try:
         stock = (
             soup.find("span", class_="book__shop-instock")
@@ -94,6 +92,3 @@ def in_stock(soup: object) -> str:
             soup.find("span", class_="instock1").text.replace(" ", " ").strip().lower()
         )
     return stock
-
-
-parsing()

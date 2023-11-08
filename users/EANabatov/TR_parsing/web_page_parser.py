@@ -137,7 +137,6 @@ class BookStoreParser:
     def __in_stock(self, soup: object) -> str:
         """Определяет в наличии ли книга в магазине на данный момент"""
         self.__secure()
-        stock = None
         try:
             stock = (
                 soup.find("span", class_="book__shop-instock")
@@ -163,7 +162,7 @@ class BookStoreParser:
 
     def __secure(self):
         """Проверка на сбой статуса парсера"""
-        if self.__status is not True:
+        if not self.__status:
             sys.exit(126)
 
     def start_parsing(
