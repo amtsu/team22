@@ -67,6 +67,7 @@ class ClearData:
 
 
 class ClearDataChitaiGorod(ClearData): #наследование здесь не нужно, просто так добавила, чтоб учиться
+
     """ Класс очистки данных для сайта читай-город """
     def clean_data_chitai_gorod(self) -> int:
         """ метод получения итоговой цены """
@@ -76,6 +77,8 @@ class ClearDataChitaiGorod(ClearData): #наследование здесь не
         good_data = int(bad_data)
         return good_data
 
+    def __init__(self, bad_data: str): #__init__ method from base class 'ClearData' is not called
+        self.__data = bad_data
 #    def __init__(self, bad_data: str): #__init__ method from base class 'ClearData' is not called
 #                 = bad_data
 #class Fruit:
@@ -95,6 +98,7 @@ class ClearDataChitaiGorod(ClearData): #наследование здесь не
 
 class SendMail: #Too few public methods (1/2)
     """ Класс для отправки e-mail"""
+
     def __init__(self, price: int):
         self.__price = price
 

@@ -1,0 +1,20 @@
+2023-11-05 22:31:58,192 INFO prepare is done
+2023-11-05 22:31:58,192 INFO step is done. counter is: 1
+2023-11-05 22:31:58,192 INFO step is over
+2023-11-05 22:31:58,192 INFO step is done. counter is: 2
+2023-11-05 22:31:58,192 INFO step is over
+2023-11-05 22:31:58,192 INFO step is done. counter is: 3
+2023-11-05 22:31:58,192 INFO step is over
+2023-11-05 22:31:58,192 INFO step is done. counter is: 4
+2023-11-05 22:31:58,192 INFO step is over
+2023-11-05 22:31:58,192 INFO step is done. counter is: 5
+2023-11-05 22:31:58,192 INFO step is over
+2023-11-05 22:31:58,192 INFO is_done is done :)
+2023-11-05 22:31:58,192 CRITICAL self.__status is True
+2023-11-05 22:31:58,192 INFO step dont done. counter is: 5
+2023-11-05 22:31:58,192 INFO step is over
+2023-11-05 22:31:58,192 INFO is_done is done :)
+2023-11-05 22:31:58,192 CRITICAL self.__status is True
+2023-11-05 22:31:58,192 INFO step dont done. counter is: 5
+2023-11-05 22:31:58,192 INFO step is over
+2023-11-05 22:31:58,192 INFO is_done is done :)
