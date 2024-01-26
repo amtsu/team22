@@ -6,49 +6,63 @@ import urllib
 import urllib.request
 from bs4 import BeautifulSoup
 
-class PageParsing:
+class OnePageParsing:
     """ Описывает общие методы обработки одной страницы """
-    def get_url(self) -> str : # посмотреть, нужен ли этот метод
-        """ Возвращает переданный URL """
+    def get_source(self) -> str :
+    """ Возвращает переданный URL """
         return self.__url
 
-    def list_dict(self, **kwargs): 
+    def make_list_of_dicts(self, **kwargs): # наверно лучше без универсального составителя списка слловарей
         """ метод формирует список словарей"""
-        """
-            **kwargs например: price = ChitaiGorodGetPrice(self.__page, self.__url).clean_data()
-            [
-                {
-                    "price": ChitaiGorodGetPrice(self.__page, self.__url).clean_data(),
-                    "price_sale": ChitaiGorodGetPrice(self.__page, self.__url).clean_data(),                    
-                    "author": ChitaiGorodGetAuthor(self.__page, self.__url).clean_data(),
-                    ...
-                }
-            ]
-        """
+    """
+        **kwargs например: price = ChitaiGorodGetPrice(self.__url).clean_data()
+        [
+            {
+                "price": ChitaiGorodGetPrice(self.__url).clean_data(),
+                "author": ChitaiGorodGetAuthor(self.__url).clean_data(),
+                ...
+            }
+        ]
+    """
         dict_list = []
         dict_of_values = {}
-        for key, value in kwargs.items():
+        for key, value in **kwargs:
             dict_of_values[key] = value
         dict_list.append(dict_of_values)
         return dict_list        
 
+    #Что будет, если я запихну в __init__  сразу открытие страницы  и "приготовление супа"? чем это чревато? 
     def __init__(self, url: str):
         self.__url = url
-        try:
-            with urllib.request.urlopen(self.__url) as page:
-                self.__page = page.read() # остановилась здесь
-                #if not self.__page == []:
-                    #print (self.__page)
-                #    self.__b_soup = BeautifulSoup(self.__page, features="html.parser")
-                #else:
-                #    assert False
-        except:
-            print("Error url =", url)
+        #try:
+        with urllib.request.urlopen(self.__url) as self.__page:
+            self.__page_text = self.__page.read()
+            if not self.__page_text == []:
+                #print (self.__page_text)
+                self.__b_soup = BeautifulSoup(self.__page_text, features="html.parser")
+            else:
+                assert False
+        #except:
+        #    print("Error url =", url)
         
-    def get_page(self): 
-        """ метод возвращает текст веб-страницы """
-        #print("Page code: ", self.__page.getcode()) # переделать в метод проверки загрузки страницы
-        return self.__page
+#    def __open_page(self):
+#        """ метод открывает web-страницу """
+#        with urllib.request.urlopen(self.__url) as page:
+#            print("Page code: ", page.getcode())
+#            page_text = page.read()
+#            return page_text
+        
+#    def __prepare_soup(self):
+#        if not self.__open_page == []:
+#            #print "Soup was prepared"
+#            b_soup = BeautifulSoup(self.__open_page)
+#            return b_soup
+#        assert False
+
+    def read_page(self):
+        """ метод обрабатывает web-страницу """
+        print("Page code: ", self.__page.getcode())
+        return self.__b_soup
         
     def __repr__(self):
         return self.__url
