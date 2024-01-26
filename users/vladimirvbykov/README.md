@@ -1,1 +1,6 @@
-/home/jupyter-vladimirvbykov/github/team22/users/vladimirvbykov
+Владимир Быков. 
+Увлекаюсь всеми доступными активностями.
+Цель - подтянуть знания по современным системам и подходам в разработке ППО
+
+Телеграм: @VladimirBykov
+Git: VladimirVBykov
