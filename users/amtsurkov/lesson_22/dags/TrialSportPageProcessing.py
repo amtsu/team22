@@ -364,19 +364,27 @@ class ListPageProcessor:
             title = d[0].text
 
             d = i.find_all("span", class_="price")
-            price = d[0].text
-            price = price.replace("&thinsp;", "")
-            price = price.replace("&thinsp;", "")
-            price = price.replace(" &#8381", "")
-            price = price.replace(" &#8381", "")
-            price = price.replace("\n", "")
-            if len(price) > 6:
-                try:
-                    price = int(price[:-6] + price[-5:-2])
-                except:
-                    price = int(price[:-7] + price[-6:-3])
+            if len(d) < 1:    
+                # same product have not price
+                print('product have not price =', title)
+                #TODO need fix API
+                price_sale = 0
+                price = 0
             else:
-                price = int(price[:-2])
+                price = d[0].text
+                price = price.replace("&thinsp;", "")
+                price = price.replace("&thinsp;", "")
+                price = price.replace(" &#8381", "")
+                price = price.replace(" &#8381", "")
+                price = price.replace("\n", "")
+                if len(price) > 6:
+                    try:
+                        price = int(price[:-6] + price[-5:-2])
+                    except:
+                        price = int(price[:-7] + price[-6:-3])
+                else:
+                    price = int(price[:-2])
+
 
             d = i.find_all("span", class_="discount discountsale")
             price_sale = price
@@ -530,6 +538,7 @@ class TrialSportServiceProcessing:
         configuration = openapi_client.Configuration(host="http://absrent.ru:8000")
 
         with openapi_client.ApiClient(configuration) as api_client:
+            i = 0
             api_instance = history_api.HistoryApi(api_client)
             for e in self.__list_dict:
                 # print(e)
@@ -573,7 +582,10 @@ class TrialSportServiceProcessing:
 
                 try:
                     api_response = api_instance.history_create(body=history)
+                    i += 1
                     # pprint(api_response)
                 except openapi_client.ApiException as e:
                     print("Exception when calling HistoryApi->history_create: %s\n" % e)
+                if i % 100 == False:
+                    print('i=', i)
             print("Count load object =", len(self.__list_dict))
