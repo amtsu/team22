@@ -353,3 +353,39 @@
   353  du
   354  du > result_du 
   355  history > result_history 
+  356  pwd
+  357  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/
+  358  git status
+  359  du
+  360  git commit -m 'Extension for fourth block. result_du, result_history updated.'
+  361  cd /home/
+  362  ls -la | grep 'fil*'
+  363  ls -la | grep '*fil*'
+  364  ls -la | grep 'fil'
+  365  ls -la | grep 'fil*'
+  366  find -name "*fil*"
+  367  find /home/ -name "*fil*"
+  368  find /home/ -name "fil*"
+  369  find /home/ -name "*fil*"
+  370  cd jupyter-romantarasov91/github/team22/users/rstarasov/
+  371  ls -la
+  372  cd exercise/
+  373  ls
+  374  cd ..
+  375  ls -la
+  376  ls -la | awk -F' ' '{print $5}'
+  377  grep -rni GET
+  378  grep -rni GET > /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/hw1/home_work_1/save_URL
+  379  grep -rni GET
+  380  du
+  381  cd exercise/
+  382  ls -la
+  383  cd hw1/
+  384  du
+  385  la -la
+  386  ls -la
+  387  cd ..
+  388  du > exercise/hw1/result_du 
+  389  du
+  390  history
+  391  history > exercise/hw1/result_history 
