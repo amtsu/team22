@@ -84,3 +84,38 @@
    84  du > result_du
    85  ls -la
    86  history > result_history
+   87  git status
+   88  git diff
+   89  pwd
+   90  ls -la
+   91  git status
+   92  ../../
+   93  cd ../../
+   94  git status
+   95  cd ./
+   96  git status
+   97  git add ./
+   98  git status
+   99  git commit -m "1st part"
+  100  git push
+  101  git push --set-upstream origin mvandreeva_hw_1_terminal
+  102  cd exercise/hw1/
+  103  mkdir home_work_1
+  104  touch home_work_1/file_1
+  105  mkdir home_work_1/work_dir
+  106  cd home_work_1/
+  107  cp file_1 work_dir/file_1_copy
+  108  cp -r work_dir/ work_dir_new/
+  109  ls -la
+  110  ls -la work_dir_new/
+  111  cp work_dir_new/file_1_copy work_dir_new/file_1_new_name
+  112  ls -la work_dir_new/
+  113  mv work_dir_new/file_1_copy work_dir_new/file_1_new_name 
+  114  ls -la work_dir_new/
+  115  rm work_dir_new/file_1_new_name 
+  116  rm -r work_dir_new/
+  117  ls -la
+  118  cd ..
+  119  ls -la
+  120  du > result_du 
+  121  history > result_history 
