@@ -389,3 +389,19 @@
   389  du
   390  history
   391  history > exercise/hw1/result_history 
+  392  pwd
+  393  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/
+  394  git status
+  395  git commit -m 'Fifth + sixth block. Found *fil* in /home/; only file sizes in my directory; found GET in my directory; added URL to new file by grep.'
+  396  git push --set-upstream origin rstarasov-hw1-do-past-hw-in-git 
+  397  ls -la && rm test123 && pwd
+  398  ls -la; rm test123; pwd
+  399  cd exercise/hw1/home_work_1/
+  400  ls -la
+  401  vi explanation
+  402  ls -la
+  403  cat explanation 
+  404  cd /home/jupyter-romantarasov91/github/team22/users/rstarasov
+  405  du
+  406  du > exercise/hw1/result_du 
+  407  history > exercise/hw1/result_history 
