@@ -151,3 +151,16 @@
   151  tail -n2 home_work_1/file1
   152  du > result_du 
   153  history > result_history 
+  154  git diff
+  155  git status 
+  156  git add result_history 
+  157  git commit -m "4th part"
+  158  git push
+  159  find /home/ -name "*fil*"
+  160  du | awk -F' ' '{print $1}' home_work_1/
+  161  du | awk -F' ' '{print $1}' 
+  162  pwd
+  163  grep 'GET' 
+  164  grep -rni 'GET' home_work_1/
+  165  du > result_du 
+  166  history > result_history 
