@@ -138,3 +138,16 @@
   138  ls -la
   139  du > result_du 
   140  history >result_history 
+  141  git diff
+  142  git status 
+  143  git add result_du 
+  144  git add result_history home_work_1/file1 home_work_1/file2
+  145  git status 
+  146  git commit -m "3rd part"
+  147  git push
+  148  cat home_work_1/file1
+  149  head home_work_1/file1
+  150  head -n2 home_work_1/file1
+  151  tail -n2 home_work_1/file1
+  152  du > result_du 
+  153  history > result_history 
