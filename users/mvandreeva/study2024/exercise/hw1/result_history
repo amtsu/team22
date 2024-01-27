@@ -1,0 +1,86 @@
+    1  pwd
+    2  mkdir github
+    3  cd github
+    4  git clone git@github.com:amtsu/team22.git
+    5  pwd
+    6  cd github/
+    7  git clone git@github.com:amtsu/team22.git
+    8  ssh-keygen -t rsa -b 4096 -C "Mariya.V.Andreeva@yandex.ru"
+    9  cat ~/.ssh/id_rsa.pub
+   10  pwd
+   11  git clone git@github.com:amtsu/team22.git
+   12  git branch
+   13  cd team22/users/mvandreeva/
+   14  git branch
+   15  git branch mvandreeva_new_study
+   16  git checkout mvandreeva_new_study 
+   17  mkdir study2022
+   18  mkdir study2024
+   19  mv lesson_11_HW_objects_in_files/ study2022/
+   20  ls -la study2022
+   21  mv lesson_9_HW_objects_to_files/ study2022
+   22  ls -la study2022
+   23  mv lesson_7_HW_from_book/ study2022
+   24  mv lesson_6_HW_files/ study2022
+   25  mv lesson_14_HW_Modules_classes/ study2022
+   26  mv lesson_15_HW_web_prices/ study2022
+   27  mv lesson_17_HW_decorators/ study2022
+   28  mv lesson_21_HW_web_parsing_update/ study2022
+   29  mv lesson_23_HW_mypy_black_pylint/ study2022
+   30  mv lesson_25_HW_SQL/ study2022
+   31  mv mvandreeva_lesson_3_TDD_work_1_v2-Copy1.ipynb study2022
+   32  pwd
+   33  git branch 
+   34  cd github/team22/users/mvandreeva/
+   35  git branch 
+   36  git status
+   37  git add *
+   38  git status
+   39  git commit -m "Moved previous study to study2022"
+   40  git config --global user.email "Mariya.V.Andreeva@yandex.ru"
+   41  git config --global user.name "Andromary"
+   42  git commit -m "Moved previous study to study2022"
+   43  git push
+   44  git push --set-upstream origin mvandreeva_new_study
+   45  git checkout main
+   46  git checkout mvandreeva_new_study 
+   47  git status
+   48  git checkout main
+   49  git pull
+   50  git branch mvandreeva_add_readme
+   51  git checkout mvandreeva_add_readme 
+   52  git status
+   53  pwd > README.md 
+   54  cd ../..
+   55  git status
+   56  git diff
+   57  git add users/mvandreeva/README.md
+   58  git commit -m "Add README file"
+   59  git push
+   60  git push --set-upstream origin mvandreeva_add_readme
+   61  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   62  vim ~/.bashrc
+   63  git branch
+   64  vim README.md 
+   65  cd users/mvandreeva/
+   66  vim README.md 
+   67  git status 
+   68  git add README.md 
+   69  git status 
+   70  git commit -m "Modified README. Added my info"
+   71  git push
+   72  pwd
+   73  history
+   74  pwd
+   75  ls
+   76  ls -la /
+   77  cd /home/
+   78  ls -la
+   79  du > result_du
+   80  ls -la
+   81  cd jupyter-andromary
+   82  pwd
+   83  cd github/team22/users/mvandreeva/study2024/exercise/hw1/
+   84  du > result_du
+   85  ls -la
+   86  history > result_history
