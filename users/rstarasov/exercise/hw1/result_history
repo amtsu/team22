@@ -313,3 +313,19 @@
   313  du
   314  history 
   315  history > result_history 
+  316  cat result_history 
+  317  git status
+  318  pwd 
+  319  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/hw1
+  320  git status
+  321  git commit -m 'Second block. Added/removed directories and files.'
+  322  git push --set-upstream origin rstarasov-hw1-do-past-hw-in-git 
+  323  ls -la
+  324  cd home_work_1/
+  325  vi file1
+  326  vi file2
+  327  du 
+  328  cd ..
+  329  du
+  330  du > result_du 
+  331  history > result_history 
