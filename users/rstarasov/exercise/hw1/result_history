@@ -329,3 +329,27 @@
   329  du
   330  du > result_du 
   331  history > result_history 
+  332  cat result_history 
+  333  pwd
+  334  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/hw1
+  335  git status
+  336  git diff
+  337  git commit -m 'Third block. Added file1, file2 with content.'
+  338  git status
+  339  ls -la
+  340  cd home_work_1/
+  341  ls -la
+  342  cat file1
+  343  head -n2 file1
+  344  tail -n2 file1
+  345  vi file1
+  346  pwd
+  347  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/
+  348  git diff
+  349  git status
+  350  git commit -m 'Fourth block. Manipulations with file1.'
+  351  du
+  352  cd ..
+  353  du
+  354  du > result_du 
+  355  history > result_history 
