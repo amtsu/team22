@@ -119,3 +119,22 @@
   119  ls -la
   120  du > result_du 
   121  history > result_history 
+  122  git status
+  123  git diff
+  124  du
+  125  git status
+  126  git add result_du 
+  127  git add result_history 
+  128  git add home_work_1/file_1 
+  129  git status
+  130  git add home_work_1/work_dir/file_1_copy 
+  131  git status
+  132  git commit -m "2nd part"
+  133  git push
+  134  cd home_work_1/
+  135  vim file1
+  136  vim file2
+  137  cd ..
+  138  ls -la
+  139  du > result_du 
+  140  history >result_history 
