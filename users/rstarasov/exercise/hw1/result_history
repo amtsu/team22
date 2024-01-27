@@ -258,3 +258,58 @@
   258  du
   259  du > result_du
   260  history > result_history
+  261  cat result_history 
+  262  git commit -m 'First block of HW. I created directories: exercise/hw1, and do some commands like pwd, ls -la. Made file for du and history'
+  263  git diff
+  264  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/
+  265  git commit -m 'First block of HW. I created directories: exercise/hw1, and do some commands like pwd, ls -la. Made file for du and history'
+  266  mkdir home_work_1
+  267  touch home_work_1/file_1
+  268  mkdir work_dir
+  269  cp home_work_1/file_1 work_dir/file_1_copy
+  270  cd work_dir/
+  271  ls
+  272  cd ..
+  273  ls
+  274  cd home_work_1/
+  275  cp -r work_dir work_dir_new/
+  276  ls -la
+  277  cd ..
+  278  ls -la
+  279  rm -r work_dir/
+  280  ls -la
+  281  mkdir home_work_1/work_dir
+  282  cp home_work_1/file_1 home_work_1/work_dir/file_1_copy
+  283  cp -r home_work_1/work_dir home_work_1/work_dir_new/
+  284  cd home_work_1/
+  285  ls -la
+  286  cd work_dir_new/
+  287  ls -la
+  288  cd ..
+  289  ls -la
+  290  cd work_dir
+  291  ls -la
+  292  cd ..
+  293  mv work_dir_new/file_1_copy work_dir_new/file_1_new_name
+  294  cd work_dir_new/
+  295  ls 
+  296  rm file_1_new_name 
+  297  ls
+  298  cd ..
+  299  rm -r work_dir_new/
+  300  ls
+  301  ls -la
+  302  git diff
+  303  git status
+  304  git add /github/team22/users/rstarasov/exercise/hw1
+  305  pwd
+  306  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/hw1/
+  307  git status
+  308  cd ..
+  309  ls -la
+  310  du
+  311  du >> result_du
+  312  cat result_du
+  313  du
+  314  history 
+  315  history > result_history 
