@@ -189,3 +189,22 @@
   189  rm test1 
   190  du > result_du 
   191  history > result_history 
+  192  git diff
+  193  ls -la > test1 && rm test123 >> test1 && pwd >> test1
+  194  cat test1 
+  195  git status 
+  196  rm test1 
+  197  git add result_history 
+  198  git commit -m "7th part"
+  199  git push
+  200  grep -rni 'GET' | awk -F'"' '{print $2}' | awk -F' ' '{print $2}' | sort
+  201  man sort
+  202  grep -rni 'GET' | awk -F'"' '{print $2}' | awk -F' ' '{print $2}' | sort -r
+  203  grep -rni 'GET' | awk -F'"' '{print $2}' | awk -F' ' '{print $2}' | sort -r | wc -l
+  204  grep -rni 'GET' | awk -F'"' '{print $2}' | awk -F' ' '{print $2}' | sort -r > test
+  205  cat test 
+  206  rm test
+  207  man wc
+  208  grep -rni 'GET' | awk -F'"' '{print $2}' | awk -F' ' '{print $2}' | sort -r | wc -m
+  209  du > result_du 
+  210  history > result_history 
