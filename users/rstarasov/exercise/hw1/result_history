@@ -405,3 +405,11 @@
   405  du
   406  du > exercise/hw1/result_du 
   407  history > exercise/hw1/result_history 
+  408  pwd
+  409  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/
+  410  git status
+  411  git commit -m 'Seventh block. Did ls -la && rm test123 && pwd and ls -la; rm test123; pwd. Added file "explanation" with explanations of difference between previous commands'
+  412  grep -rni GET | awk -F' ' '{print $7}'
+  413  grep -rni GET | awk -F' ' '{print $7}' | sort
+  414  du > exercise/hw1/result_du 
+  415  history > exercise/hw1/result_history 
