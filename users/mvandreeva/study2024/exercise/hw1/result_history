@@ -208,3 +208,13 @@
   208  grep -rni 'GET' | awk -F'"' '{print $2}' | awk -F' ' '{print $2}' | sort -r | wc -m
   209  du > result_du 
   210  history > result_history 
+  211  git diff
+  212  git status 
+  213  git add result_du 
+  214  git add result_history 
+  215  git status 
+  216  git commit -m "8th part"
+  217  git push
+  218  env | grep 'A'
+  219  du > result_du 
+  220  history > result_history 
