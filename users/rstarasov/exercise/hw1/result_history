@@ -413,3 +413,17 @@
   413  grep -rni GET | awk -F' ' '{print $7}' | sort
   414  du > exercise/hw1/result_du 
   415  history > exercise/hw1/result_history 
+  416  pwd
+  417  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/
+  418  git status 
+  419  git commit -m 'Eighth block. Found all URL and sort them. 8 URL.'
+  420  env
+  421  echo $<env>
+  422  echo $env
+  423  env
+  424  env | grep A
+  425  env | grep '*A*'
+  426  env | grep 'A*'
+  427  env | grep A
+  428  du > exercise/hw1/result_du 
+  429  history > exercise/hw1/result_history 
