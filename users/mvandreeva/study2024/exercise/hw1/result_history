@@ -218,3 +218,30 @@
   218  env | grep 'A'
   219  du > result_du 
   220  history > result_history 
+  221  git diff
+  222  git status 
+  223  git add result_history 
+  224  git commit -m "9th part"
+  225  git push
+  226  curl -o https://finance.rambler.ru/currencies/ | grep '1 USD'
+  227  curl https://finance.rambler.ru/currencies/ -o | grep '1 USD'
+  228  curl -o https://finance.rambler.ru/currencies/USD/ | grep '1 USD'
+  229  curl https://finance.rambler.ru/currencies/USD -o | grep '1 USD'
+  230  curl https://finance.rambler.ru/currencies/USD -o test | grep '1 USD'
+  231  cat test 
+  232  curl https://finance.rambler.ru/currencies/USD/ -o test | grep '1 USD'
+  233  cat test 
+  234  curl https://finance.rambler.ru/currencies/USD/ -o test | grep '1 USD'
+  235  curl https://finance.rambler.ru/currencies/USD/ -o test | grep '1 USD ='
+  236  curl https://finance.rambler.ru/currencies/USD/ -o test | grep '1 USD =' test
+  237  mv test usd
+  238  curl https://finance.rambler.ru/currencies/EUR/ -o eur | grep '1 USD =' eur
+  239  curl https://finance.rambler.ru/currencies/EUR/ -o eur | grep '1 EUR =' eur
+  240  grep '1 USD =' usd; grep '1 EUR =' eur
+  241  ls -la
+  242  ls -la | awk -F' ' '{print $6, $7, $8}' | sort | head -n1
+  243  ls -la | awk -F' ' '{print $6, $7, $8}' | sort | head -n2
+  244  ls -la | awk -F' ' '{print $6, $7, $8}' | sort -r | head -n2
+  245  ls -la | awk -F' ' '{print $6, $7, $8}' | sort -r | head -n1
+  246  du > result_du 
+  247  history > result_history 
