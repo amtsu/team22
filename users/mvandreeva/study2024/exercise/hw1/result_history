@@ -175,3 +175,17 @@
   175  grep -rni 'GET' home_work_1/ > home_work_1/save_get
   176  du > result_du 
   177  history > result_history 
+  178  git diff
+  179  git status 
+  180  git add result_du result_history home_work_1/save_get 
+  181  git commit -m "6th part"
+  182  git push
+  183  ls -la && rm test123 && pwd
+  184  ls -la; rm test123; pwd
+  185  ls -la && rm test123 && pwd > test1
+  186  cat test1
+  187  ls -la > test1 && rm test123 >> test1 && pwd >>test1
+  188  cat test1
+  189  rm test1 
+  190  du > result_du 
+  191  history > result_history 
