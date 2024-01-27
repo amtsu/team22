@@ -427,3 +427,51 @@
   427  env | grep A
   428  du > exercise/hw1/result_du 
   429  history > exercise/hw1/result_history 
+  430  pwd
+  431  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov
+  432  git status
+  433  git commit -m 
+  434  git commit -m 'Ninth block. Found all variables with A.'
+  435  ls -la
+  436  cd exercise/hw1/
+  437  ls -la
+  438  curl https://finance.rambler.ru/currencies/EUR/ | grep '1 EUR =' > USDEUR_save && curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' >> USDEUR_save && cat USDEUR_save && rm USDEUR_save
+  439  curl https://finance.rambler.ru/currencies/EUR/ | grep '1 EUR =' > USDEUR_save && curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' >> USDEUR_save && clear && cat USDEUR_save && rm USDEUR_save
+  440  ls -la
+  441  curl https://finance.rambler.ru/currencies/EUR/ | grep '1 EUR =' > USDEUR_save && curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' >> USDEUR_save && clear && cat USDEUR_save && rm USDEUR_save
+  442  cd ..
+  443  du > exercise/hw1/result_du 
+  444  history exercise/hw1/result_history 
+  445  history > exercise/hw1/result_history 
+  446  cat exercise/hw1/result_history 
+  447  pwd
+  448  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/
+  449  git status
+  450  cd exercise/hw1/
+  451  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort > data_test && tail -n1 data_test && rm data_test
+  452  ls -la
+  453  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort > data_test && tail -n2 data_test && rm data_test
+  454  ls -la
+  455  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort
+  456  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  457*  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  458  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  459  # shit code: ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort > data_test && tail -n2 data_test && rm data_test
+  460  history 
+  461  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  462  # cool code to find last change date: ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  463  ls -la -rni
+  464  pwd
+  465  find /home/jupyter-romantarasov91/github/team22/users/rstarasov/ -name Jan
+  466  find /home/jupyter-romantarasov91/github/team22/users/rstarasov/ -name 'Jan*'
+  467* 
+  468  # cool code to find last change date: ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  469  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  470  cd ..
+  471  ls -la
+  472  man ls
+  473  ls -lat
+  474  man find
+  475  du
+  476  du > exercise/hw1/result_du 
+  477  history > exercise/hw1/result_history 
