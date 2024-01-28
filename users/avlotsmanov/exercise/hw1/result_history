@@ -145,3 +145,11 @@
   145  tail -n2 file1
   146  du > result_du
   147  history > result_history
+  148  git add .
+  149  git commit -m 'Fourth block of HW1'
+  150  find /home -name 'fil'
+  151  ls -la > directory_file
+  152  awk -F' ' '{print $5}' directory_file
+  153  grep -r 'GET' > save_uri
+  154  du > result_du
+  155  history > result_history
