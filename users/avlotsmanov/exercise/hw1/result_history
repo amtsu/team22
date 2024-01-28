@@ -1,0 +1,102 @@
+    1  pwd
+    2  ssh-keygen -t rsa -b 4096 -C "misterdx1990@gmail.com"
+    3  cat .ssh/id_rsa.pub
+    4  git config --global user.email "misterdx1990@gmail.com"
+    5  git config --list
+    6  git config --global user.name "avlotsmanov"
+    7  git config --list
+    8  mkdir github
+    9  cd github/
+   10  git clone git@github.com:amtsu/team22.git
+   11  cd team22/
+   12  ls
+   13  ls -l
+   14  ls -a
+   15  cd users/
+   16  ls
+   17  ls -la
+   18  git status -s
+   19  ls -la
+   20  git status
+   21  mkdir avlotsmanov
+   22  cd avlotsmanov/
+   23  touch README.md
+   24  pwd > README.md 
+   25  cd ../..
+   26  git branch avlotsmanov
+   27  git checkout avlotsmanov
+   28  git status
+   29  git diff
+   30  git add users/README.md
+   31  git status
+   32  git add users/avlotsmanov/README.md
+   33  git status
+   34  git commit -m 'add readme file in directory avlotsmanov'
+   35  git push --set upstream origin avlotsmanov
+   36  git push --set-upstream origin avlotsmanov
+   37  pwd
+   38  ls -la
+   39  cd /github/
+   40  cd github/
+   41  ls -la
+   42  git pull
+   43  git status
+   44  ..
+   45  cd ..
+   46  git status
+   47  pwd
+   48  cd github/
+   49  pwd
+   50  git status
+   51  pwd
+   52  ls -la
+   53  cd team22/
+   54  git status 
+   55  git pull
+   56  cd /users/avlotsmanov/
+   57  cd users/
+   58  cd avlotsmanov/
+   59  git add README.md
+   60  git commit -m 'add changes in readme file'
+   61  git push --set upstream origin avlotsmanov
+   62  git push --set-upstream origin avlotsmanov
+   63  git pull
+   64  pwd
+   65  cd /github/team22/users/avlotsmanov
+   66  cd ./github/team22/users/avlotsmanov
+   67  echo 'cd ./github/team22/users/avlotsmano' > adress
+   68  history
+   69  git pull
+   70  ..
+   71  cd ..
+   72  git pull
+   73  git status
+   74  get checkout main
+   75  git checkout main
+   76  git pull
+   77  git status
+   78  pwd
+   79  cd github/
+   80  cd ..
+   81  cd github/team22/users
+   82  git branch
+   83  git pull
+   84  git branch
+   85  git branch -d avlotsmanov
+   86  git branch
+   87  pwd
+   88  cd exercise/
+   89  mkdir hw1
+   90  cd hw1/
+   91  pwd
+   92  history
+   93  pwd
+   94  ls
+   95  ls ~/
+   96  cd /home
+   97  ls -la
+   98  cd github/team22/users/avlotsmanov/exercise/hw1
+   99  cd ~/github/team22/users/avlotsmanov/exercise/hw1
+  100  cd ..
+  101  du > ./exercise/hw1/result_du
+  102  history > ./exercise/hw1/result_history
