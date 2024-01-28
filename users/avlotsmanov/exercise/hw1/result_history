@@ -123,3 +123,16 @@
   123  rm -r ./work_dir_new/
   124  du > result_du
   125  history > result_history
+  126  git add .
+  127  git status
+  128  git commit -m 'Second block of HW1'
+  129  echo 'hello world' > file1
+  130  vim file1
+  131  touch file2
+  132  vim file2
+  133  git add .
+  134  git commit -m 'Third block of HW1'
+  135  git reset HEAD~
+  136  git status
+  137  du > result_du
+  138  history > result_history
