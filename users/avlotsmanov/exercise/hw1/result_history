@@ -173,3 +173,36 @@
   173  env | grep 'A'
   174  du > result_du
   175  history > result_history
+  176  git add .
+  177  git commit -m ' Eighth block of HW1'
+  178  curl https://finance.rambler.ru/currencies/EUR/ -o test.html 2> 1 | grep EUR test.html | grep ' = ' | awk '{print $4}'
+  179  curl https://finance.rambler.ru/currencies/EUR/ -o test.html 2> 1 && grep EUR test.html | grep ' = ' | awk '{print $4}'
+  180  curl https://finance.rambler.ru/currencies/USD/ -o test.html 2> 1 && grep USD test.html | grep ' = ' | awk '{print $4}'
+  181  du > result_du
+  182  history > result_history
+  183  mkdir currency
+  184  cp 1 currency/
+  185  mv 1 currency/
+  186  mv test.html currency/
+  187  ls -la
+  188  ls -l
+  189  ls -l| -nk7
+  190  ls -l| sort -nk7
+  191  ls -la | awk '{print $6$7}' | sort | uniq -c
+  192  ls -la | awk '{print $6$7}' | sort
+  193  ls -la | awk '{print $6 $7}' | sort
+  194  ls -la | awk '{print $6''$7}' | sort
+  195  ls -la | awk '{print $6'$'$7}' | sort
+  196  ls -la | awk '{print $6$' '$7}' | sort
+  197  ls -la | awk '{print $6$7}' | sort -u
+  198  ls -la | awk '{print $6$7}' | sort -ru
+  199  ls -la | awk '{print $6$7}' | sort -Mru
+  200  ls -la | awk '{print $6$7}' | sort -Mu
+  201  ls -la | awk '{print $6$7}' | sort -M
+  202  ls -la | awk '{print $6$7}' | sort -Mu
+  203  ls -la | awk '{print $6$7}' | sort -Mr
+  204  ls -la | awk '{print $6$7}' | sort -Mru
+  205  echo 'last date is' | ls -la | awk '{print $6$7}' | sort -Mru
+  206  echo 'last date is' ; ls -la | awk '{print $6$7}' | sort -Mru
+  207  du > result_du
+  208  history > result_history
