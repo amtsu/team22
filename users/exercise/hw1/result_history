@@ -1,0 +1,161 @@
+    1  ssh-keygen -t rsa -b 4096-C "pvo.volodin@yandex.ru"
+    2  cat ~/.ssh/id_rsa.pub
+    3  cat  . ssh/id_rsa.pub
+    4  cat .ssh/id_rsa.pub
+    5  ssh-keygen -t rsa -b 4096 -C "pvo.volodin@yandex.ru"
+    6  cat .ssh/id_rsa.pub
+    7  mkir github
+    8  mkdir github
+    9  cd github
+   10  git clone git@github.com:amtsu/team22.git
+   11  ls -l
+   12  cd github
+   13  ls -la
+   14  cd team22
+   15  ls
+   16  cd..
+   17  cd ..
+   18  ls
+   19  ls team22
+   20  ls -la users
+   21  cd team22
+   22  ls -la users
+   23  ssh-keygen -t rsa -b 4096 -C ĺ"pvo.volodin@yandex.ru"
+   24  ssh-keygen -t rsa -b 4096 -C "pvo.volodin@yandex.ru"
+   25  ssh-keygen -t rsa -b 4096 -C"pvo.volodin@yandex.ru"
+   26  cd github/team22
+   27  git brach andreyvolonpro
+   28  git branch andreyvolodinpro
+   29  git checkout andreyvolodinpro
+   30  cd users
+   31  mkdir andrejvolodinpro
+   32  cd andreyvolodinpro
+   33  mkdir andreyvoldinpro
+   34  cd andreyvolodinpro
+   35  ls -la
+   36  rm andrejvolodinpro
+   37  rm -r andrejvoldn
+   38  ls -la 
+   39  rm -r andrejvoloinpro
+   40  lear
+   41  clear
+   42  pwd
+   43  cd andreyvolodinpro
+   44  ls
+   45  rm -r andreyvoldinpro
+   46  ls 
+   47  rm -r andrejvolodinpro
+   48  ls
+   49  mkdir andreyvolodinpro
+   50  cd andreyvolodinpro
+   51  touch README.md
+   52  pwd > README.md
+   53  cd ../..
+   54  git status
+   55  gitt diff
+   56  git diff
+   57  git add users/andreyvolodinpro/README.md
+   58  git confing --global users.email pvo.volodin@yandex.ru
+   59  git config --global user.email pvo.volodin@yandex.ru
+   60  git cofig --global user.name andreyvolodinpro
+   61  git config --global user.name andreyvolodinpro
+   62  git commit -m "created a README.md file"
+   63  git puch --set-upstream origin andreyvolodinpro
+   64  git push --set-upstream origin andreyvolodinpro
+   65  pwd
+   66  cd//
+   67  cd home
+   68  cd home
+   69  cd github/team22
+   70  cd ../..
+   71  git status
+   72  ls
+   73  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   74  cd github/team22
+   75  cat README
+   76  pwd
+   77  cd ..
+   78  cd anhzhela-volodina
+   79  cd ..\..
+   80  cd ..
+   81  ls
+   82  cdusers 
+   83  cd users
+   84  ls
+   85  cd andreyvolodinpro
+   86  cd ..
+   87  mv andreyvolodinpro aavolodin
+   88  ls
+   89  cd aavolodin
+   90  cat README/md
+   91  cat README.md
+   92  vim README.md
+   93  cat README.md
+   94  cd ..
+   95  git branch
+   96  git branch -a
+   97  git branch lecture2aavolodin
+   98  git pull
+   99  git status
+  100  cdaavolodin
+  101  cd aavolodin
+  102  vim README.md
+  103  ls
+  104  git puch
+  105  git branch
+  106  git status
+  107  git add aavolodin/README
+  108  git status
+  109  git add andreyvolodinpro/README
+  110  git status
+  111  cat README.md
+  112  git log
+  113  git pull
+  114  git puch
+  115  git puch --set-upstream origin aavolodin
+  116  pwd
+  117  ls
+  118  cd aavolodin
+  119  ls
+  120  rm -r exercise/
+  121  ls
+  122  git branch 
+  123  git checkout
+  124  git checkout aavolodin
+  125  git branch 
+  126  rm aavolodin_hw2
+  127  cd ..
+  128  ls
+  129  git branch aavolodin_hw2
+  130  git branch 
+  131  git checkout aavolodin_hw2
+  132  mkdir exercise
+  133  cd exercise
+  134  mkdir hw1
+  135  cd hw1
+  136  mkdir home_work_1
+  137  cd home_work_1/
+  138  touch file_1
+  139  mkdir work_dir
+  140  cp file_1 work_dir/file_1_copy
+  141  cp -r work_dir work_dir_new
+  142  mw file_1_copy file_1_new_name
+  143  mv file_1_copy file_1_new_name
+  144  rm file_1_new_name
+  145  ls
+  146  cd work_dir
+  147  ls
+  148  cd ..
+  149  ls -la
+  150  mv file_1_copy file_1_new_name
+  151  cd work_dir
+  152  ls
+  153  mv file_1_copy file__1_new_name
+  154  rm file__1_new_name 
+  155  cd ..
+  156  rm -r work_dir_new
+  157  ls
+  158  cd ..
+  159  du > result_du
+  160  ls
+  161  history > result_history
