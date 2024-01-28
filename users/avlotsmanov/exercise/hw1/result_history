@@ -168,3 +168,8 @@
   168  grep -r 'GET' | awk '{print $7}' | sort
   169  du > result_du
   170  history > result_history
+  171  git add .
+  172  git commit -m ' Seventh block of HW1'
+  173  env | grep 'A'
+  174  du > result_du
+  175  history > result_history
