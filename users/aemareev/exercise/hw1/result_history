@@ -82,3 +82,42 @@
    82  ls
    83  cat result_du 
    84  history > result_history
+   85  ls
+   86  cat result_history 
+   87  git diff
+   88  git status
+   89  git add .
+   90  git status
+   91  git commit -m 'Первый блок hw1'
+   92  git status
+   93  mkdir home_work_1
+   94  ls
+   95  cd home_work_1/
+   96  touch file_1
+   97  ls
+   98  mkdir work_dir
+   99  ls
+  100  cp file_1 work_dir/file_1_copy
+  101  ls work_dir/
+  102  cp -r work_dir/ work_dir_new/
+  103  ls
+  104  ls work_dir_new/
+  105  cp -r work_dir work_dir_new/
+  106  ls
+  107  ls work_dir_new/
+  108  ls work_dir_new/work_dir/
+  109  rm work_dir_new/file_1_copy 
+  110  ls work_dir_new/
+  111  ls
+  112  mv work_dir/file_1_copy work_dir/file_1_new_name
+  113  ls work_dir/
+  114  rm work_dir/file_1_new_name 
+  115  ls work_dir/
+  116  rm -r work_dir_new
+  117  ls
+  118  git diff
+  119  git status
+  120  cd ..
+  121  ls
+  122  du > result_du 
+  123  history > result_history 
