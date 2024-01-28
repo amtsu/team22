@@ -1,0 +1,84 @@
+    1  ssh-keygen -t rsa -b 4096 -C 'adskiypovar@gmail.com'
+    2  cat .ssh/id_rsa.pub
+    3  git config --global user.email <ВАШ@ЕМЕЙЛ>
+    4  git config --global user.email adskiypovar@gmail.com
+    5  git config --global user.name theRate
+    6  mkdir github
+    7  cd github/
+    8  git clone git@github.com:amtsu/team22.git
+    9  ls
+   10  cd team22/
+   11  ls -la
+   12  pwd
+   13  git status -s
+   14  git status
+   15  git branch aemareev-hw2-intro-to-git
+   16  git checkout aemareev-hw2-intro-to-git 
+   17  cd users/
+   18  mkdir aemareev
+   19  cd aemareev/
+   20  touch README.md
+   21  pwd > README.md
+   22  cat README.md 
+   23  cd ../..
+   24  git status
+   25  git status -s
+   26  git diff
+   27  git add users/aemareev/README.md 
+   28  git status -s
+   29  git commit -m 'created a user folder and README.md'
+   30  git status -s
+   31  git push --set-upstream origin aemareev-hw2-intro-to-git 
+   32  cd users/aemareev/
+   33  ls
+   34  vim README.md 
+   35  cat README.md 
+   36  git diff
+   37  git add README.md 
+   38  git status 
+   39  git commit -m 'changed README.md'
+   40  git status 
+   41  git push --set-upstream origin aemareev-hw2-intro-to-git 
+   42  clear
+   43  cd ../..
+   44  git status
+   45  pwd
+   46  cd ..
+   47  ls
+   48  cd jupyter-therate/
+   49  ls
+   50  cd github/
+   51  ls
+   52  cd team22/
+   53  ls
+   54  git status
+   55  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   56  git status
+   57  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ; PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   58  vim ~/.bashrc
+   59  cd ../..
+   60  pwd
+   61  touch test_vim.txt
+   62  vim test_vim.txt 
+   63  vim ~/.bashrc
+   64  pwd
+   65  ls
+   66  cd ../..
+   67  ls
+   68  cd users/aemareev/
+   69  ls
+   70  cd exercise/
+   71  ls
+   72  cd hw1/
+   73  ls
+   74  clear
+   75  pwd
+   76  ls -la
+   77  ls /
+   78  ls -la /home
+   79  du
+   80  du -h
+   81  du -h > result_du
+   82  ls
+   83  cat result_du 
+   84  history > result_history
