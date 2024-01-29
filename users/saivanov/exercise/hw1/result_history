@@ -509,3 +509,11 @@
   509  grep -rni 'GET' home_work_1/
   510  grep -rni 'GET' ./
   511  ./write-result.sh 
+  512  git add "Блок 5 (grep, awk, diff, wc)"
+  513  git commit "Блок 5 (grep, awk, diff, wc)"
+  514  git commit -m "Блок 5 (grep, awk, diff, wc)"
+  515  git push
+  516  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' 'print{$1}' 
+  517  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}' 
+  518  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}' > URIs
+  519  ./write-result.sh 
