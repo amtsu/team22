@@ -477,3 +477,14 @@
   477  nano file1
   478  nano file2
   479  ./write-result.sh 
+  480  git add file1 file2
+  481  git commit -m "блок 3 (nano)"
+  482  git checkout main
+  483  git pull
+  484  git checkout saivanov-hw2-git 
+  485  git push
+  486  git rebase main
+  487  cat file1
+  488  head -n2 file1
+  489  tail -n2 file1
+  490  ./write-result.sh 
