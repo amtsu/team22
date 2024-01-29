@@ -470,3 +470,10 @@
   470  ./write-result.sh 
   471  nano write-result.sh 
   472  ./write-result.sh 
+  473  git add write-result.sh 
+  474  git commit -m "блок 2 (mkdir, rm, touch, cp, mv)"
+  475  git push
+  476  ls
+  477  nano file1
+  478  nano file2
+  479  ./write-result.sh 
