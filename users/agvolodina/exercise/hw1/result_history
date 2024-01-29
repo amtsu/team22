@@ -179,11 +179,11 @@
   179          ../../
   180          ../../../theory_console_command.ipynb
   181  cd ..
-  182  git status
-  183  git commit -m 'команда vim'
-  184  cat result_history2
-  185  cat file1
-  186  head -n2 file1
-  187  tail -n2 file1
+  182  ls -la > awk -F' ' '{print $5}'
+  183  ls -la
+  184  ls -la > awk -F' ' '{print 4}'
+  185  ls -la > awk -F' ' '{print $4}'
+  186  awk -F' ' '{print $5}' file3
+  187  grep -rni 'GET'
   188  du > result_du
   189  history > result_history
