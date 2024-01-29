@@ -165,3 +165,16 @@ Hi
   160  grep -rni 'GET' ~/github/team22/users/oekorchevaya | awk -F' ' '{print $7}' | sort 
   161  du > result_du
   162  history > result_history
+  163* 
+  164  git commit -m '8th block of hw1. Some artefacts was added because there are also information in the file history and other files contained URI'
+  165  grep -rni 'GET' ~/github/team22/users/oekorchevaya | awk -F' ' '{print $7}' | sort | uniq -c
+  166  grep -rni 'GET' ~/github/team22/users/oekorchevaya 
+  167* grep -rni 'GET' ~/github/team22/users/oekorchevaya | awk -F' '
+  168  grep -rni 'GET' ~/github/team22/users/oekorchevaya | awk -F' ' '{print $6}' 
+  169  grep -rni 'GET' ~/github/team22/users/oekorchevaya | awk -F' ' '{print $8}' 
+  170  env
+  171  env | grep 'A'
+  172  env | grep 'A' | awk -F '=' '{print $2}'
+  173  env | grep 'A' | awk -F '=' '{print $2, $3, $4}'
+  174  du > result_du
+  175  history > result_history
