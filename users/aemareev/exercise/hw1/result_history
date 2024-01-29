@@ -248,3 +248,27 @@
   248  ls
   249  du -h > result_du
   250  history > result_history 
+  251  git diff
+  252  git status
+  253  git add .
+  254  git status
+  255  git commit -m 'Шестой блок hw1'
+  256  grep -rni 'GET' /hw1/
+  257  grep -rni 'GET' /hw1
+  258  grep -rni 'GET' home_work_1/
+  259  grep -rni 'GET' .
+  260  ls
+  261  mv test_grep_1 home_work_1/
+  262  ls
+  263  grep -rni 'GET' home_work_1/
+  264  grep -rni 'GET' home_work_1/ | awk '{print $6}'
+  265  grep -rni 'GET' home_work_1/ | awk '{print $7}'
+  266  grep -rni 'GET' home_work_1/ | awk -F'GET' '{print $7}'
+  267  grep -rni 'GET' home_work_1/ | awk -F'GET' '{print $2}'
+  268  grep -rni 'GET' home_work_1/ | awk '{print $7}'
+  269  grep -rni 'GET' home_work_1/ | awk '{print $7}' | sort
+  270  env
+  271  env | grep 'A'
+  272  ls
+  273  du -h > result_du 
+  274  history > result_history 
