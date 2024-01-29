@@ -178,3 +178,16 @@ Hi
   173  env | grep 'A' | awk -F '=' '{print $2, $3, $4}'
   174  du > result_du
   175  history > result_history
+  176  git commit -m '9th block of hw1'
+  177  cat history
+  178  cat result_history 
+  179  git add .
+  180  git commit -m '9th block of hw1'
+  181  vi curs
+  182  bash curs
+  183  vi curs
+  184  bash curs
+  185  cd ~/oekorchevaya | ls -la | awk '{print $6, $7, $8}' | sort -M -r | head -n1
+  186  cd ~/github/team22/users/oekorchevaya | ls -la | awk '{print $6, $7, $8}' | sort -M -r | head -n1
+  187  du > result_du
+  188  history > result_history

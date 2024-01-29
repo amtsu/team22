@@ -1,0 +1,6 @@
+for var in EUR USD
+do
+echo The  $var currency
+curl https://finance.rambler.ru/currencies/$var/ -o finance.html 2> 1 
+grep $var finance.html | grep ' = ' | awk '{print $4}'
+done
