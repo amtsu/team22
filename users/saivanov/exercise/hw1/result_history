@@ -523,3 +523,11 @@
   523  ls -la; rm test123; pwd
   524  echo "при разделителях ; выполняются все команды, а при && - до первой сломавшейся"
   525  ./write-result.sh 
+  526  git log
+  527  git commit -m "блок 7 (последовательность команд)"
+  528  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort
+  529  grep -rni 'GET' ./ 
+  530  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort | ln
+  531  ln --help
+  532  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort | wc -l
+  533  ./write-result.sh 
