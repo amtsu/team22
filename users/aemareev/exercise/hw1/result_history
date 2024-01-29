@@ -236,3 +236,15 @@
   236  ls
   237  du -h > result_du
   238  history > result_history 
+  239  git status
+  240  git add .
+  241  git status
+  242  git commit -m 'Пятый блок hw1'
+  243  grep -rni 'GET' . > test_grep_1
+  244  grep -rni 'GET' .
+  245  ls
+  246  ls -la && rm test123 && pwd
+  247  ls -la; rm test123; pwd
+  248  ls
+  249  du -h > result_du
+  250  history > result_history 
