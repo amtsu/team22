@@ -134,3 +134,16 @@ Hi
   129  tail -n2 file1
   130  du > result_du
   131  history > result_history
+  132  git add .
+  133  git commit -m '4th block of hw1'
+  134  find /home/ -name "*fil*"
+  135  ls -la
+  136  la -la > awk -F' ' '{print $5}'
+  137  ls -la > awk -F' ' '{print $5}'
+  138  ls -la | awk -F '{print $5}'
+  139  ls -la > awk -F' ' '{print $5}'
+  140  ls -la > directory_information 
+  141  awk -F' ' '{print $5}' directory_information
+  142  grep -rni 'GET' ~/github/team22/users/oekorchevaya
+  143  du > result_du
+  144  history > result_history
