@@ -1,0 +1,5 @@
+total 12
+drwxrwxr-x 2 evgeniy evgeniy 4096 янв 30 00:29 .
+drwxrwxr-x 3 evgeniy evgeniy 4096 янв 30 00:25 ..
+-rw-rw-r-- 1 evgeniy evgeniy  109 янв 30 00:25 file_1.txt
+-rw-rw-r-- 1 evgeniy evgeniy    0 янв 30 00:29 testout
