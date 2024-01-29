@@ -517,3 +517,9 @@
   517  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}' 
   518  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}' > URIs
   519  ./write-result.sh 
+  520  git add URIs 
+  521  git commit
+  522  ls -la && rm test123 && pwd
+  523  ls -la; rm test123; pwd
+  524  echo "при разделителях ; выполняются все команды, а при && - до первой сломавшейся"
+  525  ./write-result.sh 
