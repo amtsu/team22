@@ -430,3 +430,43 @@
   430  nano write-result.sh
   431  chmod +x write-result.sh 
   432  ./write-result.sh 
+  433  ls
+  434  cat result_du 
+  435  cat result_history 
+  436  git add result_du result_history 
+  437  git commit -m "первый блок ( cd - ls)"
+  438  git push -u origin saivanov-hw2-git 
+  439  mkdir home_work_1
+  440  touch home_work_1/file_1
+  441  mkdir home_work_1/work_dir
+  442  cp home_work_1/file_1 home_work_1/work_dir/file_1_copy
+  443  cp home_work_1/work_dir/ home_work_1/work_dir_new
+  444  cp -r home_work_1/work_dir/ home_work_1/work_dir_new
+  445  git checkout main
+  446  git checkout -b saivanov-added-hw1-ipynb-file
+  447  cd ~/github/team22/
+  448  git status
+  449  git add library/exercises/hw-1/theory_console_command.ipynb 
+  450  git commit -m "добавил ipynb с первого занятия"
+  451  git push -u origin saivanov-added-hw1-ipynb-file 
+  452  cd library/
+  453  cd exercises/
+  454  cd hw-1/
+  455  ls
+  456  pwd
+  457  ls
+  458  git checkout saivanov-hw2-git 
+  459  ls
+  460  cd ~/github/team22/users/saivanov/exercise/hw1/
+  461  ls
+  462  mv home_work_1/work_dir/file_1_copy home_work_1/work_dir/file_1_new_name
+  463  rm home_work_1/work_dir/file_1_new_name 
+  464  rm -r home_work_1/work_dir_new/
+  465  git status
+  466  git add write-result.sh 
+  467  git add home_work_1/file_1 
+  468  ls home_work_1/
+  469  ls home_work_1/work_dir/
+  470  ./write-result.sh 
+  471  nano write-result.sh 
+  472  ./write-result.sh 
