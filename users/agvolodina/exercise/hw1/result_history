@@ -92,43 +92,98 @@
    92  git branch
    93  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
    94  git branch
-   95  cd github/
-   96  cd team22/
-   97  cd users/
-   98  git branch agvolodina_hw2
-   99  git checkout 
-  100  git checkout agvolodina
-  101  git checkout agvolodina_hw2 
-  102  cd agvolodina_hw2
-  103  cd Anzhela-Volodina
-  104  mkdir exercise
-  105  mv exercise agvolodina
-  106  ls
-  107  cd agvolodina
-  108  mkdir exercise
-  109  cd exercise/
-  110  mkdir hw1
-  111  mkdir home_work_1
-  112  mv home_work_1 hw1/
+   95  git status
+   96  git add library/exercises/theory_console_command.ipynb
+   97  cd users
+   98  cd agvolodina
+   99  git status
+  100  git add   ../../library/exercises/theory_console_command.ipynb
+  101  git status
+  102  git add   ../theory_console_command.ipynb
+  103  git status
+  104  ls
+  105  git add exercise/hw1/result_du
+  106  git status
+  107  git add  exercise/hw1/home_work_1/
+  108  git add exercise/hw1/home_work_1/  exercise/hw1/result_history
+  109  git status
+  110  git commit -m 'hw1'
+  111  git push
+  112  cd ..
   113  ls
-  114  cd hw1
-  115  ls
-  116  cd home_work_1/
-  117  touch file1
-  118  mkdir  work_dir
-  119  cp file1 work_dir/file_1_copy
-  120  ls
-  121  ls work_dir/
-  122  cp -r work_dir work_dir_new
-  123  cd work_dir
-  124  ls
-  125  mv file_1_copy file_1_new_name
-  126  rm file_1_new_name 
-  127  cd ..
-  128  rm work_dir_new
-  129  rm -r work_dir_new
-  130  ls
-  131  cd ..
-  132  du > result_du
-  133  ls
-  134  history > result_history
+  114  ls
+  115  cd github
+  116  ls
+  117  cd team
+  118  cd team22
+  119  cd users
+  120  cd anzhela-volodina/
+  121  ls
+  122  cat README.md 
+  123  git status
+  124  git add README.md
+  125  git status
+  126  git diff
+  127  git commit -m 'добавила файл README.md'
+  128  git push 
+  129  git checkout 
+  130  git checkout main
+  131  git pull
+  132  cd ..
+  133  git pull
+  134  cd github/
+  135  cd team22/
+  136  cd users/
+  137  git branch agvolodina_hw2
+  138  git checkout 
+  139  git checkout agvolodina
+  140  git checkout agvolodina_hw2 
+  141  cd agvolodina_hw2
+  142  cd Anzhela-Volodina
+  143  mkdir exercise
+  144  mv exercise agvolodina
+  145  ls
+  146  cd agvolodina
+  147  mkdir exercise
+  148  cd exercise/
+  149  mkdir hw1
+  150  mkdir home_work_1
+  151  mv home_work_1 hw1/
+  152  ls
+  153  cd hw1
+  154  ls
+  155  cd home_work_1/
+  156  touch file1
+  157  mkdir  work_dir
+  158  cp file1 work_dir/file_1_copy
+  159  ls
+  160  ls work_dir/
+  161  cp -r work_dir work_dir_new
+  162  cd work_dir
+  163  ls
+  164  mv file_1_copy file_1_new_name
+  165  rm file_1_new_name 
+  166  cd ..
+  167  rm work_dir_new
+  168  rm -r work_dir_new
+  169  ls
+  170  cd ..
+  171  du > result_du
+  172  ls
+  173  history > result_history
+  174  ls
+  175  git diff
+  176  git status
+  177  git add
+  178  git add '../../../../library/exercises/theory_console_command.ipynb
+  179          ../../
+  180          ../../../theory_console_command.ipynb
+  181  cd ..
+  182  git status
+  183  git commit -m 'команда vim'
+  184  cat result_history2
+  185  cat file1
+  186  head -n2 file1
+  187  tail -n2 file1
+  188  du > result_du
+  189  history > result_history
