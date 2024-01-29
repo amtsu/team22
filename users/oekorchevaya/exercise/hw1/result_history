@@ -96,3 +96,19 @@
    96  cd ..
    97  du > hw1/result_du
    98  history > hw1/result_history
+   99  cd hw1
+  100  git add .
+  101  git commit -m 'first block of hw1'
+  102  mkdir home_work_1
+  103  touch home_work_1/file_1
+  104  mkdir home_work_1/work_dir
+  105  cp home_work_1/file_1 home_work_1/work_dir/file_1_copy
+  106  cp -r home_work_1/work_dir home_work_1/work_dir_new
+  107  mv home_work_1/work_dir/file_1_copy home_work_1/work_dir/file_1_new_name
+  108  rm home_work_1/work_dir/file_1_new_name
+  109  rm -r home_work_1/work_dir_new
+  110  git add .
+  111  git commit -m 'second block of hw1'
+  112  du > ~/hw1/result_du
+  113  du > result_du
+  114  history > result_history
