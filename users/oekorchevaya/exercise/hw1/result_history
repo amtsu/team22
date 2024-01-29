@@ -125,3 +125,12 @@ Hi
 ::1 - - [20/Jan/2024:12:15:10 +0000] "GET /100mb.test HTTP/1.1" 200 104857600 "-" "curl/7.29.0" "-" 47.318' > file2
   121  du > result_du
   122  history > result_history
+  123  cat result_history
+  124  git add .
+  125  git commit -m 'third block of hw1'
+  126  git branch
+  127  cat file1
+  128  head -n2 file1
+  129  tail -n2 file1
+  130  du > result_du
+  131  history > result_history
