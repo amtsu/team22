@@ -222,3 +222,18 @@
   222  vi file2
   223  du > result_du
   224  history > result_history 
+  225  git status
+  226  git add file1 file2 result_history result_du
+  227  git status
+  228  git add home_work_1
+  229  git status
+  230  git puch
+  231  git commit -m 'сделал часть ДЗ'
+  232  git puch
+  233  git push
+  234  cat file1
+  235  head -h2 file1
+  236  head -n2 file1
+  237  tail -n2 file1
+  238  du > result_du
+  239  history > result_history 
