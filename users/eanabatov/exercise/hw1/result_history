@@ -1,0 +1,920 @@
+    1  ./configure
+    2  sudo make install
+    3  sudo make install python
+    4  ./configure --help
+    5  --help
+    6  sumo make help
+    7  sudo help
+    8  sudo --help
+    9  python3 --version
+   10  sudo apt-get update
+   11  python3 --version
+   12  sudo apt-get install python3.11.0
+   13  python3 --version
+   14  sudo apt-get install python 3.11.0
+   15  sudo apt-get install python3.11
+   16  python --version
+   17  python3 --version
+   18  command -v pip
+   19  command -v pip3
+   20  pip --version
+   21  sudo apt install python3-pip
+   22  pip --version
+   23  python3 --version
+   24  py
+   25  sudo py
+   26  print("sdbghb")
+   27  Programm_1
+   28  open Programm_1
+   29  open Programming/Programm_1
+   30  run Programming/programm_1
+   31  firefox
+   32  programm_1
+   33  Programm_1
+   34  chmod a+x Programm_1
+   35  cd :///home/evgeniy/Programming/Programm_1
+   36  ./Programming_1
+   37  ./programming_1
+   38  
+   39  gsettings set org.gnome.shell.extensions.desktop-icons show-home false
+   40  create .txt
+   41  sudo create 123.txt
+   42  home/evgeny/pycharmproject/pythonproject1
+   43  touch 123.csv
+   44  sudo pip3 install tkinter
+   45  help(__tkinter__)
+   46  help(tkinter)
+   47  help(_tkinter)
+   48  version numpy
+   49  pip3 install numpy
+   50  -m pip install --upgrade pip
+   51  python -m pip install --upgrade pip
+   52  pip3 install turtle
+   53  pip3 install tkinter
+   54  
+   55  sudo apt install python3-tk
+   56  sudo install visual studio
+   57  git branch
+   58  sudo apt install git
+   59  git branch
+   60  py
+   61  sudo apt install python
+   62  sudo apt install python3
+   63  sudo apt install pythonpy
+   64  py
+   65  sudo py
+   66  pwf
+   67  help
+   68  pwd
+   69  status
+   70  cd
+   71  git branch
+   72  cd
+   73  pwf
+   74  pwd
+   75  ls
+   76  cd ~/pythonProject1
+   77  ls
+   78  cd ~/lib
+   79  cd lib
+   80  ls
+   81  
+   82  sudo apt install keepassxc
+   83  
+   84  sudo apt install python3.9.7
+   85  sudo apt install python 3.9.7
+   86  sudo apt install python3.9,7
+   87  sudo apt install python3.9.7
+   88  ls -la
+   89  cd python3.9.7/
+   90  ls -la
+   91  python-3.9.7
+   92  cd pythin
+   93  firefox
+   94  firefox vk.com
+   95  ls
+   96  cd ~
+   97  ls
+   98  ls -l
+   99  ls -la
+  100  ls
+  101  ~/python
+  102  ~/python3.9.7/
+  103  cd ~/python3.9.7/
+  104  ls
+  105  ls -la
+  106  git init
+  107  git status
+  108  ls
+  109  cd ~/pythonProject1
+  110  ls
+  111  cd ~/..
+  112  ls
+  113  cd ~evgeniy/
+  114  ls
+  115  cd ~/PycharmProjects/
+  116  ls
+  117  cd ~/pythonProject1/
+  118  ls
+  119  cd bin
+  120  ls
+  121  cd ..
+  122  ls
+  123  lib
+  124  cdd lib
+  125  cd lib
+  126  ls
+  127  cd ..
+  128  ls
+  129  cd ~/PycharmProjects/
+  130  ls
+  131  cd pythonProject1
+  132  ls
+  133  git add Functions_Lesson_05.py 
+  134  git config advice.addIgnoredFile false
+  135  git add Functions_Lesson_05.py 
+  136  git add Functions_Lesson_05.py -f
+  137  git status
+  138  git add Tests_Lesson_05.py 
+  139  git status
+  140  git branch
+  141  git add Tests_Lesson_05.py -f
+  142  git status
+  143  git add Higher_card_game.py -f
+  144  git add Slots_Game.py -f
+  145  git status
+  146  git commit
+  147  git config --global user.email "NabatovLearn@Yandex.ru"
+  148  git config --global user.name "Nabatov_Evgeniy"
+  149  git commit
+  150  git commit -m "First commit for most important files"
+  151  git status
+  152  git branch First_branch
+  153  git branch
+  154  git checkout First_branch 
+  155  git push
+  156  git checkout master
+  157  git push
+  158  git status
+  159  git add Functions_Lesson_05.py 
+  160  git add Functions_Lesson_05.py -f
+  161  git status
+  162  git commit -m "some modif"\
+  163  git push
+  164  git remote add EANabatov [200~https://github.com/amtsu/team22.git~
+  165  git push
+  166  git remote add origin https://github.com/EANabatov/First_Project.git
+  167  git branch -M main
+  168  git push -u origin main
+  169  git log --oneline --decorate --graph --all
+  170  пше ыефегы
+  171  git status
+  172  cd PycharmProjects/pythonProject1
+  173  git add Functions_Lesson_05.py 
+  174  git add Functions_Lesson_05.py -v
+  175  git add Functions_Lesson_05.py -f
+  176  git status
+  177  git add Tests_Lesson_05.py -f
+  178  git status
+  179  git commit -m " Save fof save"
+  180  git log --oneline --decorate --graph --all
+  181  git branch
+  182  git push
+  183  git push --set-upstream origin main
+  184  sudo apt install inxi
+  185  inxi -SMA
+  186  sudo alsa force-reload
+  187  sudo apt-get install --reinstall alsa-base pulseaudio
+  188  sudo alsa force-reload
+  189  help(classes)
+  190  help
+  191  help classes
+  192  exit
+  193  [200~sudo add-apt-repository ppa:lutris-team/lutris
+  194  sudo apt update
+  195  sudo add-apt-repository ppa:lutris-team/lutris
+  196  sudo apt update
+  197  sudo apt install lutris
+  198  [200~git remote add origin https://github.com/EANabatov/pythonProject1.git
+  199  git branch -M main
+  200  git push -u origin main~
+  201  version
+  202  help
+  203  info bash
+  204  info
+  205  info version
+  206  vim
+  207  sudo apt install vim
+  208  vim
+  209  vim
+  210  vim kek1
+  211  htop
+  212  sudo apt install htop
+  213  htop
+  214  vim
+  215  system monitor
+  216  htop
+  217  ls
+  218  cd Python_3_8/
+  219  sudo apt install libssl-dev openssl make gcc zlib1g zlib1g-dev
+  220  wget https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tgz 
+  221  tar xzvf Python-3.8.0.tgz
+  222  cd Python-3.8.0/ 
+  223  ./configure
+  224  make -j8
+  225  sudo make install
+  226  zz
+  227  Z
+  228  ZZ
+  229  Q
+  230  qq
+  231  fast
+  232  mypy Functions_Lesson_05.py
+  233  cd 
+  234  ls
+  235  cd PyCharmLearningProject/
+  236  ls
+  237  ..
+  238  .
+  239  //
+  240  cd Home
+  241  exit
+  242  ls
+  243  cd HW_5_Exclusion/
+  244  ls
+  245  mypy Functions_Lesson_05.py 
+  246  black Functions_Lesson_05.py 
+  247  git diff
+  248  pylint Functions_Lesson_05.py 
+  249  ls
+  250  back
+  251  cd /MasterFolderPyCharm/
+  252  ..
+  253  cd ..
+  254  ls
+  255  pylint HW_Classes/Functions_Classes.py 
+  256  ls
+  257  pylint Old_HW/python_basics_3.py 
+  258  git branch
+  259  git checkout First_branch 
+  260  git status
+  261  git add ../pythonProject1/Higher_card_game.py
+  262  git status
+  263  git add ../pythonProject1/Slots_Game.py
+  264  git status
+  265  git commit -m "I dont understand what i do"
+  266  git push
+  267  git push --set-upstream origin First_branch 
+  268  git push
+  269  git push --set-upstream origin First_branch 
+  270  gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+  271  sudo apt install vim
+  272  sudo apt install ubuntu-restricted-extras
+  273  sudo apt install gnome-shell-extension-manager
+  274  sudo apt upgrade
+  275  sudo apt update
+  276  sudo apt full-upgrade
+  277  sudo apt get update
+  278  sudo app get update
+  279  sudo apt get update
+  280  sudo apt update
+  281  apt list --upgradable
+  282  sudo apt upgrade
+  283  help upgrade
+  284  info upgrade
+  285  help
+  286  info
+  287  sudo apt update
+  288  sudo apt all-upgrade
+  289  sudo apt full-upgrade
+  290  sudo dpkg --configure -a
+  291  sudo apt upgrade
+  292  sudo apt update
+  293  sudo apt full-upgrade
+  294  sudo apt upgrade
+  295  exit
+  296  sudo apt zoom
+  297  sudo apt install zoom
+  298  git status
+  299  ls
+  300  cd Documents/
+  301  ls
+  302  text.txt
+  303  cat > text.ru
+  304  ls
+  305  cat > text.slx
+  306  ls
+  307  git add text.slx
+  308  git status
+  309  git commit -m "Add new file"
+  310  text.slx
+  311  git status
+  312  git dif text.slx
+  313  diff text.slx 
+  314  git diff text.slx
+  315  git commit -m "second commit"
+  316  git log
+  317  exit
+  318  sudo apt full-update
+  319  sudo apt full-apdate
+  320  sudo apt get install
+  321  sudo apt get update
+  322  exit
+  323  python
+  324  python3
+  325  exit
+  326  ls
+  327  cd MasterFolderPycharm/
+  328  ls
+  329  cd lib
+  330  ls
+  331  cd ..
+  332  cd bin
+  333  ls
+  334  ls -la
+  335  cd ..
+  336  cd pyvenv.cfg
+  337  ls
+  338  pyvenv.cfg
+  339  ls
+  340  cd PycharmProjects/
+  341  ls
+  342  cd MasterFolderPycharm/
+  343  ls
+  344  cd Work_with_files/
+  345  ls
+  346  git branch
+  347  git status
+  348  git checkout main
+  349  git branch start_working_with_files
+  350  git branch
+  351  git checkout start_working_with_files 
+  352  git status
+  353  ls
+  354  git add names.txt 
+  355  git add names.txt
+  356  [200~echo "# First_Project" >> README.md
+  357  git init
+  358  git add README.md
+  359  git commit -m "first commit"
+  360  git branch -M main
+  361  git remote add origin git@github.com:EANabatov/First_Project.git
+  362  git push -u origin main~
+  363  echo "# First_Project" >> README.md
+  364  git init
+  365  git add README.md
+  366  git commit -m "first commit"
+  367  git branch -M main
+  368  git remote add origin git@github.com:EANabatov/First_Project.git
+  369  git push -u origin main
+  370  git bash
+  371  ssh-keygen -t rsa -b 4096 -C "NabatovLearn@Yandex.ru"
+  372  ls
+  373  cd Tsurkov_repository/
+  374  git clone git@github.com:amtsu/team22.git
+  375  git branch
+  376  git status
+  377  git branch HW_work_with_files
+  378  git checkout HW_work_with_files 
+  379  git status
+  380  ls
+  381  git team22/
+  382  ls
+  383  cd team22/
+  384  ls
+  385  cd users/
+  386  cd EANabatov/
+  387  ls
+  388  cd work_with_files/
+  389  ls
+  390  git add names.txt 
+  391  git add work_with_txt.py 
+  392  git status
+  393  git commit -m "Выполненное задание работы с текстовым файлом"
+  394  git status
+  395  git branch
+  396  git branch HW_work_with_files
+  397  git checkout HW_work_with_files 
+  398  git status
+  399  git add work_with_txt.py 
+  400  git status
+  401  python 3.8
+  402  python3
+  403  ls
+  404  cd team22/users/EANabatov/
+  405  ls
+  406  cd work_with_files/
+  407  ls
+  408  git branch
+  409  git status
+  410  git add names.txt 
+  411  git add work_with_txt.py 
+  412  git status
+  413  git commit -m "Доработанные функции с 3 разными методами добавления"
+  414  git push
+  415  git push --set-upstream origin HW_work_with_files 
+  416  git status
+  417  git branch
+  418  git chackout main
+  419  git checkout main
+  420  git branch
+  421  git pull
+  422  exit
+  423  git branch
+  424  git status
+  425  cd Tsurkov_repository/team22/users/EANabatov/
+  426  ls
+  427  cd work_with_files/
+  428  ls
+  429  git add names.txt 
+  430  git add work_with_txt.py 
+  431  git status
+  432  zalupa
+  433  cd team22/users/EANabatov/
+  434  ls
+  435  cd work_with_files/
+  436  ls
+  437  git status
+  438  git add work_with_txt.py 
+  439  git add names.txt 
+  440  git status
+  441  git commit -m "Не успел доделать скрипты до ПЗ"
+  442  git push
+  443  vimtutor
+  444  git branch
+  445  git push
+  446  пше сруслщге ьфшт
+  447  git checkout main
+  448  git pull
+  449  git config pull.rebase true
+  450  git pull
+  451  пше ыефегы
+  452  учше
+  453  exit
+  454  sudo apt yandexmusic
+  455  sudo apt ymusic
+  456  cd Documents/
+  457  ls
+  458  cat fgh.txt
+  459  cd team22/
+  460  git branch
+  461  git checkout main 
+  462  git pull
+  463  git branch pickles
+  464  git checkout pickles 
+  465  git branch
+  466  ды
+  467  ls
+  468  cd ..
+  469  ls
+  470  cd ..
+  471  ls
+  472  touch zamechaniya_136.txt
+  473  system info
+  474  info
+  475  sudo snap install dbeaver-ce
+  476  exit
+  477  sudo apt install hardinfo
+  478  hardinfo
+  479  sudo apt install lm‑sensors hddtemp psensor
+  480  sudo apt install psensor
+  481  psensor
+  482  apr remove psensor
+  483  apt remove psensor
+  484  apt-get remove psensor
+  485  root
+  486  sudo apt-get purge --autoremove lm-sensors psensor hddtemp
+  487  apt-get remove hardinfo
+  488  sudo apt purge hardinfo
+  489  sudo apt purge lutris
+  490  sudo apt purge ubisoft
+  491  sudo apt purge onenote
+  492  sudo apt-get install tkinter
+  493  python -m pip install -U pip
+  494  pip install -U pip
+  495  sudo apt-get install python3-matplotlib
+  496  sudo apt-get install python3-tkinter
+  497  sudo apt install gcc
+  498  sudo apt install notepad++
+  499  sudo apt install notepad
+  500  cat a1.txt
+  501  gcc
+  502  gcc -i
+  503  gcc help
+  504  gcc --version
+  505  touch first_C.c
+  506  gcc -c first_C.c 
+  507  exit
+  508  gcc -c first_C.c
+  509  gcc -c first_C.
+  510  gcc -c first_C.c
+  511  first_C.c
+  512  first_C.o
+  513  gcc -o first_C.o
+  514  gcc -c first_C.c
+  515  sudo apt install notepad
+  516  sudo apt install notepad++
+  517  sudo snap install notepad-plus-plus
+  518  sudo snap install wine-platform-7-devel-core20
+  519  sudo snap install notepad-plus-plus
+  520  snap help refresh
+  521  notepad-plus-plus
+  522  exit
+  523  apt get update
+  524  apt-get update
+  525  apt-get --just-print upgrade
+  526  sudo apt-get update
+  527  sudo apt-get upgrade
+  528  apt-get --just-print upgrade
+  529  sudo apt-get --just-print upgrade
+  530  sudo apt-get upgrade
+  531  cd ../../../../../
+  532  cd home/evgeniy/Tsurkov_repository/
+  533  cd team22/
+  534  git branch
+  535  git checkout main
+  536  git commit -m "я не помню что менял"
+  537  git checkout main
+  538  git branch
+  539  git commit -m"я не помню что менял"
+  540  git checkout main
+  541  git add users/EANabatov/SQL/SQL_create_db.py users/EANabatov/SQL/Triangle/main.py 
+  542  git commit -m"не помню что менял"
+  543  git checkout main
+  544  git branch
+  545  git pull
+  546  git branch html
+  547  git branch
+  548  git checkout html 
+  549  git status
+  550  git add users/EANabatov/html/index_blocks.html users/EANabatov/html/mystyle.css 
+  551  git status
+  552  git add users/EANabatov/html/image/foto.jpg users/EANabatov/html/image/KMS.jpg users/EANabatov/html/logo.png users/EANabatov/html/image/MS.jpg users/EANabatov/html/image/yandex_mail.png 
+  553  git add users/EANabatov/html/image/foto.jpg users/EANabatov/html/image/KMS.jpg users/EANabatov/html/logo.jpg users/EANabatov/html/image/MS.jpg users/EANabatov/html/image/yandex_mail.png 
+  554  git status
+  555  git add users/EANabatov/html/index_blocks.html users/EANabatov/html/image/logo.jpg 
+  556  git commit -m"MVP"
+  557  git push
+  558  git push --set-upstream origin html 
+  559  git checkout main
+  560  git branch
+  561  git pull
+  562  git checkout html 
+  563  git rebase
+  564  git rebase html
+  565  git rebase main
+  566  exit
+  567  git branch
+  568  git checkout main
+  569  git branch
+  570  git rebase main
+  571  git checkout html
+  572  pip3 install openpyxl
+  573  python -m pip install --upgrade pip' command
+  574  exit()
+  575  exit
+  576  pip install XlsxWriter
+  577  python -m pip install --upgrade pip
+  578  pip3 install pylint
+  579  pylint main.py
+  580  sudo apt install pip3
+  581  sudo apt get install pip
+  582  sudo apt install pip
+  583  close pycharm
+  584  stop pycharm
+  585  help
+  586  exit pycharm
+  587  pip install pytelegrambot
+  588  pip install --upgrade pip
+  589  pip install pyTelegramBotAPI
+  590  pip -m install pyTelegramBotAPI
+  591  python3 -m pip install pyTelegramBotAPI
+  592  pip install setuptools wheel
+  593  pip install pyTelegramBotAPI
+  594  exit
+  595  python3 -m pip install pyTelegramBotAPI
+  596  pip upgrade
+  597  sudo apt upgrade
+  598  $ pip install git+https://github.com/eternnoir/pyTelegramBotAPI.git
+  599  pip install git+https://github.com/eternnoir/pyTelegramBotAPI.git
+  600  pwd
+  601  ls
+  602  sudo apt update
+  603  apt list --upgradable
+  604  exit
+  605  ubuntu -v
+  606  cd VirtualBox\ VMs/
+  607  cd VM_2_test/
+  608  ls
+  609  VM_2_test.vbox
+  610  sudo apt-get install virtualbox
+  611  VirtualBox -V
+  612  sudo apt-get install virtualbox
+  613  virtualbox
+  614  sudo apt-get install virtualbox-dkms
+  615  virtualbox
+  616  sudo apt-get remove virtualbox-dkms
+  617  sudo apt-get install virtualbox-dkms
+  618  virtualbox
+  619  sudo apt-get remove virtualbox
+  620  sudo apt-get install virtualbox
+  621  sudo apt-get remove virtualbox
+  622  kvm-ok
+  623  sudo apt install cpu-checker
+  624  kvm-ok
+  625  sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
+  626  sudo apt-get install qemu-kvm ubuntu-vm-builder bridge-utils
+  627  sudo apt-get install qemu-kvm bridge-utils
+  628  sudo apt-get install libvirt-bin
+  629  sudo apt-get install libvirt-daemon-system libvirt-clients
+  630  sudo apt-get install kvm qemu-kvm bridge-utils build-essential virtinst virt-manager apt-cacher subversion
+  631  sudo apt-get install kvm qemu-kvm
+  632  sudo apt-get install virt-manager
+  633  sudo apt-get install kvm
+  634  apt-get install kvm qemu-kvm bridge-utils build-essential virtinst virt-manager apt-cacher subversion
+  635  egrep -c '(vmx|svm)' /proc/cpuinfo
+  636  sudo apt install qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils virt-manager
+  637  cd Tsurkov_repository/team22/users/EANabatov/TR_parsing/
+  638  cd html/
+  639  ls
+  640  cat /home/evgeniy/Documents/html/book_parsing.html
+  641  printenv
+  642  printenv "*"
+  643  printenv '^*'
+  644  echo "$printenv"
+  645  "$printenv"
+  646  echo "Keker"
+  647  echo "blabla \<prinenv\>"
+  648  echo "blabla ${prinenv}"
+  649  echo "blabla ${printenv}"
+  650  echo "blabla \<printenv\>"
+  651  echo "blabla ${printenv}"
+  652  printenv
+  653  someEnv=`printenv`
+  654  for line in $someEnv ; do echo "hello, ${line}"; done
+  655  echo $line
+  656  echo $line | cut -d"=" -f1
+  657  echo $line | cut -d"=" -f2
+  658  echo $line | cut -d"=" -f1
+  659  echo $line | cut -d"=" -f2
+  660  sed --help
+  661  man sed
+  662  echo $line | sed 's/=/is/g'
+  663  echo $line | sed 's/=/ is /g'
+  664  for line in $someEnv ; do echo "The value of ${line}" | sed 's/=/ is /g'; done
+  665  someEnv=`printenv` ; for line in $someEnv ; do echo "The value of ${line}" | sed 's/=/ is /g'; done
+  666  printenv
+  667  printenv | sed 's/=/ is /g'
+  668  printenv | sed 's/=/ is /g' | sed 'The value of $line'
+  669  printenv | sed 's/=/ is /g' | sed 'The value of ^*'
+  670  printenv | sed 's/=/ is /g' | sed 'The value of ${^}'
+  671  printenv | sed 's/=/ is /g' | sed 'The value of ${^*}'
+  672  printenv | sed 's/=/ is /g' | sed 'The value of ${^*#}'
+  673  printenv | sed 's/=/ is /g' | sed 'The value of '
+  674  printenv | sed 'The' 's/=/ is /g'
+  675  printenv | sed 's/=/ is /g'
+  676  printenv | sed 'The env ^'| sed 's/=/ is /g'
+  677  printenv | sed '^The env'| sed 's/=/ is /g'
+  678  printenv | sed '`^`The env'| sed 's/=/ is /g'
+  679  printenv | sed 's/=/ is /g'
+  680  touch kek.txt
+  681  cd Documents/
+  682  mkdir kek
+  683  cd kek
+  684  touch kek.xlsx
+  685  kek.xlsx
+  686  ls
+  687  kek.xlsx
+  688  open kek.xlsx 
+  689  close kek.xlsx 
+  690  gclose kek.xlsx 
+  691  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  692  qq
+  693  zz
+  694  cargo --version
+  695  tar --version
+  696  apm install ide-rust
+  697  $ apm install ide-rust
+  698  tar -xvf RustRover-223.10527.39.tar.gz
+  699  cd Downloads/
+  700  tar -xvf RustRover-223.10527.39.tar.gz
+  701  tar -xvf RustRover-233.10527.39.tar.gz
+  702  cd ../
+  703  cd evgeniy/
+  704  ./rustrover.sh
+  705  move Downloads/RustRover-233.10527.39 /home/evgeniy/
+  706  ./rustrover.sh
+  707  cd RustRover-233.10527.39/bin/
+  708  ./rustrover.sh
+  709  apt-get install postgresql-12
+  710  cd Downloads/
+  711  apt-get install postgresql-12
+  712  sudo apt-get install postgresql-12
+  713  cd ../
+  714  cd PycharmProjects/bin/
+  715  ls
+  716  cd ../
+  717  cd .cache/
+  718  apt-get install postgresql-12
+  719  sudo apt-get install postgresql-12
+  720  pytnon3.8 -m pip install Django
+  721  python3 -m pip install Django
+  722  Django --version
+  723  django --version
+  724  python3
+  725  qq
+  726  zz
+  727  exit
+  728  python3 -m django --version
+  729  django-admin startproject mysite
+  730  python manage.py runserver
+  731  python3 manage.py runserver
+  732  cd mysite/mysite/
+  733  python manage.py runserver
+  734  python3 manage.py runserver
+  735  cd ../
+  736  python manage.py runserver
+  737  python3 manage.py runserver
+  738  python3 manage.py runserver 0.0.0.0:1234
+  739  ls
+  740  python manage.py startapp polls
+  741  python3 manage.py startapp polls
+  742  python3 manage.py runserver
+  743  python3 manage.py migrate
+  744  python3 manage.py makemigrations polls
+  745  python3 manage.py sqlmigrate polls 0001
+  746  python3 manage.py migrate
+  747  python3 manage.py shell
+  748  python3 manage.py migrate
+  749  python3 manage.py makemigrations polls
+  750  python3 manage.py sqlmigrate polls 0002
+  751  python3 manage.py migrate
+  752  python3 manage.py shell
+  753  cd PycharmProjects/django_training/mysite/
+  754  ls
+  755  python3 manage.py createsuperuser
+  756  python3 manage.py runserver
+  757  gcc --version
+  758  gcc --help
+  759  cd C++_Projects/
+  760  ls
+  761  gcc c++_first_work 
+  762  ubuntu --version
+  763  ls-l
+  764  ls -l
+  765  ls
+  766  gcc c++_first_work 
+  767  iostream
+  768  iostream --version
+  769  ls
+  770  gcc c++_first_work.cpp
+  771  gcc -lstdc++ c++_first_work.cpp
+  772  cd C++_Projects/
+  773  ls
+  774  gcc c++_first_work.cpp 
+  775  gcc -g3 c++_first_work.cpp 
+  776  gcc -g c++_first_work.cpp 
+  777  gcc -g c++_first_work.cpp -no-pie
+  778  cd C++_Projects/
+  779  ls
+  780  gcc -g kek.cpp 
+  781  gpd kek.cpp 
+  782  G++ --version
+  783  g++ --version
+  784  g++ kek.cpp 
+  785  g++ -o kek kek.cpp 
+  786  ./kek
+  787  sudo apt update
+  788  sudo apt install build-essential
+  789  gcc --version
+  790  g++ --help
+  791  ./kek -time
+  792  g++ -o kek kek.cpp -time
+  793  ./kek -time
+  794  touch kek.cpp
+  795  cat kek.cpp
+  796  txt kek.cpp
+  797  g++ -o kek kek.cpp -time
+  798  ./kek -time
+  799  python -m pytest
+  800  python3 -m pytest
+  801  python3.8 -m upgrade pip
+  802  sudo apt upgrade pip
+  803  exit
+  804  cd PycharmProjects/MasterFolderPycharm/Tasks_done/
+  805  cd ../
+  806  zip Tasks_done/
+  807  zip Tasks_done
+  808  zip --help
+  809  git branch
+  810  git pull
+  811  cd team22/users/eanabatov/
+  812  ls -la
+  813  ead ls -la
+  814  head ls -la
+  815  ls
+  816  cd hw1/
+  817  ls
+  818  ls -la
+  819  grep -rna 'GET' /hw1
+  820  cd ../
+  821  grep -rna 'GET' /hw1
+  822  ls
+  823  grep -rna 'GET' hw1
+  824  ls
+  825  cd hw1/
+  826  ls
+  827  grep -rna 'GET' hw1 && touch url.txt
+  828  grep -rna 'GET' hw1 && cat url.txt
+  829  cd ../
+  830  grep -rna 'GET' hw1 && touch url.txt
+  831  ls
+  832  grep -rna 'GET' hw1 && touch hw1/url.txt
+  833  ls
+  834  rm url.txt 
+  835  ls
+  836  cd hw1/
+  837  ls
+  838  git branch
+  839  echo &A
+  840  echo A
+  841  echo &<A>
+  842  wget https://finance.rambler.ru/currencies/USD/
+  843  ls
+  844  cat index.html 
+  845  wget https://finance.rambler.ru/currencies/USD/ && grep -rna 'USD' index.html 
+  846  ls
+  847  rm index.html.1 
+  848  git status
+  849  cd ../
+  850  git status
+  851  cd ../
+  852  cd eanabatov/
+  853  git status
+  854  git add hw1/
+  855  git sttaus
+  856  git status
+  857  git commit -m "Первое домашнее задание"
+  858  git push
+  859  git push --set-upstream origin eanabatov-hw1-bash 
+  860  git branch
+  861  git checkout main 
+  862  ls
+  863  cd ../../../
+  864  cd team22/users/eanabatov/
+  865  git branch
+  866  git pull
+  867  git branch eanabatov-hw0-readme
+  868  git branch
+  869  git checkout eanabatov-hw0-readme 
+  870  ls
+  871  s
+  872  ls
+  873  touch README.txt
+  874  ды
+  875  ls
+  876  cat README.txt 
+  877  ls
+  878  git status
+  879  git add README.txt 
+  880  git status
+  881  git commit -m 'Добавление файла README.txt'
+  882  git push
+  883  git push --set-upstream origin eanabatov-hw0-readme 
+  884  git checkout main 
+  885  git pull
+  886  git branch eanabatov-hw2-git
+  887  git checkout eanabatov-hw2-git 
+  888  ls
+  889  mkdir hw2
+  890  ls
+  891  cd hw2/
+  892  cd ../
+  893  ls
+  894  rm hw2/
+  895  rm -r hw2/
+  896  ls
+  897  mkdir exercise
+  898  ls
+  899  cd exercise/
+  900  mkdir hw1
+  901  ls
+  902  cd hw1/
+  903  touch result_du
+  904  touch result_history
+  905  cat result_history 
+  906  history | touch result_history 
+  907  cat result_history 
+  908  history 
+  909  history | r
+  910  history | cat result_history 
+  911  cat result_history 
+  912  ls
+  913  history cat result_history 
+  914  touch result_history history
+  915  cat history 
+  916  history touch result_history 
+  917  history cat result_history 
+  918  cat result_history history
+  919  cat result_history 
+  920  history >> result_history 
