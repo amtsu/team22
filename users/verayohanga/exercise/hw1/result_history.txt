@@ -91,55 +91,14 @@
    91  cd hw`
    92  cd hw1
    93  pwd
-   94  git checkout main
-   95  ls
-   96  cd github
-   97  git checkout main
-   98  ls
-   99  cd team22
-  100  cd users
-  101  ls
-  102  git checkout main
-  103  git pull
-  104  git checkout verayohanga_hw1
-  105  cd verayohanga
-  106  vim readme.txt
-  107  em Вера
-  108  Системный аналитик в банке.
-  109  Сталкиваюсь с задачами, в которых не помешала бы автоматизация (например, обезличивание xml с персональными данными клиентов). 
-  110  План на практику: бот, который может пролистывать ленту социальной сети и ставить лайки постам определенных аккаунтов.
-  111  tg: @VeraYohanga
-  112  GitHub: @VeraYohanga
-  113  rm readme.txt
-  114  touch readme.txt
-  115  vim readme.txt
-  116  git status
-  117  git commit -m 'Вторая попытка сделать свой первый коммит'
-  118  git config --global 
-  119  git config --global user.email vera.s.tarasova@yandex.ru
-  120  git push --set-upstream origin verayohanga_hw1
-  121  cd exercise
-  122  cd hw1
-  123  git checkout main
-  124  git commit -m 'Я хз зачем опять коммитить после заливки всего на гитхаб'
-  125  git checkout main
-  126  git add readme.txt
-  127  cd..
-  128  cd ..
-  129  git add readme.txt
-  130  git commit -m 'Я хз зачем опять коммитить после заливки всего на гитхаб'
-  131  git push
-  132  git checkout main
-  133  git pull
-  134  pwd
-  135  cd exercise
-  136  cd hw1
-  137  git branch verayohanga_hw1-part2
-  138  git checkout verayohanga_hw1-part2
-  139  du
-  140  du .
-  141  ls -la ~ > result_du.txt
-  142  vim result_du.txt
-  143  du > result_du.txt
-  144  vim result_du.txt
-  145  history > result_history.txt
+   94  vim readme.txt
+   95  rm readme.txt.swp
+   96  readme.swp
+   97  rm readme.swp
+   98  vim readme.txt
+   99  rm .readme.txt.swp
+  100  vim readme.txt
+  101  git add readme.txt
+  102  git commit -m 'Добавлен файл readme.txt, в котором записан мой крик души'
+  103  du > result_du.txt
+  104  history > result_history.txt
