@@ -249,8 +249,8 @@
   249  du -h > result_du
   250  history > result_history 
   251  git diff
-  252  git status
-  253  git add .
+  252* 
+  253* 
   254  git status
   255  git commit -m 'Шестой блок hw1'
   256  grep -rni 'GET' /hw1/
@@ -272,3 +272,35 @@
   272  ls
   273  du -h > result_du 
   274  history > result_history 
+  275  git diff
+  276  git status
+  277  git add .
+  278  git status
+  279  git commit -m 'Седьмой блок hw1'
+  280  curl https://finance.rambler.ru/currencies/USD/ -o test.html
+  281  cat test.html 
+  282  ls
+  283  mv test.html home_work_1/
+  284  ls
+  285  cd home_work_1/
+  286  ls
+  287  curl https://finance.rambler.ru/currencies/USD/ -o test.html | grep 'USD'
+  288  ls
+  289  cat test.html 
+  290  grep 'USD' test.html 
+  291  grep '89' test.html
+  292  grep 'USD' test.html 
+  293  grep '1 USD' test.html 
+  294  grep '1 USD' test.html | awk '{print $4}'
+  295* 
+  296* grep '1 EUR' test.html 
+  297  grep '1 EUR' test_eur.html | awk '{print $4}'
+  298  ls -la
+  299  ls -lp | grep -v /
+  300  ls -lp | grep -v / | sort
+  301  ls -lp | grep -v / | tail -n +2
+  302  ls -lp | grep -v / | tail -n 1
+  303  ls -lp | grep -v / | tail -n 1 | awk '{print $6, $7}'
+  304  cd ..
+  305  du -h > result_du 
+  306  history > result_history 
