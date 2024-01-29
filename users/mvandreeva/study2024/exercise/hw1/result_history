@@ -1,0 +1,247 @@
+    1  pwd
+    2  mkdir github
+    3  cd github
+    4  git clone git@github.com:amtsu/team22.git
+    5  pwd
+    6  cd github/
+    7  git clone git@github.com:amtsu/team22.git
+    8  ssh-keygen -t rsa -b 4096 -C "Mariya.V.Andreeva@yandex.ru"
+    9  cat ~/.ssh/id_rsa.pub
+   10  pwd
+   11  git clone git@github.com:amtsu/team22.git
+   12  git branch
+   13  cd team22/users/mvandreeva/
+   14  git branch
+   15  git branch mvandreeva_new_study
+   16  git checkout mvandreeva_new_study 
+   17  mkdir study2022
+   18  mkdir study2024
+   19  mv lesson_11_HW_objects_in_files/ study2022/
+   20  ls -la study2022
+   21  mv lesson_9_HW_objects_to_files/ study2022
+   22  ls -la study2022
+   23  mv lesson_7_HW_from_book/ study2022
+   24  mv lesson_6_HW_files/ study2022
+   25  mv lesson_14_HW_Modules_classes/ study2022
+   26  mv lesson_15_HW_web_prices/ study2022
+   27  mv lesson_17_HW_decorators/ study2022
+   28  mv lesson_21_HW_web_parsing_update/ study2022
+   29  mv lesson_23_HW_mypy_black_pylint/ study2022
+   30  mv lesson_25_HW_SQL/ study2022
+   31  mv mvandreeva_lesson_3_TDD_work_1_v2-Copy1.ipynb study2022
+   32  pwd
+   33  git branch 
+   34  cd github/team22/users/mvandreeva/
+   35  git branch 
+   36  git status
+   37  git add *
+   38  git status
+   39  git commit -m "Moved previous study to study2022"
+   40  git config --global user.email "Mariya.V.Andreeva@yandex.ru"
+   41  git config --global user.name "Andromary"
+   42  git commit -m "Moved previous study to study2022"
+   43  git push
+   44  git push --set-upstream origin mvandreeva_new_study
+   45  git checkout main
+   46  git checkout mvandreeva_new_study 
+   47  git status
+   48  git checkout main
+   49  git pull
+   50  git branch mvandreeva_add_readme
+   51  git checkout mvandreeva_add_readme 
+   52  git status
+   53  pwd > README.md 
+   54  cd ../..
+   55  git status
+   56  git diff
+   57  git add users/mvandreeva/README.md
+   58  git commit -m "Add README file"
+   59  git push
+   60  git push --set-upstream origin mvandreeva_add_readme
+   61  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   62  vim ~/.bashrc
+   63  git branch
+   64  vim README.md 
+   65  cd users/mvandreeva/
+   66  vim README.md 
+   67  git status 
+   68  git add README.md 
+   69  git status 
+   70  git commit -m "Modified README. Added my info"
+   71  git push
+   72  pwd
+   73  history
+   74  pwd
+   75  ls
+   76  ls -la /
+   77  cd /home/
+   78  ls -la
+   79  du > result_du
+   80  ls -la
+   81  cd jupyter-andromary
+   82  pwd
+   83  cd github/team22/users/mvandreeva/study2024/exercise/hw1/
+   84  du > result_du
+   85  ls -la
+   86  history > result_history
+   87  git status
+   88  git diff
+   89  pwd
+   90  ls -la
+   91  git status
+   92  ../../
+   93  cd ../../
+   94  git status
+   95  cd ./
+   96  git status
+   97  git add ./
+   98  git status
+   99  git commit -m "1st part"
+  100  git push
+  101  git push --set-upstream origin mvandreeva_hw_1_terminal
+  102  cd exercise/hw1/
+  103  mkdir home_work_1
+  104  touch home_work_1/file_1
+  105  mkdir home_work_1/work_dir
+  106  cd home_work_1/
+  107  cp file_1 work_dir/file_1_copy
+  108  cp -r work_dir/ work_dir_new/
+  109  ls -la
+  110  ls -la work_dir_new/
+  111  cp work_dir_new/file_1_copy work_dir_new/file_1_new_name
+  112  ls -la work_dir_new/
+  113  mv work_dir_new/file_1_copy work_dir_new/file_1_new_name 
+  114  ls -la work_dir_new/
+  115  rm work_dir_new/file_1_new_name 
+  116  rm -r work_dir_new/
+  117  ls -la
+  118  cd ..
+  119  ls -la
+  120  du > result_du 
+  121  history > result_history 
+  122  git status
+  123  git diff
+  124  du
+  125  git status
+  126  git add result_du 
+  127  git add result_history 
+  128  git add home_work_1/file_1 
+  129  git status
+  130  git add home_work_1/work_dir/file_1_copy 
+  131  git status
+  132  git commit -m "2nd part"
+  133  git push
+  134  cd home_work_1/
+  135  vim file1
+  136  vim file2
+  137  cd ..
+  138  ls -la
+  139  du > result_du 
+  140  history >result_history 
+  141  git diff
+  142  git status 
+  143  git add result_du 
+  144  git add result_history home_work_1/file1 home_work_1/file2
+  145  git status 
+  146  git commit -m "3rd part"
+  147  git push
+  148  cat home_work_1/file1
+  149  head home_work_1/file1
+  150  head -n2 home_work_1/file1
+  151  tail -n2 home_work_1/file1
+  152  du > result_du 
+  153  history > result_history 
+  154  git diff
+  155  git status 
+  156  git add result_history 
+  157  git commit -m "4th part"
+  158  git push
+  159  find /home/ -name "*fil*"
+  160  du | awk -F' ' '{print $1}' home_work_1/
+  161  du | awk -F' ' '{print $1}' 
+  162  pwd
+  163  grep 'GET' 
+  164  grep -rni 'GET' home_work_1/
+  165  du > result_du 
+  166  history > result_history 
+  167  git diff
+  168  git status 
+  169  git add result_du result_history 
+  170  git status 
+  171  git commit -m "5th part"
+  172  git push
+  173  grep -rni 'GET' home_work_1/ > save_get
+  174  rm save_get 
+  175  grep -rni 'GET' home_work_1/ > home_work_1/save_get
+  176  du > result_du 
+  177  history > result_history 
+  178  git diff
+  179  git status 
+  180  git add result_du result_history home_work_1/save_get 
+  181  git commit -m "6th part"
+  182  git push
+  183  ls -la && rm test123 && pwd
+  184  ls -la; rm test123; pwd
+  185  ls -la && rm test123 && pwd > test1
+  186  cat test1
+  187  ls -la > test1 && rm test123 >> test1 && pwd >>test1
+  188  cat test1
+  189  rm test1 
+  190  du > result_du 
+  191  history > result_history 
+  192  git diff
+  193  ls -la > test1 && rm test123 >> test1 && pwd >> test1
+  194  cat test1 
+  195  git status 
+  196  rm test1 
+  197  git add result_history 
+  198  git commit -m "7th part"
+  199  git push
+  200  grep -rni 'GET' | awk -F'"' '{print $2}' | awk -F' ' '{print $2}' | sort
+  201  man sort
+  202  grep -rni 'GET' | awk -F'"' '{print $2}' | awk -F' ' '{print $2}' | sort -r
+  203  grep -rni 'GET' | awk -F'"' '{print $2}' | awk -F' ' '{print $2}' | sort -r | wc -l
+  204  grep -rni 'GET' | awk -F'"' '{print $2}' | awk -F' ' '{print $2}' | sort -r > test
+  205  cat test 
+  206  rm test
+  207  man wc
+  208  grep -rni 'GET' | awk -F'"' '{print $2}' | awk -F' ' '{print $2}' | sort -r | wc -m
+  209  du > result_du 
+  210  history > result_history 
+  211  git diff
+  212  git status 
+  213  git add result_du 
+  214  git add result_history 
+  215  git status 
+  216  git commit -m "8th part"
+  217  git push
+  218  env | grep 'A'
+  219  du > result_du 
+  220  history > result_history 
+  221  git diff
+  222  git status 
+  223  git add result_history 
+  224  git commit -m "9th part"
+  225  git push
+  226  curl -o https://finance.rambler.ru/currencies/ | grep '1 USD'
+  227  curl https://finance.rambler.ru/currencies/ -o | grep '1 USD'
+  228  curl -o https://finance.rambler.ru/currencies/USD/ | grep '1 USD'
+  229  curl https://finance.rambler.ru/currencies/USD -o | grep '1 USD'
+  230  curl https://finance.rambler.ru/currencies/USD -o test | grep '1 USD'
+  231  cat test 
+  232  curl https://finance.rambler.ru/currencies/USD/ -o test | grep '1 USD'
+  233  cat test 
+  234  curl https://finance.rambler.ru/currencies/USD/ -o test | grep '1 USD'
+  235  curl https://finance.rambler.ru/currencies/USD/ -o test | grep '1 USD ='
+  236  curl https://finance.rambler.ru/currencies/USD/ -o test | grep '1 USD =' test
+  237  mv test usd
+  238  curl https://finance.rambler.ru/currencies/EUR/ -o eur | grep '1 USD =' eur
+  239  curl https://finance.rambler.ru/currencies/EUR/ -o eur | grep '1 EUR =' eur
+  240  grep '1 USD =' usd; grep '1 EUR =' eur
+  241  ls -la
+  242  ls -la | awk -F' ' '{print $6, $7, $8}' | sort | head -n1
+  243  ls -la | awk -F' ' '{print $6, $7, $8}' | sort | head -n2
+  244  ls -la | awk -F' ' '{print $6, $7, $8}' | sort -r | head -n2
+  245  ls -la | awk -F' ' '{print $6, $7, $8}' | sort -r | head -n1
+  246  du > result_du 
+  247  history > result_history 
