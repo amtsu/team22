@@ -223,3 +223,16 @@
   223  ls
   224  du -h > result_du 
   225  history > result_history 
+  226  git diff
+  227  git status
+  228  git add .
+  229  git status
+  230  git commin -m 'Четвертый блок hw1'
+  231  git commit -m 'Четвертый блок hw1'
+  232  find /home/ -name '*fil*'
+  233  ls -la
+  234  ls -lp | grep -v / | awk -F' ' '{print $5}' | tail -n +2
+  235  grep -rni 'GET' .
+  236  ls
+  237  du -h > result_du
+  238  history > result_history 
