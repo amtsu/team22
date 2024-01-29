@@ -147,3 +147,8 @@ Hi
   142  grep -rni 'GET' ~/github/team22/users/oekorchevaya
   143  du > result_du
   144  history > result_history
+  145  git add .
+  146  git commit -m '5th block of hw1'
+  147  grep -rni 'GET' ~/github/team22/users/oekorchevaya > URI_file
+  148  du > result_du
+  149  history > result_history
