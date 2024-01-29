@@ -176,250 +176,273 @@
   176  git commit -m 'Второй блок hw2'
   177  git status
   178  history
-  179  pwd
+  179  cd github/team22/users/aemareev/
   180  ls
-  181  cd github
+  181  cd exercise/
   182  ls
-  183  cd team22/
+  183  pwd
   184  ls
-  185  cd users/aemareev/exercise/hw1/
-  186  ls]
-  187  ls
-  188  git status
-  189  git log
-  190  git diff
-  191  git log
-  192  touch file1
-  193  ls
-  194  rm file1 
-  195  ls
-  196  cd home_work_1/
+  185  cd github
+  186  ls
+  187  cd team22/
+  188  ls
+  189  cd users/aemareev/exercise/hw1/
+  190  ls]
+  191  ls
+  192  git status
+  193  git log
+  194  git diff
+  195  git log
+  196  touch file1
   197  ls
-  198  touch file1
-  199  vim file1
-  200  cat file1
-  201  touch file2
-  202  vim file2
-  203  cat file2
-  204  cd ..
-  205  ls
-  206  git status
-  207  du -h > result_du 
-  208  history > result_history 
-  209  git diff
+  198  rm file1 
+  199  ls
+  200  cd home_work_1/
+  201  ls
+  202  touch file1
+  203  vim file1
+  204  cat file1
+  205  touch file2
+  206  vim file2
+  207  cat file2
+  208  cd ..
+  209  ls
   210  git status
-  211  git add .
-  212  git status
-  213  git commit -m 'Третий блок hw1'
+  211  du -h > result_du 
+  212  history > result_history 
+  213  git diff
   214  git status
-  215  ды
-  216  ls
-  217  cd home_work_1/
-  218  ls
-  219  cat file1
-  220  head -n 2 file1
-  221  tail -n 2 file1
-  222  cd ..
-  223  ls
-  224  du -h > result_du 
-  225  history > result_history 
-  226  git diff
-  227  git status
-  228  git add .
-  229  git status
-  230  git commin -m 'Четвертый блок hw1'
-  231  git commit -m 'Четвертый блок hw1'
-  232  find /home/ -name '*fil*'
-  233  ls -la
-  234  ls -lp | grep -v / | awk -F' ' '{print $5}' | tail -n +2
-  235  grep -rni 'GET' .
-  236  ls
-  237  du -h > result_du
-  238  history > result_history 
-  239  git status
-  240  git add .
-  241  git status
-  242  git commit -m 'Пятый блок hw1'
-  243  grep -rni 'GET' . > test_grep_1
-  244  grep -rni 'GET' .
-  245  ls
-  246  ls -la && rm test123 && pwd
-  247  ls -la; rm test123; pwd
-  248  ls
-  249  du -h > result_du
-  250  history > result_history 
-  251  git diff
-  252* 
-  253* 
-  254  git status
-  255  git commit -m 'Шестой блок hw1'
-  256  grep -rni 'GET' /hw1/
-  257  grep -rni 'GET' /hw1
-  258  grep -rni 'GET' home_work_1/
-  259  grep -rni 'GET' .
-  260  ls
-  261  mv test_grep_1 home_work_1/
+  215  git add .
+  216  git status
+  217  git commit -m 'Третий блок hw1'
+  218  git status
+  219  ды
+  220  ls
+  221  cd home_work_1/
+  222  ls
+  223  cat file1
+  224  head -n 2 file1
+  225  tail -n 2 file1
+  226  cd ..
+  227  ls
+  228  du -h > result_du 
+  229  history > result_history 
+  230  git diff
+  231  git status
+  232  git add .
+  233  git status
+  234  git commin -m 'Четвертый блок hw1'
+  235  git commit -m 'Четвертый блок hw1'
+  236  find /home/ -name '*fil*'
+  237  ls -la
+  238  ls -lp | grep -v / | awk -F' ' '{print $5}' | tail -n +2
+  239  grep -rni 'GET' .
+  240  ls
+  241  du -h > result_du
+  242  history > result_history 
+  243  git status
+  244  git add .
+  245  git status
+  246  git commit -m 'Пятый блок hw1'
+  247  grep -rni 'GET' . > test_grep_1
+  248  grep -rni 'GET' .
+  249  ls
+  250  ls -la && rm test123 && pwd
+  251  ls -la; rm test123; pwd
+  252  ls
+  253  du -h > result_du
+  254  history > result_history 
+  255  git diff
+  256  git status
+  257  git commit -m 'Шестой блок hw1'
+  258  grep -rni 'GET' /hw1/
+  259  grep -rni 'GET' /hw1
+  260  grep -rni 'GET' home_work_1/
+  261  grep -rni 'GET' .
   262  ls
-  263  grep -rni 'GET' home_work_1/
-  264  grep -rni 'GET' home_work_1/ | awk '{print $6}'
-  265  grep -rni 'GET' home_work_1/ | awk '{print $7}'
-  266  grep -rni 'GET' home_work_1/ | awk -F'GET' '{print $7}'
-  267  grep -rni 'GET' home_work_1/ | awk -F'GET' '{print $2}'
-  268  grep -rni 'GET' home_work_1/ | awk '{print $7}'
-  269  grep -rni 'GET' home_work_1/ | awk '{print $7}' | sort
-  270  env
-  271  env | grep 'A'
-  272  ls
-  273  du -h > result_du 
-  274  history > result_history 
-  275  git diff
-  276  git status
-  277  git add .
+  263  mv test_grep_1 home_work_1/
+  264  ls
+  265  grep -rni 'GET' home_work_1/
+  266  grep -rni 'GET' home_work_1/ | awk '{print $6}'
+  267  grep -rni 'GET' home_work_1/ | awk '{print $7}'
+  268  grep -rni 'GET' home_work_1/ | awk -F'GET' '{print $7}'
+  269  grep -rni 'GET' home_work_1/ | awk -F'GET' '{print $2}'
+  270  grep -rni 'GET' home_work_1/ | awk '{print $7}'
+  271  grep -rni 'GET' home_work_1/ | awk '{print $7}' | sort
+  272  env
+  273  env | grep 'A'
+  274  ls
+  275  du -h > result_du 
+  276  history > result_history 
+  277  git diff
   278  git status
-  279  git commit -m 'Седьмой блок hw1'
-  280  curl https://finance.rambler.ru/currencies/USD/ -o test.html
-  281  cat test.html 
-  282  ls
-  283  mv test.html home_work_1/
+  279  git add .
+  280  git status
+  281  git commit -m 'Седьмой блок hw1'
+  282  curl https://finance.rambler.ru/currencies/USD/ -o test.html
+  283  cat test.html 
   284  ls
-  285  cd home_work_1/
+  285  mv test.html home_work_1/
   286  ls
-  287  curl https://finance.rambler.ru/currencies/USD/ -o test.html | grep 'USD'
+  287  cd home_work_1/
   288  ls
-  289  cat test.html 
-  290  grep 'USD' test.html 
-  291  grep '89' test.html
+  289  curl https://finance.rambler.ru/currencies/USD/ -o test.html | grep 'USD'
+  290  ls
+  291  cat test.html 
   292  grep 'USD' test.html 
-  293  grep '1 USD' test.html 
-  294  grep '1 USD' test.html | awk '{print $4}'
-  295* 
-  296* grep '1 EUR' test.html 
-  297  grep '1 EUR' test_eur.html | awk '{print $4}'
-  298  ls -la
-  299  ls -lp | grep -v /
-  300  ls -lp | grep -v / | sort
-  301  ls -lp | grep -v / | tail -n +2
-  302  ls -lp | grep -v / | tail -n 1
-  303  ls -lp | grep -v / | tail -n 1 | awk '{print $6, $7}'
-  304  cd ..
-  305  du -h > result_du 
-  306  history > result_history 
-  307  git status
-  308  git add .
-  309  git status
-  310  git commit -m 'Восьмой блок hw1'
-  311  св юю
-  312  cd ..
-  313  ls
-  314  mkdir hw2
-  315  ls
-  316  cd hw2
-  317  touch price_f.html
-  318  ls
-  319  vim price_f.html 
-  320  cat price_f.html 
-  321  ls
-  322  git status
-  323  git add .
-  324  git status
-  325  git commit -m 'Добавлен фаил с ценой на холодильник'
-  326  git branch aemareev-hw2-git-part-2-feature-1
-  327  git checkout aemareev-hw2-git-part-2-feature-1 
-  328  ls
-  329  git switch -c main 
-  330  cd ../../..
-  331  git switch -c main 
-  332  cd ..
-  333  git switch -c main 
-  334  git branch 
-  335  git checkout main
-  336  git branch -d aemareev-hw2-git-part-2-feature-1 
-  337  git branch -D aemareev-hw2-git-part-2-feature-1 
-  338  git branch
-  339  cd users/
-  340  ls
-  341  git pull
-  342  ls
-  343  cd aemareev/
-  344  ls
-  345  exec 
-  346  cd exercise/
-  347  ls
-  348  cd hw1
-  349  ls
-  350  cd home_work_1/
-  351  ls
-  352  cd ../..
-  353  ls
-  354  mkdir hw2
-  355  ls
-  356  cd hw2
-  357  cd ..
-  358  ls
-  359  rm -r hw2/
-  360  ls
-  361  git status
-  362  git branch aemareev-hw2-git-part-2-feature-1
-  363  git branch
-  364  git checkout aemareev-hw2-git-part-2-feature-1 
-  365  ls
-  366  mkdir hw2 && cd hw2
-  367  ls
-  368  touch price_h.html
-  369  vim price_h.html 
-  370  cat price_h.html 
-  371  git status
-  372  git add .
-  373  git status
-  374  git commit -m 'Добавлен фаил с ценой в ветку -feature-1'
-  375  git status
-  376  git log
-  377  git checkout aemareev-hw2-git-part-2
-  378  git status
-  379  cd ..
-  380  ls
-  381  cd hw2
-  382  ls
-  383  git log
-  384  git show
-  385  touch res.txt
-  386  ls
-  387  vim res.txt 
-  388  cat res.txt 
-  389  git status
-  390  git add .
-  391  git status
-  392  git commit -m 'Добавлен файл res.txt'
-  393  git show
-  394  git reset --soft HEAD 
-  395  git show
-  396  git log
-  397  git reset --soft HEAD^
-  398  git show
-  399  git log
-  400  ls
-  401  git status 
-  402  vim price_f.html 
-  403  cat price_f.html 
-  404  git status
-  405  git diff
-  406  git merge aemareev-hw2-git-part-2-feature-1 
-  407  ls
-  408  git add .
-  409  git status
-  410  git coommit -m 'Делаю коммит, иначе ветки не мержутся'
-  411  git status
-  412  git commit -m 'Делаю коммит, иначе ветки не мержутся'
-  413  git status
-  414  git merge aemareev-hw2-git-part-2-feature-1 
-  415  ls
-  416  git status
-  417  git branch
-  418  git push --set-upstream origin aemareev-hw2-git-part-2
-  419  ls
-  420  vim price_f.html 
-  421  cat price_f.html 
-  422  du -h > result_du
-  423  ls
-  424  cat result_du
-  425  history > result_history
+  293  grep '89' test.html
+  294  grep 'USD' test.html 
+  295  grep '1 USD' test.html 
+  296  grep '1 USD' test.html | awk '{print $4}'
+  297  grep '1 EUR' test.html 
+  298  grep '1 EUR' test_eur.html | awk '{print $4}'
+  299  ls -la
+  300  ls -lp | grep -v /
+  301  ls -lp | grep -v / | sort
+  302  ls -lp | grep -v / | tail -n +2
+  303  ls -lp | grep -v / | tail -n 1
+  304  ls -lp | grep -v / | tail -n 1 | awk '{print $6, $7}'
+  305  cd ..
+  306  du -h > result_du 
+  307  history > result_history 
+  308  git status
+  309  git add .
+  310  git status
+  311  git commit -m 'Восьмой блок hw1'
+  312  св юю
+  313  cd ..
+  314  ls
+  315  mkdir hw2
+  316  ls
+  317  cd hw2
+  318  touch price_f.html
+  319  ls
+  320  vim price_f.html 
+  321  cat price_f.html 
+  322  ls
+  323  git status
+  324  git add .
+  325  git status
+  326  git commit -m 'Добавлен фаил с ценой на холодильник'
+  327  git branch aemareev-hw2-git-part-2-feature-1
+  328  git checkout aemareev-hw2-git-part-2-feature-1 
+  329  ls
+  330  git switch -c main 
+  331  cd ../../..
+  332  git switch -c main 
+  333  cd ..
+  334  git switch -c main 
+  335  git branch 
+  336  git checkout main
+  337  git branch -d aemareev-hw2-git-part-2-feature-1 
+  338  git branch -D aemareev-hw2-git-part-2-feature-1 
+  339  git branch
+  340  cd users/
+  341  ls
+  342  git pull
+  343  ls
+  344  cd aemareev/
+  345  ls
+  346  exec 
+  347  cd exercise/
+  348  ls
+  349  cd hw1
+  350  ls
+  351  cd home_work_1/
+  352  ls
+  353  cd ../..
+  354  ls
+  355  mkdir hw2
+  356  ls
+  357  cd hw2
+  358  cd ..
+  359  ls
+  360  rm -r hw2/
+  361  ls
+  362  git status
+  363  git branch aemareev-hw2-git-part-2-feature-1
+  364  git branch
+  365  git checkout aemareev-hw2-git-part-2-feature-1 
+  366  ls
+  367  mkdir hw2 && cd hw2
+  368  ls
+  369  touch price_h.html
+  370  vim price_h.html 
+  371  cat price_h.html 
+  372  git status
+  373  git add .
+  374  git status
+  375  git commit -m 'Добавлен фаил с ценой в ветку -feature-1'
+  376  git status
+  377  git log
+  378  git checkout aemareev-hw2-git-part-2
+  379  git status
+  380  cd ..
+  381  ls
+  382  cd hw2
+  383  ls
+  384  git log
+  385  git show
+  386  touch res.txt
+  387  ls
+  388  vim res.txt 
+  389  cat res.txt 
+  390  git status
+  391  git add .
+  392  git status
+  393  git commit -m 'Добавлен файл res.txt'
+  394  git show
+  395  git reset --soft HEAD 
+  396  git show
+  397  git log
+  398  git reset --soft HEAD^
+  399  git show
+  400  git log
+  401  ls
+  402  git status 
+  403  vim price_f.html 
+  404  cat price_f.html 
+  405  git status
+  406  git diff
+  407  git merge aemareev-hw2-git-part-2-feature-1 
+  408  ls
+  409  git add .
+  410  git status
+  411  git coommit -m 'Делаю коммит, иначе ветки не мержутся'
+  412  git status
+  413  git commit -m 'Делаю коммит, иначе ветки не мержутся'
+  414  git status
+  415  git merge aemareev-hw2-git-part-2-feature-1 
+  416  ls
+  417  git status
+  418  git branch
+  419  git push --set-upstream origin aemareev-hw2-git-part-2
+  420  ls
+  421  vim price_f.html 
+  422  cat price_f.html 
+  423  du -h > result_du
+  424  ls
+  425  cat result_du
+  426  history > result_history
+  427  ls
+  428  cat result_history 
+  429  git diff
+  430  git status
+  431  git add .
+  432  git status
+  433  git commit -m 'Домашнее задание сделано. Ушел смотреть что изменилось в пул реквесте'
+  434  git status 
+  435  git push
+  436  git status
+  437  cd github/team22/users/aemareev/
+  438  ls
+  439  cd exercise/hw2
+  440  ls
+  441  git log --follow price_f.html
+  442  cat price_f.html 
+  443  git checkout b55cbe90306a0fc61d124d1cb7a93738fd2e7477 price_f.html
+  444  git status
+  445  cat price_f.html 
+  446  ls
+  447  du -h > result_du 
+  448  history > result_history 
