@@ -160,3 +160,8 @@ Hi
   155  echo 'первая команда с && при ошибке не продолжает свою работу и выполение прерывается. При ; выполняются все три команда вне зависимости от результата предыдущей'
   156  du > result_du
   157  history > result_history
+  158  git add .
+  159  git commit -m '7th block of hw1'
+  160  grep -rni 'GET' ~/github/team22/users/oekorchevaya | awk -F' ' '{print $7}' | sort 
+  161  du > result_du
+  162  history > result_history
