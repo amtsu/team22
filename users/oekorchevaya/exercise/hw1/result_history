@@ -152,3 +152,11 @@ Hi
   147  grep -rni 'GET' ~/github/team22/users/oekorchevaya > URI_file
   148  du > result_du
   149  history > result_history
+  150  git add .
+  151  git commit -m '6th block of hw1'
+  152  ls -la && rm test123 &&  pwd
+  153  ls -la && rm test123 && pwd
+  154  ls -la; rm test123; pwd
+  155  echo 'первая команда с && при ошибке не продолжает свою работу и выполение прерывается. При ; выполняются все три команда вне зависимости от результата предыдущей'
+  156  du > result_du
+  157  history > result_history
