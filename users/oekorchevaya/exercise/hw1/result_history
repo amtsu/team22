@@ -191,3 +191,8 @@ Hi
   186  cd ~/github/team22/users/oekorchevaya | ls -la | awk '{print $6, $7, $8}' | sort -M -r | head -n1
   187  du > result_du
   188  history > result_history
+  189  git add .
+  190  git commit -m '10th block of hw1'
+  191  cd ~ | ls -la | awk '{print $6, $7, $8}' | sort -M -r | head -n1
+  192  du > result_du
+  193  history > result_history
