@@ -206,3 +206,20 @@
   206  git status
   207  du -h > result_du 
   208  history > result_history 
+  209  git diff
+  210  git status
+  211  git add .
+  212  git status
+  213  git commit -m 'Третий блок hw1'
+  214  git status
+  215  ды
+  216  ls
+  217  cd home_work_1/
+  218  ls
+  219  cat file1
+  220  head -n 2 file1
+  221  tail -n 2 file1
+  222  cd ..
+  223  ls
+  224  du -h > result_du 
+  225  history > result_history 
