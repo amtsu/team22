@@ -1,0 +1,11 @@
+total 32
+drwxr-xr-x 4 jupyter-misterdx jupyter-misterdx 4096 Jan 28 23:53 .
+drwxr-xr-x 3 jupyter-misterdx jupyter-misterdx 4096 Jan 28 20:13 ..
+-rw-r--r-- 1 jupyter-misterdx jupyter-misterdx    0 Jan 28 23:53 directory_file
+-rw-r--r-- 1 jupyter-misterdx jupyter-misterdx    0 Jan 28 21:18 file_1
+-rw-r--r-- 1 jupyter-misterdx jupyter-misterdx   25 Jan 28 22:53 file1
+-rw-r--r-- 1 jupyter-misterdx jupyter-misterdx  410 Jan 28 22:55 file2
+drwxr-xr-x 2 jupyter-misterdx jupyter-misterdx 4096 Jan 28 22:55 .ipynb_checkpoints
+-rw-r--r-- 1 jupyter-misterdx jupyter-misterdx   42 Jan 28 23:27 result_du
+-rw-r--r-- 1 jupyter-misterdx jupyter-misterdx 3655 Jan 28 23:27 result_history
+drwxr-xr-x 2 jupyter-misterdx jupyter-misterdx 4096 Jan 28 21:18 work_dir
