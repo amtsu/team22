@@ -1,0 +1,145 @@
+    1  ssh-keygen -t rsa -b 4096 -C ĺ "vera.s.tarasova@yandex.ru"
+    2  ssh-keygen -t rsa -b 4096 -C ĺ"vera.s.tarasova@yandex.ru"
+    3  cat ~/.ssh/id_rsa.pub
+    4  cd..
+    5  cd ..
+    6  pwd
+    7  ls
+    8  jupyter-verayohanga
+    9  cd jupyter-verayohanga
+   10  mkdir github
+   11  cd github
+   12  git clone git@github.com:amtsu/team22.git
+   13  cd team22/
+   14  cd..
+   15  cd users
+   16  mkdir verayohanga
+   17  vi readmi
+   18  .readmi.swp
+   19  rm readmi.swp
+   20  rm .readmi.swp
+   21  vi readmi
+   22  pwd
+   23  vi readmi
+   24  git checkout verayohanga
+   25  git status
+   26  cd users
+   27  cd users/
+   28  pwd
+   29  ls
+   30  cd github
+   31  cd team22
+   32  cd users
+   33  ls
+   34  cd verayohanga
+   35  touch README.md
+   36  pwd > README.md
+   37  cd ../..
+   38  cd users
+   39  cd verayohanga
+   40  pwd
+   41  vi readmi
+   42  git branch verayohanga
+   43  git checkout verayohanga
+   44  git status
+   45  git diff
+   46  pwd
+   47  vi readmi
+   48  pwd
+   49  cd ~github/team22
+   50  ls
+   51  cd github
+   52  cd team22
+   53  pwd
+   54  git checkout main
+   55  git pull
+   56  cd exercise
+   57  cd hw1
+   58  git checkout main
+   59  ls
+   60  cd team/22
+   61  cdteam22
+   62  cd team22
+   63  pwd
+   64  cd github
+   65  cd team22
+   66  git checkout main
+   67  git pull
+   68  git branch verayohanga_hw1
+   69  git checkout  verayohanga_hw1
+   70  gir branch
+   71  git branch
+   72  pwd
+   73  cd users/verayohanga
+   74  rm readme.md
+   75  rm README.md
+   76  rm readmi
+   77  touch readme.txt
+   78  nano readme.txt
+   79  vim readme.txt
+   80  git status
+   81  git add readme.txt
+   82  git status
+   83  git commit -m 'my first commit of my first home work'
+   84  git push
+   85  git push --set-upstream origin verayohanga_hw1
+   86  git push
+   87  pwd
+   88  mkdir exercise
+   89  cd exercise
+   90  mkdir hw1
+   91  cd hw`
+   92  cd hw1
+   93  pwd
+   94  git checkout main
+   95  ls
+   96  cd github
+   97  git checkout main
+   98  ls
+   99  cd team22
+  100  cd users
+  101  ls
+  102  git checkout main
+  103  git pull
+  104  git checkout verayohanga_hw1
+  105  cd verayohanga
+  106  vim readme.txt
+  107  em Вера
+  108  Системный аналитик в банке.
+  109  Сталкиваюсь с задачами, в которых не помешала бы автоматизация (например, обезличивание xml с персональными данными клиентов). 
+  110  План на практику: бот, который может пролистывать ленту социальной сети и ставить лайки постам определенных аккаунтов.
+  111  tg: @VeraYohanga
+  112  GitHub: @VeraYohanga
+  113  rm readme.txt
+  114  touch readme.txt
+  115  vim readme.txt
+  116  git status
+  117  git commit -m 'Вторая попытка сделать свой первый коммит'
+  118  git config --global 
+  119  git config --global user.email vera.s.tarasova@yandex.ru
+  120  git push --set-upstream origin verayohanga_hw1
+  121  cd exercise
+  122  cd hw1
+  123  git checkout main
+  124  git commit -m 'Я хз зачем опять коммитить после заливки всего на гитхаб'
+  125  git checkout main
+  126  git add readme.txt
+  127  cd..
+  128  cd ..
+  129  git add readme.txt
+  130  git commit -m 'Я хз зачем опять коммитить после заливки всего на гитхаб'
+  131  git push
+  132  git checkout main
+  133  git pull
+  134  pwd
+  135  cd exercise
+  136  cd hw1
+  137  git branch verayohanga_hw1-part2
+  138  git checkout verayohanga_hw1-part2
+  139  du
+  140  du .
+  141  ls -la ~ > result_du.txt
+  142  vim result_du.txt
+  143  du > result_du.txt
+  144  vim result_du.txt
+  145  history > result_history.txt
