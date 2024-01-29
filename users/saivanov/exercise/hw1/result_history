@@ -402,132 +402,33 @@
   402  cd github/team22/
   403  nano .bashrc
   404  ls
-  405  cd github/
-  406  cd us
-  407  cd team22/users/
-  408  git checkout main
-  409  git pull
-  410  git checkout saivanov-hw2-git
-  411  cd saivanov/
-  412  git checkout -b saivanov-hw2-git
-  413  mkdir exercise
-  414  mkdir hw1
-  415  ls
-  416  rm hw1/
-  417  rm -r hw1/
-  418  cd exercise/
-  419  mkdir hw1
-  420  pwd
-  421  l
-  422  ls
-  423  cd hw1/
-  424  pwd
-  425  ls
-  426  ls /
-  427  cd /home
-  428  ls -lasi 
-  429  cd ~/github/team22/users/saivanov/exercise/hw1/
-  430  nano write-result.sh
-  431  chmod +x write-result.sh 
-  432  ./write-result.sh 
-  433  ls
-  434  cat result_du 
-  435  cat result_history 
-  436  git add result_du result_history 
-  437  git commit -m "первый блок ( cd - ls)"
-  438  git push -u origin saivanov-hw2-git 
-  439  mkdir home_work_1
-  440  touch home_work_1/file_1
-  441  mkdir home_work_1/work_dir
-  442  cp home_work_1/file_1 home_work_1/work_dir/file_1_copy
-  443  cp home_work_1/work_dir/ home_work_1/work_dir_new
-  444  cp -r home_work_1/work_dir/ home_work_1/work_dir_new
-  445  git checkout main
-  446  git checkout -b saivanov-added-hw1-ipynb-file
-  447  cd ~/github/team22/
-  448  git status
-  449  git add library/exercises/hw-1/theory_console_command.ipynb 
-  450  git commit -m "добавил ipynb с первого занятия"
-  451  git push -u origin saivanov-added-hw1-ipynb-file 
-  452  cd library/
-  453  cd exercises/
-  454  cd hw-1/
-  455  ls
-  456  pwd
-  457  ls
-  458  git checkout saivanov-hw2-git 
-  459  ls
-  460  cd ~/github/team22/users/saivanov/exercise/hw1/
-  461  ls
-  462  mv home_work_1/work_dir/file_1_copy home_work_1/work_dir/file_1_new_name
-  463  rm home_work_1/work_dir/file_1_new_name 
-  464  rm -r home_work_1/work_dir_new/
-  465  git status
-  466  git add write-result.sh 
-  467  git add home_work_1/file_1 
-  468  ls home_work_1/
-  469  ls home_work_1/work_dir/
-  470  ./write-result.sh 
-  471  nano write-result.sh 
-  472  ./write-result.sh 
-  473  git add write-result.sh 
-  474  git commit -m "блок 2 (mkdir, rm, touch, cp, mv)"
-  475  git push
-  476  ls
-  477  nano file1
-  478  nano file2
-  479  ./write-result.sh 
-  480  git add file1 file2
-  481  git commit -m "блок 3 (nano)"
-  482  git checkout main
-  483  git pull
-  484  git checkout saivanov-hw2-git 
-  485  git push
-  486  git rebase main
-  487  cat file1
-  488  head -n2 file1
-  489  tail -n2 file1
-  490  ./write-result.sh 
-  491  git commit -m "блок 4 (cat head tail less)"
-  492  git push
-  493  git pull
-  494  git status
-  495  cat result_history 
-  496  nano result_history 
-  497  git add result_history 
-  498  git pull
-  499  git commit -m "забыл гит пулл, получил конфликтик"
-  500  git pull
-  501  git push
-  502  find /home/ -name "*fil*"
-  503  ls -la
-  504  ls -lah
-  505  ls -lah | awk -F' ' '{print $4}'
-  506  ls -lah | awk -F' ' '{print $6}'
-  507  ls -lah | awk -F' ' '{print $5}'
-  508  grep -rni 'GET' /home/jupyter-isergy/
-  509  grep -rni 'GET' home_work_1/
-  510  grep -rni 'GET' ./
-  511  ./write-result.sh 
-  512  git add "Блок 5 (grep, awk, diff, wc)"
-  513  git commit "Блок 5 (grep, awk, diff, wc)"
-  514  git commit -m "Блок 5 (grep, awk, diff, wc)"
-  515  git push
-  516  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' 'print{$1}' 
-  517  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}' 
-  518  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}' > URIs
-  519  ./write-result.sh 
-  520  git add URIs 
-  521  git commit
-  522  ls -la && rm test123 && pwd
-  523  ls -la; rm test123; pwd
-  524  echo "при разделителях ; выполняются все команды, а при && - до первой сломавшейся"
-  525  ./write-result.sh 
-  526  git log
-  527  git commit -m "блок 7 (последовательность команд)"
-  528  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort
-  529  grep -rni 'GET' ./ 
-  530  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort | ln
-  531  ln --help
-  532  grep -rni 'GET' ./ | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort | wc -l
-  533  ./write-result.sh 
+  405  ./get-usdeur.sh 
+  406  nano .bashrc
+  407  nano get-usdeur.sh 
+  408  ./get-usdeur.sh 
+  409  nano get-usdeur.sh 
+  410  ./get-usdeur.sh 
+  411  nano get-usdeur.sh 
+  412  ./get-usdeur.sh 
+  413  nano get-usdeur.sh 
+  414  ./get-usdeur.sh 
+  415  nano get-usdeur.sh 
+  416  ./get-usdeur.sh 
+  417  nano get-usdeur.sh 
+  418  ./get-usdeur.sh 
+  419  nano get-usdeur.sh 
+  420  ./get-usdeur.sh 
+  421  ./write-result.sh 
+  422  git add get-usdeur.sh 
+  423  history | grep curl
+  424  nano get-usdeur.sh 
+  425  ./get-usdeur.sh 
+  426  nano get-usdeur.sh 
+  427  ./get-usdeur.sh 
+  428  nano get-usdeur.sh 
+  429  ./get-usdeur.sh 
+  430  nano get-usdeur.sh 
+  431  ./get-usdeur.sh 
+  432  nano get-usdeur.sh 
+  433  ./get-usdeur.sh 
+  434  ./write-result.sh 
