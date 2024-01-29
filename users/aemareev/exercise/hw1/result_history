@@ -62,62 +62,147 @@
    62  vim test_vim.txt 
    63  vim ~/.bashrc
    64  pwd
-   65  ls
-   66  cd ../..
-   67  ls
-   68  cd users/aemareev/
-   69  ls
-   70  cd exercise/
-   71  ls
-   72  cd hw1/
-   73  ls
-   74  clear
-   75  pwd
-   76  ls -la
-   77  ls /
-   78  ls -la /home
-   79  du
-   80  du -h
-   81  du -h > result_du
-   82  ls
-   83  cat result_du 
-   84  history > result_history
-   85  ls
-   86  cat result_history 
-   87  git diff
-   88  git status
-   89  git add .
-   90  git status
-   91  git commit -m 'Первый блок hw1'
-   92  git status
-   93  mkdir home_work_1
-   94  ls
-   95  cd home_work_1/
-   96  touch file_1
+   65  cd ..
+   66  ls
+   67  cd ..
+   68  ls
+   69  cd ..
+   70  ls
+   71  pwd
+   72  ls
+   73  rm test_vim.txt 
+   74  ls
+   75  cd github/
+   76  ls
+   77  cd team22/
+   78  ls
+   79  cd users/
+   80  ls
+   81  cd ..
+   82  git branch
+   83  git checkout main 
+   84  ls
+   85  ls users/
+   86  git pull
+   87  ls users/
+   88  ls
+   89  cd library/
+   90  ls
+   91  cd exercises/
+   92  ls
+   93  cat hw-2 
+   94  cd ../..
+   95  ls
+   96  cd users/
    97  ls
-   98  mkdir work_dir
-   99  ls
-  100  cp file_1 work_dir/file_1_copy
-  101  ls work_dir/
-  102  cp -r work_dir/ work_dir_new/
-  103  ls
-  104  ls work_dir_new/
-  105  cp -r work_dir work_dir_new/
-  106  ls
-  107  ls work_dir_new/
-  108  ls work_dir_new/work_dir/
-  109  rm work_dir_new/file_1_copy 
-  110  ls work_dir_new/
-  111  ls
-  112  mv work_dir/file_1_copy work_dir/file_1_new_name
-  113  ls work_dir/
-  114  rm work_dir/file_1_new_name 
-  115  ls work_dir/
-  116  rm -r work_dir_new
+   98  clear
+   99  mkdir aemareev
+  100  cd aemareev
+  101  mkdir exercise
+  102  cd exercise/
+  103  mkdir hw1; cd hw1
+  104  git status
+  105  git branch
+  106  git checkout aemareev-hw2-git-part-2
+  107  git branch aemareev-hw2-git-part-2
+  108  git 
+  109  git checkout aemareev-hw2-git-part-2
+  110  git status
+  111  clear
+  112  pwd
+  113  ls
+  114  cd ../..
+  115  ls
+  116  cd users/aemareev/
   117  ls
-  118  git diff
-  119  git status
-  120  cd ..
+  118  cd exercise/
+  119  ls
+  120  cd hw1/
   121  ls
-  122  du > result_du 
-  123  history > result_history 
+  122  clear
+  123  pwd
+  124  ls -la
+  125  ls /
+  126  ls -la /home
+  127  du
+  128  du -h
+  129  du -h > result_du
+  130  ls
+  131  cat result_du 
+  132  history > result_history
+  133  ls
+  134  cat result_history 
+  135  git diff
+  136  git status
+  137  git add .
+  138  git status
+  139  git commit -m 'Первый блок hw1'
+  140  git status
+  141  mkdir home_work_1
+  142  ls
+  143  cd home_work_1/
+  144  touch file_1
+  145  ls
+  146  mkdir work_dir
+  147  ls
+  148  cp file_1 work_dir/file_1_copy
+  149  ls work_dir/
+  150  cp -r work_dir/ work_dir_new/
+  151  ls
+  152  ls work_dir_new/
+  153  cp -r work_dir work_dir_new/
+  154  ls
+  155  ls work_dir_new/
+  156  ls work_dir_new/work_dir/
+  157  rm work_dir_new/file_1_copy 
+  158  ls work_dir_new/
+  159  ls
+  160  mv work_dir/file_1_copy work_dir/file_1_new_name
+  161  ls work_dir/
+  162  rm work_dir/file_1_new_name 
+  163  ls work_dir/
+  164  rm -r work_dir_new
+  165  ls
+  166  git diff
+  167  git status
+  168  cd ..
+  169  ls
+  170  du > result_du 
+  171  history > result_history 
+  172  git diff
+  173  git status
+  174  git add .
+  175  git status
+  176  git commit -m 'Второй блок hw2'
+  177  git status
+  178  history
+  179  pwd
+  180  ls
+  181  cd github
+  182  ls
+  183  cd team22/
+  184  ls
+  185  cd users/aemareev/exercise/hw1/
+  186  ls]
+  187  ls
+  188  git status
+  189  git log
+  190  git diff
+  191  git log
+  192  touch file1
+  193  ls
+  194  rm file1 
+  195  ls
+  196  cd home_work_1/
+  197  ls
+  198  touch file1
+  199  vim file1
+  200  cat file1
+  201  touch file2
+  202  vim file2
+  203  cat file2
+  204  cd ..
+  205  ls
+  206  git status
+  207  du -h > result_du 
+  208  history > result_history 
