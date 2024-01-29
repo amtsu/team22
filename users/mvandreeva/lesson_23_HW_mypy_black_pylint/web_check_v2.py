@@ -67,6 +67,7 @@ class ClearData:
 
 
 class ClearDataChitaiGorod(ClearData): #наследование здесь не нужно, просто так добавила, чтоб учиться
+
     """ Класс очистки данных для сайта читай-город """
     def clean_data_chitai_gorod(self) -> int:
         """ метод получения итоговой цены """
@@ -97,6 +98,7 @@ class ClearDataChitaiGorod(ClearData): #наследование здесь не
 
 class SendMail: #Too few public methods (1/2)
     """ Класс для отправки e-mail"""
+
     def __init__(self, price: int):
         self.__price = price
 

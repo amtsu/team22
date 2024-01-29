@@ -13,12 +13,12 @@ from openapi_client.model.paginated_history_list import PaginatedHistoryList
 from openapi_client.model.patched_history import PatchedHistory
 
 from typing import Any, Dict, Optional
-
 from page_parsing import PagePerser
 
 """
 Парсер для сайта застройщика 'CapitalGroup', проект 'Триколор'
 """
+
 # def replace_none_to_zero_int(function):
 #     def wrapper():
 #         if function() == None:
@@ -92,7 +92,6 @@ class TricolorParser:
     FLOORS_TOTAL_B3 = 58
     FLOORS_TOTAL_B4 = 38
 
-    @none_to_zero
     def _fill_dict(self, item: object) -> dict:
         """
         Метод наполняет данными словарь
