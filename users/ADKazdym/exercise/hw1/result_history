@@ -108,112 +108,15 @@
   108  git commit -m "zadanie2 exersize1"
   109  git push
   110  git push --set-upstream origin ADKazdym_exercise2
-  111  history
-  112  cd ~/github/team22/users/ADKazdym/exercise/hw1/
-  113  git status
-  114  git checkout main
-  115  git pull
-  116  cd ~/github/team22/
-  117  git pull
-  118  git checkout ADKazdym_exercise2 
-  119  history
-  120  cd ~/github/team22/users/ADKazdym/exercise/hw1/
-  121  ls
-  122  cd ~/github/team22/users/ADKazdym/exercise/hw1/home_work_1/
-  123  LS
-  124  ls
-  125  cp -r work_dir home_work_1/work_dir_new
-  126  cp -r work_dir ~/home_work_1/work_dir_new
-  127  cp -r work_dir ~/github/team22/users/ADKazdym/exercise/hw1/home_work_1/work_dir_new
-  128  ls
-  129  ~/work_dir_new
-  130  cd ~/work_dir_new
-  131  cd ~/github/team22/users/ADKazdym/exercise/hw1/home_work_1/work_dir_new
-  132  ls
-  133  mv file_1_copy file_1_new_name
-  134  rm file_1_new_name 
-  135  rm -rf work_dir_new
-  136  cd ~/github/team22/users/ADKazdym/exercise/hw1/home_work_1
-  137  ls
-  138  rm -rf work_dir_new
-  139  ls
-  140  du . > result_du
-  141  history > result_history
-  142  git add .
-  143  git commit -m "zadanie2_hw1"
-  144  cd ~/github/team22/users/ADKazdym/exercise/hw1/home_work_1
-  145  touch file1
-  146  vi file1
-  147  touch file2
-  148  vi file2
-  149  du . > result_du
-  150  history > result_history
-  151  git add .
-  152  git commit -m "zadanie3_hw1"
-  153  cat file1
-  154  head -n2 file1
-  155  tail -n2 file1
-  156  du . > result_du
-  157  history > result_history
-  158  git add .
-  159  git commit -m "zadanie3_hw1"
-  160  find /home/ -name "*fil*"
-  161  cd :~/github/team22/users/ADKazdym/
-  162  cd :~/github/team22/users/ADKazdym
-  163  cd ~/github/team22/users/ADKazdym
-  164  ls -la
-  165  awk -F' ' '{print $5}' ls -la
-  166  ls la > save_ls_la
-  167  ls -la > save_ls_la
-  168  awk -F' ' '{print $5}' save_ls_la
-  169  ls
-  170  grep -rni "GET" ADKazdym
-  171  grep -rni "GET" /ADKazdym
-  172  grep -rni "GET" ~/github/team22/users/ADKazdym
-  173  du . > result_du
-  174  history > result_history
-  175  git add .
-  176  git commit -m "zadanie4_hw1"
-  177  grep -rni "GET" ~/github/team22/users/ADKazdym > ~/github/team22/users/ADKazdym/exercise/hw1/grep
-  178  grep -rni "GET" ~/github/team22/users/ADKazdym > ~/github/team22/users/ADKazdym/exercise/hw1/grep.txt
-  179  cd ~/github/team22/users/ADKazdym/exercise/hw1/
-  180  ls
-  181  cat grep
-  182  du . > result_du
-  183  history > result_history
-  184  git add .
-  185  git commit -m "zadanie5_hw1"
-  186  ls -la && rm test123 && pwd
-  187  ls -la; rm test123; pwd
-  188  du . > result_du
-  189  history > result_history
-  190  git add .
-  191  git commit -m "zadanie6_hw1"
-  192  grep -rni "GET" ~/github/team22/users/ADKazdym
-  193  ls
-  194  rm grep.txt
-  195  ls
-  196  grep -rni "GET" 
-  197  grep -rni "GET" | awk '{print $3 $6}' | sort
-  198  grep -rni "GET" | awk '{print $3}' | sort
-  199  grep -rni "GET" | awk '{print $6}' | sort
-  200  grep -rni "GET" | awk -F '{print $7}' | sort
-  201  grep -rni "GET" | awk  '{print $7}' | sort
-  202  grep -rni "GET" | awk  '{print $7}' | sort | uniq -c
-  203  grep -rni "GET" | awk  '{print $7}' | sort | uniq -c | wc - | grep -rni "GET" | awk  '{print $7}' | sort | uniq -c | wc -l
-  204  du . > result_du
-  205  history > result_history
-  206  git add .
-  207  git commit -m "zadanie7_hw1"
-  208  env
-  209  env " A "
-  210  echo $<A>
-  211  echo $A
-  212  echo $PATH
-  213  env | echo $<A>
-  214  env
-  215  env | echo $A
-  216  env | grep -rni 'A'
-  217  env | grep  'A'
-  218  du . > result_du
-  219  history > result_history
+  111  curl https://finance.rambler.ru/currencies/USD
+  112  curl https://finance.rambler.ru/currencies/USD -o test.html
+  113  cd ~/github/team22/users/ADKazdym/exercise/hw1/
+  114  curl https://finance.rambler.ru/currencies/USD -o test.html
+  115  ls
+  116  cat test.html
+  117  wget https://finance.rambler.ru/currencies/USD/">https://finance.rambler.ru/currencies/USD/
+  118  wget https://finance.rambler.ru/currencies/USD/
+  119  curl https://finance.rambler.ru/currencies/USD/ -o currency_info.html; grep -rni "USD" currency_info.html
+  120  ls -la
+  121  du . > result_du
+  122  history > result_history
