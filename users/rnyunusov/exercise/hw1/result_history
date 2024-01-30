@@ -152,3 +152,29 @@
   152  git status
   153  cat result_du 
   154  history > result_history
+  155  cat result_history 
+  156  git status
+  157  cd ..
+  158  git status
+  159  git add .
+  160  git status
+  161  git commit -m "1st part"
+  162  cd hw1/
+  163  mkdir home_work_1
+  164  cd home_work_1/
+  165  touch file_1
+  166  mkdir work_dir
+  167  cp file_1 work_dir/file_1_copy
+  168  cp work_dir/ work_dir_new/
+  169  cp work_dir/ work_dir_new/ -r
+  170  ls -la
+  171  cd work_dir_new/
+  172  ls
+  173  mv file_1_copy file_1_new_name
+  174  rm file_1_new_name 
+  175  cd ..
+  176  rm -r work_dir_new/
+  177  cd ..
+  178  du > result_du
+  179  cat result_du 
+  180  history > result_history
