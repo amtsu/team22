@@ -359,3 +359,12 @@
   359  ls -la | grep -rni 'GET' | awk '{print $7}' | sort > file_sort |wc -l file_sort
   360  du > result_du
   361  history > result_history 
+  362  git status
+  363  git add result_history result_du file_sort 
+  364  git commit -m 'нахождение файлов с подстрокой GET'
+  365  env echo$A
+  366  env
+  367  echo$A
+  368  echo $A
+  369  du > result_du
+  370  history > result_history 
