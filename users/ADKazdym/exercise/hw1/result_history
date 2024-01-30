@@ -187,3 +187,19 @@
   187  ls -la; rm test123; pwd
   188  du . > result_du
   189  history > result_history
+  190  git add .
+  191  git commit -m "zadanie6_hw1"
+  192  grep -rni "GET" ~/github/team22/users/ADKazdym
+  193  ls
+  194  rm grep.txt
+  195  ls
+  196  grep -rni "GET" 
+  197  grep -rni "GET" | awk '{print $3 $6}' | sort
+  198  grep -rni "GET" | awk '{print $3}' | sort
+  199  grep -rni "GET" | awk '{print $6}' | sort
+  200  grep -rni "GET" | awk -F '{print $7}' | sort
+  201  grep -rni "GET" | awk  '{print $7}' | sort
+  202  grep -rni "GET" | awk  '{print $7}' | sort | uniq -c
+  203  grep -rni "GET" | awk  '{print $7}' | sort | uniq -c | wc - | grep -rni "GET" | awk  '{print $7}' | sort | uniq -c | wc -l
+  204  du . > result_du
+  205  history > result_history
