@@ -207,3 +207,19 @@
   207  tail -n2 file1
   208  du > result_du
   209  history > result_history
+  210  git diff
+  211  git status
+  212  git add .
+  213  git status
+  214  git commit -m "4th part"
+  215  find /home/ -name "*fil*"
+  216  ls -la
+  217  ls -la > awk -F' ' '{print $5}'
+  218  du
+  219  ls -la > awk -F' ' '{print $5}'
+  220* ls -la | awk '{print $0}'
+  221  awk '{print $0}' ls -la
+  222  ls -la | awk -F' ' '{print $5}'
+  223  grep -rni 'GET' ~/
+  224  du > result_du
+  225  history > result_history
