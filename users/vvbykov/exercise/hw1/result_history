@@ -1,0 +1,166 @@
+    1  ls -la
+    2  ssh-keygen -t rsa -b 4096 -C "vladimir.v.bykov@gmail.com"
+    3  ls -lA
+    4  ls -lAv
+    5  ls -lAp
+    6  cd .ssh
+    7  ls -lAp
+    8  cat id_rsa.pub 
+    9  cd ~
+   10  mkdit github
+   11  mkdir github
+   12  cd github/
+   13  git clone git@github:amtsu/team22.git
+   14  git clone git@github.com:amtsu/team22.git
+   15  ls -la
+   16  cd team22
+   17  ls -lAp
+   18  cd users
+   19  ls -lAp
+   20  cat readme.md
+   21  cat README.md
+   22  clear
+   23  cd ..
+   24  git branch vvbykov
+   25  git checkout vvbykov
+   26  git branches
+   27  git branches -a
+   28  git branch -a
+   29  clear
+   30  cd users
+   31  mkdir vvbykov
+   32  git status
+   33  ls -la
+   34  rm -r vvbykov
+   35  mkdir vladimirvbykov
+   36  ls -la
+   37  cd vladimirvbykov/
+   38  touch README.md
+   39  vi README.md 
+   40  cat README.md 
+   41  clear
+   42  pws > README.md 
+   43  pwd > README.md 
+   44  cat README.md 
+   45  cd ..
+   46  git status
+   47  ls -la
+   48  cd github
+   49  cd team22
+   50  git status
+   51  git add users/vladimirvbykov/README.md 
+   52  git status
+   53  git congig --help
+   54  git config --help
+   55  git config --global user.email vladimir.v.bykov@gmail.com
+   56  git config --global user.name vladimirvbykov
+   57  git commit -m 'I've added my own folder with readme file'
+   58  git commit -m 'I have added my own folder with readme file'
+   59  git push --set-upstream origin vvbykov
+   60  git push --help
+   61  cd users/
+   62  cd vladimirvbykov/
+   63  vi README.md
+   64  rm README.md.swp
+   65  ls -la
+   66  rm .README.md.swp
+   67  vi README.md 
+   68  cd ../..
+   69  git push --set-upstream origin vvbykov
+   70  git status
+   71  git commit -m 'Readme file has been filled information about me '
+   72  git status
+   73  git commit -a 'Readme file has been filled information about me '
+   74  git commit -m 'Readme file has been filled information about me '
+   75  git push --set-upstream origin vvbykov
+   76  git status
+   77  git add users/vladimirvbykov/
+   78  git status
+   79  git commit -m 'Readme file has been filled information about me '
+   80  git push --set-upstream origin vvbykov
+   81  git log
+   82  cd github
+   83  ls -la
+   84  cd team22
+   85  ls -la
+   86  cd users
+   87  ls -la
+   88  rm vladimirvbykov vvbykov
+   89  rm -r vladimirvbykov vvbykov
+   90  mv vladimirvbykov vvbykov
+   91  mv vladimirvbykov/ vvbykov/
+   92  ls -la
+   93  git revert
+   94  git status
+   95  git restore
+   96  git reset
+   97  ls -la
+   98  git status
+   99  git restore vladimirvbykov/README.md
+  100  ls -la
+  101  mv vladimirvbykov vvbykov
+  102  ls -la
+  103  git status
+  104  git add vvbykov
+  105  git commit -m 'My directory has been renamed'
+  106  git push --set-upstream origin vvbykov
+  107  git branch -a
+  108  git branch -m vvbykov-hw01
+  109  git branch -a
+  110  git push origin --delete vvbykov
+  111  git push --set-upstream origin vvbykov-hw01
+  112  cd vvbykov
+  113  mkdir exercise
+  114  mkdir hw1
+  115  du
+  116  du -k
+  117  du -c
+  118  cd exercise/
+  119  ls -la
+  120  mkdir hw1
+  121  cd ..
+  122  rm -r hw1
+  123  св пшерги
+  124  cd github
+  125  cd github/team22/users/
+  126  ls -la
+  127  git status
+  128  git commit
+  129  git rm -r -f vladimirvbykov
+  130  git status
+  131  git commit -m 'Extra folder has been deleted'
+  132  git push --set-upstream origin vvbykov-hw01
+  133  cd github
+  134  git branch -a
+  135  git status
+  136  ls -la
+  137  cd team22
+  138  git branch -a
+  139  git checkout main
+  140  git pull
+  141  git branch -a
+  142  git branch -d vvbykov-hw01
+  143  git branch -a
+  144  git branch vvbykov-hw2
+  145  git checkout vvbykov-hw2
+  146  cd /users
+  147  ls -la
+  148  cd users
+  149  cd vvbykov
+  150  ls -la
+  151  cd exercise
+  152  ls -la
+  153  cd hw1
+  154  ls -la
+  155  touch result_du
+  156  touch result_history
+  157  ls -la
+  158  pwd
+  159  ls -la
+  160  pwd ~
+  161  ls -la ~
+  162  cd ~
+  163  ls -la
+  164  cd -
+  165  du > result_du
+  166  history > result_history
