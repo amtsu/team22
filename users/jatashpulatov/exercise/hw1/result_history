@@ -284,3 +284,22 @@
   284  tail -n2 file1
   285  du -h > result_du
   286  history > result_history 
+  287  git checkout main 
+  288  git pull
+  289  git checkout jatashpulatov-3-hw2-part2 
+  290  git status
+  291  git add result_history 
+  292  git commit -m 'Блок 4 (cat, head, tail)'
+  293  git push
+  294  git checkout main 
+  295  git pull
+  296  git checkout jatashpulatov-3-hw2-part2 
+  297  git status
+  298  find /home/ /// -name "*fil*"
+  299  ls -ls
+  300  ls -la
+  301  ls -lah
+  302  ls -la | awk -F' ' '{print $5}'
+  303  grep -rni 'GET' .
+  304  du -h > result_du
+  305  history > result_history 
