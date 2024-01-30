@@ -269,3 +269,18 @@
   269  vi file2
   270  du -h > result_du
   271  history > result_history 
+  272  git commit -m 'Блок 3 (vi)'
+  273  git add result_du 
+  274  git add result_history 
+  275  git add file1
+  276  git add file2 
+  277  git commit -m 'Блок 3 (vi)'
+  278  git push
+  279  git checkout main 
+  280  git pull
+  281  git checkout jatashpulatov-3-hw2-part2 
+  282  cat file1 
+  283  head -n2 file1
+  284  tail -n2 file1
+  285  du -h > result_du
+  286  history > result_history 
