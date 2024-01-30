@@ -87,3 +87,35 @@
    87  du > result_du
    88  ls -la
    89  history > result_history
+   90  git status
+   91  cd ..
+   92  pwd
+   93  git status
+   94  git add ./
+   95  git status
+   96  git commit -m '1 block of hw1'
+   97  pwd
+   98  cd hw1/
+   99  pwd
+  100  mkdir home_work_1
+  101  cd home_work_1/
+  102  touch file_1
+  103  ls -la
+  104  mkdir work_dir
+  105  cp file_1 work_dir/file_1_copy
+  106  cp -r work_dir work_dir_new
+  107  ls -la
+  108  cd work_dir_new
+  109  ls -la
+  110  mv file_1_copy file_1_new_name
+  111  ls -la
+  112  rm file_1_new_name 
+  113  cd ..
+  114  ls -la
+  115  rm work_dir_new/
+  116  rm -r work_dir_new/
+  117  ls -la
+  118  cd ..
+  119  ls -la
+  120  du > result_du 
+  121  history > result_history 
