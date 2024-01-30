@@ -347,21 +347,15 @@
   347  ls -la
   348  ls -la > awk -F' ' '{print $5}' 
   349  awk -F' ' '{print $3}'
-  350  github/team22/users/aavolodin/exercise/hw1
-  351  github
-  352  cat file3
-  353  grep 'GET' file3
-  354  grep -rni 'GET' > save_URL
-  355  ls
-  356  cat save_URL 
-  357  awk -F' ' '{print $7}' file_URL
-  358  du > result_du
-  359  history > result_history 
-  360  git status
-  361  git add result_du result_history save_URL 
-  362  git status
-  363  git commit -m 'Вывод строки GET'
-  364  ls -la && rm test123 && pwd
-  365  ls -la; rm test123; pwd
-  366  du > result_du
-  367  history > result_history 
+  350  ls -la | grep -rni 'GET' | awk '{print $6}' | sort | wc -1
+  351  ls -la | grep -rni 'GET' | awk '{print $6}' | sort 
+  352  ls -la | grep -rni 'GET' | awk '{print $7}' | sort 
+  353  ls -la | grep -rni 'GET' | awk '{print $7}' | sort > file_sort
+  354  cat file_sort
+  355  wc -1 file_sort
+  356  wc file_sort
+  357  wc -l file_sort
+  358  ls -la | grep -rni 'GET' | awk '{print $7}' | sort > file_sort |wc -l 
+  359  ls -la | grep -rni 'GET' | awk '{print $7}' | sort > file_sort |wc -l file_sort
+  360  du > result_du
+  361  history > result_history 
