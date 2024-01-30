@@ -245,48 +245,12 @@
   245  ls -ls > awk -F' ' '{print $5}'
   246  ls -la > awk -F' ' '{print $5}'
   247  ls -la > file3; awk -F' ' '{print $5}'
-  248  cat file_URI 
-  249  git status
-  250  du > result_du
-  251  history > result_history
-  252  git status
-  253  git add modified:   result_du modified:   result_history file_URI
-  254  git add  result_du   result_history file_URI
-  255  git status
-  256  git commit -m 'перенаправления ввода команд'
-  257  ls-la&&rm test123&&pwd
-  258  ls-la && rm test123 && pwd
-  259  ls -la && rm test123 && pwd
-  260  ls -la;rm test123;pwd
-  261  du > result_du
-  262  history > result_history
-  263  git status
-  264  git add result_history
-  265  git commit -m 'если команды записаны через &&, то они выполнятся последовательно при условии выполнении предыдущих команд; если через ; то команды волнятся по порядку независимо от успешности выполнения предыдущих'
-  266  grep -rni 'GET' | awk -F '{print $6}' | sort > file_URI2 | wc -1 file_URI2
-  267  cat file_URI2
-  268  rm file_URI2
-  269  grep -rni 'GET' | awk -F '{print 7}' | sort > file_sort
-  270  grep -rni 'GET' | awk -F '{print 7}' | sort
-  271  grep -rni 'GET' | awk '{print $7}' | sort > file_sort | wc -1 file_sort 
-  272  grep -rni 'GET' | awk '{print $7}' | sort > file_sort 
-  273  cat  file_sort 
-  274  wc -1 file_sort 
-  275  wc file_sort 
-  276  wc -l file_sort 
-  277  grep -rni 'GET' | awk '{print $7}' | sort > file_sort | wc -l file_sort 
-  278  wc -l file_sort 
-  279  du > result_du
-  280  history > result_history
-  281  git status
-  282  git add   result_du result_history file_sort
-  283  git status
-  284  git commit -m 'перенаправление вывода команд'
-  285  env | grep -rni '*A*'
-  286  evn
-  287  env
-  288  grep -rni 'A'
-  289  echo $ <A>
-  290  env | grep 'A'
-  291  du > result_du
-  292  history > result_history
+  248  grep '1 USD =' cur_usd | gawk -F: '{print $4}' > cur_usd
+  249  cat cur_usd
+  250  grep '1 USD =' cur_usd | gawk -F: '{print $4}'
+  251  curl https://finance.rambler.ru/currencies/USD/ -o cur_usd;grep '1 USD =' cur_usd | awk '{print $4}' > cur_usd2
+  252  car cur_usd2
+  253  grep '1 USD =' cur_usd | awk '{print $4}' > cur_usd2
+  254  cat cur_usd2
+  255  du > result_du
+  256  history > result_history 
