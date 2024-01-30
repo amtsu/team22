@@ -163,3 +163,11 @@
   163  grep -rni 'GET' ~
   164  du > result_du
   165  history > result_history
+  166  git status
+  167  git add .
+  168  git status
+  169  git commit -m '5 block of hw1'
+  170  grep -rni 'GET'
+  171  grep -rni 'GET' > save_uri
+  172  du > result_du
+  173  history > result_history 
