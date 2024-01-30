@@ -136,3 +136,17 @@
   136  cat file2
   137  du > result_du 
   138  history > result_history 
+  139  git add .
+  140  git status
+  141  git diff
+  142  git commit
+  143  git status
+  144  git log
+  145  git status
+  146  git commit -m '3 block of hw1'
+  147  ls -la
+  148  cat file1
+  149  head -n2 file1
+  150  tail -n2 file1
+  151  du > result_du
+  152  history > result_history
