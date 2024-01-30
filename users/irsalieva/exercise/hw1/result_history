@@ -171,3 +171,11 @@
   171  grep -rni 'GET' > save_uri
   172  du > result_du
   173  history > result_history 
+  174  git status
+  175  git add .
+  176  git status
+  177  git commit -m '6 block of hw1'
+  178  ls -la && rm test123 && pwd
+  179  ls -la; rm test123; pwd
+  180  du > result_du
+  181  history > result_history 
