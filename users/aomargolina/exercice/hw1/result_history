@@ -346,3 +346,12 @@
   346  ls
   347  du . > result_du 
   348  history > result_history 
+  349  git add .
+  350  git commit -m 'ex1_block3'
+  351  git status 
+  352  git log
+  353  cat file1
+  354  head -n2 file1
+  355  tail -n2 file1
+  356  du . > result_du 
+  357  history > result_history 
