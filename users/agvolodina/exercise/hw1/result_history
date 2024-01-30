@@ -260,3 +260,21 @@
   260  ls -la;rm test123;pwd
   261  du > result_du
   262  history > result_history
+  263  git status
+  264  git add result_history
+  265  git commit -m 'если команды записаны через &&, то они выполнятся последовательно при условии выполнении предыдущих команд; если через ; то команды волнятся по порядку независимо от успешности выполнения предыдущих'
+  266  grep -rni 'GET' | awk -F '{print $6}' | sort > file_URI2 | wc -1 file_URI2
+  267  cat file_URI2
+  268  rm file_URI2
+  269  grep -rni 'GET' | awk -F '{print 7}' | sort > file_sort
+  270  grep -rni 'GET' | awk -F '{print 7}' | sort
+  271  grep -rni 'GET' | awk '{print $7}' | sort > file_sort | wc -1 file_sort 
+  272  grep -rni 'GET' | awk '{print $7}' | sort > file_sort 
+  273  cat  file_sort 
+  274  wc -1 file_sort 
+  275  wc file_sort 
+  276  wc -l file_sort 
+  277  grep -rni 'GET' | awk '{print $7}' | sort > file_sort | wc -l file_sort 
+  278  wc -l file_sort 
+  279  du > result_du
+  280  history > result_history
