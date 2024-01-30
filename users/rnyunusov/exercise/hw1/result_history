@@ -254,3 +254,10 @@
   254  grep -rni 'GET' file2 | awk -F' ' '{print $7}' | wc -l
   255  du > result_du
   256  history > result_history
+  257  git status
+  258  git add .
+  259  git commit -m "8th part"
+  260  env
+  261  env | grep 'A'
+  262  du > result_du
+  263  history > result_history
