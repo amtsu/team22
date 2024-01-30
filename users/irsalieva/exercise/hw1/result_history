@@ -150,3 +150,16 @@
   150  tail -n2 file1
   151  du > result_du
   152  history > result_history
+  153  git status
+  154  ls -la
+  155  git add .
+  156  git commit -m '4 block of hw1'
+  157  find /home/ -name "fil"
+  158  find /home/ -name "*fil*"
+  159  du
+  160  ls -la
+  161  ls -la | awk -F' ' '{print $5}'
+  162  grep -rni 'GET'
+  163  grep -rni 'GET' ~
+  164  du > result_du
+  165  history > result_history
