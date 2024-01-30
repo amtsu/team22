@@ -403,3 +403,23 @@
   403  cd hw1/
   404  du . > result_du 
   405  history > result_history 
+  406  git status 
+  407  git diff
+  408  git add .
+  409  git commit -m 'ex1_block4'
+  410  url
+  411  grep -rni 'GET' > save_uri
+  412  #save uri < grep -rni 'GET'
+  413  ls
+  414  cat save_uri 
+  415  head -n4 save_uri > save_uri 
+  416  cat save_uri 
+  417  vi save_uri 
+  418  ls
+  419  cat save_uri 
+  420  grep -rni 'GET' > save_uri
+  421  cat save_uri 
+  422  vi save_uri 
+  423  cat save_uri 
+  424  du . > result_du 
+  425  history > result_history 
