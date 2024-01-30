@@ -429,3 +429,17 @@
   429  ls -la; rm test123; pwd
   430  du . > result_du 
   431  history > result_history 
+  432  git add .
+  433  git commit -m 'ex1_block6'
+  434  grep -rni 'GET' 
+  435  cat save_uri 
+  436  grep -rni 'GET' save_uri | awk '{print $6}'
+  437  grep -rni 'GET' save_uri | awk '{print $7}'
+  438  grep -rni 'GET' save_uri | awk '{print $7}' | sort
+  439  grep -v result_history grep -rni 'GET' | awk '{print $7}' | so
+  440  grep -rni 'GET' save_uri | awk '{print $7}' | sort
+  441  | wc -l
+  442  grep -rni 'GET' save_uri | awk '{print $7}' | sort | wc -l
+  443  du . > result_du 
+  444  history 
+  445  history > result_history 
