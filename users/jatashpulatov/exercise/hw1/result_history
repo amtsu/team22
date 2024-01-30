@@ -190,3 +190,38 @@
   190  cd github/team22/users/jatashpulatov/exercise/hw1/
   191  du -h > result_du
   192  history > result_history
+  193  git diff
+  194  git commit -m 'Блок 1'
+  195  git diff
+  196  git status
+  197  git add
+  198  cd ../..
+  199  git diff
+  200  git status
+  201  git branch
+  202  git add .
+  203  git status
+  204  git commit -m 'Блок 1'
+  205  git diff
+  206  ls
+  207  cd exercise/hw1/
+  208  git push -u origin jatashpulatov-3-hw2-part2 
+  209  mkdir home_work_1
+  210  touch home_work_1/file_1
+  211  mkdir home_work_1/work_dir
+  212  cd home_work_1/
+  213  cp file_1 work_dir/file_1_copy
+  214  cp -r work_dir/ work_dir _new
+  215  cp -r work_dir work_dir_new
+  216  mv work_dir/file_1_copy work_dir/file_1_copy_new_name
+  217  rm work_dir/file_1_copy_new_name 
+  218  rm -r work_dir_new/
+  219  git sta
+  220  git status 
+  221  cd ..
+  222  git status 
+  223  git add .
+  224  git status 
+  225  du -h > result_du
+  226  cat result_du 
+  227  history > result_history 
