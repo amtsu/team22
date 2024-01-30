@@ -139,3 +139,12 @@
   139  ls
   140  du . > result_du
   141  history > result_history
+  142  git add .
+  143  git commit -m "zadanie2_hw1"
+  144  cd ~/github/team22/users/ADKazdym/exercise/hw1/home_work_1
+  145  touch file1
+  146  vi file1
+  147  touch file2
+  148  vi file2
+  149  du . > result_du
+  150  history > result_history
