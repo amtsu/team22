@@ -1,0 +1,192 @@
+    1  git status
+    2  ssh -keygen -t rsa -b 4096 -C "djpj_jama@mail.ru" 
+    3  pwd
+    4  ssh -keygen -t rsa -b 4096 -C | "djpj_jama@mail.ru"
+    5  ssh-keygen -t rsa -b 4096 -C "djpj_jama@mail.ru" 
+    6  cat ~/.ssh/id_rsa.pub
+    7  pwd
+    8  mkdir github
+    9  cd github/
+   10  git clone git@github.com:amtsu/team22.git
+   11  pwd
+   12  git status
+   13  .git status
+   14  help
+   15  cd users
+   16  team22
+   17  ls
+   18  cd team22
+   19  git status
+   20  git branch
+   21  ssh-keygen -t rsa -b 4096 -C "<ВАШ@ЕМЕЙЛ>"
+   22  git pull
+   23  cd ..
+   24  git pull
+   25  git branch
+   26  git branch jatashpulatov-1-the-beginning-of-learning
+   27  git branch
+   28  git checkout jatashpulatov-1-the-beginning-of-learning 
+   29  git status
+   30  git add jatashpulatov/2022-2023/folder/a1
+   31  git add users/jatashpulatov/2022-2023/folder/a1
+   32  git add users/jatashpulatov/2022-2023/folder/a1.txt
+   33  git status
+   34  git add users/jatashpulatov/2022-2023/lesson_01/hw_01.ipynb 
+   35  git add users/jatashpulatov/2022-2023/lesson_01/introduction.ipynb 
+   36  git add users/jatashpulatov/2022-2023/lesson_01/type_integer.ipynb 
+   37  git add users/jatashpulatov/2022-2023/lesson_01/type_list.ipynb 
+   38  git add users/jatashpulatov/2022-2023/lesson_01/type_string.ipynb 
+   39  git add users/jatashpulatov/2022-2023/lesson_01/variables.ipynb 
+   40  git status
+   41  git add users/jatashpulatov/2022-2023/lesson_02/HW_02.ipynb 
+   42  git add users/jatashpulatov/2022-2023/lesson_03/a1.txt 
+   43  git add users/jatashpulatov/2022-2023/lesson_03/a2.txt 
+   44  git add users/jatashpulatov/2022-2023/lesson_03/hw_3_git_base.ipynb 
+   45  git add users/jatashpulatov/2022-2023/lesson_04/hw_04.ipynb 
+   46  git status
+   47  git add . users/jatashpulatov/folder/a1.txt
+   48  git status
+   49  pwd
+   50  cd users/jatashpulatov/
+   51  touch README
+   52  vi README 
+   53  cat R
+   54  cat README 
+   55  git diff
+   56  git status
+   57  git add README 
+   58  git status
+   59  git commit -m 'Добавил README, убрал стары файлы'
+   60  git config --global user.email "djpj_jama@mail.ru"
+   61  git config --global user.name "JATaspulatov"
+   62  git commit -m 'Добавил README, убрал стары файлы'
+   63  git push
+   64  git push --set-upstream origin jatashpulatov-1-the-beginning-of-learning 
+   65  git status
+   66  git branch
+   67  git checkout main
+   68  git status
+   69  git checkout jatashpulatov-1-the-beginning-of-learning 
+   70  git branch
+   71  git checkout main
+   72  clear
+   73  exit
+   74  ls
+   75  cd github/
+   76  cd team22/
+   77  git status
+   78  git pull
+   79  git branch 
+   80  git checkout jatashpulatov-1-the-beginning-of-learning 
+   81  git branch 
+   82  git diff
+   83  git checkout main 
+   84  git diff
+   85  exit
+   86  cd ..
+   87  git status
+   88  git pull
+   89  git ls
+   90  git ls-files
+   91  ls
+   92  cd users
+   93  cd ja
+   94  cd jat
+   95  cd jatashpulatov/
+   96  ls
+   97  git branch
+   98  git checkout jatashpulatov-1-the-beginning-of-learning 
+   99  git branch
+  100  ls
+  101  git log
+  102  git checkout main
+  103  git branch
+  104  git log
+  105  git branch 
+  106  git checkout jatashpulatov-1-the-beginning-of-learning 
+  107  git status
+  108  git branch 
+  109  git branch
+  110  git checkout main 
+  111  git pull
+  112  git branch
+  113  ls
+  114  cd github/team22/
+  115  git branch
+  116  git pull
+  117  git branch
+  118  cd github
+  119  cd team22
+  120  git branch
+  121  git pull
+  122  ls
+  123  cd git
+  124  cd github/team22/
+  125  git branch
+  126  git pull
+  127  cd github/
+  128  cd team22/
+  129  git pull
+  130  git branch
+  131  git branch jatashpulatov-2-removing-old-files
+  132  git branch
+  133  git checkout jatashpulatov-2-removing-old-files 
+  134  git rm -r folder
+  135  cd users/jatashpulatov/
+  136  git rm -r folder
+  137  git rm -r lesson_01
+  138  git rm -r lesson_02
+  139  git rm -r lesson_03
+  140  git rm -r lesson_04
+  141  git status
+  142  git diff
+  143  cd ..
+  144  ls
+  145  cd library/exercises/hw-1/
+  146  git add theory_console_command.ipynb 
+  147  git status
+  148  git commit -m 'Добавил удаление перемещенных файлов'
+  149  git push
+  150  git push --set-upstream origin jatashpulatov-2-removing-old-files 
+  151  git branch
+  152  git checkout main 
+  153  git branch
+  154  git pull
+  155  git branch
+  156  cd ..
+  157  cd users/jatashpulatov/
+  158  git branch
+  159  git pull
+  160  git branch jatashpulatov-3-hw2-part2
+  161  git branch
+  162  git checkout jatashpulatov-3-hw2-part2 
+  163  git branch
+  164  mkdir exercise
+  165  cd exercise/
+  166  mkdir hw1
+  167  cd hw1/
+  168  git diff
+  169  git status
+  170  cd ../../..
+  171  cd ../..
+  172  ls
+  173  cd team22/library/exercises/hw-1/
+  174  git restore theory_console_command.ipynb
+  175  cd ..
+  176  git restore hw-2
+  177  git status
+  178  git diff
+  179  cd ../..
+  180  cd users/jatashpulatov/exercise/hw1/
+  181  pwd
+  182  ls
+  183  ls /
+  184  cd /home
+  185  ls -la
+  186  du -h
+  187  ls
+  188  cd jupyter-jatashpulatov/
+  189  ls
+  190  cd github/team22/users/jatashpulatov/exercise/hw1/
+  191  du -h > result_du
+  192  history > result_history
