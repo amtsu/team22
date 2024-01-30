@@ -225,3 +225,47 @@
   225  du -h > result_du
   226  cat result_du 
   227  history > result_history 
+  228  cat result_history 
+  229  git diff
+  230  git status
+  231  git add result_du 
+  232  git add result_history 
+  233  git status
+  234  git commit -m 'Блок 2 (создание/удаление/перемещение/переимеование папок/файлов'
+  235  git push
+  236  git status
+  237  git checkout main
+  238  git pull
+  239  touch file1
+  240  vi file1
+  241  touch file2
+  242  vi file2
+  243  cat file1
+  244  cat file2
+  245* du -h > [Bresult_du
+  246  history > result_history 
+  247  git branch
+  248  git diff
+  249  git status
+  250  cd ../..
+  251  git status
+  252  git restore .
+  253  git status
+  254  cd exercise/hw1/
+  255  git rm file1
+  256  ls
+  257  rm file1
+  258  rm fil2
+  259  rm file2
+  260  rm result_du 
+  261  rm result_history 
+  262  git diff
+  263  git status
+  264  git pull
+  265  git checkout jatashpulatov-3-hw2-part2 
+  266  touch file1
+  267  vi file1 
+  268  touch file2
+  269  vi file2
+  270  du -h > result_du
+  271  history > result_history 
