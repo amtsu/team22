@@ -301,3 +301,48 @@
   301  ls -la
   302  du . > result_du 
   303  history > result_history 
+  304  git add .
+  305  git commit -m 'ex1_block1'
+  306  mkdir home_work_1
+  307  cd home_work_1/
+  308  touch file_1
+  309  mkdir work_dir
+  310  cp file_1 work_dir/file_1_copy
+  311  ls
+  312  cp -r work_dir home_work_1/work_dir_new
+  313  cp -r work_dir work_dir_new
+  314  ls
+  315  cd work_dir
+  316  ls
+  317  mv file_1_copy file_1_new_name
+  318  rm file_1_new_name 
+  319  cd ..
+  320  rm -r work_dir_new/
+  321  du . > result_du
+  322  history > result_history
+  323  cat result_du
+  324  cat result_history 
+  325  git add .
+  326  git branch 
+  327  git commit -m 'ex2_block2'
+  328  зцв
+  329  pwd
+  330  ls
+  331  cd ..
+  332  touch file1
+  333  vi file1 
+  334  touch file2
+  335  vi file2
+  336  git add .
+  337  git commit -m 'ex2_block3'
+  338  git log
+  339  ls
+  340  git status 
+  341  git log
+  342  git reset 
+  343  git log
+  344  git reset HEAD~
+  345  git log
+  346  ls
+  347  du . > result_du 
+  348  history > result_history 
