@@ -261,3 +261,37 @@
   261  env | grep 'A'
   262  du > result_du
   263  history > result_history
+  264  git status
+  265  git add .
+  266  git status
+  267  git commit -m "9th part"
+  268  curl https://finance.rambler.ru/currencies/ -o test.html
+  269  grep 'USD' test.html
+  270  curl https://finance.rambler.ru/currencies/USD -o test.html
+  271  grep 'USD' test.html
+  272  curl https://finance.rambler.ru/currencies/USD/ -o test.html
+  273* grep '' test.html
+  274  grep '1 USD = ' test.html
+  275  grep '1 USD = ' test.html | awk -F' ' '{print $4}'
+  276  grep '1 EUR = ' test.html | awk -F' ' '{print $4}'
+  277  grep 'EUR' test.html
+  278  curl https://finance.rambler.ru/currencies/EUR/ -o test.html
+  279  grep '1 EUR = ' test.html | awk -F' ' '{print $4}'
+  280  ls -la ~/
+  281  ls -la ~/ | awk -F' ' '{print $6}' 
+  282  ls -la ~/ | awk -F'\t' '{print $6}' 
+  283  ls -la ~/ | awk '{printf "%02d",$7}'
+  284  ls -lc
+  285  ls -lt
+  286  ls -lt --time-style=iso
+  287  ls -lt --time-style=full-iso
+  288  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' | head -n1
+  289  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}'
+  290  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' head -n
+  291  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' head -n1
+  292  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' | head -n1
+  293  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' | head -n2
+  294  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' | head -n2 | tail n1
+  295  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' | head -n2 | tail -n1
+  296  du > result_du
+  297  history > result_history
