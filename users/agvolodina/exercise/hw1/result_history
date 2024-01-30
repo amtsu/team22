@@ -179,11 +179,73 @@
   179          ../../
   180          ../../../theory_console_command.ipynb
   181  cd ..
-  182  ls -la > awk -F' ' '{print $5}'
-  183  ls -la
-  184  ls -la > awk -F' ' '{print 4}'
-  185  ls -la > awk -F' ' '{print $4}'
-  186  awk -F' ' '{print $5}' file3
-  187  grep -rni 'GET'
-  188  du > result_du
-  189  history > result_history
+  182  ls
+  183  ls -la > awk -F' ' '{print $5}'
+  184  ls -la
+  185  ls -la > awk -F' ' '{print 4}'
+  186  ls -la > awk -F' ' '{print $4}'
+  187  awk -F' ' '{print $5}' file3
+  188  grep -rni 'GET'
+  189  du > result_du
+  190  history > result_history
+  191  git status
+  192  git add
+  193  git add result_du  result_history file3
+  194  git status
+  195  git commit -m 'фильтрация и сортировка'
+  196  rm result_du2
+  197  rm result_history2
+  198  git status
+  199  git add result_du2 result_history2
+  200  git status
+  201  git commit -m 'удаление лишних файлов'
+  202  git push
+  203  ls
+  204  cd github/
+  205  ls
+  206  cd team22/
+  207  ls
+  208  cd users/
+  209  ls
+  210  cd agvolodina/
+  211  ls
+  212  git branch
+  213  cd exercise/
+  214  ls
+  215  cd hw1/
+  216  vi file1
+  217  vi file2
+  218  ls
+  219  du > result_du2
+  220  history > result_history2
+  221  git status
+  222  git diff
+  223  git add
+  224  git add hw1
+  225  git add  file1
+  226  git status
+  227  git add  file2  result_du2 result_history2
+  228  git status
+  229  git commit
+  230  git status
+  231  git commit -m 'команда vim'
+  232  cat result_history2
+  233  cat file1
+  234  head -n2 file1
+  235  tail -n2 file1
+  236  du > result_du
+  237  history > result_history
+  238  git status
+  239  git add result_du result_history
+  240  git status
+  241  dit commit -m 'вывод содержимого файлов'
+  242  git commit -m 'вывод содержимого файлов'
+  243  find /home/ -name "*fill*"
+  244  find /home/ -name "*fil*"
+  245  ls -ls > awk -F' ' '{print $5}'
+  246  ls -la > awk -F' ' '{print $5}'
+  247  ls -la > file3; awk -F' ' '{print $5}'
+  248  cat file_URI 
+  249  git status
+  250  du > result_du
+  251  history > result_history
