@@ -423,3 +423,9 @@
   423  cat save_uri 
   424  du . > result_du 
   425  history > result_history 
+  426  git add .
+  427  git commit -m 'ex1_block5'
+  428  ls -la && rm test123 && pwd
+  429  ls -la; rm test123; pwd
+  430  du . > result_du 
+  431  history > result_history 
