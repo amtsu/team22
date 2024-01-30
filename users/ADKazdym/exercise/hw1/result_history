@@ -181,3 +181,9 @@
   181  cat grep
   182  du . > result_du
   183  history > result_history
+  184  git add .
+  185  git commit -m "zadanie5_hw1"
+  186  ls -la && rm test123 && pwd
+  187  ls -la; rm test123; pwd
+  188  du . > result_du
+  189  history > result_history
