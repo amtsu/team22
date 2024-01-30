@@ -1,0 +1,17 @@
+total 200
+drwxr-xr-x  3 jupyter-adkazdym jupyter-adkazdym  4096 Jan 30 14:51 .
+drwxr-xr-x 38 jupyter-adkazdym jupyter-adkazdym  4096 Jan 30 14:15 ..
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym   763 Jan 24 22:57 a1.txt
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym 24672 Jan 24 22:57 domashka1.ipynb
+drwxr-xr-x  3 jupyter-adkazdym jupyter-adkazdym  4096 Jan 30 14:15 exercise
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym   529 Jan 24 22:57 function.py
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym 42222 Jan 24 22:57 homework2.ipynb
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym 16310 Jan 24 22:57 homework4.ipynb
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym 67909 Jan 24 22:57 homework_spiski.ipynb
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym     0 Jan 30 14:51 save_ls_la
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym   185 Jan 24 22:57 test_1_func.py
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym   473 Jan 24 22:57 test_2_arithmetic.py
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym   237 Jan 24 22:57 test_3_double_string1.py
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym   146 Jan 24 22:57 test_4_summ_sqrt.py
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym   160 Jan 24 22:57 test_5_gipotenuza.py
+-rw-r--r--  1 jupyter-adkazdym jupyter-adkazdym   357 Jan 24 22:57 test_5_square_param.py
