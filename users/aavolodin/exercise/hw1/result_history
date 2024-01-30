@@ -337,7 +337,7 @@
   337  du > result_du
   338  history > result_history 
   339  git status
-  340* git add result_history result_du finance. html
+  340  git add result_history
   341  git status
   342  git commit -m 'вывод содержимого файла'
   343  find /home/ -name "*fil*
@@ -355,3 +355,14 @@
   355  cat finance_USD
   356  du > result_du
   357  history > result_history 
+  358  git add result_history result_du finance_USD
+  359  git status 
+  360  git commit -m 'информация по курсу USD'
+  361  git push
+  362  grep '1 EUR =' finance_eur.html | awk '{print $4}' > finance_EUR
+  363  curl https://finance.rambler.ru/currencies/EUR/ -o finance.html2 | grep '1 EUR =' finance_eur.html | awk '{print $4}' > finance_EUR
+  364  cat finance_EUR
+  365  curl https://finance.rambler.ru/currencies/EUR/ -o finance.html2;grep '1 EUR =' finance.html2 | awk '{print $4}' > finance_EUR
+  366  cat finance_EUR
+  367  du > result_du
+  368  history > result_history 
