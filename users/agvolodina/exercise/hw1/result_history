@@ -249,3 +249,14 @@
   249  git status
   250  du > result_du
   251  history > result_history
+  252  git status
+  253  git add modified:   result_du modified:   result_history file_URI
+  254  git add  result_du   result_history file_URI
+  255  git status
+  256  git commit -m 'перенаправления ввода команд'
+  257  ls-la&&rm test123&&pwd
+  258  ls-la && rm test123 && pwd
+  259  ls -la && rm test123 && pwd
+  260  ls -la;rm test123;pwd
+  261  du > result_du
+  262  history > result_history
