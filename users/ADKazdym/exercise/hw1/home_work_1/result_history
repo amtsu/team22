@@ -148,3 +148,10 @@
   148  vi file2
   149  du . > result_du
   150  history > result_history
+  151  git add .
+  152  git commit -m "zadanie3_hw1"
+  153  cat file1
+  154  head -n2 file1
+  155  tail -n2 file1
+  156  du . > result_du
+  157  history > result_history
