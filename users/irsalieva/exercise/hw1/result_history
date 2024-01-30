@@ -119,3 +119,20 @@
   119  ls -la
   120  du > result_du 
   121  history > result_history 
+  122  git status
+  123  git add .
+  124  git status
+  125  git commit -m '2 block of hw1'
+  126  cd home_work_1/
+  127  cd ..
+  128  touch file1
+  129  vi file1
+  130  ls -la
+  131  cat home_work_1/
+  132  cat file1 
+  133  touch file2
+  134  ls -la
+  135  vi file2
+  136  cat file2
+  137  du > result_du 
+  138  history > result_history 
