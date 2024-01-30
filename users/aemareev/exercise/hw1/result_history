@@ -1,0 +1,306 @@
+    1  ssh-keygen -t rsa -b 4096 -C 'adskiypovar@gmail.com'
+    2  cat .ssh/id_rsa.pub
+    3  git config --global user.email <ВАШ@ЕМЕЙЛ>
+    4  git config --global user.email adskiypovar@gmail.com
+    5  git config --global user.name theRate
+    6  mkdir github
+    7  cd github/
+    8  git clone git@github.com:amtsu/team22.git
+    9  ls
+   10  cd team22/
+   11  ls -la
+   12  pwd
+   13  git status -s
+   14  git status
+   15  git branch aemareev-hw2-intro-to-git
+   16  git checkout aemareev-hw2-intro-to-git 
+   17  cd users/
+   18  mkdir aemareev
+   19  cd aemareev/
+   20  touch README.md
+   21  pwd > README.md
+   22  cat README.md 
+   23  cd ../..
+   24  git status
+   25  git status -s
+   26  git diff
+   27  git add users/aemareev/README.md 
+   28  git status -s
+   29  git commit -m 'created a user folder and README.md'
+   30  git status -s
+   31  git push --set-upstream origin aemareev-hw2-intro-to-git 
+   32  cd users/aemareev/
+   33  ls
+   34  vim README.md 
+   35  cat README.md 
+   36  git diff
+   37  git add README.md 
+   38  git status 
+   39  git commit -m 'changed README.md'
+   40  git status 
+   41  git push --set-upstream origin aemareev-hw2-intro-to-git 
+   42  clear
+   43  cd ../..
+   44  git status
+   45  pwd
+   46  cd ..
+   47  ls
+   48  cd jupyter-therate/
+   49  ls
+   50  cd github/
+   51  ls
+   52  cd team22/
+   53  ls
+   54  git status
+   55  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   56  git status
+   57  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ; PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   58  vim ~/.bashrc
+   59  cd ../..
+   60  pwd
+   61  touch test_vim.txt
+   62  vim test_vim.txt 
+   63  vim ~/.bashrc
+   64  pwd
+   65  cd ..
+   66  ls
+   67  cd ..
+   68  ls
+   69  cd ..
+   70  ls
+   71  pwd
+   72  ls
+   73  rm test_vim.txt 
+   74  ls
+   75  cd github/
+   76  ls
+   77  cd team22/
+   78  ls
+   79  cd users/
+   80  ls
+   81  cd ..
+   82  git branch
+   83  git checkout main 
+   84  ls
+   85  ls users/
+   86  git pull
+   87  ls users/
+   88  ls
+   89  cd library/
+   90  ls
+   91  cd exercises/
+   92  ls
+   93  cat hw-2 
+   94  cd ../..
+   95  ls
+   96  cd users/
+   97  ls
+   98  clear
+   99  mkdir aemareev
+  100  cd aemareev
+  101  mkdir exercise
+  102  cd exercise/
+  103  mkdir hw1; cd hw1
+  104  git status
+  105  git branch
+  106  git checkout aemareev-hw2-git-part-2
+  107  git branch aemareev-hw2-git-part-2
+  108  git 
+  109  git checkout aemareev-hw2-git-part-2
+  110  git status
+  111  clear
+  112  pwd
+  113  ls
+  114  cd ../..
+  115  ls
+  116  cd users/aemareev/
+  117  ls
+  118  cd exercise/
+  119  ls
+  120  cd hw1/
+  121  ls
+  122  clear
+  123  pwd
+  124  ls -la
+  125  ls /
+  126  ls -la /home
+  127  du
+  128  du -h
+  129  du -h > result_du
+  130  ls
+  131  cat result_du 
+  132  history > result_history
+  133  ls
+  134  cat result_history 
+  135  git diff
+  136  git status
+  137  git add .
+  138  git status
+  139  git commit -m 'Первый блок hw1'
+  140  git status
+  141  mkdir home_work_1
+  142  ls
+  143  cd home_work_1/
+  144  touch file_1
+  145  ls
+  146  mkdir work_dir
+  147  ls
+  148  cp file_1 work_dir/file_1_copy
+  149  ls work_dir/
+  150  cp -r work_dir/ work_dir_new/
+  151  ls
+  152  ls work_dir_new/
+  153  cp -r work_dir work_dir_new/
+  154  ls
+  155  ls work_dir_new/
+  156  ls work_dir_new/work_dir/
+  157  rm work_dir_new/file_1_copy 
+  158  ls work_dir_new/
+  159  ls
+  160  mv work_dir/file_1_copy work_dir/file_1_new_name
+  161  ls work_dir/
+  162  rm work_dir/file_1_new_name 
+  163  ls work_dir/
+  164  rm -r work_dir_new
+  165  ls
+  166  git diff
+  167  git status
+  168  cd ..
+  169  ls
+  170  du > result_du 
+  171  history > result_history 
+  172  git diff
+  173  git status
+  174  git add .
+  175  git status
+  176  git commit -m 'Второй блок hw2'
+  177  git status
+  178  history
+  179  pwd
+  180  ls
+  181  cd github
+  182  ls
+  183  cd team22/
+  184  ls
+  185  cd users/aemareev/exercise/hw1/
+  186  ls]
+  187  ls
+  188  git status
+  189  git log
+  190  git diff
+  191  git log
+  192  touch file1
+  193  ls
+  194  rm file1 
+  195  ls
+  196  cd home_work_1/
+  197  ls
+  198  touch file1
+  199  vim file1
+  200  cat file1
+  201  touch file2
+  202  vim file2
+  203  cat file2
+  204  cd ..
+  205  ls
+  206  git status
+  207  du -h > result_du 
+  208  history > result_history 
+  209  git diff
+  210  git status
+  211  git add .
+  212  git status
+  213  git commit -m 'Третий блок hw1'
+  214  git status
+  215  ды
+  216  ls
+  217  cd home_work_1/
+  218  ls
+  219  cat file1
+  220  head -n 2 file1
+  221  tail -n 2 file1
+  222  cd ..
+  223  ls
+  224  du -h > result_du 
+  225  history > result_history 
+  226  git diff
+  227  git status
+  228  git add .
+  229  git status
+  230  git commin -m 'Четвертый блок hw1'
+  231  git commit -m 'Четвертый блок hw1'
+  232  find /home/ -name '*fil*'
+  233  ls -la
+  234  ls -lp | grep -v / | awk -F' ' '{print $5}' | tail -n +2
+  235  grep -rni 'GET' .
+  236  ls
+  237  du -h > result_du
+  238  history > result_history 
+  239  git status
+  240  git add .
+  241  git status
+  242  git commit -m 'Пятый блок hw1'
+  243  grep -rni 'GET' . > test_grep_1
+  244  grep -rni 'GET' .
+  245  ls
+  246  ls -la && rm test123 && pwd
+  247  ls -la; rm test123; pwd
+  248  ls
+  249  du -h > result_du
+  250  history > result_history 
+  251  git diff
+  252* 
+  253* 
+  254  git status
+  255  git commit -m 'Шестой блок hw1'
+  256  grep -rni 'GET' /hw1/
+  257  grep -rni 'GET' /hw1
+  258  grep -rni 'GET' home_work_1/
+  259  grep -rni 'GET' .
+  260  ls
+  261  mv test_grep_1 home_work_1/
+  262  ls
+  263  grep -rni 'GET' home_work_1/
+  264  grep -rni 'GET' home_work_1/ | awk '{print $6}'
+  265  grep -rni 'GET' home_work_1/ | awk '{print $7}'
+  266  grep -rni 'GET' home_work_1/ | awk -F'GET' '{print $7}'
+  267  grep -rni 'GET' home_work_1/ | awk -F'GET' '{print $2}'
+  268  grep -rni 'GET' home_work_1/ | awk '{print $7}'
+  269  grep -rni 'GET' home_work_1/ | awk '{print $7}' | sort
+  270  env
+  271  env | grep 'A'
+  272  ls
+  273  du -h > result_du 
+  274  history > result_history 
+  275  git diff
+  276  git status
+  277  git add .
+  278  git status
+  279  git commit -m 'Седьмой блок hw1'
+  280  curl https://finance.rambler.ru/currencies/USD/ -o test.html
+  281  cat test.html 
+  282  ls
+  283  mv test.html home_work_1/
+  284  ls
+  285  cd home_work_1/
+  286  ls
+  287  curl https://finance.rambler.ru/currencies/USD/ -o test.html | grep 'USD'
+  288  ls
+  289  cat test.html 
+  290  grep 'USD' test.html 
+  291  grep '89' test.html
+  292  grep 'USD' test.html 
+  293  grep '1 USD' test.html 
+  294  grep '1 USD' test.html | awk '{print $4}'
+  295* 
+  296* grep '1 EUR' test.html 
+  297  grep '1 EUR' test_eur.html | awk '{print $4}'
+  298  ls -la
+  299  ls -lp | grep -v /
+  300  ls -lp | grep -v / | sort
+  301  ls -lp | grep -v / | tail -n +2
+  302  ls -lp | grep -v / | tail -n 1
+  303  ls -lp | grep -v / | tail -n 1 | awk '{print $6, $7}'
+  304  cd ..
+  305  du -h > result_du 
+  306  history > result_history 
