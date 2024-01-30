@@ -192,3 +192,10 @@
   192  ls -la
   193  du > result_du
   194  history > result_history 
+  195  git status
+  196* git commit 
+  197  git status
+  198  git commit -m '8 block of hw1'
+  199  env | grep 'A'
+  200  du > result_du
+  201  history > result_history 
