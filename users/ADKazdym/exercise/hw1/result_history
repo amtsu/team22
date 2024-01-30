@@ -203,3 +203,17 @@
   203  grep -rni "GET" | awk  '{print $7}' | sort | uniq -c | wc - | grep -rni "GET" | awk  '{print $7}' | sort | uniq -c | wc -l
   204  du . > result_du
   205  history > result_history
+  206  git add .
+  207  git commit -m "zadanie7_hw1"
+  208  env
+  209  env " A "
+  210  echo $<A>
+  211  echo $A
+  212  echo $PATH
+  213  env | echo $<A>
+  214  env
+  215  env | echo $A
+  216  env | grep -rni 'A'
+  217  env | grep  'A'
+  218  du . > result_du
+  219  history > result_history
