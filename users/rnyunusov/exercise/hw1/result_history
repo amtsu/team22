@@ -223,3 +223,23 @@
   223  grep -rni 'GET' ~/
   224  du > result_du
   225  history > result_history
+  226  git status
+  227  git add .
+  228  git status
+  229  git reset awk
+  230  git status
+  231  git commit -m "5th part"
+  232  grep -rni 'GET'
+  233  grep -rni 'GET' > save_get
+  234  du > result_du
+  235  history > result_history
+  236  git status
+  237  rm awk
+  238  git status 
+  239  git add .
+  240  git status
+  241  git commit "6th part"
+  242  ls -la && rm test123 && pwd
+  243  ls -la; rm test123; pwd
+  244  du > result_du
+  245  history > result_history
