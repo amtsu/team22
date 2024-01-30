@@ -278,3 +278,15 @@
   278  wc -l file_sort 
   279  du > result_du
   280  history > result_history
+  281  git status
+  282  git add   result_du result_history file_sort
+  283  git status
+  284  git commit -m 'перенаправление вывода команд'
+  285  env | grep -rni '*A*'
+  286  evn
+  287  env
+  288  grep -rni 'A'
+  289  echo $ <A>
+  290  env | grep 'A'
+  291  du > result_du
+  292  history > result_history
