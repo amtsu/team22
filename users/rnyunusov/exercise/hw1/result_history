@@ -243,3 +243,14 @@
   243  ls -la; rm test123; pwd
   244  du > result_du
   245  history > result_history
+  246  git status
+  247  git add >
+  248  git add .
+  249  git status
+  250  git commit -m "7th part"
+  251  grep -rni 'GET'
+  252  grep -rni 'GET' file2
+  253  grep -rni 'GET' file2 | awk -F' ' '{print $7}'
+  254  grep -rni 'GET' file2 | awk -F' ' '{print $7}' | wc -l
+  255  du > result_du
+  256  history > result_history
