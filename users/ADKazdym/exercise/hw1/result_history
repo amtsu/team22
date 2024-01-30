@@ -90,3 +90,94 @@
    90  du .
    91  du . > result_du
    92  history > result_history
+   93  git add . 
+   94  git commit -m "zadanie_1 hw1"
+   95  cd home_work_1
+   96  mkdir home_work_1
+   97  home_work_1/
+   98  cd home_work_1/
+   99  touch file_1
+  100  mkdir work_dir
+  101  ls
+  102  cp file_1 workdir/file_1_copy
+  103  cp file_1 work_dir/file_1_copy
+  104  cp -r 
+  105  env | grep A 
+  106  git commit -m "zadanie2 exersize1"
+  107  git add .
+  108  git commit -m "zadanie2 exersize1"
+  109  git push
+  110  git push --set-upstream origin ADKazdym_exercise2
+  111  history
+  112  cd ~/github/team22/users/ADKazdym/exercise/hw1/
+  113  git status
+  114  git checkout main
+  115  git pull
+  116  cd ~/github/team22/
+  117  git pull
+  118  git checkout ADKazdym_exercise2 
+  119  history
+  120  cd ~/github/team22/users/ADKazdym/exercise/hw1/
+  121  ls
+  122  cd ~/github/team22/users/ADKazdym/exercise/hw1/home_work_1/
+  123  LS
+  124  ls
+  125  cp -r work_dir home_work_1/work_dir_new
+  126  cp -r work_dir ~/home_work_1/work_dir_new
+  127  cp -r work_dir ~/github/team22/users/ADKazdym/exercise/hw1/home_work_1/work_dir_new
+  128  ls
+  129  ~/work_dir_new
+  130  cd ~/work_dir_new
+  131  cd ~/github/team22/users/ADKazdym/exercise/hw1/home_work_1/work_dir_new
+  132  ls
+  133  mv file_1_copy file_1_new_name
+  134  rm file_1_new_name 
+  135  rm -rf work_dir_new
+  136  cd ~/github/team22/users/ADKazdym/exercise/hw1/home_work_1
+  137  ls
+  138  rm -rf work_dir_new
+  139  ls
+  140  du . > result_du
+  141  history > result_history
+  142  git add .
+  143  git commit -m "zadanie2_hw1"
+  144  cd ~/github/team22/users/ADKazdym/exercise/hw1/home_work_1
+  145  touch file1
+  146  vi file1
+  147  touch file2
+  148  vi file2
+  149  du . > result_du
+  150  history > result_history
+  151  git add .
+  152  git commit -m "zadanie3_hw1"
+  153  cat file1
+  154  head -n2 file1
+  155  tail -n2 file1
+  156  du . > result_du
+  157  history > result_history
+  158  git add .
+  159  git commit -m "zadanie3_hw1"
+  160  find /home/ -name "*fil*"
+  161  cd :~/github/team22/users/ADKazdym/
+  162  cd :~/github/team22/users/ADKazdym
+  163  cd ~/github/team22/users/ADKazdym
+  164  ls -la
+  165  awk -F' ' '{print $5}' ls -la
+  166  ls la > save_ls_la
+  167  ls -la > save_ls_la
+  168  awk -F' ' '{print $5}' save_ls_la
+  169  ls
+  170  grep -rni "GET" ADKazdym
+  171  grep -rni "GET" /ADKazdym
+  172  grep -rni "GET" ~/github/team22/users/ADKazdym
+  173  du . > result_du
+  174  history > result_history
+  175  git add .
+  176  git commit -m "zadanie4_hw1"
+  177  grep -rni "GET" ~/github/team22/users/ADKazdym > ~/github/team22/users/ADKazdym/exercise/hw1/grep
+  178  grep -rni "GET" ~/github/team22/users/ADKazdym > ~/github/team22/users/ADKazdym/exercise/hw1/grep.txt
+  179  cd ~/github/team22/users/ADKazdym/exercise/hw1/
+  180  ls
+  181  cat grep
+  182  du . > result_du
+  183  history > result_history
