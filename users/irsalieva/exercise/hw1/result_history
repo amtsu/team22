@@ -179,3 +179,16 @@
   179  ls -la; rm test123; pwd
   180  du > result_du
   181  history > result_history 
+  182  git status
+  183  git add .
+  184  git status
+  185  git commit -m '7 block of hw1'
+  186  grep -rni 'GET'
+  187  grep -rni 'GET' file2
+  188  grep -rni 'GET' file2 | awk -F' ' '{print $7}'
+  189  grep -rni 'GET' file2 | awk -F' ' '{print $7}' | sort
+  190  grep -rni 'GET' file2 | awk -F' ' '{print $7}' | sort | wc -l
+  191  grep -rni 'GET' file2 | awk -F' ' '{print $7}' | sort | wc -l > cnt_uri
+  192  ls -la
+  193  du > result_du
+  194  history > result_history 
