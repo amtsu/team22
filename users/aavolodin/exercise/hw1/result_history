@@ -212,7 +212,148 @@
   212  git diff
   213  git comit -m 'добавил README.md
   214  git comit -m 'добавил README.md'
-  215  awk -F' ' '{print $5}' file3
-  216  grep -rni 'GET' 
-  217  du > result_du
-  218  history > result_history
+  215  ls
+  216  cd exercise/
+  217  ls
+  218  cd hw1
+  219  ls
+  220  cat file1
+  221  cat file2
+  222  du 
+  223  du > result_du
+  224  history > result_history
+  225  git status
+  226  git diff
+  227  git sttus
+  228  git status
+  229  git add hw1 ../../../exercise/hw1/home_work_1/file_1
+  230  git status
+  231  clear
+  232  ls
+  233  rm file1 file2
+  234  ls
+  235  clear
+  236  vi file1
+  237  vi file2
+  238  cat file1
+  239  git status
+  240  git branch -a
+  241  git pull
+  242  git status
+  243  git checkout main
+  244  git pull
+  245  git checkout aavolodin
+  246  ls
+  247  git checkout aavolodin_hw2
+  248  ls
+  249  du > result_du
+  250  history > result_history
+  251  git status
+  252  rm file1 file2
+  253  ls
+  254  awk -F' ' '{print $5}' file3
+  255  grep -rni 'GET' 
+  256  du > result_du
+  257  history > result_history
+  258  git status
+  259  git add result_du result_history file3
+  260  git status
+  261  git comit -m 'фильтрация файлов\'
+  262  git comit -m 'фильтрация файлов'
+  263  git commit -m 'фильтрация файлов'
+  264  git push
+  265  pwd
+  266  cd github/team22/users/aavolodin
+  267  ls
+  268  cd exercise/
+  269  ls
+  270  cd hw1
+  271  ls
+  272  cd home_work_1/
+  273  ls
+  274  cd ..
+  275  ls
+  276  vi
+  277  ls
+  278  vi file2
+  279  cat file1
+  280  head file1
+  281  tail -n3 file2
+  282  tain -f file1
+  283  2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y
+  284  pwd
+  285  cd github
+  286  cd team22/users
+  287  ls
+  288  cd aavolodin
+  289  ls
+  290  cd ..
+  291  mw -r exercise aavolodin
+  292  mw -r exercise/aavolodin
+  293  mw -r exercise /users/aavolodin
+  294  mv -r exercise aavolodin
+  295  mv -r exercise/aavolodin
+  296  mv -r exercise /users/aavolodin
+  297  mv exercise /users/aavolodin
+  298  mv exercise aavolodin
+  299  ls
+  300  cd aavolodin
+  301  ls
+  302  cd exercise
+  303  ls
+  304  cd hw1
+  305  ls
+  306  cd ..
+  307  ls
+  308  la -la
+  309  ls -la
+  310  git reset .README.md.swp
+  311  ls -la
+  312  ls -la > awk -F' ' '{print $5}'
+  313  ls -la > file3;awk -F' ' '{print $5}'
+  314  ды
+  315  ls
+  316  cd  exercise 
+  317  ls
+  318  cd hw1
+  319  ls
+  320  vi file1
+  321  vi file2
+  322  du > result_du
+  323  history > result_history 
+  324  git status
+  325  git add file1 file2 result_history result_du
+  326  git status
+  327  git add home_work_1
+  328  git status
+  329  git puch
+  330  git commit -m 'сделал часть ДЗ'
+  331  git puch
+  332  git push
+  333  cat file1
+  334  head -h2 file1
+  335  head -n2 file1
+  336  tail -n2 file1
+  337  du > result_du
+  338  history > result_history 
+  339  git status
+  340  git add result_history
+  341  git status
+  342  git commit -m 'вывод содержимого файла'
+  343  find /home/ -name "*fil*
+  344  find /home/ -name "*fil*"
+  345  find /home/ -name "*fil*
+  346  find /home/ -name "*fil*"
+  347  ls -la
+  348  ls -la > awk -F' ' '{print $5}' 
+  349  awk -F' ' '{print $3}'
+  350  github/team22/users/aavolodin/exercise/hw1
+  351  github
+  352  cat file3
+  353  grep 'GET' file3
+  354  grep -rni 'GET' > save_URL
+  355  ls
+  356  cat save_URL 
+  357  awk -F' ' '{print $7}' file_URL
+  358  du > result_du
+  359  history > result_history 
