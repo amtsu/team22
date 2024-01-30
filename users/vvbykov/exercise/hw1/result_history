@@ -164,3 +164,36 @@
   164  cd -
   165  du > result_du
   166  history > result_history
+  167  git add result_du result_history
+  168  git status
+  169  git commit -m '1st part of hw1'
+  170  mkdir home_work_1
+  171  cd home_work_1
+  172  touch file_1
+  173  cd ..
+  174  history > result_history
+  175  cat result_history
+  176  cd home_work_1/
+  177  mkdir work_dir
+  178  cp file_1 work_dir/file_1_copy
+  179  cd work_dir/
+  180  ls -la
+  181  cd -
+  182  cd -r work_dir work_dir_new
+  183  cp -r work_dir work_dir_new
+  184  ls -la
+  185  cd work_dir_new/
+  186  ls -la
+  187  cd ..
+  188  ls -la
+  189  cd work_dir
+  190  ls -la
+  191  mv file_1_copy file_1_new_name
+  192  ls -la
+  193  rm file_1_new_name 
+  194  cd ..
+  195  rm -r work_dir_new/
+  196  ls -la
+  197  cd ..
+  198  du > result_du
+  199  history > result_history
