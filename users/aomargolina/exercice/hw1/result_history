@@ -443,3 +443,26 @@
   443  du . > result_du 
   444  history 
   445  history > result_history 
+  446  git status 
+  447  git add .
+  448  git commit -m 'ex1_block7'
+  449  git status 
+  450  env
+  451  pwd
+  452  ls
+  453  cd g
+  454  cd github/
+  455  ls
+  456  cd team22/
+  457  ls
+  458  cd users/
+  459  cd aomargolina/
+  460  ls
+  461  cd exercice/
+  462  cd hw1/
+  463  ls
+  464  git status
+  465  env
+  466  env | grep 'A'
+  467  du . > result_du 
+  468  history > result_history 
