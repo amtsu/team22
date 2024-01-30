@@ -178,3 +178,32 @@
   178  du > result_du
   179  cat result_du 
   180  history > result_history
+  181  git commit -m "2nd part"
+  182  git add home_work_1/
+  183  git status
+  184  git add result_du
+  185  git add result_history 
+  186  git status
+  187  git commit -m "2nd part"
+  188  touch file1
+  189  vi file1 
+  190  cat file1 
+  191  touch file2
+  192  vi file2
+  193  cat file2
+  194  git status
+  195  fit add file1 file2
+  196  git add file1 file2
+  197  git status
+  198  du > result_du
+  199  cat result_du
+  200  history result_history
+  201  git status
+  202  git add result_du
+  203  git status
+  204  git commit -m "3rd part"
+  205  cat file1
+  206  head -n2 file1
+  207  tail -n2 file1
+  208  du > result_du
+  209  history > result_history
