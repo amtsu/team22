@@ -355,3 +355,51 @@
   355  tail -n2 file1
   356  du . > result_du 
   357  history > result_history 
+  358  git status
+  359  git diff
+  360  cat result_du 
+  361  git add .
+  362  git commit -m 'ex1_block4'
+  363  git status 
+  364  find /home/ -name "fil"
+  365  find /hw1/ -name "fil"
+  366  find -name "fil"
+  367  ls
+  368  pwd
+  369  find -name *fil*
+  370  find /hw1/ -name *fil*
+  371  find /hw1/ -name 'fil'
+  372  cd ..
+  373  find /hw1/ -name 'fil'
+  374  find /hw1 -name 'fil'
+  375  find . -name "fil"
+  376  cd hw1/
+  377  find . -name "fil"
+  378  ls
+  379  find "fil"
+  380  find -name "*fil*"
+  381  #awk -F' ' '{print 
+  382  #awk -F' ' '{print1,3}' home_work_1/test.txt
+  383  ls -la
+  384  awk -F' ' '{print5}' hw1
+  385  ls -la > size
+  386  ls
+  387  cat size 
+  388  awk -F' ' '{print5}' size
+  389  awk -F' ' '{print1}' size
+  390  awk -F' ' '{print1,3}' size
+  391  awk -F' ' '{print1, 3}' size
+  392  awk -F' ' '{print 5}' size
+  393  awk -F' ' '{print 5}' hw1/size
+  394  ls
+  395  vi size 
+  396  awk '{print $5}' size 
+  397  grep 'GET' hw1
+  398  grep -rni 'GET' hw1
+  399  grep -rni 'GET'
+  400  cd .
+  401  cd ..
+  402  grep -rni 'GET' hw1
+  403  cd hw1/
+  404  du . > result_du 
+  405  history > result_history 
