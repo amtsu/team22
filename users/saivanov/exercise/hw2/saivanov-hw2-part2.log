@@ -1,0 +1,392 @@
+3de29ab Merge branch 'saivanov-hw2-part2' of github.com:amtsu/team22 into saivanov-hw2-part2 сделал ребейз, чтобы обновить состояние остального проекта перед тем как переделать merge необходимый по заданию
+5c80fd6 откатываю test test которые делать не надо было Revert "последние обновления перед мерджем"
+7232d82 откатыываю merge Revert "решил конфликт"
+17550e6 отменяю изменения до мержа Revert "починил price_f.html"
+09b655f починил price_f.html
+4d682fb Добавлен фаил с ценой на холодильник feature 1
+8c7144c последние обновления перед мерджем
+4be6e85 Добавлен фаил с ценой на холодильник
+be2dd17 откатываю test test которые делать не надо было Revert "последние обновления перед мерджем"
+5ffc08a откатыываю merge Revert "решил конфликт"
+8f193fd отменяю изменения до мержа Revert "починил price_f.html"
+cf91b52 Aemareev hw2 git part 2 (#224)
+4252524 Eanabatov hw2 git (#231)
+129f598 Oekorchevaya hw1 (#225)
+f7b5fdf Rstarasov hw2 do past hw in git (#204)
+7c9ec1d Andvliv (#200)
+ed2960c Lyashenkosa hw1 puch home directory to main (#197)
+20913d7 dobavil opisanie (#195)
+43fb254 обо мне (#186)
+e9be97d Добавление файла README.txt (#228)
+3c9ac1e Первое домашнее задание (#227)
+d3024d9 eanabatov-prepare-for-new-hw (#226)
+15ffd15 Avlotsmanov homework2 part2 (#229)
+43582c8 обновил название папки (#230)
+bff8015 Kaanikin hw2 git intro (#233)
+c5d9a44 added information about directory (#223)
+3eb4023 Info about me (#222)
+bd597ef Первая часть ДЗ по GIT (#216)
+8190e6a Добавлен файл с ценой на холодильник. (#207)
+85a5d0c Mvandreeva hw 1 terminal (#205)
+6981c40 Rstarasov hw1 push home directory to main (#201)
+c47f4d3 Anzhela volodina (#209)
+3b0dce3 First part of homework-2 (#214)
+07c7f4c Find y hw2 (#210)
+05cbbf0 Find y test branch (#208)
+44ec96c hw1 (#215)
+27bc51f about me (#219)
+25f71f0 починил price_f.html
+139e8db решил конфликт
+6e83e7e последние обновления перед мерджем
+5af7fd6 Добавлен фаил с ценой на холодильник feature 1
+335906d Добавлен фаил с ценой на холодильник
+05d50e4 добавил ipynb с первого занятия (#217)
+f6b568b vvbykov hw01 (#206)
+5f7d0b5 Aemareev hw2 intro to git (#198)
+e4d1866 Andreyvolodinpro (#211)
+c9c0d76 Moved previous study to study2022 (#202)
+8c1e555 Mvandreeva add readme (#203)
+fd36d35 Rstarasov hw1 push home directory to main (#196)
+62d6172 fix
+c742849 Amtsurkov test (#199)
+bd64038 Hw 04 andreev aleksey (#102)
+d503d2a mvandreeva start parsing nash.dom (#162)
+b17929b Mvandreeva lesson 27 hw sorting algorithms (#105)
+4c939a5 Home work 1 vstimofeeva (#130)
+e744503 mvandreeva started parsing lsr (#136)
+1188346 mvandreeva added hals_parser (#154)
+76f5081 Добавил README, убрал стары файлы (#193)
+b920f38 mvandreeva The Equilibrium project. An attempt to parse PIK was taken (#118)
+19af1bf переменовал свою папку, была sivanov, стала saivanov (#192)
+8437911 Lecture2irsalieva (#190)
+92bb019 attempt #2 (#189)
+7c3da38 Add README file (#188)
+3ce3f8c add file readme (#187)
+912e478 Добавил файл team22-naming-convention.txt в корневой каталог проекта (#191)
+51b16ae Lecture2tttest (#185)
+216531d EANabatov_Model_v2 (#184)
+1f43188 EANabatov_HW_parsing (#183)
+1a92c91 Sivanov добавил альфа версию проекта макета описания (#182)
+ccce3d9 обновление интерфейса модулей (#181)
+fb166a0 Hw andreev aleksey upd abstract (#177)
+e08c8e6 Скорректированный модуль от AbstractModule по замечаниям SIvanov (#180)
+b1ab3b0 Sivanov working with classes (#178)
+81a0414 Svalekseyeva (#99)
+8059bc8 Home work 1 samaltsev (#119)
+93dedea Sivanov phonebook на базе данных (#158)
+7e0f7c9 sql_2_HW (#156)
+6f31346 Второе домашнее задание по SQL (#153)
+1b22942 Home work 10 vssachenko (#150)
+aaddcf1 Hw 09 andreev aleksey (#148)
+1361284 Решила задание по сотрудникам (#147)
+3376e15 add 1/3 home work (#149)
+a32c9be Добавил в класс функционал работы с хобби и возрастом. Добавил отдельные для выполнения ДЗ. Добавил тестов. (#144)
+8176103 Sivanov Первое ДЗ по sql (#146)
+160009a Hw sql 2 andreev aleksey (#151)
+e74a9c9 HW_10 Первая работа с SQL (#145)
+05681b4 sql_1_HW (#142)
+7181f3e add HW_9 (#141)
+489d7d5 HW_08. Работа с файлами txt и pickle (#139)
+6cf133f Home work 8 vstimofeeva (#137)
+f23ffe9 Сделана БД, добавлены данные, написан запрос, и всё последующие шаги из задания (#135)
+05623dc Home work 7 vstimofeeva (#134)
+38cee45 sivanov пример использования enum (#115)
+58f8290 sivanov простой генератор ряда (#113)
+f3eca37 Hw 08 andreev aleksey (#129)
+9ae759b Hw 07 andreev aleksey (#127)
+e4aa478 I started parsing the Capital Towers Project, but stopped because of lack of price (#121)
+cfa2a70 Homework4 function ad kazdym (#80)
+2f63d82 Исправление ошибок в моделирующей системе: отказ от импорта тестов, задание максимально возможного числа шагов моделирования, исправления в комментарии, добавлена печать результатов в числовом виде, графики переставлены местами, добавлены коммертарии, сокращено количество вызовов функций is_done() модулей (#171)
+440bab5 Класс моделирует отправку сообщений (#176)
+81dd3c4 Парсер каталога товаров Ленты (#175)
+3ff1816 Парсер самого лучшего сайта :) (#173)
+c4eeb21 Mvandreeva modelling sys change fname (#172)
+1ef1dc7 исправил ошибки с урока (#170)
+e7fe519 Add homework on modelling. Not sure if it is correct. (#167)
+6ebda19 HW_andreev-aleksey (#169)
+c5bc81f Домашнее задание от SIvanov (#165)
+ca44b3f Реализация абстракного класса (#168)
+b10ecf1 добавлен прототип моделирующей системы (#166)
+bce6cd7 добавил описание интерфейса единичного модуля с моделирующей системой… (#164)
+7898573 img
+8ec24e7 add swagger
+3e46cc3 Html (#163)
+24de055 internet + html
+31a009b add
+c5eb39f fix
+83fc59c fix
+4bcf0b3 Hw sql (#143)
+2b1bdca add photo
+a185a8e detected car
+0f0d833 detected car
+d3bee89 detected car
+87e446b tele
+9187bda add video
+1b31595 add vidoe
+bf73aa7 change
+1879717 Merge branch 'main' of github.com:amtsu/team22 into main
+1f7de5b add video detection
+212fb63 Hw old (#116)
+ffee4ad continue (#108)
+e059462 Hw 05 andreev alexander (#93)
+5a17d2f lesson 230525
+24e34db fix bug
+460736c add lesson
+7544bb3 mvandreeva CapitalGroup Tricolor project parser (#122)
+af91026 Mvandreeva lesson 25 hw SQL (#107)
+4a171c7 Mvandreeva lesson 21 hw web parsing update (#78)
+19bb0d9 add
+fcfc329 fix
+b523940 add new data for apertment
+7a2c1b1 sql
+a15d67b Hw work with files (#124)
+11245b5 Sivanov phonebook (#125)
+26b5646 pickle_HW (#140)
+344901d sivanov калькулятор (#106)
+c47e102 Home work 3 alzharin (#103)
+2e13169 fix Level
+efb6e4f add lesson sql 240415
+e210241 lesson sql v2 (#138)
+5bca5bd add FondRenovation Page Processor
+ded471e Home work 6 vstimofeeva (#133)
+5adc29c Home work 2 vstimofeeva (#131)
+814e44e Hw 1+ (#128)
+69131c6 Hw 07 andreev alexander (#120)
+9d821f4 ninth_HW (#111)
+be18489 home work file pickle
+3d21dc2 add with room
+a101e5b add room ml
+a969be7 fix bug
+b821ea2 add exemple with Phone
+17cc330 add exemple with Phone
+c03b3bf bug fix
+f91d9bb Hw 04 jatashpulatov (#109)
+40aa7d1 HW 5 EANabatov (#94)
+351249a add LinearRegression and xgboost
+8d8f9d3 lesson_8
+bbcd23d clean
+847778b add apartment
+9fa3131 Mvandreeva lesson 25 hw SQL (#104)
+b20d7f7 Merge pull request #96 from amtsu/HW_05_andreev-aleksey
+1155b7d work with docker
+7781fd5 add Docker for telegram bot
+edf1a5a sivanov для того чтобы писать bot достаточно лишь (#66)
+32ae574 sivanov ветка про дз про алгоритмы сортировки (#87)
+a46f09d Merge branch 'main' of github.com:amtsu/team22 into main
+238cf5a add config file
+2d995ca lesson_6 (#101)
+b295b5e add lesson (#100)
+446aad0 readme (#98)
+1031f24 clean
+717ed8b fifth_HW (#95)
+3231846 add hw exclusion
+30746da estimate time of hw04 (#82)
+88cbc6a Second testing commit (#89)
+659d8f3 Home work 1 (#90)
+6852871 HW 04 andreev alexander (#84)
+4d28384 Lesson 5 (#91)
+d0a2259 part home work (#86)
+5231f2a Home work 1 vssachenko (#85)
+771a517 third_HW (#83)
+1f1ce26 Home work 2 jatashpulatov (#81)
+b1cce1d add lesson 4 (#79)
+8d27091 Sivanov dag update (#77)
+88fc6ef save dir content (#75)
+14e3a0b add homework (#71)
+1a7fff5 add git_base to lesson_03 (#74)
+f8d013f second_HW (#73)
+cb92a83 first_HW (#72)
+87d20ed Home work 03 andreev alexander (#69)
+a25358b change dir (#70)
+1bcf70c Home work 1 amtsurkov (#68)
+cb9e768 mypy and black changes. And python3 update for version on lesson-15 (#65)
+faccc35 same chage
+a2feb21 add not sorted hw
+6534511 save
+0ef99ce Sivanov ты не поверишь! Писать dags просто, достаточно выполнять эти действия...  (#60)
+9ece637 fix
+7fc8b0a push
+3f34673 add HW for lesson 1
+5d62a4d add 1 lesson
+81594a1 fix auchan import
+009f203 change python2 to python3
+fe42cbc add plot
+6a854a0 add sort
+0fc350e add lesson 25
+cb83a41 fix bug
+769f9ea change lesson 24
+ef6051f fix bug
+418475d fix work with sql add EXCEPT
+e649d43 fix work with aushan page
+6dc4247 aushan socolniki
+4fd2e18 Merge branch 'main' of github.com:amtsu/team22 into main
+bdb80df add lesson_24
+fe583b0 Lessen 23 (#63)
+8023675 Sivanov ноутбучек с примером работы с абстрактным интерфейсом (#56)
+0f4104d Mypy black pylint (#62)
+2e7b849 Fix test (#61)
+d487709 add comment (#59)
+dc6dbea add lesson 22 (#58)
+dbfc87d Sivanov Можно быстро и без СМС написать парсер сайта, для этого всего лишь нужно... (#57)
+a2a14ac users/mvandreeva/lesson_17_HW_decorators/lesson_17_HW_decorators.ipynb (#55)
+4190b4f fix price_sale in trialsport
+9559fa6 add source_url
+b6f0b47 add percent
+2d35182 fix params
+9a7ad85 add spar
+ab48150 add 5ka
+63f1338 test import
+66677c4 add trialsport al page
+26dba15 add dag alert change loss new
+a6f5096 add Auchan import
+e88641c price alert dag
+4942e14 pricnt count
+ca5c28b Sivanov список дел (#49)
+28733f3 Merge branch 'main' of github.com:amtsu/team22 into main
+8ba3166 add lesson 22
+e4daeee adding users/asneyman direcrory (#54)
+95f8e7a add send info in api
+a792f77 add work with list urls
+eada62e add image_url
+98a773f add brand_url
+9bf986b add BrandElement
+3d0a554 add __is_page_ok()
+77bc1ae fix test
+6fe3ac2 add same test
+d73bcb1 add goods 2174237 for test
+e19c6ca add test from read from file
+c0efa7b "::w:Merge branch 'main' of github.com:amtsu/team22 into main
+caecbae change class iinterface
+42754e6 fix test
+f76fffa lesson 21
+0a7c14a update kernel
+6bab236 add lesson 20 (#53)
+eff46a3 HW_15 (#52)
+6b44a55 lesson14 (#51)
+9993bf8 lesson14 (#50)
+fe62aa8 Sivanov, декораторы (#47)
+9ecf582 Apyatnitskiy (#24)
+16f55ae Merge branch 'main' of github.com:amtsu/team22 into main
+df64b62 add api price_alert
+c486b64 add lesson 20 (#48)
+66e66e2 add lesson 19 (#46)
+d17bcd2 Merge pull request #40 from amtsu/sivanov_20221109
+b55de4d Merge pull request #42 from amtsu/mvandreeva_lesson_14_HW
+24625e3 Merge pull request #41 from amtsu/aochernyshev
+6b2c6ea Merge pull request #43 from amtsu/kstimofeev
+8404245 Merge pull request #45 from amtsu/lesson_18
+a7f4df3 add lesson 18
+0005c67 Merge pull request #44 from amtsu/lesson_16
+dd6577e add lesson 17
+afff294 add spisok of objects
+6e1fbcf add everything
+a93152b added lesson_14_HW
+4b5699a added price_checker
+a110ef7 hw for lesson 16 (mailing and site parsing)
+8c8edf4 Merge pull request #39 from amtsu/aominakov_v4_les16
+a3aeccb minakov_lesson16
+56b688b Merge pull request #31 from amtsu/mvandreeva_lesson_11_HW_v2
+4082d07 Merge pull request #36 from amtsu/sivanov
+e572fe9 Merge pull request #38 from amtsu/lesson_16
+ba282d5 last part 3
+2edfeb5 lsson 16 part 2
+45106b1 lesson part 1
+d6384e7 Merge pull request #37 from amtsu/amtsur_lesson_14
+095e590 add lesson 15
+60d20ac аÑfixing mistakes
+f0b21f2 added script that executes jupyter running command
+0ae4919 try test git
+d610d9b Delete asneyman
+030b87c lesson 14 partial hw, better than nothing
+f8893be begin working with classes for task list
+51dbcd9 Create asneyman
+a0084fd Merge pull request #32 from amtsu/amtsur_lesson_14
+5652c91 add lesson_14
+d9c22d2 Test show add files
+e607eda add lesson 13
+cfe508f try to deal with virtual environment and packages"
+e1fd6a7 lesson 12
+80fcb77 updated lesson 11 homework
+b4ca352 Merge branch 'main' of github.com:amtsu/team22 into main
+ae103d5 lesson 11 module + class + object
+673acbe add lesson 11 homework
+be2f947 Merge pull request #30 from amtsu/sivanov
+8c40dcb lesson 11 hw, action lists part
+71f0991 del
+112310f clear
+3b76f91 add same lesson
+1d855ac Merge pull request #28 from amtsu/viukhanov_homework2_v1
+e8671f4 obnovlenni_s_instrukciei_dobavlenia_v_git
+e7ce75c do_homework
+0180761 Merge pull request #26 from amtsu/mvandreeva_v2
+e9fd002 Merge pull request #27 from amtsu/sivanov
+75673b5 homework on lesson 9 (json and pickle)
+b6e92d2 lesson 6 (work with files) hw done
+6f6e204 hw for lesson 7 in progress, other items rearranged
+e8a8032 Added lesson_7_HW_from_book
+741a1dc Merge pull request #25 from amtsu/mvandreeva_v2
+3e5bd7b Added lesson_9_HW_objects_to_files
+5d50a00 just added a test file for video tip
+ff34511 Merge pull request #20 from amtsu/sivanov
+59ee206 Merge pull request #21 from amtsu/aominakov_v3
+2608bba Merge pull request #22 from amtsu/mvandreeva_v2
+ae2395e add lesson 9
+94cf8bc fixin' some very important features or smth, idk
+c8d177d add lesson 6 homework
+22f6d65 add my report on count_sorting dated 28.09.2022
+91a2ad7 add my report on count_sorting dated 28.09.2022
+2283f40 Merge branch 'aominakov_v3' of github.com:amtsu/team22 into sivanov
+bce011d povtor knigi
+30b1321 Добавил предыдущие работы по ДЗ.
+0484b7b First commit + Json practice.
+e9b8246 added lesson 7 homework
+3a24984 Merge pull request #19 from amtsu/sivanov
+78650db Merge branch 'main' into sivanov
+de15178 added .gitignore to root folder
+0ad66ca add lesson 7
+5805da5 Add library
+4ad5ac1 Merge pull request #17 from amtsu/sivanov
+112bdb0 Merge pull request #18 from amtsu/aominakov_v2
+b2d571e lesson 6 work
+179c713 removed unnececery data from repo
+35535ed added notepad for timsort pres about working with random numbers
+a8aa703 just create file
+d04d7be add TDD
+c5f125a чpart of a TDD homework
+6ef4c29 Merge branch 'main' into sivanov t because
+1fe3561 doing something with test system
+d8dc54b Merge pull request #15 from amtsu/artem_clean
+ac7126e add lesson 5 - write test
+1c8d4cc Merge pull request #14 from amtsu/sivanov
+9fb37d7 Merge pull request #13 from amtsu/sigrischenko2
+1e17331 Merge pull request #12 from amtsu/apyatnitskiy
+c1b848d Merge pull request #11 from amtsu/mvandreeva
+88b7817 Merge pull request #9 from amtsu/artem_clean
+24e5705 Merge pull request #8 from amtsu/vstimofeeva
+6a7c6d9 Merge pull request #7 from amtsu/aominakov
+c0bdcfa Merge pull request #6 from amtsu/kstimofeev
+9d4e472 tdd lesson code added
+94f4b2b Merge pull request #5 from amtsu/sigrischenko
+840a74d Merge pull request #4 from amtsu/sivanov
+b15ee8c Merge pull request #3 from amtsu/aochernyshev
+2a52ccf Merge pull request #2 from amtsu/viukhanov
+1707360 second branch pushit otec koda
+f922170 first branch ebat ego
+0b857bc I did it!
+85377bb Branch name changed.
+0ce51ce Firts commit in a new branch by AP
+3215ee4 Apyatnitskiy - folder delite.
+e8b3b23 Home work moved to GitHub.
+b42d53a add lessons
+a100468 fix
+c7957a9 add my folder
+e717d09 ura ura ya koder
+9d4238a add kstimofeev folder
+9d09c15 natvoril ya del
+911f78c test add
+a333b01 add aochernyshev folder in users
+e6c1a26 добавил файл README
+e5ccb4b Merge pull request #1 from amtsu/amtsurkov
+af8f5f2 add folder users
+7e144ef add first file
+cd1b8f2 Initial commit
