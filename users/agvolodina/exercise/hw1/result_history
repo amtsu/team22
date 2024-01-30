@@ -254,3 +254,17 @@
   254  cat cur_usd2
   255  du > result_du
   256  history > result_history 
+  257  git status
+  258  git add result_du  result_history cur_usd2
+  259  git status
+  260  git commint - 'вывод курса $'
+  261  git push
+  262  git commint -m 'вывод курса $'
+  263  git commit -m 'вывод курса $'
+  264  git push
+  265  curl https://finance.rambler.ru/currencies/EUR/ -o cur_eur;grep 'EUR'  cur_eur
+  266  curl https://finance.rambler.ru/currencies/EUR/ -o cur_eur;grep '1 EUR ='  cur_eur | awk '{print $4}' 
+  267  curl https://finance.rambler.ru/currencies/EUR/ -o cur_eur;grep '1 EUR ='  cur_eur | awk '{print $4}' > cur_eur2
+  268  cat cur_eur2
+  269  du > result_du
+  270  history > result_history 
