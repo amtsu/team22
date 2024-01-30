@@ -357,3 +357,11 @@
   357  awk -F' ' '{print $7}' file_URL
   358  du > result_du
   359  history > result_history 
+  360  git status
+  361  git add result_du result_history save_URL 
+  362  git status
+  363  git commit -m 'Вывод строки GET'
+  364  ls -la && rm test123 && pwd
+  365  ls -la; rm test123; pwd
+  366  du > result_du
+  367  history > result_history 
