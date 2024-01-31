@@ -318,3 +318,14 @@
   318  ll
   319  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
   320  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  321  git status
+  322  git add .
+  323  git commit -m "vpetrov-hw1-part3"
+  324  git status
+  325  cd exercise/hw1/
+  326  cat file1
+  327  head -n2 file1
+  328  tail -n2 file1
+  329  cd ..
+  330  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  331  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
