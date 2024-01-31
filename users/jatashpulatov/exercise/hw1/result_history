@@ -459,3 +459,14 @@
   459  vi block_7_diff_btwn_cmnds 
   460  du -h > result_du 
   461  history > result_history 
+  462  git status
+  463  git add .
+  464  git status
+  465  git commit -m 'Блок 7 (разница команд)'
+  466  git push
+  467  grep -rni 'GET'
+  468  grep -rni 'GET' | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort
+  469  grep -rni 'GET' | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort | ln
+  470  grep -rni 'GET' | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort | wc -l
+  471  du -h > result_du 
+  472  history > result_history 
