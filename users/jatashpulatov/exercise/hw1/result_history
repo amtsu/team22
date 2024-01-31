@@ -470,3 +470,14 @@
   470  grep -rni 'GET' | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort | wc -l
   471  du -h > result_du 
   472  history > result_history 
+  473  git status 
+  474  git add .
+  475  git commit -m 'Блок 8 (grep, |, awk, sort, wc -l)'
+  476  git push
+  477  git checkout main
+  478  git pull
+  479  git checkout jatashpulatov-3-hw2-part2 
+  480  env
+  481  env | grep 'A'
+  482  du -h > result_du 
+  483  history > result_history 
