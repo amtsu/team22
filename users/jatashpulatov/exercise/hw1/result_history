@@ -445,3 +445,17 @@
   445  grep -rni 'GET'
   446  du -h > result_du 
   447  history > result_history 
+  448  git status
+  449  git add .
+  450  git status
+  451  git restore ../../../../library/exercises/hw-1/theory_console_command.ipynb
+  452  git status
+  453  git commit -m 'Блок 6 (URI)'
+  454  git push
+  455  touch block_7_diff_btwn_cmnds
+  456  vi block_7_diff_btwn_cmnds 
+  457  ls -la && rm test123 && pwd
+  458  ls -la; rm test123; pwd
+  459  vi block_7_diff_btwn_cmnds 
+  460  du -h > result_du 
+  461  history > result_history 
