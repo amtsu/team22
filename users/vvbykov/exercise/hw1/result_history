@@ -197,3 +197,52 @@
   197  cd ..
   198  du > result_du
   199  history > result_history
+  200  cat du
+  201  cat result_du
+  202  clear
+  203  git status
+  204  git add home_work_1/
+  205  git status
+  206  git commit -m '2nd block of hw1'
+  207  git status
+  208  git add -a
+  209  git add -all
+  210  git add --all
+  211  git status
+  212  git commit -m ''
+  213  git commit
+  214  git status
+  215  git commit -m '.'
+  216  git log
+  217  clear
+  218  cd github
+  219  cd users//vvbykov
+  220  cd users/vvbykov
+  221  cd team22/users/vvbykov/
+  222  ls -la
+  223  cd exercise/
+  224  cd hw1
+  225  ls -la
+  226  cat result_his
+  227  cat result_history 
+  228  clear
+  229  git log
+  230  touch file1
+  231  vi file1 
+  232  touch file2
+  233  vi file2
+  234  cat file1
+  235  head -n2 file1
+  236  tail -n2 file1
+  237  find -name '*fil*'
+  238  ls -lh | grep 'rw-r' | awk '{print $5}'
+  239  ls -la
+  240  grep 'GET'
+  241  grep -rni 'GET'
+  242  grep -rni 'GET'|awk -F' ' '{print $7}' | sort -r
+  243  grep -rni 'GET'|awk -F' ' '{print $5}' | sort -r
+  244  grep -rni 'GET'|awk -F' ' '{print $4}' | sort -r
+  245  ls -la && rm test123 && pwd
+  246  ls -la; rm test123; pwd
+  247  du > result_du
+  248  history > result_history
