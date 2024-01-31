@@ -281,20 +281,31 @@
   281  git status
   282  git branch
   283  git push --set-upstream origin hw1
-  284  cd github
-  285  git branch
-  286  branch
-  287  cd team22
-  288  git branch
-  289  cd users/dptimofeev/exercise/
-  290  ls
-  291  cd hw1
-  292  ls -la
-  293  cd home_work_1/
-  294  ls -la
-  295  find /home/ -name "*fil*"
-  296  ls -lh
-  297  ls -lh | awk -F ' ' '{print $5}'
-  298  grep -rni 'GET'
-  299  du . > result_du
-  300  history > result_history
+  284  git status
+  285  curl https://finance.rambler.ru/currencies/USD/ 
+  287  curl https://finance.rambler.ru/currencies/EUR/ 
+  288  curl https://finance.rambler.ru/currencies/EUR/ |grep EUR
+  289  curl https://finance.rambler.ru/currencies/EUR/ |grep '1 EUR ='
+  290  curl https://finance.rambler.ru/currencies/USD/ |grep '1 USD ='
+  291  curl https://finance.rambler.ru/currencies/USD/ |grep '1 USD =' cur_usd
+  292  curl https://finance.rambler.ru/currencies/USD/ -o usd.html
+  293  curl https://finance.rambler.ru/currencies/EUR/ -o eurd.html
+  294  curl https://finance.rambler.ru/currencies/EUR/ -o eur.html
+  295  rm eurd.html 
+  296  grep '1 USD =' usd.html
+  297  grep '1 EUR =' eur.html
+  298  grep '1 USD =' usd.html |awk -F ' ' '{print $4}'
+  299  grep '1 EUR =' eur.html |awk -F ' ' '{print $4}'
+  300  ls -la
+  301  ls -lt
+  302  ls -l
+  303  ls -lp
+  304  ls -lp |grep -v/
+  305  ls -lp | grep -v /
+  306  ls -lp | grep -v | awk '{print $6, $7, $8}'
+  307  ls -lp | grep -v / | awk '{print $6, $7, $8}'
+  308  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort
+  309  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort | tail -n1
+  310  history > result_history 
+=======
+
