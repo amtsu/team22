@@ -279,3 +279,23 @@
   279  cd ~/github/team22/users/vpetrov/
   280  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
   281  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  282  git status
+  283  git add .
+  284  git status
+  285  git commit -m "vpetrov-hw1-part1"
+  286  ll
+  287  cd exercise/hw1/
+  288  mkdir home_work_1
+  289  touch home_work_1/file_1
+  290  mkdir home_work_1/work_dir
+  291  cp home_work_1/file_1 home_work_1/work_dir/file_1_copy
+  292  cp -r home_work_1/work_dir/ home_work_1/work_dir_new
+  293  mv home_work_1/work_dir_new/file_1_copy home_work_1/work_dir_new/file_1_new_name
+  294  rm home_work_1/work_dir_new/file_1_new_name
+  295  rm -frd home_work_1/work_dir_new/
+  296  git status
+  297  git add .
+  298  git status
+  299  cd ~/github/team22/users/vpetrov/
+  300  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  301  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
