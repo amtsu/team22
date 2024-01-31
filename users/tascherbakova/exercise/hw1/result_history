@@ -1,0 +1,174 @@
+    1  31/01/24 03:39:17 ls
+    2  31/01/24 03:39:40 cd /home/
+    3  31/01/24 03:39:51 ls -la
+    4  31/01/24 03:40:06 cd -
+    5  31/01/24 03:40:32 du > result_du
+    6  31/01/24 03:40:56 history > result_history
+    7  31/01/24 03:41:49 git status
+    8* 31/01/24 03:42:10 git add result_
+    9  31/01/24 03:42:21 git add result_history 
+   10  31/01/24 03:42:28 cat result_du 
+   11  31/01/24 03:42:40 cat result_history 
+   12  31/01/24 03:43:33 history 
+   13  31/01/24 03:43:54 pwd
+   14  31/01/24 03:44:07 history > result_history
+   15  31/01/24 03:44:17 cat result_history 
+   16  31/01/24 03:44:31 ls 
+   17  31/01/24 03:44:37 ls ~
+   18  31/01/24 03:44:44 history > result_history
+   19  31/01/24 03:45:04 git status
+   20  31/01/24 03:45:43 git commit -m "hw1 part1"
+   21  31/01/24 03:46:00 ls
+   22  31/01/24 03:46:15 mkdir home_work_1
+   23  31/01/24 03:46:21 cd home_work_1/
+   24  31/01/24 03:46:33 touch file_1
+   25  31/01/24 03:46:36 ls
+   26  31/01/24 03:46:51 mkdir work_dir
+   27  31/01/24 03:47:17 ls
+   28  31/01/24 03:47:34 cp file_1 work_dir/file_1_copy
+   29  31/01/24 03:47:57 cp work_dir/ work_dir_new
+   30  31/01/24 03:48:03 ls
+   31  31/01/24 03:48:10 cp -r work_dir/ work_dir_new
+   32  31/01/24 03:48:12 ls
+   33  31/01/24 03:48:51 mv file_1 file_1_new_name
+   34  31/01/24 03:49:01 rm file_1_new_name 
+   35  31/01/24 03:49:11 rm -r work_dir_new/
+   36  31/01/24 03:49:23 git status 
+   37  31/01/24 03:49:32 ls
+   38  31/01/24 03:49:38 cd ..
+   39  31/01/24 03:49:41 ls
+   40  31/01/24 03:49:54 git add home_work_1/
+   41  31/01/24 03:50:01 git status 
+   42  31/01/24 03:50:12 ls
+   43  31/01/24 03:50:14 cd home_work_1/
+   44  31/01/24 03:50:15 ls
+   45  31/01/24 03:50:18 cd work_dir/
+   46  31/01/24 03:50:20 ls
+   47  31/01/24 03:50:24 cd ../..
+   48  31/01/24 03:50:25 ls
+   49  31/01/24 03:50:48 history > result_history
+   50  31/01/24 03:50:58 du > result_du 
+   51  31/01/24 03:51:27 git commit -m "hw1 part 2"
+   52  31/01/24 03:51:37 ls
+   53  31/01/24 03:51:54 git status
+   54  31/01/24 03:52:05 git add .
+   55  31/01/24 03:52:12 git status
+   56  31/01/24 03:52:17 git commit -m "hw1 part 2"
+   57  31/01/24 03:52:51 ls
+   58  31/01/24 03:52:55 cd home_work_1/
+   59  31/01/24 03:52:55 ls
+   60  31/01/24 03:53:00 cd work_dir/
+   61  31/01/24 03:53:02 ls
+   62  31/01/24 03:53:40 cd ..
+   63  31/01/24 03:54:21 echo 'hello world' > file1
+   64  31/01/24 03:54:32 echo 'Hi' >> file1
+   65  31/01/24 03:54:47 echo '2000 + 11' >> file1
+   66  31/01/24 03:55:14 echo '::1 - - [20/Jan/2024:12:14:04 +0000] "GET /empty.test HTTP/1.1" 200 0 "-" "curl/7.29.0" "-" 0.000' > file2
+   67  31/01/24 03:55:38 echo '::1 - - [20/Jan/2024:12:14:04 +0000] "GET /1mb.test HTTP/1.1" 200 1048576 "-" "curl/7.29.0" "-" 0.000' >> file2
+   68  31/01/24 03:55:59 echo '::1 - - [20/Jan/2024:12:14:07 +0000] "GET /10mb.test HTTP/1.1" 200 10485760 "-" "curl/7.29.0" "-" 2.063' >> file2
+   69  31/01/24 03:56:14 echo '::1 - - [20/Jan/2024:12:15:10 +0000] "GET /100mb.test HTTP/1.1" 200 104857600 "-" "curl/7.29.0" "-" 47.318' >> file2
+   70  31/01/24 03:56:22 ls
+   71  31/01/24 03:56:48 cd ..
+   72  31/01/24 03:56:49 ls
+   73* 31/01/24 03:56:58 
+   74  31/01/24 03:57:03 git status
+   75  31/01/24 03:57:26 du > result_du 
+   76  31/01/24 03:57:38 history > result_history
+   77  31/01/24 03:57:45 git add .
+   78  31/01/24 03:57:50 git status 
+   79  31/01/24 03:58:07 cat home_work_1/file1
+   80  31/01/24 03:58:10 cat home_work_1/file2
+   81  31/01/24 03:58:47 git commit -m "hw1 part3"
+   82  31/01/24 03:59:27 cat home_work_1/file1
+   83  31/01/24 03:59:47 head -n2 home_work_1/file1
+   84  31/01/24 04:00:03 tail -n2 home_work_1/file1
+   85  31/01/24 04:00:23 history > result_history
+   86  31/01/24 04:00:28 du > result_du 
+   87  31/01/24 04:00:49 git add .
+   88  31/01/24 04:01:18 git commit -m "hw1 part4"
+   89  31/01/24 04:01:28 ls
+   90  31/01/24 04:01:40 git status 
+   91  31/01/24 04:01:49 git add .
+   92  31/01/24 04:01:53 git status 
+   93  31/01/24 04:01:57 du > result_du 
+   94  31/01/24 04:02:07 history > result_history
+   95  31/01/24 04:02:14 git status 
+   96  31/01/24 04:02:23 history
+   97  31/01/24 04:02:43 cat result_history 
+   98  31/01/24 04:03:01 git add result_history 
+   99  31/01/24 04:03:16 git add result_du 
+  100  31/01/24 04:03:24 git status 
+  101  31/01/24 04:03:40 git commit -m "hw1 part4"
+  102  31/01/24 04:04:33 ls /home | grep fil
+  103  31/01/24 04:04:42 ls /home/
+  104  31/01/24 04:05:14 ls /home | grep cev
+  105  31/01/24 04:06:21 ls -la .. | awk F' ' '{print $5}'
+  106  31/01/24 04:06:38 ls -la ..
+  107  31/01/24 04:07:55 ls -la .. | awk -F' ' '{print $5}'
+  108  31/01/24 04:08:50 ls
+  109  31/01/24 04:08:58 cd home_work_1/
+  110  31/01/24 04:08:59 ls
+  111  31/01/24 04:10:38 consume
+  112  31/01/24 04:11:10 cat *
+  113  31/01/24 04:11:27 cat * | grep GET
+  114  31/01/24 04:11:51 cd ..
+  115  31/01/24 04:12:07 history > result_history 
+  116  31/01/24 04:12:19 du > result_du
+  117  31/01/24 04:12:26 ls
+  118  31/01/24 04:12:33 git add .
+  119  31/01/24 04:12:57 git commit -m "hw1 part5"
+  120  31/01/24 04:14:37 cat * | grep GET | awk -F' ' '{print $8}' > file2
+  121  31/01/24 04:14:47 ls
+  122  31/01/24 04:14:55 cat file2 
+  123  31/01/24 04:15:06 rm file2 
+  124  31/01/24 04:15:12 cd home_work_1/
+  125  31/01/24 04:15:19 cat * | grep GET | awk -F' ' '{print $8}' > file2
+  126  31/01/24 04:15:24 ls
+  127  31/01/24 04:15:38 cat file
+  128  31/01/24 04:15:40 cat file2
+  129  31/01/24 04:16:01 echo '::1 - - [20/Jan/2024:12:14:04 +0000] "GET /empty.test HTTP/1.1" 200 0 "-" "curl/7.29.0" "-" 0.000' > file2
+  130  31/01/24 04:16:14 echo '::1 - - [20/Jan/2024:12:14:04 +0000] "GET /1mb.test HTTP/1.1" 200 1048576 "-" "curl/7.29.0" "-" 0.000' >> file2
+  131  31/01/24 04:16:34 echo '::1 - - [20/Jan/2024:12:14:07 +0000] "GET /10mb.test HTTP/1.1" 200 10485760 "-" "curl/7.29.0" "-" 2.063' >> file2
+  132  31/01/24 04:16:42 echo '::1 - - [20/Jan/2024:12:15:10 +0000] "GET /100mb.test HTTP/1.1" 200 104857600 "-" "curl/7.29.0" "-" 47.318' >> file2
+  133  31/01/24 04:16:44 ls
+  134  31/01/24 04:16:51 cat * | grep GET | awk -F' ' '{print $8}' > file3
+  135  31/01/24 04:16:54 ls
+  136  31/01/24 04:16:58 cat file3
+  137  31/01/24 04:17:09 cat file2
+  138  31/01/24 04:17:31 cat * | grep GET | awk -F' ' '{print $7}' > file3
+  139  31/01/24 04:17:36 cat file2
+  140  31/01/24 04:17:42 cat file3
+  141  31/01/24 04:17:57 ls
+  142  31/01/24 04:17:59 cd ..
+  143  31/01/24 04:18:08 git add .
+  144  31/01/24 04:18:29 history > result_history 
+  145  31/01/24 04:18:36 du > result_du
+  146  31/01/24 04:18:39 git add .
+  147  31/01/24 04:18:48 git status
+  148  31/01/24 04:19:16 git commit -m "hw1 part6"
+  149  31/01/24 04:19:47 ls -la && rm test123 && pwd
+  150  31/01/24 04:19:53 ls -la; rm test123; pwd
+  151  31/01/24 04:20:03 history > result_history 
+  152  31/01/24 04:20:07 du > result_du
+  153  31/01/24 04:20:12 git add .
+  154  31/01/24 04:20:23 git commit -m "hw1 part7"
+  155  31/01/24 04:22:34 cat home_work_1/* | grep GET | awk -F' ' '{print $7}' | sort
+  156  31/01/24 04:23:26 cat home_work_1/* | grep GET | awk -F' ' '{print $7}' | sort | uniq -c
+  157  31/01/24 04:23:38 history > result_history 
+  158  31/01/24 04:23:41 du > result_du
+  159  31/01/24 04:23:45 git add .
+  160  31/01/24 04:24:01 git commit -m "hw1 part7"
+  161  31/01/24 04:25:14 env
+  162  31/01/24 04:25:38 env | grep A
+  163  31/01/24 04:26:14 history > result_history 
+  164  31/01/24 04:26:17 du > result_du
+  165  31/01/24 04:26:21 git add .
+  166  31/01/24 04:26:30 git commit -m "hw1 part8"
+  167  31/01/24 04:26:58 git push
+  168  31/01/24 04:27:18 git push --set-upstream origin tascherbakova_hw1
+  169  31/01/24 04:33:18 curl https://finance.rambler.ru/currencies/USD/
+  170  31/01/24 04:33:59 curl https://finance.rambler.ru/currencies/USD/ | grep RUB
+  171* 31/01/24 04:34:57 grep '1 USD' cur_usd | awk -F' ' '{print $1 $2 $3 $4 $5}'; grep '1 EUR' cur_eur | awk -F' ' '{print $1 $2 $3 $4 $5}'
+  172  31/01/24 04:36:23 curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD' | awk -F' ' '{print $1 $2 $3 $4 $5}'; grep '1 EUR' cur_eur | awk -F' ' '{print $1 $2 $3 $4 $5}'
+  173  31/01/24 04:37:30 curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD' | awk -F' ' '{print $1 $2 $3 $4 $5}'; curl https://finance.rambler.ru/currencies/USD/ | grep '1 EUR' | awk -F' ' '{print $1 $2 $3 $4 $5}'
+  174  31/01/24 04:38:18 history > result_history 
