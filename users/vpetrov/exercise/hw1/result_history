@@ -1,0 +1,281 @@
+    1  ц
+    2  w
+    3  uname -a
+    4  whoami
+    5  htop
+    6  ssh-keygen -t rsa -b 4096 -C aldnoa37@gmail.com
+    7  cat ~/.ssh/id_rsa.pub
+    8  cd ~/.ssh/
+    9  ll
+   10  cat id_rsa
+   11  сды
+   12  cat ~/.ssh/id_rsa.pub
+   13  cd ~
+   14  ll
+   15  mkdir github
+   16  cd github
+   17  ll
+   18  git clone git@github.com:amtsu/team22.git
+   19  ц
+   20  w
+   21  ll
+   22  cd github/team22/users/
+   23  ll
+   24  mkdir vpetrov
+   25  ll
+   26  git commit
+   27  git config --global user.email "aldnoa37@gmail.com"
+   28  git config --global user.name "Vladislav Petrov"
+   29  git commit
+   30  ll
+   31  cd vpetrov/
+   32  touch privet
+   33  ll
+   34  cd ..
+   35  git push
+   36  cd ..
+   37  ll
+   38  cd team22
+   39  ll
+   40  cd users
+   41  ll
+   42  cd vpetrov/
+   43  ll
+   44  vim README
+   45  ll
+   46  git commit
+   47  git add
+   48  git add .
+   49  git commit
+   50  git branch lecture2vpetrov
+   51  git branch -a
+   52  git checkout lecture2vpetrov
+   53  git branch -a
+   54  git status
+   55  git add .
+   56  git status
+   57  git add
+   58  cd ..
+   59  git add vpetrov
+   60  git status
+   61  rm vpetrov/privet 
+   62  rm vpetrov/README 
+   63  touch vpetrov/README 
+   64  vim vpetrov/README 
+   65  git status
+   66  git add vpetrov/README 
+   67  git status
+   68  git commit -a
+   69  cd ..
+   70  cd github/
+   71  rm -ffrd team22/
+   72  ll
+   73  git clone https://github.com/amtsu/team22.gi
+   74  git clone git@github.com:amtsu/team22.git
+   75  cd team22/
+   76  cd users/
+   77  ll
+   78  git branch
+   79  git branch
+   80  git branch -a
+   81  git branch lecture2vpetrov
+   82  git checkout lecture2vpetrov
+   83  ll
+   84  mkdir vpetrov
+   85  vim vpetrov/README
+   86  git add vpetrov/README
+   87  git status
+   88  git commit -m "обо мне"
+   89  git push
+   90  git push --set-upstream origin lecture2vpetrov
+   91  cd ..
+   92  ll
+   93  cd team22/
+   94  ll
+   95  git branch
+   96  git branch -a
+   97  git pull
+   98  git status
+   99  git checkout main
+  100  ls -la
+  101  ls -la users/
+  102  git pull
+  103  la
+  104  ls -la
+  105  ls -la users/
+  106  cd ..
+  107  ll
+  108  w
+  109  uname -a
+  110  ls /usr/bin
+  111  w
+  112  дд
+  113  Ll
+  114  ll
+  115  cd github
+  116  ll
+  117  cd team22/
+  118  git checkout
+  119  git pull
+  120  ll
+  121  cd users/
+  122  ll
+  123  cat README.md 
+  124  дд
+  125  ll
+  126  cd github/
+  127  ll
+  128  fish
+  129  ll
+  130  cd team22/
+  131  git pull
+  132  ll
+  133  cd user
+  134  ll
+  135  cd users/
+  136  ll
+  137  cd vpetrov/
+  138  ll
+  139  mkdir exercise
+  140  git branch
+  141  git pull
+  142  cd exercise/
+  143  mkdir hw1
+  144  ll
+  145  cd hw1/
+  146  ll
+  147  git branch
+  148  git checkout lecture2vpetrov
+  149  git checkout -f lecture2vpetrov
+  150  git pull
+  151  git branch
+  152  giut branch
+  153  git branch
+  154  cd ~
+  155  ll
+  156  pwd
+  157  ls
+  158  ls /
+  159  cd /home
+  160  ls -al
+  161  cd ~
+  162  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  163* cat ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  164  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  165  cd github/team22/users/vpetrov/
+  166  ll
+  167  git add .
+  168  git status
+  169  git commit -m "vpetrov-hw1-part1"
+  170  git diff
+  171  git status
+  172  mkdir home_work_1
+  173  ll
+  174  touch home_work_1/file_1
+  175  mkdir home_work_1/work_dir
+  176  cp home_work_1/file_1 home_work_1/work_dir/file_1_copy
+  177  cp -r home_work_1/work_dir/ home_work_1/work_dir_new
+  178  ls home_work_1/
+  179  mv home_work_1/work_dir/file_1_copy home_work_1/work_dir/file_1_new_name
+  180  rm home_work_1/work_dir/file_1_new_name
+  181  rm -frd home_work_1/work_dir_new/
+  182  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  183  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  184  git add .
+  185  git status
+  186  git commit -m "vpetrov-hw1-part2"
+  187  ll
+  188  ll exercise/
+  189  cd home_work_1/
+  190  ll
+  191  touch file1
+  192  vim file1
+  193  touch file2
+  194  vim file2
+  195  cd ..
+  196  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  197  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  198  git status
+  199  git add .
+  200  git status
+  201  git commit -m "vpetrov-hw1-part3"
+  202  cd home_work_1/
+  203  ll
+  204  cat file1
+  205  head -n2 file1
+  206  tail -n2 file1
+  207  cd ..
+  208  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  209  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  210  git add .
+  211  git status
+  212  git commit -m "vpetrov-hw1-part4"
+  213  cd home_work_1/
+  214  find /home/ -name "*fil*"
+  215  ls -al
+  216  cd ..
+  217  ll
+  218  ls -al | awk '{print $5}' | grep [0-9]
+  219  grep -rni 'GET' home_work_1
+  220  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  221  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  222  git status
+  223  git add .
+  224  git status
+  225  git commit -m "vpetrov-hw1-part5"
+  226  дд
+  227  ll
+  228  rm -frd home_work_1/
+  229  ll
+  230  git checkout -f lecture2vpetrov
+  231  git status
+  232  git pull
+  233  git status
+  234  git pull -f
+  235  git status
+  236  git reset --hard
+  237  git status
+  238  git reset --hard HEAD~5
+  239  git status
+  240  git pull
+  241  ll
+  242  mkdir exercise/hw1
+  243  mkdir exercise
+  244  mkdir exercise/hw1
+  245  ;;
+  246  ll
+  247  ls exercise/
+  248  cd exercise/hw1
+  249  ll
+  250  pwd
+  251  ls -al
+  252  ls /
+  253  touch file_1
+  254  git branch
+  255  touch file_1
+  256  mkdir work_dir
+  257  cp file_1  work_dir/file_1_copy
+  258  cp -r work_dir/ work_dir_new
+  259  mv work_dir/file_1_copy work_dir/file_1_new_name
+  260  rm work_dir/file_1_new_name
+  261  rm -frd work_dir_new/
+  262  ll
+  263  rm *
+  264  rm -frd *
+  265  ll
+  266  git branch
+  267  git pull
+  268  git branch main
+  269  git checkout main
+  270  git pull
+  271  git checkout lecture2vpetrov
+  272  git branch
+  273  git status
+  274  pwd
+  275  wwwls -al
+  276  ls -al /
+  277  cd /home
+  278  ls -al
+  279  cd ~/github/team22/users/vpetrov/
+  280  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  281  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
