@@ -395,3 +395,32 @@
   395  env | grep A
   396  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
   397  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  398  git add .
+  399  git status
+  400  git commit -m "vpetrov-hw1-part9"
+  401  cd exercise/hw1/
+  402  ll
+  403  curl https://finance.rambler.ru/currencies/USD/
+  404  curl https://finance.rambler.ru/currencies/USD/ | grep USD
+  405  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD ='
+  406  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk {print $6}
+  407  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk '{print $6}'
+  408  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk '{print $7}'
+  409  man curl
+  410  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk '{print $15}'
+  411  man head
+  412  man tail
+  413  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | head -n2 | awk '{print $15}'
+  414  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | head -n2
+  415  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | tail -n1
+  416  curl -s https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | tail -n1
+  417  curl -s https://finance.rambler.ru/currencies/USD/ | grep '1 USD ='
+  418  curl -s https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk '{print $3}'
+  419  curl -s https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk '{print $4}'
+  420  cd ..
+  421  ls -al
+  422  ls -al ~/github/team22/users/vpetrov/ | awk '{print $7}'
+  423  ls -al ~/github/team22/users/vpetrov/ | awk '{print $7}' | sort
+  424  ls -al ~/github/team22/users/vpetrov/ | awk '{print $7}' | sort | head -n1
+  425  ls -al ~/github/team22/users/vpetrov/ | awk '{print $7}' | sort | head -n2
+  426  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
