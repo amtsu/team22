@@ -92,3 +92,24 @@
    92  31/01/24 04:01:53 git status 
    93  31/01/24 04:01:57 du > result_du 
    94  31/01/24 04:02:07 history > result_history
+   95  31/01/24 04:02:14 git status 
+   96  31/01/24 04:02:23 history
+   97  31/01/24 04:02:43 cat result_history 
+   98  31/01/24 04:03:01 git add result_history 
+   99  31/01/24 04:03:16 git add result_du 
+  100  31/01/24 04:03:24 git status 
+  101  31/01/24 04:03:40 git commit -m "hw1 part4"
+  102  31/01/24 04:04:33 ls /home | grep fil
+  103  31/01/24 04:04:42 ls /home/
+  104  31/01/24 04:05:14 ls /home | grep cev
+  105  31/01/24 04:06:21 ls -la .. | awk F' ' '{print $5}'
+  106  31/01/24 04:06:38 ls -la ..
+  107  31/01/24 04:07:55 ls -la .. | awk -F' ' '{print $5}'
+  108  31/01/24 04:08:50 ls
+  109  31/01/24 04:08:58 cd home_work_1/
+  110  31/01/24 04:08:59 ls
+  111  31/01/24 04:10:38 consume
+  112  31/01/24 04:11:10 cat *
+  113  31/01/24 04:11:27 cat * | grep GET
+  114  31/01/24 04:11:51 cd ..
+  115  31/01/24 04:12:07 history > result_history 
