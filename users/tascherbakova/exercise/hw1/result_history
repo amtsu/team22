@@ -74,3 +74,12 @@
    74  31/01/24 03:57:03 git status
    75  31/01/24 03:57:26 du > result_du 
    76  31/01/24 03:57:38 history > result_history
+   77  31/01/24 03:57:45 git add .
+   78  31/01/24 03:57:50 git status 
+   79  31/01/24 03:58:07 cat home_work_1/file1
+   80  31/01/24 03:58:10 cat home_work_1/file2
+   81  31/01/24 03:58:47 git commit -m "hw1 part3"
+   82  31/01/24 03:59:27 cat home_work_1/file1
+   83  31/01/24 03:59:47 head -n2 home_work_1/file1
+   84  31/01/24 04:00:03 tail -n2 home_work_1/file1
+   85  31/01/24 04:00:23 history > result_history
