@@ -299,3 +299,22 @@
   299  cd ~/github/team22/users/vpetrov/
   300  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
   301  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  302  git status
+  303  git commit -m "vpetrov-hw1-part2"
+  304  git status
+  305  git add .
+  306  git status
+  307  git commit -m "vpetrov-hw1-part2"
+  308  cd exercise/hw1/
+  309  ll
+  310  vim file1
+  311  ll
+  312  vim file2
+  313  ll
+  314  git status
+  315  git add .
+  316  git status
+  317  cd ..
+  318  ll
+  319  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  320  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
