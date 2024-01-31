@@ -353,3 +353,14 @@
   353* 
   354  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
   355  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  356  git add .
+  357  git commit -m "vpetrov-hw1-part6"
+  358  git status
+  359  cd exercise/hw1/
+  360  ll
+  361  ls -la && rm test123 && pwd
+  362  ls -la; rm test123; pwd
+  363  vim "объяснение разницы && и ;"
+  364  cd ..
+  365  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  366  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
