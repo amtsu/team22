@@ -161,3 +161,14 @@
   161  31/01/24 04:25:14 env
   162  31/01/24 04:25:38 env | grep A
   163  31/01/24 04:26:14 history > result_history 
+  164  31/01/24 04:26:17 du > result_du
+  165  31/01/24 04:26:21 git add .
+  166  31/01/24 04:26:30 git commit -m "hw1 part8"
+  167  31/01/24 04:26:58 git push
+  168  31/01/24 04:27:18 git push --set-upstream origin tascherbakova_hw1
+  169  31/01/24 04:33:18 curl https://finance.rambler.ru/currencies/USD/
+  170  31/01/24 04:33:59 curl https://finance.rambler.ru/currencies/USD/ | grep RUB
+  171* 31/01/24 04:34:57 grep '1 USD' cur_usd | awk -F' ' '{print $1 $2 $3 $4 $5}'; grep '1 EUR' cur_eur | awk -F' ' '{print $1 $2 $3 $4 $5}'
+  172  31/01/24 04:36:23 curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD' | awk -F' ' '{print $1 $2 $3 $4 $5}'; grep '1 EUR' cur_eur | awk -F' ' '{print $1 $2 $3 $4 $5}'
+  173  31/01/24 04:37:30 curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD' | awk -F' ' '{print $1 $2 $3 $4 $5}'; curl https://finance.rambler.ru/currencies/USD/ | grep '1 EUR' | awk -F' ' '{print $1 $2 $3 $4 $5}'
+  174  31/01/24 04:38:18 history > result_history 
