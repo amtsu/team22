@@ -281,101 +281,30 @@
   281  git status
   282  git branch
   283  git push --set-upstream origin hw1
-  284  cd github
-  285  git branch
-  286  branch
-  287  cd team22
-  288  git branch
-  289  cd users/dptimofeev/exercise/
-  290  ls
-  291  cd hw1
-  292  ls -la
-  293  cd home_work_1/
-  294  ls -la
-  295  find /home/ -name "*fil*"
-  296  ls -lh
-  297  ls -lh | awk -F ' ' '{print $5}'
-  298  grep -rni 'GET'
-  299  du . > result_du
-  300  history > result_history
-  301  git status
-  302  git restore theory_console_command.ipynb
-  303  cd ../../../..
-  304  cd ..
-  305  cd library/exercises/hw-1/
-  306  git restore theory_console_command.ipynb
-  307  git status
-  308  cd ../../..
-  309  cd users/dptimofeev/exercise/hw1/
-  310  cd home_work_1/
-  311  git add .
-  312  git status
-  313  git branch 
-  314  cd /github
-  315  cd ~/github
-  316  git restore library/exercises/hw-2
-  317  git -r restore library/exercises/hw-2
-  318  git status
-  319  git restore team22/library/exercises/hw-2
-  320  cd team22/library/exercises/
-  321  ls
-  322  git restore hw-2
-  323  git status
-  324  cd ../..
-  325  cd users/dptimofeev/exercise/hw1/
-  326  ls
-  327  git rm result_du 
-  328  rm result_du 
-  329  rm result_history 
-  330  git status
-  331  git commit
-  332  git commit -m 'finished block 5'
-  333  git push
-  334  git checkou maint
-  335  git checkou main
-  336  git checkout main
-  337  git pull
-  338  branch
-  339  git branch
-  340  git checkout hw1
-  341  git branch -m dptimofeev_hw_1
-  342  git branch
-  343  git status
-  344  git push
-  345  git branch
-  346  ls -la
-  347  cd home_work_1/
-  348  grep -rni 'GET'
-  349  grep -rni 'get' > save_grep_rni
-  350  grep -rni 'get' > save_grep
-  351  ls -la
-  352  rm save_grep
-  353  cat save_grep_rni 
-  354  git status
-  355  git commit -m 'saved uri'
-  356  git add save_grep_rni
-  357  git commit -m 'saved_URI'
-  358  git push
-  359  git push origin HEAD:hw1
-  360  ls -la && rm test123 && pwd
-  361  ls -la; rm test123; pwd
-  362  # Разница в командах сосотоит в том, что в первый раз выполнение закончилось после невозможности удалить отсуствующий  файл тест123, а во второй после этого терминал вывел путь в котором я нахожусь. 
-  363  du .
-  364  history > result_history 
-  365  git status
-  366  du . > result_du
-  367  history > result_history
-  368  git status
-  369  git restore ../../../../../library/exercises/hw-1/theory_console_command.ipynb
-  370  git status
-  371  git add .
-  372  git status
-  373  git commit -m 'block 7-8 (diff_between && and ; sort and count)'
-  374  git push
-  375  git push origin HEAD:hw1
-  376  env
-  377  echo $PATH
-  378  env
-  379  env | grep 'A'
-  380  du . > result_du
-  381  history >result_history 
+  284  git status
+  285  curl https://finance.rambler.ru/currencies/USD/ 
+  286* 
+  287  curl https://finance.rambler.ru/currencies/EUR/ 
+  288  curl https://finance.rambler.ru/currencies/EUR/ |grep EUR
+  289  curl https://finance.rambler.ru/currencies/EUR/ |grep '1 EUR ='
+  290  curl https://finance.rambler.ru/currencies/USD/ |grep '1 USD ='
+  291  curl https://finance.rambler.ru/currencies/USD/ |grep '1 USD =' cur_usd
+  292  curl https://finance.rambler.ru/currencies/USD/ -o usd.html
+  293  curl https://finance.rambler.ru/currencies/EUR/ -o eurd.html
+  294  curl https://finance.rambler.ru/currencies/EUR/ -o eur.html
+  295  rm eurd.html 
+  296  grep '1 USD =' usd.html
+  297  grep '1 EUR =' eur.html
+  298  grep '1 USD =' usd.html |awk -F ' ' '{print $4}'
+  299  grep '1 EUR =' eur.html |awk -F ' ' '{print $4}'
+  300  ls -la
+  301  ls -lt
+  302  ls -l
+  303  ls -lp
+  304  ls -lp |grep -v/
+  305  ls -lp | grep -v /
+  306  ls -lp | grep -v | awk '{print $6, $7, $8}'
+  307  ls -lp | grep -v / | awk '{print $6, $7, $8}'
+  308  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort
+  309  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort | tail -n1
+  310  history > result_history 
