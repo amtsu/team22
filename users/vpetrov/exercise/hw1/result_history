@@ -364,3 +364,27 @@
   364  cd ..
   365  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
   366  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  367  git status
+  368  git add .
+  369  git status
+  370  git commit -m "vpetrov-hw1-part7"
+  371  git status
+  372  cd exercise/hw1/
+  373  ll
+  374  grep -rni 'GET'
+  375  grep -rni 'GET' | awk '{print $6}'
+  376  grep -rni 'GET' | awk '{print $5}'
+  377  grep -rni 'GET' | awk '{print $4}'
+  378  grep -rni 'GET' | awk '{print $3}'
+  379  grep -rni 'GET'
+  380  grep -rni 'GET' | awk '{print $6}'
+  381  grep -rni 'GET' | awk '{print $7}'
+  382  grep -rni 'GET' | awk '{print $7}' | grep -rni '/empty.test'
+  383  grep -rni 'GET' | awk '{print $7}' | grep -rni '/empty.test' | sort
+  384  grep -rni 'GET' | awk '{print $7}' | grep '/empty.test'
+  385  grep -rni 'GET' | awk '{print $7}' | grep '/empty.test' | sort
+  386  grep -rni 'GET' | awk '{print $7}' | grep '/empty.test' | sort | uniq -c
+  387  git status
+  388  cd ..
+  389  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  390  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
