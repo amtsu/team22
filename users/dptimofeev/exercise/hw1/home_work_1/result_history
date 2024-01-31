@@ -365,3 +365,17 @@
   365  git status
   366  du . > result_du
   367  history > result_history
+  368  git status
+  369  git restore ../../../../../library/exercises/hw-1/theory_console_command.ipynb
+  370  git status
+  371  git add .
+  372  git status
+  373  git commit -m 'block 7-8 (diff_between && and ; sort and count)'
+  374  git push
+  375  git push origin HEAD:hw1
+  376  env
+  377  echo $PATH
+  378  env
+  379  env | grep 'A'
+  380  du . > result_du
+  381  history >result_history 
