@@ -184,89 +184,117 @@
   184  git reset --soft
   185  ls -la
   186  git pull
-  187  pwd
-  188  cd users
-  189  cd dptimofeev/
-  190  ls
-  191  ls -la
-  192  mkdir exercise
-  193  pwd
-  194  rm -r exercise/
-  195  git status
-  196  git branch hw1
-  197  git status
-  198  ls -la
-  199  git checkout hw1
-  200  mkdir exercise 
-  201  ls- la
-  202  ls -la
-  203  cd exercise
-  204  mkdir hw1
-  205  cd hw1
-  206  git branch
-  207  ls 
-  208  history > result_history
-  209  status
-  210  git status
-  211  git diff
-  212  pwd
-  213  mkdir home_work_1
-  214  cd home_work_1/
-  215  tocuh file_1
-  216  touch file_1
-  217  mkdir work_dir
-  218  ls
-  219  cp file_1 work_dir/file_1_copy
-  220  ls
-  221  ls -la
-  222  cp -r work_dir/word_dir_new
-  223  cp -r work_dir home_work_1/work_dir_new
+  187  ls-la
+  188  ls -la
+  189  rm -rf nelezonatebyasojret/
+  190  pwd
+  191  cd users
+  192  cd dptimofeev/
+  193  ls
+  194  ls -la
+  195  mkdir exercise
+  196  pwd
+  197  rm -r exercise/
+  198  git status
+  199  git branch hw1
+  200  git status
+  201  ls -la
+  202  git checkout hw1
+  203  mkdir exercise 
+  204  ls- la
+  205  ls -la
+  206  cd exercise
+  207  mkdir hw1
+  208  cd hw1
+  209  git branch
+  210  ls 
+  211  history > result_history
+  212  status
+  213  git status
+  214  git diff
+  215  pwd
+  216  mkdir home_work_1
+  217  cd home_work_1/
+  218  tocuh file_1
+  219  touch file_1
+  220  mkdir work_dir
+  221  ls
+  222  cp file_1 work_dir/file_1_copy
+  223  ls
   224  ls -la
-  225  cp -r work_dir home_work_1/work_dir_new
-  226  ls -la
-  227  cp -r work_dir home_work_1/work_dir_new
-  228  cd hw1
-  229  cd ..
+  225  cp -r work_dir/word_dir_new
+  226  cp -r work_dir home_work_1/work_dir_new
+  227  ls -la
+  228  cp -r work_dir home_work_1/work_dir_new
+  229  ls -la
   230  cp -r work_dir home_work_1/work_dir_new
-  231  cd home_work_1/
-  232  ls 
-  233  cp -r work_dir/work_dir_new
-  234  cp --help
-  235  ls
-  236  cp -r work_dir  /home_work_1/work_dir_new
-  237  ls -la
-  238  cd work_dir_new
-  239  ls -la
-  240  cd work_dir
-  241  ls -la
-  242  ls
-  243  mv file_1_copy file_1_new_name
-  244  ls
-  245  rm file_1_new_name 
-  246  ls
-  247  cd ..
-  248  cd --
-  249  pwd
-  250  cd ~github/team22/users/dptimofeev/exercise/hw1/home_work_1
-  251  cd hw1
-  252  git checkout 
-  253  cd github
-  254  cd team22/users/
-  255  cd dptimofeev/exercise/hw1
-  256  cd/home_work_1
-  257  cd home_work_1
-  258  ls
-  259  cd work_dir
-  260  cd -
-  261  rm -r work_dir_new
-  262  touch file1
-  263  vim file1
-  264  touch file2
-  265  vim file2
-  266  cat file 1
-  267  cat file1
-  268  head head -n2 file1
-  269  tail -n2 file1
-  270  find /home/ -name "*fil*"
-  271  find /home_work_1/ -name "*fil*"
-  272  history > result_history
+  231  cd hw1
+  232  cd ..
+  233  cp -r work_dir home_work_1/work_dir_new
+  234  cd home_work_1/
+  235  ls 
+  236  cp -r work_dir/work_dir_new
+  237  cp --help
+  238  ls
+  239  cp -r work_dir  /home_work_1/work_dir_new
+  240  ls -la
+  241  cd work_dir_new
+  242  ls -la
+  243  cd work_dir
+  244  ls -la
+  245  ls
+  246  mv file_1_copy file_1_new_name
+  247  ls
+  248  rm file_1_new_name 
+  249  ls
+  250  cd ..
+  251  cd --
+  252  pwd
+  253  cd ~github/team22/users/dptimofeev/exercise/hw1/home_work_1
+  254  cd hw1
+  255  git checkout 
+  256  cd github
+  257  cd team22/users/
+  258  cd dptimofeev/exercise/hw1
+  259  cd/home_work_1
+  260  cd home_work_1
+  261  ls
+  262  cd work_dir
+  263  cd -
+  264  rm -r work_dir_new
+  265  touch file1
+  266  vim file1
+  267  touch file2
+  268  vim file2
+  269  cat file 1
+  270  cat file1
+  271  head head -n2 file1
+  272  tail -n2 file1
+  273  find /home/ -name "*fil*"
+  274  find /home_work_1/ -name "*fil*"
+  275  history > result_history
+  276  du .
+  277  git add.
+  278  git add .
+  279  git commit -m "hw2_part2(partlydone)"
+  280  git push
+  281  git status
+  282  git branch
+  283  git push --set-upstream origin hw1
+  284  cd github
+  285  git branch
+  286  branch
+  287  cd team22
+  288  git branch
+  289  cd users/dptimofeev/exercise/
+  290  ls
+  291  cd hw1
+  292  ls -la
+  293  cd home_work_1/
+  294  ls -la
+  295  find /home/ -name "*fil*"
+  296  ls -lh
+  297  ls -lh | awk -F ' ' '{print $5}'
+  298  grep -rni 'GET'
+  299  du . > result_du
+  300  history > result_history
