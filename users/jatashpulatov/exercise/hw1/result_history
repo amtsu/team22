@@ -418,66 +418,20 @@
   418  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
   419  git branch
   420  exit
-  421  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
-  422  cd github/team22/
-  423  git branch
-  424  git pull
-  425  git checkout -b jatashpulatov-2.2-removing-old-files 
-  426  git status
-  427  git checkout jatashpulatov-3-hw2-part2 
-  428  git status 
-  429  git checkout jatashpulatov-2.2-removing-old-files 
-  430  git log --oneline
-  431  git checkout jatashpulatov-3-hw2-part2 
-  432  git status
-  433  git checkout main
-  434  git pull
-  435  git checkout jatashpulatov-2.2-removing-old-files 
-  436  git clean -fdx
-  437  git status
-  438  git checkout main
-  439  git pull
-  440  git checkout jatashpulatov-3-hw2-part2 
-  441  git diff
-  442  clear
-  443  cd users/jatashpulatov/exercise/hw1/
-  444  grep -rni 'GET' > save_grep_GET
-  445  grep -rni 'GET'
-  446  du -h > result_du 
-  447  history > result_history 
-  448  git status
-  449  git add .
-  450  git status
-  451  git restore ../../../../library/exercises/hw-1/theory_console_command.ipynb
-  452  git status
-  453  git commit -m 'Блок 6 (URI)'
-  454  git push
-  455  touch block_7_diff_btwn_cmnds
-  456  vi block_7_diff_btwn_cmnds 
-  457  ls -la && rm test123 && pwd
-  458  ls -la; rm test123; pwd
-  459  vi block_7_diff_btwn_cmnds 
-  460  du -h > result_du 
-  461  history > result_history 
-  462  git status
-  463  git add .
-  464  git status
-  465  git commit -m 'Блок 7 (разница команд)'
-  466  git push
-  467  grep -rni 'GET'
-  468  grep -rni 'GET' | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort
-  469  grep -rni 'GET' | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort | ln
-  470  grep -rni 'GET' | awk -F 'GET /' '{print $2}'| awk -F 'HTTP' '{print$1}'| sort | wc -l
-  471  du -h > result_du 
-  472  history > result_history 
-  473  git status 
-  474  git add .
-  475  git commit -m 'Блок 8 (grep, |, awk, sort, wc -l)'
-  476  git push
-  477  git checkout main
-  478  git pull
-  479  git checkout jatashpulatov-3-hw2-part2 
-  480  env
-  481  env | grep 'A'
-  482  du -h > result_du 
-  483  history > result_history 
+  421  grep '1 USD' test_USD.html | awk -F ' ' '{print $4}'
+  422  grep '1 EUR' test_USD.html 
+  423  grep 'EUR' test_USD.html 
+  424  curl https://finance.rambler.ru/currencies/EUR/ -o test_EUR.html
+  425  grep '1 EUR' test_EUR.html 
+  426  grep '1 EUR' test_EUR.html | awk -F ' ' '{print $4}'
+  427  ls -la
+  428  ls -lp
+  429  ls -lp | grep -v
+  430  ls -lp | grep -v /
+  431  ls -lp | grep -v / | tail -n 2
+  432  ls -lp | grep -v / | sort
+  433  ls -lp | grep -v / | awk '{print $6, $7, $8}'
+  434  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort
+  435  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort | tail -n 1
+  436  du -h > result_du 
+  437  history > result_history 
