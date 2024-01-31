@@ -283,7 +283,6 @@
   283  git push --set-upstream origin hw1
   284  git status
   285  curl https://finance.rambler.ru/currencies/USD/ 
-  286* 
   287  curl https://finance.rambler.ru/currencies/EUR/ 
   288  curl https://finance.rambler.ru/currencies/EUR/ |grep EUR
   289  curl https://finance.rambler.ru/currencies/EUR/ |grep '1 EUR ='
@@ -308,3 +307,5 @@
   308  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort
   309  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort | tail -n1
   310  history > result_history 
+=======
+
