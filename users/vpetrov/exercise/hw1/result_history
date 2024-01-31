@@ -388,3 +388,10 @@
   388  cd ..
   389  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
   390  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  391  git add .
+  392  git status
+  393  git commit -m "vpetrov-hw1-part8"
+  394  env
+  395  env | grep A
+  396  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  397  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
