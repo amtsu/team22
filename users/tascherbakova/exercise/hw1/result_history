@@ -149,3 +149,9 @@
   149  31/01/24 04:19:47 ls -la && rm test123 && pwd
   150  31/01/24 04:19:53 ls -la; rm test123; pwd
   151  31/01/24 04:20:03 history > result_history 
+  152  31/01/24 04:20:07 du > result_du
+  153  31/01/24 04:20:12 git add .
+  154  31/01/24 04:20:23 git commit -m "hw1 part7"
+  155  31/01/24 04:22:34 cat home_work_1/* | grep GET | awk -F' ' '{print $7}' | sort
+  156  31/01/24 04:23:26 cat home_work_1/* | grep GET | awk -F' ' '{print $7}' | sort | uniq -c
+  157  31/01/24 04:23:38 history > result_history 
