@@ -83,3 +83,12 @@
    83  31/01/24 03:59:47 head -n2 home_work_1/file1
    84  31/01/24 04:00:03 tail -n2 home_work_1/file1
    85  31/01/24 04:00:23 history > result_history
+   86  31/01/24 04:00:28 du > result_du 
+   87  31/01/24 04:00:49 git add .
+   88  31/01/24 04:01:18 git commit -m "hw1 part4"
+   89  31/01/24 04:01:28 ls
+   90  31/01/24 04:01:40 git status 
+   91  31/01/24 04:01:49 git add .
+   92  31/01/24 04:01:53 git status 
+   93  31/01/24 04:01:57 du > result_du 
+   94  31/01/24 04:02:07 history > result_history
