@@ -338,3 +338,18 @@
   338  grep -rni 'GET' ~/github/team22/users/vpetrov/
   339  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
   340  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  341  git add .
+  342  git status
+  343  git commit -m "vpetrov-hw1-part5"
+  344  grep -rni 'GET' ~/github/team22/users/vpetrov/ > ~/github/team22/users/vpetrov/exercise/hw1/URL
+  345  cd exercise/hw1/
+  346  grep -rni 'GET' ~/github/team22/users/vpetrov/ > ~/github/team22/users/vpetrov/exercise/hw1/URL
+  347  grep -rni 'GET' ~/github/team22/users/vpetrov/ > URL
+  348  grep -rni 'GET' ~/github/team22/users/vpetrov/ > ~/URL
+  349  mv ~/URL ~/github/team22/users/vpetrov/exercise/hw1/URL
+  350  ll
+  351  cat URL
+  352  cd ..
+  353* 
+  354  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  355  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
