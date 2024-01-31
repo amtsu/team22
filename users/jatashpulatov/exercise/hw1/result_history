@@ -1,0 +1,437 @@
+    1  git status
+    2  ssh -keygen -t rsa -b 4096 -C "djpj_jama@mail.ru" 
+    3  pwd
+    4  ssh -keygen -t rsa -b 4096 -C | "djpj_jama@mail.ru"
+    5  ssh-keygen -t rsa -b 4096 -C "djpj_jama@mail.ru" 
+    6  cat ~/.ssh/id_rsa.pub
+    7  pwd
+    8  mkdir github
+    9  cd github/
+   10  git clone git@github.com:amtsu/team22.git
+   11  pwd
+   12  git status
+   13  .git status
+   14  help
+   15  cd users
+   16  team22
+   17  ls
+   18  cd team22
+   19  git status
+   20  git branch
+   21  ssh-keygen -t rsa -b 4096 -C "<ВАШ@ЕМЕЙЛ>"
+   22  git pull
+   23  cd ..
+   24  git pull
+   25  git branch
+   26  git branch jatashpulatov-1-the-beginning-of-learning
+   27  git branch
+   28  git checkout jatashpulatov-1-the-beginning-of-learning 
+   29  git status
+   30  git add jatashpulatov/2022-2023/folder/a1
+   31  git add users/jatashpulatov/2022-2023/folder/a1
+   32  git add users/jatashpulatov/2022-2023/folder/a1.txt
+   33  git status
+   34  git add users/jatashpulatov/2022-2023/lesson_01/hw_01.ipynb 
+   35  git add users/jatashpulatov/2022-2023/lesson_01/introduction.ipynb 
+   36  git add users/jatashpulatov/2022-2023/lesson_01/type_integer.ipynb 
+   37  git add users/jatashpulatov/2022-2023/lesson_01/type_list.ipynb 
+   38  git add users/jatashpulatov/2022-2023/lesson_01/type_string.ipynb 
+   39  git add users/jatashpulatov/2022-2023/lesson_01/variables.ipynb 
+   40  git status
+   41  git add users/jatashpulatov/2022-2023/lesson_02/HW_02.ipynb 
+   42  git add users/jatashpulatov/2022-2023/lesson_03/a1.txt 
+   43  git add users/jatashpulatov/2022-2023/lesson_03/a2.txt 
+   44  git add users/jatashpulatov/2022-2023/lesson_03/hw_3_git_base.ipynb 
+   45  git add users/jatashpulatov/2022-2023/lesson_04/hw_04.ipynb 
+   46  git status
+   47  git add . users/jatashpulatov/folder/a1.txt
+   48  git status
+   49  pwd
+   50  cd users/jatashpulatov/
+   51  touch README
+   52  vi README 
+   53  cat R
+   54  cat README 
+   55  git diff
+   56  git status
+   57  git add README 
+   58  git status
+   59  git commit -m 'Добавил README, убрал стары файлы'
+   60  git config --global user.email "djpj_jama@mail.ru"
+   61  git config --global user.name "JATaspulatov"
+   62  git commit -m 'Добавил README, убрал стары файлы'
+   63  git push
+   64  git push --set-upstream origin jatashpulatov-1-the-beginning-of-learning 
+   65  git status
+   66  git branch
+   67  git checkout main
+   68  git status
+   69  git checkout jatashpulatov-1-the-beginning-of-learning 
+   70  git branch
+   71  git checkout main
+   72  clear
+   73  exit
+   74  ls
+   75  cd github/
+   76  cd team22/
+   77  git status
+   78  git pull
+   79  git branch 
+   80  git checkout jatashpulatov-1-the-beginning-of-learning 
+   81  git branch 
+   82  git diff
+   83  git checkout main 
+   84  git diff
+   85  exit
+   86  cd ..
+   87  git status
+   88  git pull
+   89  git ls
+   90  git ls-files
+   91  ls
+   92  cd users
+   93  cd ja
+   94  cd jat
+   95  cd jatashpulatov/
+   96  ls
+   97  git branch
+   98  git checkout jatashpulatov-1-the-beginning-of-learning 
+   99  git branch
+  100  ls
+  101  git log
+  102  git checkout main
+  103  git branch
+  104  git log
+  105  git branch 
+  106  git checkout jatashpulatov-1-the-beginning-of-learning 
+  107  git status
+  108  git branch 
+  109  git branch
+  110  git checkout main 
+  111  git pull
+  112  git branch
+  113  ls
+  114  cd github/team22/
+  115  git branch
+  116  git pull
+  117  git branch
+  118  cd github
+  119  cd team22
+  120  git branch
+  121  git pull
+  122  ls
+  123  cd git
+  124  cd github/team22/
+  125  git branch
+  126  git pull
+  127  cd github/
+  128  cd team22/
+  129  git pull
+  130  git branch
+  131  git branch jatashpulatov-2-removing-old-files
+  132  git branch
+  133  git checkout jatashpulatov-2-removing-old-files 
+  134  git rm -r folder
+  135  cd users/jatashpulatov/
+  136  git rm -r folder
+  137  git rm -r lesson_01
+  138  git rm -r lesson_02
+  139  git rm -r lesson_03
+  140  git rm -r lesson_04
+  141  git status
+  142  git diff
+  143  cd ..
+  144  ls
+  145  cd library/exercises/hw-1/
+  146  git add theory_console_command.ipynb 
+  147  git status
+  148  git commit -m 'Добавил удаление перемещенных файлов'
+  149  git push
+  150  git push --set-upstream origin jatashpulatov-2-removing-old-files 
+  151  git branch
+  152  git checkout main 
+  153  git branch
+  154  git pull
+  155  git branch
+  156  cd ..
+  157  cd users/jatashpulatov/
+  158  git branch
+  159  git pull
+  160  git branch jatashpulatov-3-hw2-part2
+  161  git branch
+  162  git checkout jatashpulatov-3-hw2-part2 
+  163  git branch
+  164  mkdir exercise
+  165  cd exercise/
+  166  mkdir hw1
+  167  cd hw1/
+  168  git diff
+  169  git status
+  170  cd ../../..
+  171  cd ../..
+  172  ls
+  173  cd team22/library/exercises/hw-1/
+  174  git restore theory_console_command.ipynb
+  175  cd ..
+  176  git restore hw-2
+  177  git status
+  178  git diff
+  179  cd ../..
+  180  cd users/jatashpulatov/exercise/hw1/
+  181  pwd
+  182  ls
+  183  ls /
+  184  cd /home
+  185  ls -la
+  186  du -h
+  187  ls
+  188  cd jupyter-jatashpulatov/
+  189  ls
+  190  cd github/team22/users/jatashpulatov/exercise/hw1/
+  191  du -h > result_du
+  192  history > result_history
+  193  git diff
+  194  git commit -m 'Блок 1'
+  195  git diff
+  196  git status
+  197  git add
+  198  cd ../..
+  199  git diff
+  200  git status
+  201  git branch
+  202  git add .
+  203  git status
+  204  git commit -m 'Блок 1'
+  205  git diff
+  206  ls
+  207  cd exercise/hw1/
+  208  git push -u origin jatashpulatov-3-hw2-part2 
+  209  mkdir home_work_1
+  210  touch home_work_1/file_1
+  211  mkdir home_work_1/work_dir
+  212  cd home_work_1/
+  213  cp file_1 work_dir/file_1_copy
+  214  cp -r work_dir/ work_dir _new
+  215  cp -r work_dir work_dir_new
+  216  mv work_dir/file_1_copy work_dir/file_1_copy_new_name
+  217  rm work_dir/file_1_copy_new_name 
+  218  rm -r work_dir_new/
+  219  git sta
+  220  git status 
+  221  cd ..
+  222  git status 
+  223  git add .
+  224  git status 
+  225  du -h > result_du
+  226  cat result_du 
+  227  history > result_history 
+  228  cat result_history 
+  229  git diff
+  230  git status
+  231  git add result_du 
+  232  git add result_history 
+  233  git status
+  234  git commit -m 'Блок 2 (создание/удаление/перемещение/переимеование папок/файлов'
+  235  git push
+  236  git status
+  237  git checkout main
+  238  git pull
+  239  touch file1
+  240  vi file1
+  241  touch file2
+  242  vi file2
+  243  cat file1
+  244  cat file2
+  245  du -h > [Bresult_du
+  246  history > result_history 
+  247  git branch
+  248  git diff
+  249  git status
+  250  cd ../..
+  251  git status
+  252  git restore .
+  253  git status
+  254  cd exercise/hw1/
+  255  git rm file1
+  256  ls
+  257  rm file1
+  258  rm fil2
+  259  rm file2
+  260  rm result_du 
+  261  rm result_history 
+  262  git diff
+  263  git status
+  264  git pull
+  265  git checkout jatashpulatov-3-hw2-part2 
+  266  touch file1
+  267  vi file1 
+  268  touch file2
+  269  vi file2
+  270  du -h > result_du
+  271  history > result_history 
+  272  git commit -m 'Блок 3 (vi)'
+  273  git add result_du 
+  274  git add result_history 
+  275  git add file1
+  276  git add file2 
+  277  git commit -m 'Блок 3 (vi)'
+  278  git push
+  279  git checkout main 
+  280  git pull
+  281  git checkout jatashpulatov-3-hw2-part2 
+  282  cat file1 
+  283  head -n2 file1
+  284  tail -n2 file1
+  285  du -h > result_du
+  286  history > result_history 
+  287  git checkout main 
+  288  git pull
+  289  git checkout jatashpulatov-3-hw2-part2 
+  290  git status
+  291  git add result_history 
+  292  git commit -m 'Блок 4 (cat, head, tail)'
+  293  git push
+  294  git checkout main 
+  295  git pull
+  296  git checkout jatashpulatov-3-hw2-part2 
+  297  git status
+  298  find /home/ /// -name "*fil*"
+  299  ls -ls
+  300  ls -la
+  301  ls -lah
+  302  ls -la | awk -F' ' '{print $5}'
+  303  grep -rni 'GET' .
+  304  du -h > result_du
+  305  history > result_history 
+  306  git diff
+  307  git status
+  308  git add .
+  309  git status
+  310  git commit -m 'Блок 5 (фц'
+  311  git branch
+  312  git commit -m 'Блок 5 (awk, grep)'
+  313  git checkout main
+  314  git pull
+  315  git checkout jatashpulatov-3-hw2-part2 
+  316  git push
+  317  git checkout jatashpulatov-2-removing-old-files 
+  318  git diff
+  319  git status
+  320  cd ../../..
+  321  cd ..
+  322  ls
+  323  git rm library/exercises/hw-1/theory_console_command.ipynb
+  324  git commit -m 'Удалил файл library/exercises/hw-1/theory_console_command.ipynb'
+  325  git push
+  326  git branch
+  327  git checkout main
+  328  git pull
+  329  exit
+  330  cd use
+  331  cd team22/
+  332  cd users/jatashpulatov/
+  333  git branch
+  334  git checkout jatashpulatov-2
+  335  git checkout jatashpulatov-2-removing-old-files 
+  336  git reset HEAD~
+  337  git diff
+  338  git status
+  339  cd ../../..
+  340  cd team22/
+  341  git restore library/exercises/hw-1/theory_console_command.ipynb
+  342  git status
+  343  git commit -m 'Вернул файл на место'
+  344  git push
+  345  git status
+  346  git checkout main
+  347  git pull
+  348  exit
+  349  cd ../../..
+  350  git branch
+  351  git pull
+  352  git checkout jatashpulatov-2-removing-old-files 
+  353  git status
+  354  git log -oneline
+  355  git log --oneline
+  356  git log
+  357  git checkout main
+  358  git branch
+  359  git log --online
+  360  git log --oneline
+  361  git branch 
+  362  git checkout jatashpulatov-2-removing-old-files 
+  363  git diff
+  364  git status 
+  365  git restore --source=5c3e440 library/exercises/hw-1/theory_console_command.ipynb
+  366  git status 
+  367  git restore --source=5c3e440 library/exercises/hw-1/theory_console_command.ipynb
+  368  git status 
+  369  ls
+  370  git restore --source=5c3e440 theory_console_command.ipynb
+  371  ls
+  372  cd library/exercises/hw-1/
+  373  git restore --source=5c3e440 theory_console_command.ipynb
+  374  git status 
+  375  git restore theory_console_command.ipynb
+  376  git status 
+  377  git diff
+  378  git status
+  379  git add theory_console_command.ipynb 
+  380  git status
+  381  git restore --source=bda2a06 theory_console_command.ipynb
+  382  git status
+  383  git restore theory_console_command.ipynb
+  384  git status
+  385  git add theory_console_command.ipynb 
+  386  git status
+  387  git commit -m 'theory_console_command.ipynb was restored to initial state'
+  388  git branch
+  389  git status
+  390  git checkout jatashpulatov-2
+  391  git checkout jatashpulatov-2-removing-old-files 
+  392  git status
+  393  git checkout main
+  394  git pull
+  395  git checkout jatashpulatov-2-removing-old-files 
+  396  git status
+  397  git log --oneline
+  398  git restore --source=5c3e440 theory_console_command.ipynb
+  399  git status
+  400  git add theory_console_command.ipynb
+  401  git commit -m 'theory_console_command.ipynb was restored to initial state'
+  402  git push
+  403  exit
+  404  clear
+  405  git branch
+  406  git checkout main
+  407  git pull
+  408  git branch
+  409  git branch -r
+  410  q
+  411  git branch
+  412  git branch -v
+  413  git branch --merged
+  414  pwd
+  415  cd github/team22/
+  416  git pull
+  417  git branch
+  418  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+  419  git branch
+  420  exit
+  421  grep '1 USD' test_USD.html | awk -F ' ' '{print $4}'
+  422  grep '1 EUR' test_USD.html 
+  423  grep 'EUR' test_USD.html 
+  424  curl https://finance.rambler.ru/currencies/EUR/ -o test_EUR.html
+  425  grep '1 EUR' test_EUR.html 
+  426  grep '1 EUR' test_EUR.html | awk -F ' ' '{print $4}'
+  427  ls -la
+  428  ls -lp
+  429  ls -lp | grep -v
+  430  ls -lp | grep -v /
+  431  ls -lp | grep -v / | tail -n 2
+  432  ls -lp | grep -v / | sort
+  433  ls -lp | grep -v / | awk '{print $6, $7, $8}'
+  434  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort
+  435  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort | tail -n 1
+  436  du -h > result_du 
+  437  history > result_history 
