@@ -329,3 +329,12 @@
   329  cd ..
   330  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
   331  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  332  git add .
+  333  git status
+  334  git commit -m "vpetrov-hw1-part4"
+  335  find /home/ -name "*fil*"
+  336  ls -al | awk '{print $5}' | grep [0-9]
+  337  grep -rni 'GET' ~
+  338  grep -rni 'GET' ~/github/team22/users/vpetrov/
+  339  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  340  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
