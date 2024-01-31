@@ -242,7 +242,7 @@
   242  vi file2
   243  cat file1
   244  cat file2
-  245* du -h > [Bresult_du
+  245  du -h > [Bresult_du
   246  history > result_history 
   247  git branch
   248  git diff
@@ -303,3 +303,145 @@
   303  grep -rni 'GET' .
   304  du -h > result_du
   305  history > result_history 
+  306  git diff
+  307  git status
+  308  git add .
+  309  git status
+  310  git commit -m 'Блок 5 (фц'
+  311  git branch
+  312  git commit -m 'Блок 5 (awk, grep)'
+  313  git checkout main
+  314  git pull
+  315  git checkout jatashpulatov-3-hw2-part2 
+  316  git push
+  317  git checkout jatashpulatov-2-removing-old-files 
+  318  git diff
+  319  git status
+  320  cd ../../..
+  321  cd ..
+  322  ls
+  323  git rm library/exercises/hw-1/theory_console_command.ipynb
+  324  git commit -m 'Удалил файл library/exercises/hw-1/theory_console_command.ipynb'
+  325  git push
+  326  git branch
+  327  git checkout main
+  328  git pull
+  329  exit
+  330  cd use
+  331  cd team22/
+  332  cd users/jatashpulatov/
+  333  git branch
+  334  git checkout jatashpulatov-2
+  335  git checkout jatashpulatov-2-removing-old-files 
+  336  git reset HEAD~
+  337  git diff
+  338  git status
+  339  cd ../../..
+  340  cd team22/
+  341  git restore library/exercises/hw-1/theory_console_command.ipynb
+  342  git status
+  343  git commit -m 'Вернул файл на место'
+  344  git push
+  345  git status
+  346  git checkout main
+  347  git pull
+  348  exit
+  349  cd ../../..
+  350  git branch
+  351  git pull
+  352  git checkout jatashpulatov-2-removing-old-files 
+  353  git status
+  354  git log -oneline
+  355  git log --oneline
+  356  git log
+  357  git checkout main
+  358  git branch
+  359  git log --online
+  360  git log --oneline
+  361  git branch 
+  362  git checkout jatashpulatov-2-removing-old-files 
+  363  git diff
+  364  git status 
+  365  git restore --source=5c3e440 library/exercises/hw-1/theory_console_command.ipynb
+  366  git status 
+  367  git restore --source=5c3e440 library/exercises/hw-1/theory_console_command.ipynb
+  368  git status 
+  369  ls
+  370  git restore --source=5c3e440 theory_console_command.ipynb
+  371  ls
+  372  cd library/exercises/hw-1/
+  373  git restore --source=5c3e440 theory_console_command.ipynb
+  374  git status 
+  375  git restore theory_console_command.ipynb
+  376  git status 
+  377  git diff
+  378  git status
+  379  git add theory_console_command.ipynb 
+  380  git status
+  381  git restore --source=bda2a06 theory_console_command.ipynb
+  382  git status
+  383  git restore theory_console_command.ipynb
+  384  git status
+  385  git add theory_console_command.ipynb 
+  386  git status
+  387  git commit -m 'theory_console_command.ipynb was restored to initial state'
+  388  git branch
+  389  git status
+  390  git checkout jatashpulatov-2
+  391  git checkout jatashpulatov-2-removing-old-files 
+  392  git status
+  393  git checkout main
+  394  git pull
+  395  git checkout jatashpulatov-2-removing-old-files 
+  396  git status
+  397  git log --oneline
+  398  git restore --source=5c3e440 theory_console_command.ipynb
+  399  git status
+  400  git add theory_console_command.ipynb
+  401  git commit -m 'theory_console_command.ipynb was restored to initial state'
+  402  git push
+  403  exit
+  404  clear
+  405  git branch
+  406  git checkout main
+  407  git pull
+  408  git branch
+  409  git branch -r
+  410  q
+  411  git branch
+  412  git branch -v
+  413  git branch --merged
+  414  pwd
+  415  cd github/team22/
+  416  git pull
+  417  git branch
+  418  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+  419  git branch
+  420  exit
+  421  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+  422  cd github/team22/
+  423  git branch
+  424  git pull
+  425  git checkout -b jatashpulatov-2.2-removing-old-files 
+  426  git status
+  427  git checkout jatashpulatov-3-hw2-part2 
+  428  git status 
+  429  git checkout jatashpulatov-2.2-removing-old-files 
+  430  git log --oneline
+  431  git checkout jatashpulatov-3-hw2-part2 
+  432  git status
+  433  git checkout main
+  434  git pull
+  435  git checkout jatashpulatov-2.2-removing-old-files 
+  436  git clean -fdx
+  437  git status
+  438  git checkout main
+  439  git pull
+  440  git checkout jatashpulatov-3-hw2-part2 
+  441  git diff
+  442  clear
+  443  cd users/jatashpulatov/exercise/hw1/
+  444  grep -rni 'GET' > save_grep_GET
+  445  grep -rni 'GET'
+  446  du -h > result_du 
+  447  history > result_history 
