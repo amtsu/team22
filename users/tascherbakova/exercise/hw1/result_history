@@ -142,3 +142,10 @@
   142  31/01/24 04:17:59 cd ..
   143  31/01/24 04:18:08 git add .
   144  31/01/24 04:18:29 history > result_history 
+  145  31/01/24 04:18:36 du > result_du
+  146  31/01/24 04:18:39 git add .
+  147  31/01/24 04:18:48 git status
+  148  31/01/24 04:19:16 git commit -m "hw1 part6"
+  149  31/01/24 04:19:47 ls -la && rm test123 && pwd
+  150  31/01/24 04:19:53 ls -la; rm test123; pwd
+  151  31/01/24 04:20:03 history > result_history 
