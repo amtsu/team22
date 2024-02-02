@@ -252,3 +252,18 @@
   252  ls -lt
   253  git status
   254  history > result_history 
+  255  du . >> hw1/result_du 
+  256  cd ..
+  257  du . >> hw1/result_du 
+  258  cat result_du 
+  259  cd /hw1
+  260  cat result_du 
+  261  ls -la
+  262  cd hw1
+  263  ls -la
+  264  cat result_du 
+  265  git add .
+  266  git commit -m "Task_7"
+  267  history > hw1/result_history
+  268  cd .. 
+  269  history > hw1/result_history
