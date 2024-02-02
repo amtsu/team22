@@ -211,19 +211,44 @@
   211  env
   212  env | grep 'A'
   213  git status
-  214  git add ../result_du
-  215  git add ../result_history
-  216  git commit -m "Task_6"
-  217  cat result_history
-  218  cd ..
-  219  cat result_history
-  220  history > hw1/result_history
-  221  cd ..
-  222  cd /hw1/home_work_1
-  223  cd hw1/home_work_1
-  224  cat result_history
-  225  ls
-  226  cd ..
-  227  ls
-  228  cat result_history
-  229  history > result_history 
+  214  git add ../result_history
+  215  git commit -m "Task_6"
+  216  cat result_history
+  217  cd ..
+  218  cat result_history
+  219  history > hw1/result_history
+  220  cd ..
+  221  cd /hw1/home_work_1
+  222  cd hw1/home_work_1
+  223  cat result_history
+  224  ls
+  225  cd ..
+  226  ls
+  227  cat result_history
+  228  history > result_history 
+  229  cat result_history
+  230  cat result_du
+  231  du >> result_du
+  232  cat result_du
+  233  git commit -m "Task_6"
+  234  git add result_du result_history
+  235  git commit -m "Task_6"
+  236  cd ~
+  237  cd ~/github/team22/exercise/hw1/home_work_1
+  238  git branch
+  239  curl https://finance.rambler.ru/currencies/ -o cur_usd
+  240  grep '1 USD =' cur_usd | awk -F' ' '{print $4}'
+  241  curl https://finance.rambler.ru/currencies/USD -o cur_usd
+  242  curl https://finance.rambler.ru/currencies/USD/ -o test.html
+  243  curl https://finance.rambler.ru/currencies/USD/ -o test.html; grep -rni "USD" test.html
+  244  grep -rni "1 USD = " test.html | awk -F' ' '{print $5}'
+  245  grep -rni "1 USD = " test.html | awk -F' ' '{print $4}'
+  246  cd /home
+  247  cd ~
+  248  ls -lt | head -n 1
+  249  cd ~/github/team22/exercise/hw1
+  250  ls -lt | head -n 1
+  251  ls -la
+  252  ls -lt
+  253  git status
+  254  history > result_history 
