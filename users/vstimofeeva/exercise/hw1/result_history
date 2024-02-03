@@ -473,3 +473,71 @@ c
   469  cd vstimofeeva/exercise/hw1/
   470  du > result_du
   471  history > result_history 
+  472  cd ..
+  473  gid add hw1/
+  474  pwd
+  475  cd ..
+  476  git add hw1
+  477  ll
+  478  cd exercise/
+  479  ll
+  480  gir add hw1/
+  481  git add hw1/
+  482  git commit -m 'added a block 8'
+  483  echo $A
+  484  git push
+  485  git push --set-upstream origin vstimofeeva_hw1_console
+  486  pwd
+  487  cd ..
+  488  git push
+  489  git push --set-upstream origin vstimofeeva_hw1_console
+  490  git push
+  491  git status 
+  492  git rm old
+  493  pwd
+  494  ll
+  495  rm -rf old
+  496  rm file_2 
+  497  ll
+  498  git status 
+  499  git push origin vstimofeeva_hw1_console 
+  500  git pull -r
+  501  git push origin vstimofeeva_hw1_console 
+  502  git pull origin main
+  503  git rebase main
+  504  git push origin vstimofeeva_hw1_console 
+  505  cd ..
+  506  git push origin vstimofeeva_hw1_console 
+  507  git push -f
+  508  git pull -r
+  509  git branch 
+  510  git log
+  511  cd vsti
+  512  cdvstimo
+  513  ll
+  514  cd vstimofeeva/
+  515  ll
+  516  cd exercise/hw1/
+  517  ll
+  518  vi result_history 
+  519  les result_du
+  520  less result_du
+  521  git status 
+  522  git puss
+  523  git push
+  524  git push origin vstimofeeva_hw1_console 
+  525  git pull -r
+  526  git pull origin vstimofeeva_hw1_console
+  527  git push origin vstimofeeva_hw1_console 
+  528  cd ..
+  529  evn A
+  530  env A
+  531  env 'A'
+  532  $ env A 
+  533  evn
+  534  env
+  535  env | gren -rni 'A' hw1
+  536  env | grep -rni 'A' hw1
+  537  cd hw1/
+  538  du > result_du 
+  539  history > result_history 
