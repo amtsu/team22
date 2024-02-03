@@ -405,3 +405,23 @@
   405  cd exercise/hw1/
   406  du >result_du
   407  history > result_history 
+  408  cd ..
+  409  git add hw1
+  410  pwd
+  411  cd exercise/
+  412  git add hw1/
+  413  git status 
+  414  cd hw1/
+  415  du > result_du
+  416  cd ..
+  417  git add hw1/
+  418  git status 
+  419  git commit -m 'added a block 5'
+  420  grep -rni 'URL' exercise > file_2
+  421  cd ..
+  422  grep -rni 'URL' exercise > file_2
+  423  vi file_2 
+  424  cd exercise/
+  425  cd hw1/
+  426  du > result_du 
+  427  history > result_history 
