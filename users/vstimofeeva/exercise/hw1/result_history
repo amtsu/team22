@@ -425,3 +425,22 @@
   425  cd hw1/
   426  du > result_du 
   427  history > result_history 
+  428  cd ..
+  429  git add hw1/
+  430  git status 
+  431  ls -la
+  432  mv file_2 hw1/file_2
+  433  cd hw1/
+  434  du >result_du 
+  435  du > result_du
+  436  cd ..
+  437  git add hw1/
+  438  git status 
+  439  git commit -m 'added a block 6'
+  440  ls -la && rm test123 && pwd
+  441  #вывели содержимсе рабочего катлога, директории тест нет, вполнение команд прервано
+  442  ls -la; rm test123; pwd
+  443  #выполнили все команды последовательно, пропустив те, что не смогли выполнить
+  444  cd hw1/
+  445  du > result_du
+  446  history >result_history 
