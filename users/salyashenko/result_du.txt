@@ -6,4 +6,4 @@
 4	./home_work_1/work_dir/.ipynb_checkpoints
 8	./home_work_1/work_dir
 32	./home_work_1
-19192	.
+21932	.
