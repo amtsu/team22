@@ -1,0 +1,10 @@
+  343  ls -la
+  344  cd /
+  345  ls -la
+  346  cd home/
+  347  ls -la
+  348  cd jupyter-vallitim/github/team22/users/vstimofeeva/exercise/hw1/
+  349  touch result_du
+  350  touch result_history
+  351  du > result_du 
+  352  history 10 > result_history 
