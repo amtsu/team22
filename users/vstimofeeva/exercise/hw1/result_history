@@ -1,6 +1,407 @@
+    1  ssh-keygen -t rsa -b 4096 -C |"ValliTim@yandex.ru"
+    2  cat ~/.ssh/id_rsa.pub
+    3  pwd
+    4  mkdir github
+    5  cd github/
+    6  git clone git@github.com:amtsu/team22.git
+    7  pwd
+    8  cd ..
+    9  pwd
+   10  ls -la
+   11  cd ..
+   12  ls -la
+   13  cd media
+   14  ls -la
+   15  pwd
+   16  cd ..
+   17  pwd
+   18  ls -la
+   19  cd home
+   20  ls -la
+   21  cd team22
+   22  cf users
+   23  cd users
+   24  cd ..
+   25  ls -la
+   26  cd boot
+   27  ls -la
+   28  cd ..
+   29  ls - la
+   30  ls -la
+   31  cd home
+   32  ls -la
+   33  pwd
+   34  cd /github/team22
+   35  cd ..
+   36  pwd
+   37  cd github
+   38  cd ~/github/team22/
+   39  pwd
+   40  cd users
+   41  ls -la
+   42  cd ..
+   43  ls -la
+   44  pwd
+   45  cd users
+   46  ls -la
+   47  cd vstimofeeva/
+   48  ls -la
+   49  git clone git@github.com:amtsu/team22.git
+   50  pwd
+   51  cd ~
+   52  ls -la
+   53  cd github/team22/
+   54  ls -la
+   55  ls /home/
+   56  pwd
+   57  cd github/team22/users/vstimofeeva/
+   58  git branch 
+   59  git status
+   60  pwd
+   61  cd github/team22/users/
+   62  ls -la
+   63  cd vstimofeeva/
+   64  ls -la
+   65  cd ..
+   66  rm -r .
+   67  pwd
+   68  cd vstimofeeva/
+   69  rm -r .
+   70  ls -la
+   71  rm .
+   72  rm -r ..
+   73  ls -la
+   74  cd ..
+   75  rm -r vstimofeeva/
+   76  ls -la
+   77  cd..
+   78  cd ..
+   79  pwd
+   80  cd ..
+   81  git clone git@github.com:amtsu/team22.git
+   82  cd team22/
+   83  git clone git@github.com:amtsu/team22.git
+   84  ls -la
+   85  cd users/
+   86  ls -la
+   87  pwd
+   88  cd github/team22
+   89  ls -la
+   90  cd users/vstim
+   91  cd users/vstimofeeva/
+   92  ls -la
+   93  rm lesson_10 lesson_11
+   94  rm -r lesson_10
+   95  cd team22/
+   96  ls -la
+   97  cd users/
+   98  ls -la
+   99  cd..
+  100  cd ..
+  101  pwd
+  102  cd ..
+  103  ls -la
+  104  rm -r vstimofeeva/
+  105  cd vstimofeeva/
+  106  ls - la
+  107  pwd
+  108  cd ..
+  109  ls -la
+  110  cd vstimofeeva/
+  111  ls -la
+  112  cd team22/
+  113  ls - la
+  114  ls -la
+  115  cd..
+  116  cd ..
+  117  pwwd
+  118  pwd
+  119  ls -la
+  120  rm -r team22/
+  121  pwd
+  122  ls -la
+  123  cd team22/
+  124  ls -la
+  125  cd git
+  126  cd .git
+  127  ls -la
+  128  pwd
+  129  cd github/team22/users/
+  130  ls -la
+  131  cd ..
+  132  pwd
+  133  git branch 
+  134  git pull
+  135  git branch vstimofeeva_hw1_console
+  136  git branch 
+  137  git checkout vstimofeeva_hw1_console 
+  138  git branch 
+  139  cd users/
+  140  ls -la
+  141  mkdir vstimofeeva
+  142  ls -la
+  143  cd vstimofeeva/
+  144  ls -la
+  145  cd github/team22/users/
+  146  ls -la
+  147  git brunch
+  148  cd ..
+  149  git brunch
+  150  pwd
+  151  git brunch
+  152  git branch
+  153  cd users/
+  154  git branch
+  155  cd vstimofeeva/
+  156  touch README.txt
+  157  vi README.txt 
+  158  ls -la
+  159  git branch 
+  160  pwd
+  161  git status 
+  162  git add README.txt
+  163  git commit -m 'added a sticker'
+  164  git config --global user.email "ValliTim@yandex.ru"
+  165  git status 
+  166  git push
+  167  pwd
+  168  git status 
+  169  git commit -m 'added a ticket'
+  170  git config --global user.email "ValliTim@yandex.ru"
+  171  git push
+  172  git status 
+  173  git push README.txt
+  174  cd github/team22/users/
+  175  git checkout main
+  176  git branch -D vstimofeeva_hw1_console 
+  177  git pull
+  178  git status 
+  179  ls -la ~/.ssh/
+  180  cat ~/.gitconfig 
+  181  git config --global user.name ValliTim
+  182  cat ~/.ssh/id.pub
+  183  cd ..
+  184  cat ~/.ssh/id_rsa.pub
+  185  git pull
+  186  git status 
+  187  git pull -r
+  188  git fetch origin
+  189  git reset --hard origin/main
+  190  git clean -ffdx
+  191  git status 
+  192  git checkout -b
+  193  git checkout -B
+  194  pwd
+  195  cd users/vstimofeeva/
+  196  ls-la
+  197  ls -la
+  198  git checkout -b vstimofeeva_mv_old
+  199  mkdir old
+  200  mv !(old) old
+  201  git commit -a -m 'mv old to old'
+  202  git push origin vstimofeeva_mv_old
+  203  ls -la
+  204  cd old
+  205  ls -la
+  206  cd ..
+  207  ls -la
+  208  git checkout main
+  209  it branch main
+  210  git branch 
+  211  git pull
+  212  cd github/team22/users/
+  213  cd vstimofeeva/
+  214  ls -la
+  215  git status 
+  216  git push vstimofeeva_hw1_console
+  217  git push origin vstimofeeva_hw1_console
+  218  git status 
+  219  pwd
+  220  cd github/team22/users/vstimofeeva/
+  221  ssh-keygen -t rsa -b 4096 -C "ValliTim@yandex.ru"
+  222  cat .ssh/id_rsa.pub
+  223  git config --global user.email ValliTim@yandex.ru
+  224  pwd
+  225  cd vstimofeeva/
+  226  git rm *
+  227  git restore --staged <README.txt>...
+  228  git restore --staged README.txt
+  229  git rm *
+  230  ll
+  231  git rm ...
+  232  fm - rf *
+  233  rm - rf *
+  234  rm -rf *
+  235  ll
+  236  rm "..."
+  237  ll
+  238  git status 
+  239  git commit -a
+  240  pwd
+  241  cd github/team22/users/
+  242  cd vstimofeeva/
+  243  ls -la
+  244  git status
+  245  git push origin vstimofeeva_hw1_console
+  246  git status 
+  247  vi README.txt 
+  248  git branch -a
+  249  ppp 
+  250  cd github/team22/users/vstim
+  251  cd github/team22/users/
+  252  ls -la
+  253  cd vstimofeeva/
+  254  ls -la
+  255  git pull
+  256  git branch vstimofeeva_hw1_sticker
+  257  git branch 
+  258  git checkout vstimofeeva_hw1_sticker 
+  259  git branch 
+  260  pwd
+  261  touch README
+  262  vi README 
+  263  ls -la
+  264  git status 
+  265  git add README 
+  266  git commit -m 'added a sticker'
+  267  git push
+  268  git push --set-upstream origin vstimofeeva_hw1_sticker
+  269  gir status
+  270  git status
+  271  pwd
+  272  cd vstimofeeva/exercise/hw1/
+  273  pwd
+  274  ls -la
+  275  cd ~
+  276  ls -la
+  277  cd ~/home
+  278  cd github/
+  279  ls -la
+  280  cd team22/
+  281  ls -la
+  282  cd library/
+  283  ls -la
+  284  cd ..
+  285  cd users/
+  286  ls -la
+  287  pwd
+  288  cd github/team22/users/vstimofeeva/
+  289  ls -ls
+  290  mkdir exercise
+  291  cd exercise/
+  292  mkdir hw1
+  293  pwd
+  294  cd hw1/
+  295  git branch 
+  296  git checkout main
+  297  git branch 
+  298  git branch vstimofeeva_hw1_console
+  299  git checkout vstimofeeva_hw1_console 
+  300  git branch 
+  301  pwd
+  302  ls -la
+  303  cd ~
+  304  ls -la
+  305  cd github/team22/
+  306  ls -la
+  307  ls -la
+  308  cd ..
+  309  ls -la
+  310  git branch 
+  311  pwd
+  312  ls -la
+  313  cd ~
+  314  ls -la
+  315  cd home
+  316  cd ..
+  317  ls -la
+  318  history
+  319  histiry -n7
+  320  history 7
+  321  du
+  322  ls -la
+  323  cd jupyter-vallitim/github/team22/users/vstimofeeva/
+  324  ll
+  325  cd ex
+  326  cd exercise/
+  327  ll
+  328  cd hw1/
+  329  pwd
+  330  ls -lalsls   ls _la
+  331  git status 
+  332  cd github/team22/users/vstimofeeva/
+  333  git status 
+  334  git commit -m 'added a block 1'
+  335  git diff
+  336  git status 
+  337  git branch 
+  338  pwd
+  339  cd exercise/hw1/
+  340  ls -la
+  341  mkdir home_work_1
+  342  cd home_work_1/
+  343  touch file_1
+  344  cd ..
+  345  pwd
+  346  cd home_work_1/
+  347  mkdir work_dir
+  348  cp file_1 work_dir/file_1_copy
+  349  cp work_dir work_dir_new
+  350  pwd
+  351  cp -r /hw1/home_work_1/work_dir /hw1/home_work_1/work_dir_new
+  352  ls -la
+  353  cp -r ~/github/team22/users/vstimofeeva/exercise/hw1/home_work_1/work_dir ~/github/team22/users/vstimofeeva/exercise/hw1/home_work_1/work_dir_new
+  354  mv file_1 file_1_new_name
+  355  rm file_1_new_name 
+  356  rm-r work_dir_new
+  357  ll
+  358  rm -r work_dir_new/
+  359  cd ..
+  360  ll
+  361  du > result_du
+  362  history 23  > result_history
+  363  vi result_history 
+  364  git status 
+  365  cd ..
+  366  ll
+  367  git add hw1/
+  368  git commit -m 'added a block 2'
+  369  touch file_1
+  370  ll
+  371  rm file_1
+  372  ll
+  373  cd hw1/
+  374  touch file_1
+  375  vi file_1 
+  376  touch file_2
+  377  vi file_2
+  378  du > result_du
+  379  history 8 > result_history 
+  380  git branch 
+  381  git add hw1
+  382  cd ..
+  383  git sdd hw1/
+  384  git add hw1/
+  385  git commit -m 'added a block 3'
+  386  git status 
   387  cd hw1/
   388  cat file_1
   389  head -n2 file_1
   390  tail -n2 file_1
   391  du > result_du 
   392  history 6 > result_history 
+  393  cd ..
+  394  git add hw1/
+  395  git commit -m 'added a block 4'
+  396  find /home/ -name 'fil'
+  397  pwd
+  398  cd ..
+  399  ls -lh
+  400  ll -h
+  401  stat -c %s
+  402  grep -rni 'GET' vstimofeeva
+  403  grep -rni 'GET' exercise
+  404  #не нашла как показать только размер файла
+  405  cd exercise/hw1/
+  406  du >result_du
+  407  history > result_history 
