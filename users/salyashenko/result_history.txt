@@ -699,3 +699,30 @@
   699  git add .
   700  du > result_du.txt
   701  history > result_history.txt
+  702* git commit -m "если команды обЪеденены таким образом &&, то последующие команды выполнятся только если предыдущая выполниласьуспешно. А если команды обЪеденены таким способом ;, то все команды будут выполняться по очереди не смотря на то что какая то команда может не выполниться "
+  703  grep -rni "GET" /salyashenko > grep -rni "URI" && ls -la > uri.txt && sort < uri.txt
+  704  grep -rni "GET" /salyashenko | awk '{URI}' | sort 
+  705  grep -rni "GET" /salyashenko/ | awk '{URI}' | sort 
+  706  grep -rni "GET" salyashenko/ | awk '{URI}' | sort 
+  707  grep -rni "GET" salyashenko | awk '{URI}' | sort 
+  708  grep -rni "GET" salyashenko/ | awk '{URI}' | sort 
+  709  grep -rni "GET" salyashenko/ | awk '{URI}' | sort | wc -1
+  710  grep -rni "GET"  salyashenko | awk '{URI}' | sort | 
+  711  grep -rni "GET"  salyashenko | awk '{URI}' | sort | wc -1
+  712  grep -rni "GET"  salyashenko | awk '{URI}' | sort 
+  713  grep -rni "GET"   /salyashenko | awk '{URI}' | sort 
+  714  grep -rni "GET"   salyashenko | awk '{URI}' | sort 
+  715  grep -rni "GET"  salyashenko | awk '{URI}' | sort 
+  716  grep -rni "GET" salyashenko | awk '{URI}' | sort 
+  717  grep -rni "GET" salyashenko | awk '{print $6}' | sort | uniq -c 
+  718  grep -rni "GET" home_work_1 | awk '{print $6}' | sort | uniq -c 
+  719  grep -rni "GET" home_work_1 | awk '{print $6}' | sort 
+  720  rm grep
+  721  echo$A
+  722  echo$ A
+  723  echo $A
+  724  env
+  725  env | grep "A"
+  726  git add .
+  727  du > result_du.txt
+  728  history > result_history.txt
