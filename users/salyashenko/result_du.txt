@@ -2,6 +2,8 @@
 12	./exercise/hw1/.ipynb_checkpoints
 60	./exercise/hw1
 64	./exercise
-4	./home_work_1/work_dir
-24	./home_work_1
-19180	.
+4	./home_work_1/.ipynb_checkpoints
+4	./home_work_1/work_dir/.ipynb_checkpoints
+8	./home_work_1/work_dir
+32	./home_work_1
+19188	.
