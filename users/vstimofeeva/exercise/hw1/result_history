@@ -444,3 +444,32 @@
   444  cd hw1/
   445  du > result_du
   446  history >result_history 
+  447  cd ..
+  448  git add hw1/
+  449  git status 
+  450  cd hw1/
+  451  du > result_du
+  452  cd ..
+  453  git add hw1/
+  454  git status 
+  455  git commit  -m 'added a block 7'
+  456  cd ..
+  457  grip -rni 'GET' vstimofeeva/
+  458  grep -rni 'GET' vstimofeeva/
+  459  grep -rni 'GET' vstimofeeva/ | awk -F' 'GET' 'HTTP' {print $2}
+
+
+c
+!!!!!!!!!!!!!!!!!!!!
+  460  grep -rni 'GET' vstimofeeva/ | awk -F' ' ' {print $6}
+  461  grep -rni 'GET' vstimofeeva/ | awk {print $6} | sort | uniq -c
+  462  grep -rni 'GET' vstimofeeva/ | awk '{print $6}' | sort | uniq -c
+  463  grep -rni 'GET' vstimofeeva/ | awk -F'GET' '{print $2}' | sort | uniq -c
+  464  grep -rni 'GET' vstimofeeva/ | awk -F'GET' 'HTTP' '{print $6}' | sort | uniq -c
+  465  grep -rni 'GET' vstimofeeva/ | awk -F' ' '{print $6}' | sort | uniq -c
+  466  grep -rni 'GET' vstimofeeva/ | awk -F'GET' '{print $2}' | awk -F'HTTP' '{print $1}' | sort | uniq -c
+  467  grep -rni 'URL' vstimofeeva/ | wc -l 
+  468  pwd
+  469  cd vstimofeeva/exercise/hw1/
+  470  du > result_du
+  471  history > result_history 
