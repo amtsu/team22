@@ -580,3 +580,116 @@
   580  git commit -m "если стоит такой разделитель -&& то , команды будут выполняться одна за другой только при условии что предыдущая будет выполнена успешно. а если разделитель такой -; то команды будут выполняться друг за другом не смотря на ошибки"
   581  du > result_du.txt
   582  history > result_history.txt
+  583  сd /home
+  584  сd /home/
+  585  cd ..
+  586  сd /home/
+  587  cd ..
+  588  grep -rni "Get" /home/ && /empty.test && sort 
+  589  ls -la | grep Get | sort
+  590  ls -la | grep "Get" | sort
+  591  ls -la ; grep "Get" ; sort
+  592  ls -la ; grep -rni "Get"/home ; sort
+  593  ls -la ; grep -rni "Get"/home/ ; sort
+  594  ls -la ; grep -rni "Get" /home/ ; sort
+  595  sort
+  596  sort /home/
+  597  sort /home
+  598  sort file_1.txt
+  599  sort /home
+  600  sort /home/
+  601  grep -rni "Get" /home/empty.test |sort
+  602  grep -rni "Get" /home/empty.test ; sort
+  603  grep -rni "Get" /home/empty.test |
+  604  cd jupyter-sergey-1990/github/team22/github/team22/users/salyashenko
+  605  grep -rni "Get" /salyashenko
+  606  grep -rni "Get" /salyashenko/
+  607  grep -rni "Get"/salyashenko
+  608  grep "Get"/salyashenko
+  609  vim file_1.txt
+  610  git checkout main
+  611  git add .
+  612  git branch
+  613  git diff
+  614  git show
+  615  head > alyashenko-hw2-part2
+  616  rm alyashenko-hw2-part2
+  617  history
+  618  sort
+  619  sort file_1.txt
+  620  git branch
+  621  git checkout main
+  622  git add missed-file_1.txt
+  623  git add file_1.txt
+  624  git commit --amend
+  625  git checkout main
+  626  git branch
+  627  git switch
+  628  git fetch
+  629  git checkout salyashenko-hw2-part2
+  630  git branch
+  631  cat file_1
+  632  cd home_work
+  633  cd home_work_1
+  634  cat file_1
+  635  cd .
+  636  cd ..
+  637  cat file_1
+  638  cat file_1.txt
+  639  head file_1.txt
+  640  head 2 file_1.txt
+  641  head 2file_1.txt
+  642  head -n2 file_1.txt
+  643  tail -f2 file_1.txt
+  644  tail -f file_1.txt
+  645  tail -f2 file_1.txt
+  646  head -n2 file_1.txt
+  647  git add 
+  648  git add. 
+  649  git add . 
+  650  git add /
+  651  git add salyashenko/
+  652  git commit -m "вывод содержимого файла 1"
+  653  du > result_du.txt
+  654  history > rusult_history.txt
+  655  cd ..
+  656  find /home/ -name "*fil*"
+  657  cd .
+  658  cd /jupyter-sergey-1990/github/team22/github/team22/users/salyashenko/
+  659  cd /jupyter-sergey-1990/github/team22/github/team22/users/salyashenko
+  660  cd home/jupyter-sergey-1990/github/team22/github/team22/users/salyashenko
+  661  pwd
+  662  cd -
+  663  cd - jupyter-sergey-1990/github/team22/github/team22/users/salyashenko/
+  664  cd -jupyter-sergey-1990/github/team22/github/team22/users/salyashenko/
+  665  cd jupyter-sergey-1990/github/team22/github/team22/users/salyashenko/
+  666  ls
+  667  ls -la
+  668  ls -l
+  669  grep "GET" salyashenko
+  670  grep "GET" /salyashenko
+  671  grep -rni "GET" .
+  672  get diff
+  673  git diff
+  674  git add
+  675  git add .
+  676  du -h > hw1/result_du
+  677  grep -rni 'URL' salyashenko > URL.txt
+  678  grep -rni 'URL' salyashenko/ > URL.txt
+  679  grep -rni 'URI' salyashenko/ > URL.txt
+  680  grep -rni 'URI' salyashenko/ > URI.txt
+  681  grep -rni 'URI' salyashenko > URI.txt
+  682  rm URI.txt
+  683  rm URL.txt
+  684  grep -rni 'URI' salyashenko/ > URL.txt
+  685  grep -rni 'URI' salyashenko > URI.txt
+  686* 
+  687  rm URI.txt
+  688  grep "URI" /salyashenko > uri.txt
+  689  grep -rni "URI" /salyashenko > uri.txt
+  690  git add .
+  691  du > rusult_history.txt 
+  692  du > rusult_du.txt
+  693  history > rusult_history.txt
+  694  du > result_du.txt
+  695  history > result_history.txt
