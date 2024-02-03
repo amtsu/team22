@@ -1,23 +1,8 @@
-  340  ls -la
-  341  mkdir home_work_1
-  342  cd home_work_1/
-  343  touch file_1
-  344  cd ..
-  345  pwd
-  346  cd home_work_1/
-  347  mkdir work_dir
-  348  cp file_1 work_dir/file_1_copy
-  349  cp work_dir work_dir_new
-  350  pwd
-  351  cp -r /hw1/home_work_1/work_dir /hw1/home_work_1/work_dir_new
-  352  ls -la
-  353  cp -r ~/github/team22/users/vstimofeeva/exercise/hw1/home_work_1/work_dir ~/github/team22/users/vstimofeeva/exercise/hw1/home_work_1/work_dir_new
-  354  mv file_1 file_1_new_name
-  355  rm file_1_new_name 
-  356  rm-r work_dir_new
-  357  ll
-  358  rm -r work_dir_new/
-  359  cd ..
-  360  ll
-  361  du > result_du
-  362  history 23  > result_history
+  372  ll
+  373  cd hw1/
+  374  touch file_1
+  375  vi file_1 
+  376  touch file_2
+  377  vi file_2
+  378  du > result_du
+  379  history 8 > result_history 
