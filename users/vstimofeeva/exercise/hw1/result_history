@@ -1,8 +1,6 @@
-  372  ll
-  373  cd hw1/
-  374  touch file_1
-  375  vi file_1 
-  376  touch file_2
-  377  vi file_2
-  378  du > result_du
-  379  history 8 > result_history 
+  387  cd hw1/
+  388  cat file_1
+  389  head -n2 file_1
+  390  tail -n2 file_1
+  391  du > result_du 
+  392  history 6 > result_history 
