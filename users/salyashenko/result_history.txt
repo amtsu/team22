@@ -693,3 +693,9 @@
   693  history > rusult_history.txt
   694  du > result_du.txt
   695  history > result_history.txt
+  696  git commit -m "сохранил в файл части URI"
+  697  ls -la && rm test123 && pwd
+  698  ls -la; rm test123; pwd
+  699  git add .
+  700  du > result_du.txt
+  701  history > result_history.txt
