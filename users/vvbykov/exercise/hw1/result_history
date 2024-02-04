@@ -277,3 +277,15 @@
   277  cd exercise/hw1/
   278  du > result_du 
   279  history > result_history 
+  280  git status 
+  281  git add result_history 
+  282  git reset ../../../../library/exercises/hw-1/theory_console_command.ipynb
+  283  git status
+  284  git restore ../../../../library/exercises/hw-1/theory_console_command.ipynb
+  285  git status
+  286  git log
+  287  git commit -m '8th block of hw1'
+  288  env
+  289  env | grep 'A'
+  290  du > result_du
+  291  history > result_history 
