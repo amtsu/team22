@@ -78,3 +78,70 @@
    78  du > result_du
    79  cat result_du
    80  history > result_history
+   81  cat result_history
+   82  git add hw1
+   83  cd exercise/
+   84  git add hw1
+   85  git status 
+   86  git commit 
+   87  git checkout
+   88  git branch
+   89  git commit -m "first block"
+   90  git status
+   91  git add result_du
+   92  pwd
+   93  ls
+   94  cd hw1
+   95  ls
+   96  git add result_du
+   97  git add result_history
+   98  git commiit -m "first  block fix"
+   99  git commit -m "first block fix"
+  100  cat hw1
+  101  cat result_du
+  102  cat result_history
+  103  cd ..
+  104  git status
+  105  git add result_du
+  106  git add result_history
+  107  git commit -m 'block1'
+  108  git status
+  109  cd exercise/hw1/
+  110  mkdir home_work_1
+  111  ls
+  112  cd home_work_1/
+  113  touch file_1
+  114  ls
+  115  ll
+  116  mkdir work_dir
+  117  ls
+  118  cp file_1 work_dir/file_1_copy
+  119  ls
+  120  cd work_dir
+  121  ls
+  122  cd ..
+  123  pwd
+  124  mkdir work_dir_new
+  125  ls
+  126  cp -r work_dir work_dir_new
+  127  cd work_dir_new
+  128  ls
+  129  cd ..
+  130  ls
+  131  cd work_dir
+  132  ls
+  133  mv file_1_copy file_1_new_name
+  134  ls
+  135  rm file_1_new_name 
+  136  ls
+  137  cd ..
+  138  ls
+  139  rm -rf work_dir_new
+  140  ls
+  141  cd iaalexeev
+  142  cd ..
+  143  cd -
+  144  pwd
+  145  du > result_du
+  146  cat result_du
+  147  history > result_history
