@@ -1,0 +1,158 @@
+    1  ssh-keygen -t rsa -b 4096 -C "vasilisamay31@yandex.ru"
+    2  cat ~/.ssh/id_rsa.pub
+    3  pwd
+    4  mkdir github
+    5  ls -la
+    6  cd github
+    7  git clone git@github.com:amtsu/team22.git
+    8  cd..
+    9  cd ..
+   10  ls -la
+   11  pwd
+   12  cd github/team22
+   13  ls -la
+   14  cd users
+   15  ls -la
+   16  ssh-keygen -t rsa -b 4096 -C "vasilisamay31@yandex.ru"
+   17  pwd
+   18  cd github/team22/users
+   19  ls -ls
+   20  ls -la
+   21  cd vssachenko
+   22  ls -la
+   23  git checkout main
+   24  git pull
+   25  git branch
+   26  git branch vssachenko_hw_1_stiker
+   27  git branch
+   28  git checkout vssachenko_hw_1_stiker
+   29  pwd
+   30  touch README
+   31  ls -la
+   32  vi README 
+   33  cat README 
+   34  git branch
+   35  git add README 
+   36  git status
+   37  git commit -m 'add stiker from mural'
+   38  git config --global user.email "vasilisamay31@yandex.ru"
+   39  git stetus
+   40  gie status
+   41  git status 
+   42  git config --global user.name "VSSachenko"
+   43  git commit -m 'add stiker from mural'
+   44  git status 
+   45  git push
+   46  git push origin vssachenko_hw_1_stiker 
+   47  git status
+   48  git brunch
+   49  git branch
+   50  git checkout main
+   51  /
+   52  cd /
+   53  cd home
+   54  ls -la
+   55  cd /
+   56  pwd
+   57  cd home
+   58  cd jupyter-vssachenko/github/team22/users/vssachenko
+   59  pwd
+   60  cd /home/jupyter-vssachenko/home/github/team22/users/vssachenko
+   61  /home/jupyter-vssachenko/github/team22/users/vssachenko
+   62  pwd
+   63  cd github/team22
+   64  cd usres/vssachenko
+   65  users/vssachenko
+   66  cd users/vssachenko/
+   67  pwd
+   68  git checkout main
+   69  git branch
+   70  git pull
+   71  git branch vssachenko_hw_1_console
+   72  git checkout vssachenko_hw_1_console 
+   73  git branch 
+   74  pwd
+   75  mkdir exercise
+   76  pwd
+   77  ll
+   78  cd exercise
+   79  pwd
+   80  mkdir hw1
+   81  cd hw1
+   82  pwd
+   83  ls -la
+   84  cd /
+   85  ls -la
+   86  cd /home
+   87  ls -la
+   88  cd github/team22/users/vssachenko/exercise/hw1
+   89  github/team22
+   90  jupyter-vssachenko
+   91  cd jupyter-vssachenko
+   92  cd github/team22/users/vssachenko/exercise/hw1
+   93  touch result_du
+   94  du > result_du
+   95  touch result_history
+   96  history > result_history
+   97  cat result_du
+   98  cat result_history 
+   99  git add hw1
+  100  cd ..
+  101  git add hw1
+  102  git commit -m 'block1'
+  103  cd hw1
+  104  mkdir home_work_1
+  105  cd home_work_1
+  106  touch file_1
+  107  mkdir work_dir
+  108  cp file_1 work_dir/file_1_copy
+  109  cd work_dir
+  110  ls
+  111  c ..
+  112  cd ..
+  113  cp -r home_work_1 work_dir/work_dir_new
+  114  cd ..
+  115  cp -r home_work_1 work_dir/work_dir_new
+  116  cp -r github work_dir/work_dir_new
+  117  cd home_work_1
+  118  cp -r github work_dir/work_dir_new
+  119  cp -r home_work_1 work_dir/work_dir_new
+  120  cd ..
+  121  cp -r home_work_1 work_dir/work_dir_new
+  122  cd home_work_1/work_dir
+  123  cp -r home_work_1 work_dir/work_dir_new
+  124  cd ..
+  125  cp -r home_work_1 work_dir/work_dir_new
+  126  git status
+  127  cd home_work_1
+  128  mkdir work_dir_new
+  129  ls
+  130  rm -rf work_dir_new
+  131  ls
+  132  cp -r work_dir home_work_1/work_dir_new
+  133  ls
+  134  cd ..
+  135  cp -r work_dir home_work_1/work_dir_new
+  136  ls
+  137  pwd
+  138  ls
+  139  cd home_work_1
+  140  ls
+  141  mkdir work_dir_new
+  142  ls
+  143  cp -r work_dir work_dir_new
+  144  ls
+  145  cp -r work_dir home_work_1/work_dir_new
+  146  cd work_dir_new
+  147  cd work_dir
+  148  mv file_1_copy file_1_new_name
+  149  ls
+  150  rm file_1_new_name
+  151  rm -rf work_dir_new
+  152  dc ..
+  153  cd ..
+  154  rm -rf work_dir_new
+  155  ls
+  156  cd ..
+  157  du > result_du
+  158  history > result_history
