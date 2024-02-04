@@ -94,3 +94,86 @@
    94  du > result_du
    95  touch result_history
    96  history > result_history
+   97  cat result_du
+   98  cat result_history 
+   99  git add hw1
+  100  cd ..
+  101  git add hw1
+  102  git commit -m 'block1'
+  103  cd hw1
+  104  mkdir home_work_1
+  105  cd home_work_1
+  106  touch file_1
+  107  mkdir work_dir
+  108  cp file_1 work_dir/file_1_copy
+  109  cd work_dir
+  110  ls
+  111  c ..
+  112  cd ..
+  113  cp -r home_work_1 work_dir/work_dir_new
+  114  cd ..
+  115  cp -r home_work_1 work_dir/work_dir_new
+  116  cp -r github work_dir/work_dir_new
+  117  cd home_work_1
+  118  cp -r github work_dir/work_dir_new
+  119  cp -r home_work_1 work_dir/work_dir_new
+  120  cd ..
+  121  cp -r home_work_1 work_dir/work_dir_new
+  122  cd home_work_1/work_dir
+  123  cp -r home_work_1 work_dir/work_dir_new
+  124  cd ..
+  125  cp -r home_work_1 work_dir/work_dir_new
+  126  git status
+  127  cd home_work_1
+  128  mkdir work_dir_new
+  129  ls
+  130  rm -rf work_dir_new
+  131  ls
+  132  cp -r work_dir home_work_1/work_dir_new
+  133  ls
+  134  cd ..
+  135  cp -r work_dir home_work_1/work_dir_new
+  136  ls
+  137  pwd
+  138  ls
+  139  cd home_work_1
+  140  ls
+  141  mkdir work_dir_new
+  142  ls
+  143  cp -r work_dir work_dir_new
+  144  ls
+  145  cp -r work_dir home_work_1/work_dir_new
+  146  cd work_dir_new
+  147  cd work_dir
+  148  mv file_1_copy file_1_new_name
+  149  ls
+  150  rm file_1_new_name
+  151  rm -rf work_dir_new
+  152  dc ..
+  153  cd ..
+  154  rm -rf work_dir_new
+  155  ls
+  156  cd ..
+  157  du > result_du
+  158  history > result_history
+  159  cat result_du
+  160  git add hw1
+  161  dit add home_work_1
+  162  git add home_work_1
+  163  git add 'hw1'
+  164  git commit -m 'block2'
+  165  git add exercise/hw1/home_work_1/
+  166  git add result_du
+  167  git add result_history
+  168  git commit -m 'block2'
+  169  cd exercise/hw1
+  170  touch file1
+  171  vi file1
+  172  touch file2
+  173  vi file2
+  174  cd ..
+  175  git add hw1
+  176  git commit -m 'block3'
+  177  cd hw1
+  178  du > result_du
+  179  history > result_history 
