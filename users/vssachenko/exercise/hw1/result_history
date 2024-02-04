@@ -190,3 +190,36 @@
   189  tail -n2 file1
   190  du > result_du
   191  history > result_history 
+  192  cd ..
+  193  gir add hw1
+  194  git add hw1
+  195  git commit -m 'block4'
+  196  cd /home
+  197  cd /
+  198  grep -rni 'GET' home
+  199  pwd
+  200  cd /home/
+  201  pwd
+  202  grep -rni 'fil' home
+  203  cd ..
+  204  grep -rni 'fil' home
+  205  cd home
+  206  find /home/ -name "*fil*"
+  207  cd jupyter-vssachenko/github/team22/users/vssachenko
+  208  du -ah
+  209  du -ah > filessize
+  210  cd ..
+  211  awk -F' ' '{print $1}' vssachenko/filessize 
+  212  cd vssachenko
+  213  users
+  214  grep -rni 'GET' vssachenko
+  215  cd ..
+  216  grep -rni 'GET' vssachenko
+  217  cd vssacenko
+  218  cd vssachenko
+  219  git status
+  220  git add filesize
+  221  cd ..
+  222  cd vssachenko/exercise/hw1
+  223  du > result_du
+  224  history > result_history 
