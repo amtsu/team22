@@ -189,3 +189,38 @@
   189  cd iaalexeev
   190  du > result_du
   191  history > result_history
+  192  ls
+  193  cart result_du
+  194  cat result_du
+  195  cat result_history
+  196  ls
+  197  pwd
+  198  git add result_du
+  199  git add result_history
+  200  git commit -m "block3"
+  201  git status
+  202  ls
+  203  cd exercise
+  204  ls
+  205  cd hw1
+  206  ls
+  207  cat result_du
+  208  cd ..
+  209  ls
+  210  cat result_du
+  211  pwd
+  212  ls
+  213  cd exercise/hw1/
+  214  ls
+  215  cd home_work_1/
+  216  ls
+  217  cat file1.txt
+  218  head -2n file1.txt
+  219  head -n2 file.txt
+  220  head -n2 file1.txt
+  221  tail -n2 file1.txt
+  222  cd ..
+  223  cd -
+  224  ls
+  225  du > result_du
+  226  history > result_history
