@@ -328,216 +328,286 @@
   328  cd hw1/
   329  pwd
   330  ls -lalsls   ls _la
-  331  git status 
-  332  cd github/team22/users/vstimofeeva/
-  333  git status 
-  334  git commit -m 'added a block 1'
-  335  git diff
-  336  git status 
-  337  git branch 
-  338  pwd
-  339  cd exercise/hw1/
-  340  ls -la
-  341  mkdir home_work_1
-  342  cd home_work_1/
-  343  touch file_1
-  344  cd ..
-  345  pwd
-  346  cd home_work_1/
-  347  mkdir work_dir
-  348  cp file_1 work_dir/file_1_copy
-  349  cp work_dir work_dir_new
-  350  pwd
-  351  cp -r /hw1/home_work_1/work_dir /hw1/home_work_1/work_dir_new
-  352  ls -la
-  353  cp -r ~/github/team22/users/vstimofeeva/exercise/hw1/home_work_1/work_dir ~/github/team22/users/vstimofeeva/exercise/hw1/home_work_1/work_dir_new
-  354  mv file_1 file_1_new_name
-  355  rm file_1_new_name 
-  356  rm-r work_dir_new
-  357  ll
-  358  rm -r work_dir_new/
-  359  cd ..
-  360  ll
-  361  du > result_du
-  362  history 23  > result_history
-  363  vi result_history 
-  364  git status 
-  365  cd ..
-  366  ll
-  367  git add hw1/
-  368  git commit -m 'added a block 2'
-  369  touch file_1
-  370  ll
-  371  rm file_1
-  372  ll
-  373  cd hw1/
-  374  touch file_1
-  375  vi file_1 
-  376  touch file_2
-  377  vi file_2
-  378  du > result_du
-  379  history 8 > result_history 
-  380  git branch 
-  381  git add hw1
-  382  cd ..
-  383  git sdd hw1/
-  384  git add hw1/
-  385  git commit -m 'added a block 3'
-  386  git status 
-  387  cd hw1/
-  388  cat file_1
-  389  head -n2 file_1
-  390  tail -n2 file_1
-  391  du > result_du 
-  392  history 6 > result_history 
-  393  cd ..
-  394  git add hw1/
-  395  git commit -m 'added a block 4'
-  396  find /home/ -name 'fil'
-  397  pwd
-  398  cd ..
-  399  ls -lh
-  400  ll -h
-  401  stat -c %s
-  402  grep -rni 'GET' vstimofeeva
-  403  grep -rni 'GET' exercise
-  404  #не нашла как показать только размер файла
-  405  cd exercise/hw1/
-  406  du >result_du
-  407  history > result_history 
-  408  cd ..
-  409  git add hw1
-  410  pwd
-  411  cd exercise/
-  412  git add hw1/
-  413  git status 
-  414  cd hw1/
-  415  du > result_du
-  416  cd ..
-  417  git add hw1/
+  331  pvd
+  332  pwd
+  333  cd github/team22/users/vstimofeeva/
+  334  du
+  335  history 
+  336  history n10
+  337  history 10
+  338  cd /
+  339  pwd
+  340  cd home/
+  341  cd jupyter-vallitim/github/team22/users/vstimofeeva/
+  342  pwd
+  343  ls -la
+  344  cd /
+  345  ls -la
+  346  cd home/
+  347  ls -la
+  348  cd jupyter-vallitim/github/team22/users/vstimofeeva/exercise/hw1/
+  349  touch result_du
+  350  touch result_history
+  351  du > result_du 
+  352  history 10 > result_history 
+  353  vi result_du
+  354  vi result_history 
+  355  du
+  356  git branch 
+  357  git status 
+  358  git add hw1
+  359  pwd
+  360  cd..
+  361  cd ..
+  362  git add hw1
+  363  git status 
+  364  cd github/team22/users/vstimofeeva/
+  365  git status 
+  366  git commit -m 'added a block 1'
+  367  git diff
+  368  git status 
+  369  git branch 
+  370  pwd
+  371  cd exercise/hw1/
+  372  ls -la
+  373  mkdir home_work_1
+  374  cd home_work_1/
+  375  touch file_1
+  376  cd ..
+  377  pwd
+  378  cd home_work_1/
+  379  mkdir work_dir
+  380  cp file_1 work_dir/file_1_copy
+  381  cp work_dir work_dir_new
+  382  pwd
+  383  cp -r /hw1/home_work_1/work_dir /hw1/home_work_1/work_dir_new
+  384  ls -la
+  385  cp -r ~/github/team22/users/vstimofeeva/exercise/hw1/home_work_1/work_dir ~/github/team22/users/vstimofeeva/exercise/hw1/home_work_1/work_dir_new
+  386  mv file_1 file_1_new_name
+  387  rm file_1_new_name 
+  388  rm-r work_dir_new
+  389  ll
+  390  rm -r work_dir_new/
+  391  cd ..
+  392  ll
+  393  du > result_du
+  394  history 23  > result_history
+  395  vi result_history 
+  396  git status 
+  397  cd ..
+  398  ll
+  399  git add hw1/
+  400  git commit -m 'added a block 2'
+  401  touch file_1
+  402  ll
+  403  rm file_1
+  404  ll
+  405  cd hw1/
+  406  touch file_1
+  407  vi file_1 
+  408  touch file_2
+  409  vi file_2
+  410  du > result_du
+  411  history 8 > result_history 
+  412  git branch 
+  413  git add hw1
+  414  cd ..
+  415  git sdd hw1/
+  416  git add hw1/
+  417  git commit -m 'added a block 3'
   418  git status 
-  419  git commit -m 'added a block 5'
-  420  grep -rni 'URL' exercise > file_2
-  421  cd ..
-  422  grep -rni 'URL' exercise > file_2
-  423  vi file_2 
-  424  cd exercise/
-  425  cd hw1/
-  426  du > result_du 
-  427  history > result_history 
-  428  cd ..
-  429  git add hw1/
-  430  git status 
-  431  ls -la
-  432  mv file_2 hw1/file_2
-  433  cd hw1/
-  434  du >result_du 
-  435  du > result_du
-  436  cd ..
-  437  git add hw1/
-  438  git status 
-  439  git commit -m 'added a block 6'
-  440  ls -la && rm test123 && pwd
-  441  #вывели содержимсе рабочего катлога, директории тест нет, вполнение команд прервано
-  442  ls -la; rm test123; pwd
-  443  #выполнили все команды последовательно, пропустив те, что не смогли выполнить
-  444  cd hw1/
-  445  du > result_du
-  446  history >result_history 
-  447  cd ..
-  448  git add hw1/
-  449  git status 
-  450  cd hw1/
-  451  du > result_du
-  452  cd ..
-  453  git add hw1/
-  454  git status 
-  455  git commit  -m 'added a block 7'
-  456  cd ..
-  457  grip -rni 'GET' vstimofeeva/
-  458  grep -rni 'GET' vstimofeeva/
-  459  grep -rni 'GET' vstimofeeva/ | awk -F' 'GET' 'HTTP' {print $2}
-
-
-c
-!!!!!!!!!!!!!!!!!!!!
-  460  grep -rni 'GET' vstimofeeva/ | awk -F' ' ' {print $6}
-  461  grep -rni 'GET' vstimofeeva/ | awk {print $6} | sort | uniq -c
-  462  grep -rni 'GET' vstimofeeva/ | awk '{print $6}' | sort | uniq -c
-  463  grep -rni 'GET' vstimofeeva/ | awk -F'GET' '{print $2}' | sort | uniq -c
-  464  grep -rni 'GET' vstimofeeva/ | awk -F'GET' 'HTTP' '{print $6}' | sort | uniq -c
-  465  grep -rni 'GET' vstimofeeva/ | awk -F' ' '{print $6}' | sort | uniq -c
-  466  grep -rni 'GET' vstimofeeva/ | awk -F'GET' '{print $2}' | awk -F'HTTP' '{print $1}' | sort | uniq -c
-  467  grep -rni 'URL' vstimofeeva/ | wc -l 
-  468  pwd
-  469  cd vstimofeeva/exercise/hw1/
-  470  du > result_du
-  471  history > result_history 
-  472  cd ..
-  473  gid add hw1/
-  474  pwd
-  475  cd ..
-  476  git add hw1
-  477  ll
-  478  cd exercise/
-  479  ll
-  480  gir add hw1/
-  481  git add hw1/
-  482  git commit -m 'added a block 8'
-  483  echo $A
-  484  git push
-  485  git push --set-upstream origin vstimofeeva_hw1_console
-  486  pwd
-  487  cd ..
-  488  git push
-  489  git push --set-upstream origin vstimofeeva_hw1_console
-  490  git push
-  491  git status 
-  492  git rm old
-  493  pwd
-  494  ll
-  495  rm -rf old
-  496  rm file_2 
-  497  ll
-  498  git status 
-  499  git push origin vstimofeeva_hw1_console 
-  500  git pull -r
-  501  git push origin vstimofeeva_hw1_console 
-  502  git pull origin main
-  503  git rebase main
-  504  git push origin vstimofeeva_hw1_console 
-  505  cd ..
-  506  git push origin vstimofeeva_hw1_console 
-  507  git push -f
-  508  git pull -r
-  509  git branch 
-  510  git log
-  511  cd vsti
-  512  cdvstimo
+  419  cd hw1/
+  420  cat file_1
+  421  head -n2 file_1
+  422  tail -n2 file_1
+  423  du > result_du 
+  424  history 6 > result_history 
+  425  cd ..
+  426  git add hw1/
+  427  git commit -m 'added a block 4'
+  428  find /home/ -name 'fil'
+  429  pwd
+  430  cd ..
+  431  ls -lh
+  432  ll -h
+  433  stat -c %s
+  434  grep -rni 'GET' vstimofeeva
+  435  grep -rni 'GET' exercise
+  436  #не нашла как показать только размер файла
+  437  cd exercise/hw1/
+  438  du >result_du
+  439  history > result_history 
+  440  cd ..
+  441  git add hw1
+  442  pwd
+  443  cd exercise/
+  444  git add hw1/
+  445  git status 
+  446  cd hw1/
+  447  du > result_du
+  448  cd ..
+  449  git add hw1/
+  450  git status 
+  451  git commit -m 'added a block 5'
+  452  grep -rni 'URL' exercise > file_2
+  453  cd ..
+  454  grep -rni 'URL' exercise > file_2
+  455  vi file_2 
+  456  cd exercise/
+  457  cd hw1/
+  458  du > result_du 
+  459  history > result_history 
+  460  cd ..
+  461  git add hw1/
+  462  git status 
+  463  ls -la
+  464  mv file_2 hw1/file_2
+  465  cd hw1/
+  466  du >result_du 
+  467  du > result_du
+  468  cd ..
+  469  git add hw1/
+  470  git status 
+  471  git commit -m 'added a block 6'
+  472  ls -la && rm test123 && pwd
+  473  #вывели содержимсе рабочего катлога, директории тест нет, вполнение команд прервано
+  474  ls -la; rm test123; pwd
+  475  #выполнили все команды последовательно, пропустив те, что не смогли выполнить
+  476  cd hw1/
+  477  du > result_du
+  478  history >result_history 
+  479  cd ..
+  480  git add hw1/
+  481  git status 
+  482  cd hw1/
+  483  du > result_du
+  484  cd ..
+  485  git add hw1/
+  486  git status 
+  487  git commit  -m 'added a block 7'
+  488  cd ..
+  489  grip -rni 'GET' vstimofeeva/
+  490  grep -rni 'GET' vstimofeeva/
+  491  grep -rni 'GET' vstimofeeva/ | awk -F' 'GET' 'HTTP' {print $2}
+  492  c
+  493  !!!!!!!!!!!!!!!!!!!!
+  494  grep -rni 'GET' vstimofeeva/ | awk -F' ' ' {print $6}
+  495  grep -rni 'GET' vstimofeeva/ | awk {print $6} | sort | uniq -c
+  496  grep -rni 'GET' vstimofeeva/ | awk '{print $6}' | sort | uniq -c
+  497  grep -rni 'GET' vstimofeeva/ | awk -F'GET' '{print $2}' | sort | uniq -c
+  498  grep -rni 'GET' vstimofeeva/ | awk -F'GET' 'HTTP' '{print $6}' | sort | uniq -c
+  499  grep -rni 'GET' vstimofeeva/ | awk -F' ' '{print $6}' | sort | uniq -c
+  500  grep -rni 'GET' vstimofeeva/ | awk -F'GET' '{print $2}' | awk -F'HTTP' '{print $1}' | sort | uniq -c
+  501  grep -rni 'URL' vstimofeeva/ | wc -l 
+  502  pwd
+  503  cd vstimofeeva/exercise/hw1/
+  504  du > result_du
+  505  history > result_history 
+  506  cd ..
+  507  gid add hw1/
+  508  pwd
+  509  cd ..
+  510  git add hw1
+  511  ll
+  512  cd exercise/
   513  ll
-  514  cd vstimofeeva/
-  515  ll
-  516  cd exercise/hw1/
-  517  ll
-  518  vi result_history 
-  519  les result_du
-  520  less result_du
-  521  git status 
-  522  git puss
-  523  git push
-  524  git push origin vstimofeeva_hw1_console 
-  525  git pull -r
-  526  git pull origin vstimofeeva_hw1_console
-  527  git push origin vstimofeeva_hw1_console 
-  528  cd ..
-  529  evn A
-  530  env A
-  531  env 'A'
-  532  $ env A 
-  533  evn
-  534  env
-  535  env | gren -rni 'A' hw1
-  536  env | grep -rni 'A' hw1
-  537  cd hw1/
-  538  du > result_du 
-  539  history > result_history 
+  514  gir add hw1/
+  515  git add hw1/
+  516  git commit -m 'added a block 8'
+  517  echo $A
+  518  git push
+  519  git push --set-upstream origin vstimofeeva_hw1_console
+  520  pwd
+  521  cd ..
+  522  git push
+  523  git push --set-upstream origin vstimofeeva_hw1_console
+  524  git push
+  525  git status 
+  526  git rm old
+  527  pwd
+  528  ll
+  529  rm -rf old
+  530  rm file_2 
+  531  ll
+  532  git status 
+  533  git push origin vstimofeeva_hw1_console 
+  534  git pull -r
+  535  git push origin vstimofeeva_hw1_console 
+  536  git pull origin main
+  537  git rebase main
+  538  git push origin vstimofeeva_hw1_console 
+  539  cd ..
+  540  git push origin vstimofeeva_hw1_console 
+  541  git push -f
+  542  git pull -r
+  543  git branch 
+  544  git log
+  545  cd vsti
+  546  cdvstimo
+  547  ll
+  548  cd vstimofeeva/
+  549  ll
+  550  cd exercise/hw1/
+  551  ll
+  552  vi result_history 
+  553  les result_du
+  554  less result_du
+  555  git status 
+  556  git puss
+  557  git push
+  558  git push origin vstimofeeva_hw1_console 
+  559  git pull -r
+  560  git pull origin vstimofeeva_hw1_console
+  561  git push origin vstimofeeva_hw1_console 
+  562  cd ..
+  563  evn A
+  564  env A
+  565  env 'A'
+  566  $ env A 
+  567  evn
+  568  env
+  569  env | gren -rni 'A' hw1
+  570  env | grep -rni 'A' hw1
+  571  cd hw1/
+  572  du > result_du 
+  573  history > result_history 
+  574  cd ..
+  575  git add hw1/
+  576  git status 
+  577  git commit -m 'added a block 9'
+  578  git push
+  579  git push origin vstimofeeva_hw1_console 
+  580  pwd
+  581  ll
+  582  cd github/
+  583  l
+  584  ll
+  585  cd..
+  586  cd ..
+  587  ll
+  588  cd ..
+  589  ll
+  590  cd jupyter-vallitim/github/team22/users/vstimofeeva/
+  591  pwd
+  592  cd github/team22/users/vstimofeeva/exercise/
+  593  curl https://finance.rambler.ru/currencies/
+  594  curl https://finance.rambler.ru/currencies | grep USD
+  595  curl https://finance.rambler.ru/currencies/USD | grep USD
+  596  curl https://finance.rambler.ru/currencies/USD/ | grep USD
+  597  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD = '
+  598  cd hw1/
+  599  curl https://finance.rambler.ru/currencies/USD/ -o cur_usd; grep 'USD = ' cur_usd
+  600  ll
+  601  cat cur_usd 
+  602  rm cur_usd 
+  603  ll
+  604  curl https://finance.rambler.ru/currencies/USD/; grep 'USD = '
+  605  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD = '
+  606  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD = ' | awk - F' ' '{ptint $4}'
+  607  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD = ' | awk - F' ' '{ptint $5}'
+  608  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD = '
+  609  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD = '
+  610  curl https://finance.rambler.ru/currencies/USD/ | grep 'EUR = '
+  611  curl https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = '
+  612  du > result_du
+  613  history > result_history 
