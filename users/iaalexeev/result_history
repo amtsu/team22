@@ -331,3 +331,15 @@
   331  pwd
   332  du > result_du
   333  history > result_history
+  334  git add result_du
+  335  git add result_history
+  336  git commit -m "URI block"
+  337  git status
+  338  ls -la && rm test123 && pwd
+  339  ls -la; rm test123; pwd
+  340  touch boolean_block.txt
+  341  vi boolean_block.txt
+  342  cat boolean_block.txt
+  343  ls
+  344  du > result_du
+  345  history > result_history
