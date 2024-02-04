@@ -264,3 +264,70 @@
   264  cd iaalexeev
   265  du > result_du
   266  history > result_history
+  267  cat result_du
+  268  cat result_history
+  269  git add result_du
+  270  git add result_history
+  271  gii commit -m "block5"
+  272  git commit -m "block5"
+  273  git status
+  274  ls
+  275  rm tota
+  276  ls
+  277  git status
+  278  cd ..
+  279  grep -rni 'GET' iaalexeev > result_grep
+  280  ls
+  281  cd iaalexeev
+  282  ls
+  283  cd ..
+  284  mv result_grep iaalexeev
+  285  ls
+  286  cd iaalexeev
+  287  ls
+  288  cat result_grep
+  289  du > result_du
+  290  history > result_du
+  291  cat result_du
+  292  cat result_history
+  293  git add result_add
+  294  ls
+  295  cd ..
+  296  awk -F' ' '{print $6}' iaalexeev/result_grep
+  297  awk -F' ' '{print $7}' iaalexeev/result_grep
+  298  awk -F' ' '{print $7}' iaalexeev/result_grep > /iaalexeev/URI
+  299  awk -F' ' '{print $7}' iaalexeev/result_grep > URI 
+  300  mv URI iaalexeev
+  301  cd iaalexeev
+  302  ls
+  303  cat URI
+  304  mv URI exercise
+  305  ls
+  306  mn total exercise
+  307  mv total exercise
+  308  ls
+  309  cd exercise/
+  310  ls
+  311  mv URI hw1
+  312  mw total hw1
+  313  mv total hw1
+  314  ls
+  315  cd hw1
+  316  ls
+  317  cd /iaalexeev
+  318  cd ..
+  319  cd -
+  320  pwd
+  321  ls
+  322  mw result_grep /exercise/hw1
+  323  mv result_grep /exercise/hw1
+  324  result_grep/exercise
+  325  mv result_grep exercise 
+  326  cd exercise
+  327  ls
+  328  mv result_grep hw1
+  329  ls
+  330  cd ..
+  331  pwd
+  332  du > result_du
+  333  history > result_history
