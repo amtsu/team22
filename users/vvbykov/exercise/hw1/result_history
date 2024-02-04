@@ -337,3 +337,24 @@
   337  cat currency_file 
   338  du > result_du
   339  history > result_history 
+  340  git status
+  341  git add result_du result_history currency_file 
+  342  git stat
+  343  git status
+  344  git commit -m '10th block of the hw1'
+  345  branch
+  346  git branch -all
+  347  git branch -a
+  348  git push --set-upstream origin vvbykov-hw2
+  349  ls -lh 
+  350  ls -lAt
+  351  ls -lAt | head -n1
+  352  ls -lAt | head -n2
+  353  ls -ltr
+  354  ls -ltr | tail -n1
+  355  ls -ltr | tail -n1 | awk -F' ' '{print $2, $3, $4}'
+  356  ls -ltr | tail -n1 | awk -F' ' '{print $2 $3 $4}'
+  357  ls -ltr | tail -n1 | awk -F' ' '{print $2}'
+  358  ls -ltr | tail -n1 | awk -F' ' '{print $6, $7, $8}'
+  359  du > result_du
+  360  history > result_history
