@@ -430,3 +430,19 @@ GitHub: @ScherbakovaTA" > README.md
   415  05/02/24 01:28:36 tail -n2 file_1
   416  05/02/24 01:30:11 du > result_du
   417  05/02/24 01:31:17 history > result_history
+  418  05/02/24 01:31:27 cd -
+  419  05/02/24 01:31:38 git add .
+  420  05/02/24 01:31:53 git commit -m "hw1-4"
+  421  05/02/24 01:32:08 cd exercise/hw1/
+  422  05/02/24 01:33:40 find /home/ "fil"
+  423  05/02/24 01:35:19 find /home/ -name "fil"
+  424  05/02/24 01:38:18 ls -la
+  425  05/02/24 01:43:20 ls -la | awk -F' ' '{print 5}
+  426  05/02/24 01:45:21 ls -la | awk -F' ' '{print 5}'
+  427  05/02/24 01:46:53 ls -la | awk -F' ' '{print $5}'
+  428  05/02/24 01:52:37 grep -rni 'GET'
+  429  05/02/24 01:53:47 grep 'GET'
+  430  05/02/24 01:54:24 grep -ni 'GET'
+  431  05/02/24 01:55:15 ls
+  432  05/02/24 01:55:50 du > result_du
+  433  05/02/24 01:55:58 history > result_history
