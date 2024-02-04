@@ -246,3 +246,34 @@
   246  ls -la; rm test123; pwd
   247  du > result_du
   248  history > result_history
+  249  git status
+  250  git add -a
+  251  git add --all
+  252  git status 
+  253  git log
+  254  git commit -m 'From 5th to 7th  block of hw1'
+  255  git log
+  256  cd gitlub
+  257  cd github
+  258  git log
+  259  cd team22
+  260  git log
+  261  cd users/vvbykov
+  262  ls -la
+  263  cd exercise
+  264  ls -la
+  265  cd hw1
+  266  ls -la
+  267  grip -irn "GET"
+  268  grep -irn "GET"
+  269  history
+  270  cd github/team22/users/vvbykov/
+  271  grep -irn "GET"
+  272  grep -irn "GET" | head -n4
+  273  grep -irn "GET" | head -n4 | awk -F' ' '{print, $4}'
+  274  grep -irn "GET" | head -n4 | awk -F' ' '{print $4}'
+  275  grep -irn "GET" | head -n4 | awk -F' ' '{print $4}' | cw
+  276  grep -irn "GET" | head -n4 | awk -F' ' '{print $4}' | wc -l
+  277  cd exercise/hw1/
+  278  du > result_du 
+  279  history > result_history 
