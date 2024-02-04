@@ -464,3 +464,10 @@ GitHub: @ScherbakovaTA" > README.md
   449  05/02/24 02:14:45 ls -la; rm test123; pwd
   450  05/02/24 02:17:46 du > result_du 
   451  05/02/24 02:17:50 history > result_history 
+  452  05/02/24 02:17:57 git add .
+  453  05/02/24 02:18:09 git commit -m "hw1-7"
+  454  05/02/24 02:24:12 cat file_1 file_2 | grep 'GET' | awk -F' ' '{print $7}' | sort
+  455  05/02/24 02:27:18 cat file_1 file_2 | grep 'GET' | awk -F' ' '{print $7}' | sort | count
+  456  05/02/24 02:30:01 cat file_1 file_2 | grep 'GET' | awk -F' ' '{print $7}' | sort | wc -l
+  457  05/02/24 02:30:14 du > result_du 
+  458  05/02/24 02:30:19 history > result_history 
