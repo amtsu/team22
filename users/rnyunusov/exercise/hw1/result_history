@@ -1,0 +1,297 @@
+    1  ssh-keygen -t rsa -b 4096 -C "ruslan1707@gmail.com"
+    2  cat ~/.ssh/id_rsa.pub
+    3  pwd
+    4  mkdir github
+    5  cd github/
+    6  git clone git@github.com:amtsu/team22.git
+    7  ssh-keygen -t rsa -b 4096 -C "ruslan1707@gmail.com"
+    8  св 
+    9  cd
+   10  ls
+   11  cd github/
+   12  ls
+   13  cd team22/
+   14  ls
+   15  cd users
+   16  ls
+   17  git branch -a lecture2rnyunusov
+   18  git branch -a
+   19  git -b lecture2rnyunusov
+   20  git branch lecture2rnyunusov
+   21  git checkout lecture2rnyunusov
+   22  git status
+   23  mkdir rnyunusov
+   24  git status
+   25  git add rnyunusov/
+   26  git status
+   27  ls
+   28  git commit -m 'add folder rnyunusov'
+   29  git config --global user.email "rnyunusov@gmail.com"
+   30  git config --global user.name "RuslanYunusov"
+   31  git status
+   32  git commit -m 'add folder rnyunusov'
+   33  cd rnyunusov/
+   34  ls
+   35  echo "Hello, world!" > README
+   36  git status
+   37  git add .
+   38  git status
+   39  git commit -m "add file readme"
+   40  git log
+   41  git config --global user.email "ruslan1707@gmail.com"
+   42  git log
+   43  git push
+   44  git push --set-upstream origin lecture2rnyunusov
+   45  git branch -a
+   46  git pull
+   47  git checkout main
+   48  git status
+   49  cd ..
+   50  git status
+   51  ls -la users
+   52  git pull
+   53  ls -la
+   54  ls -la users
+   55  cd users/
+   56  ls
+   57  cd github/
+   58  ls
+   59  git pull
+   60  cd team22/
+   61  git pull
+   62  git status
+   63  ls -la
+   64  cd users/
+   65  ls
+   66  ls -la
+   67  cd rnyunusov
+   68  ls
+   69  git checkout -b rnyunusov_hw1
+   70  git status
+   71  ls -la
+   72  vi README
+   73  cat README 
+   74  git status
+   75  git add ./
+   76  git status
+   77  git commit -m "add README"
+   78  ls -la
+   79  mkdir exercise
+   80  cd exercise/
+   81  mkdir hw1
+   82  cd hw1
+   83  touch textfile
+   84  vi textfile
+   85  mkdir part1
+   86  cp textfile part1/
+   87  cd part1/
+   88  cat textfile 
+   89  cd github/
+   90  cd team22/
+   91  cd users/
+   92  cd rnyunusov/
+   93  ls -la
+   94  mkdir exercise
+   95  cd exercise/
+   96  mkdir hw1
+   97  cd hw1/
+   98  touch textfile
+   99  vi textfile 
+  100  mkdir part1
+  101  cp textfile part1/
+  102  cd part1/
+  103  cat textfile 
+  104  commit -m "hw1 part1"
+  105  git commit -m "hw1 part1"
+  106  cd ..
+  107  git status
+  108  git add exercise/
+  109  git commit -m "hw1 part1"
+  110  cd exercise/
+  111  cd hw1/
+  112  ls -la
+  113  history > testout
+  114  cat testout 
+  115  pwd
+  116  mv testout /home/jupyter-ruslanyunusov/github/team22/users/rnyunusov/
+  117  git status
+  118  git add ../../testout 
+  119  git commit -m "hw1 part2"
+  120  git push
+  121  git push --set-upstream origin rnyunusov_hw1
+  122  pwd
+  123  cd github/team22/users/rnyunusov/
+  124  ls -la
+  125  cd exercise/
+  126  git status
+  127  git log
+  128  ls -la
+  129  cd ..
+  130  rm -r exercise/
+  131  git status
+  132  cls
+  133  clear
+  134  cd github/
+  135  cd team22/
+  136  ls -la
+  137  cd users/rnyunusov/
+  138  cat README 
+  139  git branch rnyunusov-hw2
+  140  git checkout rnyunusov-hw2 
+  141  mkdir exercise
+  142  cd exercise/
+  143  mkdir hw1
+  144  cd hw1/
+  145  pwd
+  146  ls -la
+  147  ls -la /
+  148  cd /home
+  149  ls -la
+  150  cd ~/github/team22/users/rnyunusov/exercise/hw1
+  151  du > result_du
+  152  git status
+  153  cat result_du 
+  154  history > result_history
+  155  cat result_history 
+  156  git status
+  157  cd ..
+  158  git status
+  159  git add .
+  160  git status
+  161  git commit -m "1st part"
+  162  cd hw1/
+  163  mkdir home_work_1
+  164  cd home_work_1/
+  165  touch file_1
+  166  mkdir work_dir
+  167  cp file_1 work_dir/file_1_copy
+  168  cp work_dir/ work_dir_new/
+  169  cp work_dir/ work_dir_new/ -r
+  170  ls -la
+  171  cd work_dir_new/
+  172  ls
+  173  mv file_1_copy file_1_new_name
+  174  rm file_1_new_name 
+  175  cd ..
+  176  rm -r work_dir_new/
+  177  cd ..
+  178  du > result_du
+  179  cat result_du 
+  180  history > result_history
+  181  git commit -m "2nd part"
+  182  git add home_work_1/
+  183  git status
+  184  git add result_du
+  185  git add result_history 
+  186  git status
+  187  git commit -m "2nd part"
+  188  touch file1
+  189  vi file1 
+  190  cat file1 
+  191  touch file2
+  192  vi file2
+  193  cat file2
+  194  git status
+  195  fit add file1 file2
+  196  git add file1 file2
+  197  git status
+  198  du > result_du
+  199  cat result_du
+  200  history result_history
+  201  git status
+  202  git add result_du
+  203  git status
+  204  git commit -m "3rd part"
+  205  cat file1
+  206  head -n2 file1
+  207  tail -n2 file1
+  208  du > result_du
+  209  history > result_history
+  210  git diff
+  211  git status
+  212  git add .
+  213  git status
+  214  git commit -m "4th part"
+  215  find /home/ -name "*fil*"
+  216  ls -la
+  217  ls -la > awk -F' ' '{print $5}'
+  218  du
+  219  ls -la > awk -F' ' '{print $5}'
+  220* ls -la | awk '{print $0}'
+  221  awk '{print $0}' ls -la
+  222  ls -la | awk -F' ' '{print $5}'
+  223  grep -rni 'GET' ~/
+  224  du > result_du
+  225  history > result_history
+  226  git status
+  227  git add .
+  228  git status
+  229  git reset awk
+  230  git status
+  231  git commit -m "5th part"
+  232  grep -rni 'GET'
+  233  grep -rni 'GET' > save_get
+  234  du > result_du
+  235  history > result_history
+  236  git status
+  237  rm awk
+  238  git status 
+  239  git add .
+  240  git status
+  241  git commit "6th part"
+  242  ls -la && rm test123 && pwd
+  243  ls -la; rm test123; pwd
+  244  du > result_du
+  245  history > result_history
+  246  git status
+  247  git add >
+  248  git add .
+  249  git status
+  250  git commit -m "7th part"
+  251  grep -rni 'GET'
+  252  grep -rni 'GET' file2
+  253  grep -rni 'GET' file2 | awk -F' ' '{print $7}'
+  254  grep -rni 'GET' file2 | awk -F' ' '{print $7}' | wc -l
+  255  du > result_du
+  256  history > result_history
+  257  git status
+  258  git add .
+  259  git commit -m "8th part"
+  260  env
+  261  env | grep 'A'
+  262  du > result_du
+  263  history > result_history
+  264  git status
+  265  git add .
+  266  git status
+  267  git commit -m "9th part"
+  268  curl https://finance.rambler.ru/currencies/ -o test.html
+  269  grep 'USD' test.html
+  270  curl https://finance.rambler.ru/currencies/USD -o test.html
+  271  grep 'USD' test.html
+  272  curl https://finance.rambler.ru/currencies/USD/ -o test.html
+  273* grep '' test.html
+  274  grep '1 USD = ' test.html
+  275  grep '1 USD = ' test.html | awk -F' ' '{print $4}'
+  276  grep '1 EUR = ' test.html | awk -F' ' '{print $4}'
+  277  grep 'EUR' test.html
+  278  curl https://finance.rambler.ru/currencies/EUR/ -o test.html
+  279  grep '1 EUR = ' test.html | awk -F' ' '{print $4}'
+  280  ls -la ~/
+  281  ls -la ~/ | awk -F' ' '{print $6}' 
+  282  ls -la ~/ | awk -F'\t' '{print $6}' 
+  283  ls -la ~/ | awk '{printf "%02d",$7}'
+  284  ls -lc
+  285  ls -lt
+  286  ls -lt --time-style=iso
+  287  ls -lt --time-style=full-iso
+  288  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' | head -n1
+  289  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}'
+  290  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' head -n
+  291  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' head -n1
+  292  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' | head -n1
+  293  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' | head -n2
+  294  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' | head -n2 | tail n1
+  295  ls -lt --time-style=full-iso | awk -F' ' '{print $6, $7}' | head -n2 | tail -n1
+  296  du > result_du
+  297  history > result_history
