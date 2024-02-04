@@ -1,0 +1,80 @@
+    1  ssh-keygen -t rsa -b 4096 -C ĺ "a.ioannis131@gmail.com"
+    2  ssh-keygen -t rsa -b 4096 -C "a.ioannis131@gmail.com"
+    3  cat ~/.ssh/id_rsa.pub
+    4  mkdir github
+    5  cd github
+    6  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCwqrqwTbQWiBggoxTjVZ8Q3VSWPGhkmO0MxStq+6YNWG4etk4x8m+/h859wtSdoRs0PDNIiNSP9jAS88qh9GWPNgR9xRbK6DpYsq5eNfaa/qzgKcMMwvKBWizoBWyOTAaGgjP4CnnKyBZmlwyBu3vnRQwmvijBlhnUYlQKJ3/0qDehYtYew9IyfV4QMnFctHEN5XB3+tiReJsGIEgptlKnd7UVqzJ80vuGLlW7FirAqTgcFv49bW9JvpcRGH+P1kUEKOnSZjD5oWQ6rKsAMYg8q
+    7  git clone git@github.com:amtsu/team22.git
+    8  cd team22
+    9  mkdir iaalexeev
+   10  pwd
+   11  cd /github/team22/users
+   12  cd /home/github/team22/users
+   13  cd/home/github
+   14  cd..
+   15  cd ..
+   16  pwd
+   17  cd /home/github/team22/users
+   18  cd /home/github
+   19  cd .
+   20  cd -
+   21  cd /home/jupyter-pteroculus
+   22  pwd 
+   23  ssh-keygen -t rsa -b 4096 -C ĺ"ваш_Email@mail.ru"
+   24  pwd
+   25  cd /home/jupyter-pteroculus/github/team22/users/iaalexeev
+   26  mkdir exercise
+   27  ls
+   28  cd exercise
+   29  mkdir hw1
+   30  cd hw1
+   31  git checkout main
+   32  git branch
+   33  git checkout main
+   34  git branch
+   35  git pull
+   36  git btanch iaalexeev_hw_2
+   37  git branch iaalexeev_hw_2
+   38  git branch
+   39  git checkout iaalexeev_hw_2
+   40  git branch
+   41  git diff
+   42  git status
+   43  pwd
+   44  cd ..
+   45  du hw1
+   46  cd hw1
+   47  touch result_du
+   48  ls
+   49  touch result_history 
+   50  ls
+   51  pwd
+   52  ls -la
+   53  ls -la |/
+   54  ls -la /home/
+   55  cd /home/
+   56  ls -la
+   57  du > /home/jupyter-pteroculus/github/team22/iaalexeev/exercise/hw1/result_du
+   58  /home/jupyter-pteroculus/github/team22/users/iaalexeev/exercise/hw1/result_du
+   59  cd /home/jupyter-pteroculus/github/team22/users/iaalexeev/exercise/hw1/resul_du
+   60  /home/jupyter-pteroculus/github/team22/users/iaalexeev/exercise/hw1/result_du
+   61  cat /home/jupyter-pteroculus/github/team22/users/iaalexeev/exercise/hw1/result_du
+   62  pwd
+   63  cd /home/jupyter-pteroculus/github/team22/users/iaalexeev/hw1
+   64  cd jupyter-pteroculus
+   65  pwd
+   66  cd /github/team22
+   67  pwd
+   68  cd team22
+   69  cd users
+   70  cd iaalexeev
+   71  cd exercise
+   72  cd hw1/
+   73  du > result_du
+   74  cat result_du
+   75  du > result_du
+   76  cat result_du
+   77  cd ..
+   78  du > result_du
+   79  cat result_du
+   80  history > result_history
