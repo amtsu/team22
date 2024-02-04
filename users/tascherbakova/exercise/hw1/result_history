@@ -480,3 +480,10 @@ GitHub: @ScherbakovaTA" > README.md
   465  05/02/24 02:36:06 env | grep scherb
   466  05/02/24 02:36:45 du > result_du 
   467  05/02/24 02:36:50 history > result_history 
+  468  05/02/24 02:36:57 git add .
+  469  05/02/24 02:37:08 git commit -m "hw1-9"
+  470  05/02/24 02:42:46 curl -s  https://finance.rambler.ru/currencies/USD/ | grep 'USD = ' > currency_file ; curl -s https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = ' >> currency_file 
+  471  05/02/24 02:42:56 ls
+  472  05/02/24 02:43:04 cat currency_file 
+  473  05/02/24 02:49:48 du > result_du 
+  474  05/02/24 02:49:53 history > result_history 
