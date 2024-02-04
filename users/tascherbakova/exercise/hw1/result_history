@@ -433,7 +433,7 @@ GitHub: @ScherbakovaTA" > README.md
   418  05/02/24 01:31:27 cd -
   419  05/02/24 01:31:38 git add .
   420  05/02/24 01:31:53 git commit -m "hw1-4"
-  421  05/02/24 01:32:08 cd exercise/hw1/
+  421* 05/02/24 01:32:08 
   422  05/02/24 01:33:40 find /home/ "fil"
   423  05/02/24 01:35:19 find /home/ -name "fil"
   424  05/02/24 01:38:18 ls -la
@@ -446,3 +446,14 @@ GitHub: @ScherbakovaTA" > README.md
   431  05/02/24 01:55:15 ls
   432  05/02/24 01:55:50 du > result_du
   433  05/02/24 01:55:58 history > result_history
+  434  05/02/24 01:56:27 git add .
+  435  05/02/24 01:57:06 git status
+  436  05/02/24 01:59:07 git commit -m "hw1-5"
+  437  05/02/24 02:00:45 cat file_1,file_2
+  438  05/02/24 02:01:01 cat file_1 file_2
+  439  05/02/24 02:06:31 cat file_1 file_2 | grep 'GET' | awk -F' ' '{print $7}
+  440  05/02/24 02:06:45 cat file_1 file_2 | grep 'GET' | awk -F' ' '{print $7}'
+  441  05/02/24 02:07:54 cat file_1 file_2 | grep 'GET' | awk -F' ' '{print $7}' > file_3
+  442  05/02/24 02:08:12 cat file_3
+  443  05/02/24 02:08:44 du > result_du 
+  444  05/02/24 02:09:46 history > result_history 
