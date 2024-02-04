@@ -421,3 +421,12 @@ GitHub: @ScherbakovaTA" > README.md
   406  05/02/24 01:20:46 cd -
   407  05/02/24 01:21:29 du > result_du
   408  05/02/24 01:21:57 history > result_history
+  409  05/02/24 01:22:03 cd -
+  410  05/02/24 01:22:23 git add .
+  411  05/02/24 01:23:50 git commit -m "hw1-3"
+  412  05/02/24 01:24:26 cd exercise/hw1/
+  413  05/02/24 01:24:42 cat file_1
+  414  05/02/24 01:28:14 head -n2 file_1
+  415  05/02/24 01:28:36 tail -n2 file_1
+  416  05/02/24 01:30:11 du > result_du
+  417  05/02/24 01:31:17 history > result_history
