@@ -224,3 +224,43 @@
   224  ls
   225  du > result_du
   226  history > result_history
+  227  cat result_du
+  228  cat result_history
+  229  git add result_du
+  230  git add result_history
+  231  git commit -m "block4"
+  232  git status 
+  233  cd /home/
+  234  pwd
+  235  find /home/ -name "*fil*"
+  236  cd jupyter-pteroculus/github
+  237  cd team22/users
+  238  cd iaalexeev
+  239  ls
+  240  ls -lh
+  241  ls
+  242  touch total.txt
+  243  ls -lh > total.txt
+  244  head -n1 total.txt
+  245  du -ah
+  246  ls -ah
+  247  ls
+  248  rm total.txt
+  249  ls
+  250  touch total.txt
+  251  du -ah > total.txt
+  252  pwd
+  253  awk -F' ' '{print $1}' iaalexeev/total.txt
+  254  ls
+  255  rm total.txt
+  256  touch total 
+  257  du -ah > tota
+  258  du -ah > total
+  259  cd ..
+  260  pwd
+  261  awk -F' ' '{print $1}' iaalexeev/total
+  262  grep -rni 'GET' iaalexeev
+  263  pwd
+  264  cd iaalexeev
+  265  du > result_du
+  266  history > result_history
