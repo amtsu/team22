@@ -457,3 +457,10 @@ GitHub: @ScherbakovaTA" > README.md
   442  05/02/24 02:08:12 cat file_3
   443  05/02/24 02:08:44 du > result_du 
   444  05/02/24 02:09:46 history > result_history 
+  445  05/02/24 02:10:33 git add .
+  446  05/02/24 02:10:46 git status
+  447  05/02/24 02:11:16 git commit -m "hw1-6"
+  448  05/02/24 02:13:54 ls -la && rm test123 && pwd
+  449  05/02/24 02:14:45 ls -la; rm test123; pwd
+  450  05/02/24 02:17:46 du > result_du 
+  451  05/02/24 02:17:50 history > result_history 
