@@ -156,3 +156,153 @@
   156  cd ..
   157  du > result_du
   158  history > result_history
+  159  cat result_du
+  160  git add hw1
+  161  dit add home_work_1
+  162  git add home_work_1
+  163  git add 'hw1'
+  164  git commit -m 'block2'
+  165  git add exercise/hw1/home_work_1/
+  166  git add result_du
+  167  git add result_history
+  168  git commit -m 'block2'
+  169  cd exercise/hw1
+  170  touch file1
+  171  vi file1
+  172  touch file2
+  173  vi file2
+  174  cd ..
+  175  git add hw1
+  176  git commit -m 'block3'
+  177  cd hw1
+  178  du > result_du
+  179  history > result_history 
+  180  git add hw1
+  181  cd ..
+  182  git add hw1
+  183  git commit -m 'block3 with du, history"
+
+  184  git commit -m 'block3 with du, history'
+  185  git status
+  186  cd hw1
+  187  cat file1
+  188  head -n2 file1
+  189  tail -n2 file1
+  190  du > result_du
+  191  history > result_history 
+  192  cd ..
+  193  gir add hw1
+  194  git add hw1
+  195  git commit -m 'block4'
+  196  cd /home
+  197  cd /
+  198  grep -rni 'GET' home
+  199  pwd
+  200  cd /home/
+  201  pwd
+  202  grep -rni 'fil' home
+  203  cd ..
+  204  grep -rni 'fil' home
+  205  cd home
+  206  find /home/ -name "*fil*"
+  207  cd jupyter-vssachenko/github/team22/users/vssachenko
+  208  du -ah
+  209  du -ah > filessize
+  210  cd ..
+  211  awk -F' ' '{print $1}' vssachenko/filessize 
+  212  cd vssachenko
+  213  users
+  214  grep -rni 'GET' vssachenko
+  215  cd ..
+  216  grep -rni 'GET' vssachenko
+  217  cd vssacenko
+  218  cd vssachenko
+  219  git status
+  220  git add filesize
+  221  cd ..
+  222  cd vssachenko/exercise/hw1
+  223  du > result_du
+  224  history > result_history 
+  225  dit status
+  226  git status
+  227  cd users
+  228  cd /users
+  229  cd ..
+  230  git status
+  231  git add exercise/hw1/result_history
+  232  git filessize
+  233  git add filessize
+  234  git commit -m 'block5'
+  235  cd ..
+  236  grep -rni 'GET' vssachenko
+  237  grep -rni 'GET' vssachenko > URIresult || mv URIresult hw1
+  238  cd vssachenko/exercise/hw1
+  239  cd ..
+  240  awk -F' ' '{print $7}' URIresult
+  241  cd hw1
+  242  ls
+  243  cd vssachenko
+  244  cd /vssachenko
+  245  cd ..
+  246  cd..
+  247  cd ..
+  248  ls
+  249  cd ..
+  250  ls
+  251  mv URLresult hw1/URLresult
+  252  cd vssachenko/exercise/
+  253  mv URLresult hw1/URLresult
+  254  dc ..
+  255  cd ..
+  256  mv URLresult hvssachenko/URLresult
+  257  mv URLresult vssachenko/URLresult
+  258  mv URLresult vssachenko/
+  259  mv URLresult vssachenko
+  260  pwd
+  261  ls
+  262  mv URIresult vssachenko
+  263  cd vssachenko
+  264  ls
+  265  mv URIresult hw1/URIresult
+  266  cd ..
+  267  mv URIresult hw1/URIresult
+  268  cd vssachenko/exercise/
+  269  mv URIresult hw1/URIresult
+  270  cd users
+  271  cd vssasenko
+  272  cd vssachenko
+  273  cd ..
+  274  cd
+  275  cd ..
+  276  team22
+  277  cd team22
+  278  cd github
+  279  cd jupyter-vssachenko
+  280  cd github/team22/users/
+  281  mv URIresult hw1/URIresult
+  282  cd vssachenko/
+  283  awk -F' ' '{print $7}' vssachenko/URIresult
+  284  cd ..
+  285  awk -F' ' '{print $7}' vssachenko/URIresult
+  286  cd vssachenko
+  287  ls -la && rm test123 && pwd
+  288  ls -la; rm test123; pwd
+  289  cd ..
+  290  git status
+  291  git add vssachenko/URIresult
+  292  git commit -m 'block6,7'
+  293  grep -rni 'GET' vssachenko > uriresult || mv uriresult vssachenko/
+  294  ls
+  295  mv uriresult vssachenko
+  296  awk -F' ' '{print $7}' vssachenko/uriresult | sort
+  297  cd vssachenko
+  298  ls -la
+  299  ls -la | awk -F' ' '{print $7}' | sort
+  300  ls -la | grep -rni 'GET' vssachenko | awk -F' ' '{print $7}' | sort
+  301  grep -rni 'GET' vssachenko | awk -F' ' '{print $7}' | sort
+  302  cd ..
+  303  grep -rni 'GET' vssachenko | awk -F' ' '{print $7}' | sort
+  304  grep -rni 'GET' vssachenko | awk -F' ' '{print $7}' | sort | uniq -c
+  305  cd vssachenko
+  306  du > result_du 
+  307  history > result_history 
