@@ -177,3 +177,16 @@
   177  cd hw1
   178  du > result_du
   179  history > result_history 
+  180  git add hw1
+  181  cd ..
+  182  git add hw1
+  183  git commit -m 'block3 with du, history"
+
+  184  git commit -m 'block3 with du, history'
+  185  git status
+  186  cd hw1
+  187  cat file1
+  188  head -n2 file1
+  189  tail -n2 file1
+  190  du > result_du
+  191  history > result_history 
