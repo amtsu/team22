@@ -145,3 +145,47 @@
   145  du > result_du
   146  cat result_du
   147  history > result_history
+  148  cat result_history 
+  149  git add hw1
+  150  ls
+  151  cd exercise/
+  152  ls
+  153  git add hw1
+  154  git status
+  155  git add result_du
+  156  cd hw1
+  157  ls
+  158  git add result_du
+  159  git add result_history
+  160  git status
+  161  cd ..
+  162  git commit -m "block 2"
+  163  git status
+  164  cd ..
+  165  git commit -m "block 2"
+  166  git add result_du
+  167  git add result_history
+  168  git commit -m "block 2"
+  169  git status
+  170  ls
+  171  cd exercise/
+  172  ls
+  173  cd hw1/home_work_1/
+  174  ls
+  175  touch file1.txt
+  176  ls
+  177  vi file1.txt
+  178  cat file1.txt
+  179  ls
+  180  touch file2.txt
+  181  vi file2.txt
+  182  cd ..
+  183  cd
+  184  pwd
+  185  cd /github/team22/users/iaalexeev
+  186  cd github
+  187  cd team22
+  188  cd users
+  189  cd iaalexeev
+  190  du > result_du
+  191  history > result_history
