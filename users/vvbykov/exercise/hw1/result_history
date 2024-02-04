@@ -289,3 +289,51 @@
   289  env | grep 'A'
   290  du > result_du
   291  history > result_history 
+  292  git status
+  293  git add --all
+  294  git status
+  295  git commit -m '9th block of hw1'
+  296  wget https://finance.rambler.ru/currencies/USD/
+  297  ls -la
+  298  cat index.html
+  299  clear
+  300  curl https://finance.rambler.ru/currencies/USD/
+  301  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD'
+  302  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD ='
+  303  curl https://finance.rambler.ru/currencies/ | grep 'USD ='
+  304  curl https://finance.rambler.ru/currencies/USD | grep 'USD ='
+  305  curl https://finance.rambler.ru/currencies/ | grep 'USD'
+  306  curl https://finance.rambler.ru/currencies/ | grep 'США'
+  307  curl https://finance.rambler.ru/currencies/USD | grep 'USD'
+  308  curl https://finance.rambler.ru/currencies/USD | grep 'USD = '
+  309  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD ='
+  310  curl https://finance.rambler.ru/currencies | grep '90.22'
+  311  curl https://finance.rambler.ru/currencies | grep '90.2299'
+  312  curl https://finance.rambler.ru/currencies | grep 'Доллар США'
+  313  curl https://finance.rambler.ru/currencies/USD | grep 'Доллар США'
+  314  curl https://finance.rambler.ru/currencies/USD | grep 'USD ='
+  315  curl https://finance.rambler.ru/currencies/USD | grep 'USD = '
+  316  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD ='
+  317  curl https://finance.rambler.ru/currencies/ | grep 'Доллар США'
+  318  curl https://finance.rambler.ru/currencies/ | grep 'USD'
+  319  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD = '; curl curl https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = ' 
+  320  wget https://finance.rambler.ru/currencies/USD/ | grep -irn 'USD = '; wget https://finance.rambler.ru/currencies/EUR/ | grep -irn 'EUR = ' 
+  321  clear
+  322  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD = '; curl https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = ' 
+  323  curl -o  https://finance.rambler.ru/currencies/USD/ | grep 'USD = '
+  324  curl -s  https://finance.rambler.ru/currencies/USD/ | grep 'USD = '
+  325  curl -s  https://finance.rambler.ru/currencies/USD/ | grep 'USD = ' ; curl -s https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = ' 
+  326  touch currency_file
+  327  curl -s  https://finance.rambler.ru/currencies/USD/ | grep 'USD = ' > currency_file ; curl -s https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = ' >> currency_file 
+  328  cat currency_file 
+  329  ls -la
+  330  cd ~
+  331  cd -
+  332  rm currency_file 
+  333  cd ~
+  334  cd github/team22/users/vvbykov/exercise/hw1/
+  335  touch currency_file
+  336  curl -s  https://finance.rambler.ru/currencies/USD/ | grep 'USD = ' > currency_file ; curl -s https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = ' >> currency_file 
+  337  cat currency_file 
+  338  du > result_du
+  339  history > result_history 
