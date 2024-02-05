@@ -1,0 +1,10 @@
+total 32
+drwxr-xr-x 3 jupyter-andreyvolodinpro jupyter-andreyvolodinpro 4096 Jan 29 23:05 .
+drwxr-xr-x 3 jupyter-andreyvolodinpro jupyter-andreyvolodinpro 4096 Jan 28 21:06 ..
+-rw-r--r-- 1 jupyter-andreyvolodinpro jupyter-andreyvolodinpro    0 Jan 29 23:04 awk
+-rw-r--r-- 1 jupyter-andreyvolodinpro jupyter-andreyvolodinpro   29 Jan 29 22:35 file1
+-rw-r--r-- 1 jupyter-andreyvolodinpro jupyter-andreyvolodinpro  414 Jan 29 22:35 file2
+-rw-r--r-- 1 jupyter-andreyvolodinpro jupyter-andreyvolodinpro    0 Jan 29 23:05 file3
+drwxr-xr-x 3 jupyter-andreyvolodinpro jupyter-andreyvolodinpro 4096 Jan 28 21:27 home_work_1
+-rw-r--r-- 1 jupyter-andreyvolodinpro jupyter-andreyvolodinpro   46 Jan 29 22:49 result_du
+-rw-r--r-- 1 jupyter-andreyvolodinpro jupyter-andreyvolodinpro 5574 Jan 29 22:50 result_history

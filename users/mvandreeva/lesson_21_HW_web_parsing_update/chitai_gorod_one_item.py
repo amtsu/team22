@@ -1,8 +1,7 @@
 #!/usr/local/bin/python
 # coding: utf-8
 
-from bs4 import BeautifulSoup
-from web_parsing import PageParsing
+from web_parsing import OnePageParsing
 
 class ChitaiGorodGetElement:
     
@@ -10,7 +9,7 @@ class ChitaiGorodGetElement:
     Класс получает данные со страницы товара, "очищает" эти данные для последующей обработки
     """
     
-    def clean_data(self): 
+    def clean_data(self) -> int: 
         """ метод очистки данных"""
         if not self.__to_int:    
             if not len(self.__remove) == 1:
@@ -33,7 +32,7 @@ class ChitaiGorodGetElement:
         Метод получения текстового значения искомого элемента (не очищенного)
         """
         data_list = self.__b_soup.findAll(self.__tag, class_ = self.__class_name)
-        if data_list == []:
+        if data_list == []
             assert False
         else:
             data = []
@@ -66,7 +65,7 @@ class ChitaiGorodGetPrice(ChitaiGorodGetElement):
         good_data = int(bad_data)
         return good_data
     
-    def __get_text(self): 
+    def __get_text(self): # сделать privat 
         data_list = self.__b_soup.findAll('span', class_='product-detail-offer-header__price-currency')
         #print (len(data_list))
         assert len(data_list) == 1
@@ -79,8 +78,8 @@ class ChitaiGorodGetPrice(ChitaiGorodGetElement):
         #print(prices)
         return element.text
     
-    def __init__(self, page_text: str, url: str):
-        self.__b_soup = BeautifulSoup(page_text, features="html.parser")
+    def __init__(self, url: str):
+        self.__b_soup = OnePageParsing(url).read_page()
         
 class ChitaiGorodGetTitle(ChitaiGorodGetElement): # не работает: 
     # При загрузке страницы вручную заголовок находится в теге h1, а при загрузке через BS данного тега нет.
@@ -93,15 +92,15 @@ class ChitaiGorodGetTitle(ChitaiGorodGetElement): # не работает:
         bad_data = self.__get_text()
         bad_data = bad_data.replace("\n      ", "")
         bad_data = bad_data.replace("\xa0", "")
-        good_data = bad_data.replace(" ₽\n    ", "")
-        
+        bad_data = bad_data.replace(" ₽\n    ", "")
+        good_data = int(bad_data)
         return good_data
     
     def __get_text(self):
         #print(self.__b_soup)
-        data_list = self.__b_soup.findAll("div", class_ = "product-title__head") #Не находит!
-        #print (data_list)
-        #print (len(data_list))
+        data_list = self.__b_soup.find_next("h1", {"class" : "product-detail-title__header vue-content-placeholders vue-content-placeholders-is-rounded vue-content-placeholders-is-animated"}) #Не находит!
+        print (data_list)
+        print (len(data_list))
         assert len(data_list) == 1
         element = data_list[0]
         #print(element)
@@ -112,8 +111,8 @@ class ChitaiGorodGetTitle(ChitaiGorodGetElement): # не работает:
         #print(prices)
         return element.text
     
-    def __init__(self, page_text: str, url: str):
-        self.__b_soup = BeautifulSoup(page_text, features="html.parser")
+    def __init__(self, url: str):
+        self.__b_soup = OnePageParsing(url).read_page()
         
 
 class ChitaiGorodGetAuthor(ChitaiGorodGetElement):
@@ -143,8 +142,8 @@ class ChitaiGorodGetAuthor(ChitaiGorodGetElement):
         #print(data)
         return element.text
     
-    def __init__(self, page_text: str, url: str):
-        self.__b_soup = BeautifulSoup(page_text, features="html.parser")
+    def __init__(self, url: str):
+        self.__b_soup = OnePageParsing(url).read_page()
         
         
 class ChitaiGorodGetAuthorURL(ChitaiGorodGetElement):
@@ -169,5 +168,5 @@ class ChitaiGorodGetAuthorURL(ChitaiGorodGetElement):
         #print(data)
         return element
     
-    def __init__(self, page_text: str, url: str):
-        self.__b_soup = BeautifulSoup(page_text, features="html.parser")
+    def __init__(self, url: str):
+        self.__b_soup = OnePageParsing(url).read_page()
