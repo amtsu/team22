@@ -1,0 +1,13 @@
+total 48
+drwxr-xr-x 4 jupyter-anzhela-volodina jupyter-anzhela-volodina 4096 Jan 29 22:59 .
+drwxr-xr-x 3 jupyter-anzhela-volodina jupyter-anzhela-volodina 4096 Jan 28 19:53 ..
+-rw-r--r-- 1 jupyter-anzhela-volodina jupyter-anzhela-volodina    0 Jan 29 22:58 awk
+-rw-r--r-- 1 jupyter-anzhela-volodina jupyter-anzhela-volodina   29 Jan 29 22:07 file1
+-rw-r--r-- 1 jupyter-anzhela-volodina jupyter-anzhela-volodina  414 Jan 29 22:07 file2
+-rw-r--r-- 1 jupyter-anzhela-volodina jupyter-anzhela-volodina    0 Jan 29 22:59 file3
+drwxr-xr-x 3 jupyter-anzhela-volodina jupyter-anzhela-volodina 4096 Jan 28 20:00 home_work_1
+drwxr-xr-x 2 jupyter-anzhela-volodina jupyter-anzhela-volodina 4096 Jan 28 20:14 .ipynb_checkpoints
+-rw-r--r-- 1 jupyter-anzhela-volodina jupyter-anzhela-volodina   69 Jan 29 22:48 result_du
+-rw-r--r-- 1 jupyter-anzhela-volodina jupyter-anzhela-volodina   69 Jan 29 22:10 result_du2
+-rw-r--r-- 1 jupyter-anzhela-volodina jupyter-anzhela-volodina 5109 Jan 29 22:48 result_history
+-rw-r--r-- 1 jupyter-anzhela-volodina jupyter-anzhela-volodina 5193 Jan 29 22:10 result_history2

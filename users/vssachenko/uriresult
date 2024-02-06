@@ -1,0 +1,14 @@
+vssachenko/exercise/hw1/file2:1:::1 - - [20/Jan/2024:12:14:04 +0000] "GET /empty.test HTTP/1.1" 200 0 "-" "curl/7.29.0" "-" 0.000 
+vssachenko/exercise/hw1/file2:2:::1 - - [20/Jan/2024:12:14:04 +0000] "GET /1mb.test HTTP/1.1" 200 1048576 "-" "curl/7.29.0" "-" 0.000 
+vssachenko/exercise/hw1/file2:3:::1 - - [20/Jan/2024:12:14:07 +0000] "GET /10mb.test HTTP/1.1" 200 10485760 "-" "curl/7.29.0" "-" 2.063 
+vssachenko/exercise/hw1/file2:4:::1 - - [20/Jan/2024:12:15:10 +0000] "GET /100mb.test HTTP/1.1" 200 104857600 "-" "curl/7.29.0" "-" 47.318
+vssachenko/exercise/hw1/result_history:199:  198  grep -rni 'GET' home
+vssachenko/exercise/hw1/result_history:215:  214  grep -rni 'GET' vssachenko
+vssachenko/exercise/hw1/result_history:217:  216  grep -rni 'GET' vssachenko
+vssachenko/URIresult:1:vssachenko/exercise/hw1/file2:1:::1 - - [20/Jan/2024:12:14:04 +0000] "GET /empty.test HTTP/1.1" 200 0 "-" "curl/7.29.0" "-" 0.000 
+vssachenko/URIresult:2:vssachenko/exercise/hw1/file2:2:::1 - - [20/Jan/2024:12:14:04 +0000] "GET /1mb.test HTTP/1.1" 200 1048576 "-" "curl/7.29.0" "-" 0.000 
+vssachenko/URIresult:3:vssachenko/exercise/hw1/file2:3:::1 - - [20/Jan/2024:12:14:07 +0000] "GET /10mb.test HTTP/1.1" 200 10485760 "-" "curl/7.29.0" "-" 2.063 
+vssachenko/URIresult:4:vssachenko/exercise/hw1/file2:4:::1 - - [20/Jan/2024:12:15:10 +0000] "GET /100mb.test HTTP/1.1" 200 104857600 "-" "curl/7.29.0" "-" 47.318
+vssachenko/URIresult:5:vssachenko/exercise/hw1/result_history:199:  198  grep -rni 'GET' home
+vssachenko/URIresult:6:vssachenko/exercise/hw1/result_history:215:  214  grep -rni 'GET' vssachenko
+vssachenko/URIresult:7:vssachenko/exercise/hw1/result_history:217:  216  grep -rni 'GET' vssachenko
