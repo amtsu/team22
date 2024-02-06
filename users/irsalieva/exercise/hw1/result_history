@@ -1,0 +1,232 @@
+    1  ssh-keygen -t rsa -b 4096 -C "brod9lga@gmail.com"
+    2  cat ~/.ssh/id_rsa.pub
+    3  mkdir github
+    4  cd github
+    5  git clone git@github.com:amtsu/team22.git
+    6  cd ~
+    7  cd users/
+    8  pwd
+    9  cd team22
+   10  ls -la
+   11  cd ~
+   12  ls
+   13  cd github
+   14  ls
+   15  cd team22
+   16  ls
+   17  cd users
+   18  ls
+   19  mkdir irsalieva
+   20  ls
+   21  cd irsalieva
+   22  ls
+   23  la -la
+   24  touch README
+   25  ls
+   26  vim readme
+   27  cat readme
+   28  git branch lecture2irsalieva
+   29  ls
+   30  git checkout lecture2irsalieva
+   31  mrdir irsalieva
+   32  mkdir irsalieva
+   33  cd irsalieva
+   34  ls
+   35  pwd
+   36  cd ..
+   37  pwd
+   38  ls
+   39  git status
+   40  git add .
+   41  git status
+   42  git commit -m "a little bit about yourself@
+   43  "
+   44  git commit -m "a little bit about yourself"
+   45  git commit -m 'a little bit about yourself'
+   46  git config --global user.name "Indira"
+   47  git commit -m 'a little bit about yourself'
+   48  git status
+   49  git config --global user.email "brod9lga@gmail.com"
+   50  git commit -m 'a little bit about yourself'
+   51  git status
+   52  git rm README
+   53  git status
+   54  git commit -m 'a little bit about yourself (new)'
+   55  git status
+   56  git log
+   57  git push
+   58  git push --set-upstream origin lecture2irsalieva
+   59  git checkout main
+   60  ls -la main/
+   61  ls -la users/
+   62  cd ..
+   63  ls
+   64  ls -la
+   65  git checkout main
+   66  git pull
+   67  ls -la
+   68  cd irsalieva
+   69  ls
+   70  ls -la
+   71  git pull
+   72  git branch
+   73  git branch -r
+   74  git branch irsalieva-hw2
+   75  git checkout irsalieva-hw2 
+   76  mkdir exercise
+   77  cd exercise/
+   78  mkdir hw1
+   79  cd hw1/
+   80  pwd
+   81  ls -la
+   82  ls -la /
+   83  cd home
+   84  cd /home
+   85  ls -la
+   86  cd ~/github/team22/users/irsalieva/exercise/hw1/
+   87  du > result_du
+   88  ls -la
+   89  history > result_history
+   90  git status
+   91  cd ..
+   92  pwd
+   93  git status
+   94  git add ./
+   95  git status
+   96  git commit -m '1 block of hw1'
+   97  pwd
+   98  cd hw1/
+   99  pwd
+  100  mkdir home_work_1
+  101  cd home_work_1/
+  102  touch file_1
+  103  ls -la
+  104  mkdir work_dir
+  105  cp file_1 work_dir/file_1_copy
+  106  cp -r work_dir work_dir_new
+  107  ls -la
+  108  cd work_dir_new
+  109  ls -la
+  110  mv file_1_copy file_1_new_name
+  111  ls -la
+  112  rm file_1_new_name 
+  113  cd ..
+  114  ls -la
+  115  rm work_dir_new/
+  116  rm -r work_dir_new/
+  117  ls -la
+  118  cd ..
+  119  ls -la
+  120  du > result_du 
+  121  history > result_history 
+  122  git status
+  123  git add .
+  124  git status
+  125  git commit -m '2 block of hw1'
+  126  cd home_work_1/
+  127  cd ..
+  128  touch file1
+  129  vi file1
+  130  ls -la
+  131  cat home_work_1/
+  132  cat file1 
+  133  touch file2
+  134  ls -la
+  135  vi file2
+  136  cat file2
+  137  du > result_du 
+  138  history > result_history 
+  139  git add .
+  140  git status
+  141  git diff
+  142  git commit
+  143  git status
+  144  git log
+  145  git status
+  146  git commit -m '3 block of hw1'
+  147  ls -la
+  148  cat file1
+  149  head -n2 file1
+  150  tail -n2 file1
+  151  du > result_du
+  152  history > result_history
+  153  git status
+  154  ls -la
+  155  git add .
+  156  git commit -m '4 block of hw1'
+  157  find /home/ -name "fil"
+  158  find /home/ -name "*fil*"
+  159  du
+  160  ls -la
+  161  ls -la | awk -F' ' '{print $5}'
+  162  grep -rni 'GET'
+  163  grep -rni 'GET' ~
+  164  du > result_du
+  165  history > result_history
+  166  git status
+  167  git add .
+  168  git status
+  169  git commit -m '5 block of hw1'
+  170  grep -rni 'GET'
+  171  grep -rni 'GET' > save_uri
+  172  du > result_du
+  173  history > result_history 
+  174  git status
+  175  git add .
+  176  git status
+  177  git commit -m '6 block of hw1'
+  178  ls -la && rm test123 && pwd
+  179  ls -la; rm test123; pwd
+  180  du > result_du
+  181  history > result_history 
+  182  git status
+  183  git add .
+  184  git status
+  185  git commit -m '7 block of hw1'
+  186  grep -rni 'GET'
+  187  grep -rni 'GET' file2
+  188  grep -rni 'GET' file2 | awk -F' ' '{print $7}'
+  189  grep -rni 'GET' file2 | awk -F' ' '{print $7}' | sort
+  190  grep -rni 'GET' file2 | awk -F' ' '{print $7}' | sort | wc -l
+  191  grep -rni 'GET' file2 | awk -F' ' '{print $7}' | sort | wc -l > cnt_uri
+  192  ls -la
+  193  du > result_du
+  194  history > result_history 
+  195  git status
+  196* git commit 
+  197  git status
+  198  git commit -m '8 block of hw1'
+  199  env | grep 'A'
+  200  du > result_du
+  201  history > result_history 
+  202  git add .
+  203  git status
+  204  git commit -m '9 block of hw1'
+  205  curl https://finance.rambler.ru/currencies/ -o cur_usd
+  206  cat cur_usd 
+  207  curl https://finance.rambler.ru/currencies/ -o cur_usd | grep 'USD'
+  208  cat cur_usd 
+  209  curl https://finance.rambler.ru/currencies/usd/ -o cur_usd | grep 'USD'
+  210  cat cur_usd 
+  211  curl https://finance.rambler.ru/currencies/usd/ -o cur_usd
+  212  grep 'USD' cur_usd 
+  213  curl https://finance.rambler.ru/currencies/USD/ -o cur_usd
+  214  grep 'USD' cur_usd 
+  215  grep '1 USD' cur_usd 
+  216  grep '1 USD' cur_usd | awk -F' ' '{print $4}'
+  217  curl https://finance.rambler.ru/currencies/EUR/ -o cur_eur
+  218  grep '1 EUR' cur_eur
+  219  grep '1 EUR' cur_eur | awk -F' ' '{print $4}'
+  220  grep '1 EUR' cur_eur | awk -F' ' '{print $1$2$3$4$5}'
+  221  grep '1 USD' cur_usd | awk -F' ' '{print $1$2$3$4$5}'; grep '1 EUR' cur_eur | awk -F' ' '{print $1$2$3$4$5}'
+  222  grep '1 USD' cur_usd | awk -F' ' '{print $1 $2 $3 $4 $5}'; grep '1 EUR' cur_eur | awk -F' ' '{print $1 $2 $3 $4 $5}'
+  223  ls -la
+  224  ls -la | awk -F' ' '{print $6 $7 $8}' | sort -r
+  225  ls -lt
+  226  ls -lt | awk -F' ' '{print $6 $7 $8}' | -tail -n1
+  227  ls -lt | awk -F' ' '{print $6 $7 $8}' | head -n1
+  228  ls -lt | awk -F' ' '{print $6 $7 $8}'
+  229  ls -lt | awk -F' ' '{print $6 $7 $8}' | head -n2
+  230  ls -lt | awk -F' ' '{print $6, $7, $8}' | head -n2
+  231  du > result_du 
+  232  history > result_history 

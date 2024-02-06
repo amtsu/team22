@@ -1,0 +1,490 @@
+    1  ssh-keygen -t rsa -b 4096 -C ĺ"annamargo@mail.ru"
+    2  cat ~/.ssh/id_rsa.pub
+    3  pwd
+    4  ls
+    5  mkdir github
+    6  cd github
+    7  git clone git@github.com:amtsu/team22.git
+    8  ls
+    9  cd team22/
+   10  ls
+   11  cd library/
+   12  ls
+   13  cd theory/
+   14  ls
+   15  ssh-keygen -t rsa -b 4096 -C ĺ"annamrgo@mail.ru"
+   16  cat ~/.ssh/id_rsa.pub
+   17  clear -r
+   18  ssh-keygen -t rsa -b 4096 -C ĺ"annamargo@mail.ru"
+   19  cat ~/.ssh/id_rsa.pub
+   20  зцв
+   21  pwd
+   22  ls
+   23  cd github/
+   24  ls
+   25  cd team22/
+   26  ls
+   27  pwd 
+   28  pwd || ls -la
+   29  ls -la
+   30  cd users/
+   31  ls
+   32  cd ../
+   33  pwd
+   34  git branch aomargolina_home_work_1
+   35  ls
+   36  git checkout aomargolina_home_work_1 
+   37  cd users/
+   38  mkdir aomargolina
+   39  ls
+   40  cd aomargolina
+   41  ls
+   42  pwd
+   43  touch README.md
+   44  pwd
+   45  pwd > README.md 
+   46  ls
+   47  cat README.md 
+   48  cd ../..
+   49  ls
+   50  git status
+   51  git diff
+   52  git add users/aomargolina/README.md 
+   53  git commit -m 'first step'
+   54  git push --set-upstream origin aomargolin
+   55  git push --set-upstream origin aomargolina
+   56  git config --global user.email "annamrgo@mail.ru"
+   57  git push --set-upstream origin aomargolina
+   58  git commit -m 'first step'
+   59  history
+   60  git config --global user.email "annamargo@mail.ru"
+   61  git config --global user.name ' AnnaMargolina"
+   62  git config --global user.name "AnnaMargolina"
+   63  pwd
+   64  ls
+   65  cd users/
+   66  ls
+   67  cd aomargolina
+   68  ls
+   69  git status
+   70  git diff
+   71  cd ..
+   72  cd aomargolina/
+   73  ls
+   74  git commit -m 'first step'
+   75  git push --set-upstream origin aomargolina
+   76  git log
+   77  git push --set-upstream origin aomargolina_home_work_1 
+   78  cd ..
+   79  git push --set-upstream origin aomargolina_home_work_1 
+   80  pwd
+   81  ls
+   82  cd ..
+   83  ls
+   84  git pull
+   85  ls
+   86  cd team22/
+   87  ls
+   88  git branch
+   89  git pull
+   90  ls
+   91  git diff
+   92  cd users/
+   93  ls
+   94  cd aomargolina/
+   95  ls
+   96  cat README.md 
+   97  cd ../..
+   98  git status
+   99  git push --set-upstream origin aomargolina_home_work_1
+  100  git push
+  101  git push --set-upstream origin aomargolina_home_work_1
+  102  pwd
+  103  ~
+  104  rm -r team22/
+  105  rm -rf team22
+  106  ls
+  107  pwd
+  108  git@github.com:amtsu/team22.git
+  109  git clone git@github.com:amtsu/team22.git
+  110  cd team22
+  111  ls
+  112  git branch aomargolina_branch
+  113  git checkout aomargolina_branch
+  114  cd users/
+  115  mkdir aomargolina
+  116  cd aomargolina/
+  117  touch README.md
+  118  pwd > README.md
+  119  cd ../..
+  120  git status
+  121  git diff
+  122  git add users/aomargolina/
+  123  git status
+  124  git config --global user.email ВАШ@ЕМЕЙЛ
+  125  git config --global user.email annamargo@mail.ru
+  126  git config --global user.name AnnaMargolina
+  127  git commit -m 'first step'
+  128  git push --set-upstream origin aomargolina_branch 
+  129  git config --global user.name aomargolina
+  130  git push --set-upstream origin aomargolina_branch 
+  131  git clone git@github.com:amtsu/team22.git
+  132  pwd
+  133  ls
+  134  cd team22/
+  135  ls
+  136  cd users/
+  137  ls
+  138  cd ..
+  139  ls
+  140  pwd
+  141  ls
+  142  cd github/
+  143  ls
+  144  cd team22/
+  145  ls
+  146  git stqtus
+  147  git status
+  148  git push
+  149  git push --set-upstream origin aomargolina_branch
+  150  pwd
+  151  git config --global user.name AnnaMargolina
+  152  git push --set-upstream origin aomargolina_branch
+  153  git diff
+  154  pwd
+  155  ls -la
+  156  cd users/
+  157  ls
+  158  cd aomargolina/
+  159  ls
+  160  cat README.md 
+  161  git push --set-upstream origin aomargolina_branch
+  162  pwd
+  163  git clone
+  164  #git clone git@github.com:amtsu/team22.git
+  165  pwd
+  166  ls
+  167  cd github/
+  168  ls
+  169  cd team22/
+  170  ls
+  171  cd users/
+  172  ls
+  173  cd aomargolina/
+  174  ls
+  175  git clone git@github.com:amtsu/team22.git
+  176  pwd
+  177  git branch 
+  178  git branch aomargolina-hw1
+  179  cd ../..
+  180  ls
+  181  git branch 
+  182  cd ..
+  183  ls
+  184  rm -rf team22/
+  185  ls
+  186  git clone git@github.com:amtsu/team22.git
+  187  ls
+  188  cd team22/
+  189  ls
+  190  git branch aomargolina-hw1
+  191  ls
+  192  git checkout
+  193  git checkout aomargolina-hw1 
+  194  ls
+  195  pwd
+  196  git branch 
+  197  ls
+  198  cd users/
+  199  ls
+  200  mkdir aomargolina
+  201  cd aomargolina/
+  202  touch README
+  203  vi README 
+  204  cat README 
+  205  git status
+  206  git diff
+  207  cd ..
+  208  git status
+  209  git add users/aomargolina/
+  210  git status
+  211  git commit -m 'hw1'
+  212  git push
+  213  git push --set-upstream origin aomargolina-hw1
+  214  git pull
+  215  pwd
+  216  git check
+  217  git chekout
+  218  git checkout
+  219  ls
+  220  cd github/
+  221  ls
+  222  cd t
+  223  cd team22/
+  224  ls
+  225  git checkout 
+  226  ls
+  227  cd users/
+  228  ls
+  229  cd aomargolina/
+  230  ls
+  231  mkdir exercice
+  232  cd exercice/
+  233  mkdir hw1
+  234  ls
+  235  git branch 
+  236  git checkout main
+  237  git pull
+  238  git branch 
+  239  git branch aomargolina-hw1-part2
+  240  git checkout aomargolina-hw1-part2 
+  241  du .
+  242  help du
+  243  man help
+  244  man du
+  245  ls
+  246  cd hw1/
+  247  ls
+  248  touch result_du
+  249  touch result_history
+  250  cd ../..
+  251  du .
+  252  history
+  253  git status 
+  254  git diff
+  255  man git diff
+  256  #git add users/amtsurkov/README.md
+  257  #git commit -m 'описание того то что вы сделали в этом изменении на английском'
+  258  history 
+  259  pwd
+  260  ls 
+  261  ~
+  262  ls ~
+  263  cd home
+  264  cd ..
+  265  cd ~
+  266  pwd
+  267  cd hpme
+  268  cd home
+  269  ls
+  270  ls -la
+  271  pwd
+  272  ls
+  273  git branch 
+  274  cd github/
+  275  git branch 
+  276  cd team22/
+  277  ls
+  278  cd users/aomargolina/
+  279  ls
+  280  git status
+  281  git branch 
+  282  git checkout main
+  283  git pull
+  284  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+  285  ls
+  286  git branch 
+  287  git checkout aomargolina-hw1-part2
+  288  cd ~/
+  289  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+  290  cd ~/aomargolina
+  291  cd /aomargolina
+  292  cd ~/github/team22/users/aomargolina
+  293  ls
+  294  cd exercice/
+  295  ls
+  296  cd hw1/
+  297  ls
+  298  pwd
+  299  ls
+  300  ls /
+  301  ls -la
+  302  du . > result_du 
+  303  history > result_history 
+  304  git add .
+  305  git commit -m 'ex1_block1'
+  306  mkdir home_work_1
+  307  cd home_work_1/
+  308  touch file_1
+  309  mkdir work_dir
+  310  cp file_1 work_dir/file_1_copy
+  311  ls
+  312  cp -r work_dir home_work_1/work_dir_new
+  313  cp -r work_dir work_dir_new
+  314  ls
+  315  cd work_dir
+  316  ls
+  317  mv file_1_copy file_1_new_name
+  318  rm file_1_new_name 
+  319  cd ..
+  320  rm -r work_dir_new/
+  321  du . > result_du
+  322  history > result_history
+  323  cat result_du
+  324  cat result_history 
+  325  git add .
+  326  git branch 
+  327  git commit -m 'ex2_block2'
+  328  зцв
+  329  pwd
+  330  ls
+  331  cd ..
+  332  touch file1
+  333  vi file1 
+  334  touch file2
+  335  vi file2
+  336  git add .
+  337  git commit -m 'ex2_block3'
+  338  git log
+  339  ls
+  340  git status 
+  341  git log
+  342  git reset 
+  343  git log
+  344  git reset HEAD~
+  345  git log
+  346  ls
+  347  du . > result_du 
+  348  history > result_history 
+  349  git add .
+  350  git commit -m 'ex1_block3'
+  351  git status 
+  352  git log
+  353  cat file1
+  354  head -n2 file1
+  355  tail -n2 file1
+  356  du . > result_du 
+  357  history > result_history 
+  358  git status
+  359  git diff
+  360  cat result_du 
+  361  git add .
+  362  git commit -m 'ex1_block4'
+  363  git status 
+  364  find /home/ -name "fil"
+  365  find /hw1/ -name "fil"
+  366  find -name "fil"
+  367  ls
+  368  pwd
+  369  find -name *fil*
+  370  find /hw1/ -name *fil*
+  371  find /hw1/ -name 'fil'
+  372  cd ..
+  373  find /hw1/ -name 'fil'
+  374  find /hw1 -name 'fil'
+  375  find . -name "fil"
+  376  cd hw1/
+  377  find . -name "fil"
+  378  ls
+  379  find "fil"
+  380  find -name "*fil*"
+  381  #awk -F' ' '{print 
+  382  #awk -F' ' '{print1,3}' home_work_1/test.txt
+  383  ls -la
+  384  awk -F' ' '{print5}' hw1
+  385  ls -la > size
+  386  ls
+  387  cat size 
+  388  awk -F' ' '{print5}' size
+  389  awk -F' ' '{print1}' size
+  390  awk -F' ' '{print1,3}' size
+  391  awk -F' ' '{print1, 3}' size
+  392  awk -F' ' '{print 5}' size
+  393  awk -F' ' '{print 5}' hw1/size
+  394  ls
+  395  vi size 
+  396  awk '{print $5}' size 
+  397  grep 'GET' hw1
+  398  grep -rni 'GET' hw1
+  399  grep -rni 'GET'
+  400  cd .
+  401  cd ..
+  402  grep -rni 'GET' hw1
+  403  cd hw1/
+  404  du . > result_du 
+  405  history > result_history 
+  406  git status 
+  407  git diff
+  408  git add .
+  409  git commit -m 'ex1_block4'
+  410  url
+  411  grep -rni 'GET' > save_uri
+  412  #save uri < grep -rni 'GET'
+  413  ls
+  414  cat save_uri 
+  415  head -n4 save_uri > save_uri 
+  416  cat save_uri 
+  417  vi save_uri 
+  418  ls
+  419  cat save_uri 
+  420  grep -rni 'GET' > save_uri
+  421  cat save_uri 
+  422  vi save_uri 
+  423  cat save_uri 
+  424  du . > result_du 
+  425  history > result_history 
+  426  git add .
+  427  git commit -m 'ex1_block5'
+  428  ls -la && rm test123 && pwd
+  429  ls -la; rm test123; pwd
+  430  du . > result_du 
+  431  history > result_history 
+  432  git add .
+  433  git commit -m 'ex1_block6'
+  434  grep -rni 'GET' 
+  435  cat save_uri 
+  436  grep -rni 'GET' save_uri | awk '{print $6}'
+  437  grep -rni 'GET' save_uri | awk '{print $7}'
+  438  grep -rni 'GET' save_uri | awk '{print $7}' | sort
+  439  grep -v result_history grep -rni 'GET' | awk '{print $7}' | so
+  440  grep -rni 'GET' save_uri | awk '{print $7}' | sort
+  441  | wc -l
+  442  grep -rni 'GET' save_uri | awk '{print $7}' | sort | wc -l
+  443  du . > result_du 
+  444  history 
+  445  history > result_history 
+  446  git status 
+  447  git add .
+  448  git commit -m 'ex1_block7'
+  449  git status 
+  450  env
+  451  pwd
+  452  ls
+  453  cd g
+  454  cd github/
+  455  ls
+  456  cd team22/
+  457  ls
+  458  cd users/
+  459  cd aomargolina/
+  460  ls
+  461  cd exercice/
+  462  cd hw1/
+  463  ls
+  464  git status
+  465  env
+  466  env | grep 'A'
+  467  du . > result_du 
+  468  history > result_history 
+  469  git add .
+  470  git commit -m 'ex1_block8'
+  471  git log
+  472  grep -rni 'fil' /home
+  473  grep 'fil' /home
+  474  grep -r 'fil' /home
+  475  curl https://finance.rambler.ru/currencies/
+  476  man curl
+  477  history
+  478  ls -la
+  479  awk -F '{print 6, 7}
+ls -la && awk -F' ' '{print 6, 7}
+  480  awk -F '{print 6, 7}
+ls -la && awk -F' ' '{print 6, 7}'
+awk -F '{print 6, 7}
+  481  ls -la | awk -F' ' '{print 6, 7}'
+  482  ls -la | awk -F' ' '{print &6, $7}'
+  483  ls -la | awk -F' ' '{print $6, $7}'
+  484  ls -la | awk -F' ' '{print $6, $7}' |sort
+  485  ls -la | awk -F' ' '{print $6, $7}' |sort | tail -n1
+  486  du . > result_du 
+  487  history > result_history 

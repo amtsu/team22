@@ -1,0 +1,14 @@
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/file2:1:::1 - - [20/Jan/2024:12:14:04 +0000] "GET /empty.test HTTP/1.1" 200 0 "-" "curl/7.29.0" "-" 0.000 
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/file2:2:::1 - - [20/Jan/2024:12:14:04 +0000] "GET /1mb.test HTTP/1.1" 200 1048576 "-" "curl/7.29.0" "-" 0.000 
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/file2:3:::1 - - [20/Jan/2024:12:14:07 +0000] "GET /10mb.test HTTP/1.1" 200 10485760 "-" "curl/7.29.0" "-" 2.063 
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/file2:4:::1 - - [20/Jan/2024:12:15:10 +0000] "GET /100mb.test HTTP/1.1" 200 104857600 "-" "curl/7.29.0" "-" 47.318
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/URL:1:/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/file2:1:::1 - - [20/Jan/2024:12:14:04 +0000] "GET /empty.test HTTP/1.1" 200 0 "-" "curl/7.29.0" "-" 0.000 
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/URL:2:/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/file2:2:::1 - - [20/Jan/2024:12:14:04 +0000] "GET /1mb.test HTTP/1.1" 200 1048576 "-" "curl/7.29.0" "-" 0.000 
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/URL:3:/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/file2:3:::1 - - [20/Jan/2024:12:14:07 +0000] "GET /10mb.test HTTP/1.1" 200 10485760 "-" "curl/7.29.0" "-" 2.063 
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/URL:4:/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/file2:4:::1 - - [20/Jan/2024:12:15:10 +0000] "GET /100mb.test HTTP/1.1" 200 104857600 "-" "curl/7.29.0" "-" 47.318
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/URL:5:/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/result_history:219:  219  grep -rni 'GET' home_work_1
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/URL:6:/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/result_history:337:  337  grep -rni 'GET' ~
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/URL:7:/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/result_history:338:  338  grep -rni 'GET' ~/github/team22/users/vpetrov/
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/result_history:219:  219  grep -rni 'GET' home_work_1
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/result_history:337:  337  grep -rni 'GET' ~
+/home/jupyter-aldnoa19/github/team22/users/vpetrov/exercise/hw1/result_history:338:  338  grep -rni 'GET' ~/github/team22/users/vpetrov/
