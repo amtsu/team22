@@ -615,3 +615,145 @@
   615  du > result_du
   616  du -h > result_du
   617  history > result_history
+  618  git add result_du result_history
+  619  git status
+  620  git commit -m  'du and history'
+  621  git push
+  622  git branch
+  623  git checkout home_work_1_rmarfenkova
+  624  git branch -d home_work_1_rmarfenkova
+  625  ls -la
+  626  git branch
+  627  git checkout rmarfenkovahw2
+  628  обычно happy pass примерно такой:
+  629  git checkout main - переключились на ветку main
+  630  git pull --all --prune - забираем изменения из всех веток (--all)  и чистим локальный список веток от  удаленных  (--prune)
+  631  git branch initials-surname-description-of-the-changes-in-this-branch - создаем ветку с подходящим названием
+  632  git checkout initials-surname-description-of-the-changes-in-this-branch - переключаемся на созданную ветку
+  633  git add some_file - вносим изменения в какой-то файл (some_file), вносим его в список на фиксацию изменений
+  634  git add another_file - вносим изменения в какой-то ещё файл (another_file), вносим его в список на фиксацию изменений. таких файлов может быть много
+  635  git status -s - перед фиксацией проверяем состояние ветки, вдруг какие-то файлы забыли добавить, или какие-то добавили ненужные
+  636  git commit -m "changes was made" -  выполняем фиксацию
+  637  git push --set-upstream origin initials-surname-description-of-the-changes-in-this-branch -  вот так заливаем первый раз локальную ветку на сервер, одновременно устанавливаем двустороннюю связь между этими ветками
+  638  git add some_file_with_changes -  внесли изменения ещё в какой-то файл (some_file_with_changes)
+  639  git add some_file - обновили в том числе some_file - какой-то файл из уже зафиксированных .
+  640  git status -s - перед фиксацией проверяем состояние ветки, вдруг какие-то файлы забыли добавить, или какие-то добавили ненужные. -s - ключ включения сокращенного формата вывода. команда git status без этого ключа выводит расширенную информацию с различными подсказками
+  641  git commit -m "another changes was made" - опять фиксируем изменения 
+  642  git push - все последующие разы отправляем обновленное состояние на сервер такой короткой командой
+  643  #эти три последние шага можно повторять столько раз, сколько надо
+  644  #по идее, после того как проблема решена, создается pull request и далее либо принимаются изменения, либо просят что-то поправить
+  645  #если нужно что-то поправить, то опять 
+  646  git add changes_after_comments_on_pull_request
+  647  git commit -m "fixing something"
+  648  git push
+  649  #и потом pr принимается и ветку можно удалить и снова сначала то же самое над другой задачей
+  650  clear
+  651  ls -la
+  652  git status
+  653  git checkout main
+  654  git pull --all --prune
+  655  git branch
+  656  git checkout rmarfenkovahw2
+  657  cat file1
+  658  head -n2 file1
+  659  tail -n2 file1
+  660  find /home/ -name "*fil*"
+  661  cd ../..
+  662  du -h ./*
+  663  cd hw1/
+  664  ls
+  665  cd exercise/hw1/
+  666  grep 'GET' hw1
+  667  grep 'GET' hw1/
+  668  grep 'GET' /hw1/
+  669  grep 'GET' file1 file2
+  670  grep 'GET' file1 file2 | file3
+  671  grep 'GET' file1 file2 > file3
+  672  ls
+  673  cat file3
+  674  git status
+  675  rm file3
+  676  grep 'GET' file1 file2
+  677  grep -rni 'GET' hw1
+  678  grep -rni 'GET' /hw1
+  679  ls -las
+  680  grep -rni 'GET' hw1
+  681  grep -rni 'GET' /github/team22/users/rmarfenkova/exercise/hw1
+  682  grep -rni 'GET'
+  683  grep -r 'GET'
+  684  grep 'GET'
+  685  grep -ri 'GET'/hw1
+  686  ls -la
+  687  grep -ri 'GET' hw1
+  688  cd ../..
+  689  grep -ri 'GET' /rmarfenkova
+  690  grep -ri 'GET' rmarfenkova
+  691  cd exercise/hw1
+  692  grep -rni 'GET' rmarfenkova
+  693  grep -rni 'GET' /rmarfenkova/exercise/hw1
+  694  grep 'GET' file1 file2
+  695  grep -rni 'GET' . | awk '{print $7}' > uri.txt
+  696  rm uri.txt
+  697  grep 'GET' file1 file2 . | awk '{print $7}' > uri.txt
+  698  grep 'GET' . | awk '{print $7}' > uri.txt
+  699  ls -la
+  700  cat uri.txt
+  701  grep 'GET' -r . | awk '{print $7}' > uri.txt
+  702  cat uri.txt
+  703  grep 'GET' -rn . | awk '{print $7}' > uri.txt
+  704  grep 'GET' -rni . | awk '{print $7}' > uri.txt
+  705  pwd
+  706  ls -la
+  707  grep 'GET' -rni file1 file2 | awk '{print $7}' > uri.txt
+  708  ls -la && rm test123 && pwd
+  709  ls -la
+  710  ls -la; rm test123; pwd
+  711  sort uri.txt
+  712  sort -k uri.txt
+  713  sort -k 1n uri.txt
+  714  wc -l uri.txt
+  715  du
+  716  history
+  717  git status 
+  718  git add uri.txt
+  719  git status 
+  720  git commit -m 'parts of uri'
+  721  git push
+  722  env A
+  723  env | gpep A
+  724  env | grep A
+  725  curl https://finance.rambler.ru/currities/ | grep USD RUB
+  726  curl https://finance.rambler.ru/currities/ | grep USD
+  727* 
+  728  curl https://finance.rambler.ru/currities/USD | grep USD
+  729  curl https://finance.rambler.ru/currities/USD/RUB | grep USD RUB
+  730  curl https://finance.rambler.ru/currities/USD/RUB/ | grep USD RUB
+  731  curl https://finance.rambler.ru/currency/USD/RUB/
+  732  curl https://finance.rambler.ru/currency/USD/RUB/ | grep USD RUB
+  733  curl https://finance.rambler.ru/currency/USD/ | grep USD
+  734  curl https://finance.rambler.ru/currities/
+  735  curl https://finance.rambler.ru/currities/EUR/USD/ -o curs
+  736  rm curs
+  737  curl https://finance.rambler.ru/currities/ -o curs
+  738  rm curs
+  739  curl https://finance.rambler.ru/currities/USD/ -o curs
+  740  grep '1 USD =' cur_usd | awk -F' ' '{print $4}'
+  741  grep 'USD' curs
+  742  rm curs
+  743  curl https://finance.rambler.ru/currities/USD/ -o curs.html
+  744  grep -rni "USD" test.html
+  745  curl https://finance.rambler.ru/currencies/USD/
+  746  curl https://finance.rambler.ru/currencies/USD/ | grep USD
+  747  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD ='
+  748  curl https://finance.rambler.ru/currencies/USD/ -o cur_usd; grep '1 USD =' cur_usd
+  749  grep '1 USD =' cur_usd | awk -F' ' '{print $4}'
+  750  curl https://finance.rambler.ru/currencies/USD/ -o cur_usd; grep '1 USD =' cur_usd | awk -F' ' '{print $4}'
+  751  curl https://finance.rambler.ru/currencies/EUR/ -o cur_eur
+  752  curl https://finance.rambler.ru/currencies/EUR/ | grep EUR
+  753  curl https://finance.rambler.ru/currencies/EUR/ -o cur_usd; grep '1 EUR ='
+  754  curl https://finance.rambler.ru/currencies/EUR/ -o cur_usd; grep '1 USD =' cur_eur | awk -F' ' '{print $4}'
+  755  curl https://finance.rambler.ru/currencies/EUR/ -o cur_usd; grep '1 EUR =' cur_eur | awk -F' ' '{print $4}'
+  756  du
+  757  rm curs.html
+  758  du > result_du
+  759  history > result_history
