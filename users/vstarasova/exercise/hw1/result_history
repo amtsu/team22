@@ -462,3 +462,9 @@ echo 'hello world
   458  tail -n 2 file1
   459  du > result_du
   460  history > result_history
+  461  git commit -m 'Дз 2 (изучение git) часть 2, блок 3'
+  462  git commit -m 'Дз 2 (изучение git) часть 2, блок 4 (сделала вместе 3 и 4 блоки случайно)'
+  463  ls -la
+  464  awk -F' ' '{print $5}' directory_information
+  465  du > result_du
+  466  history > result_history
