@@ -349,14 +349,22 @@ class ListPageProcessor:
         Поиск элемента, его очистка, и преобразование также происходят на в данном методе.
         """
         l = []
-        list_data = self.__soup.findAll("div", class_="d-choose-params__list _list")
+        list_data = self.__soup.findAll("div", class_="d-flat-list")
+        print('---1111----')
+        #print(list_data)
         for i in list_data:
+            print('---222---')
+            print(i)
             d = i.find_all("a", class_="d-flat-list__link")
             url = d[0]["href"]
             title = d[0].text
 
-            d = i.find_all("span", class_="price")
-            if len(d) < 1:    
+            #d-flat-list__price
+            d = i.find_all("div", class_="d-flat-list__price")
+            #10 116 430 ₽
+            print(d[0]) 
+            print(d[0].text) 
+            if len(d[0].text) < 1:    
                 # same product have not price
                 print('product have not price =', title)
                 #TODO need fix API
@@ -364,31 +372,33 @@ class ListPageProcessor:
                 price = 0
             else:
                 price = d[0].text
+                print(price)
                 price = price.replace("&thinsp;", "")
                 price = price.replace("&thinsp;", "")
                 price = price.replace(" &#8381", "")
                 price = price.replace(" &#8381", "")
                 price = price.replace("\n", "")
-                if len(price) > 6:
-                    try:
-                        price = int(price[:-6] + price[-5:-2])
-                    except:
-                        price = int(price[:-7] + price[-6:-3])
-                else:
-                    price = int(price[:-2])
+                price = price.replace("₽", "")
+                price = price.replace("&nbsp;", "")
+                price = price.replace(" ", "")
 
+                price = int(price)
 
-            d = i.find_all("span", class_="discount discountsale")
+            d = i.find_all("div", class_="d-flat-list__priceOld")
             price_sale = price
+            print(d)
+            #print(d[0])
             if d:
                 price_sale_s = d[0].text
-                if len(price_sale_s) > 6:
-                    try:
-                        price_sale = int(price_sale_s[:-6] + price_sale_s[-5:-2])
-                    except:
-                        price_sale = int(price_sale_s[:-7] + price_sale_s[-6:-3])
-                else:
-                    price_sale = int(d[0].text[:-2])
+                #price_sale = int(d[0].text[:-2])
+                price_sale = price_sale_s
+                price_sale = price_sale.replace("\n", "")
+                price_sale = price_sale.replace("₽", "")
+                price_sale = price_sale.replace("&nbsp;", "")
+                price_sale = price_sale.replace(" ", "")
+
+                price_sale = int(price_sale)
+
             else:
                 d = i.find_all("span", class_="discount")
                 if d:
@@ -463,8 +473,9 @@ class DonstroyMoscowServiceProcessing:
             "https://donstroy.moscow/full-search/?price%5B%5D=8.8&price%5B%5D=725.2&area%5B%5D=25&area%5B%5D=392&floor_number%5B%5D=1&floor_number%5B%5D=51&floor_first_last=false&discount=false&furnish=false&apartments=false&sort=price-asc&view_type=flats&view=list&page="
         ]
 
-        for i in range(200):
-            self.__url_list.append(url+str(i))
+        #for i in range(130):
+        #for i in range(1):
+        #    self.__url_list.append(url+str(i))
 
     def process(self):
         """
@@ -476,14 +487,27 @@ class DonstroyMoscowServiceProcessing:
                 self.__list_dict.append(object_params)
 
         for url in self.__url_list:
-            for i in range(1, 200):
+            #for i in range(1, 200):
+            #for i in range(1, 130):
+            for i in range(1, 2):
                 r_url = url + str(i)
                 print(r_url)
-                with urllib.request.urlopen(r_url) as response:
-                    self.__page = response.read()
-                    self.__list_page_processor = ListPageProcessor(self.__page, r_url)
-                    for object_params in self.__list_page_processor.list_dict():
-                        self.__list_dict.append(object_params)
+                #with urllib.request.urlopen(r_url) as response:
+                #    self.__page = response.read()
+                #    self.__list_page_processor = ListPageProcessor(self.__page, r_url)
+                #    for object_params in self.__list_page_processor.list_dict():
+                #        self.__list_dict.append(object_params)
+
+                #response = urllib.request.urlopen(r_url)
+
+                req = urllib.request.Request(r_url)
+                req.add_header('user-agent', 'curl/8.4.0')
+                response = urllib.request.urlopen(req)
+                self.__page = response.read()
+                #print(self.__page)
+                self.__list_page_processor = ListPageProcessor(self.__page, r_url)
+                for object_params in self.__list_page_processor.list_dict():
+                     self.__list_dict.append(object_params)
 
 
     def send_in_api(self):
@@ -496,7 +520,7 @@ class DonstroyMoscowServiceProcessing:
             i = 0
             api_instance = history_api.HistoryApi(api_client)
             for e in self.__list_dict:
-                # print(e)
+                print(e)
                 history = History(
                     pk=1,
                     title=e["title"],
