@@ -468,3 +468,15 @@ echo 'hello world
   464  awk -F' ' '{print $5}' directory_information
   465  du > result_du
   466  history > result_history
+  467  git add .
+  468  git commit -m 'Дз 2 (изучение git) часть 2, блок 5'
+  469  grep -rni 'GET' ~/github/team22/users/vstarasova > URI_file
+  470  ls
+  471  vim URI_file
+  472  git add .
+  473  git commit -m 'Дз 2 (изучение git) часть 2, блок 6'
+  474  ls -la && rm test123 && pwd
+  475  ls -la; rm test123; pwd
+  476  echo 'В первом случае (с &&) при ошибке выполение прерывается. Во втором (с ;) выполняются все три команда вне зависимости от результата предыдущей'
+  477  du > result_du
+  478  history > result_history
