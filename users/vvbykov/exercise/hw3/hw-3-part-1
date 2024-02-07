@@ -9,34 +9,44 @@
 
 - С какой целью стоит изучать программирование?
 1. Чтобы получить инструмент для автоматизации процессов. Развивает системное мышление
+2. Получить одну из самых востребованных и высооплачиваемых профессий. Учит решать проблеммы, вцелом полезно для улучшения когнетивных способностей  
 
 - Что такое программа?
 1. Список инструкций для выполнения какой-либо задачи
+2. Программа -  (от греч. προ — пред, греч. γράμμα — запись) — термин, в переводе означающий «предписание», то есть заданную последовательность действий
 
 - Зачем нужно уметь работать в консоли(командной строке - терминале)?
 1. Чтобы уметь работать с любым удаленным и не очень сервером 
+2. Терминал позволяет решать нестандартные задачи, программ для решения которых явным образом не предусматривается. Возможность работы с серверами вне зависимости от их возраста, конфигурации и сетевых ограничений. 
 
 - Что такое программа?
 1. Список инструкций 
 
 - Зачем нужен язык программирования?
-1. Для написания программ для ЭВМ 
+1. Для написания программ для ЭВМ  
+2. Язык программирования предназначен для написания компьютерных программ, которые представляют собой набор правил, позволяющих компьютеру выполнить тот или иной вычислительный процесс, организовать управление различными объектами, и т. п. Большинство языков программирования использует специальные конструкции для определения и манипулирования структурами данных и управления процессом вычислений. 
 
 - Какие принципы из философии Python вы помните? Прочитайте эти принципы еще раз и попробуйте по памяти их написать.
 1. Никакие не помню
+2. Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex. Complex is better than complicated. Flat is better than nested. Sparse is better than dense. Readability counts. Special cases aren't special enough to break the rules. Although practicality beats purity. Errors should never pass silently. Unless explicitly silenced. In the face of ambiguity, refuse the temptation to guess. There should be one-- and preferably only one --obvious way to do it. Although that way may not be obvious at first unless you're Dutch. Now is better than never. Although never is often better than *right* now. If the implementation is hard to explain, it's a bad idea. If the implementation is easy to explain, it may be a good idea. Namespaces are one honking great idea -- let's do more of those!
 
 - Почему выбрали Python?
 1. Из-за популярности 
+2. Прост, востребован на рынке, в Python можно сделать все, большое сообщество, большое количество обучающего материала, open source
 
 - Что такое Jupyter Notebook?
 1. Блокнот с интерпритатором кода и поддержкой разметки.   
+2. JupyterLab is the latest web-based interactive development environment for notebooks, code, and data. Its flexible interface allows users to configure and arrange workflows in data science, scientific computing, computational journalism, and machine learning. A modular design invites extensions to expand and enrich functionality.
 
 - Какие типы данных вы помнинте?
 1. Челочисленные, вещественные, строковые, список, множество (кортеж) 
+2. Numeric data types: int, float, complex. String data types: str. Sequence types: list, tuple, range. Binary types: bytes, bytearray, memoryview. Mapping data type: dict. Boolean type: bool. Set data types: set, frozenset
 
 - Какие есть математические операции в языке python?
 1. умножение, сложение, деление, вычитание, деление без остатка, возведение в степень, корень числа  
+2. Addition (+), Subtraction (-), Multiplication (*), Division (/), Modulus (%), Exponentiation(**), Floor division (//), absolute (abs)
 
 - Какие операции с строками есть в языке python
 1. Сложение, умножение строки, срезы, обращение по индексу, uppercase, lowercase, len, capitalize 
+2. Indexing ([1]), Negative Indexing ([-4]), Slicing ([1:4]), Compare Two Strings (==), Join Two or More Strings (+), Multiplication (*), Belonging to the set (in) 
 
