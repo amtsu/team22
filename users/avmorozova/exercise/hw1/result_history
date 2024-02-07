@@ -1,0 +1,418 @@
+    1  ssh-keygen -t rsa -b 4096 -C "<annaivanova89849@gmail.com>"
+    2  ssh-keygen -t rsa -b 4096 -C "<ВАШ@ЕМЕЙЛ>"
+    3  ssh-keygen -t rsa -b 4096 -C "<annaivanova89849@gmail.com>"
+    4  ssh-keygen -t -b 4096 -C "annaivanova89849@gmail.com"
+    5  cat .ssh//id_rsa.pub
+    6  ca .ssh/id_rsa.pub
+    7  cat .ssh/id_rsa.pub
+    8  cat.ssh/id_rsa.pub
+    9  git config —global user.name <AnnMorozova676>
+   10  mkdir github
+   11  git clone git@github.com:amtsu/team22.git
+   12  git config —global user.name <AnnMorozova676>
+   13  ssh-keygen -t rsa -b 4096 -C "<annaivanova89849@gmail.com>"
+   14  cat~/.ssh/id_rsa.pub
+   15  cat .ssh/id_rsa.pub
+   16  cat.ssh/id_rsa.pub
+   17  git config —global user.email <annaivanova89849@gmail.com>
+   18  git config —global user.name <AnnMorozova676>
+   19  mkdir github
+   20  cd github/
+   21  git clone git@github.com:amtsu/team22.git
+   22  cd team22/
+   23  git config —global user.name <AnnMorozova676>
+   24  git clone git@github.com:amtsu/team22.git
+   25  git status -s
+   26  cd github/
+   27  git clone git@github.com:amtsu/team22.git
+   28  cd team22/
+   29  git clone git@github.com:amtsu/team22.git
+   30  ssh-keygen -t rsa -b 4096 -C "annaivanova89849@gmail.com"
+   31  cat ~/.ssh/
+   32  cat ~/.ssh/id_rsa.pub
+   33  git clone git@github.com:amtsu/team22.git
+   34  cd .jupyter/
+   35  vicustom.css
+   36  cat custom.css
+   37  touch custom.css
+   38  vi custom,css
+   39  cd github/team22
+   40  cd..
+   41  cd gihub/
+   42  cd~
+   43  pwd
+   44  cdgithub/team22
+   45  cd github/team22
+   46  cd jupyter-annmorozova676/
+   47  cd /home/jupyter-annmorozova676/
+   48  cd github/team22
+   49  git branch annmorozova676
+   50  git checkout annmorozova676
+   51  cd users
+   52  mkdir annmorozova676
+   53  cd annmorozova676/
+   54  touch README.md
+   55  pwd>README.md
+   56  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   57  cd../..
+   58  cd..
+   59  cd ..
+   60  git status
+   61  git diff
+   62  git status
+   63  git diff
+   64  git add users/amtsurkov/README.md
+   65  git config --global user.mail annaivanova89849@gmail.com
+   66  git config --global user.name annmorozova676
+   67  git commit -m 'copy directory in file'
+   68  git push --set-upstream origin annmorozova676
+   69  git status
+   70  git add users/amtsurkov/ README.md
+   71  git status
+   72  cd users
+   73  git brunch annmorozova676
+   74  cd annmorozova676
+   75  touch README.md
+   76  vi README.md
+   77  cd ..
+   78  git status
+   79  git diff
+   80  git add users/amtsurkov/README.md
+   81  git commit -m 'home-work1'
+   82  git push --set-upstream origin annmorozova676
+   83  git push --set-upstream origin annmorozova676 checkout main
+   84  cd github/tem22
+   85  pwd
+   86  cd ..
+   87  cd github/team22
+   88  cd github/
+   89  cd guthub
+   90  cd github
+   91  pwd
+   92  cd /github/teem22
+   93  cd: /github/team22
+   94  cd /github/team22
+   95  cd github
+   96  cd team22
+   97  git branch annmorozova676
+   98  git checkout annmorozova676
+   99  cd user
+  100  mkdir annmorozova676
+  101  cd annmorozova676/
+  102  ls-la
+  103  ls -la
+  104  touch README.md
+  105  vim README.md
+  106  cd ..
+  107  git status
+  108  git add users/annmorozova676/README.md
+  109  git commit -m 'created card about myself'
+  110  git config --global user.name annmorozova676
+  111  git config --global user.email annaivanova89849@gmail.com
+  112  git push --set-upstream origin annmorozova676
+  113  cd ..
+  114  rm annmorozova676/
+  115  rm annmorozova676
+  116  cd team22
+  117  rm annmorozova676
+  118  mv annmorozova676/ users/
+  119  mv annmorozova676 users
+  120  mv /annmorozova676 users/
+  121  mv README.md users/annmorozova676/
+  122  mv config users/annmorozova676/
+  123  cd annmorozova676
+  124  mv README.md users/annmorozova676/
+  125  cd ..
+  126  cd annmorozova676
+  127  ls -la
+  128  mv README.md users/annmorozova676/
+  129  mv README.md home/github/team22/users/annmorozova676/
+  130  cd ..
+  131  cd users
+  132  git status
+  133  git diff
+  134  git add users/annmorozova676/README.md
+  135  cd ..
+  136  git add users/annmorozova676/README.md
+  137  git commit -m 'change'
+  138  git push --set-upsream origin annmorozova676
+  139  git push --set-upstream origin annmorozova676
+  140  rmdir annmorozova676
+  141  rmdir -f annmorozova676
+  142  rmdir -к annmorozova676
+  143  rmdir -r annmorozova676
+  144  rm -r annmorozova676
+  145  git commit -m 'delete extra folder'
+  146  git rm annmorozova676/
+  147  git add README.md
+  148  git add users/annmorozova676/config
+  149  git add config
+  150  git commit -m 'delete extra folder'
+  151  git push --set-upstream origin annmorozova676
+  152  PWD
+  153  pwd
+  154  cd github/team22
+  155  cd user/annmorozova676
+  156  cd annmorozova676/
+  157  cd users/annmorozova
+  158  cd users/annmorozova676/
+  159  mkdir hw1
+  160  pwd
+  161  cd ..
+  162  cd annmorozova676
+  163  rm hw1
+  164  rm -r hw1
+  165  mkdir exercise
+  166  cd exercise
+  167  mkdir hw1
+  168  cd hw1
+  169  ls
+  170  ls -la
+  171  /
+  172  ls /
+  173  mkdir home-work-1
+  174  cd home-work-1 ; mkdir work_dir ; touch file_1
+  175  mv file_1 work_dir/file_1_copy
+  176  touch file_1
+  177  cp -r work_dir/work_dir_new/
+  178  mkdir work_dir_new ; cp -r work_dir work_dir_new
+  179  pwd file_1_copy
+  180  cd /home/jupyter-annmorozova676/github/team22/users/annmorozova676/exercise/hw1/home-work-1
+  181  cp file_1_copy file_1_new_name
+  182  cd /home-work-1/work_dir/
+  183  cd work_dir
+  184  cp file_1_copy file_1_new_name
+  185  cp file_1_new_name
+  186  rm file_1_new_name
+  187  cd ..
+  188  rm -r work_dir_new
+  189  git status
+  190  cd ..
+  191  git status
+  192  pwd exercise/
+  193  pwd home/jupyter-annmorozova676/github/team22/users/annmorozova676/exercise/
+  194  cd home/jupyter-annmorozova676/github/team22/users/annmorozova676/exercise/
+  195  /home/jupyter-annmorozova676/github/team22/users/annmorozova67/
+  196  cd home/jupyter-annmorozova676/github/team22/users/annmorozova676/exercise/
+  197  /home/jupyter-annmorozova676/github/team22/users/annmocd exercise
+  198  cd hw1
+  199  touch file1
+  200  vim file1
+  201  touch file2
+  202  vim file2
+  203  git branch
+  204  git log
+  205  git checkout origin/annvorozova676
+  206  pwd
+  207  find /home/ -name"*fil*"
+  208  find /home/ -name "*fil*"
+  209  git ls
+  210  git ls-files
+  211  ls
+  212  ls-files -s
+  213  du -sh
+  214  git ls-files
+  215  ls
+  216  ls-files
+  217  git ls
+  218  ls
+  219  git ls-files
+  220  git ls-files | xargs -n 1 du -hs
+  221  ls -la
+  222  ls -la > ls -la 
+  223  awk -F' ' '{print $5 }'
+  224  awk -F' ' '{print $5}' ls
+  225  grep -rni 'GET' /github/team22/users/annmorozova676
+  226  grep -rni 'GET' home/github/team22/users/annmorozova676
+  227  pwd
+  228  grep -rni 'fil' /github/team22/users/annmorozova676/
+  229  grep -rni 'fil' /github/team22/users/annmorozova676
+  230  grep -rni 'fil' /home/github/team22/users/annmorozova676/
+  231  grep -rni 'fil' home/github/team22/users/annmorozova676
+  232  grep -rni 'fil' .github/team22/users/annmorozova676
+  233  grep -rni 'fil' .home/github/team22/users/annmorozova676
+  234  cd ..
+  235  cd annmorozova676
+  236  git status
+  237  git add exercise/
+  238  git status
+  239  git commit
+  240  pwd
+  241  git checkout main
+  242  git puul
+  243  git pull
+  244  git branch
+  245  git checkout home_work_1_avmorozova
+  246  git push --set-upstream origin home_work_1_avmorozova
+  247  cd users/
+  248  rm dir annmorozova676
+  249  rm dir annmorozova676/
+  250  rm annmorozova676/
+  251  rm -r annmorozova676/
+  252  git status
+  253  git add annmorozova676/README.md
+  254  git commit -m 'удалила дубликат папки с неверным названием'
+  255  git push --set-upstream origin home_work_1_avmorozova
+  256  cd avmorozova/exercise/hw1/
+  257  rm ls
+  258  git log --oneline --decorate --graph --all
+  259  cat file1
+  260  cd home/
+  261  cd /home
+  262  find /home/ -name "*fil*"
+  263  ls
+  264  cd jupyter-annmorozova676
+  265  pwd
+  266  ls
+  267  cd github
+  268  cd avmorozova
+  269  cdavmorozova/
+  270  cd avmorozova
+  271  cd team22/users/avmorozova/exercise/hw1
+  272  cd ..
+  273  ls
+  274  git status
+  275  cd .
+  276  cd..
+  277  cd ..
+  278  cd users
+  279  git mv annmorozova676 avmorozova
+  280  git chekcout main
+  281  git checkout main
+  282  git pull
+  283  git checkout annmorozova676
+  284  git status
+  285  git checkout main
+  286  cd ..
+  287  git pull
+  288  git push origine :<annmorozova676>
+  289  git push origine : annmorozova676
+  290  git checkout annmorozova676
+  291  git push origine : annmorozova676
+  292  git branch -m home_work_1_avmorozova
+  293  cd user/avmorozova
+  294  cd users/avmorozova
+  295  ls -la
+  296  vim README.md
+  297  git status
+  298  git add README.md
+  299  git status
+  300  git add avmorozova676
+  301  cd ..
+  302  git add avmorozova
+  303  git status
+  304  git commit -m 'изменила название папок на правильные ,скорректировала рид ми'
+  305  git push origine home_work_1_avmorozova
+  306  git push team22 home_work_1_avmorozova
+  307  cd ..
+  308  git checkout home_work_1_avmorozova
+  309  cd team22
+  310  cd /team22
+  311  cd team22/
+  312  cd github/team22
+  313  git status
+  314  git push --set-upstream origin annmorozova676
+  315  git push --set-upstream origin jupyter-annmorozova676
+  316  git config --global user.mail annaivanova89849@gmail.com
+  317  git config --global user.name annmorozova676
+  318  git commit -m 'переименовала папку.ветки?э
+  319  git push --set-upstream origin home_work_1_avmorozova
+  320   git status
+  321  git pull
+  322   git checkout home_work_1_avmorozova
+  323   cd users/
+  324  cd users
+  325  pwd
+  326  print("Hello World")
+  327  print ("ol")
+  328  1 + 3
+  329  pwd
+  330  ls
+  331  cd github
+  332  ls
+  333  cd team22
+  334  branch team22
+  335  cd ..
+  336  branch team22
+  337  git branch main
+  338  cd team22
+  339  git branch main
+  340  git checkout main
+  341  git pull
+  342  git checkout home_work_1_avmorozova
+  343  python
+  344  ls
+  345  ls -la
+  346  cd users
+  347  cd avmorozova
+  348  ls
+  349  cd exercise
+  350  dir hw2
+  351  mkdir hw2
+  352  mkdir hw3
+  353  cd hw3
+  354  git checkout main
+  355  git checkout -b <avmorozova_hw2>
+  356  git chekcout -b avmorozova_hw2
+  357  git checkout -b avmorozova_hw2
+  358  git checkout home_work_1_avmorozova 
+  359  git status
+  360  git add .
+  361  git commit
+  362  git chekcout avmorozova_hw2
+  363  git checkout avmorozova_hw2
+  364  git checkout main
+  365  git checkout  -b avmorozova_hw3
+  366  touch Задание: Ответьте письменно на вопросы дважды!
+  367  Выполнять это задание следует следующим образом.
+  368  Создаете папку аналогичную ~/github/tem22/users/amtsurkov/exercise/hw-3.
+  369  В папку копируете данный фаил.
+  370  Отвечаете по памяти, записывает свои ответы в фаил и комитите его.
+  371  Далее смотрите материалы, задает вопросы чату джипити, гуглу и т д.
+  372  И расширяете или меняете ответы на эти вопросы.
+  373  Опять комитите и пушите в репозиторий.
+  374  - С какой целью стоит изучать программирование?
+  375  - Что такое программа?
+  376  - Зачем нужно уметь работать в консоли(командной строке - терминале)?
+  377  - Что такое программа?
+  378  - Зачем нужен язык программирования?
+  379  - Какие принципы из философии Python вы помните? Прочитайте эти принципы еще раз и попробуйте по памяти их написать.
+  380  - Почему выбрали Python?
+  381  - Что такое Jupyter Notebook?
+  382  - Какие типы данных вы помнинте?
+  383  - Какие есть математические операции в языке python?
+  384  touch hw3_part1
+  385  ls
+  386  vim hw3_part1
+  387  git pull
+  388  cd github/team22/avmorozova
+  389  cd github/team22/users/avmorozova
+  390  git status
+  391  ls
+  392  ls -la
+  393  git pull
+  394  cd exercise/hw3
+  395  vim hw3_part1
+  396  vi hw3_part1
+  397  vim hw3_part1
+  398  cd ..
+  399  git checkout main
+  400  cd ..
+  401  git pull
+  402  git checkout avmorozova_hw3
+  403  git add Untitled.ipynb
+  404  git add ../Untitled.ipynb
+  405  git status
+  406  git add users/avmorozova/
+  407  git status
+  408  git commit -m users/avmorozova/exercise/hw3/hw3_part1
+  409  git checkout main
+  410  git pull
+  411  git checkout home_work_1_avmorozova
+  412  cd users/avmorozova
+  413  git checkout avmorozova676
+  414  cd exercise/hw1
+  415  du
+  416  du > result_du
+  417  history
+  418  history > result_history
