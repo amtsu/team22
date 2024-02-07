@@ -485,3 +485,12 @@ echo 'hello world
   481  grep -rni 'GET' ~/github/team22/users/vstarasova | awk -F' ' '{print $7}' | sort 
   482  du > result_du
   483  history > result_history
+  484  git add .
+  485  git commit -m 'Дз 2 (изучение git) часть 2, блок 8'
+  486  grep -rni 'GET' ~/github/team22/users/vstarasova | awk -F' ' '{print $7}' | sort | uniq -c
+  487  grep -rni 'GET' ~/github/team22/users/vstarasova
+  488  grep -rni 'GET' ~/github/team22/users/vstarasova | awk -F' '
+  489  grep -rni 'GET' ~/github/team22/users/vstarasova | awk -F' ' '{print $6}'
+  490  grep -rni 'GET' ~/github/team22/users/vstarasova | awk -F' ' '{print $8}' 
+  491  du > result_du
+  492  history > result_history
