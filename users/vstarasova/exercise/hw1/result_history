@@ -432,3 +432,33 @@
   432  du > hw1/result_du
   433  du > result_du
   434  history > result_history
+  435  git add .
+  436  git commit -m 'Дз 2 (изучение git, часть 2, блок 1)'
+  437  mkdir home_work_1
+  438  touch home_work_1/file_1
+  439  cp home_work_1/file_1 home_work_1/work_dir/file_1_copy
+  440  cp -r home_work_1/work_dir home_work_1/work_dir_new
+  441  mv home_work_1/work_dir/file_1_copy home_work_1/work_dir/file_1_new_name
+  442  rm home_work_1/work_dir/file_1_new_name
+  443  rm -r home_work_1/work_dir_new
+  444  git add .
+  445  git commit -m 'Дз 2 (изучение git) часть 2, блок 2'
+  446  du > result_du
+  447  history > result_history
+  448  ls
+  449  echo 'hello world 
+
+
+echo 'hello world 
+  450  2000 + 11' > file1
+2000 + 11' > file1
+  451  ls
+  452  vim file1
+  453  touch file1
+  454  touch file2
+  455  vim file2
+  456  cat file1
+  457  head -n 2 file1
+  458  tail -n 2 file1
+  459  du > result_du
+  460  history > result_history
