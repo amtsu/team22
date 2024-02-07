@@ -1,0 +1,434 @@
+    1  ssh-keygen -t rsa -b 4096 -C ĺ "vera.s.tarasova@yandex.ru"
+    2  ssh-keygen -t rsa -b 4096 -C ĺ"vera.s.tarasova@yandex.ru"
+    3  cat ~/.ssh/id_rsa.pub
+    4  cd..
+    5  cd ..
+    6  pwd
+    7  ls
+    8  jupyter-verayohanga
+    9  cd jupyter-verayohanga
+   10  mkdir github
+   11  cd github
+   12  git clone git@github.com:amtsu/team22.git
+   13  cd team22/
+   14  cd..
+   15  cd users
+   16  mkdir verayohanga
+   17  vi readmi
+   18  .readmi.swp
+   19  rm readmi.swp
+   20  rm .readmi.swp
+   21  vi readmi
+   22  pwd
+   23  vi readmi
+   24  git checkout verayohanga
+   25  git status
+   26  cd users
+   27  cd users/
+   28  pwd
+   29  ls
+   30  cd github
+   31  cd team22
+   32  cd users
+   33  ls
+   34  cd verayohanga
+   35  touch README.md
+   36  pwd > README.md
+   37  cd ../..
+   38  cd users
+   39  cd verayohanga
+   40  pwd
+   41  vi readmi
+   42  git branch verayohanga
+   43  git checkout verayohanga
+   44  git status
+   45  git diff
+   46  pwd
+   47  vi readmi
+   48  pwd
+   49  cd ~github/team22
+   50  ls
+   51  cd github
+   52  cd team22
+   53  pwd
+   54  git checkout main
+   55  git pull
+   56  cd exercise
+   57  cd hw1
+   58  git checkout main
+   59  ls
+   60  cd team/22
+   61  cdteam22
+   62  cd team22
+   63  pwd
+   64  cd github
+   65  cd team22
+   66  git checkout main
+   67  git pull
+   68  git branch verayohanga_hw1
+   69  git checkout  verayohanga_hw1
+   70  gir branch
+   71  git branch
+   72  pwd
+   73  cd users/verayohanga
+   74  rm readme.md
+   75  rm README.md
+   76  rm readmi
+   77  touch readme.txt
+   78  nano readme.txt
+   79  vim readme.txt
+   80  git status
+   81  git add readme.txt
+   82  git status
+   83  git commit -m 'my first commit of my first home work'
+   84  git push
+   85  git push --set-upstream origin verayohanga_hw1
+   86  git push
+   87  pwd
+   88  mkdir exercise
+   89  cd exercise
+   90  mkdir hw1
+   91  cd hw`
+   92  cd hw1
+   93  pwd
+   94  vim readme.txt
+   95  rm readme.txt.swp
+   96  readme.swp
+   97  rm readme.swp
+   98  vim readme.txt
+   99  rm .readme.txt.swp
+  100  vim readme.txt
+  101  git add readme.txt
+  102  git commit -m 'Добавлен файл readme.txt, в котором записан мой крик души'
+  103  du > result_du.txt
+  104  history > result_history.txt
+  105  git add result_du.txt,  result_history.txt
+  106  git commit -m 'Этим коммитом я опять добавляю файлы du и results, которые обновлены после предыдущего коммита. Бесконечная рекурсия: сделал итерацию коммит - добавь инфу в эти два файла. Добавил инфу в файлы - сделай коммит. Или я неправильно поняла заданиеэ
+  107  git commit -m 'Этим коммитом я опять добавляю файлы du и results, которые обновлены после предыдущего коммита. Бесконечная рекурсия: сделал итерацию коммит - добавь инфу в эти два файла. Добавил инфу в файлы - сделай коммит. Или я неправильно поняла задание'
+  108  git push
+  109  cd ..
+  110  checkout main
+  111  git checkout main
+  112  pwd
+  113  git pull
+  114  cd ..
+  115  pwd
+  116  cd ..
+  117  ls
+  118  git pull
+  119  ls
+  120  mkdir verayohanga
+  121  cd verayohanga
+  122  mkdir exercise
+  123  cd exercise
+  124  mkdir hw1
+  125  cd hw1
+  126  git branch verayohanga_hw1-part3
+  127  git checkout verayohanga_hw1-part3
+  128  touch price_f.html
+  129  vim price_f.html
+  130  gir add price_f.html
+  131  git add price_f.html
+  132  git commit -m 'Добавлен фаил с ценой на холодильник'
+  133  git checkout main
+  134  ls
+  135  cd github
+  136  git checkout main
+  137  ls
+  138  cd team22
+  139  cd users
+  140  ls
+  141  git checkout main
+  142  git pull
+  143  git checkout verayohanga_hw1
+  144  cd verayohanga
+  145  vim readme.txt
+  146  em Вера
+  147  Системный аналитик в банке.
+  148  Сталкиваюсь с задачами, в которых не помешала бы автоматизация (например, обезличивание xml с персональными данными клиентов). 
+  149  План на практику: бот, который может пролистывать ленту социальной сети и ставить лайки постам определенных аккаунтов.
+  150  tg: @VeraYohanga
+  151  GitHub: @VeraYohanga
+  152  rm readme.txt
+  153  touch readme.txt
+  154  vim readme.txt
+  155  git status
+  156  git commit -m 'Вторая попытка сделать свой первый коммит'
+  157  git config --global 
+  158  git config --global user.email vera.s.tarasova@yandex.ru
+  159  git push --set-upstream origin verayohanga_hw1
+  160  cd exercise
+  161  cd hw1
+  162  git checkout main
+  163  git commit -m 'Я хз зачем опять коммитить после заливки всего на гитхаб'
+  164  git checkout main
+  165  git add readme.txt
+  166  cd..
+  167  cd ..
+  168  git add readme.txt
+  169  git commit -m 'Я хз зачем опять коммитить после заливки всего на гитхаб'
+  170  git push
+  171  git checkout main
+  172  git pull
+  173  pwd
+  174  cd exercise
+  175  cd hw1
+  176  git branch verayohanga_hw1-part2
+  177  git checkout verayohanga_hw1-part2
+  178  du
+  179  du .
+  180  ls -la ~ > result_du.txt
+  181  vim result_du.txt
+  182  du > result_du.txt
+  183  vim result_du.txt
+  184  history > result_history.txt
+  185  vim result_history.txt
+  186  git commit -m 'Пока просто создана ветка, в ней созданы файлы results_du и results_history'
+  187  git add  result_du.txt
+  188  git add result_history.txt
+  189  git commit -m 'Пока просто создана ветка, в ней созданы файлы results_du и results_history'
+  190  touch readme.txt
+  191  vim readme.txt
+  192  git checkout main
+  193  git pull
+  194  git branch
+  195  cd users
+  196  cd verayohanga
+  197  ls
+  198  ls -la
+  199  git checkout verayohanga_hw1-part2
+  200  ls
+  201  cd exercise
+  202  cd hw1
+  203  ls
+  204  mkdir  home_work_1
+  205  cd home_work_1
+  206  git add home_work_1
+  207  touch file_1.txt
+  208  git add file_1.txt
+  209  git status
+  210  cd ..
+  211  vim result_history 
+  212  du > hw1/result_du
+  213  du > hw1/result_du.txt
+  214  du > result_du
+  215  vim result_du
+  216  du > result_du.txt
+  217  rm results_du
+  218  rm result_du
+  219  ls
+  220  history > result_history.txt
+  221  vim result_history.txt
+  222  git status
+  223  git add result_du.txt
+  224  git status
+  225  git diff
+  226  cd home_work_1
+  227  ls
+  228  mv file_1.txt file_1_new.txt
+  229  git add file_1_new
+  230  git add file_1_new.txt
+  231  git status
+  232  rm file_1_new.txt
+  233  cd .
+  234  cd ..
+  235  ls
+  236  rm home_work_1
+  237  rm -r home_work_1
+  238  du > result_du.txt\
+  239  du > result_du.txt
+  240  history > result_history.txt
+  241  git add result_history.txt result_du.txt
+  242  git status
+  243  git commit -m 'Первый коммит в рамках 2 части ДЗ (делаю заново, так как в первый раз неверно поняла задание'
+  244  touch file1
+  245  vi file1
+  246  touch file2
+  247  vi file2
+  248  cat file1
+  249  head -2 file1
+  250  tail -2n file1
+  251  tail -3 file1
+  252  git add file1 file2
+  253  du > result_du.txt; history > result_history.txt; git add result_history.txt result_du.txt; git status
+  254  git commit -m 'Второй коммит в рамках 2 части ДЗ (работа с командной строкой, второй блок заданий)'
+  255  touch file3
+  256  vi file3
+  257  git add file3
+  258  git commit
+  259  git status
+  260  git commit
+  261  git commit -m 'добавила файл3 чтобы на ее примере изучить команду  git diff --staged'
+  262  vi file3
+  263  git add file3
+  264  env
+  265  ls
+  266  cd ..
+  267  git add file3 pull
+  268  git pull
+  269  cd ~/github/team22
+  270  git pull checkout main
+  271  git pull
+  272  git pull checkout main
+  273  ~git checkout main
+  274  git checkout main
+  275  cd users/verayohanga/exercise/hw1
+  276  ls
+  277  git commit -m 'comment'
+  278  git checkout main
+  279  git pull
+  280  cd ..
+  281  ls
+  282  cd ..
+  283  git branch
+  284  git help
+  285  pwd
+  286  /
+  287  cd ~
+  288  pwd
+  289  git pull
+  290  cd ~/github/team22/users/verayohanga/
+  291  git pull
+  292  git commit
+  293  git add python_basics.ipynb
+  294  git restore ../../library/theory/python_basics.ipynb
+  295  git pull
+  296  git switch verayohanga_hw1-part2
+  297  git branch -m verayohanga_hw2-part2
+  298  pwd
+  299  cd ~
+  300  ls
+  301  cd github/team22/users
+  302  ls
+  303  cd verayoyanga
+  304  cd verayohanga
+  305  git branch
+  306  git branch -m verayohanga_hw2-part2
+  307  git branch
+  308  git branch -m verayohanga_hw1-part3 verayohanga_hw2-part3
+  309  git branch -m verayohanga_hw1 verayohanga_hw2
+  310  git branch
+  311  ls
+  312  cd exercise
+  313  ls
+  314  cd hw1
+  315  ls
+  316  git branch
+  317  ls
+  318  cd github/team22
+  319  git branch
+  320  git checkout main
+  321  git pull --all --prune
+  322  git branch
+  323  git branch vstarasova-hw2-part1
+  324  git checkout vstarasova-hw2-part1
+  325  cd users
+  326  rm -rf verayohanga
+  327  mkdir vstarasova
+  328  ls
+  329  git status -s
+  330  git commit -m 'Переименование папки в соответствии с требованиями'
+  331  git checkout verayohanga
+  332  cd verayohanga
+  333  ls
+  334  git checkout main
+  335  ls
+  336  cd vstarasova
+  337  touch readme.txt
+  338  vm readme.txt
+  339  vi readme.txt
+  340  git add readme.txt
+  341  git commit 
+  342  git push --set-upstream origin vstarasova-hw2-part1
+  343  git pull --all --prune
+  344  cd ..
+  345  git pull --all --prune
+  346  git checkout vstarasova-hw2-part2
+  347  git branch vstarasova-hw2-part2
+  348  git checkout vstarasova-hw2-part2
+  349  ls
+  350  git remote -v
+  351  git status
+  352  git push origin -d verayohanga_hw1-part2
+  353  git push origin -d VeraYohanga-patch-1
+  354  git branch
+  355  ls
+  356  git checkout vstarasova-hw2-part2
+  357  mv verayohanga vstarasova
+  358  ls
+  359  git push
+  360  git push --set-upstream vstarasova-hw2-part2
+  361  git push --set-upstream origin vstarasova-hw2-part2
+  362  git pull
+  363  cd ..
+  364  cd /library/streams/2024
+  365  ls
+  366  cd library
+  367  cd streams
+  368  cd 204
+  369  cd 2024
+  370  vim hw_status
+  371  git status
+  372  git commit -m 'добавление информации в hw_status'
+  373  git commit -a
+  374  ls
+  375  cd team22
+  376  cd github
+  377  git status
+  378  cd team22
+  379  git status
+  380  cd users
+  381  ls
+  382  git add vstarasova
+  383  git status
+  384  git branch
+  385  git checkout main
+  386  git pull
+  387  git checkout vstarasova-hw2-part2
+  388  git commit -m '+readme и переименование папки'
+  389  git push
+  390  cd ..
+  391  cd library/streams/2024
+  392  vim hw_status
+  393  cd ..
+  394  cd users
+  395  ls
+  396  cd vstarasova
+  397  mkdir exercise
+  398  cd exercise
+  399  mkdir hw1
+  400  cd hw1
+  401  pwd
+  402  ls
+  403  .
+  404  /
+  405  ls /
+  406  cd /home
+  407  ls -la
+  408  pwd
+  409  cd github/team22/users
+  410  git branch
+  411  git status
+  412  git pull
+  413  git branch main
+  414  git checkout main
+  415  git pull
+  416  git checkout vstarasova-hw2-part2
+  417  cd vstarasova
+  418  ls
+  419  cd exercise
+  420  ls
+  421  cd hw1
+  422  ls
+  423  pwd
+  424  ls -la
+  425  touch README.md
+  426  pwd > README.md
+  427  git status
+  428  git diff
+  429  git add README.md
+  430  git commit -m 'added information about directory'
+  431  git push
+  432  du > hw1/result_du
+  433  du > result_du
+  434  history > result_history
