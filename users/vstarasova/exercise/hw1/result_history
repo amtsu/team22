@@ -480,3 +480,8 @@ echo 'hello world
   476  echo 'В первом случае (с &&) при ошибке выполение прерывается. Во втором (с ;) выполняются все три команда вне зависимости от результата предыдущей'
   477  du > result_du
   478  history > result_history
+  479  git add .
+  480  git commit -m 'Дз 2 (изучение git) часть 2, блок 7'
+  481  grep -rni 'GET' ~/github/team22/users/vstarasova | awk -F' ' '{print $7}' | sort 
+  482  du > result_du
+  483  history > result_history
