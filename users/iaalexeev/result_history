@@ -1,0 +1,429 @@
+    1  ssh-keygen -t rsa -b 4096 -C ĺ "a.ioannis131@gmail.com"
+    2  ssh-keygen -t rsa -b 4096 -C "a.ioannis131@gmail.com"
+    3  cat ~/.ssh/id_rsa.pub
+    4  mkdir github
+    5  cd github
+    6  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCwqrqwTbQWiBggoxTjVZ8Q3VSWPGhkmO0MxStq+6YNWG4etk4x8m+/h859wtSdoRs0PDNIiNSP9jAS88qh9GWPNgR9xRbK6DpYsq5eNfaa/qzgKcMMwvKBWizoBWyOTAaGgjP4CnnKyBZmlwyBu3vnRQwmvijBlhnUYlQKJ3/0qDehYtYew9IyfV4QMnFctHEN5XB3+tiReJsGIEgptlKnd7UVqzJ80vuGLlW7FirAqTgcFv49bW9JvpcRGH+P1kUEKOnSZjD5oWQ6rKsAMYg8q
+    7  git clone git@github.com:amtsu/team22.git
+    8  cd team22
+    9  mkdir iaalexeev
+   10  pwd
+   11  cd /github/team22/users
+   12  cd /home/github/team22/users
+   13  cd/home/github
+   14  cd..
+   15  cd ..
+   16  pwd
+   17  cd /home/github/team22/users
+   18  cd /home/github
+   19  cd .
+   20  cd -
+   21  cd /home/jupyter-pteroculus
+   22  pwd 
+   23  ssh-keygen -t rsa -b 4096 -C ĺ"ваш_Email@mail.ru"
+   24  pwd
+   25  cd /home/jupyter-pteroculus/github/team22/users/iaalexeev
+   26  mkdir exercise
+   27  ls
+   28  cd exercise
+   29  mkdir hw1
+   30  cd hw1
+   31  git checkout main
+   32  git branch
+   33  git checkout main
+   34  git branch
+   35  git pull
+   36  git btanch iaalexeev_hw_2
+   37  git branch iaalexeev_hw_2
+   38  git branch
+   39  git checkout iaalexeev_hw_2
+   40  git branch
+   41  git diff
+   42  git status
+   43  pwd
+   44  cd ..
+   45  du hw1
+   46  cd hw1
+   47  touch result_du
+   48  ls
+   49  touch result_history 
+   50  ls
+   51  pwd
+   52  ls -la
+   53  ls -la |/
+   54  ls -la /home/
+   55  cd /home/
+   56  ls -la
+   57  du > /home/jupyter-pteroculus/github/team22/iaalexeev/exercise/hw1/result_du
+   58  /home/jupyter-pteroculus/github/team22/users/iaalexeev/exercise/hw1/result_du
+   59  cd /home/jupyter-pteroculus/github/team22/users/iaalexeev/exercise/hw1/resul_du
+   60  /home/jupyter-pteroculus/github/team22/users/iaalexeev/exercise/hw1/result_du
+   61  cat /home/jupyter-pteroculus/github/team22/users/iaalexeev/exercise/hw1/result_du
+   62  pwd
+   63  cd /home/jupyter-pteroculus/github/team22/users/iaalexeev/hw1
+   64  cd jupyter-pteroculus
+   65  pwd
+   66  cd /github/team22
+   67  pwd
+   68  cd team22
+   69  cd users
+   70  cd iaalexeev
+   71  cd exercise
+   72  cd hw1/
+   73  du > result_du
+   74  cat result_du
+   75  du > result_du
+   76  cat result_du
+   77  cd ..
+   78  du > result_du
+   79  cat result_du
+   80  history > result_history
+   81  cat result_history
+   82  git add hw1
+   83  cd exercise/
+   84  git add hw1
+   85  git status 
+   86  git commit 
+   87  git checkout
+   88  git branch
+   89  git commit -m "first block"
+   90  git status
+   91  git add result_du
+   92  pwd
+   93  ls
+   94  cd hw1
+   95  ls
+   96  git add result_du
+   97  git add result_history
+   98  git commiit -m "first  block fix"
+   99  git commit -m "first block fix"
+  100  cat hw1
+  101  cat result_du
+  102  cat result_history
+  103  cd ..
+  104  git status
+  105  git add result_du
+  106  git add result_history
+  107  git commit -m 'block1'
+  108  git status
+  109  cd exercise/hw1/
+  110  mkdir home_work_1
+  111  ls
+  112  cd home_work_1/
+  113  touch file_1
+  114  ls
+  115  ll
+  116  mkdir work_dir
+  117  ls
+  118  cp file_1 work_dir/file_1_copy
+  119  ls
+  120  cd work_dir
+  121  ls
+  122  cd ..
+  123  pwd
+  124  mkdir work_dir_new
+  125  ls
+  126  cp -r work_dir work_dir_new
+  127  cd work_dir_new
+  128  ls
+  129  cd ..
+  130  ls
+  131  cd work_dir
+  132  ls
+  133  mv file_1_copy file_1_new_name
+  134  ls
+  135  rm file_1_new_name 
+  136  ls
+  137  cd ..
+  138  ls
+  139  rm -rf work_dir_new
+  140  ls
+  141  cd iaalexeev
+  142  cd ..
+  143  cd -
+  144  pwd
+  145  du > result_du
+  146  cat result_du
+  147  history > result_history
+  148  cat result_history 
+  149  git add hw1
+  150  ls
+  151  cd exercise/
+  152  ls
+  153  git add hw1
+  154  git status
+  155  git add result_du
+  156  cd hw1
+  157  ls
+  158  git add result_du
+  159  git add result_history
+  160  git status
+  161  cd ..
+  162  git commit -m "block 2"
+  163  git status
+  164  cd ..
+  165  git commit -m "block 2"
+  166  git add result_du
+  167  git add result_history
+  168  git commit -m "block 2"
+  169  git status
+  170  ls
+  171  cd exercise/
+  172  ls
+  173  cd hw1/home_work_1/
+  174  ls
+  175  touch file1.txt
+  176  ls
+  177  vi file1.txt
+  178  cat file1.txt
+  179  ls
+  180  touch file2.txt
+  181  vi file2.txt
+  182  cd ..
+  183  cd
+  184  pwd
+  185  cd /github/team22/users/iaalexeev
+  186  cd github
+  187  cd team22
+  188  cd users
+  189  cd iaalexeev
+  190  du > result_du
+  191  history > result_history
+  192  ls
+  193  cart result_du
+  194  cat result_du
+  195  cat result_history
+  196  ls
+  197  pwd
+  198  git add result_du
+  199  git add result_history
+  200  git commit -m "block3"
+  201  git status
+  202  ls
+  203  cd exercise
+  204  ls
+  205  cd hw1
+  206  ls
+  207  cat result_du
+  208  cd ..
+  209  ls
+  210  cat result_du
+  211  pwd
+  212  ls
+  213  cd exercise/hw1/
+  214  ls
+  215  cd home_work_1/
+  216  ls
+  217  cat file1.txt
+  218  head -2n file1.txt
+  219  head -n2 file.txt
+  220  head -n2 file1.txt
+  221  tail -n2 file1.txt
+  222  cd ..
+  223  cd -
+  224  ls
+  225  du > result_du
+  226  history > result_history
+  227  cat result_du
+  228  cat result_history
+  229  git add result_du
+  230  git add result_history
+  231  git commit -m "block4"
+  232  git status 
+  233  cd /home/
+  234  pwd
+  235  find /home/ -name "*fil*"
+  236  cd jupyter-pteroculus/github
+  237  cd team22/users
+  238  cd iaalexeev
+  239  ls
+  240  ls -lh
+  241  ls
+  242  touch total.txt
+  243  ls -lh > total.txt
+  244  head -n1 total.txt
+  245  du -ah
+  246  ls -ah
+  247  ls
+  248  rm total.txt
+  249  ls
+  250  touch total.txt
+  251  du -ah > total.txt
+  252  pwd
+  253  awk -F' ' '{print $1}' iaalexeev/total.txt
+  254  ls
+  255  rm total.txt
+  256  touch total 
+  257  du -ah > tota
+  258  du -ah > total
+  259  cd ..
+  260  pwd
+  261  awk -F' ' '{print $1}' iaalexeev/total
+  262  grep -rni 'GET' iaalexeev
+  263  pwd
+  264  cd iaalexeev
+  265  du > result_du
+  266  history > result_history
+  267  cat result_du
+  268  cat result_history
+  269  git add result_du
+  270  git add result_history
+  271  gii commit -m "block5"
+  272  git commit -m "block5"
+  273  git status
+  274  ls
+  275  rm tota
+  276  ls
+  277  git status
+  278  cd ..
+  279  grep -rni 'GET' iaalexeev > result_grep
+  280  ls
+  281  cd iaalexeev
+  282  ls
+  283  cd ..
+  284  mv result_grep iaalexeev
+  285  ls
+  286  cd iaalexeev
+  287  ls
+  288  cat result_grep
+  289  du > result_du
+  290  history > result_du
+  291  cat result_du
+  292  cat result_history
+  293  git add result_add
+  294  ls
+  295  cd ..
+  296  awk -F' ' '{print $6}' iaalexeev/result_grep
+  297  awk -F' ' '{print $7}' iaalexeev/result_grep
+  298  awk -F' ' '{print $7}' iaalexeev/result_grep > /iaalexeev/URI
+  299  awk -F' ' '{print $7}' iaalexeev/result_grep > URI 
+  300  mv URI iaalexeev
+  301  cd iaalexeev
+  302  ls
+  303  cat URI
+  304  mv URI exercise
+  305  ls
+  306  mn total exercise
+  307  mv total exercise
+  308  ls
+  309  cd exercise/
+  310  ls
+  311  mv URI hw1
+  312  mw total hw1
+  313  mv total hw1
+  314  ls
+  315  cd hw1
+  316  ls
+  317  cd /iaalexeev
+  318  cd ..
+  319  cd -
+  320  pwd
+  321  ls
+  322  mw result_grep /exercise/hw1
+  323  mv result_grep /exercise/hw1
+  324  result_grep/exercise
+  325  mv result_grep exercise 
+  326  cd exercise
+  327  ls
+  328  mv result_grep hw1
+  329  ls
+  330  cd ..
+  331  pwd
+  332  du > result_du
+  333  history > result_history
+  334  git add result_du
+  335  git add result_history
+  336  git commit -m "URI block"
+  337  git status
+  338  ls -la && rm test123 && pwd
+  339  ls -la; rm test123; pwd
+  340  touch boolean_block.txt
+  341  vi boolean_block.txt
+  342  cat boolean_block.txt
+  343  ls
+  344  du > result_du
+  345  history > result_history
+  346  cat result_history
+  347  git add result_du
+  348  git add result_history
+  349  git add boolean_block
+  350  git add boolean_block.txt
+  351  git commit -m "boolean block"
+  352  git status
+  353  pwd
+  354  cd /github/team22/users
+  355  cd /home/github/team/users
+  356  cd /home/github/team22/users
+  357  pwd
+  358  git branch
+  359  pwd
+  360  cd /home/jupyter-pteroculus/github/team22/users
+  361  pwd
+  362  ls
+  363  ls -la
+  364  git branch
+  365  git pull
+  366  ls 
+  367  ls -la
+  368  cd ..
+  369  ls
+  370  mv iaalexeev users
+  371  cd users
+  372  ls
+  373  ls -la
+  374  git pull
+  375  cd
+  376  cd -
+  377  cd ..
+  378  cd..
+  379  git checkout
+  380  git branch
+  381  git pull
+  382  cd /users/iaalexeev
+  383  cd users
+  384  cd iaalexeev
+  385  pwd
+  386  git branch iaalexeev_hw_1_sticker
+  387  git branch 
+  388  git checkout iaalexeev_hw_1_sticker
+  389  pwd
+  390  git branch
+  391  touch README
+  392  ls
+  393  vi README
+  394  cat README
+  395  git branch
+  396  git add README
+  397  git status
+  398  git commit -m ' create and change README'
+  399  git config --global user.email "a.ioannis131@gmail.com"
+  400  git config --global user.name "Pter Oculus"
+  401  git status
+  402  git commit -m ' create and change README'
+  403  git status
+  404  git push
+  405  git push origin iaalexeev_hw_1_sticker 
+  406  git branch
+  407  git checkout main2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y
+  408  pwd
+  409  cd /github
+  410  cd github
+  411  /team22
+  412  cd team22
+  413  cd github
+  414  cd team22
+  415  cd users
+  416  cd iaalexeev
+  417  ls
+  418  cd github/team22/users
+  419  cd iaalexeev
+  420  ls
+  421  cat result_history
+  422  cd ..
+  423  grep -rni 'GET' iaalexeev | awk '{print $7}' | sort | uniq -c
+  424  grep -rni 'GET' iaalexeev | awk '{print $7}' | sort | uniq -c > iaalexeev/sorted.txt
+  425  cd iaalexeev
+  426  ls
+  427  wc -l sorted.txt
+  428  du > result_du
+  429  history > result_history

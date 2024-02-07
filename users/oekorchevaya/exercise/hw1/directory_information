@@ -1,0 +1,10 @@
+total 28
+drwxr-xr-x 3 jupyter-okorch jupyter-okorch 4096 Jan 29 20:17 .
+drwxr-xr-x 3 jupyter-okorch jupyter-okorch 4096 Jan 29 19:43 ..
+-rw-r--r-- 1 jupyter-okorch jupyter-okorch    0 Jan 29 20:16 awk
+-rw-r--r-- 1 jupyter-okorch jupyter-okorch    0 Jan 29 20:17 directory_information
+-rw-r--r-- 1 jupyter-okorch jupyter-okorch   29 Jan 29 20:09 file1
+-rw-r--r-- 1 jupyter-okorch jupyter-okorch  414 Jan 29 20:09 file2
+drwxr-xr-x 3 jupyter-okorch jupyter-okorch 4096 Jan 29 20:06 home_work_1
+-rw-r--r-- 1 jupyter-okorch jupyter-okorch   46 Jan 29 20:12 result_du
+-rw-r--r-- 1 jupyter-okorch jupyter-okorch 4060 Jan 29 20:12 result_history

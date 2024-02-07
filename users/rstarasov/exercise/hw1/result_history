@@ -1,0 +1,477 @@
+    1  cd rstarasov
+    2  ls -la
+    3  cd ..
+    4  ls -la
+    5  cd romantarasov91
+    6  ls
+    7  cd jupyter-romantarasov91/
+    8  ls -la
+    9  cat .bashrc
+   10  man sort
+   11  cd ..
+   12  ls -la
+   13  ssh-keygen -t rsa -b 4096 -C ĺ"kenn-nni@yandex.ru"
+   14  cat ~/.ssh/id_rsa.pub
+   15  ls -la
+   16  cd jupyter-romantarasov91/
+   17  pwd
+   18  ls -la
+   19  mkdir github
+   20  ls
+   21  ls -la
+   22  cd github/
+   23  git clone git@github.com:amtsu/team22.git
+   24  cd ..
+   25  ls
+   26  ls -la
+   27  cd jupyter-romantarasov91/
+   28  cd github/
+   29  ls -la
+   30  cd team22/
+   31  ls -la
+   32  cd users/
+   33  ls -la
+   34  mkdir RS_Tarasov
+   35  ls -la
+   36  cd RS_Tarasov/
+   37  ls -la
+   38  cd ..
+   39  ls -la
+   40  cat README.md 
+   41  cd src/
+   42  ls -la
+   43  cd ..
+   44  git branch_RS_Tarasov_homework
+   45  git branch RS_Tarasov_homework
+   46  git checkout RS_Tarasov_homework 
+   47  cd ..
+   48  ls -la
+   49  cd ..
+   50  ls -la
+   51  cd github/
+   52  cd team22/
+   53  ls -la
+   54  cd users/
+   55  ls -la
+   56  rm RS_Tarasov/
+   57  rm -r RS_Tarasov/
+   58  ls -la
+   59  mkdir rstarasov
+   60  ls -la
+   61  cd rstarasov/
+   62  touch README
+   63  ls -la
+   64  ls -la > README 
+   65  cat README 
+   66  pwd > README 
+   67  cat README 
+   68  cd ../..
+   69  git status
+   70  git dif
+   71  git diff
+   72  git add users/rstarasov/README 
+   73  git commit -m 'created new file'
+   74  git branch romantarasov91_homework
+   75  git checkout romantarasov91_homework 
+   76  ls -la
+   77  cd users/
+   78  ls -la
+   79  cd ..
+   80  git status
+   81  git diff
+   82  git add users/rstarasov/README 
+   83  git commit -m'changed file'
+   84  git commit -m
+   85  git commit -m 'hop'
+   86  git branch
+   87  git commit -m 'hop'
+   88  git push --set-upstream origin YOU_LOGIN
+   89  git push --set-upstream origin romantarasov91
+   90  git push --set-upstream origin romantarasov91_homework 
+   91  git status
+   92  git push
+   93  git push --set-upstream origin romantarasov91_homework
+   94  git branch
+   95  git push --set-upstream origin romantarasov91_homework
+   96  man ls
+   97  git branch
+   98  pwd
+   99  ls -la
+  100  cd github/team22/users/
+  101  git branch 
+  102  man save
+  103  man cat
+  104  git push --set-upstream origin romantarasov91_homework
+  105  git add README.md 
+  106  git status
+  107  git log
+  108  pwd
+  109  ls -la
+  110  cd github/
+  111  ls -la
+  112  cd team22/
+  113  ls -la
+  114  cd library/
+  115  ls -la
+  116  cd ..
+  117  cd users
+  118  ls -la
+  119  cd ADKazdym/
+  120  ls -la
+  121  cat a1.txt 
+  122  cat test_1_func.py 
+  123  cd /github/
+  124  cd /home/jupyter-romantarasov91/
+  125  ды -дф
+  126  ls -la
+  127  pwd
+  128  mkdir my_information
+  129  vi my_information/
+  130  cat my_information/
+  131  rm -r my_information/
+  132  touch my_information
+  133  vi my_information 
+  134  cat my_information 
+  135  ls -la
+  136  cd github/
+  137  ls -la
+  138  cd team22/
+  139  cd users/
+  140  cd rstarasov/
+  141  ls -la
+  142  vi README 
+  143  cat README 
+  144  git branch 
+  145  git status
+  146  git diff
+  147  git add README 
+  148  git commit -m 'added information about me'
+  149  git branch 
+  150  git push --set-upstream origin romantarasov91_homework 
+  151  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+  152  ls -la
+  153  cd github/
+  154  cd team22/
+  155  ls -la
+  156  cd users/
+  157  ls -la
+  158  git status
+  159  man git
+  160  git --help 
+  161  git tag delete
+  162  git diff
+  163  git sta
+  164  git status
+  165  git branch rstarasov-hw1-push-home-directory-to-main
+  166  git branch 
+  167  git switch 
+  168  git switch rstarasov-hw1-push-home-directory-to-main 
+  169  git diff
+  170  git status
+  171  git commit 
+  172  git branch 
+  173  git push --set-upstream origin rstarasov-hw1-push-home-directory-to-main 
+  174  git status
+  175  ls -la
+  176  cd github/
+  177  cd team22/users/
+  178  git diff
+  179  git status
+  180  cd github/team22/users/rstarasov/
+  181  ls -la
+  182  git branch rstarasov-hw1-do-past-hw-in-git
+  183  git branch
+  184  git help
+  185  git switch rstarasov-hw1-do-past-hw-in-git 
+  186  mkdir exercise
+  187  cd exercise/
+  188  mkdir hw1
+  189  git branch help
+  190  git branch 
+  191  git help -a
+  192  man git branch
+  193  git branch -D rstarasov-hw1-do-past-hw-in-git 
+  194  git branch 
+  195  git branch -D help 
+  196  git branch 
+  197  git branch -D RS_Tarasov_homework 
+  198  git branch -D romantarasov91_homework 
+  199  git branch 
+  200  git branch remove
+  201  git switch rstarasov-hw1-push-home-directory-to-main 
+  202  git branch 
+  203  git branch -D remove 
+  204  git branch -D rstarasov-hw1-do-past-hw-in-git 
+  205  git branch 
+  206  git switch main 
+  207  git status
+  208  git log
+  209  git switch rstarasov-hw1-push-home-directory-to-main 
+  210  git log
+  211  ls -la
+  212  pwd
+  213  cd /home/jupyter-romantarasov91/github/team22/
+  214  ls -la
+  215  git switch main
+  216  ls -la
+  217  cd library/
+  218  ls -la
+  219  git pull
+  220  ls -la
+  221  cd exercises/
+  222  ls -la
+  223  cd hw-2
+  224  git ls -files
+  225  ls -files
+  226  ls -la
+  227  pwd
+  228  ls
+  229  cd github/
+  230  cd team22/users/rstarasov/
+  231  git status
+  232  git branch 
+  233  git switch rstarasov-hw1-push-home-directory-to-main 
+  234  ls -la
+  235  cd exercise/
+  236  ls -la
+  237  cd hw1/
+  238  ls -la
+  239  cd ..
+  240  rm -r exercise/
+  241  ls -la
+  242  git branch rstarasov-hw1-do-past-hw-in-git
+  243  git switch rstarasov-hw1-do-past-hw-in-git 
+  244  mkdir exercise
+  245  cd exercise/
+  246  mkdir hw1
+  247  cd hw1
+  248  pwd
+  249  ls
+  250  ls /
+  251  cd /home/
+  252  ls -la
+  253  cd jupyter-romantarasov91/github/team22/users/rstarasov/exercise/hw1
+  254  diff
+  255  git diff
+  256  git status
+  257  git log
+  258  du
+  259  du > result_du
+  260  history > result_history
+  261  cat result_history 
+  262  git commit -m 'First block of HW. I created directories: exercise/hw1, and do some commands like pwd, ls -la. Made file for du and history'
+  263  git diff
+  264  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/
+  265  git commit -m 'First block of HW. I created directories: exercise/hw1, and do some commands like pwd, ls -la. Made file for du and history'
+  266  mkdir home_work_1
+  267  touch home_work_1/file_1
+  268  mkdir work_dir
+  269  cp home_work_1/file_1 work_dir/file_1_copy
+  270  cd work_dir/
+  271  ls
+  272  cd ..
+  273  ls
+  274  cd home_work_1/
+  275  cp -r work_dir work_dir_new/
+  276  ls -la
+  277  cd ..
+  278  ls -la
+  279  rm -r work_dir/
+  280  ls -la
+  281  mkdir home_work_1/work_dir
+  282  cp home_work_1/file_1 home_work_1/work_dir/file_1_copy
+  283  cp -r home_work_1/work_dir home_work_1/work_dir_new/
+  284  cd home_work_1/
+  285  ls -la
+  286  cd work_dir_new/
+  287  ls -la
+  288  cd ..
+  289  ls -la
+  290  cd work_dir
+  291  ls -la
+  292  cd ..
+  293  mv work_dir_new/file_1_copy work_dir_new/file_1_new_name
+  294  cd work_dir_new/
+  295  ls 
+  296  rm file_1_new_name 
+  297  ls
+  298  cd ..
+  299  rm -r work_dir_new/
+  300  ls
+  301  ls -la
+  302  git diff
+  303  git status
+  304  git add /github/team22/users/rstarasov/exercise/hw1
+  305  pwd
+  306  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/hw1/
+  307  git status
+  308  cd ..
+  309  ls -la
+  310  du
+  311  du >> result_du
+  312  cat result_du
+  313  du
+  314  history 
+  315  history > result_history 
+  316  cat result_history 
+  317  git status
+  318  pwd 
+  319  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/hw1
+  320  git status
+  321  git commit -m 'Second block. Added/removed directories and files.'
+  322  git push --set-upstream origin rstarasov-hw1-do-past-hw-in-git 
+  323  ls -la
+  324  cd home_work_1/
+  325  vi file1
+  326  vi file2
+  327  du 
+  328  cd ..
+  329  du
+  330  du > result_du 
+  331  history > result_history 
+  332  cat result_history 
+  333  pwd
+  334  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/hw1
+  335  git status
+  336  git diff
+  337  git commit -m 'Third block. Added file1, file2 with content.'
+  338  git status
+  339  ls -la
+  340  cd home_work_1/
+  341  ls -la
+  342  cat file1
+  343  head -n2 file1
+  344  tail -n2 file1
+  345  vi file1
+  346  pwd
+  347  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/
+  348  git diff
+  349  git status
+  350  git commit -m 'Fourth block. Manipulations with file1.'
+  351  du
+  352  cd ..
+  353  du
+  354  du > result_du 
+  355  history > result_history 
+  356  pwd
+  357  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/
+  358  git status
+  359  du
+  360  git commit -m 'Extension for fourth block. result_du, result_history updated.'
+  361  cd /home/
+  362  ls -la | grep 'fil*'
+  363  ls -la | grep '*fil*'
+  364  ls -la | grep 'fil'
+  365  ls -la | grep 'fil*'
+  366  find -name "*fil*"
+  367  find /home/ -name "*fil*"
+  368  find /home/ -name "fil*"
+  369  find /home/ -name "*fil*"
+  370  cd jupyter-romantarasov91/github/team22/users/rstarasov/
+  371  ls -la
+  372  cd exercise/
+  373  ls
+  374  cd ..
+  375  ls -la
+  376  ls -la | awk -F' ' '{print $5}'
+  377  grep -rni GET
+  378  grep -rni GET > /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/hw1/home_work_1/save_URL
+  379  grep -rni GET
+  380  du
+  381  cd exercise/
+  382  ls -la
+  383  cd hw1/
+  384  du
+  385  la -la
+  386  ls -la
+  387  cd ..
+  388  du > exercise/hw1/result_du 
+  389  du
+  390  history
+  391  history > exercise/hw1/result_history 
+  392  pwd
+  393  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/
+  394  git status
+  395  git commit -m 'Fifth + sixth block. Found *fil* in /home/; only file sizes in my directory; found GET in my directory; added URL to new file by grep.'
+  396  git push --set-upstream origin rstarasov-hw1-do-past-hw-in-git 
+  397  ls -la && rm test123 && pwd
+  398  ls -la; rm test123; pwd
+  399  cd exercise/hw1/home_work_1/
+  400  ls -la
+  401  vi explanation
+  402  ls -la
+  403  cat explanation 
+  404  cd /home/jupyter-romantarasov91/github/team22/users/rstarasov
+  405  du
+  406  du > exercise/hw1/result_du 
+  407  history > exercise/hw1/result_history 
+  408  pwd
+  409  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/
+  410  git status
+  411  git commit -m 'Seventh block. Did ls -la && rm test123 && pwd and ls -la; rm test123; pwd. Added file "explanation" with explanations of difference between previous commands'
+  412  grep -rni GET | awk -F' ' '{print $7}'
+  413  grep -rni GET | awk -F' ' '{print $7}' | sort
+  414  du > exercise/hw1/result_du 
+  415  history > exercise/hw1/result_history 
+  416  pwd
+  417  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/
+  418  git status 
+  419  git commit -m 'Eighth block. Found all URL and sort them. 8 URL.'
+  420  env
+  421  echo $<env>
+  422  echo $env
+  423  env
+  424  env | grep A
+  425  env | grep '*A*'
+  426  env | grep 'A*'
+  427  env | grep A
+  428  du > exercise/hw1/result_du 
+  429  history > exercise/hw1/result_history 
+  430  pwd
+  431  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov
+  432  git status
+  433  git commit -m 
+  434  git commit -m 'Ninth block. Found all variables with A.'
+  435  ls -la
+  436  cd exercise/hw1/
+  437  ls -la
+  438  curl https://finance.rambler.ru/currencies/EUR/ | grep '1 EUR =' > USDEUR_save && curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' >> USDEUR_save && cat USDEUR_save && rm USDEUR_save
+  439  curl https://finance.rambler.ru/currencies/EUR/ | grep '1 EUR =' > USDEUR_save && curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' >> USDEUR_save && clear && cat USDEUR_save && rm USDEUR_save
+  440  ls -la
+  441  curl https://finance.rambler.ru/currencies/EUR/ | grep '1 EUR =' > USDEUR_save && curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' >> USDEUR_save && clear && cat USDEUR_save && rm USDEUR_save
+  442  cd ..
+  443  du > exercise/hw1/result_du 
+  444  history exercise/hw1/result_history 
+  445  history > exercise/hw1/result_history 
+  446  cat exercise/hw1/result_history 
+  447  pwd
+  448  git add /home/jupyter-romantarasov91/github/team22/users/rstarasov/
+  449  git status
+  450  cd exercise/hw1/
+  451  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort > data_test && tail -n1 data_test && rm data_test
+  452  ls -la
+  453  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort > data_test && tail -n2 data_test && rm data_test
+  454  ls -la
+  455  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort
+  456  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  457*  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  458  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  459  # shit code: ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort > data_test && tail -n2 data_test && rm data_test
+  460  history 
+  461  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  462  # cool code to find last change date: ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  463  ls -la -rni
+  464  pwd
+  465  find /home/jupyter-romantarasov91/github/team22/users/rstarasov/ -name Jan
+  466  find /home/jupyter-romantarasov91/github/team22/users/rstarasov/ -name 'Jan*'
+  467* 
+  468  # cool code to find last change date: ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  469  ls -la | awk -F' ' '{print $6,$7,$8,$9}' | sort | tail -n1
+  470  cd ..
+  471  ls -la
+  472  man ls
+  473  ls -lat
+  474  man find
+  475  du
+  476  du > exercise/hw1/result_du 
+  477  history > exercise/hw1/result_history 

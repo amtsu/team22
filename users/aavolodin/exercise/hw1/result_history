@@ -1,0 +1,368 @@
+    1  ssh-keygen -t rsa -b 4096-C "pvo.volodin@yandex.ru"
+    2  cat ~/.ssh/id_rsa.pub
+    3  cat  . ssh/id_rsa.pub
+    4  cat .ssh/id_rsa.pub
+    5  ssh-keygen -t rsa -b 4096 -C "pvo.volodin@yandex.ru"
+    6  cat .ssh/id_rsa.pub
+    7  mkir github
+    8  mkdir github
+    9  cd github
+   10  git clone git@github.com:amtsu/team22.git
+   11  ls -l
+   12  cd github
+   13  ls -la
+   14  cd team22
+   15  ls
+   16  cd..
+   17  cd ..
+   18  ls
+   19  ls team22
+   20  ls -la users
+   21  cd team22
+   22  ls -la users
+   23  ssh-keygen -t rsa -b 4096 -C ĺ"pvo.volodin@yandex.ru"
+   24  ssh-keygen -t rsa -b 4096 -C "pvo.volodin@yandex.ru"
+   25  ssh-keygen -t rsa -b 4096 -C"pvo.volodin@yandex.ru"
+   26  cd github/team22
+   27  git brach andreyvolonpro
+   28  git branch andreyvolodinpro
+   29  git checkout andreyvolodinpro
+   30  cd users
+   31  mkdir andrejvolodinpro
+   32  cd andreyvolodinpro
+   33  mkdir andreyvoldinpro
+   34  cd andreyvolodinpro
+   35  ls -la
+   36  rm andrejvolodinpro
+   37  rm -r andrejvoldn
+   38  ls -la 
+   39  rm -r andrejvoloinpro
+   40  lear
+   41  clear
+   42  pwd
+   43  cd andreyvolodinpro
+   44  ls
+   45  rm -r andreyvoldinpro
+   46  ls 
+   47  rm -r andrejvolodinpro
+   48  ls
+   49  mkdir andreyvolodinpro
+   50  cd andreyvolodinpro
+   51  touch README.md
+   52  pwd > README.md
+   53  cd ../..
+   54  git status
+   55  gitt diff
+   56  git diff
+   57  git add users/andreyvolodinpro/README.md
+   58  git confing --global users.email pvo.volodin@yandex.ru
+   59  git config --global user.email pvo.volodin@yandex.ru
+   60  git cofig --global user.name andreyvolodinpro
+   61  git config --global user.name andreyvolodinpro
+   62  git commit -m "created a README.md file"
+   63  git puch --set-upstream origin andreyvolodinpro
+   64  git push --set-upstream origin andreyvolodinpro
+   65  pwd
+   66  cd//
+   67  cd home
+   68  cd home
+   69  cd github/team22
+   70  cd ../..
+   71  git status
+   72  ls
+   73  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   74  cd github/team22
+   75  cat README
+   76  pwd
+   77  cd ..
+   78  cd anhzhela-volodina
+   79  cd ..\..
+   80  cd ..
+   81  ls
+   82  cdusers 
+   83  cd users
+   84  ls
+   85  cd andreyvolodinpro
+   86  cd ..
+   87  mv andreyvolodinpro aavolodin
+   88  ls
+   89  cd aavolodin
+   90  cat README/md
+   91  cat README.md
+   92  vim README.md
+   93  cat README.md
+   94  cd ..
+   95  git branch
+   96  git branch -a
+   97  git branch lecture2aavolodin
+   98  git pull
+   99  git status
+  100  cdaavolodin
+  101  cd aavolodin
+  102  vim README.md
+  103  ls
+  104  git puch
+  105  git branch
+  106  git status
+  107  git add aavolodin/README
+  108  git status
+  109  git add andreyvolodinpro/README
+  110  git status
+  111  cat README.md
+  112  git log
+  113  git pull
+  114  git puch
+  115  git puch --set-upstream origin aavolodin
+  116  pwd
+  117  cd aavolodin
+  118  cd githab
+  119  cd users
+  120  cd aavolodin
+  121  git status
+  122  git diff
+  123  git puch
+  124  git pull
+  125  gi puch
+  126  git puch
+  127  git push
+  128  git checkout
+  129  mkdir exercise
+  130  ls
+  131  cd exercise
+  132  mkdir hw_1
+  133  mv hw_1 hw1mv hw_1 hw1
+  134  mv hw_1 hw1
+  135  ls
+  136  cd hw1
+  137  git branch
+  138  git checkout
+  139  git checkout main
+  140  git checkout aavolodin_hw2
+  141  git branch aavolodin_hw2
+  142  ls
+  143  git checkout aavolodin
+  144  rm hw1
+  145  cd..
+  146  git checkout aavolodin
+  147  pwd
+  148  ls
+  149  cd aavolodin
+  150  ls
+  151  rm -r exercise/
+  152  ls
+  153  git branch 
+  154  git checkout
+  155  git checkout aavolodin
+  156  git branch 
+  157  rm aavolodin_hw2
+  158  cd ..
+  159  ls
+  160  git branch aavolodin_hw2
+  161  git branch 
+  162  git checkout aavolodin_hw2
+  163  mkdir exercise
+  164  cd exercise
+  165  mkdir hw1
+  166  cd hw1
+  167  mkdir home_work_1
+  168  cd home_work_1/
+  169  touch file_1
+  170  mkdir work_dir
+  171  cp file_1 work_dir/file_1_copy
+  172  cp -r work_dir work_dir_new
+  173  mw file_1_copy file_1_new_name
+  174  mv file_1_copy file_1_new_name
+  175  rm file_1_new_name
+  176  ls
+  177  cd work_dir
+  178  ls
+  179  cd ..
+  180  ls -la
+  181  mv file_1_copy file_1_new_name
+  182  cd work_dir
+  183  ls
+  184  mv file_1_copy file__1_new_name
+  185  rm file__1_new_name 
+  186  cd ..
+  187  rm -r work_dir_new
+  188  ls
+  189  cd ..
+  190  du > result_du
+  191  ls
+  192  history > result_history
+  193  git branch
+  194  git status
+  195  cd users
+  196  cd ..
+  197  git branch
+  198  git status
+  199  git add aavolodin/ exercise/
+  200  git status
+  201  git commit -m 'выполнил задание hw1'
+  202  git puch
+  203  git push
+  204  git push --set-upstream origin aavolodin_hw2
+  205  cd team22
+  206  cd aavolodin
+  207  cd users
+  208  cd aavolodin
+  209  cat README.md
+  210  git add README.md
+  211  git status
+  212  git diff
+  213  git comit -m 'добавил README.md
+  214  git comit -m 'добавил README.md'
+  215  ls
+  216  cd exercise/
+  217  ls
+  218  cd hw1
+  219  ls
+  220  cat file1
+  221  cat file2
+  222  du 
+  223  du > result_du
+  224  history > result_history
+  225  git status
+  226  git diff
+  227  git sttus
+  228  git status
+  229  git add hw1 ../../../exercise/hw1/home_work_1/file_1
+  230  git status
+  231  clear
+  232  ls
+  233  rm file1 file2
+  234  ls
+  235  clear
+  236  vi file1
+  237  vi file2
+  238  cat file1
+  239  git status
+  240  git branch -a
+  241  git pull
+  242  git status
+  243  git checkout main
+  244  git pull
+  245  git checkout aavolodin
+  246  ls
+  247  git checkout aavolodin_hw2
+  248  ls
+  249  du > result_du
+  250  history > result_history
+  251  git status
+  252  rm file1 file2
+  253  ls
+  254  awk -F' ' '{print $5}' file3
+  255  grep -rni 'GET' 
+  256  du > result_du
+  257  history > result_history
+  258  git status
+  259  git add result_du result_history file3
+  260  git status
+  261  git comit -m 'фильтрация файлов\'
+  262  git comit -m 'фильтрация файлов'
+  263  git commit -m 'фильтрация файлов'
+  264  git push
+  265  pwd
+  266  cd github/team22/users/aavolodin
+  267  ls
+  268  cd exercise/
+  269  ls
+  270  cd hw1
+  271  ls
+  272  cd home_work_1/
+  273  ls
+  274  cd ..
+  275  ls
+  276  vi
+  277  ls
+  278  vi file2
+  279  cat file1
+  280  head file1
+  281  tail -n3 file2
+  282  tain -f file1
+  283  2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y
+  284  pwd
+  285  cd github
+  286  cd team22/users
+  287  ls
+  288  cd aavolodin
+  289  ls
+  290  cd ..
+  291  mw -r exercise aavolodin
+  292  mw -r exercise/aavolodin
+  293  mw -r exercise /users/aavolodin
+  294  mv -r exercise aavolodin
+  295  mv -r exercise/aavolodin
+  296  mv -r exercise /users/aavolodin
+  297  mv exercise /users/aavolodin
+  298  mv exercise aavolodin
+  299  ls
+  300  cd aavolodin
+  301  ls
+  302  cd exercise
+  303  ls
+  304  cd hw1
+  305  ls
+  306  cd ..
+  307  ls
+  308  la -la
+  309  ls -la
+  310  git reset .README.md.swp
+  311  ls -la
+  312  ls -la > awk -F' ' '{print $5}'
+  313  ls -la > file3;awk -F' ' '{print $5}'
+  314  ды
+  315  ls
+  316  cd  exercise 
+  317  ls
+  318  cd hw1
+  319  ls
+  320  vi file1
+  321  vi file2
+  322  du > result_du
+  323  history > result_history 
+  324  git status
+  325  git add file1 file2 result_history result_du
+  326  git status
+  327  git add home_work_1
+  328  git status
+  329  git puch
+  330  git commit -m 'сделал часть ДЗ'
+  331  git puch
+  332  git push
+  333  cat file1
+  334  head -h2 file1
+  335  head -n2 file1
+  336  tail -n2 file1
+  337  du > result_du
+  338  history > result_history 
+  339  git status
+  340  git add result_history
+  341  git status
+  342  git commit -m 'вывод содержимого файла'
+  343  find /home/ -name "*fil*
+  344  find /home/ -name "*fil*"
+  345  find /home/ -name "*fil*
+  346  find /home/ -name "*fil*"
+  347  ls -la
+  348  ls -la > awk -F' ' '{print $5}' 
+  349  awk -F' ' '{print $3}'
+  350  grep '1 USD =' finance.html
+  351  grep '1 USD =' finance.html | awk '{print $4}'
+  352  du > result_du
+  353  history > result_history 
+  354  grep '1 USD =' finance.html | awk '{print $4}' > finance_USD
+  355  cat finance_USD
+  356  du > result_du
+  357  history > result_history 
+  358  git add result_history result_du finance_USD
+  359  git status 
+  360  git commit -m 'информация по курсу USD'
+  361  git push
+  362  grep '1 EUR =' finance_eur.html | awk '{print $4}' > finance_EUR
+  363  curl https://finance.rambler.ru/currencies/EUR/ -o finance.html2 | grep '1 EUR =' finance_eur.html | awk '{print $4}' > finance_EUR
+  364  cat finance_EUR
+  365  curl https://finance.rambler.ru/currencies/EUR/ -o finance.html2;grep '1 EUR =' finance.html2 | awk '{print $4}' > finance_EUR
+  366  cat finance_EUR
+  367  du > result_du
+  368  history > result_history 
