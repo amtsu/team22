@@ -343,3 +343,87 @@
   343  ls
   344  du > result_du
   345  history > result_history
+  346  cat result_history
+  347  git add result_du
+  348  git add result_history
+  349  git add boolean_block
+  350  git add boolean_block.txt
+  351  git commit -m "boolean block"
+  352  git status
+  353  pwd
+  354  cd /github/team22/users
+  355  cd /home/github/team/users
+  356  cd /home/github/team22/users
+  357  pwd
+  358  git branch
+  359  pwd
+  360  cd /home/jupyter-pteroculus/github/team22/users
+  361  pwd
+  362  ls
+  363  ls -la
+  364  git branch
+  365  git pull
+  366  ls 
+  367  ls -la
+  368  cd ..
+  369  ls
+  370  mv iaalexeev users
+  371  cd users
+  372  ls
+  373  ls -la
+  374  git pull
+  375  cd
+  376  cd -
+  377  cd ..
+  378  cd..
+  379  git checkout
+  380  git branch
+  381  git pull
+  382  cd /users/iaalexeev
+  383  cd users
+  384  cd iaalexeev
+  385  pwd
+  386  git branch iaalexeev_hw_1_sticker
+  387  git branch 
+  388  git checkout iaalexeev_hw_1_sticker
+  389  pwd
+  390  git branch
+  391  touch README
+  392  ls
+  393  vi README
+  394  cat README
+  395  git branch
+  396  git add README
+  397  git status
+  398  git commit -m ' create and change README'
+  399  git config --global user.email "a.ioannis131@gmail.com"
+  400  git config --global user.name "Pter Oculus"
+  401  git status
+  402  git commit -m ' create and change README'
+  403  git status
+  404  git push
+  405  git push origin iaalexeev_hw_1_sticker 
+  406  git branch
+  407  git checkout main2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y2R0;276;0c10;rgb:0000/0000/000011;rgb:ffff/ffff/ffff12;2$y
+  408  pwd
+  409  cd /github
+  410  cd github
+  411  /team22
+  412  cd team22
+  413  cd github
+  414  cd team22
+  415  cd users
+  416  cd iaalexeev
+  417  ls
+  418  cd github/team22/users
+  419  cd iaalexeev
+  420  ls
+  421  cat result_history
+  422  cd ..
+  423  grep -rni 'GET' iaalexeev | awk '{print $7}' | sort | uniq -c
+  424  grep -rni 'GET' iaalexeev | awk '{print $7}' | sort | uniq -c > iaalexeev/sorted.txt
+  425  cd iaalexeev
+  426  ls
+  427  wc -l sorted.txt
+  428  du > result_du
+  429  history > result_history
