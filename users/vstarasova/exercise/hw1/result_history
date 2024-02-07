@@ -494,3 +494,11 @@ echo 'hello world
   490  grep -rni 'GET' ~/github/team22/users/vstarasova | awk -F' ' '{print $8}' 
   491  du > result_du
   492  history > result_history
+  493  git add .
+  494  git commit -m 'Дз 2 (изучение git) часть 2, блок 9'
+  495  git commit -m 'Дз 2 (изучение git) часть 2, блок 10 (cблоки 9 и 10 опять случайно сделала вместе)'
+  496  vi curs
+  497  bash curs
+  498  cd ~ | ls -la | awk '{print $6, $7, $8}' | sort -M -r | head -n1
+  499  du > result_du
+  500  history > result_history
