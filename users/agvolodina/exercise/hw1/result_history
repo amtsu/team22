@@ -1,0 +1,270 @@
+    1  ssh-keygen -t rsa -b 4096 -C |"konkina.anzhela@yandex.ru"
+    2  ssh-keygen -t rsa -b 4096 -C "konkina.anzhela@yandex.ru"
+    3  cat .ssh/id_rsa.pub
+    4  mkdir github
+    5  cd github
+    6  git clone git@github.com:amstu/team22.git
+    7  cd team22/
+    8  git clone git@github.com: amstu/team22.git
+    9  git clone git@github.com: amtsu/team22.git
+   10  git clone git@github.com:amtsu/team22.git
+   11  cd team22/
+   12  git config --global
+   13  user.email konkina.anzhela@yandex.ru
+   14  user. email konkina.anzhela@yandex.ru
+   15  user .name Anzhela-Volodina
+   16  git clone git@github.com:amtsu/team22.git
+   17  cd ..
+   18  git config --global
+   19  user. email konkina.anzhela@yandex.ru
+   20  git config --global
+   21  user .name Anzhela-Volodina
+   22  cd github
+   23  git clone git@github.com: amtsu/team22.git
+   24  ssh -T git@github.com
+   25  git clone git@github.com: amtsu/team22.git
+   26  git clone git@github.com:amtsu/team22.git
+   27  ssh-keygen -t rsa -b 4096 -C "konkina.anzhela@yandex.ru"
+   28  cd githab
+   29  cd github
+   30  ls
+   31  cd amstu
+   32  ls
+   33  cd team22
+   34  ls
+   35  ls -la
+   36  cd ..
+   37  cd team22
+   38  ls -la
+   39  cd users
+   40  ls -la
+   41  cd github/team22
+   42  git branch anzhela-volodina
+   43  git checkout anzhela-volodina
+   44  cd users
+   45  mkdir anzhela-volodina
+   46  cd anzhela-volodina
+   47  touch README.md
+   48  pwd > README.md
+   49  cd ../..
+   50  git status
+   51  git diff
+   52  cd users/anzhela-volodina
+   53  ls
+   54  cd ../..
+   55  git add users/anzhela-volodina/README.md
+   56  git config --global user.email konkina.anzhela@yandex.ru
+   57  git config --global user.email Anzhela-Volodina
+   58  git config --global user.name Anzhela-Volodina
+   59  git status
+   60  git commit -m 'new file:   users/anzhela-volodina/README.md'
+   61  git push --set-upstream origin anzhela-volodina
+   62  зцв
+   63  pwd
+   64  ls
+   65  cd github
+   66  ls
+   67  cd team22
+   68  ls
+   69  cd users
+   70  ls
+   71  cat README.md
+   72  cd README.md
+   73  cd ../..
+   74  cd ..
+   75  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   76  cd github
+   77  cd team22
+   78  ls
+   79  cd users
+   80  ls
+   81  cd anzhela-volodina
+   82  ls
+   83  cat README.md
+   84  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   85  ls
+   86  cd anzhela-volodina
+   87  ls
+   88  cat README.md
+   89  vim README.md
+   90  cat README.md
+   91  cd ..
+   92  git branch
+   93  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   94  git branch
+   95  git status
+   96  git add library/exercises/theory_console_command.ipynb
+   97  cd users
+   98  cd agvolodina
+   99  git status
+  100  git add   ../../library/exercises/theory_console_command.ipynb
+  101  git status
+  102  git add   ../theory_console_command.ipynb
+  103  git status
+  104  ls
+  105  git add exercise/hw1/result_du
+  106  git status
+  107  git add  exercise/hw1/home_work_1/
+  108  git add exercise/hw1/home_work_1/  exercise/hw1/result_history
+  109  git status
+  110  git commit -m 'hw1'
+  111  git push
+  112  cd ..
+  113  ls
+  114  ls
+  115  cd github
+  116  ls
+  117  cd team
+  118  cd team22
+  119  cd users
+  120  cd anzhela-volodina/
+  121  ls
+  122  cat README.md 
+  123  git status
+  124  git add README.md
+  125  git status
+  126  git diff
+  127  git commit -m 'добавила файл README.md'
+  128  git push 
+  129  git checkout 
+  130  git checkout main
+  131  git pull
+  132  cd ..
+  133  git pull
+  134  cd github/
+  135  cd team22/
+  136  cd users/
+  137  git branch agvolodina_hw2
+  138  git checkout 
+  139  git checkout agvolodina
+  140  git checkout agvolodina_hw2 
+  141  cd agvolodina_hw2
+  142  cd Anzhela-Volodina
+  143  mkdir exercise
+  144  mv exercise agvolodina
+  145  ls
+  146  cd agvolodina
+  147  mkdir exercise
+  148  cd exercise/
+  149  mkdir hw1
+  150  mkdir home_work_1
+  151  mv home_work_1 hw1/
+  152  ls
+  153  cd hw1
+  154  ls
+  155  cd home_work_1/
+  156  touch file1
+  157  mkdir  work_dir
+  158  cp file1 work_dir/file_1_copy
+  159  ls
+  160  ls work_dir/
+  161  cp -r work_dir work_dir_new
+  162  cd work_dir
+  163  ls
+  164  mv file_1_copy file_1_new_name
+  165  rm file_1_new_name 
+  166  cd ..
+  167  rm work_dir_new
+  168  rm -r work_dir_new
+  169  ls
+  170  cd ..
+  171  du > result_du
+  172  ls
+  173  history > result_history
+  174  ls
+  175  git diff
+  176  git status
+  177  git add
+  178  git add '../../../../library/exercises/theory_console_command.ipynb
+  179          ../../
+  180          ../../../theory_console_command.ipynb
+  181  cd ..
+  182  ls
+  183  ls -la > awk -F' ' '{print $5}'
+  184  ls -la
+  185  ls -la > awk -F' ' '{print 4}'
+  186  ls -la > awk -F' ' '{print $4}'
+  187  awk -F' ' '{print $5}' file3
+  188  grep -rni 'GET'
+  189  du > result_du
+  190  history > result_history
+  191  git status
+  192  git add
+  193  git add result_du  result_history file3
+  194  git status
+  195  git commit -m 'фильтрация и сортировка'
+  196  rm result_du2
+  197  rm result_history2
+  198  git status
+  199  git add result_du2 result_history2
+  200  git status
+  201  git commit -m 'удаление лишних файлов'
+  202  git push
+  203  ls
+  204  cd github/
+  205  ls
+  206  cd team22/
+  207  ls
+  208  cd users/
+  209  ls
+  210  cd agvolodina/
+  211  ls
+  212  git branch
+  213  cd exercise/
+  214  ls
+  215  cd hw1/
+  216  vi file1
+  217  vi file2
+  218  ls
+  219  du > result_du2
+  220  history > result_history2
+  221  git status
+  222  git diff
+  223  git add
+  224  git add hw1
+  225  git add  file1
+  226  git status
+  227  git add  file2  result_du2 result_history2
+  228  git status
+  229  git commit
+  230  git status
+  231  git commit -m 'команда vim'
+  232  cat result_history2
+  233  cat file1
+  234  head -n2 file1
+  235  tail -n2 file1
+  236  du > result_du
+  237  history > result_history
+  238  git status
+  239  git add result_du result_history
+  240  git status
+  241  dit commit -m 'вывод содержимого файлов'
+  242  git commit -m 'вывод содержимого файлов'
+  243  find /home/ -name "*fill*"
+  244  find /home/ -name "*fil*"
+  245  ls -ls > awk -F' ' '{print $5}'
+  246  ls -la > awk -F' ' '{print $5}'
+  247  ls -la > file3; awk -F' ' '{print $5}'
+  248  grep '1 USD =' cur_usd | gawk -F: '{print $4}' > cur_usd
+  249  cat cur_usd
+  250  grep '1 USD =' cur_usd | gawk -F: '{print $4}'
+  251  curl https://finance.rambler.ru/currencies/USD/ -o cur_usd;grep '1 USD =' cur_usd | awk '{print $4}' > cur_usd2
+  252  car cur_usd2
+  253  grep '1 USD =' cur_usd | awk '{print $4}' > cur_usd2
+  254  cat cur_usd2
+  255  du > result_du
+  256  history > result_history 
+  257  git status
+  258  git add result_du  result_history cur_usd2
+  259  git status
+  260  git commint - 'вывод курса $'
+  261  git push
+  262  git commint -m 'вывод курса $'
+  263  git commit -m 'вывод курса $'
+  264  git push
+  265  curl https://finance.rambler.ru/currencies/EUR/ -o cur_eur;grep 'EUR'  cur_eur
+  266  curl https://finance.rambler.ru/currencies/EUR/ -o cur_eur;grep '1 EUR ='  cur_eur | awk '{print $4}' 
+  267  curl https://finance.rambler.ru/currencies/EUR/ -o cur_eur;grep '1 EUR ='  cur_eur | awk '{print $4}' > cur_eur2
+  268  cat cur_eur2
+  269  du > result_du
+  270  history > result_history 
