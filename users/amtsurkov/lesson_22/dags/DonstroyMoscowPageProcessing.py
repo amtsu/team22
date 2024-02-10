@@ -350,29 +350,263 @@ class ListPageProcessor:
         """
         l = []
         list_data = self.__soup.findAll("div", class_="d-flat-list")
-        print('---1111----')
+        #print('---1111----')
         #print(list_data)
+        #print('len =', len(list_data))
         for i in list_data:
-            print('---222---')
-            print(i)
+
+            #print('---222---')
+            #print(i)
             d = i.find_all("a", class_="d-flat-list__link")
+            if not len(d):
+                continue 
             url = d[0]["href"]
-            title = d[0].text
+            title = ''#d[0].text
+            
+#
+#                                       <div class="d-flat-list">
+#                        <div class="d-flat-list__item _item1">
+#                            <img src="/hydra/svg/apartment/10/b19-s2-f3_6-p11.svg">
+#                        </div>
+#                        <div class="d-flat-list__item _item2">
+#                            <div class="d-flat-list__label">Комнат</div>Студия                         </div>
+#                        <div class="d-flat-list__item _item3">
+#                            <div class="d-flat-list__object">Символ                                <small>Независимость</small>
+#                            </div>
+#                        </div>
+#                        <div class="d-flat-list__item _item4">
+#                            <div class="d-flat-list__label">Корпус</div>19, 2 секц
+#                        </div>
+#                        <div class="d-flat-list__item _item5">
+#                            <div class="d-flat-list__label">Этаж</div>3 из 24                        </div>
+#                        <div class="d-flat-list__item _item6">
+#                            <div class="d-flat-list__label">Номер</div>283                        </div>
+#                        <div class="d-flat-list__item _item7">
+#                            <div class="d-flat-list__label">Площадь, м&sup2;</div>28.3                        </div>
+#                        <div class="d-flat-list__item _item8">
+#                            <div class="d-flat-list__price">
+#                                10 125 740 ₽                            </div>
+#                        </div>
+#                        <div class="d-flat-list__item _item9">
+#                            <div class="d-flat-list__actions">
+#                                                                                            </div>
+#                        </div>
+#                        <div class="d-flat-list__item _item10">
+#                            <button class="d-button _flatIcon _favorite" data-favorite-icon="10-19-2-260119283">
+#                                <svg>
+#                                    <use xlink:href="/assets/blueant/assets/sprite.svg#sprite-heart"></use>
+#                                </svg>
+#                                <div class="d-button__tooltip">Добавить в избранное</div>
+#                            </button>
+#                        </div>
+#                        <a class="d-flat-list__link" href="/objects/simvol/plans/quarter6/korpus19/section2/floor3/flat260119283/" target="_blank"></a>
+#                    </div>
+
+
+
+
+#                    <div class="d-flat-list _mobile">
+#                        <div class="d-flat-list__top">
+#                            <div class="d-flat-list__img">
+#                                <img src="/hydra/svg/apartment/10/b19-s2-f3_6-p11.svg">
+#                            </div>
+#                            <div class="d-flat-list__price">
+#                                10 125 740 ₽                            </div>
+#                            <div class="d-flat-list__object">
+#                                Символ                                <small>Независимость</small>
+#                            </div>
+#                        </div>
+#                        <div class="d-flat-list__bottom">
+#                            <div class="d-flat-list__items">
+#                                <div class="d-flat-list__item">Ст</div>
+#                                <div class="d-flat-list__item">28.3 м2</div>
+#                                <div class="d-flat-list__item">3 эт.</div>
+#                            </div>
+#                            <div class="d-flat-list__actions">
+#                                <img src="assets/img/d/icon_fire.svg">
+#                                <img src="assets/img/d/icon_brush.svg">
+#                            </div>
+#                            <button class="d-button _flatIcon _favorite" data-favorite-icon="10-19-2-260119283">
+#                                <svg>
+#                                    <use xlink:href="/assets/blueant/assets/sprite.svg#sprite-heart"></use>
+#                                </svg>
+#                                <div class="d-button__tooltip">Добавить в избранное</div>
+#                            </button>
+#                        </div>
+#                        <a class="d-flat-list__link" href="/objects/simvol/plans/quarter6/korpus19/section2/floor3/flat260119283/" target="_blank"></a>
+#                    </div>
+
+
+#
+#                    <div class="d-flat-list">
+#                        <div class="d-flat-list__item _item1">
+#                            <img src="/hydra/svg/apartment/28/b63-s1-f10_18-p5.svg">
+#                        </div>
+#                        <div class="d-flat-list__item _item2">
+#                            <div class="d-flat-list__label">Комнат</div>Студия                         </div>
+#                        <div class="d-flat-list__item _item3">
+#                            <div class="d-flat-list__object">Остров                                <small>Остров.6</small>
+#                            </div>
+#                        </div>
+#                        <div class="d-flat-list__item _item4">
+#                            <div class="d-flat-list__label">Корпус</div>3, 1 секц
+#                        </div>
+#                        <div class="d-flat-list__item _item5">
+#                            <div class="d-flat-list__label">Этаж</div>16 из 21                        </div>
+#                        <div class="d-flat-list__item _item6">
+#                            <div class="d-flat-list__label">Номер</div>100                        </div>
+#                        <div class="d-flat-list__item _item7">
+#                            <div class="d-flat-list__label">Площадь, м&sup2;</div>29                        </div>
+#                        <div class="d-flat-list__item _item8">
+#                            <div class="d-flat-list__price">
+#                                19 244 400 ₽                            </div>
+#                        </div>
+
+
+
+#                   <div class="d-flat-list">
+#                        <div class="d-flat-list__item _item1">
+#                            <img src="/hydra/svg/apartment/10/b29-s1-f2-p1.svg">
+#                        </div>
+#                        <div class="d-flat-list__item _item2">
+#                            <div class="d-flat-list__label">Комнат</div>2                        </div>
+#                        <div class="d-flat-list__item _item3">
+#                            <div class="d-flat-list__object">Символ                                <small>Вдохновение</small>
+#                            </div>
+#                        </div>
+#                        <div class="d-flat-list__item _item4">
+#                            <div class="d-flat-list__label">Корпус</div>29, 1 секц
+#                        </div>
+#                        <div class="d-flat-list__item _item5">
+#                            <div class="d-flat-list__label">Этаж</div>2 из 26                        </div>
+#                        <div class="d-flat-list__item _item6">
+#                            <div class="d-flat-list__label">Номер</div>1                        </div>
+#                        <div class="d-flat-list__item _item7">
+#                            <div class="d-flat-list__label">Площадь, м&sup2;</div>58.6                        </div>
+#                        <div class="d-flat-list__item _item8">
+#                            <div class="d-flat-list__price">
+#                                24 149 060 ₽                            </div>
+#                        </div>
+#                        <div class="d-flat-list__item _item9">
+#                            <div class="d-flat-list__actions">
+#                                                                                            </div>
+#                        </div>
+#                        <div class="d-flat-list__item _item10">
+#                            <button class="d-button _flatIcon _favorite" data-favorite-icon="10-29-1-260129001">
+#                                <svg>
+#                                    <use xlink:href="/assets/blueant/assets/sprite.svg#sprite-heart"></use>
+#                                </svg>
+#                                <div class="d-button__tooltip">Добавить в избранное</div>
+#                            </button>
+#                        </div>
+#                        <a class="d-flat-list__link" href="/objects/simvol/plans/quarter5/korpus29/section1/floor2/flat260129001/" target="_blank"></a>
+#                    </div>
+
+
+            d = i.find_all("div", class_="d-flat-list__item _item3")
+            if not len(d):
+                continue 
+            #project = d[0].text
+            #kvartal = d[0].find_all("small")[0].text
+            kvartal = d[0].small.extract().text
+            kvartal = kvartal.replace('\n', '')
+
+            project = d[0].text
+            project = project.replace('\n', '')
+            project = project.rstrip()
+            #print(project)
+            #print('===')
+            ##kvartal = d[0].text.rstrip()
+            #print(kvartal)
+
+            d = i.find_all("div", class_="d-flat-list__item _item4")
+            if not len(d):
+                continue 
+            korpus = d[0].div.extract().text
+            section = d[0].text
+            section = section.replace('\n', '')
+            section = section.rstrip()
+
+
+            #print(i)
+            #print(i.text)
+            d = i.find_all("div", class_="d-flat-list__item _item5")
+            if not len(d):
+                continue 
+            d[0].div.extract()
+            floor = d[0].text
+            #print(floor)
+            floor, floors = floor.split(' из ')
+            ##print(floor[5:])
+            #print(floor)
+            #print(floors)
+            #floor, floors = int(floor[5:]), int(floors)
+            floor, floors = int(floor), int(floors)
+
+            d = i.find_all("div", class_="d-flat-list__item _item1")
+            if not len(d):
+                continue 
+            f = d[0].find_all("img")
+            image_plan = f[0]["src"]
+
+
+            d = i.find_all("div", class_="d-flat-list__item _item7")
+            if not len(d):
+                continue 
+            #d[0] = d[0].div.extract()
+            dd = d[0].div.extract()
+            #d[0] = d[0].div
+
+            area = d[0].text
+            area = area.replace('\n', '')
+            area = area.replace(' ', '')
+
+
+            d = i.find_all("div", class_="d-flat-list__item _item2")
+            if not len(d):
+                continue 
+            #print(d)
+            hh = d[0].div.extract()
+            #print('----')
+            #print(hh)
+            room = d[0].text
+            room = room.rstrip()
+            #print(room) 
+            if 'Студия' in room:
+                room = 0
+            if 'Пентхаус' in room:
+                room = 0
+            elif room:
+                #print('---')
+                #print(room)
+                #print('-!!!!--')
+                #print('-!!!!--')
+                room = int(room)
+###                room = int(room)
+                #print('--')
+            else:
+                room = 0
+
+            address = ''
+
+
+            #print('----3333---')
+
 
             #d-flat-list__price
             d = i.find_all("div", class_="d-flat-list__price")
             #10 116 430 ₽
-            print(d[0]) 
-            print(d[0].text) 
+            #print(d[0]) 
+            #print(d[0].text) 
             if len(d[0].text) < 1:    
                 # same product have not price
-                print('product have not price =', title)
+                #print('product have not price =', title)
                 #TODO need fix API
                 price_sale = 0
                 price = 0
             else:
                 price = d[0].text
-                print(price)
+                #print(price)
                 price = price.replace("&thinsp;", "")
                 price = price.replace("&thinsp;", "")
                 price = price.replace(" &#8381", "")
@@ -382,11 +616,15 @@ class ListPageProcessor:
                 price = price.replace("&nbsp;", "")
                 price = price.replace(" ", "")
 
-                price = int(price)
+                try:
+                    price = int(price)
+                except:
+                    price = 0
+
 
             d = i.find_all("div", class_="d-flat-list__priceOld")
             price_sale = price
-            print(d)
+            #print(d)
             #print(d[0])
             if d:
                 price_sale_s = d[0].text
@@ -411,19 +649,50 @@ class ListPageProcessor:
                     else:
                         price_sale = int(d[0].text[:-2])
 
-            l.append(
-                {
-                    "url": url,
-                    "title": title,
+            #print('----3333---')
+
+            source_url = self.__url
+            ee = {
+                    #"title": title,
+                    "source_url": source_url,
+
+
+                    #"url": url,
+                    "url": "https://donstroy.moscow" + url,
                     "price": price,
                     "price_sale": price_sale,
-                    "url": "https://donstroy.moscow" + url,
-                    "brand": "b",
-                    "brand_url": "bu",
-                    "image_url": "iu",
-                    "source_url": self.__url,
+                    "quantity": 1,
+                    "datetime_create": "1970-01-01T00:00:00.00Z",
+                    "brand": "donstroy.moscow",
+                    "brand_url": "donstroy.moscow",
+                    "category": "Новостройки",
+                    "image_url": image_plan,
+                    "source_url": source_url,
+                    "apartment_area": area,
+                    "apartment_floor": int(floor),
+
+
+                    "title": f"{project} {kvartal} {korpus} {section} {floor} {area} {address}",
+
+                    "apartment_room": int(room),
+                    "apartment_address": address,
+
+                    "description": '',#f"{project} {kvartal} {korpus} {section} {floor} {area} {address}",
                 }
-            )
+
+
+            if floors:
+                ee["apartment_floors_total"] = int(floors)
+            else:
+                print("not have floors_total in =", source_url)
+                ee["apartment_floors_total"] = None
+
+
+            l.append(ee)
+
+            #print('----3333---')
+            #print(ee)
+
         return l
 
 
@@ -489,7 +758,10 @@ class DonstroyMoscowServiceProcessing:
         for url in self.__url_list:
             #for i in range(1, 200):
             #for i in range(1, 130):
-            for i in range(1, 2):
+            for i in range(1, 140):
+            #for i in range(1, 3):
+            #for i in range(1, 2):
+            #for i in range(1, 22):
                 r_url = url + str(i)
                 print(r_url)
                 #with urllib.request.urlopen(r_url) as response:
@@ -520,7 +792,7 @@ class DonstroyMoscowServiceProcessing:
             i = 0
             api_instance = history_api.HistoryApi(api_client)
             for e in self.__list_dict:
-                print(e)
+                #print(e)
                 history = History(
                     pk=1,
                     title=e["title"],
@@ -540,7 +812,10 @@ class DonstroyMoscowServiceProcessing:
                     # count_how_much_buy=1,
                     # count_questions=1,
                     # count_photo=1,
-                    # category="category_example",
+                    # worker="worker_example",
+                    # task="task_example",
+
+                    category=e["category"],
                     # category_url="category_url_example",
                     brand=e["brand"],
                     brand_url=e["brand_url"],
@@ -549,18 +824,30 @@ class DonstroyMoscowServiceProcessing:
                     url=e["url"],
                     # canonical_url="canonical_url_example",
                     img_url=e["image_url"],
-                    # description="description_example",
+                    description=e["description"],
                     # params="params_example",
                     # seller="seller_example",
                     # seller_url="seller_url_example",
                     source_url=e["source_url"],
-                    # urls_other_products_on_the_page="urls_other_products_on_the_page_example",
-                    # worker="worker_example",
-                    # task="task_example",
+                    apartment_area=e["apartment_area"],
+                    #apartment_completion_quarter=e["apartment_completion_quarter"],
+                    #apartment_completion_year=e["apartment_completion_year"],
+                    apartment_floor=e["apartment_floor"],
+                    apartment_floors_total=e["apartment_floors_total"],
+                    #apartment_ceilingheight=e["apartment_ceilingheight"],
+                    apartment_room=e["apartment_room"],
+                    #apartment_ppm=e["apartment_ppm"],
+                    apartment_address=e["apartment_address"],
+                    #apartment_location=e["apartment_location"],
+                    #apartment_location_lat=e["apartment_location_lat"],
+                    #apartment_location_lon=e["apartment_location_lon"],
+ 
+
+
                 )  # History |  (optional)
 
                 try:
-####                    api_response = api_instance.history_create(body=history)
+                    api_response = api_instance.history_create(body=history)
                     i += 1
                     # pprint(api_response)
                 except openapi_client.ApiException as e:
