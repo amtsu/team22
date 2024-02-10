@@ -574,7 +574,7 @@ class ListPageProcessor:
             #print(room) 
             if 'Студия' in room:
                 room = 0
-            if 'Пентхаус' in room:
+            elif 'Пентхаус' in room:
                 room = 0
             elif room:
                 #print('---')
