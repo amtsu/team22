@@ -1,0 +1,9 @@
+total 32
+drwxr-xr-x 3 jupyter-annamargolina jupyter-annamargolina 4096 Jan 30 14:17 .
+drwxr-xr-x 3 jupyter-annamargolina jupyter-annamargolina 4096 Jan 30 00:01 ..
+-rw-r--r-- 1 jupyter-annamargolina jupyter-annamargolina   29 Jan 30 13:35 file1
+-rw-r--r-- 1 jupyter-annamargolina jupyter-annamargolina  414 Jan 30 13:35 file2
+drwxr-xr-x 3 jupyter-annamargolina jupyter-annamargolina 4096 Jan 30 13:27 home_work_1
+-rw-r--r-- 1 jupyter-annamargolina jupyter-annamargolina   47 Jan 30 13:57 result_du
+-rw-r--r-- 1 jupyter-annamargolina jupyter-annamargolina 7947 Jan 30 13:57 result_history
+-rw-r--r-- 1 jupyter-annamargolina jupyter-annamargolina    0 Jan 30 14:17 size

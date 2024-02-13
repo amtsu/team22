@@ -1,0 +1,434 @@
+    1  ls
+    2  ssh-keygen -t rsa -b 4096 -C "isergy@94-250-254-32"
+    3  cat .ssh/id_rsa.pub
+    4  git config --global user.email isergy@mail.ru
+    5  git config --global user.name saivanov
+    6  mkdir github
+    7  cd github/
+    8  git clone git@github.com:amtsu/team22.git
+    9  cd team22/
+   10  ls
+   11  cd users/
+   12  ls
+   13  git status -s
+   14  mv -r sivanov/ saivanov/
+   15  mv  sivanov/ saivanov/
+   16  git status -s
+   17  git restore
+   18  git reset --hard HEAD
+   19  git status -s
+   20  rm -rf saivanov/
+   21  git status -s
+   22  history 
+   23  exit
+   24  ls
+   25  ls -lasi
+   26  nano .nanorc
+   27  nano .bashrc 
+   28  echo 'if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";fi' >> ~/.bashrc
+   29  ssh
+   30  ssh serg@62.109.19.100
+   31  exit
+   32  cd github/team22/
+   33  git branch
+   34  export PS2=$(sed 's/...$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";
+   35  ls
+   36  rm ';'
+   37  echo 'if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";fi' >> ~/.bashrc
+   38  ls
+   39  cd github/
+   40  cd team22/
+   41  git branch
+   42  cd users/
+   43  nano ~/.bashrc 
+   44  ource
+   45  source ~/.bashrc 
+   46  cd team22/
+   47  git branch saivanov-home-folder-renaming 
+   48  git checkout saivanov-home-folder-renaming 
+   49  source ~/.bashrc 
+   50  св ююcd
+   51  cd ..
+   52  __git_ps1
+   53  cd team22/
+   54  __git_ps1
+   55  source ~/.bashrc 
+   56  clear
+   57  ls
+   58  history
+   59  source ~/.bashrc
+   60  cd team22/
+   61  source ~/.bashrc 
+   62  cd team22/
+   63  echo 'if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";fi' >> ~/.bashrc
+   64  echo 'if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1=\'$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>\';fi' >> ~/.bashrc
+   65  ls
+   66  echo 'if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";fi' >> ~/.bashrc
+   67  nano .bashrc
+   68  cd ..
+   69  nano .bashrc 
+   70  echo 'if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1="$PS2\[\033[1;91m$(__git_ps1)\033[0;0m \n└─>\]";fi' >> ~/.bashrc
+   71  nano .bashrc 
+   72  cat ~/.bashrc 
+   73  ls
+   74  cd team22/
+   75  cd ..
+   76  cat .bashrc 
+   77  export PS2=${PS1// /};export PS2=${PS2//'/$'/};export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+   78  cd github/team22/
+   79  cd team22/
+   80  ls
+   81  cd team22/
+   82  ls
+   83  git checkout saivanov-home-folder-renaming  
+   84  echo $PS1
+   85  cd ..
+   86  source .bashrc 
+   87  sudo 
+   88  cd /
+   89  ls
+   90  cd etc/
+   91  ls
+   92  nano -r bash.bashrc 
+   93  cat bash.bashrc 
+   94  nano bash.bashrc 
+   95  export PS2=${PS1// /};export PS1="$PS3\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+   96  ls
+   97  cd github/team22/
+   98  git branch
+   99  git checkout main
+  100  cd..
+  101  cd ..
+  102  cat .bashrc
+  103  ls
+  104  cd team22/
+  105  echo ${PS1}
+  106  cd github/
+  107  cd team22/
+  108  cd ..
+  109  nano .bashrc 
+  110  echo 'if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";fi' >> ~/.bashrc
+  111  echo 'if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ; PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";fi' >> ~/.bashrc
+  112  nano .bashrc 
+  113  cd team22/
+  114  cd ..
+  115  source .bashrc 
+  116  echo $PSBLOCK
+  117  ls
+  118  cd ..
+  119  ls
+  120  cd..
+  121  ls
+  122  cd ..
+  123  ls
+  124  cd jupyter-isergy/
+  125  ls
+  126  cat .bashrc 
+  127  nano .bashrc 
+  128  source .bashrc 
+  129  cd github/team22/
+  130  cd ..
+  131  cd .
+  132  cd ..
+  133  nano .bashrc 
+  134  source .bashrc 
+  135  cd team22/
+  136  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+  137  source ~/.bashrc
+  138  cd team22/
+  139  git checkout main
+  140  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ;PS2=$(sed "s/...$//" <<<"${PS1}") ;  PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \n└─>\[\033[0;0m\]";fi' >> ~/.bashrc
+  141  cd team22/
+  142  source ~/.bashrc
+  143  cd te
+  144  ls
+  145  cd team22/
+  146  source ~/.bashrc 
+  147  export PS2=${PS1// /};export PS1="$PS3\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  148  export PS2=$(sed 's/..$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";
+  149  source ~/.bashrc 
+  150  cd team22/
+  151  ls
+  152  source ~/.bashrc 
+  153  ls
+  154  echo $PS1
+  155  source ~/.bashrc 
+  156  ls
+  157  git branch
+  158  source ~/.bashrc 
+  159  ls
+  160  source ~/.bashrc 
+  161  git checkout main
+  162  source ~/.bashrc 
+  163  git checkout saivanov-home-folder-renaming 
+  164  cd ..
+  165  export PS2=${PS1//....$/};export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";
+  166  export PS2=$(sed 's/.$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";
+  167  export PS2=${PS1// /};export PS2=${PS2///$/};export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  168  cd team22/
+  169  export PS2=${PS1// /};export PS2=${PS2// /};export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  170  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+  171  export PS2=$(sed 's/...$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";
+  172  cd team22/
+  173  git branch
+  174  git checkout saivanov-home-folder-renaming 
+  175  export PS2=${PS1// /};export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  176  cd github/team22/
+  177  ls
+  178  cd team22/
+  179  cd team22/
+  180  git checkout saivanov-home-folder-renaming 
+  181  cd ..
+  182  cd ..
+  183  source .bashrc 
+  184  rm-rf ~/add-branch-to-command-prompt.bash 
+  185  rm -rf ~/add-branch-to-command-prompt.bash 
+  186  git branch
+  187  export PS2=${PS1// /};export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";
+  188  git checkout main
+  189  git checkout saivanov-home-folder-renaming 
+  190  echo 'if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1="$PS2\[\033[1;91m$(__git_ps1)\033[0;0m \n└─>\]";fi' >> ~/.bashrc
+  191  source .bashrc
+  192  source ~/.bashrc
+  193  cd team22/
+  194  source ~/.bashrc
+  195  nano .nanorc
+  196  nano ~/.bashrc
+  197  source ~/.bashrc
+  198  jhgjh
+  199  clear
+  200  echo ${PS1}
+  201  nano ~/.bashrc 
+  202  cd github/team22/
+  203  export PS1="u@w:"
+  204  lslsls
+  205  ls
+  206  export PS1="\u@w:"
+  207  export PS1="\u@\h:"
+  208  export PS1="\u @ \h:"
+  209  export PS1="\u @ \h \w:"
+  210  export PS1="\u @ \h \w \n:"
+  211  export PS1="\u @ \h \w \n└─>"
+  212  ls
+  213  export PS1="\u @ \h \w $(__git_ps1) \n└─>"
+  214  ls
+  215  export PS1="\u @ \h \w$(__git_ps1) \n└─>"
+  216  export PS1="\u @ \h:\w$(__git_ps1) \n└─>"
+  217  export PS1="\u@\h:\w$(__git_ps1) \n└─>"
+  218  export PS1="\u@\h:\w\[\033[0;32m]\]$(__git_ps1)\[\033[0;32m\] \n└─>"
+  219  export PS1="\u@\h:\w\[\033[0;32m]\]$(__git_ps1)\[\033[0m\] \n└─>"
+  220  export PS1="\u@\h:\w\ [\033[0;32m]\]$(__git_ps1)\[\033[0m\] \n└─>"
+  221  export PS1="\u@\h:\w\ \033[0;32m]$(__git_ps1)\[\033[0m\] \n└─>"
+  222  export PS1="\u@\h:\w\ \033[0;32m]$(__git_ps1)\033[0m] \n└─>"
+  223  export PS1="\u@\h:\w\ \033[0;32m]$(__git_ps1)\033[0m \n└─>"
+  224  export PS1="\u@\h:\w\ \033[0;32m$(__git_ps1)\033[0m \n└─>"
+  225  export PS1="\u@\h:\w\ [0;32m$(__git_ps1)\033[0m \n└─>"
+  226  export PS1="\u@\h:\w\ \033[0;32m$(__git_ps1)\033[0m \n└─>"
+  227  export PS1="\u@\h:\w \033[0;32m$(__git_ps1)\033[0m \n└─>"
+  228  export PS1="\u@\h:\w\033[0;32m$(__git_ps1)\033[0m \n└─>"
+  229  ls
+  230  pwd
+  231  export PS1="\u@\h:\w \033[0;91m$(__git_ps1)\033[0m \n└─>"
+  232  export PS1="\u@\h:\w \033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  233  export PS1="\u @ \h:\w \033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  234  export PS1="\033[0,31m\u @ \h:\w \033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  235  export PS1="\033[0,31m \u @ \h:\w \033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  236  export PS1="\033[0,32m\u @ \h:\w \033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  237  export PS1="\[\033[0,32m\u @ \h:\w \033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  238  export PS1="\033[0;32m\u @ \h:\w \033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  239  echo $(__git_ps1)
+  240  export PS1="\033[0;32m\u @ \h:\w\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  241  export PS1="$PS\033[0;32m\u @ \h:\w\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  242  export PS1=$PS"\033[0;32m\u @ \h:\w\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  243  export PS1="$PS1\033[0;32m\u @ \h:\w\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  244  cd team22/
+  245  cd users/
+  246  cd ..
+  247  nano .bashrc
+  248  source .bashrc 
+  249  ls
+  250  cd github/
+  251  cd team22/
+  252  ls
+  253  cd ..
+  254  ls
+  255  nano .bashrc 
+  256  source .bashrc 
+  257  cd github/team22/
+  258  cd team22/
+  259  export PS1="$PS1\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  260  ls
+  261  export PS2=${PS1// /};export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  262  export PS2=${PS1// /};export PS2=${PS2//$/};export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  263  export PS2=${PS1// /};export PS2=${PS2//$/};export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>"D
+  264  export PS2=${PS1// /};export PS3=${PS2//'/$'/};export PS1="$PS3\033[1;91m$(__git_ps1)\033[0;0m \n└─>"
+  265  cd github/team22/
+  266  cd team22/
+  267  echo ${PS1}
+  268  ls
+  269  ls
+  270  echo $PS1
+  271  ls
+  272  cd team22/
+  273  cat ~/.bashrc 
+  274  cd team22/
+  275  ls
+  276  cd ..
+  277  nano .bashrc 
+  278  echo `export PS2=$(sed 's/...$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";` >> .bashrc
+  279  nano .bashrc 
+  280  echo `export PS2=$(sed 's/...$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";`
+  281  echo 'export PS2=$(sed "s/...$//" <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";'
+  282  echo 'export PS2=$(sed "s/...$//" <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";' >> ~/.bashrc 
+  283  nano .bashrc 
+  284  echo `[ -z ${PSBLOCK}] && export PS2=$(sed 's/...$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";` >> .bashrc
+  285  nano .bash
+  286  nano .bashrc 
+  287  echo `[ -z ${PSBLOCK}] && export PS2=$(sed 's/...$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";`
+  288  echo `\[ -z ${PSBLOCK}\] && export PS2=$(sed 's/...$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";`
+  289  echo `\[ -z ${PSBLOCK}\] \&\& export PS2=$(sed 's/...$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";`
+  290  echo `[ -z ${PSBLOCK}] \&\& export PS2=$(sed 's/...$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";`
+  291  echo `if [ -z ${PSBLOCK}];then  export PS2=$(sed 's/...$//' <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";fi`
+  292  echo "[ -z ${PSBLOCK}] && export PS2=$(sed "s/...$//" <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";"
+  293  echo "\[ -z ${PSBLOCK}\] && export PS2=$(sed "s/...$//" <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";"
+  294  echo '[ -z ${PSBLOCK}] && export PS2=$(sed "s/...$//" <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";'
+  295  echo '[ -z ${PSBLOCK}] && export PSBLOCK; export PS2=$(sed "s/...$//" <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";' >> ~/.bashrc 
+  296  cat ~/.bashrc 
+  297  echo '[ -z ${PSBLOCK}] && export PSBLOCK; export PS2=$(sed "s/...$//" <<<"${PS1}");export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";' >> ~/.bashrc 
+  298  cat ~/.bashrc 
+  299  echo '[ -z ${PSBLOCK}] && export PSBLOCK && export PS2=$(sed "s/...$//" <<<"${PS1}") && export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";' >> ~/.bashrc 
+  300  cat .bashrc 
+  301  nano .bashrc 
+  302  echo '[ -z ${PSBLOCK}] && export PSBLOCK && export PS2=$(sed "s/...$//" <<<"${PS1}") && export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";' >> ~/.bashrc 
+  303  echo 'if [ -z ${PSBLOCK}]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";fi' >> ~/.bashrc 
+  304  nano .bashrc 
+  305  echo 'if [ -z ${PSBLOCK}]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";fi' >> ~/.bashrc 
+  306  nano .bashrc 
+  307  echo 'if [ -z ${PSBLOCK}]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1="$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>";fi' >> ~/.bashrc 
+  308  nano .bashrc 
+  309  cd team22/
+  310  ls
+  311  cd ..
+  312  ls
+  313  nano .bashrc 
+  314  source .bashrc 
+  315  less /usr/share/git/git-prompt.sh
+  316  nano .bashrc 
+  317  source .bashrc 
+  318  ls
+  319  cd github/team22/
+  320  git checkout main
+  321  nano .bashrc 
+  322  cd ..
+  323  nano .bashrc 
+  324  echo 'if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1="$PS2\[\033[1;91m\$(__git_ps1)\033[0;0m \n└─>\]";fi' >> ~/.bashrc
+  325  nano .bashrc 
+  326  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ;PS2=$(sed "s/...$//" <<<"${PS1}") ;  PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+  327  nano .bashrc 
+  328  cd team22/
+  329  git checkout main
+  330  cd ..
+  331  nano .bashrc 
+  332  source .bashrc 
+  333  cd github/
+  334  cd team22/
+  335  ls
+  336  cd ..
+  337  nano .bashrc 
+  338  echo "if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed 's/...$//' <<<'${PS1}') ; export PS1='$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>';fi" >> ~/.bashrc
+  339  nano .bashrc 
+  340  echo "if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed 's/...$//' <<<\"${PS1}\") ; export PS1='$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>';fi" >> ~/.bashrc
+  341  nano .bashrc 
+  342  echo "if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<\"${PS1}\") ; export PS1='$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>';fi" >> ~/.bashrc
+  343  nano .bashrc 
+  344  echo 'if [ -z ${PSBLOCK} ]; then export PSBLOCK=1 ; export PS2=$(sed "s/...$//" <<<"${PS1}") ; export PS1=\'$PS2\033[1;91m$(__git_ps1)\033[0;0m \n└─>\';fi' >> ~/.bashrc
+  345  nano .bashrc 
+  346  ls
+  347  clear
+  348  nano .bashrc 
+  349  cat .bashrc 
+  350  cp /etc/bash.bashrc ~/.bashrc 
+  351  cat .bashrc 
+  352  ls
+  353  ды
+  354  ls
+  355  cd github/
+  356  cd team22/
+  357  git checkout -b saivanov-naming-convention
+  358  ls
+  359  team22-naming-convention.txt
+  360  nano team22-naming-convention.txt
+  361  fg
+  362  git status
+  363  git add team22-naming-convention.txt 
+  364  git commit
+  365  git push -u origin saivanov-naming-convention 
+  366  ls
+  367  cat config 
+  368  cd library/
+  369  ls
+  370  git checkout main
+  371  git checkout -b saivanov-home-folder-renaming
+  372  cd ~/github/team22/users/
+  373  git mv sivanov/ saivanov/
+  374  git status -s
+  375  git commit 
+  376  git push -u origin saivanov-home-folder-renaming 
+  377  cd ~
+  378  l
+  379  la
+  380  echo "sed -i '$' .bashrc" > add-branch-to-command-prompt.bash
+  381  cat .bashrc 
+  382  nano .bashrc 
+  383  nano add-branch-to-command-prompt.bash 
+  384  chmod +x add-branch-to-command-prompt.bash 
+  385  ./add-branch-to-command-prompt.bash 
+  386  nano add-branch-to-command-prompt.bash 
+  387  ./add-branch-to-command-prompt.bash 
+  388  nano add-branch-to-command-prompt.bash 
+  389  ./add-branch-to-command-prompt.bash 
+  390  nano add-branch-to-command-prompt.bash 
+  391  ./add-branch-to-command-prompt.bash 
+  392  nano add-branch-to-command-prompt.bash 
+  393  ./add-branch-to-command-prompt.bash 
+  394  nano add-branch-to-command-prompt.bash 
+  395  ./add-branch-to-command-prompt.bash 
+  396  nano add-branch-to-command-prompt.bash 
+  397  ./add-branch-to-command-prompt.bash 
+  398  nano add-branch-to-command-prompt.bash 
+  399  ./add-branch-to-command-prompt.bash 
+  400  nano add-branch-to-command-prompt.bash 
+  401  nano .bashrc 
+  402  cd github/team22/
+  403  nano .bashrc
+  404  ls
+  405  ./get-usdeur.sh 
+  406  nano .bashrc
+  407  nano get-usdeur.sh 
+  408  ./get-usdeur.sh 
+  409  nano get-usdeur.sh 
+  410  ./get-usdeur.sh 
+  411  nano get-usdeur.sh 
+  412  ./get-usdeur.sh 
+  413  nano get-usdeur.sh 
+  414  ./get-usdeur.sh 
+  415  nano get-usdeur.sh 
+  416  ./get-usdeur.sh 
+  417  nano get-usdeur.sh 
+  418  ./get-usdeur.sh 
+  419  nano get-usdeur.sh 
+  420  ./get-usdeur.sh 
+  421  ./write-result.sh 
+  422  git add get-usdeur.sh 
+  423  history | grep curl
+  424  nano get-usdeur.sh 
+  425  ./get-usdeur.sh 
+  426  nano get-usdeur.sh 
+  427  ./get-usdeur.sh 
+  428  nano get-usdeur.sh 
+  429  ./get-usdeur.sh 
+  430  nano get-usdeur.sh 
+  431  ./get-usdeur.sh 
+  432  nano get-usdeur.sh 
+  433  ./get-usdeur.sh 
+  434  ./write-result.sh 

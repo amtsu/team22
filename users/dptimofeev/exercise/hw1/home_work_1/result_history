@@ -283,7 +283,6 @@
   283  git push --set-upstream origin hw1
   284  git status
   285  curl https://finance.rambler.ru/currencies/USD/ 
-  286* 
   287  curl https://finance.rambler.ru/currencies/EUR/ 
   288  curl https://finance.rambler.ru/currencies/EUR/ |grep EUR
   289  curl https://finance.rambler.ru/currencies/EUR/ |grep '1 EUR ='
