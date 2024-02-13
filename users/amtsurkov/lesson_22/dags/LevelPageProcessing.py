@@ -132,7 +132,7 @@ class LevelServiceProcessing:
                 el["category"] = "Новостройки"
                 el["url"] = e["url"]
                 el["image_url"] = e["plan"]
-                el["description"] = json.dumps(e["specialmortgageoffer_set"])
+                el["description"] = json.dumps(e["specialmortgageoffer_set"])[:1000]                
                 el["source_url"] = source_url
                 # el['description'] = json.dumps(e['specialmortgageoffer_set'])[0:100]
                 # el['description'] = "json.dumps(e['specialmortgageoffer_set'])"[0:10]
