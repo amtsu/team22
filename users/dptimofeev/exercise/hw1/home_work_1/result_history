@@ -307,5 +307,3 @@
   308  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort
   309  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort | tail -n1
   310  history > result_history 
-=======
-
