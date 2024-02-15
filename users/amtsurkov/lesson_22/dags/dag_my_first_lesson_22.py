@@ -6,7 +6,8 @@ from airflow.operators.bash import BashOperator
 
 #from users.amtsu.d221204t1902.TrialSportPageProcessing import TrialSportServiceProcessing
 
-with DAG(dag_id="dag_my_first_lesson_22_id", start_date=datetime(2022, 12, 3), schedule="0 0 * * *") as dag:
+#with DAG(dag_id="dag_my_first_lesson_22_id", start_date=datetime(2022, 12, 3), schedule="0 0 * * *") as dag:
+with DAG(dag_id="dag_my_first_lesson_22_id", start_date=datetime(2023, 12, 1), schedule="0 0 * * *") as dag:
 
     task_1 = BashOperator(task_id="task_1", bash_command="echo start_load_data_from_trialsport")
 

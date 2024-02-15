@@ -1,8 +1,19 @@
-# import re
+import re
 import urllib.request
 import urllib
 from bs4 import BeautifulSoup
 import json
+
+
+from multiprocessing import freeze_support
+freeze_support()
+
+import undetected_chromedriver as uc
+from selenium.webdriver.chrome.options import Options
+
+from selenium.webdriver.chrome.webdriver import WebDriver
+   
+
 
 import time
 import openapi_client
@@ -268,21 +279,85 @@ class SamoletServiceProcessing:
     #    ]
 
     def __generate_jsons(self):
+        #for url_base in self.__urls:
+        #    next_url = url_base
+        #    while next_url:
+        #        url = next_url
+        #        next_url = ""
+        #        print(url)
+        #        #sessionid=kjw99ls6bcb4onofwazpcufjmwwa308x
+        #        a_request = urllib.request.Request(url)
+        #        #a_request.add_header("Cookie", "sessionid=kjw99ls6bcb4onofwazpcufjmwwa308x")
+        #        #qrator_jsr=1701810731.684.adBf0Vn0XMh8G9sf-f67qh8uqbbmbh3a42siunqadovrbv0vp-00
+        #        a_request.add_header("Cookie", "qrator_jsr=1701810731.684.adBf0Vn0XMh8G9sf-f67qh8uqbbmbh3a42siunqadovrbv0vp-00; Max-Age=300; Path=/;")
+        #        with urllib.request.urlopen(a_request) as response:
+        #        #with urllib.request.urlopen(url) as response:
+        #            self.__page = response.read()
+        #            jsons = json.loads(self.__page)
+        #            yield (jsons, url)
+        #            next_url = jsons.get("next", "")
+
+
+
+
+        # формируем настройки для хрома
+        options = Options()
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-gpu')
+        options.add_argument('--headless')  # отключает открытие браузера
+        options.add_argument('--window-size=1280x1696')
+        #options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36')
+        options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36') 
+        
+        chrome = uc.Chrome(options=options)
+        #chrome = uc.Chrome()
+        
+    
+        #self.__list_dict = []
+        #for url in self.__urls:
+        #    for object_params in OnePage(url).list_dict():
+        #        self.__list_dict.append(object_params)
         for url_base in self.__urls:
             next_url = url_base
             while next_url:
                 url = next_url
                 next_url = ""
-                # print(url)
-                with urllib.request.urlopen(url) as response:
-                    self.__page = response.read()
+                print(url)
+ 
+                try:
+                    # пробуем получить страницу каталога
+                    chrome.get(url)
+                    # даем время на загрузку страницы
+                    time.sleep(3)
+                    # получаем html страницы
+                    page = chrome.page_source
+                    # варим суп
+                    #lenta_soup = BeautifulSoup(page, "lxml")
+                    
+                    print(page)
+                    self.__page = page 
                     jsons = json.loads(self.__page)
                     yield (jsons, url)
                     next_url = jsons.get("next", "")
 
+
+
+
+
+
+                except AttributeError as e:
+                    print(f"Неудалось получить общий каталог, ошибка - {e}")
+ 
+
+
+
+
+
+
     def process(self):
         self.__urls = [
-            "https://samolet.ru/api_redesign/flats/?ordering=-order_manual,filter_price_package,pk&free=1"
+            #"https://samolet.ru/api_redesign/flats/?ordering=-order_manual,filter_price_package,pk&free=1",
+            "https://samolet.ru/api_redesign/flats/?ordering=-order_manual,filter_price_package,pk&free=1",
         ]
 
         self.__list_dict = []
