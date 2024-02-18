@@ -6,7 +6,7 @@ from airflow.operators.bash import BashOperator
 
 from users.amtsu.d221204t1902.AuchanPageProcessing import AuchanServiceProcessing
 
-with DAG(dag_id="auchan_all_items", start_date=datetime(2022, 12, 15), schedule="0 0 * * *") as dag:
+with DAG(dag_id="auchan_all_items", start_date=datetime(2023, 12, 1), schedule="0 0 * * *") as dag:
 
     start = BashOperator(task_id="start", bash_command="echo start_load_data_from_auchan")
 

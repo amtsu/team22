@@ -1,0 +1,900 @@
+    1  ssh-keygen -t rsa -b 4096 -C "<hogo88@mail.ru>"
+    2  cat .ssh/id_rsa.pub
+    3  mkdir github
+    4  cd github
+    5  git clone git@github.com:amtsu/team22.git
+    6  yes
+    7  git clone git@github.com:amtsu/team22.git
+    8  pwd
+    9  ssh-keygen -t rsa -b 4096 -C ĺ"hogo@mail.ru"
+   10  ssh-keygen -t rsa -b 4096 -C hogo88@mail.ru
+   11  ssh-keygen -t rsa -b 4096 -C "hogo88@mail.ru"
+   12  pwd
+   13  ls -la
+   14  cd github/
+   15  git clone git@github.com:amtsu/team22.git
+   16  cd github/team22
+   17  cd ..
+   18  cd github/team22
+   19  git branch rmarfenkova
+   20  git chekout rmarfenkova
+   21  git checkout rmarfenkova
+   22  cd users
+   23  mkdir rmarfenkova
+   24  cd rmarfenkova
+   25  touch README.md
+   26  pwd > README.md
+   27  cd ../..
+   28  git status
+   29  git diff
+   30  git add users/rmarfenkova/README.md
+   31  git config --global user.email hogo88@mail.ru
+   32  git config --global user.name rmarfenkova
+   33  git commit -m
+   34  git commit -m 'user name'
+   35  pwd
+   36  ды -дф
+   37  ls -la
+   38  pwd
+   39  cd ~/github/teem22
+   40  cd ~/github/team22
+   41  pwd
+   42  git checkout main 
+   43  git pull
+   44  git branch home_work_1_rmarfenkova
+   45  git branch 
+   46  git checkout home_work_1_rmarfenkova
+   47  cd users/rmarfenkova/
+   48  ls -la ~ > al.txt
+   49  ls -la al.txt
+   50  uname > a2.txt
+   51  git status
+   52  ls
+   53  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+   54  pwd
+   55  ls
+   56  pwd
+   57  git commit -m
+   58  git diff
+   59  git status
+   60  git diff
+   61  git log
+   62  git branch
+   63  cd ..
+   64  git branch
+   65  git checkout rmarfenkova
+   66  git checkout home_work_1_rmarfenkova
+   67  ls -la
+   68  cd rmarfenkova/
+   69  pwd
+   70  cd /rmarfenkova/
+   71  cd ~ rmarfenkova/
+   72  cd ~ /rmarfenkova/
+   73  cd~ /github/team22/users/rmarfenkova/
+   74  cd users/
+   75  cd rmarfenkova/
+   76  pwd
+   77  pwd
+   78  git status
+   79  cd users/
+   80  cd rmarfenkova/
+   81  git status
+   82  git add a2.txt
+   83  git status
+   84  зцв
+   85  pwd
+   86  cd users/rmarfenkova/
+   87  mkdir exercise
+   88  ls
+   89  cd users/rmarfenkova/exercise/
+   90  pwd
+   91  cd rmarfenkova/exercise
+   92  cd exercise/
+   93  mkdir hw1
+   94  ls
+   95  rm a2.txt
+   96  cd ..
+   97  rm a2.txt
+   98  ls
+   99  rm al.txt
+  100  ls
+  101  cd rmarfenkova/exercise/hw1
+  102  cd rmarfenkova/exercise/hw1/
+  103  cd exercise/hw1/
+  104  git rename branch -m home_work_1_rmarfenkova rmarfenkova
+  105  git --help
+  106  git rename --help
+  107  git branch -m home_work_1_rmarfenkova rmarfenkova
+  108  pwd
+  109  ls -la
+  110  git status
+  111  git branch
+  112  cd rmarfenkova/
+  113  ls
+  114  cd users/rmarfenkova/
+  115  ls
+  116  ls -la
+  117  touch README
+  118  ls
+  119  rm README
+  120  ls
+  121  touch README.md
+  122  ls
+  123  pwd > README.md
+  124  ls
+  125  ls -la
+  126  cd ../..
+  127  git status
+  128  vi README.md
+  129  git status
+  130  git diff
+  131  git add users/rmarfenkova/README.md
+  132  ls
+  133  git config --global user.email hogo88@mail.ru
+  134  git config --global user.name rmarfenkova
+  135  git commit -m 'mural info'
+  136  git branch
+  137  git branch -m home_work_1_rmarfenkova
+  138  git status
+  139  git branch
+  140  git push --set-upstream origin home_work_1_rmarfenkova
+  141  pwd
+  142  pwd
+  143  ls
+  144  cat README.md
+  145  git status
+  146  pwd
+  147  git checkout main
+  148  git pull
+  149  clear
+  150  git checkout home_work_1_rmarfenkova
+  151  git clone https://github.com/amtsu/team22.git
+  152  ls
+  153  cd user/rmarfenkova/
+  154  cd rmarfenkova/
+  155  ls
+  156  cd ../..
+  157  cd github/
+  158  cd team22
+  159  ccd users/
+  160  cd users
+  161  cd users/
+  162  cd rmarfenkova/
+  163  ls
+  164  cat README.md
+  165  ls
+  166  cat README.md
+  167  vi README.md
+  168  git status
+  169  git diff
+  170  cd ..
+  171  cd team22/
+  172  pwd
+  173  git checkout main
+  174  git pull
+  175  git branch hw1_rmarfenkova
+  176  git checkout hw1_rmarfenkova
+  177  git branch
+  178  cd users/rmarfenkova/
+  179  git status
+  180  git add README.md
+  181  la -la README.mb > rm.txt
+  182  mv README.mb > rmarfenkova
+  183  cd.
+  184  cd .
+  185  cd ..
+  186  cd .
+  187  mv README.mb > rmarfenkova
+  188  ls
+  189  cd team22/
+  190  cd rmarfenkova/
+  191  ls
+  192  touch README.mb
+  193  ls
+  194  vi README.mb
+  195  ls
+  196  cat README.mb
+  197  git status
+  198  git add README.mb
+  199  cd README.mb
+  200  ls
+  201  ls -la
+  202  cat README.mb
+  203  ды
+  204  ls
+  205  cat rmarfenkoma
+  206  cat rmarfenkova
+  207  ls -la
+  208  rm rmarfenkova
+  209  ls -la
+  210  cat rm.txt
+  211  rm rm.txt
+  212  ls -ls
+  213  git branch -a
+  214  git pull
+  215  git status
+  216  git add rmarfenkova/README.mb
+  217  cd .
+  218  cd ..
+  219  ls -la
+  220  git add rmarfenkova/README.mb
+  221  git status
+  222  git commit -m 'about me'
+  223  git diff
+  224  git status
+  225  git push
+  226  git push --set-upstream origin hw1_rmarfenkova
+  227  cd rmarfenkova/
+  228  ls
+  229  clear
+  230  cd ..
+  231  cd .
+  232  cd ..
+  233  ls -la
+  234  cd library/
+  235  ls
+  236  cd reports/
+  237  ls -la
+  238  cd ..
+  239  cd .
+  240  cd ..
+  241  cd users/rmarfenkova/
+  242  cd .
+  243  cd ..
+  244  git branch
+  245  git branch -m rmarfenkova rmarfenkovahw2
+  246  git branch -a
+  247  git checkout rmarfenkovahw2
+  248  cd rmarfenkova/
+  249  ls
+  250  git checkout main
+  251  git checkout rmarfenkovahw2
+  252  ls
+  253  cd exercise/
+  254  mkdir hw1
+  255  ls
+  256  pwd
+  257  ls
+  258  cd users/rmarfenkova/
+  259  cd exercise/hw1/
+  260  git checkout main
+  261  git pull
+  262  git branch
+  263  git checkout rmarfenkovahw2
+  264  pwd
+  265  ls
+  266  cd /
+  267  cd /home/
+  268  ls -la
+  269  git diff
+  270  cd exercise/hw1/
+  271  cd users/rmarfenkova/
+  272  pwd
+  273  ls
+  274  cd rmarfenkova
+  275  cd rmarfenkova/
+  276  cd github/
+  277  cd -
+  278  cd home/
+  279  cd users/
+  280  ls -la
+  281  ls
+  282  cd jupyter-re-gi-na
+  283  cd jupyter-re-gi-na/
+  284  cd ~
+  285  pwd
+  286  ~
+  287  cd ~/github/
+  288  cd team22/users/rmarfenkova/
+  289  cd exercise/hw1/
+  290  pwd
+  291  clear
+  292  pwd
+  293  ls
+  294  /
+  295  mkdir home_work_1
+  296  cd home_work_1/
+  297  touch file_1
+  298  mkdir work_dir
+  299  ды
+  300  ls
+  301  cd github/team22/
+  302  ls
+  303  cd users/
+  304  ls
+  305  cd rmarfenkova/
+  306  ls
+  307  cd exercise
+  308  ls
+  309  cd hw1/
+  310  ls -la
+  311  cd home_work_1/
+  312  ls
+  313  cp file_1 work_dir/file_1_copy
+  314  ls
+  315  ls -la
+  316  cd work_dir/
+  317  ls
+  318  cp -r work_dir home_work_1/work_dir_new
+  319  cd .
+  320  cd ..
+  321  cp -r work_dir home_work_1/work_dir_new
+  322  cd ..
+  323  cp -r work_dir 
+  324  cd home_work_1/
+  325  cp -r work_dir/ home_work_1/work_dir_new
+  326  ls
+  327  cd work_dir/
+  328  cp -r work_dir home_work_1/work_dir_new
+  329  cp -r work_dir/ home_work_1/work_dir_new
+  330  cd ..
+  331  cp -r work_dir github/team22/users/rmarfenkova/hw1/home_work_1/work_dir_new
+  332  cp -r work_dir /github/team22/users/rmarfenkova/hw1/home_work_1/work_dir_new
+  333  cp -r work_dir/home_work_1/work_dir_new
+  334  cp -r work_dir /home_work_1/work_dir_new
+  335  cp -r work_dir/work_dir_new
+  336  cp --help
+  337  ls -la
+  338  cp -r work_dir /home_work_1/work_dir_new/
+  339  cp -r work_dir/work_dir_new
+  340  cp -r work_dir/home_work_1/work_dir_new
+  341  cp -r work_dir/home_work_1/ work_dir_new
+  342  cd ..
+  343  cd ../../
+  344  cp -r work_dir/work_dir_new
+  345  cd ../../
+  346  cp -r work_dir/work_dir_new
+  347  cd home_work_1/
+  348  cd users/
+  349  cd rmarfenkova/home_work
+  350  cd rmarfenkova/home_work_1
+  351  cd rmarfenkova/home_work_1/
+  352  ls
+  353  cd rmarfenkova/
+  354  cd home_work_1
+  355  cd home_work_1/
+  356  ls
+  357  cd exercise/
+  358  ls
+  359  cd hw1/
+  360  ls
+  361  cd home_work_1/
+  362  cp -r work_dir work_dir_new
+  363  ls
+  364  cd work_dir/
+  365  ls
+  366  mw file_1_copy file_1_ne_name
+  367  ls
+  368  rm file_1_ne_name
+  369  rm -r work_dir_new
+  370  cd ..
+  371  rm -r work_dir_new
+  372  git status
+  373  git diff
+  374  git diff rmarfenkova
+  375  git diff rmarfenkova/
+  376  git diff hw1
+  377  history
+  378  git diff
+  379  cd
+  380  git diff
+  381  ls
+  382  cd rmarfenkova/
+  383  cd exercise/
+  384  ls
+  385  cd hw1/
+  386  touch file1
+  387  vi file1
+  388  cat file1
+  389  touch file2
+  390  vi file2
+  391  cat file2
+  392  head file1
+  393  tail -n2 file1
+  394  vi file1
+  395  head -n2 file1
+  396  tail -n2 file1
+  397  vi file1
+  398  tail -n2 file1
+  399  find /home/ -name "*fil*"
+  400  cd ..
+  401  du rmarfenkova
+  402  du rmarfenkova/
+  403  du
+  404  find /rmarfenkova/ -name "*GET*"
+  405  find /rmarfenkova -name "*GET*"
+  406  find rmarfenkova -name "*GET*"
+  407  find -name "*GET*"
+  408  ~ find -name "*GET*"
+  409  cd hw1/
+  410  ls
+  411  cd exercise/hw1/
+  412  find -name "*GET*"
+  413  greep 'GET'
+  414  grep 'GET'
+  415  grep -r 'GET' rmarfenkova/
+  416  grep -r 'GET' rmarfenkova
+  417  grep -r 'GET' hw1/
+  418  grep 'GET' file2
+  419  ls -la file2 > file3
+  420  cat file3
+  421  head file3
+  422  ls
+  423  rm file3
+  424  ls -ls
+  425  ls -la
+  426  grep 'GET' file2 | file3
+  427  grep 'GET' file2 > file3
+  428  ls -la && rm test123 && pwd
+  429  ls -la; rm test123; pwd
+  430  ls -la file3
+  431  cat file3
+  432  cd github/team22/
+  433  pwd
+  434  git checkout main
+  435  git pull
+  436  git branch
+  437  git branch rmarfenkova_hw1ch2
+  438  git checkout rmarfenkova_hw1ch2
+  439  git branch
+  440  ls
+  441  cd users/rmarfenkova/
+  442  git status
+  443  pwd
+  444  cd exercise/hw1/
+  445  pwd
+  446  ls
+  447  cd /
+  448  cd /home
+  449  ls
+  450  du
+  451  la -la
+  452  du
+  453  history
+  454  git status hw1
+  455  ls
+  456  ls
+  457  rm -r home_work_1/
+  458  ls
+  459  ls 
+  460  rm file1:  file2;  file3
+  461  rm file1;  file2;  file3
+  462  ls
+  463  rm file3
+  464  ls
+  465  cd ../..
+  466  cd ..
+  467  cd..
+  468  cd ../ ..
+  469  cd ..
+  470  git checkout main
+  471  git pull
+  472  git branch
+  473  git checkout rmarfenkova_hw1ch2
+  474  ls
+  475  cd users/
+  476  ls
+  477  cd rmarfenkova/
+  478  ls
+  479  cd exercise/
+  480  ls
+  481  cd hw1/
+  482  ls
+  483  pwd
+  484  ls
+  485  cd /
+  486  cd home/
+  487  ls -la
+  488  ls
+  489  cd jupyter-re-gi-na/github/team22/
+  490  ls
+  491  cd users/rmarfenkova/hw1/
+  492  cd users/rmarfenkova/
+  493  ls
+  494  cd exercise/
+  495  ls
+  496  cd exercise/
+  497  la
+  498  cd hw1/
+  499  mkdir home_work_1
+  500  cd home_work_1/
+  501  touch file_1
+  502  mkdir work_dir
+  503  cp file_1 work_dir/ file_1_copy
+  504  cp file_1 work_dir file_1_copy
+  505  cp file_1 work_dir/file_1_copy
+  506  ls
+  507  cp -r work_dir/work_dir_new
+  508  cp -r work_dir work_dir_new
+  509  ls
+  510  cd work_dir/
+  511  ls
+  512  mv file_1_copy file_1_new_name
+  513  ls
+  514  rm file_1_new_name
+  515  rm -r work_dir_new
+  516  git diff
+  517  git status
+  518  cd ../..
+  519  du
+  520  cd ..
+  521  cd..
+  522  cd ../..
+  523  cd rmarfenkova/
+  524  du
+  525  du | touch result_du
+  526  history
+  527  history |touch result_history
+  528  git status
+  529  git diff
+  530  ~ls
+  531  ls 
+  532  git add result_du
+  533  git status
+  534  ls
+  535  git add result_history
+  536  ls
+  537  cd exercise/
+  538  ls
+  539  cd hw1/
+  540  ls
+  541  cd home_work_1/
+  542  ls
+  543  git add file_1
+  544  cd work_dir
+  545  ls
+  546  ls -la
+  547  cd work_dir_new/
+  548  ls
+  549  cd ..
+  550  ls
+  551  cd work_dir_new/
+  552  ls
+  553  git add file_1_copy
+  554  git status
+  555  git commit -m 'first two blocks of task 1'
+  556  git push
+  557  git push --set-upstream origin rmarfenkova_hw1ch2
+  558  pwd
+  559  ls
+  560  cd github/
+  561  ls
+  562  ls -la
+  563  cd users/
+  564  ls
+  565  cd rmarfenkova/
+  566  git status 
+  567  ls
+  568  git status 
+  569  git diff
+  570  ls
+  571  ls -la
+  572  cd github/
+  573  ls
+  574  cd team22/
+  575  ls
+  576  cd users/
+  577  ды
+  578  ls
+  579  cd rmarfenkova/
+  580  ls
+  581  cd exercise/
+  582  cd hw1/
+  583  ls
+  584  cd hw1
+  585  ls
+  586  git checkout main
+  587  cd .. / ..
+  588  cd ../..
+  589  git pull
+  590  git checkout
+  591  git branch
+  592  git checkout rmarfenkovahw2
+  593  ls
+  594  cd users/rmarfenkova/
+  595  ls
+  596  cd exercise/hw1/
+  597  touch file1
+  598  vi file1
+  599  touch file2
+  600  vi file2
+  601  git status
+  602  git diff
+  603  git add file1; file2
+  604  git add file1  file2
+  605  git status
+  606  git commit -m
+  607  git commit -m 'file editing'
+  608  git push
+  609  git push --set-upstream origin rmarfenkovahw2
+  610  du | touch result_du
+  611  history | touch result_history
+  612  du
+  613  du | touch result_du
+  614  history
+  615  du > result_du
+  616  du -h > result_du
+  617  history > result_history
+  618  git add result_du result_history
+  619  git status
+  620  git commit -m  'du and history'
+  621  git push
+  622  git branch
+  623  git checkout home_work_1_rmarfenkova
+  624  git branch -d home_work_1_rmarfenkova
+  625  ls -la
+  626  git branch
+  627  git checkout rmarfenkovahw2
+  628  обычно happy pass примерно такой:
+  629  git checkout main - переключились на ветку main
+  630  git pull --all --prune - забираем изменения из всех веток (--all)  и чистим локальный список веток от  удаленных  (--prune)
+  631  git branch initials-surname-description-of-the-changes-in-this-branch - создаем ветку с подходящим названием
+  632  git checkout initials-surname-description-of-the-changes-in-this-branch - переключаемся на созданную ветку
+  633  git add some_file - вносим изменения в какой-то файл (some_file), вносим его в список на фиксацию изменений
+  634  git add another_file - вносим изменения в какой-то ещё файл (another_file), вносим его в список на фиксацию изменений. таких файлов может быть много
+  635  git status -s - перед фиксацией проверяем состояние ветки, вдруг какие-то файлы забыли добавить, или какие-то добавили ненужные
+  636  git commit -m "changes was made" -  выполняем фиксацию
+  637  git push --set-upstream origin initials-surname-description-of-the-changes-in-this-branch -  вот так заливаем первый раз локальную ветку на сервер, одновременно устанавливаем двустороннюю связь между этими ветками
+  638  git add some_file_with_changes -  внесли изменения ещё в какой-то файл (some_file_with_changes)
+  639  git add some_file - обновили в том числе some_file - какой-то файл из уже зафиксированных .
+  640  git status -s - перед фиксацией проверяем состояние ветки, вдруг какие-то файлы забыли добавить, или какие-то добавили ненужные. -s - ключ включения сокращенного формата вывода. команда git status без этого ключа выводит расширенную информацию с различными подсказками
+  641  git commit -m "another changes was made" - опять фиксируем изменения 
+  642  git push - все последующие разы отправляем обновленное состояние на сервер такой короткой командой
+  643  #эти три последние шага можно повторять столько раз, сколько надо
+  644  #по идее, после того как проблема решена, создается pull request и далее либо принимаются изменения, либо просят что-то поправить
+  645  #если нужно что-то поправить, то опять 
+  646  git add changes_after_comments_on_pull_request
+  647  git commit -m "fixing something"
+  648  git push
+  649  #и потом pr принимается и ветку можно удалить и снова сначала то же самое над другой задачей
+  650  clear
+  651  ls -la
+  652  git status
+  653  git checkout main
+  654  git pull --all --prune
+  655  git branch
+  656  git checkout rmarfenkovahw2
+  657  cat file1
+  658  head -n2 file1
+  659  tail -n2 file1
+  660  find /home/ -name "*fil*"
+  661  cd ../..
+  662  du -h ./*
+  663  cd hw1/
+  664  ls
+  665  cd exercise/hw1/
+  666  grep 'GET' hw1
+  667  grep 'GET' hw1/
+  668  grep 'GET' /hw1/
+  669  grep 'GET' file1 file2
+  670  grep 'GET' file1 file2 | file3
+  671  grep 'GET' file1 file2 > file3
+  672  ls
+  673  cat file3
+  674  git status
+  675  rm file3
+  676  grep 'GET' file1 file2
+  677  grep -rni 'GET' hw1
+  678  grep -rni 'GET' /hw1
+  679  ls -las
+  680  grep -rni 'GET' hw1
+  681  grep -rni 'GET' /github/team22/users/rmarfenkova/exercise/hw1
+  682  grep -rni 'GET'
+  683  grep -r 'GET'
+  684  grep 'GET'
+  685  grep -ri 'GET'/hw1
+  686  ls -la
+  687  grep -ri 'GET' hw1
+  688  cd ../..
+  689  grep -ri 'GET' /rmarfenkova
+  690  grep -ri 'GET' rmarfenkova
+  691  cd exercise/hw1
+  692  grep -rni 'GET' rmarfenkova
+  693  grep -rni 'GET' /rmarfenkova/exercise/hw1
+  694  grep 'GET' file1 file2
+  695  grep -rni 'GET' . | awk '{print $7}' > uri.txt
+  696  rm uri.txt
+  697  grep 'GET' file1 file2 . | awk '{print $7}' > uri.txt
+  698  grep 'GET' . | awk '{print $7}' > uri.txt
+  699  ls -la
+  700  cat uri.txt
+  701  grep 'GET' -r . | awk '{print $7}' > uri.txt
+  702  cat uri.txt
+  703  grep 'GET' -rn . | awk '{print $7}' > uri.txt
+  704  grep 'GET' -rni . | awk '{print $7}' > uri.txt
+  705  pwd
+  706  ls -la
+  707  grep 'GET' -rni file1 file2 | awk '{print $7}' > uri.txt
+  708  ls -la && rm test123 && pwd
+  709  ls -la
+  710  ls -la; rm test123; pwd
+  711  sort uri.txt
+  712  sort -k uri.txt
+  713  sort -k 1n uri.txt
+  714  wc -l uri.txt
+  715  du
+  716  history
+  717  git status 
+  718  git add uri.txt
+  719  git status 
+  720  git commit -m 'parts of uri'
+  721  git push
+  722  env A
+  723  env | gpep A
+  724  env | grep A
+  725  curl https://finance.rambler.ru/currities/ | grep USD RUB
+  726  curl https://finance.rambler.ru/currities/ | grep USD
+  727  curl https://finance.rambler.ru/currities/USD | grep USD
+  728  curl https://finance.rambler.ru/currities/USD/RUB | grep USD RUB
+  729  curl https://finance.rambler.ru/currities/USD/RUB/ | grep USD RUB
+  730  curl https://finance.rambler.ru/currency/USD/RUB/
+  731  curl https://finance.rambler.ru/currency/USD/RUB/ | grep USD RUB
+  732  curl https://finance.rambler.ru/currency/USD/ | grep USD
+  733  curl https://finance.rambler.ru/currities/
+  734  curl https://finance.rambler.ru/currities/EUR/USD/ -o curs
+  735  rm curs
+  736  curl https://finance.rambler.ru/currities/ -o curs
+  737  rm curs
+  738  curl https://finance.rambler.ru/currities/USD/ -o curs
+  739  grep '1 USD =' cur_usd | awk -F' ' '{print $4}'
+  740  grep 'USD' curs
+  741  rm curs
+  742  curl https://finance.rambler.ru/currities/USD/ -o curs.html
+  743  grep -rni "USD" test.html
+  744  curl https://finance.rambler.ru/currencies/USD/
+  745  curl https://finance.rambler.ru/currencies/USD/ | grep USD
+  746  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD ='
+  747  curl https://finance.rambler.ru/currencies/USD/ -o cur_usd; grep '1 USD =' cur_usd
+  748  grep '1 USD =' cur_usd | awk -F' ' '{print $4}'
+  749  curl https://finance.rambler.ru/currencies/USD/ -o cur_usd; grep '1 USD =' cur_usd | awk -F' ' '{print $4}'
+  750  curl https://finance.rambler.ru/currencies/EUR/ -o cur_eur
+  751  curl https://finance.rambler.ru/currencies/EUR/ | grep EUR
+  752  curl https://finance.rambler.ru/currencies/EUR/ -o cur_usd; grep '1 EUR ='
+  753  curl https://finance.rambler.ru/currencies/EUR/ -o cur_usd; grep '1 USD =' cur_eur | awk -F' ' '{print $4}'
+  754  curl https://finance.rambler.ru/currencies/EUR/ -o cur_usd; grep '1 EUR =' cur_eur | awk -F' ' '{print $4}'
+  755  du
+  756  rm curs.html
+  757  du > result_du
+  758  history > result_history
+  759  git status
+  760  git add cur_eur cur_usd
+  761  git status
+  762  git commit -m 'rate'
+  763  git push
+  764  git add result_du result_history
+  765  git status
+  766  vi file1
+  767  git status
+  768  git add file1
+  769  git status
+  770  git commit -m 'du history_change file1'
+  771  git push
+  772  clear
+  773  git branch
+  774  git branch rmarfenkova_hw2_3
+  775  git branch
+  776  git checkout rmarfenkova_hw2_3
+  777  git branch
+  778  git branch -D rmarfenkova_hw2_3
+  779  cd ../..
+  780  cd ..
+  781  git branch -D rmarfenkova_hw2_3
+  782  git checkout main
+  783  pwd
+  784  ls
+  785  cd /github/team22/
+  786  git branch
+  787  git branch -b rmarfenkova_hw2-3
+  788  git branch rmarfenkova_hw2-3
+  789  git checkout rmarfenkova_hw2-3
+  790  mkdir hw2
+  791  cd hw2
+  792  touch price_f.html
+  793  ls
+  794  vi price_f.html
+  795  git commit -m 'Added a file with the price of a refrigerator'
+  796  ls
+  797  cd github/
+  798  ls
+  799  cd team22/
+  800  ls
+  801  cd users/rmarfenkova/exercise/hw2/
+  802  ls
+  803  git status
+  804  git add price_f.html
+  805  git status
+  806  git commit -m 'Added a file with the price of a refrigerator'
+  807  git checkout main
+  808  cd ../..
+  809  git checkout main
+  810  git branch
+  811  git branch rmarfenkova_hw2-3-feature-1
+  812  git checkout rmarfenkova_hw2-3-feature-1
+  813  cd users/
+  814  ls
+  815  cd rmarfenkova/
+  816  ls
+  817  cd exercise/hw2/
+  818  cd exercise/
+  819  ls
+  820  mkdir hw2
+  821  cd hw2
+  822  touch price_h.html
+  823  vi touch price_h.html
+  824  rm touch
+  825  vi touch price_h.html
+  826  rm touch
+  827  rm price_h.html
+  828  touch price_h.html
+  829  vi touch price_h.html
+  830  git log
+  831  git log hw2
+  832  rm price_h.html touch
+  833  touch price_h.html
+  834  vi price_h.html
+  835  git log
+  836  git add price_h.html
+  837  git log
+  838  git commit -m 'Added a file with the price of a refrigerator'
+  839  git log
+  840  git checkout rmarfenkova_hw2-3
+  841  git log
+  842  git show
+  843  git checkout rmarfenkova_hw2-3-feature-1
+  844  git show
+  845  git checkout rmarfenkova_hw2-3
+  846  touch res.txt
+  847  vi res.txt
+  848  git commit -m 'added res.txt file'
+  849  git ststus
+  850  git status
+  851  git add res.txt
+  852  git status
+  853  git commit -m 'added res.txt file'
+  854  git reset --soft HEAD^
+  855  git diff
+  856  git status
+  857  git reset --soft HEAD
+  858  git status
+  859  vi price_f.html
+  860  git status
+  861  git diff
+  862  git checkout main
+  863  cd ../..
+  864  cd../..
+  865  cd exercise/hw2/
+  866  git checkout price_f
+  867  git checkout price_f.html
+  868  git diff
+  869  git status
+  870  history
+  871  cd github/team22/
+  872  cd /github/team22/
+  873  cd ../..
+  874  cd../..
+  875  cd ..
+  876  cd..
+  877  cd ..
+  878  git checkout main
+  879  git pull
+  880  git checkout rmarfenkova_hw2-3
+  881  cd users/rmarfenkova/exercise/hw2/
+  882  git merge rmarfenkova_hw2-3-feature-1
+  883  git status
+  884  git commit -m 'added res.txt.file'
+  885  git status
+  886  git merge rmarfenkova_hw2-3-feature-1
+  887  git status
+  888  git branch
+  889  git status
+  890  git push
+  891  git push --set-upstream origin rmarfenkova_hw2-3
+  892  vi price-f.html
+  893  vi price_f.html
+  894  git add price_f.html
+  895  git status
+  896  git commit -m 'change'
+  897  git push
+  898  du
+  899  du > result_du
+  900  history > result_history
