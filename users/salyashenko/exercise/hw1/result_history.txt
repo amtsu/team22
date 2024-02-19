@@ -1,0 +1,198 @@
+    1  ssh-keygen-t rsa-b 4096-C I"urbansoccer@mai.ru"
+    2  ssh-keygen-t rsa-b 4096-C "urbansoccer@mai.ru"
+    3  ssh -keygen -t rsa -b 4096 -C "urbansoccer@mai.ru"
+    4  cat .ssh/id_rsa.pub
+    5  cat~/.ssh/id_rsa.pub
+    6  ssh-keygen -t rsa -b 4096 -C "urbansoccer@mai.ru"
+    7  cat~/.ssd/id_rsa/pub
+    8  cat .ssd/id_rsa.pub
+    9  cat .ssh/id_rsa.pub
+   10  cat . ssh/id_rsa.pub
+   11  /home/jupiter-sergey-1990/ cat .ssh/id_rsa.pub
+   12  /home/jupyter-sergey-1990/
+   13  /home/jupiter-sergey-1990/ cat .ssh/id_rsa.pub
+   14  sd /home/jupiter-sergey-1990/ .ssh/id_rsa.pub
+   15  sd/home/jupiter-sergey-1990/ .ssh/id_rsa.pub
+   16  cat . ssh/id_rsa.pub
+   17  ssh-keygen -t rsa -b 4096 -c "urbansoccer@mail.ru"
+   18  ssh-keygen -t rsa -b 4096 -C "urbansoccer@mail.ru"
+   19  cat .ssh/id_rsa.pub
+   20  cat . ssh/id_rsa.pub
+   21  mkdir github
+   22  sd github
+   23  cd github
+   24  git clone git@github.com:amtsu/team22.git
+   25  ls-la
+   26  pwd
+   27  cd team22/
+   28  pwd
+   29  ls-la
+   30  ls
+   31  ls-la
+   32  cd
+   33  ls-la
+   34  cd github/
+   35  ls
+   36  ls-la
+   37  pwd
+   38  ls
+   39  cd team/
+   40  cd team22/
+   41  ls
+   42  ls-la
+   43  ls-la team22/
+   44  cd team22/
+   45  pwd
+   46  ls-la 
+   47  ls /home/
+   48  ls-la
+   49  ls -la
+   50  git config --global users.email
+   51  git config --global users.name "sergey lyashenko"
+   52  git config --global users.name
+   53  sd githab
+   54  cd githab
+   55  pwd
+   56  cd github
+   57  ls -la
+   58  cd team
+   59  cd team22
+   60  ls -la
+   61  ls home/
+   62  ls /home/
+   63  git config --global user.email
+   64  git config --global user.email "urbansoccer@mail.ru"
+   65  git config --global user.name "Sergey Lyashenko"
+   66  git config --global user.name 
+   67  git config --global user.email 
+   68  git clon https://github.com/amtsu/team22 
+   69  git clon git@github.com:amtsu/team22.git
+   70  mkdir github
+   71  cd github/
+   72  git clon git@github.com:amtsu/team22.git
+   73  git clone git@github.com:amtsu/team22.git
+   74  ls -la
+   75  cd team22/
+   76  ls -la
+   77  cd users/
+   78  mkdir Lyashenko Sergey
+   79  cd Lyashenko Sergey
+   80  cd Lyashenko Sergey/
+   81  cd LyashenkoSergey/
+   82  mkdir LyashenkoSergey
+   83  cd LyashenkoSergey/
+   84  vim readme
+   85  cd ..
+   86  git branch
+   87  git branch -a
+   88  git branch lecture2LyashenkoS
+   89  git chekout
+   90  git chekout lecture2Lyashenko
+   91  git checkout lecture2Lyashenko
+   92  git checkout lecture2LyashenkoS
+   93  git branch -a
+   94  git pull
+   95  git status
+   96  git add LyashenkoSergey/readme
+   97  git status
+   98  git commit -m "dobavil opisanie"
+   99  git push
+  100  git push --set-upstream origin lecture2LyashenkoS
+  101  pwd
+  102  cd team22/
+  103  cd team22
+  104  cd team22/
+  105  ls -la
+  106  cd team22/
+  107  ls -La user/
+  108  mv /github/team22/
+  109  pwd
+  110  ls -la
+  111  cd home/github/team22/users/
+  112  cd home/github/team22/
+  113  cd github/team22/
+  114  cd github/team22/users/
+  115  cd ..
+  116  git branch
+  117  git branch -a
+  118  git branch
+  119  git branch -a
+  120  git branch lecture2LyashenkoS
+  121  git branch lecture2LyashenkoS/
+  122  git branch -a
+  123  git branch
+  124  git branch lecture2LyashenkoS/
+  125  git branch lecture2LyashenkoS
+  126  git branch -a
+  127  git checkout main
+  128  git branch -a
+  129  git checkout lecture2LyashenkoS
+  130  git branch -a
+  131  pwd
+  132  git mv file lecture2LyashenkoS from file LyashenkoSA to
+  133  git mv README.md README
+  134  git status
+  135  git mv lecture2LyashenkoS.md lyaschenkoSA-hw1-puch-home-directory-to-main
+  136  git mv lecture2LyashenkoSreadme.md lyaschenkoSA-hw1-puch-home-directory-to-main readme
+  137  git mv lecture2LyashenkoS readme.md lyaschenkoSA-hw1-puch-home-directory-to-main readme
+  138  git branch -m old-lecture2Lyashenko- new-lyashenkosa-hw1-push-home-directory-to-main
+  139  git branch -m new-name
+  140  git status
+  141  git branch -m new-name
+  142  git branch -m lyashenkosa-hw1-puch-home-directory-to-main
+  143  git status
+  144  git branch
+  145  git status
+  146  git commit -m "changed name branch"
+  147  git diff
+  148  git branch
+  149  git log
+  150  git push
+  151  git status
+  152  git push
+  153  git branch
+  154  git push
+  155  git push origin HEAD:lyashenkosa-hw1-puch-home-directory-to-main
+  156  pdw
+  157  cd
+  158  ls -la
+  159  cd /team22/
+  160  git mv file_from file_to
+  161  cd users/
+  162  git chekout
+  163  pwd
+  164  cd /team22/
+  165  cd /github/team/users/ 
+  166  ls -la
+  167  ls
+  168  ls -la
+  169  sd github/
+  170  git mv README.md README
+  171  git mv file_from file_to
+  172  cd /github/team/users/lecture2LyashenkoS/ 
+  173  git mv file_from file_to
+  174  git mv lecture2LyashenkoS_from SALyashenko-hw1-push-home-directory-to-main_to
+  175  git mv lecture2LyashenkoS_from LyashenkoSA-hw1-push-home-directory-to-main_to
+  176  mv README.md README
+  177  git chekout lecture2LyashenkoS
+  178  git checkout lecture2LyashenkoS
+  179  pwd
+  180  cd /github/team/users/lecture2LyashenkoS/ 
+  181  cd /github/team/users
+  182  cd /github/team/users/
+  183  git branch -a
+  184  pwd
+  185  git commit '1 zadanie'
+  186  pwd
+  187  ls
+  188  ls =la
+  189  du > resual_du
+  190  ls
+  191  cat result_du
+  192  cat resual_du
+  193  cd ../..
+  194  du
+  195  du > exercise/hw1/result_du
+  196  ls
+  197  ls exercise/hw1
+  198  history > exercise/hw1/result_history.txt

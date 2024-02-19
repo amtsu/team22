@@ -94,8 +94,12 @@ class LevelServiceProcessing:
     #    ]
 
     def __generate_jsons(self):
+        #i = 0
         for url_base in self.__urls:
             next_url = url_base
+            #i += 1
+            #if i > 2:
+            #    break
             while next_url:
                 url = next_url
                 next_url = ""
@@ -128,7 +132,7 @@ class LevelServiceProcessing:
                 el["category"] = "Новостройки"
                 el["url"] = e["url"]
                 el["image_url"] = e["plan"]
-                el["description"] = json.dumps(e["specialmortgageoffer_set"])
+                el["description"] = json.dumps(e["specialmortgageoffer_set"])[:1000]                
                 el["source_url"] = source_url
                 # el['description'] = json.dumps(e['specialmortgageoffer_set'])[0:100]
                 # el['description'] = "json.dumps(e['specialmortgageoffer_set'])"[0:10]
@@ -139,8 +143,12 @@ class LevelServiceProcessing:
                     el["apartment_completion_quarter"] = int(e["completion_quarter"])
                 else:
                     print("not have completion_quarter in =", source_url)
-                #    el["apartment_completion_quarter"] = None
-                el["apartment_completion_year"] = int(e["completion_year"])
+                    el["apartment_completion_quarter"] = None
+                if e.get("completion_year"):
+                    el["apartment_completion_year"] = int(e["completion_year"])
+                else:
+                    print("not have completion_year in =", source_url)   
+                    el["apartment_completion_year"] = None
                 el["apartment_floor"] = int(e["floor"])
                 if e.get("floors_total"):
                     el["apartment_floors_total"] = int(e["floors_total"])
