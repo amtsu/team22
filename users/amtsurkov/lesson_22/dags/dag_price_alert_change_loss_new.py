@@ -1,13 +1,14 @@
 from datetime import datetime
 
 from airflow import DAG
+from airflow import utils
 from airflow.decorators import task
 from airflow.operators.bash import BashOperator
 
 import sqlite3
 from datetime import datetime, timedelta
 
-with DAG(dag_id="price_alert_change", start_date=datetime(2022, 12, 5), schedule="0 3 * * *") as dag:
+with DAG(dag_id="price_alert_change", start_date=datetime(2023, 12, 1), schedule="0 3 * * *") as dag:
 
     start = BashOperator(task_id="start", bash_command="echo start_prcie_alert_change")
 

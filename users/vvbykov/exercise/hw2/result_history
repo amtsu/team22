@@ -1,0 +1,503 @@
+    1  ls -la
+    2  ssh-keygen -t rsa -b 4096 -C "vladimir.v.bykov@gmail.com"
+    3  ls -lA
+    4  ls -lAv
+    5  ls -lAp
+    6  cd .ssh
+    7  ls -lAp
+    8  cat id_rsa.pub 
+    9  cd ~
+   10  mkdit github
+   11  mkdir github
+   12  cd github/
+   13  git clone git@github:amtsu/team22.git
+   14  git clone git@github.com:amtsu/team22.git
+   15  ls -la
+   16  cd team22
+   17  ls -lAp
+   18  cd users
+   19  ls -lAp
+   20  cat readme.md
+   21  cat README.md
+   22  clear
+   23  cd ..
+   24  git branch vvbykov
+   25  git checkout vvbykov
+   26  git branches
+   27  git branches -a
+   28  git branch -a
+   29  clear
+   30  cd users
+   31  mkdir vvbykov
+   32  git status
+   33  ls -la
+   34  rm -r vvbykov
+   35  mkdir vladimirvbykov
+   36  ls -la
+   37  cd vladimirvbykov/
+   38  touch README.md
+   39  vi README.md 
+   40  cat README.md 
+   41  clear
+   42  pws > README.md 
+   43  pwd > README.md 
+   44  cat README.md 
+   45  cd ..
+   46  git status
+   47  ls -la
+   48  cd github
+   49  cd team22
+   50  git status
+   51  git add users/vladimirvbykov/README.md 
+   52  git status
+   53  git congig --help
+   54  git config --help
+   55  git config --global user.email vladimir.v.bykov@gmail.com
+   56  git config --global user.name vladimirvbykov
+   57  git commit -m 'I've added my own folder with readme file'
+   58  git commit -m 'I have added my own folder with readme file'
+   59  git push --set-upstream origin vvbykov
+   60  git push --help
+   61  cd users/
+   62  cd vladimirvbykov/
+   63  vi README.md
+   64  rm README.md.swp
+   65  ls -la
+   66  rm .README.md.swp
+   67  vi README.md 
+   68  cd ../..
+   69  git push --set-upstream origin vvbykov
+   70  git status
+   71  git commit -m 'Readme file has been filled information about me '
+   72  git status
+   73  git commit -a 'Readme file has been filled information about me '
+   74  git commit -m 'Readme file has been filled information about me '
+   75  git push --set-upstream origin vvbykov
+   76  git status
+   77  git add users/vladimirvbykov/
+   78  git status
+   79  git commit -m 'Readme file has been filled information about me '
+   80  git push --set-upstream origin vvbykov
+   81  git log
+   82  cd github
+   83  ls -la
+   84  cd team22
+   85  ls -la
+   86  cd users
+   87  ls -la
+   88  rm vladimirvbykov vvbykov
+   89  rm -r vladimirvbykov vvbykov
+   90  mv vladimirvbykov vvbykov
+   91  mv vladimirvbykov/ vvbykov/
+   92  ls -la
+   93  git revert
+   94  git status
+   95  git restore
+   96  git reset
+   97  ls -la
+   98  git status
+   99  git restore vladimirvbykov/README.md
+  100  ls -la
+  101  mv vladimirvbykov vvbykov
+  102  ls -la
+  103  git status
+  104  git add vvbykov
+  105  git commit -m 'My directory has been renamed'
+  106  git push --set-upstream origin vvbykov
+  107  git branch -a
+  108  git branch -m vvbykov-hw01
+  109  git branch -a
+  110  git push origin --delete vvbykov
+  111  git push --set-upstream origin vvbykov-hw01
+  112  cd vvbykov
+  113  mkdir exercise
+  114  mkdir hw1
+  115  du
+  116  du -k
+  117  du -c
+  118  cd exercise/
+  119  ls -la
+  120  mkdir hw1
+  121  cd ..
+  122  rm -r hw1
+  123  св пшерги
+  124  cd github
+  125  cd github/team22/users/
+  126  ls -la
+  127  git status
+  128  git commit
+  129  git rm -r -f vladimirvbykov
+  130  git status
+  131  git commit -m 'Extra folder has been deleted'
+  132  git push --set-upstream origin vvbykov-hw01
+  133  cd github
+  134  git branch -a
+  135  git status
+  136  ls -la
+  137  cd team22
+  138  git branch -a
+  139  git checkout main
+  140  git pull
+  141  git branch -a
+  142  git branch -d vvbykov-hw01
+  143  git branch -a
+  144  git branch vvbykov-hw2
+  145  git checkout vvbykov-hw2
+  146  cd /users
+  147  ls -la
+  148  cd users
+  149  cd vvbykov
+  150  ls -la
+  151  cd exercise
+  152  ls -la
+  153  cd hw1
+  154  ls -la
+  155  touch result_du
+  156  touch result_history
+  157  ls -la
+  158  pwd
+  159  ls -la
+  160  pwd ~
+  161  ls -la ~
+  162  cd ~
+  163  ls -la
+  164  cd -
+  165  du > result_du
+  166  history > result_history
+  167  git add result_du result_history
+  168  git status
+  169  git commit -m '1st part of hw1'
+  170  mkdir home_work_1
+  171  cd home_work_1
+  172  touch file_1
+  173  cd ..
+  174  history > result_history
+  175  cat result_history
+  176  cd home_work_1/
+  177  mkdir work_dir
+  178  cp file_1 work_dir/file_1_copy
+  179  cd work_dir/
+  180  ls -la
+  181  cd -
+  182  cd -r work_dir work_dir_new
+  183  cp -r work_dir work_dir_new
+  184  ls -la
+  185  cd work_dir_new/
+  186  ls -la
+  187  cd ..
+  188  ls -la
+  189  cd work_dir
+  190  ls -la
+  191  mv file_1_copy file_1_new_name
+  192  ls -la
+  193  rm file_1_new_name 
+  194  cd ..
+  195  rm -r work_dir_new/
+  196  ls -la
+  197  cd ..
+  198  du > result_du
+  199  history > result_history
+  200  cat du
+  201  cat result_du
+  202  clear
+  203  git status
+  204  git add home_work_1/
+  205  git status
+  206  git commit -m '2nd block of hw1'
+  207  git status
+  208  git add -a
+  209  git add -all
+  210  git add --all
+  211  git status
+  212  git commit -m ''
+  213  git commit
+  214  git status
+  215  git commit -m '.'
+  216  git log
+  217  clear
+  218  cd github
+  219  cd users//vvbykov
+  220  cd users/vvbykov
+  221  cd team22/users/vvbykov/
+  222  ls -la
+  223  cd exercise/
+  224  cd hw1
+  225  ls -la
+  226  cat result_his
+  227  cat result_history 
+  228  clear
+  229  git log
+  230  touch file1
+  231  vi file1 
+  232  touch file2
+  233  vi file2
+  234  cat file1
+  235  head -n2 file1
+  236  tail -n2 file1
+  237  find -name '*fil*'
+  238  ls -lh | grep 'rw-r' | awk '{print $5}'
+  239  ls -la
+  240  grep 'GET'
+  241  grep -rni 'GET'
+  242  grep -rni 'GET'|awk -F' ' '{print $7}' | sort -r
+  243  grep -rni 'GET'|awk -F' ' '{print $5}' | sort -r
+  244  grep -rni 'GET'|awk -F' ' '{print $4}' | sort -r
+  245  ls -la && rm test123 && pwd
+  246  ls -la; rm test123; pwd
+  247  du > result_du
+  248  history > result_history
+  249  git status
+  250  git add -a
+  251  git add --all
+  252  git status 
+  253  git log
+  254  git commit -m 'From 5th to 7th  block of hw1'
+  255  git log
+  256  cd gitlub
+  257  cd github
+  258  git log
+  259  cd team22
+  260  git log
+  261  cd users/vvbykov
+  262  ls -la
+  263  cd exercise
+  264  ls -la
+  265  cd hw1
+  266  ls -la
+  267  grip -irn "GET"
+  268  grep -irn "GET"
+  269  history
+  270  cd github/team22/users/vvbykov/
+  271  grep -irn "GET"
+  272  grep -irn "GET" | head -n4
+  273  grep -irn "GET" | head -n4 | awk -F' ' '{print, $4}'
+  274  grep -irn "GET" | head -n4 | awk -F' ' '{print $4}'
+  275  grep -irn "GET" | head -n4 | awk -F' ' '{print $4}' | cw
+  276  grep -irn "GET" | head -n4 | awk -F' ' '{print $4}' | wc -l
+  277  cd exercise/hw1/
+  278  du > result_du 
+  279  history > result_history 
+  280  git status 
+  281  git add result_history 
+  282  git reset ../../../../library/exercises/hw-1/theory_console_command.ipynb
+  283  git status
+  284  git restore ../../../../library/exercises/hw-1/theory_console_command.ipynb
+  285  git status
+  286  git log
+  287  git commit -m '8th block of hw1'
+  288  env
+  289  env | grep 'A'
+  290  du > result_du
+  291  history > result_history 
+  292  git status
+  293  git add --all
+  294  git status
+  295  git commit -m '9th block of hw1'
+  296  wget https://finance.rambler.ru/currencies/USD/
+  297  ls -la
+  298  cat index.html
+  299  clear
+  300  curl https://finance.rambler.ru/currencies/USD/
+  301  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD'
+  302  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD ='
+  303  curl https://finance.rambler.ru/currencies/ | grep 'USD ='
+  304  curl https://finance.rambler.ru/currencies/USD | grep 'USD ='
+  305  curl https://finance.rambler.ru/currencies/ | grep 'USD'
+  306  curl https://finance.rambler.ru/currencies/ | grep 'США'
+  307  curl https://finance.rambler.ru/currencies/USD | grep 'USD'
+  308  curl https://finance.rambler.ru/currencies/USD | grep 'USD = '
+  309  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD ='
+  310  curl https://finance.rambler.ru/currencies | grep '90.22'
+  311  curl https://finance.rambler.ru/currencies | grep '90.2299'
+  312  curl https://finance.rambler.ru/currencies | grep 'Доллар США'
+  313  curl https://finance.rambler.ru/currencies/USD | grep 'Доллар США'
+  314  curl https://finance.rambler.ru/currencies/USD | grep 'USD ='
+  315  curl https://finance.rambler.ru/currencies/USD | grep 'USD = '
+  316  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD ='
+  317  curl https://finance.rambler.ru/currencies/ | grep 'Доллар США'
+  318  curl https://finance.rambler.ru/currencies/ | grep 'USD'
+  319  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD = '; curl curl https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = ' 
+  320  wget https://finance.rambler.ru/currencies/USD/ | grep -irn 'USD = '; wget https://finance.rambler.ru/currencies/EUR/ | grep -irn 'EUR = ' 
+  321  clear
+  322  curl https://finance.rambler.ru/currencies/USD/ | grep 'USD = '; curl https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = ' 
+  323  curl -o  https://finance.rambler.ru/currencies/USD/ | grep 'USD = '
+  324  curl -s  https://finance.rambler.ru/currencies/USD/ | grep 'USD = '
+  325  curl -s  https://finance.rambler.ru/currencies/USD/ | grep 'USD = ' ; curl -s https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = ' 
+  326  touch currency_file
+  327  curl -s  https://finance.rambler.ru/currencies/USD/ | grep 'USD = ' > currency_file ; curl -s https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = ' >> currency_file 
+  328  cat currency_file 
+  329  ls -la
+  330  cd ~
+  331  cd -
+  332  rm currency_file 
+  333  cd ~
+  334  cd github/team22/users/vvbykov/exercise/hw1/
+  335  touch currency_file
+  336  curl -s  https://finance.rambler.ru/currencies/USD/ | grep 'USD = ' > currency_file ; curl -s https://finance.rambler.ru/currencies/EUR/ | grep 'EUR = ' >> currency_file 
+  337  cat currency_file 
+  338  du > result_du
+  339  history > result_history 
+  340  git status
+  341  git add result_du result_history currency_file 
+  342  git stat
+  343  git status
+  344  git commit -m '10th block of the hw1'
+  345  branch
+  346  git branch -all
+  347  git branch -a
+  348  git push --set-upstream origin vvbykov-hw2
+  349  ls -lh 
+  350  ls -lAt
+  351  ls -lAt | head -n1
+  352  ls -lAt | head -n2
+  353  ls -ltr
+  354  ls -ltr | tail -n1
+  355  ls -ltr | tail -n1 | awk -F' ' '{print $2, $3, $4}'
+  356  ls -ltr | tail -n1 | awk -F' ' '{print $2 $3 $4}'
+  357  ls -ltr | tail -n1 | awk -F' ' '{print $2}'
+  358  ls -ltr | tail -n1 | awk -F' ' '{print $6, $7, $8}'
+  359  du > result_du
+  360  history > result_history
+  361  git status
+  362  git add result_du result_history 
+  363  git commit -m 'Extra of the 10th block of the hw1'
+  364  git push --set-upstream origin vvbykov-hw2
+  365  ды -дф
+  366  ls -la
+  367  rm index.html
+  368  rm index.html.1 index.html.2
+  369  ls -la
+  370  rm Untitled.ipynb 
+  371  ls -la
+  372  git status
+  373  cd ..
+  374  mkdir hw2
+  375  cd hw2
+  376  touch price_f.html
+  377  vi price_f.html 
+  378  git status
+  379  cd ..
+  380  git status
+  381  git add hw2
+  382  git status
+  383  git commit -m 'Добавлен фаил с ценой на холодильник'
+  384  cd ../../..
+  385  cd ..
+  386  git push --set -upstream origin vvbykov-hw2
+  387  cd team22/
+  388  git push --set -upstream origin vvbykov-hw2
+  389  git push --set-upstream origin vvbykov-hw2
+  390  git checkout main
+  391  git branch -a
+  392  git pull
+  393  clear
+  394  git branch vvbykov-hw2-feature-1
+  395  git branch -a
+  396  git checkout vvbykov-hw2-feature-1
+  397  cd users/vvbykov/hw2
+  398  cd users/vvbykov/
+  399  ls -la
+  400  cd exe
+  401  cd exercise/
+  402  cd hw2
+  403  ls -la
+  404  du
+  405  git log
+  406  git checkout vvbykov-hw1
+  407  git checkout vvbykov-hw2
+  408  git log
+  409  git reset --hard HEAD^
+  410  git push --set-upstream origin vvbykov-hw2
+  411  git pull
+  412  git log
+  413* 
+  414  git push --set-upstream origin vvbykov-hw2
+  415* git revert 9e0cda6956b80e2de634ccd684c6bc9ddd97b501DDDDDDDDDDDDDDD[A
+  416  git pull
+  417  ls -la
+  418  git revert 9e0cda6956b80e2de634ccd684c6bc9ddd97b501
+  419  ls -la
+  420  git push --set-upstream origin vvbykov-hw2
+  421  git branch -d vvbykov-hw2-feature-1
+  422  git branch -D vvbykov-hw2-feature-1
+  423  git branch -a
+  424  git checkout main
+  425  git pull
+  426  git branch vvbykov-hw2-p3
+  427  checkout vvbykov-hw2-p3
+  428  git checkout vvbykov-hw2-p3
+  429  ls -la
+  430  mkdir hw2
+  431  ls -la 
+  432  cd hw2
+  433  touch price_f.html
+  434  vi price_f.html 
+  435  cd ..
+  436  git status
+  437  git add ./
+  438  git status
+  439  git commit -m 'Добавлен фаил с ценой на холодильник'
+  440  git push --set-upstream origin vvbykov-hw2-p3
+  441  checkout main
+  442  git checkout main
+  443  git branch vvbykov-hw2-p3-feature-1
+  444  git pull
+  445  checkout vvbykov-hw2-p3-feature-1
+  446  git checkout vvbykov-hw2-p3-feature-1
+  447  ls -la
+  448  mkdir hw2
+  449  touch price_h.html
+  450  vi price_h.html 
+  451  ls -la
+  452  mv price_h.html hw2/
+  453  cd hw2
+  454  ls -la
+  455  git checkout vvbykov-hw2-p3
+  456  ls -la
+  457  git checkout vvbykov-hw2-p3-feature-1
+  458  cd ..
+  459  git status
+  460  git add ./
+  461  git status
+  462  git commit -m 'Добавлен фаил с ценой на холодильник h'
+  463  git push --set-upstream origin vvbykov-hw2-p3-feature-1
+  464  git log
+  465  git checkout vvbykov-hw2-p3
+  466  git log
+  467  git show
+  468  cd hw2
+  469  touch res.txt
+  470  vi res.txt 
+  471  cd ..
+  472  git status
+  473  git add -aall
+  474  git add --all
+  475  git commit -m'Добавлен файл res.txt'
+  476  git push --set-upstream origin vvbykov-hw2-p3
+  477  git log
+  478  git revert 7d5233c618086b92cae4dd4969cb5a4ff0d73957
+  479  git reset --hard HEAD^
+  480  cd hw2
+  481  ls -la
+  482  git log
+  483  git reset --hard HEAD^
+  484  ls -la
+  485  pull
+  486  git pull
+  487  git log
+  488  git revert 7d5233c618086b92cae4dd4969cb5a4ff0d73957
+  489  git pull
+  490  ls -la
+  491  vi price_f.html 
+  492  git status
+  493  git diff
+  494  git checkout price_f.html
+  495  git status
+  496  git diff
+  497  git status
+  498  git merge vvbykov-hw2-p3-feature-1
+  499  ls -la
+  500  touch result_du
+  501  du > result_du 
+  502  touch result_history
+  503  history > result_history 

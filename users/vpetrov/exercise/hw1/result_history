@@ -1,0 +1,426 @@
+    1  ц
+    2  w
+    3  uname -a
+    4  whoami
+    5  htop
+    6  ssh-keygen -t rsa -b 4096 -C aldnoa37@gmail.com
+    7  cat ~/.ssh/id_rsa.pub
+    8  cd ~/.ssh/
+    9  ll
+   10  cat id_rsa
+   11  сды
+   12  cat ~/.ssh/id_rsa.pub
+   13  cd ~
+   14  ll
+   15  mkdir github
+   16  cd github
+   17  ll
+   18  git clone git@github.com:amtsu/team22.git
+   19  ц
+   20  w
+   21  ll
+   22  cd github/team22/users/
+   23  ll
+   24  mkdir vpetrov
+   25  ll
+   26  git commit
+   27  git config --global user.email "aldnoa37@gmail.com"
+   28  git config --global user.name "Vladislav Petrov"
+   29  git commit
+   30  ll
+   31  cd vpetrov/
+   32  touch privet
+   33  ll
+   34  cd ..
+   35  git push
+   36  cd ..
+   37  ll
+   38  cd team22
+   39  ll
+   40  cd users
+   41  ll
+   42  cd vpetrov/
+   43  ll
+   44  vim README
+   45  ll
+   46  git commit
+   47  git add
+   48  git add .
+   49  git commit
+   50  git branch lecture2vpetrov
+   51  git branch -a
+   52  git checkout lecture2vpetrov
+   53  git branch -a
+   54  git status
+   55  git add .
+   56  git status
+   57  git add
+   58  cd ..
+   59  git add vpetrov
+   60  git status
+   61  rm vpetrov/privet 
+   62  rm vpetrov/README 
+   63  touch vpetrov/README 
+   64  vim vpetrov/README 
+   65  git status
+   66  git add vpetrov/README 
+   67  git status
+   68  git commit -a
+   69  cd ..
+   70  cd github/
+   71  rm -ffrd team22/
+   72  ll
+   73  git clone https://github.com/amtsu/team22.gi
+   74  git clone git@github.com:amtsu/team22.git
+   75  cd team22/
+   76  cd users/
+   77  ll
+   78  git branch
+   79  git branch
+   80  git branch -a
+   81  git branch lecture2vpetrov
+   82  git checkout lecture2vpetrov
+   83  ll
+   84  mkdir vpetrov
+   85  vim vpetrov/README
+   86  git add vpetrov/README
+   87  git status
+   88  git commit -m "обо мне"
+   89  git push
+   90  git push --set-upstream origin lecture2vpetrov
+   91  cd ..
+   92  ll
+   93  cd team22/
+   94  ll
+   95  git branch
+   96  git branch -a
+   97  git pull
+   98  git status
+   99  git checkout main
+  100  ls -la
+  101  ls -la users/
+  102  git pull
+  103  la
+  104  ls -la
+  105  ls -la users/
+  106  cd ..
+  107  ll
+  108  w
+  109  uname -a
+  110  ls /usr/bin
+  111  w
+  112  дд
+  113  Ll
+  114  ll
+  115  cd github
+  116  ll
+  117  cd team22/
+  118  git checkout
+  119  git pull
+  120  ll
+  121  cd users/
+  122  ll
+  123  cat README.md 
+  124  дд
+  125  ll
+  126  cd github/
+  127  ll
+  128  fish
+  129  ll
+  130  cd team22/
+  131  git pull
+  132  ll
+  133  cd user
+  134  ll
+  135  cd users/
+  136  ll
+  137  cd vpetrov/
+  138  ll
+  139  mkdir exercise
+  140  git branch
+  141  git pull
+  142  cd exercise/
+  143  mkdir hw1
+  144  ll
+  145  cd hw1/
+  146  ll
+  147  git branch
+  148  git checkout lecture2vpetrov
+  149  git checkout -f lecture2vpetrov
+  150  git pull
+  151  git branch
+  152  giut branch
+  153  git branch
+  154  cd ~
+  155  ll
+  156  pwd
+  157  ls
+  158  ls /
+  159  cd /home
+  160  ls -al
+  161  cd ~
+  162  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  163* cat ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  164  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  165  cd github/team22/users/vpetrov/
+  166  ll
+  167  git add .
+  168  git status
+  169  git commit -m "vpetrov-hw1-part1"
+  170  git diff
+  171  git status
+  172  mkdir home_work_1
+  173  ll
+  174  touch home_work_1/file_1
+  175  mkdir home_work_1/work_dir
+  176  cp home_work_1/file_1 home_work_1/work_dir/file_1_copy
+  177  cp -r home_work_1/work_dir/ home_work_1/work_dir_new
+  178  ls home_work_1/
+  179  mv home_work_1/work_dir/file_1_copy home_work_1/work_dir/file_1_new_name
+  180  rm home_work_1/work_dir/file_1_new_name
+  181  rm -frd home_work_1/work_dir_new/
+  182  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  183  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  184  git add .
+  185  git status
+  186  git commit -m "vpetrov-hw1-part2"
+  187  ll
+  188  ll exercise/
+  189  cd home_work_1/
+  190  ll
+  191  touch file1
+  192  vim file1
+  193  touch file2
+  194  vim file2
+  195  cd ..
+  196  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  197  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  198  git status
+  199  git add .
+  200  git status
+  201  git commit -m "vpetrov-hw1-part3"
+  202  cd home_work_1/
+  203  ll
+  204  cat file1
+  205  head -n2 file1
+  206  tail -n2 file1
+  207  cd ..
+  208  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  209  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  210  git add .
+  211  git status
+  212  git commit -m "vpetrov-hw1-part4"
+  213  cd home_work_1/
+  214  find /home/ -name "*fil*"
+  215  ls -al
+  216  cd ..
+  217  ll
+  218  ls -al | awk '{print $5}' | grep [0-9]
+  219  grep -rni 'GET' home_work_1
+  220  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  221  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  222  git status
+  223  git add .
+  224  git status
+  225  git commit -m "vpetrov-hw1-part5"
+  226  дд
+  227  ll
+  228  rm -frd home_work_1/
+  229  ll
+  230  git checkout -f lecture2vpetrov
+  231  git status
+  232  git pull
+  233  git status
+  234  git pull -f
+  235  git status
+  236  git reset --hard
+  237  git status
+  238  git reset --hard HEAD~5
+  239  git status
+  240  git pull
+  241  ll
+  242  mkdir exercise/hw1
+  243  mkdir exercise
+  244  mkdir exercise/hw1
+  245  ;;
+  246  ll
+  247  ls exercise/
+  248  cd exercise/hw1
+  249  ll
+  250  pwd
+  251  ls -al
+  252  ls /
+  253  touch file_1
+  254  git branch
+  255  touch file_1
+  256  mkdir work_dir
+  257  cp file_1  work_dir/file_1_copy
+  258  cp -r work_dir/ work_dir_new
+  259  mv work_dir/file_1_copy work_dir/file_1_new_name
+  260  rm work_dir/file_1_new_name
+  261  rm -frd work_dir_new/
+  262  ll
+  263  rm *
+  264  rm -frd *
+  265  ll
+  266  git branch
+  267  git pull
+  268  git branch main
+  269  git checkout main
+  270  git pull
+  271  git checkout lecture2vpetrov
+  272  git branch
+  273  git status
+  274  pwd
+  275  wwwls -al
+  276  ls -al /
+  277  cd /home
+  278  ls -al
+  279  cd ~/github/team22/users/vpetrov/
+  280  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  281  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  282  git status
+  283  git add .
+  284  git status
+  285  git commit -m "vpetrov-hw1-part1"
+  286  ll
+  287  cd exercise/hw1/
+  288  mkdir home_work_1
+  289  touch home_work_1/file_1
+  290  mkdir home_work_1/work_dir
+  291  cp home_work_1/file_1 home_work_1/work_dir/file_1_copy
+  292  cp -r home_work_1/work_dir/ home_work_1/work_dir_new
+  293  mv home_work_1/work_dir_new/file_1_copy home_work_1/work_dir_new/file_1_new_name
+  294  rm home_work_1/work_dir_new/file_1_new_name
+  295  rm -frd home_work_1/work_dir_new/
+  296  git status
+  297  git add .
+  298  git status
+  299  cd ~/github/team22/users/vpetrov/
+  300  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  301  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  302  git status
+  303  git commit -m "vpetrov-hw1-part2"
+  304  git status
+  305  git add .
+  306  git status
+  307  git commit -m "vpetrov-hw1-part2"
+  308  cd exercise/hw1/
+  309  ll
+  310  vim file1
+  311  ll
+  312  vim file2
+  313  ll
+  314  git status
+  315  git add .
+  316  git status
+  317  cd ..
+  318  ll
+  319  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  320  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  321  git status
+  322  git add .
+  323  git commit -m "vpetrov-hw1-part3"
+  324  git status
+  325  cd exercise/hw1/
+  326  cat file1
+  327  head -n2 file1
+  328  tail -n2 file1
+  329  cd ..
+  330  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  331  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  332  git add .
+  333  git status
+  334  git commit -m "vpetrov-hw1-part4"
+  335  find /home/ -name "*fil*"
+  336  ls -al | awk '{print $5}' | grep [0-9]
+  337  grep -rni 'GET' ~
+  338  grep -rni 'GET' ~/github/team22/users/vpetrov/
+  339  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  340  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  341  git add .
+  342  git status
+  343  git commit -m "vpetrov-hw1-part5"
+  344  grep -rni 'GET' ~/github/team22/users/vpetrov/ > ~/github/team22/users/vpetrov/exercise/hw1/URL
+  345  cd exercise/hw1/
+  346  grep -rni 'GET' ~/github/team22/users/vpetrov/ > ~/github/team22/users/vpetrov/exercise/hw1/URL
+  347  grep -rni 'GET' ~/github/team22/users/vpetrov/ > URL
+  348  grep -rni 'GET' ~/github/team22/users/vpetrov/ > ~/URL
+  349  mv ~/URL ~/github/team22/users/vpetrov/exercise/hw1/URL
+  350  ll
+  351  cat URL
+  352  cd ..
+  353* 
+  354  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  355  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  356  git add .
+  357  git commit -m "vpetrov-hw1-part6"
+  358  git status
+  359  cd exercise/hw1/
+  360  ll
+  361  ls -la && rm test123 && pwd
+  362  ls -la; rm test123; pwd
+  363  vim "объяснение разницы && и ;"
+  364  cd ..
+  365  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  366  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  367  git status
+  368  git add .
+  369  git status
+  370  git commit -m "vpetrov-hw1-part7"
+  371  git status
+  372  cd exercise/hw1/
+  373  ll
+  374  grep -rni 'GET'
+  375  grep -rni 'GET' | awk '{print $6}'
+  376  grep -rni 'GET' | awk '{print $5}'
+  377  grep -rni 'GET' | awk '{print $4}'
+  378  grep -rni 'GET' | awk '{print $3}'
+  379  grep -rni 'GET'
+  380  grep -rni 'GET' | awk '{print $6}'
+  381  grep -rni 'GET' | awk '{print $7}'
+  382  grep -rni 'GET' | awk '{print $7}' | grep -rni '/empty.test'
+  383  grep -rni 'GET' | awk '{print $7}' | grep -rni '/empty.test' | sort
+  384  grep -rni 'GET' | awk '{print $7}' | grep '/empty.test'
+  385  grep -rni 'GET' | awk '{print $7}' | grep '/empty.test' | sort
+  386  grep -rni 'GET' | awk '{print $7}' | grep '/empty.test' | sort | uniq -c
+  387  git status
+  388  cd ..
+  389  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  390  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  391  git add .
+  392  git status
+  393  git commit -m "vpetrov-hw1-part8"
+  394  env
+  395  env | grep A
+  396  du . > ~/github/team22/users/vpetrov/exercise/hw1/result_du
+  397  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history
+  398  git add .
+  399  git status
+  400  git commit -m "vpetrov-hw1-part9"
+  401  cd exercise/hw1/
+  402  ll
+  403  curl https://finance.rambler.ru/currencies/USD/
+  404  curl https://finance.rambler.ru/currencies/USD/ | grep USD
+  405  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD ='
+  406  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk {print $6}
+  407  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk '{print $6}'
+  408  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk '{print $7}'
+  409  man curl
+  410  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk '{print $15}'
+  411  man head
+  412  man tail
+  413  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | head -n2 | awk '{print $15}'
+  414  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | head -n2
+  415  curl https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | tail -n1
+  416  curl -s https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | tail -n1
+  417  curl -s https://finance.rambler.ru/currencies/USD/ | grep '1 USD ='
+  418  curl -s https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk '{print $3}'
+  419  curl -s https://finance.rambler.ru/currencies/USD/ | grep '1 USD =' | awk '{print $4}'
+  420  cd ..
+  421  ls -al
+  422  ls -al ~/github/team22/users/vpetrov/ | awk '{print $7}'
+  423  ls -al ~/github/team22/users/vpetrov/ | awk '{print $7}' | sort
+  424  ls -al ~/github/team22/users/vpetrov/ | awk '{print $7}' | sort | head -n1
+  425  ls -al ~/github/team22/users/vpetrov/ | awk '{print $7}' | sort | head -n2
+  426  history > ~/github/team22/users/vpetrov/exercise/hw1/result_history

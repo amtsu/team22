@@ -1,0 +1,208 @@
+    1  pwd
+    2  ssh-keygen -t rsa -b 4096 -C "misterdx1990@gmail.com"
+    3  cat .ssh/id_rsa.pub
+    4  git config --global user.email "misterdx1990@gmail.com"
+    5  git config --list
+    6  git config --global user.name "avlotsmanov"
+    7  git config --list
+    8  mkdir github
+    9  cd github/
+   10  git clone git@github.com:amtsu/team22.git
+   11  cd team22/
+   12  ls
+   13  ls -l
+   14  ls -a
+   15  cd users/
+   16  ls
+   17  ls -la
+   18  git status -s
+   19  ls -la
+   20  git status
+   21  mkdir avlotsmanov
+   22  cd avlotsmanov/
+   23  touch README.md
+   24  pwd > README.md 
+   25  cd ../..
+   26  git branch avlotsmanov
+   27  git checkout avlotsmanov
+   28  git status
+   29  git diff
+   30  git add users/README.md
+   31  git status
+   32  git add users/avlotsmanov/README.md
+   33  git status
+   34  git commit -m 'add readme file in directory avlotsmanov'
+   35  git push --set upstream origin avlotsmanov
+   36  git push --set-upstream origin avlotsmanov
+   37  pwd
+   38  ls -la
+   39  cd /github/
+   40  cd github/
+   41  ls -la
+   42  git pull
+   43  git status
+   44  ..
+   45  cd ..
+   46  git status
+   47  pwd
+   48  cd github/
+   49  pwd
+   50  git status
+   51  pwd
+   52  ls -la
+   53  cd team22/
+   54  git status 
+   55  git pull
+   56  cd /users/avlotsmanov/
+   57  cd users/
+   58  cd avlotsmanov/
+   59  git add README.md
+   60  git commit -m 'add changes in readme file'
+   61  git push --set upstream origin avlotsmanov
+   62  git push --set-upstream origin avlotsmanov
+   63  git pull
+   64  pwd
+   65  cd /github/team22/users/avlotsmanov
+   66  cd ./github/team22/users/avlotsmanov
+   67  echo 'cd ./github/team22/users/avlotsmano' > adress
+   68  history
+   69  git pull
+   70  ..
+   71  cd ..
+   72  git pull
+   73  git status
+   74  get checkout main
+   75  git checkout main
+   76  git pull
+   77  git status
+   78  pwd
+   79  cd github/
+   80  cd ..
+   81  cd github/team22/users
+   82  git branch
+   83  git pull
+   84  git branch
+   85  git branch -d avlotsmanov
+   86  git branch
+   87  pwd
+   88  cd exercise/
+   89  mkdir hw1
+   90  cd hw1/
+   91  pwd
+   92  history
+   93  pwd
+   94  ls
+   95  ls ~/
+   96  cd /home
+   97  ls -la
+   98  cd github/team22/users/avlotsmanov/exercise/hw1
+   99  cd ~/github/team22/users/avlotsmanov/exercise/hw1
+  100  cd ..
+  101  du > ./exercise/hw1/result_du
+  102  history > ./exercise/hw1/result_history
+  103  pwd
+  104  git add .
+  105  git status
+  106  git commit -m 'First block of HW1'
+  107  touch file_1
+  108  mkdir work_dir
+  109  cd exercise
+  110  cd hw1
+  111  touch file_1
+  112  mkdir work_dir
+  113  cp file_1 ./work_dir/file_1_copy
+  114  cp -r work_dir work_dir_new/work_dir
+  115  pwd
+  116  cp -r work_dir ./work_dir_new/work_dir
+  117  cp -r work_dir work_dir_new
+  118  mkdir work_dir_new
+  119  cp -r work_dir work_dir_new/work_dir
+  120  mv ./work_dir_new/file_1_copy ./work_dir_new/file_1_new_name
+  121  mv ./work_dir_new/work_dir/file_1_copy ./work_dir_new/work_dir/file_1_new_name
+  122  rm ./work_dir_new/work_dir/file_1_new_name
+  123  rm -r ./work_dir_new/
+  124  du > result_du
+  125  history > result_history
+  126  git add .
+  127  git status
+  128  git commit -m 'Second block of HW1'
+  129  echo 'hello world' > file1
+  130  vim file1
+  131  touch file2
+  132  vim file2
+  133  git add .
+  134  git commit -m 'Third block of HW1'
+  135  git reset HEAD~
+  136  git status
+  137  du > result_du
+  138  history > result_history
+  139  git add .
+  140  git commit -m 'Third block of HW1'
+  141  git diff
+  142  git log
+  143  cat file1
+  144  head -n2 file1
+  145  tail -n2 file1
+  146  du > result_du
+  147  history > result_history
+  148  git add .
+  149  git commit -m 'Fourth block of HW1'
+  150  find /home -name 'fil'
+  151  ls -la > directory_file
+  152  awk -F' ' '{print $5}' directory_file
+  153  grep -r 'GET' > save_uri
+  154  du > result_du
+  155  history > result_history
+  156  git add .
+  157  git commit -m 'Fifth block of HW1'
+  158  git status
+  159  ls -la && rm test123 && pwd
+  160  ls -la; rm test123; pwd
+  161  echo в первом случае последняя команд вывода текущей директории не сработала, тк команда удаления файла test123 не завершилась успшено ( тк файла не существует), такое поведение обусловлено тем, что команды объеденялись с помощью амперсантов, а они говорят что следующая команда выполнится только при условии успешного выполнения предыдущей. Во втором случае мы получили результат вывода третьей команды, тк объеденение через точку с запятой выполняет все команды последовательно в любом случае
+  162  echo в первом случае последняя команд вывода текущей директории не сработала, тк команда удаления файла test123 не завершилась успшено, такое поведение обусловлено тем, что команды объеденялись с помощью амперсантов, а они говорят что следующая команда выполнится только при условии успешного выполнения предыдущей. Во втором случае мы получили результат вывода третьей команды, тк объеденение через точку с запятой выполняет все команды последовательно в любом случае
+  163  du > result_du
+  164  history > result_history
+  165  git add .
+  166  git commit -m ' Sixth block of HW1'
+  167  grep -r 'GET' | awk '{print $7}' | sort | wc -l > amount_uri
+  168  grep -r 'GET' | awk '{print $7}' | sort
+  169  du > result_du
+  170  history > result_history
+  171  git add .
+  172  git commit -m ' Seventh block of HW1'
+  173  env | grep 'A'
+  174  du > result_du
+  175  history > result_history
+  176  git add .
+  177  git commit -m ' Eighth block of HW1'
+  178  curl https://finance.rambler.ru/currencies/EUR/ -o test.html 2> 1 | grep EUR test.html | grep ' = ' | awk '{print $4}'
+  179  curl https://finance.rambler.ru/currencies/EUR/ -o test.html 2> 1 && grep EUR test.html | grep ' = ' | awk '{print $4}'
+  180  curl https://finance.rambler.ru/currencies/USD/ -o test.html 2> 1 && grep USD test.html | grep ' = ' | awk '{print $4}'
+  181  du > result_du
+  182  history > result_history
+  183  mkdir currency
+  184  cp 1 currency/
+  185  mv 1 currency/
+  186  mv test.html currency/
+  187  ls -la
+  188  ls -l
+  189  ls -l| -nk7
+  190  ls -l| sort -nk7
+  191  ls -la | awk '{print $6$7}' | sort | uniq -c
+  192  ls -la | awk '{print $6$7}' | sort
+  193  ls -la | awk '{print $6 $7}' | sort
+  194  ls -la | awk '{print $6''$7}' | sort
+  195  ls -la | awk '{print $6'$'$7}' | sort
+  196  ls -la | awk '{print $6$' '$7}' | sort
+  197  ls -la | awk '{print $6$7}' | sort -u
+  198  ls -la | awk '{print $6$7}' | sort -ru
+  199  ls -la | awk '{print $6$7}' | sort -Mru
+  200  ls -la | awk '{print $6$7}' | sort -Mu
+  201  ls -la | awk '{print $6$7}' | sort -M
+  202  ls -la | awk '{print $6$7}' | sort -Mu
+  203  ls -la | awk '{print $6$7}' | sort -Mr
+  204  ls -la | awk '{print $6$7}' | sort -Mru
+  205  echo 'last date is' | ls -la | awk '{print $6$7}' | sort -Mru
+  206  echo 'last date is' ; ls -la | awk '{print $6$7}' | sort -Mru
+  207  du > result_du
+  208  history > result_history

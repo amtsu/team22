@@ -1,3 +1,0 @@
-jupyter-isergy ALL = NOPASSWD: /usr/bin/systemctl restart team22_bot.service
-jupyter-isergy ALL = NOPASSWD: /usr/bin/systemctl stop team22_bot.service
-jupyter-isergy ALL = NOPASSWD: /usr/bin/systemctl start team22_bot.service

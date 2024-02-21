@@ -1,0 +1,309 @@
+    1  mkdir DTbox
+    2  ls
+    3  mkdir github
+    4  pwd
+    5  cd github
+    6  pwd
+    7  ssh-keygen -t rsa -b 4096 -C "dan.almaz@gmail.com"
+    8  cat ~/.ssh/id_rsa.pub
+    9  mkdir github
+   10  ls
+   11  rm github
+   12  rm -r github
+   13  git clone git@github.com:amtsu/team22.git
+   14  git status
+   15  git commit -m 'someinfoaboums'
+   16  git status
+   17  git push -- set-upstream origin dptimofeev
+   18  git push --set-upstream origin dptimofeev
+   19  git push --set-upstream origin ptdltt
+   20  git push origin 
+   21  git branch
+   22  git push origin lecture2_dptimofeev
+   23  git diff -r main
+   24  git status
+   25  git log
+   26  git branch 
+   27  git checkout lecture2_dptimofeev
+   28  git status
+   29  git diff -r main
+   30  git add dptimofeev/readme
+   31  ls
+   32  git checkout main
+   33  ls
+   34  git checkout lecture2_dptimofeev 
+   35  ls
+   36  mkdir dptimofeev
+   37  cd dptimofeev/
+   38  touch readme
+   39  vi readme 
+   40  cat readme 
+   41  git branch 
+   42  git add readme
+   43  git status 
+   44  git commit -m 'attempt #2'
+   45  git push
+   46  git push origin lecture2_dptimofeev 
+   47  cd main
+   48  pwd
+   49  gitbranch
+   50  git branch
+   51  git checkout main
+   52  ls
+   53  cd ..
+   54  pwd
+   55  git stauts
+   56  git status
+   57  rm dptimofeev
+   58  rm -r dptimofeev
+   59  ls
+   60  git status
+   61  git commit -m 'ivedeletedmymistake'
+   62  git push origin main
+   63  git status
+   64  git pull
+   65  git status
+   66  git log
+   67  git pull
+   68  ls
+   69  cd github
+   70  pwd
+   71  cd team22
+   72  pwd
+   73  git pull
+   74  mkdir dptimofeev
+   75  ls
+   76  pwd
+   77  cd dptimofeev
+   78  pwd
+   79  tocuh readme
+   80  touch readme
+   81  vim readme
+   82  cat readme
+   83  cd team22
+   84  cd ..
+   85  pwd
+   86  git branch
+   87  git checkout lecture2_dptimofeev
+   88  git branch
+   89  mv dptimofeev users/
+   90  git checkout lecture2_dptimofeev
+   91  git status
+   92  git add users/dptimofeev/readme
+   93  git status
+   94  git checkout lecture2_dptimofeev
+   95  git BRANCH lecture2_dptimofeev
+   96  git branch lecture2_dptimofeev
+   97  git status
+   98  git commit -m 'iveaddedsomeinfoaboutmyslef'
+   99  git config --global user.email "dan.almaz@gmail.com@
+  100  exit
+  101  quit
+  102  pwd
+  103  ls -la
+  104  cd users
+  105  pwd
+  106  la -la
+  107  pwd
+  108  cd github
+  109  cd team22
+  110  pwd
+  111  cd ..
+  112  pwd
+  113  echo 'if [ -z ${PSBLOCK} ]; then PSBLOCK=1 ; PS2=$(sed "s/...$//" <<<"${PS1}") ;   PS1="$PS2\[\033[1;91m\]\$(__git_ps1) \[\033[0;0m\]\n└─>";fi' >> ~/.bashrc
+  114  git pull
+  115  cd github
+  116  pwd
+  117  cd team22
+  118  cd github/team22
+  119  ls- la
+  120  ls -la
+  121  cd users
+  122  ls -la
+  123  cd dptimofeev/
+  124  ls -la
+  125  cat readme
+  126  cd urfirststepserror\ \(aka\ team22old\)/
+  127  ls -la
+  128  rm -r 1111
+  129  pwd
+  130  cd github
+  131  ls -la
+  132  cd team22
+  133  ls -la
+  134  cd users
+  135  ls -la
+  136  git pull
+  137  git clone git@github.com:amtsu/team22.git
+  138  pwd
+  139  cd team22
+  140  git pull
+  141  ls -la
+  142  rm -r  1111/
+  143  rm team22
+  144  rm -r team22
+  145  cd ..
+  146  cd -
+  147  cd --
+  148  pwd
+  149  git branch
+  150  cd github
+  151  pwd
+  152  git branch
+  153  cd team22
+  154  git branch
+  155  git pull
+  156  git stsus
+  157  git status
+  158  git checkout  lecture2_dptimofeev
+  159  git merge --abort
+  160  git pull
+  161  cat readme
+  162  git checkout  lecture2_dptimofeev
+  163  ls -la
+  164  cat README
+  165  cat README.md
+  166  pwd
+  167  ls -la
+  168  cd users
+  169  ls -la
+  170  cd dptimofeev/
+  171  ls -la
+  172  cat readme
+  173  vim readme
+  174  cat readme
+  175  git merge --abort
+  176  git log
+  177  git status
+  178  git restore readme
+  179  git pull
+  180  cat readme
+  181  git reset --soft
+  182  git merge abort
+  183  git merge --abort
+  184  git reset --soft
+  185  ls -la
+  186  git pull
+  187  ls-la
+  188  ls -la
+  189  rm -rf nelezonatebyasojret/
+  190  pwd
+  191  cd users
+  192  cd dptimofeev/
+  193  ls
+  194  ls -la
+  195  mkdir exercise
+  196  pwd
+  197  rm -r exercise/
+  198  git status
+  199  git branch hw1
+  200  git status
+  201  ls -la
+  202  git checkout hw1
+  203  mkdir exercise 
+  204  ls- la
+  205  ls -la
+  206  cd exercise
+  207  mkdir hw1
+  208  cd hw1
+  209  git branch
+  210  ls 
+  211  history > result_history
+  212  status
+  213  git status
+  214  git diff
+  215  pwd
+  216  mkdir home_work_1
+  217  cd home_work_1/
+  218  tocuh file_1
+  219  touch file_1
+  220  mkdir work_dir
+  221  ls
+  222  cp file_1 work_dir/file_1_copy
+  223  ls
+  224  ls -la
+  225  cp -r work_dir/word_dir_new
+  226  cp -r work_dir home_work_1/work_dir_new
+  227  ls -la
+  228  cp -r work_dir home_work_1/work_dir_new
+  229  ls -la
+  230  cp -r work_dir home_work_1/work_dir_new
+  231  cd hw1
+  232  cd ..
+  233  cp -r work_dir home_work_1/work_dir_new
+  234  cd home_work_1/
+  235  ls 
+  236  cp -r work_dir/work_dir_new
+  237  cp --help
+  238  ls
+  239  cp -r work_dir  /home_work_1/work_dir_new
+  240  ls -la
+  241  cd work_dir_new
+  242  ls -la
+  243  cd work_dir
+  244  ls -la
+  245  ls
+  246  mv file_1_copy file_1_new_name
+  247  ls
+  248  rm file_1_new_name 
+  249  ls
+  250  cd ..
+  251  cd --
+  252  pwd
+  253  cd ~github/team22/users/dptimofeev/exercise/hw1/home_work_1
+  254  cd hw1
+  255  git checkout 
+  256  cd github
+  257  cd team22/users/
+  258  cd dptimofeev/exercise/hw1
+  259  cd/home_work_1
+  260  cd home_work_1
+  261  ls
+  262  cd work_dir
+  263  cd -
+  264  rm -r work_dir_new
+  265  touch file1
+  266  vim file1
+  267  touch file2
+  268  vim file2
+  269  cat file 1
+  270  cat file1
+  271  head head -n2 file1
+  272  tail -n2 file1
+  273  find /home/ -name "*fil*"
+  274  find /home_work_1/ -name "*fil*"
+  275  history > result_history
+  276  du .
+  277  git add.
+  278  git add .
+  279  git commit -m "hw2_part2(partlydone)"
+  280  git push
+  281  git status
+  282  git branch
+  283  git push --set-upstream origin hw1
+  284  git status
+  285  curl https://finance.rambler.ru/currencies/USD/ 
+  287  curl https://finance.rambler.ru/currencies/EUR/ 
+  288  curl https://finance.rambler.ru/currencies/EUR/ |grep EUR
+  289  curl https://finance.rambler.ru/currencies/EUR/ |grep '1 EUR ='
+  290  curl https://finance.rambler.ru/currencies/USD/ |grep '1 USD ='
+  291  curl https://finance.rambler.ru/currencies/USD/ |grep '1 USD =' cur_usd
+  292  curl https://finance.rambler.ru/currencies/USD/ -o usd.html
+  293  curl https://finance.rambler.ru/currencies/EUR/ -o eurd.html
+  294  curl https://finance.rambler.ru/currencies/EUR/ -o eur.html
+  295  rm eurd.html 
+  296  grep '1 USD =' usd.html
+  297  grep '1 EUR =' eur.html
+  298  grep '1 USD =' usd.html |awk -F ' ' '{print $4}'
+  299  grep '1 EUR =' eur.html |awk -F ' ' '{print $4}'
+  300  ls -la
+  301  ls -lt
+  302  ls -l
+  303  ls -lp
+  304  ls -lp |grep -v/
+  305  ls -lp | grep -v /
+  306  ls -lp | grep -v | awk '{print $6, $7, $8}'
+  307  ls -lp | grep -v / | awk '{print $6, $7, $8}'
+  308  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort
+  309  ls -lp | grep -v / | awk '{print $6, $7, $8}' | sort | tail -n1
+  310  history > result_history 

@@ -199,7 +199,7 @@ class TitleElement(Element):
 
     def __is_page_ok(self):
         list_reports_data = self.__soup.findAll("h2")
-        # print(list_reports_data)
+        print(list_reports_data)
         assert len(list_reports_data) == 5
         if len(list_reports_data) != 5:
             return False
