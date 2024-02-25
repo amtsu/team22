@@ -1,0 +1,1 @@
+"apartment_area","title","quantity","price","price_sale","category","brand","brand_url","url","img_url","description","source_url","apartment_completion_quarter","apartment_completion_year","apartment_floor","apartment_floors_total","apartment_ceilingheight","apartment_room","apartment_ppm","apartment_address","apartment_location_lat","apartment_location_lon"
