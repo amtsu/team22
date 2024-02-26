@@ -1,0 +1,58 @@
+Демонстративный вариант с заведомо небольшими ошибками и как их исправлять :)
+
+└─ $ ▶git checkout main - переключаемся на main ветку
+└─ $ ▶git pull - обновляем main ветку
+└─ $ ▶git checkout -b ismatrosova-hw-6 - создаем ветку ismatrosova-hw-6, в ней будем делать дз
+*** делаем дз ***
+└─ $ ▶ git status
+    On branch ismatrosova-hw-6
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+            ./
+
+    Видим подсказку какие команды можно ввести и что произойдет с файлами
+
+└─ $ ▶ git add ./
+
+    я решила добавить все файлы в папке hw6
+
+└─ $ ▶ git status
+    On branch ismatrosova-hw-6
+    Changes to be committed:
+      (use "git restore --staged <file>..." to unstage)
+            new file:   hw-6.ipynb
+            new file:   hw6.pdf
+            new file:   "\320\223\320\270\321\........ .txt"
+    
+    Посмотрела что добавилось.
+    Гит не умеет считывать названия файлов с рускими буквами. + не желательно ставить пробелы в названии файла!
+    Переименую файл. + Не хочу добавлять его в коммит.
+
+    *** переименовала файл***
+
+    └─ $ ▶ git status
+    On branch ismatrosova-hw-6
+    Changes to be committed:
+      (use "git restore --staged <file>..." to unstage)
+            new file:   Git-homework.txt
+            new file:   hw-6.ipynb
+            new file:   hw6.pdf
+
+
+    └─ $ ▶ git restore --staged Git-homework.txt
+
+    └─ $ ▶ git status
+    On branch ismatrosova-hw-6
+    Changes to be committed:
+      (use "git restore --staged <file>..." to unstage)
+            new file:   hw-6.ipynb
+            new file:   hw6.pdf
+    
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+            Git-homework.txt
+
+└─ $ ▶ git commit -m "Неполное hw6" - Сделала коммит
+
+└─ $ ▶ git push -u origin ismatrosova-hw-6  - отправила на сервер
+
