@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="header_section">
+                <div class="header_item headerlogo">
+                    <img src="Anhealth (3).png">
+                </div>
+            </div>
+            <div class="header_section">
+                <div class="header_item header_button">
+                    <form action="#" target="_blank">
+                        <button class="button">Войти</button>
+                    </form>
+            </div>
+                <div class="header_item header_button">
+                    <form action="#" target="_blank">
+                        <button class="button">Регистрация</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="mainphoto">
+            <div class="information">
+                Anhealth — Нейросеть, помогающая поддерживать нормальное давление у домашних животных
+            </div>
+        </div>
+        <div class="main">
+                <div class="chat" id="message">
+		{% for post in posts %}
+                    <div id="displayed_message"> {{ post['title'] }}</div>
+		   {% endfor %}
+                    <div class="textinputbackground">
+                            <form method="POST" 1onsubmit="return  false">
+                                 <input id="input_message" class="textinput" type="text" placeholder="Введите текст" name="question">
+                                 <script>
+                                    function displayMessage() {
+                                       var inputElement = document.getElementById("input_message");
+                                      var messageElement = document.getElementById("displayed_message");
+                                      var message = inputElement.value;
+                                     messageElement.innerHTML = message;
+                                    inputElement.value = "";
+                                  }
+                                 </script>
+                                  <button 1onclick="displayMessage()" id="buttoninput" ><img src="pngwing.com (1).png"></button>
+                            </form>
+
+                    </div>
+                </div>
+        </div>
+		{% for post in posts %}
+			<h2>{{ post['title'] }}</h2>
+			<span class="badge badge-primary">{{ post['created'] }}</span>
+			<hr>
+		{% endfor %}
+	
+        <div class="footer">
+            <div class="footer_section">
+                <div class="footer_item footer_logo">
+                    <a href="https://t.me/Randomtext_56473738382838_2bot" target="_blank"><img src="telegram.png"></a>
+                </div>
+            </div>
+            <div class="footer_section ">
+                <div class="footer_item footer_info">
+                    <p class="main_footer_info">© Anhealth - All Rights Reserved</p>
+                </div>
+            </div>
+            <div class="footer_section">
+                <div class="footer_item footer_info">
+                    <a href="#" target="_blank">О нас</a>
+                </div>
+                  <div class="footer_item footer_info">
+                       <a href="#" target="_blank">Обратная связь</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
