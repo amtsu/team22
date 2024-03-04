@@ -63,7 +63,7 @@ class GkOsnovaServiceProcessing:
         brand = "gk-osnova.ru"
         brand_url = "gk-osnova.ru"
         url = url
-        img_url =layout[plan_image][image_thumb] 
+        img_url =layout.get(plan_image, {}).get(image_thumb, '') 
         #description = to_str(specialmortgageoffer_set)
         #230211
         apartment 
@@ -92,30 +92,35 @@ class GkOsnovaServiceProcessing:
                 url = next_url
                 next_url = ""
                 # print(url)
-                with urllib.request.urlopen(url) as response:
-                    self.__page = response.read()
-                    jsons = json.loads(self.__page)
-                    yield (jsons, url)
-                    next_url = jsons.get("next", "")
+                try:
+
+                    with urllib.request.urlopen(url) as response:
+                        self.__page = response.read()
+                        jsons = json.loads(self.__page)
+                        yield (jsons, url)
+                        next_url = jsons.get("next", "")
+                except:
+                    pass
 
     def process(self):
         self.__urls = [
 #            "https://api.gkosnova.tech/public/api/v1/building-objects/14/properties?detail=0",
         ]
-        for i in range(3):
+        for i in range(40):
             self.__urls.append("https://api.gkosnova.tech/public/api/v1/building-objects/" + str(i) + "/properties?detail=0")
 
 
         self.__list_dict = []
         for jsons, source_url in self.__generate_jsons():
-            for e in jsons["results"]:
+            for e in jsons["data"]:
+                #print(e)
                 el = {}
                 #el[
                 #    "title"
                 #] = f"{e['project']} {e['building']} {str(e['floor'])} {str(e['area'])} {e['address']} {e['location']}"
                 #el["quantity"] = 1
  
-                el["title"] = f'{e["project_id"])} {e["building"]} {e["section"]} {e["number_on_floor"]} {e["floor"]["number"]} {e["layout"]["area"]} {e["layout"]["room_count"]}'
+                el["title"] = f'{e["project_id"]} {e["building"]} {e["section"]} {e["floor"]["number"]} {e["layout"]["area"]} {e["layout"]["room_count"]}'
                 el["quantity"] = 1
                 el["price"] = e["cost"]
                 el["price_sale"] = e["cost"]
@@ -124,10 +129,13 @@ class GkOsnovaServiceProcessing:
                 el["brand_url"] = "gk-osnova.ru"
                 #el["url"] = e["url"]
                 el["url"] = source_url
-                el["img_url"] = e["layout"]["plan_image"]["image_thumb"] 
+                try:
+                    el["img_url"] = e["layout"].get("plan_image",{}).get("image_thumb")
+                except:
+                    el["img_url"] = ''
                 el["apartment_area"] = e["layout"]["area"]
-                el["apartment_floor"] = e["number_on_floor"]
-                el["apartment_floors_total"] = e["floor"]["number"]
+                el["apartment_floor"] = e["floor"]["number"]
+                #el["apartment_floors_total"] = e["floor"]["number"]
                 el["apartment_room"] = e["layout"]["room_count"]
                 el["apartment_ppm"] = e["meter_cost"]
 
@@ -179,7 +187,7 @@ class GkOsnovaServiceProcessing:
                     # sku="sku_example",
                     url=e["url"],
                     # canonical_url="canonical_url_example",
-                    img_url=e["image_url"],
+                    img_url=e["img_url"],
                     #description=e["description"],
                     # params="params_example",
                     # seller="seller_example",
@@ -189,7 +197,7 @@ class GkOsnovaServiceProcessing:
                     #apartment_completion_quarter=e["apartment_completion_quarter"],
                     #apartment_completion_year=e["apartment_completion_year"],
                     apartment_floor=e["apartment_floor"],
-                    apartment_floors_total=e["apartment_floors_total"],
+                    #apartment_floors_total=e["apartment_floors_total"],
                     #apartment_ceilingheight=e["apartment_ceilingheight"],
                     apartment_room=e["apartment_room"],
                     apartment_ppm=e["apartment_ppm"],
@@ -204,7 +212,8 @@ class GkOsnovaServiceProcessing:
                 )  # History |  (optional)
 
                 try:
-#                    api_response = api_instance.history_create(body=history)
+                    api_response = api_instance.history_create(body=history)
+                    pass
                     # pprint(api_response)
                 except openapi_client.ApiException as e:
                     print("Exception when calling HistoryApi->history_create: %s\n" % e)
