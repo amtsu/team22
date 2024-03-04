@@ -137,6 +137,11 @@ class GkOsnovaServiceProcessing:
                 el["apartment_floor"] = e["floor"]["number"]
                 #el["apartment_floors_total"] = e["floor"]["number"]
                 el["apartment_room"] = e["layout"]["room_count"]
+                if el["apartment_room"].startswith('E'):
+                    el["apartment_room"] = el["apartment_room"][1]
+                if el["apartment_room"].startswith('S'):
+                    el["apartment_room"] = 0
+
                 el["apartment_ppm"] = e["meter_cost"]
 
                 el["category"] = "Новостройки"
