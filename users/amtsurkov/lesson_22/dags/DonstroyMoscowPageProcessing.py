@@ -672,7 +672,7 @@ class ListPageProcessor:
                     "apartment_floor": int(floor),
 
 
-                    "title": f"{project} {kvartal} {korpus} {section} {floor} {area} {address}",
+                    "title": f"{project} | {kvartal} | {korpus} | {section} | {floor} | {area} | {address}",
 
                     "apartment_room": int(room),
                     "apartment_address": address,
