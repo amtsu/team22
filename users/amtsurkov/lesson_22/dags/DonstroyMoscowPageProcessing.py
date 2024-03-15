@@ -867,4 +867,3 @@ class DonstroyMoscowServiceProcessing:
                 if i % 100 == False:
                     print('i=', i)
             print("Count load object =", len(self.__list_dict))
-§:wq
