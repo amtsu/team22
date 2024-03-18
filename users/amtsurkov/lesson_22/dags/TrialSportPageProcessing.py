@@ -200,8 +200,8 @@ class TitleElement(Element):
     def __is_page_ok(self):
         list_reports_data = self.__soup.findAll("h2")
         print(list_reports_data)
-        assert len(list_reports_data) == 5
-        if len(list_reports_data) != 5:
+        assert len(list_reports_data) == 5 or  len(list_reports_data) == 6
+        if len(list_reports_data) != 5 and len(list_reports_data) != 6:
             return False
         return True
 
