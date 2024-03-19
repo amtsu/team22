@@ -1,0 +1,39 @@
+======================================================================= test session starts =======================================================================
+platform linux -- Python 3.10.10, pytest-8.1.1, pluggy-1.4.0
+rootdir: /home/jupyter-misterdx/github/team22/users/avlotsmanov/exercise/hw5
+plugins: anyio-4.2.0
+collected 14 items
+
+test_hw5_sets.py ...F...F......                                                                                                                             [100%]
+
+============================================================================ FAILURES =============================================================================
+______________________________________________________________________ test_set_union_neg_2 _______________________________________________________________________
+
+    def test_set_union_neg_2():
+        try:
+            set_union([2,3], set3)
+        except TypeError:
+            assert True
+        else:
+>           assert False, "Функция не вызвала исключение TypeError"
+E           AssertionError: Функция не вызвала исключение TypeError
+E           assert False
+
+test_hw5_sets.py:32: AssertionError
+____________________________________________________________________ test_set_difference_neg_1 ____________________________________________________________________
+
+    def test_set_difference_neg_1():
+        try:
+            set_difference({1, 2}, {12, 2})
+        except TypeError:
+            assert True
+        else:
+>           assert False, "Функция не вызвала исключение TypeError"
+E           AssertionError: Функция не вызвала исключение TypeError
+E           assert False
+
+test_hw5_sets.py:49: AssertionError
+===================================================================== short test summary info =====================================================================
+FAILED test_hw5_sets.py::test_set_union_neg_2 - AssertionError: Функция не вызвала исключение TypeError
+FAILED test_hw5_sets.py::test_set_difference_neg_1 - AssertionError: Функция не вызвала исключение TypeError
+================================================================== 2 failed, 12 passed in 0.04s ===================================================================
