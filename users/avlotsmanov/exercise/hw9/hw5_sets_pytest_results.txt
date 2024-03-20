@@ -1,13 +1,13 @@
-======================================================================= test session starts =======================================================================
+============================= test session starts ==============================
 platform linux -- Python 3.10.10, pytest-8.1.1, pluggy-1.4.0
 rootdir: /home/jupyter-misterdx/github/team22/users/avlotsmanov/exercise/hw5
 plugins: anyio-4.2.0
-collected 14 items
+collected 48 items
 
-test_hw5_sets.py ...F...F......                                                                                                                             [100%]
+test_hw5_sets.py ...F...F............F...........................        [100%]
 
-============================================================================ FAILURES =============================================================================
-______________________________________________________________________ test_set_union_neg_2 _______________________________________________________________________
+=================================== FAILURES ===================================
+_____________________________ test_set_union_neg_2 _____________________________
 
     def test_set_union_neg_2():
         try:
@@ -19,8 +19,8 @@ ______________________________________________________________________ test_set_
 E           AssertionError: Функция не вызвала исключение TypeError
 E           assert False
 
-test_hw5_sets.py:32: AssertionError
-____________________________________________________________________ test_set_difference_neg_1 ____________________________________________________________________
+test_hw5_sets.py:37: AssertionError
+__________________________ test_set_difference_neg_1 ___________________________
 
     def test_set_difference_neg_1():
         try:
@@ -32,8 +32,26 @@ ____________________________________________________________________ test_set_di
 E           AssertionError: Функция не вызвала исключение TypeError
 E           assert False
 
-test_hw5_sets.py:49: AssertionError
-===================================================================== short test summary info =====================================================================
-FAILED test_hw5_sets.py::test_set_union_neg_2 - AssertionError: Функция не вызвала исключение TypeError
-FAILED test_hw5_sets.py::test_set_difference_neg_1 - AssertionError: Функция не вызвала исключение TypeError
-================================================================== 2 failed, 12 passed in 0.04s ===================================================================
+test_hw5_sets.py:56: AssertionError
+___________________________ test_combine_sets_neg_2 ____________________________
+
+    def test_combine_sets_neg_2():
+        try:
+            combine_sets(
+                {1, 2},
+                [2, 3, 5],
+                {2, 4, 8, 9}
+            )
+        except TypeError:
+            assert True
+        else:
+>           assert False, "Функция не вызвала исключение TypeError"
+E           AssertionError: Функция не вызвала исключение TypeError
+E           assert False
+
+test_hw5_sets.py:132: AssertionError
+=========================== short test summary info ============================
+FAILED test_hw5_sets.py::test_set_union_neg_2 - AssertionError: Функция не вы...
+FAILED test_hw5_sets.py::test_set_difference_neg_1 - AssertionError: Функция ...
+FAILED test_hw5_sets.py::test_combine_sets_neg_2 - AssertionError: Функция не...
+========================= 3 failed, 45 passed in 0.11s =========================
