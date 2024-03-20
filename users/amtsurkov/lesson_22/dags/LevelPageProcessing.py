@@ -119,10 +119,14 @@ class LevelServiceProcessing:
         self.__list_dict = []
         for jsons, source_url in self.__generate_jsons():
             for e in jsons["results"]:
+                number = '-1'
+                if e.get('number'):
+                    number = e['number'].split('-')[1]
                 el = {}
                 el[
                     "title"
-                ] = f"{e['project']} {e['building']} {str(e['floor'])} {str(e['area'])} {e['address']} {e['location']}"
+                #] = f"{e['project']} {e['building']} {str(e['floor'])} {str(e['area'])} {e['address']} {e['location']}"
+                ] = f"{e['project']} | {e['building']} | {str(e['floor'])} | {str(e['area'])} | {e['address']} | {e['location']} | {number}"
                 el["quantity"] = 1
                 el["price"] = e["old_price"]
                 el["price_sale"] = e["price"]
