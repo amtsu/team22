@@ -1,6 +1,12 @@
 import pytest
 
-from func_for_hw3 import*
+from func_for_hw3 import (calculate_result,
+fractional_calculation,
+calculat_air_volume_for_conditioner,
+quadratic_equation_solution,
+string_concatenation_function,
+string_multiplication_function,
+list_modification)
 
 
 def test_calculate_result1():

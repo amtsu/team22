@@ -1,5 +1,10 @@
 import pytest
-from func_for_hw4 import*
+from func_for_hw4 import (create_lists,
+creat_list,
+len_list,
+fibonacci_list_check,
+check_fibonacci_numbers,
+laws_of_the_Programmer)
 a_poem = """За стеклом лежал Питон, 
 Большой и толстый, как батон.
 Вверх пополз,
