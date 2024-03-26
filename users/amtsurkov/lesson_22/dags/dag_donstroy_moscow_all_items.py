@@ -15,7 +15,7 @@ with DAG(dag_id="donstroy_moscow_items", start_date=datetime(2024, 2, 7), schedu
     # вторая задача в даге
     @task()
     def airflow():
-        pass
+       # pass
         print("start DonstroyMoscowProcessing")
         tssp = DonstroyMoscowServiceProcessing()
         tssp.load_url_by_default()
