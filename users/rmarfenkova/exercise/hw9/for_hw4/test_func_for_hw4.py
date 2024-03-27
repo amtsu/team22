@@ -4,7 +4,13 @@ creat_list,
 len_list,
 fibonacci_list_check,
 check_fibonacci_numbers,
-laws_of_the_Programmer)
+laws_of_the_Programmer,
+solyanka,
+element_5_solaynki,
+add_element,
+swap_elements)
+
+
 a_poem = """За стеклом лежал Питон, 
 Большой и толстый, как батон.
 Вверх пополз,
@@ -38,6 +44,44 @@ def test_len_list2():
 def test_len_list3():
     assert len_list(a_poem)[2] == 5
 
+############################# добавила тесты к ним ##############################################################
+
+def test_solyanka():
+    """
+    функция считает количество элементов списка
+    """
+    solyanka_list = [10, 5.5,'строка', ['1, 5, 3, "abc"'], {'1: "str", 2: "bar", "la-la": 22'}, ('1, 5, 3, "abc"') , {'1, 5, 3, "abc"'}]
+    expected = 7
+    assert solyanka(solyanka_list) == expected
+
+def test_element_5_solaynki():
+    """
+    проверяет тип пятого элемента списка
+    """
+    solyanka_list = [10, 5.5,'строка', ['1, 5, 3, "abc"'], {'1: "str", 2: "bar", "la-la": 22'}, ('1, 5, 3, "abc"') , {'1, 5, 3, "abc"'}]
+    expected = set
+    assert element_5_solaynki(solyanka_list) == expected
+
+def test_add_element():
+    """
+    тест на добавление последнего элемента в список и его тип
+    """
+    solyanka_list = [10, 5.5,'строка', ['1, 5, 3, "abc"'], {'1: "str", 2: "bar", "la-la": 22'}, ('1, 5, 3, "abc"') , {'1, 5, 3, "abc"'}]
+    element = 7
+    expected = [10, 5.5, 'строка', ['1, 5, 3, "abc"'], {'1: "str", 2: "bar", "la-la": 22'}, '1, 5, 3, "abc"', {'1, 5, 3, "abc"'}, [7]]
+    expected2 = list
+    assert add_element(solyanka_list, element)[0] == expected
+    assert add_element(solyanka_list, element)[1] == expected2
+
+def test_swap_elements():
+    """
+    проверяем как функция меняет местами 3 и 5 элементы в списке
+    """
+    a_list = [1, 2, 5, 4, 3, 6]
+    expected = [1, 2, 3, 4, 5, 6]
+    assert swap_elements(a_list) == expected
+
+#################################################################################################################
 def test_fibonacci_list_check():
     expected_length = 23
     assert fibonacci_list_check(fibonacci_list)[0] == expected_length
