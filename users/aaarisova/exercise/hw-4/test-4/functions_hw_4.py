@@ -88,88 +88,86 @@ def print_type_of_last_element():
 
 # Задание 4.
 
-# def  create_fibbonachi_list():
-#     '''Создайте список fibonacci_list, элементами которого будут числа Фибонначи из задания'''
-#     fibonacci_list = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711]
-#     fibonacci_lenght = len(fibonacci_list)
-#     return fibonacci_list, fibonacci_lenght
+def  create_fibbonachi_list():
+    '''Создайте список fibonacci_list, элементами которого будут числа Фибонначи из задания'''
+    fibonacci_list = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711]
+    fibonacci_lenght = len(fibonacci_list)
+    return fibonacci_list, fibonacci_lenght
     
-# fibonacci_list = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711]
+fibonacci_list = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711]
 
-# def count_ones_in_fibonacci(fibonacci_list):       
-#     '''Посчитайте и выведите на экран, сколько раз число 1 входит в заданную последовательность Фибоначчи.'''
-#     count_of_1 = fibonacci_list.count(1)
-#     return count_of_1
+def count_ones_in_fibonacci(fibonacci_list):       
+    '''Посчитайте и выведите на экран, сколько раз число 1 входит в заданную последовательность Фибоначчи.'''
+    count_of_1 = fibonacci_list.count(1)
+    return count_of_1
 
 
-# def is_fibonacci_number(fibonacci_list):    #*     
-#     '''Проверьте и верните результат, является ли число 21 числом Фибоначчи. Число 33? Число 987? число 9999?'''     
-#     numbers_to_check = [21, 33, 987, 9999]
-#     def fibonacci_number(number):
-#         a, b = 0, 1
-#         while a < number:
-#             a, b = b, a + b
-#         return a == number
+def is_fibonacci_number(fibonacci_list):    #*     
+    '''Проверьте и верните результат, является ли число 21 числом Фибоначчи. Число 33? Число 987? число 9999?'''     
+    numbers_to_check = [21, 33, 987, 9999]
+    def fibonacci_number(number):
+        a, b = 0, 1
+        while a < number:
+            a, b = b, a + b
+        return a == number
      
-#     results = {}
-#     for number in numbers_to_check:
-#         results[number] = fibonacci_number(number)
-#     return results
+    results = {}
+    for number in numbers_to_check:
+        results[number] = fibonacci_number(number)
+    return results
 
 
-# # Задание 5.
+# Задание 5.
 
-# def create_a_list():
-#     '''Создание переменной a_list типа "список" '''
-#     a_list = [1,2,5,4,3,6]
-#     return a_list
+def create_a_list():
+    '''Создание переменной a_list типа "список" '''
+    a_list = [1,2,5,4,3,6]
+    return a_list
 
-# def swap_elements(a_list):
-#     '''Поменяйте местами третий и пятый элементы a_list'''
-#     a_list[2], a_list[4] = a_list[4], a_list[2]
-#     return a_list
-
-
-
-# #Задан 6:
-
-# def string_in_order():
-#     '''Вывод на экран строки Омара Хайама в правильном порядке, используя список.''' 
-#     poem = [(2, "тот большего добьётся," ),
-#         (5, "Кто умирал, тот знает, что живёт."),
-#         (1, "Кто битым жизнью был," ),
-#         (3, "Пуд соли съевший выше ценит мёд."),
-#         (4, "Кто слёзы лил, тот искренней смеётся,")]
-#     poem.sort()
-#     return poem
+def swap_elements(a_list):
+    '''Поменяйте местами третий и пятый элементы a_list'''
+    a_list = [1,2,5,4,3,6]
+    a_list[2], a_list[4] = a_list[4], a_list[2]
+    return a_list
 
 
-# # ЗАДАНИЕ 7:
 
-# @pytest.fixture
-# def poem_fixture():
-#     poem = '''Кто битым за дедлайн был,
-# тот больше не сольется.
-# Пуд багов съевший, выше ценит чистый код.
-# Кто дошик ел, тот рейтинг ценит свой.
-# Кто крашился, тот знает, что живой.'''
-#     return poem
-    
+# Задание 6.
 
-# def append_third_line_from_poem(poem):
-#     '''Создайте переменную true_story_list типа список, занесите в неё третью строку из стихотворения выше.'''
-#     poem_lines = poem.splitlines()
-#     true_story_list = []
-#     true_story_list.append(poem_lines[2])     #3я стр из стих.
-#     return true_story_list, len(true_story_list)
+def string_in_order():
+    '''Вывод на экран строки Омара Хайама в правильном порядке, используя список.''' 
+    poem = [(2, "тот большего добьётся," ),
+        (5, "Кто умирал, тот знает, что живёт."),
+        (1, "Кто битым жизнью был," ),
+        (3, "Пуд соли съевший выше ценит мёд."),
+        (4, "Кто слёзы лил, тот искренней смеётся,")]
+    poem.sort()
+    return poem
 
 
-# def append_fourth_line_from_poem():
-#     '''Добавление 4й строки в конец списка true_story_list.'''
-#     poem_lines = poem.splitlines()
-#     true_story_list = ['Пуд багов съевший, выше ценит чистый код.']
-#     true_story_list.append(poem_lines[3])     #4я стр из стих.
-#     return true_story_list, len(true_story_list)
+# Задание 7.
+
+poem = '''Кто битым за дедлайн был,
+тот больше не сольется.
+Пуд багов съевший, выше ценит чистый код.
+Кто дошик ел, тот рейтинг ценит свой.
+Кто крашился, тот знает, что живой.'''
+
+
+def append_third_line_from_poem(poem):
+    '''Создайте переменную true_story_list типа список, занесите в неё третью строку из стихотворения выше.'''
+    poem_lines = poem.splitlines()
+    true_story_list = []
+    true_story_list.append(poem_lines[2])     #3я стр из стих.
+    return true_story_list, len(true_story_list)
+
+
+def append_fourth_line_from_poem():
+    '''Добавление 4й строки в конец списка true_story_list.'''
+    poem_lines = poem.splitlines()
+    true_story_list = ['Пуд багов съевший, выше ценит чистый код.']
+    true_story_list.append(poem_lines[3])     #4я стр из стих.
+    return true_story_list, len(true_story_list)
 
 
 # ########## ОСТАНОВИЛАСЬ ТУТ: #################################################
