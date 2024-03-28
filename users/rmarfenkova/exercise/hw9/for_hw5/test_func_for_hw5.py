@@ -10,9 +10,17 @@ union_of_sets,
 is_disJoint,
 set_difference,
 symmetric_difference,
-create_set,)
+create_set,
+create_dictionary,
+add_student,
+remove_student,
+merge_dicts,
+remove_item,
+reverse_dict,
+sort_dict_reverse,
+max_value_in_dict)
 
-
+##################### МНОЖЕСТВА #####################################
 def test_set_union():
     """
     тест на объединения двух множеств
@@ -29,7 +37,7 @@ def test_set_difference():
     input_a = {1, 2, 3, 4, 5}
     input_b = {4, 5, 6, 7, 8}
     expected = {1, 2, 3}
-    expected == set_difference(input_a, input_b), "Ошибка, разность множеств найдена неверно"
+    assert expected == set_difference(input_a, input_b), "Ошибка, разность множеств найдена неверно"
 
 def test_is_subset_false():
     """
@@ -95,9 +103,9 @@ def test_find_intersection2():
     """
     тест на проверку пустое множества на входе
     """
-    sets = set()
+    
     expected = set()      
-    assert expected == find_intersection(*sets) # тут не уверена, что так записала, но тест прошел 
+    assert expected == find_intersection(set()) # тут не уверена, что так записала, но тест прошел 
 
 def test_check_equality():
     """
@@ -176,7 +184,7 @@ def test_create_set():
     """
     тест на создание множества с заданными элементами
     """
-    elements = create_set(1, 2, 3, 4, 5)
+    elements = (1, 2, 3, 4, 5)
     expected = {1, 2, 3, 4, 5}
     assert expected == create_set(*elements), "Ошибка, множество не создано" 
     
@@ -196,6 +204,147 @@ def test_create_set3():
     expected = {1, 2, 3}
     assert expected == create_set(*elements), "Ошибка, во множестве есть повторяющиеся элементы"
     
-
+##################### СЛОВАРИ #####################################
     
+def test_create_dictionary():
+    """
+    Тест на функцию, которая создает словарь с заданными ключами и значениями.
+    Принимает словарь в формате ключ-значение и возвращает созданный словарь.
+    """
+    expected = {'appeles': 5, 'bananas': 10, 'oranges': 7}
+    assert expected == create_dictionary(appeles=5, bananas=10, oranges=7), "Ошибка, словарь создан неправильно"
+
+def test_create_dictionary2():
+    """
+    тест на создание пустого словаря
+    """
+    assert create_dictionary() == {}
+
+          
+def test_add_student():
+    """
+    тест на добавление студента в заданый словарь
+    """
+    students = {1: 'Иванов', 2: 'Петров', 3: 'Сидоров'}
+    student_id = 4
+    student_name = 'Смирнов'
+    expected = {1: 'Иванов', 2: 'Петров', 3: 'Сидоров', 4: 'Смирнов'} 
+    assert add_student(students, student_id, student_name) == expected
+
+def test_remove_student():
+    """
+    тест на функцию удаляющую студента в заданном словаре.
+    """
+    students = {1: 'Иванов', 2: 'Петров', 3: 'Сидоров', 4: 'Смирнов'}
+    student_id = 4
+    expected = {1: 'Иванов', 2: 'Петров', 3: 'Сидоров'}
+    assert remove_student(students, student_id) == {1: 'Иванов', 2: 'Петров', 3: 'Сидоров'}
+
+def test_remove_student2():
+    """
+    тест на функцию удаляющую студента в заданном словаре, если такого student_id нет в словаре
+    """
+    students = {1: 'Иванов', 2: 'Петров', 3: 'Сидоров', 4: 'Смирнов'}
+    student_id = 7
+    expected = {1: 'Иванов', 2: 'Петров', 3: 'Сидоров', 4: 'Смирнов'}
+    assert remove_student(students, student_id) == {1: 'Иванов', 2: 'Петров', 3: 'Сидоров', 4: 'Смирнов'}
+    
+############ тесты на добавление удаление фруктов не получились потом еще попробую ###################  
+
+def test_merge_dicts():
+    """
+    тест на функцию объединеня двух словарей
+    """
+    dict1 = {'a': 1, 'b': 2}
+    dict2 = {'c': 3, 'd': 4}
+    expected = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+    assert merge_dicts(dict1, dict2) == expected
+    
+def test_merge_dicts2():
+    """
+    тест проверяет функцию когда один из словарей пришел пустой
+    """
+    dict1 = {}
+    dict2 = {'c': 3, 'd': 4}
+    expected = {'c': 3, 'd': 4}
+    assert merge_dicts(dict1, dict2) == expected
+
+def test_remove_item():
+    """
+    тест на функцию которая удаляет элемент из заданого словаря по ключу
+    """
+    my_dict = {'apple': 2, 'banana': 3, 'orange': 1}
+    my_key = 'banana'
+    expected = {'apple': 2, 'orange': 1}
+    assert remove_item(my_dict, my_key) == expected
+
+
+def test_remove_item2():
+    """
+    тест на функцию которая удаляет элемент из заданого словаря по ключу, которого нет в словаре
+    """
+    my_dict = {'apple': 2, 'banana': 3, 'orange': 1}
+    my_key = 'что - то'
+    expected = {'apple': 2, 'banana': 3, 'orange': 1}
+    assert remove_item(my_dict, my_key) == expected
+
+def test_remove_item3():
+    """
+    тест проверяет как функция удвляет ключ, если он является кортежем, принимает словарь и ключ
+    """
+    my_dict = {("ну", "да"):1, ("ну", "нет"):2, "а": 3, "вот": 4, "и": 5, "да": 6 }
+    my_key = ("ну", "да")
+    expected = {('ну', 'нет'): 2, 'а': 3, 'вот': 4, 'и': 5, 'да': 6}
+    assert remove_item(my_dict, my_key)
+    
+def test_reverse_dict():
+    """
+    тест проверяет как функция переворачивает значение и ключ в словаре
+    """
+    my_dict = {'a': 1, 'b': 2, 'c': 3}
+    expected = {1: 'a', 2: 'b', 3: 'c'}
+    assert reverse_dict(my_dict) == expected
+    
+def test_sort_dict_reverse():
+    """
+    тест на функцию сортировки ключей в словаре, в обратном порядке
+    """
+    my_dict = {3: 'apple', 1: 'banana', 2: 'orange'}
+    expected = {3: 'apple', 2: 'orange', 1: 'banana'}
+    assert sort_dict_reverse(my_dict) == expected
+    
+def test_sort_dict_reverse2():
+    """
+    тест на функцию сортировки ключей в словаре, в обратном порядке, когда ключи - строки
+    """
+    my_dict = {'a': 'apple', 'f': 'banana', 'b': 'orange'}
+    expected = {'f': 'banana', 'b': 'orange', 'a': 'apple'}
+    assert sort_dict_reverse(my_dict) == expected
+
+def test_max_value_in_dict():
+    """
+    тест на функцию, которая возвращает наибольшее значение словаря
+    """
+    input_dict = {'a': 1, 'b': 2, 'c': 3}
+    expected = 3
+    assert max_value_in_dict(input_dict) == expected
+    
+def test_max_value_in_dict2():
+    """
+    тест на функцию, которая возвращает наибольшее значение словаря, если значение типа str
+    """
+    my_dict = {1 : "распакоука", 2 : "словаря", 3 : "чек" }
+    expected = "чек"
+    assert max_value_in_dict(my_dict) == expected
+
+def test_max_value_in_dict3():
+    """
+    тест на поиск наибольшего значения словаря, если словарь не поступил
+    """
+    my_dict = {}
+    expected = None
+    assert max_value_in_dict(my_dict) == expected
+
+
+
     
