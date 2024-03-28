@@ -154,84 +154,24 @@ poem = '''Кто битым за дедлайн был,
 Кто крашился, тот знает, что живой.'''
 
 
-def append_third_line_from_poem(poem):
-    '''Создайте переменную true_story_list типа список, занесите в неё третью строку из стихотворения выше.'''
-    poem_lines = poem.splitlines()
+def transform_poem_data():
     true_story_list = []
-    true_story_list.append(poem_lines[2])     #3я стр из стих.
-    return true_story_list, len(true_story_list)
-
-
-def append_fourth_line_from_poem():
-    '''Добавление 4й строки в конец списка true_story_list.'''
     poem_lines = poem.splitlines()
-    true_story_list = ['Пуд багов съевший, выше ценит чистый код.']
+    true_story_list.append(poem_lines[2])     #3я стр из стих.
     true_story_list.append(poem_lines[3])     #4я стр из стих.
+    
+    true_story_slice = []
+    true_story_slice.append(poem_lines[3])    #4я стр из стих.
+    true_story_slice.append(poem_lines[4])    #5я стр из стих.
+    
+    true_story_slice.extend(true_story_list)  #true_story_slice как последний элемент true_story_list
+    true_story_slice.clear()                  #Очистите весь список
+    true_story_list.insert(0, poem_lines[0])  #1ю стр в начало списка
+    true_story_list.pop()                     #Удалите последний элемент списка
+    true_story_list.insert(1, poem_lines[1])  #II элем во 2ю стр
+    true_story_tail = [poem_lines[4], poem_lines[4]]  #5я стр * 2
+    true_story_list.extend(true_story_tail)           #cкопируйте элементы списка true_story_tail в конец списка true_story_list
+    true_story_list.pop(4) #Удалить 5й эл
+    true_story_list = poem_lines
     return true_story_list, len(true_story_list)
-
-
-# ########## ОСТАНОВИЛАСЬ ТУТ: #################################################
-# def append_fourth_fifth_line_from_poem(poem):
-#     '''Создайте переменную true_story_slice типа список, 
-#        занесите в неё четвертую и пятую строки из стихотворения выше. 
-#        Добавьте содержимое true_story_slice как один последний элемент списка true_story_list.'''
-#     poem_lines = poem.splitlines()
-#     true_story_slice = []
-#     true_story_slice.append(poem_lines[3])    #4я стр из стих.
-#     true_story_slice.append(poem_lines[4])    #5я стр из стих.
-#     true_story_slice.extend(true_story_list)
-#     return true_story_slice, len(true_story_slice)
-
-
-# def clear_list(poem):
-#     '''Очистите весь список true_story_slice, выведите его содержимое на экран.'''
-#     true_story_slice.clear() 
-#     return true_story_slice, len(true_story_slice)
-
-# def append_first_line(poem):
-#     '''Добавьте первую строку из стихотворение в начало списка true_story_list'''
-#     true_story_list.insert(0, poem_lines[0])   #1ю стр в начало списка
-#     return true_story_list, len(true_story_list)
-
-
-# def delete_last_elem(poem):
-#     '''Удалите последний элемент списка true_story_list'''
-#     true_story_list.pop()                
-#     return true_story_list, len(true_story_list)
-
-
-# def append_second_elem(poem):
-#     '''Добавьте вторым элементом списка true_story_list вторую строчку стихотворения'''
-#     true_story_list.insert(1, poem_lines[1])  #II элем во 2ю стр
-#     return true_story_list, len(true_story_list)
-
-
-# def update_true_story_list(poem):
-#     '''Создайте переменную true_story_tail типа список, занесите в него пятую строку стихотворения дважды. 
-#        Скопируйте элементы списка true_story_tail в конец списка true_story_list.'''
-#     true_story_tail = [poem_lines[4], poem_lines[4]]  #5я стр * 2
-#     true_story_list.extend(true_story_tail)
-#     return true_story_list, len(true_story_list)
-
-
-# def remove_fifth_element(poem):
-#     '''Удалите 5 элемент списка true_story_list.'''
-#     true_story_list.pop(4) #Удалить 5й эл
-#     return true_story_list, len(true_story_list)
-
-
-# def print_poem_from_list(poem):
-#     '''Выведите список true_story_list красиво в виде стихотворения.'''
-#     true_story_list = poem_lines
-#     return true_story_list, len(true_story_list)
-
-
-
-
-
-
-
-
-
-
  

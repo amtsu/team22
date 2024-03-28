@@ -1,8 +1,5 @@
 import pytest
-from functions_hw_4 import (add_item_to_list, add_item_to_lists, create_list, symbol_of_separate_element, word_of_separate_element, create_poem_list, create_solyanka_list, solyanka_list_length, print_type_of_fifth_element, add_list_to_solyanka, print_type_of_last_element, create_fibbonachi_list, count_ones_in_fibonacci, is_fibonacci_number, create_a_list, swap_elements, string_in_order, append_third_line_from_poem, append_fourth_line_from_poem)
-
-
-#, #,  append_fourth_fifth_line_from_poem, clear_list, append_first_line, #delete_last_elem, append_second_elem, update_true_story_list, remove_fifth_element, print_poem_from_list
+from functions_hw_4 import (add_item_to_list, add_item_to_lists, create_list, symbol_of_separate_element, word_of_separate_element, create_poem_list, create_solyanka_list, solyanka_list_length, print_type_of_fifth_element, add_list_to_solyanka, print_type_of_last_element, create_fibbonachi_list, count_ones_in_fibonacci, is_fibonacci_number, create_a_list, swap_elements, string_in_order, transform_poem_data)
 
 
 a_poem = """За стеклом лежал Питон,
@@ -123,32 +120,13 @@ def test_string_in_order():
                     (5, 'Кто умирал, тот знает, что живёт.')]
 
 
-def test_append_third_line_from_poem():
-    '''Тест на создайте переменную true_story_list типа список, занесите в неё третью строку из стихотворения выше.'''
-    assert append_third_line_from_poem(poem)[0] == ['Пуд багов съевший, выше ценит чистый код.']
-    assert append_third_line_from_poem(poem)[1] == 1
-
-
-def test_append_fourth_line_from_poem():
-    '''Тест. Добавление 4й строки в конец списка true_story_list.'''
-    assert append_fourth_line_from_poem()[0] == ['Пуд багов съевший, выше ценит чистый код.',
-  'Кто дошик ел, тот рейтинг ценит свой.']
-    assert append_fourth_line_from_poem()[1] == 2
-
-
-# # def test_append_fourth_fifth_line_from_poem(poem_fixture):
-# #     '''Создайте переменную true_story_slice типа список, 
-# #        занесите в неё четвертую и пятую строки из стихотворения выше. 
-# #        Добавьте содержимое true_story_slice как один последний элемент списка true_story_list.'''
-# #     poem_lines = poem_fixture.splitlines()
-# #     true_story_list == ['Пуд багов съевший, выше ценит чистый код.',
-# #   'Кто дошик ел, тот рейтинг ценит свой.']
-# #     true_story_slice = []
-# #     true_story_slice.append(poem_lines[3])    #4я стр из стих.
-# #     true_story_slice.append(poem_lines[4])    #5я стр из стих.
-# #     true_story_slice.extend(true_story_list)
-# #     assert true_story_slice == 
-# #     assert len(true_story_slice) == 
+def test_transform_poem_data():
+    assert transform_poem_data()[0] == ['Кто битым за дедлайн был,',
+  'тот больше не сольется.',
+  'Пуд багов съевший, выше ценит чистый код.',
+  'Кто дошик ел, тот рейтинг ценит свой.',
+  'Кто крашился, тот знает, что живой.']
+    assert transform_poem_data()[1] == 5
     
 
 
