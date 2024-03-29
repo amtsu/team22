@@ -527,6 +527,16 @@ class ListPageProcessor:
             section = section.replace('\n', '')
             section = section.rstrip()
 
+            
+            d = i.find_all("div", class_="d-flat-list__item _item6")
+            if not len(d):
+                continue 
+            nomer_title = d[0].div.extract().text
+            nomer_room = d[0].text
+            nomer_room = nomer_room.replace('\n', '')
+            nomer_room = nomer_room.rstrip()
+
+            
 
             #print(i)
             #print(i.text)
@@ -672,12 +682,14 @@ class ListPageProcessor:
                     "apartment_floor": int(floor),
 
 
-                    "title": f"{project} {kvartal} {korpus} {section} {floor} {area} {address}",
+                    "title": f"{project} | {kvartal} | {korpus} | {section} | {floor} | {area} | {address} | {nomer_room}",
 
                     "apartment_room": int(room),
                     "apartment_address": address,
 
-                    "description": '',#f"{project} {kvartal} {korpus} {section} {floor} {area} {address}",
+                    #"description": '',#f"{project} {kvartal} {korpus} {section} {floor} {area} {address}",
+
+                    "description": f"{project} {kvartal} {korpus} {section} {floor} {area} {address}",
                 }
 
 
