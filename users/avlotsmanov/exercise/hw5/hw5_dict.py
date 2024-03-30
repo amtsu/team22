@@ -8,7 +8,7 @@ def create_dictionary(
     '''
     new_dict = dict()
     if len(tuple_keys) != len(tuple_values):
-        print('Error - повторите ввод, кортежи должны быть одинаковых размеров')
+        raise ValueError ('Кортежи должны быть одинаковых размеров')
     else:
         for i in range(len(tuple_keys)):
             new_dict[tuple_keys[i]] = tuple_values[i]
@@ -25,7 +25,7 @@ def add_students(
     :param tuple_values: кортеж с возрастом
     '''
     if len(tuple_keys) != len(tuple_values):
-        print('Error - повторите ввод, кортежи должны быть одинаковых размеров')
+        raise ValueError ('Кортежи должны быть одинаковых размеров')
     else:
         for i in range(len(tuple_keys)):
             students_dict[tuple_keys[i]] = tuple_values[i]
@@ -33,8 +33,7 @@ def add_students(
 
 def remove_students(
     students_dict,
-    tuple_keys,
-    tuple_values
+    tuple_keys
 ):
     ''' Удаление студентов из словаря
     :param students_dict: словарь студентов в формате {фамилия:возраст}
@@ -71,7 +70,7 @@ def delete_item(
     '''
     for key in keys:
         dict1.pop(key)
-    return
+    return dict1
 
 def reverse_dict(dict1):
     '''Разворачивает словарь
