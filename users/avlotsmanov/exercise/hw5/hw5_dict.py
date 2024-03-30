@@ -6,6 +6,8 @@ def create_dictionary(
     :param tuple_keys: кортеж с ключами
     :param tuple_values: кортеж с значениями
     '''
+    if type(tuple_keys) is not tuple or type(tuple_values) is not tuple:
+        raise TypeError
     new_dict = dict()
     if len(tuple_keys) != len(tuple_values):
         raise ValueError ('Кортежи должны быть одинаковых размеров')

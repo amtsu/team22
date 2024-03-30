@@ -8,13 +8,13 @@ def check_fruit_price(
     :return:
     '''
     ret = ''
-    if fruit not in prices_fruit.keys():
+    if fruit.capitalize() not in prices_dict.keys():
         ret = 'Ошибка! Такого фрукта в словаре не существует'
     else:
-        if prices_fruit[fruit.capitalize()] > 1.5:
-            ret = f'{fruit} - дорогой товар (цена - {prices_fruit[fruit]})'
+        if prices_dict[fruit.capitalize()] > 1.5:
+            ret = 'дорогой товар'
         else:
-           ret = f'Цена на {fruit} - {prices_fruit[fruit]}'
+           ret = 'товар не дорогой'
     return ret
 
 def check_age(
@@ -31,38 +31,40 @@ def check_age(
         ret = 'Ошибка! Такого студента в словаре не существует'
     else:
         if students[name] >= 18:
-            ret = f'{name} - Совершеннолетний'
+            ret = 'Совершеннолетний'
         elif students[name] <= 0:
             ret = 'Ошибка!'
         else:
-            ret = f'{name} - Несовершеннолетний'
+            ret = 'Несовершеннолетний'
     return ret
 
-def even_odd(n):
+def even_odd(num):
     '''Проверяет является ли число четным
     :param n: целое число
     :return: True or False
     '''
-    if str(n).isnumeric():
-        if n % 2 == 0:
+    if type(num) is not int:
+        raise TypeError
+    else:
+        if num % 2 == 0:
             answer = 'Четное'
         else:
-            answer = 'нечетное'
-    else:
-        answer = 'Передано не число'
+            answer = 'Нечетное'
     return answer
 
-def leap_year(n):
+def leap_year(num):
     '''Проверяет является ли год високосным
     :param n: вещественное число
     :return: Строка 'високосный' или 'обычный' 
     '''
-    if n <= 45:
+    if type(num) is not int:
+        raise TypeError
+    if num <= 45:
         ret = 'Обычный'
-    elif n % 4 == 0 and n % 100 != 0:
+    elif num % 4 == 0 and num % 100 != 0:
         ret = 'Високосный'
     else:
-        if n % 400 == 0:
+        if num % 400 == 0:
             ret = 'Високосный'
         else:
             ret = 'Обычный'
@@ -73,6 +75,8 @@ def is_pallindrom(string):
     :param string: строка
     :return: True or False
     '''
+    if type(string) is not str:
+        raise TypeError
     if string == string[::-1]:
         return True
     else:
@@ -83,6 +87,8 @@ def time_of_day(time):
     :param time:  текущее время в формате часы, минуты через пробел
     :return:
     '''
+    if type(time) is not str:
+        raise TypeError
     t = time.split()
     minute = int(t[0]) * 60 + int(t[1])
     if 0 <= minute < 180 or 1260 <= minute <= 1440:
@@ -116,6 +122,8 @@ def is_letter(
     :param string: строка
     :return: True or False
     '''
+    if type(string) is not str:
+        raise TypeError
     if string.isalpha():
         return True
     else:
@@ -159,7 +167,12 @@ def d_o_w(n):
         print('Такого дня не существует')
     else:
         day = {
-            '1':'Понедельник', '2':'Вторник', '3':'Среда',
-            '4':'Четверг', '5':'Пятница', '6':'Суббота', '7':'Воскресенье'
+            '1':'Понедельник',
+            '2':'Вторник',
+            '3':'Среда',
+            '4':'Четверг', 
+            '5':'Пятница', 
+            '6':'Суббота',
+            '7':'Воскресенье'
               }
     return day[str(n)]

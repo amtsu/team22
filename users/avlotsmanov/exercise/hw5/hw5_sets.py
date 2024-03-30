@@ -7,6 +7,8 @@ def set_union(
     :param set2: второе множество
     :return: объединенное множество
     '''
+    if type(set_1) is not set or type(set_2) is not set:
+        raise TypeError
     sum_set = set([])
     for s1 in set_1:
         sum_set.add(s1)
@@ -24,6 +26,8 @@ def set_difference(
     :param set2: второе множество
     :return: разность множеств в виде множества
     '''
+    if type(set_1) is not set or type(set_2) is not set:
+        raise TypeError
     dif_set = []
     for s1 in set_1:
         dif_set += [s1]
@@ -43,7 +47,9 @@ def is_subset(
     :param set1: первое множество
     :param set2: второе множество
     :return: True or False
-    '''    
+    '''
+    if type(set_1) is not set or type(set_2) is not set:
+        raise TypeError
     ret = False
     if len(set_1) <= len(set_2):
         temp_set = set_1 - set_2
@@ -66,10 +72,13 @@ def combine_sets(
     '''Объединенияет нескольких множеств
     :param *set: некоторое количество множеств
     :return: объединенное множество
-    '''    
+    '''
     sum_set = set()
     for s in sets:
-        sum_set = sum_set.union(s)
+        if type(s) is not set:
+            raise TypeError
+        else:
+            sum_set = sum_set.union(s)
     return sum_set
 
 def intersect_sets(
@@ -111,6 +120,8 @@ def equal_sets(
     :param set2: второе множество
     :return: True or False
     ''' 
+    if type(set_1) is not set or type(set_2) is not set:
+        raise TypeError
     if len(set_1) >= len(set_2):
         x = len(set_1 - set_2)
     else:

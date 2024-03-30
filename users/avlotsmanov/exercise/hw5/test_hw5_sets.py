@@ -42,16 +42,8 @@ def test_set_difference_pos_3():
     set1 = {0, 1, 2, 3, 4, 5, 6, 8}
     set0 = set()
     assert set_difference(set1, set0) == {0, 1, 2, 3, 4, 5, 6, 8}
-
-def test_set_difference_neg_1():
-    try:
-        set_difference({1, 2}, {12, 2})
-    except TypeError:
-        assert True
-    else:
-        assert False, "Функция не вызвала исключение TypeError"
         
-def test_set_difference_neg_2():
+def test_set_difference_neg_1():
     try:
         set_difference({1, 2}, 3)
     except TypeError:
@@ -59,7 +51,7 @@ def test_set_difference_neg_2():
     else:
         assert False, "Функция не вызвала исключение TypeError"
 
-def test_set_difference_neg_3():
+def test_set_difference_neg_2():
     set1 = {0, 1, 2, 3, 4, 5, 6, 8}
     set2 = {14, 15, 16}
     assert set_difference(set1, set2) == {

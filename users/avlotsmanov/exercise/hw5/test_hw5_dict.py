@@ -37,11 +37,11 @@ def test_create_dictionary_positive(input_tuples, input_values, expected_result)
         ),
         (
             (1, 2),
-            ('a'),
+            (1, 2, 3),
             ValueError
         )
 ])
-#один из тестов не проходит, тк функция ломается на нем
+
 def test_create_dictionary_negative(input_tuples, input_values, expected_exception):
     with pytest.raises(expected_exception):
         create_dictionary(input_tuples, input_values)
