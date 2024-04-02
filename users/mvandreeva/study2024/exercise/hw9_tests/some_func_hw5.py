@@ -32,3 +32,33 @@ def great_com_divide(num1, num2):
             result = max(dev_list)
     return result
 
+def is_leap2(any_year):
+    """Функция определения високосного года"""
+    result = False
+    if isinstance(any_year, int):
+        if any_year % 4 != 0:
+            print('Год не високосный.')
+        elif any_year % 100 == 0:
+            if any_year % 400 == 0:
+                print('Год високосный.')
+                result = True
+            else:
+                print('Год не високосный.')
+        else:
+            print('Год високосный.')
+            result = True
+    else:
+        print(f"{any_year} не является годом")
+        result = None
+    return result
+
+def is_correct_date(d, m, y):
+    result = False
+    if isinstance(d, int) and isinstance(m, int) and isinstance(y, int):
+        day_count_for_month = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        if is_leap2(y): #для високосного года заменяем количество дней в феврале на 29
+            day_count_for_month[2] = 29
+        if m >=1 and m <= 12 and d>=1 and d <= day_count_for_month[m]:
+            result = True
+    return result
+
