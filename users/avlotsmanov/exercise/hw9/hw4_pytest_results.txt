@@ -1,15 +1,9 @@
-=============================== test session starts ================================
+==================================================================== test session starts ====================================================================
 platform linux -- Python 3.10.10, pytest-8.1.1, pluggy-1.4.0
 rootdir: /home/jupyter-misterdx/github/team22/users/avlotsmanov/exercise/hw4
 plugins: anyio-4.2.0
-collected 0 items / 1 error
+collected 3 items
 
-====================================== ERRORS ======================================
-___________________________ ERROR collecting test_hw4.py ___________________________
-test_hw4.py:43: in <module>
-    NoneType, dict, float,int, list, bool, range, set, str, tuple
-E   NameError: name 'NoneType' is not defined
-============================= short test summary info ==============================
-ERROR test_hw4.py - NameError: name 'NoneType' is not defined
-!!!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!!!
-================================= 1 error in 0.10s =================================
+test_hw4.py ...                                                                                                                                       [100%]
+
+===================================================================== 3 passed in 0.01s =====================================================================
