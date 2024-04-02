@@ -1,5 +1,8 @@
 import pytest
+
+from types import NoneType
 from hw4 import count_in_poem, solyanka
+
 
 #тесты для функции count_in_poem
 @pytest.mark.parametrize(
