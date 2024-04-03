@@ -36,11 +36,19 @@ def test_create_set_2():
     assert create_set_2(elements) == {4, 5, 6, 7, 8}, 'Ошибка создания множества'
 
  
-def test_find_union_sets():
+def test_find_union_sets_1():
     '''Тест на объединение множеств set1 и set2'''
     set1 = {1, 3, 4, 5, 6}
     set2 = {4, 5, 6, 7, 8}
     assert find_union_sets(set1, set2) == {1, 3, 4, 5, 6, 7, 8}, 'Ошибка объединения множеств'   
+
+
+def test_find_union_sets_2():   #негативный. словарь, вместо множества
+    '''Тест на объединение множеств set1 и set2'''
+    set1 = {'a':'b', 'c':'d'}
+    set2 = {4, 5, 6, 7, 8}
+    with pytest.raises(TypeError):
+        find_union_sets(set1, set2)
 
 
 def test_difference_sets():
@@ -49,6 +57,19 @@ def test_difference_sets():
     set2 = {4, 5, 6, 7, 8}
     assert difference_sets(set1,set2) == {1, 3}, 'ошибка нахождения разности множеств'
 
+
+def test_difference_sets_2():     #множества пустые
+    '''тест нахождения разности множеств set1 и set2'''
+    set1 = set()
+    set2 = set()
+    assert difference_sets(set1,set2) == set(), 'ошибка нахождения разности множеств'
+
+
+def test_difference_sets_3():  #переменные не только числа
+    '''тест нахождения разности множеств set1 и set2'''
+    set1 = {1,2,'a','s'}
+    set2 = {2,'a','e'}
+    assert difference_sets(set1,set2) == {1,'s'}, 'ошибка нахождения разности множеств'
 
 
 def test_create_sets_of_rainbows():
@@ -129,17 +150,35 @@ def test_adult_person():
     assert adult_person(person) == 'Совершеннолетний'
 
 
-def test_compare_sets():
+def test_compare_sets_1():
     '''тест функции сравнения длины двух множеств и вывода сообщения о том, какое из множеств больше.'''
 
     set1 = {"красный", "оранжевый", "желтый", "зеленый", "голубой", "синий", "фиолетовый"}
     set2 = {"оранжевый", "зеленый", "голубой", "синий", "Мальвиновый"}
-    assert compare_sets(set1, set2) == 'set1 > set2' 
-    
+    assert compare_sets(set1, set2) == 'set1 > set2', 'Ошибка сравнения множеств'
+
+
+def test_compare_sets_2():
+    '''тест функции сравнения длины двух множеств и вывода сообщения о том, какое из множеств больше.'''
+
+    set1 = {"красный", "оранжевый", "желтый", "зеленый", "голубой"}
+    set2 = {"оранжевый", "зеленый", "голубой", "синий", "Мальвиновый"}
+    assert compare_sets(set1, set2) == 'set1 = set2', 'Ошибка сравнения множеств'
+
+
+def test_compare_sets_3():
+    '''тест функции сравнения длины двух множеств и вывода сообщения о том, какое из множеств больше.'''
+
+    set1 = {}
+    set2 = {1}
+    assert compare_sets(set1, set2) == 'set1 < set2', 'Ошибка сравнения множеств'  
+
+
 def test_price_is_over_limit():
     ''' Тест для функции, которая выводит список продуктов, цена которых превышает указанное число'''
     fruits_prices = {"яблоко": 1.5, "банан": 2, "апельсин": 1.2}
     assert price_is_over_limit(fruits_prices, 1.4) == ["яблоко", "банан"], 'Ошибка в тесте'
+
 
 
 

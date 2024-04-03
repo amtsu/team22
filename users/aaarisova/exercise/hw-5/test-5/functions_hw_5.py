@@ -11,6 +11,7 @@ def add_element_to_set(set1, elem):
     set1.add(elem)
     return set1
 
+
 def remove_element_from_set(set1, elem):
     '''функция удаляет элемент из множества '''
     set1.remove(elem)
@@ -40,10 +41,12 @@ def difference_sets(set1, set2):
     difference = set1 - set2
     return difference
 
+
 def create_sets_of_rainbows(set1, set2):
     '''функция создает два множества'''
     return set1, set2
-    
+
+
 def intersection_of_sets(set1, set2):
     '''Найдите пересечение множеств set1 и set2'''
     intersection_set = set1 & set2
@@ -62,6 +65,7 @@ def union_sets_in_new_set(set1, set2):
 def create_dict_person(dict_person):
     '''функция создания словарь'''
     return dict_person
+
 
 def add_email_to_dict(person_dict, email):
     '''функция добавления в словарь нового ключа со значением электронного адреса'''
@@ -113,6 +117,7 @@ def compare_sets(set1, set2):
     else:
         print("set1 = set2")
         return "set1 = set2"
+
 
 def price_is_over_limit(fruits_prices, num):
     '''Выведите сообщение "Дорогой товар" для продуктов, цена которых превышает указанное число'''
