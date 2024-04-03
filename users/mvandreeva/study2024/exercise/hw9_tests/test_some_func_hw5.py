@@ -1,4 +1,4 @@
-from some_func_hw5 import is_palindrome, great_com_divide, is_leap2, is_correct_date
+from some_func_hw5 import is_palindrome, great_com_divide, is_leap2, is_correct_date, show_fruits_info, show_squares_while
 
 ############################################################################################
 # is_palindrome (7)
@@ -230,10 +230,67 @@ def test_is_correct_date_false2():
 
 def test_is_correct_date_false3():
     """
-    Проверка работы функции is_correct_date() при вводе некорректной даты некорректного типа данных (все)
+    Проверка работы функции is_correct_date() при вводе некорректной даты некорректного типа данных (всех трёх значений)
     """
     input_data = ['5','8', '2006']
     expected = False
     assert expected == is_correct_date(*input_data)
+
+############################################################################################
+# show_fruits_info (4)
+############################################################################################
+
+def test_show_fruits_info_corr_data():
+    """
+    Проверка работы функции show_fruits_info() при вводе корректных данных
+    """
+    fruits_quantity = {"яблоко": 5, "банан": 10, "апельсин": 7}
+    fruits_prices = {"яблоко": 1.5, "банан": 2, "апельсин": 1.2}
+    expected = ['яблоко, количество: 5, цена: 1.5', 'банан, количество: 10, цена: 2', 'апельсин, количество: 7, цена: 1.2']
+    assert expected == show_fruits_info(fruits_quantity, fruits_prices)
+
+def test_show_fruits_info_empty_dict1():
+    """
+    Проверка работы функции show_fruits_info(), если первый параметр - пустой словарь
+    """
+    fruits_quantity = {}
+    fruits_prices = {"яблоко": 1.5, "банан": 2, "апельсин": 1.2}
+    expected = []
+    assert expected == show_fruits_info(fruits_quantity, fruits_prices)
+
+def test_show_fruits_info_empty_dict2():
+    """
+    Проверка работы функции show_fruits_info(), если второй параметр - пустой словарь
+    """
+    fruits_quantity = {"яблоко": 5, "банан": 10, "апельсин": 7}
+    fruits_prices = {}
+    expected = []
+    assert expected == show_fruits_info(fruits_quantity, fruits_prices)
+
+def test_show_fruits_info_not_dict():
+    """
+    Проверка работы функции show_fruits_info() при вводе данных некорректного типа
+    """
+    fruits_quantity = {"яблоко": 5, "банан": 10, "апельсин": 7}
+    fruits_prices = ""
+    expected = []
+    assert expected == show_fruits_info(fruits_quantity, fruits_prices)
+
+############################################################################################
+# show_squares_while (1)
+############################################################################################
+
+def test_show_squares_while():
+    """
+    Проверка работы функции show_squares_while() при вводе корректных данных
+    """
+    expected = [1, 4, 9, 16]
+    assert expected == show_squares_while()
+
+
+
+
+
+
 
 

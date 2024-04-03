@@ -53,6 +53,9 @@ def is_leap2(any_year):
     return result
 
 def is_correct_date(d, m, y):
+    """
+    Функция определяет корректность даты
+    """
     result = False
     if isinstance(d, int) and isinstance(m, int) and isinstance(y, int):
         day_count_for_month = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -61,4 +64,31 @@ def is_correct_date(d, m, y):
         if m >=1 and m <= 12 and d>=1 and d <= day_count_for_month[m]:
             result = True
     return result
+
+def show_fruits_info(product_quantity_dict, product_price_dict):
+    """Функция выводит для каждого фрукта его стоимость и количество из соответствующих словарей"""
+    result_list = []
+    if isinstance(product_quantity_dict, dict) and isinstance(product_price_dict, dict):
+        if product_quantity_dict != {} and product_price_dict != {}:
+            for product in product_quantity_dict.keys():
+                result_list.append(f"{product}, количество: {product_quantity_dict[product]}, цена: {product_price_dict[product]}")
+    return result_list
+
+def show_squares_while():
+    """Функция использует цикл while для вывода квадратов чисел от 1 до 5"""
+    result_list = []
+    i = 1
+    while i < 5:
+        result_list.append(i**2)
+        i += 1
+    return result_list
+
+
+
+
+
+
+
+
+
 
