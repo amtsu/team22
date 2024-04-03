@@ -615,7 +615,16 @@ class ListPageProcessor:
                 price_sale = 0
                 price = 0
             else:
-                price = d[0].text
+
+                d1 = i.find_all("div", class_="d-flat-list__priceOld")
+                if d1:
+                    hh1 = d[0].div.extract()
+                    price = d[0].text
+                else:
+
+                    price = d[0].text
+
+
                 #print(price)
                 price = price.replace("&thinsp;", "")
                 price = price.replace("&thinsp;", "")
@@ -861,7 +870,7 @@ class DonstroyMoscowServiceProcessing:
                 try:
                     api_response = api_instance.history_create(body=history)
                     i += 1
-                    # pprint(api_response)
+                    #pprint(api_response)
                 except openapi_client.ApiException as e:
                     print("Exception when calling HistoryApi->history_create: %s\n" % e)
                 if i % 100 == False:
