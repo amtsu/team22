@@ -804,7 +804,7 @@ class DonstroyMoscowServiceProcessing:
             i = 0
             api_instance = history_api.HistoryApi(api_client)
             for e in self.__list_dict:
-                #print(e)
+                print(e)
                 history = History(
                     pk=1,
                     title=e["title"],
@@ -861,7 +861,7 @@ class DonstroyMoscowServiceProcessing:
                 try:
                     api_response = api_instance.history_create(body=history)
                     i += 1
-                    # pprint(api_response)
+                    pprint(api_response)
                 except openapi_client.ApiException as e:
                     print("Exception when calling HistoryApi->history_create: %s\n" % e)
                 if i % 100 == False:
