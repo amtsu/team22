@@ -1,12 +1,11 @@
 '''
-1.Сделать класс швейных машинок с весом, цветом, возможностью шить двумя строчками (x и y)
+1.Сделать класс швейных машинок с весом, цветом, возможностью шить футболки двумя строчками (x и y) и возможностью пермещаться в пространстве.
 '''
 '''
 2.Сделать класс сфер, с методом подсчета площади
 '''
 #Артем Цурков
-#########
-
+############################################################################
 
 #Аня Марголина
 class SewingMachine:
@@ -23,9 +22,7 @@ class SewingMachine:
 SM_x = SewingMachine(5, "white")
 
 TS = SM_x.x_type_of_sew()
-
-
-########
+############################################################################
 class Sphera:
     def __init__(self, r):
         self.r = r
@@ -49,8 +46,7 @@ print(res3, res4)
    # создатьдве сферы
   #  радиус 2
   #  радиус 5
-    
- 
+############################################################################   
 
 # Ruslan Yuspov
 class SewingMachine:
@@ -101,8 +97,7 @@ area1 = sphere1.area()
 area2 = sphere2.area()
 
 print(area1, area2)
-
-
+############################################################################
 
 #Татьяна Щербакова
 class SewingMachine:
@@ -131,10 +126,8 @@ class SewingMachine:
     
 SM = SewingMach(avalibleSewingTypes = ["X", "Y"])
 SM.sewWithType("X")
-        
-        
-        
-        
+############################################################################        
+      
 #Костя Максимов
 class SewingMachine():
     def __init__(self, id, strochka, mobolity, color)
@@ -169,10 +162,7 @@ class SphereKM():
 sp1 = SphereKM(3)
 print (sp1.volume)
 print (sp1.square)
-
-
-
-
+############################################################################
 
 #Maria Andreeva
 class SewingMachine:
@@ -203,10 +193,10 @@ class SewingMachine:
         return mobility
         
     new_sewing_machine = SewingMachine(red, 3, ['x', 'y'])
-        
-        
-    ############################################################################
-    #Andrey Ivanchenko
+############################################################################        
+
+
+#Andrey Ivanchenko
 class Sphere():
     def __init__(self, radius):
         self.radius = radius
@@ -218,10 +208,7 @@ radius1 = Sphere(2)
 radius2 = Sphere(5)
 print(radius1.sphere_area())
 print(radius2.sphere_area())
-
-
-
-
+############################################################################       
 
 #Андрей Каздым
 
@@ -248,9 +235,9 @@ class Sphere():
         return 4 * 3.14 * (self.R**2)
 sphere1 = Sphere(2)
 print(sphere1.square())
+############################################################################       
 
 # ANTON_KUVALDA_START_____________________________
-
 '''
 радиус
 считаем площадь сферы
@@ -272,7 +259,6 @@ print(s1.square())
 print(s2.square())
 
 
-'''
 class Sewing_Machine():
     
     
@@ -295,10 +281,8 @@ def __init__(self):
 def programm(self, type):
     self.programm_1 = 'x'
     self.programm_2 = 'y'
- '''
-
 # ANTON_KUVALDA_END ______________________________
-
+############################################################################       
 
 #Аникин Костя
 3##class Sawing_mach():
@@ -326,7 +310,7 @@ class SawingMachine():
         for i in range(10):
             return (sewcross, color)
     10futbolok(x, white)
-#########
+############################################################################       
 
 class Sphere():
     """
@@ -342,14 +326,9 @@ class Sphere():
         
     sphere_square(2)
     sphere_square(5)
-        
+############################################################################               
 
-
-
-
-
-#Лоцманов Саша
-
+#
 class SewingMashineSerg:
     """
     что-то там про строчки
@@ -357,73 +336,90 @@ class SewingMashineSerg:
     какого-то цвета может быть
     """
     def __init__(self, color:str, portable:bool, ):
-        
-    
-
+############################################################################               
 
 #Лоцманов Саша
 class SewingMachine():
     '''Класс швейных машинок
-    param:
-    color:  цвет
-    тип строчки: x y
-    переносная
-    шить
-    пермещаться
+    Атрибуты:
+    color - цвет машинки
+    weight - вес машинки
+    coordinat_x - координата в простарнстве по x
+    coordinat_y - координата в простарнстве по y
+    coordinat_z - координата в простарнстве по z
+    
+    Методы:
+    sew_x - сшить футболку швом X
+    sew_y - сшить футболку швом Y
+    position - выдает координаты швейной машинки в пространстве
+    move - перемещает швейную машинку на заданное количество шагов
+    teleport - перемещает швейную машинку в нужную точку пространства
     '''
     coordinat_x0 = 0
     coordinat_y0 = 0
     coordinat_z0 = 0
-    seam_x = 'x'
-    seam_y = 'y'
-    
     cloth = '100% хлопок'
     
-    def __init__(self, seam, color, weight, coordinat_x = coordinat_x0, coordinat_y = coordinat_y0, coordinat_z = coordinat_z0):        
-        self.seam = seam
+    def __init__(
+        self,
+        color,
+        weight,
+        coordinat_x = coordinat_x0,
+        coordinat_y = coordinat_y0,
+        coordinat_z = coordinat_z0
+    ):        
         self.color = color
         self.weight = weight
         self.coordinat_x = coordinat_x
         self.coordinat_y = coordinat_y
         self.coordinat_z = coordinat_z
     
-    def sew(self):
-        return f'Сшила футболку из "{self.cloth}". Использовала шов "{self.seam}"'
+    def sew_x(self):
+        '''Швейная машинка шьет футболку швом X
+        '''
+        return f'Сшила футболку из "{self.cloth}". Швом "X"'
+
+    def sew_y(self):
+        '''Швейная машинка шьет футболку швом Y
+        '''
+        return f'Сшила футболку из "{self.cloth}". Швом "Y"'
         
     def position(self):
+        '''Выдает координаты швейной машинки в пространстве
+        '''
         return (self.coordinat_x, self.coordinat_y, self.coordinat_z)
         
     def move(self, step_x, step_y, step_z):
+        '''Перемещает швейную машинку в пространстве на заданное количество шагов
+        '''
         print(f'Перемещаем машинку на {step_x} по х, {step_y} по y, {step_z} по z')
         self.coordinat_x = self.coordinat_x + step_x
         self.coordinat_y = self.coordinat_y + step_y
         self.coordinat_z = self.coordinat_z + step_z
+    
+    def teleport(self, new_x, new_y, new_z):
+        '''Перемещает швейную машинку в нужную точку пространства
+        '''
+        print(f'Перемещаем машинку в x - {new_x}, y - {new_y}, z - {new_z}')
+        self.coordinat_x = new_x
+        self.coordinat_y = new_y
+        self.coordinat_z = new_z
         
 
-sewing_machine_x = SewingMachine('x', 'Red', '2', 1, 2, 3)
-    
-sewing_machine_y = SewingMachine('y', 'Red', '2', 3, 5, 4 )
+sewing_machine_1 = SewingMachine('Red', '2', 1, 1, 1)
+sewing_machine_0 = SewingMachine('Red', '2')
 
-sewing_machine_y_0 = SewingMachine('y', 'Red', '2')
-
-t_shirt_x = sewing_machine_x.sew()
-
-t_shirt_y = sewing_machine_y.sew()
+t_shirt_x = sewing_machine_1.sew_x()
+t_shirt_y = sewing_machine_0.sew_y()
 
 print(t_shirt_x, t_shirt_y, sep = '\n')
+print(sewing_machine_0.position(),sewing_machine_1.position(), sep = '\n')
 
-print(sewing_machine_x.position(), sewing_machine_y.position(),sewing_machine_y_0.position(), sep = '\n')
+sewing_machine_0.move(11, 0, 10)
+sewing_machine_1.teleport(33, 33, 33)
 
-
-
-
-
-
-
-
-
-
-
+print(sewing_machine_0.position(), sewing_machine_1.position(), sep = '\n')
+############################################################################       
 
 #Матросова Ирина
 class SewingMachine(): 
@@ -448,8 +444,7 @@ class SewingMachine():
         return self.color
 
 objectMyMachine=SewingMachine(True,black,2)
-
-
+############################################################################    
 
 
 ## фу фу фу писать с планшета :) :) :)
@@ -475,22 +470,7 @@ objectMyShere = Sphere(2)
 s1 = objectMyShere.out_area_sphere()
 objectMyShere2 = Sphere(5)
 s2 =  objectMyShere2.out_area_sphere()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+############################################################################  
 
 ___________________________________________________________________________________
 # Roman Tarasov
@@ -521,7 +501,7 @@ print(stiag1.sewing_type2())
         
         
         
-#############################
+############################################################################    
 # создать класс сфера с параметром радиус. вычислить площадь. создать две сферы и вычислить площадь. радиус 2 и 5
 
 class Sphere():
@@ -537,16 +517,7 @@ radius1 = Sphere(2)
 print(radius1.count_ploshad())
 radius2 = Sphere(5)
 print(radius2.count_ploshad())
-        
-        
-    
-        
- _____________________________________________________________________________
-
-
-
-
-
+############################################################################    
 
 # Jamshid Tashpulatov
 # Класс - швейная машинка. Умеет шить двумя строчками (крести, игрик), будет переносной, имеет белый цвет
@@ -565,24 +536,16 @@ s1 = Sphere(2)
 print(s1.square())
 s2 = Sphere(5)
 print(s2.square())
-
-
-
-
-
-
+############################################################################    
 
 #Ruslan Yunusov
 
-    
 
+############################################################################    
 
-
-#--------------------------
 # Vera Tarasova
 class S()SewingM
-#--------------------------
-
+############################################################################    
 
 #Регина Марфенкова
 # 2 типа строчки
@@ -605,14 +568,12 @@ sphere2 = Sphere(5)
 
 square1 = sphere1.square()
 square2 = sphere2.square()
-
-
-
+############################################################################    
 
 #Serg Maltsev
 class SwingMachine():
 
 
-#---------------------------------------
+############################################################################
 #serg
 class SewingMa
