@@ -1,5 +1,6 @@
 import pytest
-from func_for_hw5 import (set_union,
+from func_for_hw5 import (
+set_union,
 set_difference,
 is_subset,
 union_sets,
@@ -18,7 +19,14 @@ merge_dicts,
 remove_item,
 reverse_dict,
 sort_dict_reverse,
-max_value_in_dict)
+max_value_in_dict,
+check_age,
+compare_sets_length,
+check_even_odd,
+is_leap_year,
+is_palindrome,
+is_prime,
+check_date)
 
 ##################### МНОЖЕСТВА #####################################
 def test_set_union():
@@ -344,7 +352,117 @@ def test_max_value_in_dict3():
     my_dict = {}
     expected = None
     assert max_value_in_dict(my_dict) == expected
+############################################################################    
 
+@pytest.mark.parametrize("student_name, expected", [
+    ("Алексей", "Алексей совершеннолетний"), 
+    ("Мария", "Мария несовершеннолетний"), 
+    ("Екатерина", "Студент не найден в базе данных")
+])
 
-
+def test_check_age(student_name, expected):
+    """
+    позитивный тест на проверку совершенный ли студент в заданном словаре
+    """
+    students = {"Алексей": 20, "Мария": 17, "Иван": 22}
+    assert check_age(students, student_name) == expected
     
+    
+@pytest.mark.parametrize("my_dict, student_name, expected", [
+    ({"Алексей": "20"}, "Алексей", TypeError),
+    ({"Алексей": (20, 10)}, "Алексей", TypeError)
+])
+                                      
+def test_check_age_negative(my_dict, student_name, expected):
+    with pytest.raises(expected):
+        check_age(my_dict, student_name) == expected
+
+@pytest.mark.parametrize("set1, set2, expected", [
+    ({1, 2, 3, 4, 5}, {1, 2, 3, 4, 5}, "{1, 2, 3, 4, 5} равно {1, 2, 3, 4, 5}"),
+    ({1, 2, 3}, {1, 2, 3, 4, 5}, "{1, 2, 3, 4, 5} длиннее {1, 2, 3}"),
+    ({1, 2, 3, 4, 5}, {1, 2, 3}, "{1, 2, 3, 4, 5} длиннее {1, 2, 3}"),
+    ({}, {1, 2, 3}, "{1, 2, 3} длиннее {}"),
+    ({}, {}, "{} или {} не множество"),
+    ((1, 2, 3), {1: 3, 2: 4, 3: 5}, "(1, 2, 3) или {1: 3, 2: 4, 3: 5} не множество")
+])
+        
+def test_compare_sets_length(set1, set2, expected):
+    """
+    позитивный тест на функцию, которая сравнивает длинну множества
+    """
+    assert compare_sets_length(set1, set2) == expected
+    
+
+@pytest.mark.parametrize("number, expected", [
+    (2, "Число 2 является четным"),
+    (7, "Число 7 является нечетным"),
+    (-4, "Число -4 является четным"),
+    (-11, "Число -11 является нечетным"),
+    ("what", "'what' может быть только типа int"),
+    (0, "Число 0 является четным")
+])
+
+def test_check_even_odd(number, expected):
+    """
+    позитивныке тесты на функцию, проверяющую четность числа
+    """
+    assert check_even_odd(number) == expected
+
+@pytest.mark.parametrize("year, expected", [
+    (1764, "1764 - високосный"),
+    (1904, "1904 - високосный"),
+    (2000, "2000 - високосный"),
+    (2001, "2001 - не високосный"),
+    ("F", "Введены неверные данные"),
+    (-1, "Введены неверные данные")
+])
+    
+def test_is_leap_year(year, expected):
+    """
+    позитивные тесты на функцию проверяющую високостность года
+    """
+    assert is_leap_year(year) == expected
+
+
+@pytest.mark.parametrize("s, expected", [
+    ("asa", "asa Строка является палиндромом"),
+    ("!asa!", "!asa! Строка является палиндромом"),
+    ("3!asa!3", "3!asa!3 Строка является палиндромом"),
+    ("123gshd", "123gshd Строка не является палиндромом"),
+    ({1, 2, 3}, "{1, 2, 3} не строка")
+])
+def test_is_palindrome(s, expected):
+    """
+    функция проверяет, является ли строка полиандропом
+    """
+    assert is_palindrome(s) == expected
+
+
+@pytest.mark.parametrize("number, expected", [
+    (0, False),
+    (1, False),
+    (2, True),
+    (-3, False),
+    ("a", False),
+    (None, False)
+])
+def test_is_prime(number, expected):
+    """
+    тесты на функцию вычисления простого числа
+    """
+    assert is_prime(number) == expected
+
+
+@pytest.mark.parametrize("day, month, year, expected", [
+    (32, 7, 2003, False),
+    (15, 13, 2000, False),
+    (3, 9, 2300, False),
+    (30, 2, 2024, False),
+    ("1", 12, 2000, "Вы можете ввести только числа"),
+    (5, 4, 2024, True)
+])
+def test_check_date(day, month, year, expected):
+    """
+    позитивные тесты на проверку корректности даты
+    """
+    assert check_date(day, month, year) == expected
