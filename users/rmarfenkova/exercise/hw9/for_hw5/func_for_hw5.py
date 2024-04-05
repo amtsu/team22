@@ -284,32 +284,6 @@ def check_date(day, month, year):
     """
     функция проверяет, является ли введенная дата корректной
     """
-    if day < 1 or day > 31:
-        return False
-        
-    if month < 1 or month > 12:
-        return False
-        
-    if year < 1582 and year > 2024:
-        return False
-        
-    if month in [4, 6, 9, 11] and day > 30:
-        return False
-        
-    elif  month == 2:
-        
-        if (year % 4 == 0 and year % 100 != 0 ) or year % 400 == 0:
-            
-            if day > 29 or day > 28:
-                return False
-    return True
-    
-#############################
-
-def check_date(day, month, year):
-    """
-    функция проверяет, является ли введенная дата корректной
-    """
     if type(day) is int and type(month) is int and type(year) is int:
         if day < 1 or day > 31:
             return False

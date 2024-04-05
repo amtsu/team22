@@ -115,7 +115,12 @@ def keys_with_value_greater_than(my_dict, threshold):
     """
     функция выводит все ключи, у которых значения выше заданного порога
     """
-    return [key for key, value in my_dict.items() if value > threshold]
+    items = []
+    for key, value in my_dict.items(): 
+        if value > threshold:
+            items.append(key)
+            
+    return items
 
 def cycle_element_of_set(my_set):
     """
@@ -126,11 +131,12 @@ def cycle_element_of_set(my_set):
         all_element.append(element)
     return all_element
 
-#def cycle_number():
-#    """
-#    функция выводит квадрат чисел от 1 до 5 через цикл
-#    """
-#    i = 1
-#    while i <= 5:
-#        print(i**2, end=" ")
-#        i += 1
+def cycle_number(a, b):
+    """
+    функция возвращает список квадратов чисел от a до b
+    """
+    squares = []
+    while a <= b:
+        squares.append(a ** 2)
+        a += 1
+    return squares
