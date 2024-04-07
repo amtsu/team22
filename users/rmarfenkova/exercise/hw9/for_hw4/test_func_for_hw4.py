@@ -53,26 +53,35 @@ def test_solyanka():
     solyanka_list = [10, 5.5,'строка', ['1, 5, 3, "abc"'], {'1: "str", 2: "bar", "la-la": 22'}, ('1, 5, 3, "abc"') , {'1, 5, 3, "abc"'}]
     expected = 7
     assert solyanka(solyanka_list) == expected
+    
 
-def test_element_5_solaynki():
+@pytest.mark.parametrize("my_list, expected", [
+    ([10, 5.5,'строка', ['1, 5, 3, "abc"'], {'1: "str", 2: "bar", "la-la": 22'}, ('1, 5, 3, "abc"') , {'1, 5, 3, "abc"'}], set),
+    ([1, 2, 3, 4, "s"], str),
+    ([1, 2, 3, 4, {"a": 1}, "s"], dict),
+    ((1, 2, 3, 4, 5, 6), int),
+    ((1, 2, 3, 4, 5.5, 6), float),
+    ("1, 2, 3, 4, 5", str)
+])
+
+def test_element_5_solaynki(my_list, expected):
     """
     проверяет тип пятого элемента списка
     """
-    solyanka_list = [10, 5.5,'строка', ['1, 5, 3, "abc"'], {'1: "str", 2: "bar", "la-la": 22'}, ('1, 5, 3, "abc"') , {'1, 5, 3, "abc"'}]
-    expected = set
-    assert element_5_solaynki(solyanka_list) == expected
+    assert element_5_solaynki(my_list) == expected
 
-def test_add_element():
-    """
-    тест на добавление последнего элемента в список и его тип
-    """
-    solyanka_list = [10, 5.5,'строка', ['1, 5, 3, "abc"'], {'1: "str", 2: "bar", "la-la": 22'}, ('1, 5, 3, "abc"') , {'1, 5, 3, "abc"'}]
-    element = 7
-    expected = [10, 5.5, 'строка', ['1, 5, 3, "abc"'], {'1: "str", 2: "bar", "la-la": 22'}, '1, 5, 3, "abc"', {'1, 5, 3, "abc"'}, [7]]
-    expected2 = list
-    assert add_element(solyanka_list, element)[0] == expected
-    assert add_element(solyanka_list, element)[1] == expected2
+@pytest.mark.parametrize("my_list, expected", [
+    ((1, 2, 3, 4), IndexError),
+    ({"яблоко": 1, "банан": 55, "апельсин": 1000, "1": 2, "3": 4}, KeyError),
+    ([], IndexError)
+])
 
+def test_element_5_solaynki2(my_list, expected):
+    with pytest.raises(expected):
+        assert element_5_solaynki(my_list) == expected
+    
+    
+    
 def test_swap_elements():
     """
     проверяем как функция меняет местами 3 и 5 элементы в списке

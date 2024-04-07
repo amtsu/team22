@@ -82,7 +82,7 @@ def sum_value(my_dict):
     функция складывает все значения словаря
     """
     total_sum = 0
-    for key, value in my_dict.items():
+    for value in my_dict.values():
         total_sum += value
     return total_sum
 
@@ -111,6 +111,7 @@ def add_fruit_in_dict(my_dict, my_key, my_value):
         my_dict[my_key] = my_value
     return my_dict
     
+    
 def keys_with_value_greater_than(my_dict, threshold):
     """
     функция выводит все ключи, у которых значения выше заданного порога
@@ -119,17 +120,15 @@ def keys_with_value_greater_than(my_dict, threshold):
     for key, value in my_dict.items(): 
         if value > threshold:
             items.append(key)
-            
     return items
+    
 
 def cycle_element_of_set(my_set):
     """
     функция выводит в список все уникальные элементы множества
     """
-    all_element = []
-    for element in my_set:
-        all_element.append(element)
-    return all_element
+    return list(my_set)
+    
 
 def cycle_number(a, b):
     """

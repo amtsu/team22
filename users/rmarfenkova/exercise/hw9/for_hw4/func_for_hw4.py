@@ -36,13 +36,14 @@ def solyanka(my_list):
     len_list = len(my_list)
     return len_list
     
-def element_5_solaynki(my_list):
+def element_5_solaynki(my_list: list)-> type:
     """
     Выведите на экран тип пятого от начала списка элемента
     """
-    for index, item in enumerate(my_list):
-        if index == 4:
-            return type(item)
+    if len(my_list) < 5:
+        raise IndexError ("Длинна массива не соответствует")
+    else:
+        return type(my_list[4])
             
 def add_element(my_list, element):
     """
@@ -60,20 +61,20 @@ def swap_elements(my_list):
     return my_list
     
 ##########################################################################
+
 def fibonacci_list_check(my_list):
     len_sequence = len(my_list)
     repeating_element = my_list.count(1)
     return len_sequence, repeating_element
+    
 
 def check_fibonacci_numbers(my_list):
     numbers_to_check = [21, 33, 987, 9999]
     results = {}
     for number in numbers_to_check:
-        if number in my_list:
-           results[number] = True
-        else:
-            results[number] = False
+        results[number] = number in my_list
     return results
+    
 
 def laws_of_the_Programmer():
     true_story_list = ['Пуд багов съевший, выше ценит чистый код.']
