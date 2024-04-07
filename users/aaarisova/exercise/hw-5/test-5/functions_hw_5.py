@@ -75,8 +75,11 @@ def add_email_to_dict(person_dict, email):
 
 def del_key_to_dict(person_dict, del_key):
     '''функция удаления ключа из словаря.'''
-    del person_dict[del_key]
-    return person_dict
+    if del_key in person_dict:
+        del person_dict[del_key]
+        return person_dict
+    else:
+        return f'Ключа в словаре не найдено'
 
 
 def dict_total_of_fruits(fruits_quantity, fruits_prices):
@@ -87,8 +90,11 @@ def dict_total_of_fruits(fruits_quantity, fruits_prices):
 
 def add_stud_to_dict(dict_stud, surname, age):
     '''функция добавления нового студента c возрастом в словарь.'''
-    dict_stud[surname] = age
-    return dict_stud
+    if surname not in dict_stud:
+        dict_stud[surname] = age
+        return dict_stud
+    else:
+        return f'Студент уже есть в словаре'
 
 
 #III, IV. Условные операторы, циклы

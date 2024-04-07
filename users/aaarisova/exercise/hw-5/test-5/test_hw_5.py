@@ -126,6 +126,13 @@ def test_del_key_to_dict():
     assert del_key_to_dict(person_dict, del_key) == {'name': 'Ivan', 'age': '26', 'email': 'anna.arisova@gmail.com'}, 'Ошибка удаления ключа "city" из словаря.'
 
 
+def test_del_key_to_dict_2():
+    '''тест функции для удаления ключа из словаря.'''
+    person_dict = {'name': 'Ivan', 'age': '26', 'city': 'Moscow', 'email': 'anna.arisova@gmail.com'}
+    del_key = 'major'
+    assert del_key_to_dict(person_dict, del_key) == f'Ключа в словаре не найдено', 'Ошибка удаления ключа "city" из словаря.'
+
+
 def test_dict_total_of_fruits():
     '''тест подсчета стоимости всех фруктов, имеющихся в наличии'''
     fruits_quantity = fruits_quantity = {"яблоко": 5, "банан": 10, "апельсин": 7}
