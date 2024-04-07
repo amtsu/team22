@@ -174,8 +174,10 @@ def sort_dict_reverse(input_dict):
     """
     функция для сортировки ключей в словаре, в обратном порядке
     """
-    sorted_dict = dict(sorted(input_dict.items(), key=lambda x: x[0], reverse=True))
+    sorted_keys = sorted(input_dict.keys(), reverse=True)
+    sorted_dict = {key: input_dict[key] for key in sorted_keys}
     return sorted_dict
+    
 #############################
 
 
@@ -282,29 +284,30 @@ def is_prime(number):
 
 def check_date(day, month, year):
     """
-    функция проверяет, является ли введенная дата корректной
+    Функция проверяет, является ли введенная дата корректной.
     """
-    if type(day) is int and type(month) is int and type(year) is int:
-        if day < 1 or day > 31:
-            return False
-        
-        if month < 1 or month > 12:
-            return False
-        
-        if year < 1582 or year > 2024:
-            return False
-        
-        if month in [4, 6, 9, 11] and day > 30:
-            return False
-        
-        elif  month == 2:
-        
-            if (year % 4 == 0 and year % 100 != 0 ) or year % 400 == 0:
-            
-                if day > 29 or day > 28:
-                  return False
-    else:
+    if not all(isinstance(val, int) for val in (day, month, year)):
         return "Вы можете ввести только числа"
+    
+    if day < 1 or day > 31:
+        return False
+    
+    if month < 1 or month > 12:
+        return False
+    
+    if year < 1582 or year > 2024:
+        return False
+    
+    if month in [4, 6, 9, 11] and day > 30:
+        return False
+    
+    if month == 2:
+        if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0:
+            if day > 29:
+                return False
+        elif day > 28:
+            return False
+    
     return True
 
 #############################

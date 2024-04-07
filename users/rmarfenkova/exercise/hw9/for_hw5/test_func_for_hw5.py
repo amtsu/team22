@@ -459,7 +459,8 @@ def test_is_prime(number, expected):
     (3, 9, 2300, False),
     (30, 2, 2024, False),
     ("1", 12, 2000, "Вы можете ввести только числа"),
-    (5, 4, 2024, True)
+    (5, 4, 2024, True),
+    (29, 2, 1999, False)
 ])
 def test_check_date(day, month, year, expected):
     """
