@@ -1,4 +1,4 @@
-from hw5_fuctions import set_union, set_difference, is_subset, union_sets, remove_element, find_intersection, is_equal, \
+from hw5_functions import set_union, set_difference, is_subset, union_sets, remove_element, find_intersection, is_equal, \
     union_3_sets, is_disjoint, find_difference, find_symmetric_difference, create_set, create_dictionary, add_student, \
     remove_student, add_fruit, remove_fruit, merge_dictionaries, remove_key_from_dict, flip_dictionary, \
     sort_dict_by_keys_desc, max_dict_value, find_key_of_max_value, check_fruit_price, check_age, compare_sets_length, \
