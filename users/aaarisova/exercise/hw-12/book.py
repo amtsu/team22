@@ -4,13 +4,45 @@
 class Book():
     
     def __init__(self, title, author, pages, publisher):
-        self.__title = title
-        self.__author = author
-        self.__pages = pages
-        self.__publisher = publisher
+        self.title = title
+        self.author = author
+        self.pages = pages
+        self.publisher = publisher
 
 
-    def my_book(self):
-        return self.__title, self.__author, self.__pages, self.__publisher
+    def set_title(self, title):
+        self.title = title
+
+    
+    def set_author(self,author):
+        self.author = author
+
+
+    def set_pages(self,pages):
+        self.pages = pages
+    
+
+    def set_publisher(self,publisher):
+        self.publisher = publisher
+
+
+    def get_title(self):
+        return self.title
+
+    
+    def get_author(self):
+        return self.author
+
+
+    def get_pages(self):
+        return self.pages
+    
+
+    def get_publisher(self):
+        return self.publisher
+
+
+
+
 
 
