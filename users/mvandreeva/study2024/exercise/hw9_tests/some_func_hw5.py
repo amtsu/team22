@@ -84,6 +84,24 @@ def show_squares_while():
     return result_list
 
 
+def get_value_from_user(threshold_num):
+    result = False
+    if isinstance(threshold_num, int):
+        user_input = input(f"Введите число больше {threshold_num}")
+        try:
+            ui_int = int(user_input)
+        except ValueError:
+            print("Неверный ввод")
+            get_value_from_user(threshold_num)
+        if ui_int > threshold_num:
+            print("Поздравляю, всё верно")
+            result = True
+        else:
+            print("Вы ввели не то число")
+            get_value_from_user(threshold_num)
+    else:
+        print("Неверный параметр функции")
+    return result
 
 
 

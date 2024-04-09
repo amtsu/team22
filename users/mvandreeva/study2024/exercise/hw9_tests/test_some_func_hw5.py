@@ -1,4 +1,4 @@
-from some_func_hw5 import is_palindrome, great_com_divide, is_leap2, is_correct_date, show_fruits_info, show_squares_while
+from some_func_hw5 import is_palindrome, great_com_divide, is_leap2, is_correct_date, show_fruits_info, show_squares_while, get_value_from_user
 
 ############################################################################################
 # is_palindrome (7)
@@ -286,6 +286,48 @@ def test_show_squares_while():
     """
     expected = [1, 4, 9, 16]
     assert expected == show_squares_while()
+
+############################################################################################
+# get_value_from_user ()
+############################################################################################
+
+def test_get_value_from_user_correct_input(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda _: 10)
+    assert get_value_from_user(7) == True
+
+def test_get_value_from_user_incorrect_input(monkeypatch): #ересь, но ничего лучше не придумала...
+    i = 10
+    j = 11
+    while i <= j:
+        try:
+            monkeypatch.setattr('builtins.input', lambda _: i)
+            assert get_value_from_user(j) == True
+        except RecursionError:
+            i += 1
+
+def test_get_value_from_user_non_int_threshold(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda _: 10)
+    assert get_value_from_user('7') == False
+
+def test_get_value_from_user_non_int_input(monkeypatch): # странные тесты на странную функцию...)
+    i = ''
+    j = 7
+    k = 0
+    while i == '' or i <= j:
+        try:
+            monkeypatch.setattr('builtins.input', lambda _: i)
+            assert get_value_from_user(j) == True
+        except RecursionError:
+            i = 6 + k
+        k += 1
+
+
+
+
+
+
+
+
 
 
 
