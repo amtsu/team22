@@ -1,4 +1,135 @@
-from some_func_hw5 import is_palindrome, great_com_divide, is_leap2, is_correct_date, show_fruits_info, show_squares_while, get_value_from_user
+import pytest
+from some_func_hw5 import (
+is_palindrome, 
+great_com_divide, 
+is_leap2, 
+is_correct_date, 
+show_fruits_info, 
+show_squares_while, 
+get_value_from_user, 
+check_age,
+has_repeats,
+print_students,
+is_prime,
+generate_prime,
+
+)
+
+############################################################################################
+# is_prime (11)
+############################################################################################
+
+@pytest.mark.parametrize("num, expected", [
+    (11, True),
+    (2, True),
+    # (2147483647, True),
+    (131, True),
+    (1991, False),
+    (0, False),
+    (1, False),
+    (-5, False)    
+])
+
+def test_is_prime_correct_input(num, expected):
+    assert is_prime(num) == expected
+
+@pytest.mark.parametrize("num, expected", [
+    ("5", TypeError),
+    (None, TypeError),
+    (5.5, TypeError),
+    ({1,5}, TypeError)
+])
+
+def test_is_prime_incorrect_input(num, expected):
+    with pytest.raises(expected):
+        is_prime(num) == expected
+
+############################################################################################
+# generate_prime (6)
+############################################################################################
+
+@pytest.mark.parametrize("num, expected", [
+    (0, []),
+    (22, [2, 3, 5, 7, 11, 13, 17, 19]),
+    (-5, [])
+])
+
+def test_generate_prime_correct(num, expected):
+    assert generate_prime(num) == expected
+
+@pytest.mark.parametrize("num, expected", [
+    ("5", TypeError),
+    (None, TypeError),
+    (5.5, TypeError)
+])
+
+def test_generate_prime_incorrect(num, expected):
+    with pytest.raises(expected):
+        generate_prime(num) == expected
+        
+############################################################################################
+# print_students (7)
+############################################################################################
+
+@pytest.mark.parametrize("student_dict, expected", [
+    ({"Иванов": 22, "Петрова": 13, "Сидоров": 23}, ['Студент: Иванов, возраст: 22 годик(ов)', 'Студент: Петрова, возраст: 13 годик(ов)', 'Студент: Сидоров, возраст: 23 годик(ов)']),
+    ({}, []),
+    ({"": 30}, ['Студент: , возраст: 30 годик(ов)']),
+    ({30: None}, ['Студент: 30, возраст: None годик(ов)']),
+    ({0: 0}, ['Студент: 0, возраст: 0 годик(ов)'])
+])
+
+def test_print_students_correct_data_type(student_dict, expected):
+    assert print_students(student_dict) == expected
+
+@pytest.mark.parametrize("student_dict, expected", [
+    (["Алексей", 20], AttributeError),
+    (None, AttributeError)
+])
+
+def test_print_students_incorrect_input(student_dict, expected):
+    with pytest.raises(expected):
+        print_students(student_dict) == expected
+
+############################################################################################
+# has_repeats (3)
+############################################################################################
+
+def test_has_repeats_correct(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda x: "Hakuna matata")
+    assert has_repeats() == {'a': 5, 't': 2}
+
+def test_has_repeats_empty_str(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda x: "")
+    assert has_repeats() == {}
+
+def test_has_repeats_no_repeats(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda x: "qwerty")
+    assert has_repeats() == {}
+
+############################################################################################
+# check_age (5)
+############################################################################################
+
+def test_check_age_less18(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda x: 10)
+    assert check_age() == "Несовершеннолетний"
+
+def test_check_age_between18_65(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda x: 50)
+    assert check_age() == "Совершеннолетний"
+
+def test_check_age_exceed65(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda x: 70)
+    assert check_age() == "Пенсионер"
+
+def test_check_age_zero(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda x: 0)
+    assert check_age() == ""
+
+def test_check_age_not_int(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda x: 'str')
+    assert check_age() == ""
 
 ############################################################################################
 # is_palindrome (7)
@@ -288,11 +419,11 @@ def test_show_squares_while():
     assert expected == show_squares_while()
 
 ############################################################################################
-# get_value_from_user ()
+# get_value_from_user (4)
 ############################################################################################
 
 def test_get_value_from_user_correct_input(monkeypatch):
-    monkeypatch.setattr('builtins.input', lambda _: 10)
+    monkeypatch.setattr('builtins.input', lambda x: 10)
     assert get_value_from_user(7) == True
 
 def test_get_value_from_user_incorrect_input(monkeypatch): #ересь, но ничего лучше не придумала...
@@ -300,13 +431,13 @@ def test_get_value_from_user_incorrect_input(monkeypatch): #ересь, но н�
     j = 11
     while i <= j:
         try:
-            monkeypatch.setattr('builtins.input', lambda _: i)
+            monkeypatch.setattr('builtins.input', lambda x: i)
             assert get_value_from_user(j) == True
         except RecursionError:
             i += 1
 
 def test_get_value_from_user_non_int_threshold(monkeypatch):
-    monkeypatch.setattr('builtins.input', lambda _: 10)
+    monkeypatch.setattr('builtins.input', lambda x: 10)
     assert get_value_from_user('7') == False
 
 def test_get_value_from_user_non_int_input(monkeypatch): # странные тесты на странную функцию...)
@@ -315,7 +446,7 @@ def test_get_value_from_user_non_int_input(monkeypatch): # странные те
     k = 0
     while i == '' or i <= j:
         try:
-            monkeypatch.setattr('builtins.input', lambda _: i)
+            monkeypatch.setattr('builtins.input', lambda x: i)
             assert get_value_from_user(j) == True
         except RecursionError:
             i = 6 + k

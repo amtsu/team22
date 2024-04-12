@@ -1,3 +1,62 @@
+
+def is_prime(any_num):
+    result = False
+    if any_num >= 2: 
+        divider_list = []
+        for i in range (2, any_num): 
+            if any_num % i == 0:
+                divider_list.append(i)
+        if divider_list == []:
+            result = True
+    return result
+
+def generate_prime(num):
+    prime_list = []
+    for i in range(2, num):
+        if is_prime(i):
+           prime_list.append(i) 
+    return prime_list
+
+def print_students(student_dict):
+    student_info_list = []
+    for student in student_dict.keys():
+        student_info_list.append(f"Студент: {student}, возраст: {student_dict[student]} годик(ов)")
+    return student_info_list
+
+def has_repeats():
+    user_str = input("Здесь можно что-то написать")
+    counter = {}
+    result = {}
+    user_str_list = list(user_str)
+    for i in user_str_list:
+        if i in counter.keys():
+            counter[i] += 1
+        else:
+            counter[i] = 1
+    for letter, count in counter.items():
+        if count > 1:
+            result[letter] = count
+    return result
+
+def check_age():
+    """
+    Функция Проверяет введенныйпользователем возраст с выводом возрастной категории пользователя 
+    """
+    result = ""
+    user_age = input("Введите Ваш возраст")
+    try:
+        ua_int = int(user_age)
+    except:
+        print("Неверный ввод")
+    else:
+        if 0 < ua_int < 18:
+            result = "Несовершеннолетний"
+        elif 18 <= ua_int <= 65:
+            result = "Совершеннолетний"
+        elif ua_int > 65:
+            result = "Пенсионер"
+    return result
+
 def is_palindrome(some_str):
     """Функция проверки, является ли строка палиндромом"""
     result = False
