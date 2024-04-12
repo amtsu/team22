@@ -2,8 +2,9 @@
 
 class Student():
     
-    def __init__(self, name, surname, age, address, grades):
-        self.name = name
+    def __init__(self, name: str, surname: str, age: int, address: str, grades: list):
+        '''Конструктор класса Student'''
+        self.name = str(name)
         self.surname = surname
         self.age = age
         self.address = address
