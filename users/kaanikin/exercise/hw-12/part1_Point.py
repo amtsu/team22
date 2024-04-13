@@ -6,7 +6,7 @@ class Point:
         self.x = x
         self.y = y
 
-    def Length(self, x1, y1):
-        length = ((x1-self.x)**2 + (y1 - self.y)**2)**0.5
+    def Length(self, other_point):
+        length = ((other_point.x-self.x)**2 + (other_point.y - self.y)**2)**0.5
         return length
 

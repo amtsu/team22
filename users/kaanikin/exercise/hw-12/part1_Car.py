@@ -21,4 +21,13 @@ class Car:
     def getSpeed(self):
         return self.speed
 
+    def acc(self):
+        self.speed += 5
+        return self.speed
+
+    def brake(self):
+        self.speed = 0
+        return self.speed
+        
+
 
