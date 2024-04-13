@@ -1,5 +1,27 @@
+def count_factorial(num):
+    """
+    Функция вывода факториала заданного числа
+    """
+    result = None
+    if num >= 0 and num <= 1:
+        result = 1
+    elif num > 1:
+        result = num * count_factorial(num - 1)
+    return result
+
+def sum_cummulat(num1, num2):
+    """
+    Функция для поиска суммы чисел в заданном диапазоне
+    """
+    cu_sum = 0
+    for i in range(num1, (num2 + 1)):
+        cu_sum += i
+    return cu_sum
 
 def is_prime(any_num):
+    """
+    Функция определяет, является ли введенное число простым
+    """
     result = False
     if any_num >= 2: 
         divider_list = []
@@ -11,6 +33,9 @@ def is_prime(any_num):
     return result
 
 def generate_prime(num):
+    """
+    Функция генерации и вывода всех простых чисел до заданного числа
+    """
     prime_list = []
     for i in range(2, num):
         if is_prime(i):
@@ -18,12 +43,18 @@ def generate_prime(num):
     return prime_list
 
 def print_students(student_dict):
+    """
+    Функция вывода информации о студентах из словаря
+    """
     student_info_list = []
     for student in student_dict.keys():
         student_info_list.append(f"Студент: {student}, возраст: {student_dict[student]} годик(ов)")
     return student_info_list
 
 def has_repeats():
+    """
+    Функция проверки введенной пользователем строки на наличие повторяющихся символов
+    """
     user_str = input("Здесь можно что-то написать")
     counter = {}
     result = {}

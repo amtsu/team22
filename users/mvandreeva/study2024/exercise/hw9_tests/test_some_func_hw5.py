@@ -12,8 +12,62 @@ has_repeats,
 print_students,
 is_prime,
 generate_prime,
-
+sum_cummulat,
+count_factorial,
 )
+
+############################################################################################
+# count_factorial (9)
+############################################################################################
+
+@pytest.mark.parametrize("num, expected", [
+    (0, 1),
+    (1, 1),
+    (3, 6),
+    (10, 3628800),
+    (-5, None),
+    (3.5, 13.125),
+])
+
+def test_count_factorial_correct_input(num, expected):
+    assert count_factorial(num) == expected
+
+@pytest.mark.parametrize("num, expected", [
+    ("5", TypeError),
+    (None, TypeError),
+    ({1,5}, TypeError)
+])
+
+def test_count_factorial_incorrect_input(num, expected):
+    with pytest.raises(expected):
+        count_factorial(num) == expected
+        
+############################################################################################
+# sum_cummulat (10)
+############################################################################################
+
+@pytest.mark.parametrize("num1, num2, expected", [
+    (1, 5, 15),
+    (2, 30, 464),
+    (0, 0, 0),
+    (5, 0, 0),
+    (-5, -1, -15),
+    (-5, -7, 0),
+])
+
+def test_sum_cummulat_correct_input(num1, num2, expected):
+    assert sum_cummulat(num1, num2) == expected
+
+@pytest.mark.parametrize("num1, num2, expected", [
+    ("5", 10, TypeError),
+    (None, 0, TypeError),
+    (5.5, 10, TypeError),
+    ({1,5}, 8, TypeError)
+])
+
+def test_sum_cummulat_incorrect_input(num1, num2, expected):
+    with pytest.raises(expected):
+        sum_cummulat(num1, num2) == expected
 
 ############################################################################################
 # is_prime (11)
