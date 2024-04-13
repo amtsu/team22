@@ -3,19 +3,19 @@
 class Circle:
     
     def __init__(self, radius, color):
-        self.__radius = radius
-        self.__color = color
+        self.radius = float(radius)
+        self.color = color
 
-    def circle_area(self):
+    def area(self):
         pi = 3.14
-        s = pi*self.__radius**2
-        return s
+        area_result = pi*self.radius**2
+        return round(area_result, 2)
 
     
-    def circle_perimeter(self):
+    def perimeter(self):
         pi = 3.14
-        p = 2 * pi * self.__radius
-        return p
+        p_result = 2 * pi * self.radius
+        return round(p_result,2)
     
 
 
