@@ -14,7 +14,56 @@ is_prime,
 generate_prime,
 sum_cummulat,
 count_factorial,
+deff_week_day,
 )
+
+@pytest.fixture
+def func():
+    x = 5
+    return x
+
+def test1(func):
+    assert 5 == func
+    
+def test2(func):
+    assert 6 != func
+    
+############################################################################################
+# deff_week_day (8)
+############################################################################################
+
+@pytest.mark.parametrize("num, expected", [
+    (1, "Понедельник"),
+    (7, "Воскресение"),
+    (10, None),
+    (-5, None),
+    (0, None)
+])
+
+def test_deff_week_day_correct_input(num, expected):
+    assert deff_week_day(num) == expected
+
+@pytest.mark.parametrize("num, expected", [
+    (3.5, KeyError),
+    ("5", TypeError),
+    (None, TypeError)
+])
+
+def test_deff_week_day_incorrect_input(num, expected):
+    with pytest.raises(expected):
+        deff_week_day(num) == expected
+    # assert deff_week_day(num) == pytest.raises(expected)
+    # assert deff_week_day(num) == raise expected
+    # pytest.raises(expected, deff_week_day, *num)
+
+# def test_deff_week_day_incorrect_input():
+#     input = 3.5
+#     try:
+#         deff_week_day(input) 
+#     except Exception as exception:
+#        assert exception.__class__.__qualname__ == 'KeyError'
+
+    
 
 ############################################################################################
 # count_factorial (9)
