@@ -4,9 +4,9 @@
 class BankAccount:
 
     def __init__(self, account_number, holder_name, card_balance):
-        self.account_number = account_number
-        self.holder_name = holder_name
-        self.card_balance = card_balance
+        self.account_number = int(account_number)
+        self.holder_name = str(holder_name)
+        self.card_balance = float(card_balance)
 
     
     def deposit_money(self, deposit):
@@ -18,8 +18,8 @@ class BankAccount:
         
 
     def withdraw_money(self, money):
-         if self.card_balance >= money:
-             self.card_balance -= money
+        if self.card_balance >= float(money):
+             self.card_balance -= float(money)
              return self.card_balance
         else:
             return 'Ошибка. Запрашиваемая сумма выше баланса на счету'
