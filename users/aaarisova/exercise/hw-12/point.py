@@ -9,8 +9,8 @@ class Point:
         self.y = y
 
     def calculate_distance(self, new_point):
-        d = sqrt((self.x — new_point.x)**2 + (self.y — new_point.y)**2)            
-        return d
+        distance = sqrt((self.x - new_point.x)**2 + (self.y - new_point.y)**2)            
+        return round(distance, 2)
 
 
 
