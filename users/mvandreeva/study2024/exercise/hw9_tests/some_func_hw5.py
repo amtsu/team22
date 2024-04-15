@@ -1,3 +1,57 @@
+def define_triangle_type(a,b,c):
+    """
+    Функция определения типа треугольника по длинам сторон 
+    Принимает длины сторон, возвращает "остроугольный, прямоугольный, тупоугольный, разносторонний, равносторонний, равнобедренный или не треугольник"
+    """
+    if isinstance(a, (int, float)) and isinstance(b, (int, float)) and isinstance(c, (int, float)):
+        sides_list = [a,b,c]
+        # print(sides_list)
+        max_side = max(sides_list)
+        # print(30*'=')
+        # print(max_side)
+        less_sides_list = sides_list[:]
+        less_sides_list.remove(max_side)
+        # print(30*'=')
+        # print(less_sides_list)
+        if (max_side ** 2) < ((less_sides_list[0] ** 2) + (less_sides_list[1] ** 2)):
+            print("Остроугольный треугольник")
+        elif (max_side ** 2) > ((less_sides_list[0] ** 2) + (less_sides_list[1] ** 2)):
+            print("Тупоугольный треугольник")
+        elif (max_side ** 2) == ((less_sides_list[0] ** 2) + (less_sides_list[1] ** 2)):
+            print("Прямоугольный треугольник")
+        if a != b and a != c and b != c:
+            print("Разносторонний треугольник")
+        elif a == b and a == c:
+            print("Равносторонний треугольник")
+        else:
+            print("Равнобедренный треугольник")
+
+def define_day_part(any_time):
+    """
+    Функция определения времени суток по введенному времени 
+    Принимает текущее время в формате часы, минуты, возвращает утро, день, вечер, ночь
+    """
+    hours_str = any_time[:2]
+    hours = int(hours_str)
+    if hours >= 0 and hours <5:
+        result = "Ночь"
+    elif hours >= 5 and hours <12:
+        result = "Утро"
+    elif hours >= 12 and hours <17:
+        result = "День"
+    elif hours >= 17 and hours <24:
+        result = "Вечер"
+    return result
+
+def check_all_letters(some_str):
+    """
+    Функция проверки входящей строки на наличие только буквенных символов
+    """
+    result = False
+    if some_str.isalpha():
+        result = True
+    return result
+
 def deff_week_day(num):
     """
     Функция определения дня недели по введенному номеру дня

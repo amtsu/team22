@@ -15,19 +15,87 @@ generate_prime,
 sum_cummulat,
 count_factorial,
 deff_week_day,
+check_all_letters,
+define_day_part,
+define_triangle_type
 )
+############################################################################################
+# define_triangle_type (0)
+############################################################################################
 
-@pytest.fixture
-def func():
-    x = 5
-    return x
+@pytest.mark.parametrize("a, b, c, expected", [
+    # ("00:00", "Ночь"),
+    # ("05:30", "Утро"),
+    # ("12:00", "День"),
+    # ("17:00", "Вечер"),
+])
 
-def test1(func):
-    assert 5 == func
-    
-def test2(func):
-    assert 6 != func
-    
+def test_define_triangle_type_correct_input(a, b, c, expected):
+    assert define_triangle_type(a, b, c) == expected
+
+@pytest.mark.parametrize("a, b, c, expected", [
+    # (10, TypeError),
+    # (False, TypeError),
+    # (["jgfhggdrysdgrfc"], TypeError),
+    # ("7:5", ValueError),
+    # (None, TypeError)
+])
+
+def test_define_triangle_type_incorrect_input(a, b, c, expected):
+    with pytest.raises(expected):
+        define_triangle_type(a, b, c) == expected
+
+############################################################################################
+# define_day_part (9)
+############################################################################################
+
+@pytest.mark.parametrize("any_time, expected", [
+    ("00:00", "Ночь"),
+    ("05:30", "Утро"),
+    ("12:00", "День"),
+    ("17:00", "Вечер"),
+])
+
+def test_define_day_part_correct_input(any_time, expected):
+    assert define_day_part(any_time) == expected
+
+@pytest.mark.parametrize("any_time, expected", [
+    (10, TypeError),
+    (False, TypeError),
+    (["jgfhggdrysdgrfc"], TypeError),
+    ("7:5", ValueError),
+    (None, TypeError)
+])
+
+def test_define_day_part_incorrect_input(any_time, expected):
+    with pytest.raises(expected):
+        define_day_part(any_time) == expected
+
+############################################################################################
+# check_all_letters (8)
+############################################################################################
+
+@pytest.mark.parametrize("some_str, expected", [
+    ("jgfhggdrysdgrfc", True),
+    ("jgfhggdrys dgrfc", False),
+    ("10", False),
+    ("", False)
+])
+
+def test_check_all_letters_correct_input(some_str, expected):
+    assert check_all_letters(some_str) == expected
+
+@pytest.mark.parametrize("some_str, expected", [
+    (10, AttributeError),
+    (False, AttributeError),
+    (["jgfhggdrysdgrfc"], AttributeError),
+    (None, AttributeError)
+])
+
+def test_check_all_letters_incorrect_input(some_str, expected):
+    with pytest.raises(expected):
+        check_all_letters(some_str) == expected
+
 ############################################################################################
 # deff_week_day (8)
 ############################################################################################
@@ -56,14 +124,25 @@ def test_deff_week_day_incorrect_input(num, expected):
     # assert deff_week_day(num) == raise expected
     # pytest.raises(expected, deff_week_day, *num)
 
-# def test_deff_week_day_incorrect_input():
-#     input = 3.5
-#     try:
-#         deff_week_day(input) 
-#     except Exception as exception:
-#        assert exception.__class__.__qualname__ == 'KeyError'
+def test_deff_week_day_incorrect_input2(): # Переписала тест test_deff_week_day_incorrect_input на вариант с try-except
+    input = 3.5
+    try:
+        deff_week_day(input) 
+    except Exception as exception:
+       assert exception.__class__.__qualname__ == 'KeyError'
 
-    
+@pytest.mark.parametrize("num, expected", [
+    (3.5, KeyError),
+    ("5", TypeError),
+    (None, TypeError)
+])
+
+def test_deff_week_day_incorrect_input3(num, expected): # Переписала тест test_deff_week_day_incorrect_input на вариант с try-except и применила фикстуру
+    try:
+        deff_week_day(num) 
+    except Exception as exception:
+       assert exception.__class__ == expected    
+        
 
 ############################################################################################
 # count_factorial (9)
