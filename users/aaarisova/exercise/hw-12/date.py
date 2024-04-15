@@ -5,17 +5,17 @@ from datetime import datetime
 
 class Date:
 
-    def __init__(self, day, month, year):
+    def __init__(self, year, month, day):
         self.day = day
         self.month = month
         self.year = year
+        self.date = datetime(year, month, day)
+        
 
-    def __str__(self):  #преобраз в стр
-        return f"{self.day}.{self.month}.{self.year}"
-
-
-    def __eq__(self, other): #для определения поведения при сравнении объектов с помощью оператора ==.
-        return self.day == other.day and self.month == other.month and self.year == other.year
+    def __sub__(self, other): 
+        '''метод позволяет определить поведение объекта при выполнении вычитания с другим объектом
+        "subtraction" - вычитание'''
+        return (self.date - other.date).days
 
 
     def __lt__(self, other):  #использ для определения поведения при сравнении объектов с помощью оператора <
@@ -27,13 +27,5 @@ class Date:
             elif self.month == other.month:
                 return self.day < other.day
         return False
-
-
-    def __sub__(self, other): #приблизительно (30дней и 365)
-        '''метод позволяет определить поведение объекта при выполнении вычитания с другим объектом
-        "subtraction" - вычитание'''
-        days_self = self.day + self.month * 30 + self.year * 365
-        days_other = other.day + other.month * 30 + other.year * 365
-        return abs(days_self - days_other) #для получения абсолютного значения числа или выражения
 
 
