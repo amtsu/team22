@@ -244,7 +244,7 @@ def test_max_element_v_5():
 def test_check_age_1():
     input1 = {"Irina": 25, "Ivan" : 14, "Anton" : 33}
     input2 = "Ivan6"
-    expected = "нет такого"
+    expected = "нет такого студента в базе"
     assert check_age(input1,input2) == expected, 'неправильно вывели сообщение о совершеннолетии или несовершеннолетии'
 
 def test_check_age_2():
@@ -268,13 +268,13 @@ def test_check_age_4():
 def test_check_age_5():
     input1 = {"Irina": 25, "Ivan" : 14, "Anton" : 33}
     input2 = "Тима"
-    expected = "нет такого"
+    expected = "нет такого студента в базе"
     assert check_age(input1,input2) == expected, 'неправильно вывели сообщение о совершеннолетии или несовершеннолетии'
 
 def test_check_age_6():
     input1 = {"Irina": 25, "Ivan" : 14, "Anton" : 33}
     input2 = "Ant0n"
-    expected = "нет такого"
+    expected = "нет такого студента в базе"
     assert check_age(input1,input2) == expected, 'неправильно вывели сообщение о совершеннолетии или несовершеннолетии'
 
 def test_compare_sets_length_1():
@@ -554,17 +554,17 @@ def test_day_week_7():
 
 def test_day_week_8():
     input1 = 8
-    expected = "не правильное число"
+    expected = "не номер дня недели"
     assert day_week(input1) == expected, 'задача день недели'
 
 def test_day_week_9():
     input1 = 0
-    expected = "не правильное число"
+    expected = "не номер дня недели"
     assert day_week(input1) == expected, 'задача день недели'
 
 def test_day_week_10():
     input1 = -43
-    expected = "не правильное число"
+    expected = "не номер дня недели"
     assert day_week(input1) == expected, 'задача день недели'
 
 def test_povtor_1():
