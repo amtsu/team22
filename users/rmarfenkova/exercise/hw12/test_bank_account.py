@@ -1,51 +1,21 @@
 import pytest
 from bank_account import BankAccount
 
-@pytest.mark.parametrize("accaunt_number, owner_name, starting_balance, deposit_amount, expected_balance", [
-    (12345, "Oleg", 1000, 500, 1500),
-    (12346, "Stas", 0, 1000, 1000),
-    (12347, "Vlad", -500, 1000, 500)
+@pytest.mark.parametrize("initial_balance, deposit_amount, expected_message", [
+    (1000, 500, "Вы пополнили счет на 500. Текущий баланс: 1500"),
+    (0, 100, "Вы пополнили счет на 100. Текущий баланс: 100"),
+    (-500, 1000, "Вы пополнили счет на 1000. Текущий баланс: 500")
 ])
+def test_deposit(initial_balance, deposit_amount, expected_message):
+    account = BankAccount(12345, "John Doe", initial_balance)
+    assert account.deposit(deposit_amount) == expected_message
 
-def test_deposit(accaunt_number, owner_name, starting_balance, deposit_amount, expected_balance):
-    """
-    позитивный тест на пополнение счета
-    """
-    account = BankAccount(accaunt_number, owner_name, starting_balance)
-    account.deposit(accaunt_number, deposit_amount)
-    assert account.balance == expected_balance
-    
-
-@pytest.mark.parametrize("accaunt_number, owner_name, starting_balance, deposit_amount, expected_error", [
-    (12345, "Oleg", 1000, 500, ValueError),
-    (12345, "Stas", 0, 1000, ValueError),
-    (12349, "Vlad", -500, "1000", TypeError)
+@pytest.mark.parametrize("initial_balance, withdrawal_amount, expected_message", [
+    (1000, 500, "Вы сняли со счета 500. Текущий баланс: 500"),
+    (0, 100, "Недостаточно средств на счете"),
+    (500, 1000, "Недостаточно средств на счете")
 ])
-
-def test_deposit_negativ(accaunt_number, owner_name, starting_balance, deposit_amount, expected_error):
-    """
-    негативные тесты:
-    попытка пополнения счета в уже существующий счет с другим именем.
-    пополнение баланса строкой
-    """
-    with pytest.raises(expected_error):
-        account = BankAccount(accaunt_number, owner_name, starting_balance)
-        account.deposit(accaunt_number, deposit_amount)
-        assert account.accaunt_number == expected_error
-
-@pytest.mark.parametrize("accaunt_number, owner_name, starting_balance, cash_withdrawal, expected_result",[
-    (12351, "Oleg", 3000, 1500, 1500),
-    (12352, "Stas", 1000, 500, 500)
-    #(12353, "Anna", 1000, 2000, "Недостаточно средств")
-])
-
-def test_withdraw(accaunt_number, owner_name, starting_balance, cash_withdrawal, expected_result):
-    
-    account = BankAccount(accaunt_number, owner_name, starting_balance)
-    account.withdraw(accaunt_number, cash_withdrawal)
-    assert account.balance == expected_result
-    
-    
-        
-    
+def test_withdraw(initial_balance, withdrawal_amount, expected_message):
+    account = BankAccount(12345, "Stas", initial_balance)
+    assert account.withdraw(withdrawal_amount) == expected_message    
     
