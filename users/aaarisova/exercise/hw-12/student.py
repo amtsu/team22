@@ -4,9 +4,10 @@ class Student():
     
     def __init__(self, name: str, surname: str, age: int, address: str, grades: list):
         '''Конструктор класса Student'''
-        self.name = str(name)
+        self.name = name
         self.surname = surname
         self.age = age
         self.address = address
-        self.grades = grades
+        self.grades = list(grades)
+        
 

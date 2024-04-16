@@ -24,12 +24,12 @@ def test_student_2():  #float и tuple
     assert student_2.surname == 'Ivanova'
     assert student_2.age == 18.0
     assert student_2.address == 'F.Street, Samara, 144987'
-    assert student_2.grades == (10,9,10)
+    assert student_2.grades == [10,9,10]
 
 
 @pytest.mark.parametrize('name, surname, age, address, grades, expected', [   
     ('Galya', 'Petrova', 44, 'Lenina Street, Kaliningrad, 16, 431510', [0,0,0], ('Galya', 'Petrova', 44, 'Lenina Street, Kaliningrad, 16, 431510', [0,0,0])),
-    ('Fedor', 'Dostoevsky', 18.0, 'F.Street, Samara, 144987', (10,9,10), ('Fedor', 'Dostoevsky', 18.0, 'F.Street, Samara, 144987', (10,9,10))),
+    ('Fedor', 'Dostoevsky', 18.0, 'F.Street, Samara, 144987', (10,9,10), ('Fedor', 'Dostoevsky', 18.0, 'F.Street, Samara, 144987', [10,9,10])),
     ('Alexander', 'Pushkin', 37, 'St. Petersburg', [10], ('Alexander', 'Pushkin', 37, 'St. Petersburg', [10])),
 ])
 
