@@ -24,21 +24,19 @@ define_triangle_type
 ############################################################################################
 
 @pytest.mark.parametrize("a, b, c, expected", [
-    # ("00:00", "Ночь"),
-    # ("05:30", "Утро"),
-    # ("12:00", "День"),
-    # ("17:00", "Вечер"),
+    (3,6,5, "Тупоугольный треугольник"),
+    (5,5,6, "Остроугольный треугольник"),
+    (12,5,5, "Не треугольник"),
+    (3,4,5, "Прямоугольный треугольник"),
+    (False, 1, 5, "Не треугольник"),
+    
 ])
 
 def test_define_triangle_type_correct_input(a, b, c, expected):
     assert define_triangle_type(a, b, c) == expected
 
 @pytest.mark.parametrize("a, b, c, expected", [
-    # (10, TypeError),
-    # (False, TypeError),
-    # (["jgfhggdrysdgrfc"], TypeError),
-    # ("7:5", ValueError),
-    # (None, TypeError)
+    ("5",5, 4, TypeError),
 ])
 
 def test_define_triangle_type_incorrect_input(a, b, c, expected):

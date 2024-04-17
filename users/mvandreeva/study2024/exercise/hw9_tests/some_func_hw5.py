@@ -3,7 +3,9 @@ def define_triangle_type(a,b,c):
     Функция определения типа треугольника по длинам сторон 
     Принимает длины сторон, возвращает "остроугольный, прямоугольный, тупоугольный, разносторонний, равносторонний, равнобедренный или не треугольник"
     """
-    if isinstance(a, (int, float)) and isinstance(b, (int, float)) and isinstance(c, (int, float)):
+    result = "Не треугольник"
+    triangle_exist = (a < (b + c)) and (b < (a + c)) and (c < (a + b))
+    if isinstance(a, (int, float)) and isinstance(b, (int, float)) and isinstance(c, (int, float)) and triangle_exist:
         sides_list = [a,b,c]
         # print(sides_list)
         max_side = max(sides_list)
@@ -14,17 +16,13 @@ def define_triangle_type(a,b,c):
         # print(30*'=')
         # print(less_sides_list)
         if (max_side ** 2) < ((less_sides_list[0] ** 2) + (less_sides_list[1] ** 2)):
-            print("Остроугольный треугольник")
+            result = "Остроугольный треугольник"
         elif (max_side ** 2) > ((less_sides_list[0] ** 2) + (less_sides_list[1] ** 2)):
-            print("Тупоугольный треугольник")
+            result = "Тупоугольный треугольник"
         elif (max_side ** 2) == ((less_sides_list[0] ** 2) + (less_sides_list[1] ** 2)):
-            print("Прямоугольный треугольник")
-        if a != b and a != c and b != c:
-            print("Разносторонний треугольник")
-        elif a == b and a == c:
-            print("Равносторонний треугольник")
-        else:
-            print("Равнобедренный треугольник")
+            result = "Прямоугольный треугольник"
+    return result
+    
 
 def define_day_part(any_time):
     """
