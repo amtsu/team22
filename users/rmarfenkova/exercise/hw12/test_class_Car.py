@@ -43,5 +43,16 @@ def test_car_attributes4(model, year_of_issue, color, door, speed, expected):
     car = Car(model, year_of_issue, color, door, speed)
     assert car.get_speed() == speed
 
+def test_accelerate():
+    car2 = Car("Toyota", "2020", "red", 4, 100)
+    car2.accelerate()
+    assert car2.get_speed() == 105
     
+def test_stop():
+    car2 = Car("Toyota", "2020", "red", 4, 100)
+    car2.stop()
+    assert car2.get_speed() == 0
+    
+    
+
 
