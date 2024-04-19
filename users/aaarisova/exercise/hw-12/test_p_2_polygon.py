@@ -4,7 +4,7 @@ from p_2_polygon import Polygon
 
 #polygon = Polygon() - если делаю тут, то вершину создает с координатами 0,0 - почему??
 
-def test_add_perim_area_2():
+def test_add_perim_area_1():
     polygon = Polygon()
     polygon.add_vertex(0,0)
     polygon.add_vertex(0,2)
@@ -14,6 +14,17 @@ def test_add_perim_area_2():
     assert polygon.perimeter() == 8
     assert polygon.polygon_area() == 4.0
 
+
+
+def test_add_perim_area_2():
+    polygon = Polygon()
+    polygon.add_vertex(0,0)
+    polygon.add_vertex(0,1)
+    polygon.add_vertex(1,1)
+    polygon.add_vertex(1,0)
+    assert polygon.vertices == [(0,0), (0,1), (1,1), (1,0)]
+    assert polygon.perimeter() == 4.0
+    assert polygon.polygon_area() == 1.0
 
 
 #мои расчеты 
