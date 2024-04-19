@@ -25,3 +25,15 @@ class Car():
         return self.speed
 
 
+    def acceleration(self): 
+        '''Увеличивает скорость автомобиля на 5 км/ч'''
+        self.speed += 5 
+        return self.speed
+
+
+    def stop(self):
+        '''Останавливает автомобиль'''
+        self.speed = 0 
+        return self.speed
+
+

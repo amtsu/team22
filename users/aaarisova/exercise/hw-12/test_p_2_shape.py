@@ -1,12 +1,12 @@
 import pytest
-from shape import Shape, Rectangle, Circle2, Triangle
+from p_2_shape import Shape, Rectangle, Circle2, Triangle
 from circle import Circle
 
 
 
 def test_circle_area_1():
     circle =  Circle2(5)
-    assert circle.area() == 78.5 #?????? у меня округление до 2х цифр после запятой, но он ожидает 1 - ????
+    assert circle.area() == 78.5 
 
 
 def test_circle_area_2():
@@ -17,7 +17,7 @@ def test_circle_area_2():
 
 def test_circle_perimeter():
     circle =  Circle2(5)
-    assert circle.perimeter() == 31.4 #??????? у меня округление до 2х цифр после запятой, но он ожидает 1 - ????
+    assert circle.perimeter() == 31.4
 
 
 ####################################################

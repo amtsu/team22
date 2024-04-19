@@ -38,11 +38,15 @@ def test_get_speed():
     assert BMW.speed == expected
  
     
+def test_acceleration():
+    'тест ускорение +5 км/ч'
+    toyota = Car('RAV4', 2020, 'orange', 5, 150)
+    assert toyota.acceleration() == 155
 
-# def test_init_car(model, year, color, doors, speed, expected_result):
-#     car = Car(model, year, color, doors, speed)
-#     assert car.model == expected_result[0]
-#     assert car.year == expected_result[1]
-#     assert car.color == expected_result[2]
-#     assert car.doors == expected_result[3]
-#     assert car.speed == expected_result[4]
+
+def test_stop():
+    'тест остановка а/м'
+    honda = Car('Civic', 2014, 'gold', 5, 180)
+    assert honda.stop() == 0
+
+
