@@ -51,7 +51,7 @@ class BankAccount:
             self.balance -= amount
             return f"Вы сняли со счета {amount}. Текущий баланс: {self.balance}"
         else:
-            return "Недостаточно средств на счете"
+            return 0
 
             
 

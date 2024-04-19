@@ -12,8 +12,8 @@ def test_deposit(initial_balance, deposit_amount, expected_message):
 
 @pytest.mark.parametrize("initial_balance, withdrawal_amount, expected_message", [
     (1000, 500, "Вы сняли со счета 500. Текущий баланс: 500"),
-    (0, 100, "Недостаточно средств на счете"),
-    (500, 1000, "Недостаточно средств на счете")
+    (0, 100, 0),
+    (500, 1000, 0)
 ])
 def test_withdraw(initial_balance, withdrawal_amount, expected_message):
     account = BankAccount(12345, "Stas", initial_balance)
