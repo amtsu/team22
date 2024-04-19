@@ -1,3 +1,15 @@
+def compare_sets_length(set1,set2):
+    """Функция сравнения длин двух множеств"""
+    result = None
+    if isinstance(set1, set) and isinstance(set2,set):
+        if len(set1) > len(set2):
+            result = f"Длина set1 больше, чем длина set2"
+        elif len(set1) < len(set2):
+            result = f"Длина set1 меньше, чем длина set2"
+        elif len(set1) == len(set2):
+            result = f"Длины равны"
+    return result
+
 def define_triangle_type(a,b,c):
     """
     Функция определения типа треугольника по длинам сторон 
