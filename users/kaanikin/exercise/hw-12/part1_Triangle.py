@@ -26,7 +26,7 @@ class Triangle:
                     
             if (a == b) and (b == c) and (c == a):
                 result = 'равносторонний'
-            elif a == b or b == c or a == self.c:
+            elif a == b or b == c or a == c:
                 result = 'равнобедренный'
             elif (a**2 + b**2) == c**2:
                 result = 'прямоугольный'

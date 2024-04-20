@@ -4,7 +4,7 @@ class Student:
    """
    def __init__(self, name, family_name , age, address, marks_list):
        self.name = name
-       self.family_name = name
+       self.family_name = family_name
        self.age = age
        self.address = address
        self.marks_list = marks_list
