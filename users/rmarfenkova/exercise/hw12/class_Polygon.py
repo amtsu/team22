@@ -1,10 +1,11 @@
+from class_Point import Point
 """
 Создайте класс Polygon, который представляет многоугольник.
 У него должен быть атрибут для хранения списка вершин.
 Добавьте методы для вычисления площади и периметра многоугольника.
 """
 class Polygon:
-    def __init__(self, points):
+    def __init__(self, points: list[Point]):
         self.points = points
 
     def perimeter(self):
