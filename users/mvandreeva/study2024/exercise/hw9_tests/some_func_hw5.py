@@ -3,17 +3,17 @@ def compare_sets_length(set1,set2):
     result = None
     if isinstance(set1, set) and isinstance(set2,set):
         if len(set1) > len(set2):
-            result = f"Длина set1 больше, чем длина set2"
+            result = "Длина set1 больше, чем длина set2"
         elif len(set1) < len(set2):
-            result = f"Длина set1 меньше, чем длина set2"
+            result = "Длина set1 меньше, чем длина set2"
         elif len(set1) == len(set2):
-            result = f"Длины равны"
+            result = "Длины равны"
     return result
 
 def define_triangle_type(a,b,c):
     """
     Функция определения типа треугольника по длинам сторон 
-    Принимает длины сторон, возвращает "остроугольный, прямоугольный, тупоугольный, разносторонний, равносторонний, равнобедренный или не треугольник"
+    Принимает длины сторон, возвращает "остроугольный, прямоугольный, тупоугольный или не треугольник"
     """
     result = "Не треугольник"
     triangle_exist = (a < (b + c)) and (b < (a + c)) and (c < (a + b))
@@ -67,16 +67,15 @@ def deff_week_day(num):
     Функция определения дня недели по введенному номеру дня
     """
     week = {1: "Понедельник", 2: "Вторник", 3: "Среда", 4: "Четверг", 5: "Пятница", 6:"Суббота", 7: "Воскресение"}
-    if num >= 1 and num <= 7: 
-        for day in week.keys():
-            return week[num]
+    if num in week: 
+        return week[num]
 
 def count_factorial(num):
     """
     Функция вывода факториала заданного числа
     """
     result = None
-    if num >= 0 and num <= 1:
+    if num in (0, 1):
         result = 1
     elif num > 1:
         result = num * count_factorial(num - 1)

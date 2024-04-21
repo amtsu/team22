@@ -122,43 +122,49 @@ def test_check_all_letters_incorrect_input(some_str, expected):
     (7, "Воскресение"),
     (10, None),
     (-5, None),
-    (0, None)
+    (0, None),
+    (3.5, None),
+    ("5", None),
+    (None, None)
 ])
 
 def test_deff_week_day_correct_input(num, expected):
     assert deff_week_day(num) == expected
 
-@pytest.mark.parametrize("num, expected", [
-    (3.5, KeyError),
-    ("5", TypeError),
-    (None, TypeError)
-])
+"""
+Переписала функцию и теперь не вызывает ошибки, но оставлю для истории обработки исключений
+"""
+# @pytest.mark.parametrize("num, expected", [
+#     (3.5, KeyError),
+#     ("5", TypeError),
+#     (None, TypeError)
+# ])
 
-def test_deff_week_day_incorrect_input(num, expected):
-    with pytest.raises(expected):
-        deff_week_day(num) == expected
-    # assert deff_week_day(num) == pytest.raises(expected)
-    # assert deff_week_day(num) == raise expected
-    # pytest.raises(expected, deff_week_day, *num)
+# def test_deff_week_day_incorrect_input(num, expected):
+#     with pytest.raises(expected):
+#         deff_week_day(num) == expected
+#     # assert deff_week_day(num) == pytest.raises(expected)
+#     # assert deff_week_day(num) == raise expected
+#     # pytest.raises(expected, deff_week_day, *num)
 
-def test_deff_week_day_incorrect_input2(): # Переписала тест test_deff_week_day_incorrect_input на вариант с try-except
-    input = 3.5
-    try:
-        deff_week_day(input) 
-    except Exception as exception:
-       assert exception.__class__.__qualname__ == 'KeyError'
+# def test_deff_week_day_incorrect_input2(): # Переписала тест test_deff_week_day_incorrect_input на вариант с try-except
+#     input = 3.5
+#     try:
+#         deff_week_day(input) 
+#     except Exception as exception:
+#        assert exception.__class__.__qualname__ == 'KeyError'
 
-@pytest.mark.parametrize("num, expected", [
-    (3.5, KeyError),
-    ("5", TypeError),
-    (None, TypeError)
-])
+# @pytest.mark.parametrize("num, expected", [
+#     (3.5, KeyError),
+#     ("5", TypeError),
+#     (None, TypeError)
+# ])
 
-def test_deff_week_day_incorrect_input3(num, expected): # Переписала тест test_deff_week_day_incorrect_input на вариант с try-except и применила фикстуру
-    try:
-        deff_week_day(num) 
-    except Exception as exception:
-       assert exception.__class__ == expected    
+# def test_deff_week_day_incorrect_input3(num, expected): # Переписала тест test_deff_week_day_incorrect_input на вариант с try-except и применила фикстуру
+#     try:
+#         deff_week_day(num) 
+#     except Exception as exception:
+#        assert exception.__class__ == expected    
         
 
 ############################################################################################
@@ -171,7 +177,6 @@ def test_deff_week_day_incorrect_input3(num, expected): # Переписала �
     (3, 6),
     (10, 3628800),
     (-5, None),
-    (3.5, 13.125),
 ])
 
 def test_count_factorial_correct_input(num, expected):
@@ -179,6 +184,7 @@ def test_count_factorial_correct_input(num, expected):
 
 @pytest.mark.parametrize("num, expected", [
     ("5", TypeError),
+    (3.5, TypeError),
     (None, TypeError),
     ({1,5}, TypeError)
 ])
