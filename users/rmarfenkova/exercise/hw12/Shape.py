@@ -47,7 +47,7 @@ class Rectangle(Shape):
         """метод вычисления периметра прямоугольника"""
         return 2 * (self.width + self.height)
 
-class Triangle():
+class Triangle(Shape):
     
     def __init__(self, side1: int, side2: int, side3: int):
         self.side1 = side1

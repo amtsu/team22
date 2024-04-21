@@ -20,12 +20,11 @@ class Student():
 
     def gpa(self):
         """ метод вычисления среднего балла"""
-        if len(self.list_estimates) <= 0:
-            raise ValueError("Список оценок пуст")
-        else:
+        if not len(self.list_estimates) == 0:
             gpa = sum(self.list_estimates) / len(self.list_estimates)
             return round(gpa, 2)
-        
+        else:
+            return "Список пуст"
         
 
     

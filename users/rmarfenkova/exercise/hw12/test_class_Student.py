@@ -29,6 +29,5 @@ def test_gpa(student):
     
 def test_gpa_negative():
     student = Student("Ivan", "Ivanov", 33, "Smolnay_street", [])
-    with pytest.raises(ValueError):
-        student.gpa()
+    assert student.gpa() == 'Список пуст'
         
