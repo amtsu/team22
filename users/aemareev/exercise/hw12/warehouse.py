@@ -61,10 +61,11 @@ class Warehouse:
         if not list_of_products.payment_status:
             raise PaymentStatusError
 
-        for product in list_of_products.list_of_products.values():
-            if product[0].product_id not in self.__stocks:
+        for p_id, product in list_of_products.list_of_products.items():
+            quantity = product[1]
+            if p_id not in self.__stocks or quantity > self.__stocks[p_id][1]:
                 raise StockAvailabilityError
-            self.__stocks[product[0].product_id][1] -= product[1]
+            self.__stocks[p_id][1] -= product[1]
 
         list_of_products.issue_status = True
 
