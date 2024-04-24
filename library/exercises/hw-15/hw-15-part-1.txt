@@ -1,4 +1,4 @@
-Задание 14 часть 1.
+Задание 15 часть 1.
 Написать утилиту на языке Python, для редактирования информации в файлах 
 team22/library/streams/2024/visits_status.csv и team22/library/streams/2024/hw_status.csv
 
