@@ -26,7 +26,6 @@ class Warehouse():
         else:
             self.products[product.name] = product
             self.products[product.name].quantity = new_quantity
-        return self.products
        
         
     def remove_product(self,product_name: str, quantity: int): # удалить, потому что купили 
