@@ -14,17 +14,16 @@ class Shape():
     def perimeter(self):
         pass
 
-    def save_shape(file_name):
+    def save_shape(self, file_name):
         with open(file_name, 'wb') as f:
-            pickle.dump()
+            pickle.dump(self, f)
 
     @staticmethod
     def load_shape(file_name):
         with open(file_name, 'rb') as f:
             return pickle.load(f)
 
-
-
+ 
 
 
 

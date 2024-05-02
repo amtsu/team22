@@ -1,3 +1,5 @@
+from shape_extended import Shape
+
 class Rectangle(Shape):
 
     def __init__(self, width, height):

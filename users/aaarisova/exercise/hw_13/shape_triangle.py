@@ -1,4 +1,6 @@
 import math
+from shape_extended import Shape
+
 class Triangle(Shape):
     
     def __init__(self, side1, side2, side3):
