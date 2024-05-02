@@ -10,7 +10,7 @@ class Circle:
         self.__color = color
 
     def count_area(self):
-        return 3.14 * (self.__radius ** 2)
+        return round(3.14 * (self.__radius ** 2),2)
 
     def count_perimeter(self):
-        return 2 * 3.14 * self.__radius
+        return round(2 * 3.14 * self.__radius,2)

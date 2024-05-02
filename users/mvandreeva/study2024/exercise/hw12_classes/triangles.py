@@ -39,7 +39,7 @@ class Triangle:
             less_sides_list.remove(max_side)
             if (max_side ** 2) == ((less_sides_list[0] ** 2) + (less_sides_list[1] ** 2)):
                 self.__triangle_type.append("Прямоугольный треугольник")
-            if self.__a != self.__b and self.__a != c and self.__b != self.__c:
+            if self.__a != self.__b and self.__a != self.__c and self.__b != self.__c:
                 self.__triangle_type.append("Разносторонний треугольник")
             elif self.__a == self.__b and self.__a == self.__c:
                 self.__triangle_type.append("Равносторонний треугольник")

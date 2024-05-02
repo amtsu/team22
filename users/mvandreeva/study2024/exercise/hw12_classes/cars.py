@@ -11,14 +11,14 @@ class Car:
         self.__doors_num = doors_num
         self.__current_speed = current_speed
 
-    def year(self):
+    def get_year(self):
         return self.__year
 
-    def model(self):
+    def get_model(self):
         return self.__model    
 
-    def color(self):
+    def get_color(self):
         return self.__color
 
-    def current_speed(self):
+    def get_current_speed(self):
         return self.__current_speed

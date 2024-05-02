@@ -22,14 +22,14 @@ class Book:
     def set_publisher(self, publisher):
         self.__publisher = publisher 
 
-    def get_title(self, title):
+    def get_title(self):
         return self.__title
 
-    def get_author(self, author):
+    def get_author(self):
         return self.__author 
 
-    def get_pages_num(self, pages_num):
+    def get_pages_num(self):
         return self.__pages_num
 
-    def get_publisher(self, publisher):
+    def get_publisher(self):
         return self.__publisher
