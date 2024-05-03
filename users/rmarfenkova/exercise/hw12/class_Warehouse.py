@@ -32,30 +32,31 @@ class Order:
     def __init__(self):
         self.cart_of_orders = []
 
-    def add_item(self, product_name: str, quantity: int, warehouse: Warehouse):
-        """Метод добавления товара в корзину"""
+    def add_item(self, item: str, quantity: int, warehouse: Warehouse):
+        """Метод добавления товара в корзину с учетом товаров на складе"""
         for product in warehouse.products:
-            if product.name == product_name and quantity <= product.quantity:
+            if product.name == item and quantity <= product.quantity:
                 self.cart_of_orders.append((product, quantity))
                 break
         else:
-            print(f"Товар '{product_name}' не был добавлен в корзину из-за нехватки на складе или его отсутствия.")
+            print(f"Товар '{item}' не был добавлен в корзину из-за нехватки на складе или его отсутствия.")
        
        
     def buy_item(self, warehouse: Warehouse, bank_account: BankAccount):
         """Метод покупки товара со склада с учетом средств на счете и списания товара со склада"""
         total_cost = self.calculate_total_cost()
         if bank_account.balance >= total_cost:
-            for product, quantity in self.cart_of_orders:
-                for item in warehouse.products:
+            for item, quantity in self.cart_of_orders:
+                for product in warehouse.products:
                     if item.name == product.name:
-                        item.quantity -= quantity
+                        product.quantity -= quantity
                         
             bank_account.withdraw(total_cost)
             print("Покупка совершена успешно.")
         else:
-            print("Недостаточно средств на карте.")
-                        
+            print("Недостаточно средств на карте.")    
+    
+    
     def calculate_total_cost(self):
         """метод подсчета общей суммы товаров в корзине"""
         total_cost = 0

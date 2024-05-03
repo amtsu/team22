@@ -6,10 +6,6 @@ def test_str_pruduct():
     ball = Product("ball", 1000, 35)
     expected = "ball - 1000 руб. - 35 шт."
     assert str(ball) == expected
-
-def test_add_product_warehouse():
-    ball = Product("ball", 1000, 35)
-    hoop = Product("hoop", 750, 15)
     
 def test_add_product():
     warehouse = Warehouse()
