@@ -5,7 +5,7 @@ class CsvHandler:
     def __init__(self, file_path):
         self.file_path = file_path
 
-    def read_csv(self):
+    def read_csv(self) -> list[list]:
         data = []
         with open(self.file_path, 'r') as csv_file:
             csv_reader = csv.reader(csv_file)
@@ -19,13 +19,13 @@ class CsvHandler:
             for row in data:
                 csv_writer.writerow(row)
 
-    def get_user_index(self, name) -> int:
+    def get_user_index(self, name: str) -> int:
         """Метод возвращает номер строки пользователя."""
 
         data = self.read_csv()
-        for n, row in enumerate(data):
+        for n, row in enumerate(data[1:]):
             if row[0] == name:
-                index = n
+                index = n + 1
                 break
         else:
             raise ValueError(f'Некорректный запрос: {name} нет в таблице!')
@@ -45,7 +45,7 @@ class CsvHandler:
 
         return index
 
-    def show_user_info(self, name):
+    def show_user_info(self, name: str):
         """Метод выводит на экран информацию пользователя из файла."""
 
         data = self.read_csv()
@@ -53,13 +53,24 @@ class CsvHandler:
         for h, v in zip(data[0], data[user_index]):
             print(f'{h:<23}{v}')
 
+    def edit_user_info(self, name: str, request: str):
+        """Метод позволяет обновлять информацию в строке пользователя."""
+
+        user_index = self.get_user_index(name)
+        column_index = self.get_column_index(request)
+        data = self.read_csv()
+        data[user_index][column_index] = input(f'Введите значение для {data[0][column_index]}: ')
+        self.write_csv(data)
+        print('Изменение внесено! Результат:')
+        data = self.read_csv()
+        print(f'{data[0][column_index]} -> {data[user_index][column_index]}')
+
 
 class UserMenu:
     """Класс пользовательского интерфейса для работы с файлами статусов."""
 
-    def __init__(self, name, file_path):
+    def __init__(self, name: str, file_path: str = ''):
         self.name = name
-        self.file_path = file_path
         self.visits_status: CsvHandler = CsvHandler(f'{file_path}visits_status.csv')
         self.hw_status: CsvHandler = CsvHandler(f'{file_path}hw_status.csv')
 
@@ -77,7 +88,7 @@ class UserMenu:
             )
 
             if user_menu not in '1234q' or len(user_menu) != 1:
-                print("\nУпс! Введите номер соответствующего меню (1-8) или q")
+                print("\nУпс! Введите номер соответствующего меню (1-4) или q")
                 continue
 
             try:
@@ -87,27 +98,13 @@ class UserMenu:
                     case '2':
                         self.visits_status.show_user_info(self.name)
                         date = input('Введите дату для редактирования в формате ДД-ММ-ГГГГ: ')
-                        user_index = self.visits_status.get_user_index(self.name)
-                        column_index = self.visits_status.get_column_index(date)
-                        data = self.visits_status.read_csv()
-                        data[user_index][column_index] = input(f'Введите значение для {data[0][column_index]}: ')
-                        self.visits_status.write_csv(data)
-                        print('Изменение внесено! Результат:')
-                        data = self.visits_status.read_csv()
-                        print(f'{data[0][column_index]} -> {data[user_index][column_index]}')
+                        self.visits_status.edit_user_info(self.name, date)
                     case '3':
                         self.hw_status.show_user_info(self.name)
                     case '4':
                         self.hw_status.show_user_info(self.name)
-                        date = input('Введите номер домашнего задания для редактирования: ')
-                        user_index = self.hw_status.get_user_index(self.name)
-                        column_index = self.hw_status.get_column_index(date)
-                        data = self.hw_status.read_csv()
-                        data[user_index][column_index] = input(f'Введите значение для {data[0][column_index]}: ')
-                        self.hw_status.write_csv(data)
-                        print('Изменение внесено! Результат:')
-                        data = self.hw_status.read_csv()
-                        print(f'{data[0][column_index]} -> {data[user_index][column_index]}')
+                        hw_num = input('Введите номер домашнего задания для редактирования: ')
+                        self.hw_status.edit_user_info(self.name, hw_num)
                     case 'q':
                         print('\nВыполнен выход из программы"')
                         break
