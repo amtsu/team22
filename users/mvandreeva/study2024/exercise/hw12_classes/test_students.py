@@ -1,6 +1,6 @@
 import pytest
 
-from students import Student
+from student import Student
 
 def test_student_attr():
     new_student = Student("Fedor", "Semenov", 18, "Moscow, lubyanka 1", {'math': 5, 'rus': 4})
