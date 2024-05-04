@@ -1,6 +1,6 @@
 from class_Warehouse import Order, Product, Warehouse
-from bank_account import BankAccount
 
+from bank_account import BankAccount
 
 def test_str_pruduct():
     ball = Product("ball", 1000, 35)
