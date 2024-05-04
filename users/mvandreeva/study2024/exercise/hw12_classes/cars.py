@@ -22,3 +22,9 @@ class Car:
 
     def get_current_speed(self):
         return self.__current_speed
+
+    def accelerate(self):
+        self.__current_speed += 5
+
+    def stop(self):
+        self.__current_speed = 0
