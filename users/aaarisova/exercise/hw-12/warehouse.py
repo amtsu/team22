@@ -14,6 +14,9 @@ class Product():
         self.price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f'Product{self.name}, Price{self.price}, Quantity{self.quantity}'
+
 
 class Warehouse(): 
 
@@ -33,16 +36,16 @@ class Warehouse():
             if self.products[product_name].quantity >= quantity:
                 self.products[product_name].quantity -= quantity
             else:
-                print('Недостаточное кол-во на складе для удаления')
+                raise ValueError('Недостаточное кол-во на складе для удаления')
         else:
-            print('Продукт не найден')
+            raise ValueError('Продукт не найден на складе')
         
     def check_product_quantity(self, product_name: str):
         '''метод подсчета остатков'''
         if product_name in self.products:
             return self.products[product_name].quantity
         else:
-            return "Продукт не найден."
+            raise ValueError("Продукт не найден на складе.")
                
 
 class Order(): 
@@ -50,12 +53,12 @@ class Order():
     def __init__(self):
         self.purchases = {}
 
-    def add_purchase(self, product: Product, quantity: int):
-        if product.name in self.purchases:
-            self.purchases[product.name] += quantity
+    def add_purchase(self, name: str, price: float, quantity: int):
+        '''Метод добавления покупок в корзину'''
+        if name in self.purchases:
+            self.purchases[name] += quantity
         else:
-            #self.purchases[product.name] = product
-            self.purchases[product.name] = quantity
+            self.purchases[name] = quantity
        
     def get_purchases(self):
         return self.purchases
@@ -68,7 +71,3 @@ class Order():
             else:
                 return f"Продукт {product_name} не найден на складе"
         return total_price
-
-
-
-

@@ -29,9 +29,8 @@ def test_warehouse_add(products):
 
    
     order = Order()
-
-    order.add_purchase(product1, 5)
-    order.add_purchase(product3, 10)
+    order.add_purchase('яблоко', 35, 5)
+    order.add_purchase('книга', 40, 10)
 
     assert order.get_purchases() == {'яблоко': 5, 'книга': 10}
     assert order.sum_shopping_cart(warehouse) == 35.0 * 5 + 40 * 10
