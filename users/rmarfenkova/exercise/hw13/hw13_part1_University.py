@@ -1,28 +1,5 @@
 import pickle
-
-class Student():
-    def  __init__(self, name: str, surname: str, age: int, address: str, list_estimates: list):
-        self.name = name
-        self.surname = surname
-        self.age = age
-        self.address = address
-        self.list_estimates = list_estimates
-
-    def __str__(self):
-        return f"{self.name}  {self.surname}  age: {self.age} "
-
-    def add_estimates(self, value):
-        """ метод добавления оценки"""
-        self.list_estimates.append(value)
-
-    def gpa(self):
-        """ метод вычисления среднего балла"""
-        if not len(self.list_estimates) == 0:
-            gpa = sum(self.list_estimates) / len(self.list_estimates)
-            return round(gpa, 2)
-        else:
-            return "Список пуст"
-            
+from hw13_part1_Student import Student
 
 class University():
     def __init__(self):
@@ -49,11 +26,6 @@ class University():
         """метод подсчета студентов в уч. заведении"""
         return len(self.students_list)
         
-    def display_students(self):
-        """вывод всех студентов"""
-        for student in self.students_list:
-            print(student)
-
     def save_to_file(self, file_name):
         """
         сохраняем объект в файл с помощью сериализиции

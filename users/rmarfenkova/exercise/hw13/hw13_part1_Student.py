@@ -1,12 +1,15 @@
 import pickle
 
 class Student():
-    def  __init__(self, name: str, surname: str, age: int, address: str, list_estimates: list ):
+    def  __init__(self, name: str, surname: str, age: int, address: str, list_estimates: list):
         self.name = name
         self.surname = surname
         self.age = age
         self.address = address
         self.list_estimates = list_estimates
+
+    def __str__(self):
+        return f"{self.name}  {self.surname}  age: {self.age} "
 
     def add_estimates(self, value):
         """ метод добавления оценки"""
