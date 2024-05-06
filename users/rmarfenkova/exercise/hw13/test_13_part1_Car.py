@@ -2,7 +2,7 @@ import pytest
 
 from hw13_part1_Car import Car
 
-def test_car():
+def test_load_from_file():
     car = Car("Jeep", 2000, "black", 4 , 0)
     # Сохраняем объект автомобиля в файл
     car.save_to_file("car_data.pkl")

@@ -2,7 +2,7 @@ import pytest
 
 from hw13_part1_Student import Student
 
-def test_update_loaded_student():
+def test_load_from_file():
     student = Student("Ivan", "Ivanov", 33, "Smolnay_street", [5, 5, 5, 5, 5])
     student.save_to_file("Ivanov.pkl")
     loaded_student = Student.load_from_file("Ivanov.pkl")
