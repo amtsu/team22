@@ -36,10 +36,10 @@ class Car():
         with open(file_name, 'wb') as f:
             pickle.dump(self, f)
             
-    @staticmethod
-    def load_from_file(file_name):
+    
+    def load_from_file(self, file_name):
         """
-        загружаем объект автомобиля из файла с помощью десириализации
+        загружаем объект автомобиля из файла с помощью десcириализации
         (восстановление объекта их потока байтов)
         """
         with open(file_name, 'rb') as f:
