@@ -3,7 +3,9 @@
 
 class Student:
     grades = []
-    def __init__(self, name, last_name, age, address, grades):
+    def __init__(
+            self, name, last_name, age, address, grades
+    ):
         self.name = name
         self.last_name = last_name
         self.age = age
