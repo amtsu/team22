@@ -6,8 +6,9 @@
 import pickle #модуль
 
 class Car():
-    def __init__(self, model, year, color, doors, speed): #конструктор класса, параметры инициализируют атрибуты объекта
-        self.model = model #атрибуты объекта класса Car, инициализируются значениями, переданными при создании объекта
+    def __init__(self, model, year, color, doors, speed): 
+        '''конструктор класса, инициализирую атрибуты объекта'''
+        self.model = model
         self.year = year
         self.color = color
         self.doors = doors
@@ -37,13 +38,15 @@ class Car():
         return self.speed
 
 
-    def save_car(self, file_name):  
-        with open(file_name, 'wb') as fs: #видеоур вместо file_name data.pickle (.pickle в тестах делать или txt?)
+    def save_to_file(self, file_name):  
+        '''метод сохранения объекта автомобиль из памяти в файл.'''
+        with open(file_name, 'wb') as fs:
             pickle.dump(self, fs)
 
 
     @staticmethod
-    def load_car(file_name):  
+    def load_from_file(file_name): 
+        '''метод загрузки автомобиля их файла в пямять.'''
         with open(file_name, 'rb') as fl:
             return pickle.load(fl)
        

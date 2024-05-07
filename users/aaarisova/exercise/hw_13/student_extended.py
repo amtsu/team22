@@ -30,12 +30,14 @@ class Student():
         return sum(self.grades) / len(self.grades)
 
     
-    def save_students(self, file_name): #задание 2
+    def save_to_file(self, file_name): #задание 2
+        '''методы сохранения и загрузки обекта студент из памяти в файл'''
         with open(file_name, 'wb') as f:
             pickle.dump(self,f)
 
     @staticmethod
-    def load_students(file_name):
+    def load_from_file(file_name):
+        '''метод загрузки объекта из файла в память с помощью десериализации.'''
         with open(file_name, 'rb') as f:
             return pickle.load(f)
 

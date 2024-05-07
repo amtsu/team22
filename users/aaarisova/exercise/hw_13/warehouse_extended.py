@@ -1,7 +1,6 @@
 '''Расширте классы Warehouse Product Order для управления складскими запасами, загрузкой и сохранением. Придумаейте тесты.'''
 
-import pikle
-
+import pickle 
 
 class Product():
 
@@ -16,6 +15,9 @@ class Product():
         self.price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f'Product{self.name}, Price{self.price}, Quantity{self.quantity}'
+
 
 class Warehouse(): 
 
@@ -23,6 +25,7 @@ class Warehouse():
         self.products = {} 
 
     def add_product(self, product: Product, new_quantity: int):
+        '''метод добавления продукта на склад.'''
         if product.name in self.products:
             self.products[product.name].quantity += new_quantity
         else:
@@ -30,36 +33,31 @@ class Warehouse():
             self.products[product.name].quantity = new_quantity
        
         
-    def remove_product(self,product_name: str, quantity: int): # удалить, потому что купили 
-        try:
-            if product_name in self.products:
-                if self.products[product_name].quantity >= quantity:
-                    self.products[product_name].quantity -= quantity
-                else:
-                    print('Недостаточное кол-во на складе для удаления')  #лучше выбрасывввать ошибку 
+    def remove_product(self,product_name: str, quantity: int): 
+        '''метод удаления продукта со склада'''
+        if product_name in self.products:
+            if self.products[product_name].quantity >= quantity:
+                self.products[product_name].quantity -= quantity
             else:
-                print('Продукт не найден')
+                raise ValueError('Недостаточное кол-во на складе для удаления')
+        else:
+            raise ValueError('Продукт не найден на складе')
         
-    # def check_product_quantity(self, product_name: str): - в методе не учит добавл и удал/покупка продуктов - реализ в инвент
-    #     '''метод подсчета остатков'''
-    #     if product_name in self.products:
-    #         return self.products[product_name].quantity
-    #     else:
-    #         return "Продукт не найден."
+    def check_product_quantity(self, product_name: str):
+        '''метод подсчета остатков на складе'''
+        if product_name in self.products:
+            return self.products[product_name].quantity
+        else:
+            raise ValueError("Продукт не найден на складе.")
 
-    def get_inventory_report(self):
-        report = "Отчет инвентаризации"
-        for product_name, product in self.products.items():
-            report += f'Продукт: {product_name}, Кол-во: {product.quantity}'
-            report += f'Нужно учесть кол-во добаленных и удаленных продуктов!'  #доработать
-        return report
-               
-    def save_warehouse(self,file_name):
+    def save_to_file(self,file_name):
+        '''методы сохранения и загрузки обекта из памяти в файл'''
         with open(file_name, 'wb') as f:
             pickle.dump(self, f)
 
     @staticmethod
-    def load_warehouse(file_name):
+    def load_from_file(file_name):
+        '''метод загрузки объекта из файла в память.'''
         with open(file_name, 'rb') as f:
             return pickle.load(f)
 
@@ -69,17 +67,19 @@ class Order():
     def __init__(self):
         self.purchases = {}
 
-    def add_purchase(self, product: Product, quantity: int):
-        if product.name in self.purchases:
-            self.purchases[product.name] += quantity
+    def add_purchase(self, name: str, price: float, quantity: int):
+        '''Метод добавления покупок в корзину'''
+        if name in self.purchases:
+            self.purchases[name] += quantity
         else:
-            #self.purchases[product.name] = product
-            self.purchases[product.name] = quantity
+            self.purchases[name] = quantity
        
     def get_purchases(self):
+        '''метод получения списка покупок'''
         return self.purchases
 
     def sum_shopping_cart(self, warehouse: Warehouse):
+        '''метод подсчета суммы покупок'''
         total_price = 0
         for product_name, quantity in self.purchases.items():
             if product_name in warehouse.products:
@@ -87,6 +87,7 @@ class Order():
             else:
                 return f"Продукт {product_name} не найден на складе"
         return total_price
+               
 
 
 
