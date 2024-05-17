@@ -1,6 +1,7 @@
 import pytest
 from class_Library import Book, User, Library
 
+# не работает
 def tets_add_books_for_user():
     """добавление книг для пользователя больше 5"""
     user = User("Regina")
@@ -33,8 +34,8 @@ def test_take_book():
 
 def test_give_book():
     """выдача книги пользователю из библиотеки"""
-    book2 = Book("Преступление и наказание", "Фёдор Достоевский", "роман", 400)
-    book = Book("Властелин колец", "avtor2", "фентези", 300)
+    book = Book("Преступление и наказание", "Фёдор Достоевский", "роман", 400)
+    book2 = Book("Властелин колец", "avtor2", "фентези", 300)
     library = Library()
     library.add_book(book)
     library.add_book(book2)
@@ -43,33 +44,36 @@ def test_give_book():
     assert library.count_book_in_library() == 1
     assert user.count_books_for_user() == 1
 
-
+# не работает
 def tets_return_book_in_library():
     """пользователь возвращает книгу"""
     user = User("Regina")
-    book2 = Book("Преступление и наказание", "Фёдор Достоевский", "роман", 400)
-    book = Book("Властелин колец", "avtor2", "фентези", 300)
+    book = Book("Преступление и наказание", "Фёдор Достоевский", "роман", 400)
+    book2 = Book("Властелин колец", "avtor2", "фентези", 300)
     book3 = Book("Анна Каренина", "avtor2", "роман", 300)
+    user.add_books_for_user(book)
+    user.add_books_for_user(book2)
+    user.add_books_for_user(book3)
     user.return_book_in_library(book2)
     assert user.count_books_for_user() == 2
     
-    
-def tets_add_books_for_user():
+# не работает   
+def tets_add_books_for_user2():
     """добавление книг для чтения пользователю"""
     user = User("Regina")
-    book2 = Book("Преступление и наказание", "Фёдор Достоевский", "роман", 400)
-    book = Book("Властелин колец", "avtor2", "фентези", 300)
+    book = Book("Преступление и наказание", "Фёдор Достоевский", "роман", 400)
+    book2 = Book("Властелин колец", "avtor2", "фентези", 300)
     book3 = Book("Анна Каренина", "avtor2", "роман", 300)
-    user.add_books_for_user(book2)
     user.add_books_for_user(book)
+    user.add_books_for_user(book2)
     user.add_books_for_user(book3)    
     assert user.count_books_for_user() == 3 
 
 
 def test_add_book():
     """тест на добавление книг в библиотеку"""
-    book2 = Book("Преступление и наказание", "Фёдор Достоевский", "роман", 400)
-    book = Book("Властелин колец", "avtor2", "фентези", 300)
+    book = Book("Преступление и наказание", "Фёдор Достоевский", "роман", 400)
+    book2 = Book("Властелин колец", "avtor2", "фентези", 300)
     book3 = Book("Анна Каренина", "avtor2", "роман", 300)
     book4 = Book("Гарри Поттер и философский камен", "Дж. К. Роулинг", "фентези", 300)
     
@@ -84,8 +88,8 @@ def test_add_book():
 
 def test_find_book():
     """тест на поиск книг в библиотеке по жанру, автору и названию"""
-    book2 = Book("Преступление и наказание", "Фёдор Достоевский", "роман", 400)
-    book = Book("Властелин колец", "avtor2", "фентези", 300)
+    book = Book("Преступление и наказание", "Фёдор Достоевский", "роман", 400)
+    book2 = Book("Властелин колец", "avtor2", "фентези", 300)
     book3 = Book("Анна Каренина", "avtor2", "роман", 300)
     book4 = Book("Гарри Поттер и философский камен", "Дж. К. Роулинг", "фентези", 300)
     
@@ -116,8 +120,8 @@ def test_avg_pages_in_library():
     book = Book("title1", "avtor2", "roman", 300)
     
     library = Library()
-    library.add_book(book)
     library.add_book(book2)
+    library.add_book(book)
     assert library.avg_pages_in_library() == 350
     
 
@@ -125,9 +129,9 @@ def test_count_book_in_library():
     """метод считает количество книг в библиотеке"""
     book2 = Book("title2", "avtor1", "fantasy", 400)
     book = Book("title1", "avtor2", "roman", 300)
+    
     library = Library()
-    library = Library()
-    library.add_book(book)
     library.add_book(book2)
+    library.add_book(book)
     assert library.count_book_in_library() == 2
     
