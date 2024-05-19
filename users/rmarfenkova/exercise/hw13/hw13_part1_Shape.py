@@ -1,4 +1,5 @@
 import pickle
+from class_PickleHandler import PickleHandler
 
 class Shape():
     def __init__(self, shape_type: str):
@@ -9,26 +10,6 @@ class Shape():
 
     def perimeter(self):
         pass
-
-    def save_to_file(self, file_name):
-        """
-        сохраняем объект в файл с помощью сериализиции
-        (преобразования объекта в поток байтов)
-        """
-        with open(file_name, "wb") as f:
-            pickle.dump(self, f)
-            
-    # classmethod получает первы аргументом класс, может вызываться напрямую от класса,
-    # в отличие от @staticmethod имеет доступ к аргументам класса и его экземплярам 
-    @classmethod 
-    def load_from_file(cls, file_name):
-        """
-        загружаем объект из файла с помощью десириализации
-        (восстановление объекта их потока байтов)
-        """
-        with open(file_name, "rb") as f:
-            return pickle.load(f)
-            
 
 class Circle(Shape):
     def __init__(self, radius: int):
@@ -76,17 +57,17 @@ class Triangle(Shape):
 
 if __name__ == "__main__":
     circle = Circle(5)
-    circle.save_to_file("circle.pkl")
+    PickleHandler.save_to_file(circle, "circle.pkl")
     
     rectangle =  Rectangle(4, 2)
-    rectangle.save_to_file("rectangle.pkl")
+    PickleHandler.save_to_file(rectangle, "rectangle.pkl")
     
     triangle = Triangle(3, 4, 5)
-    triangle.save_to_file("triangle.pkl")
+    PickleHandler.save_to_file(triangle, "triangle.pkl")
     
     files = ["circle.pkl", "rectangle.pkl", "triangle.pkl"]
     for file in files:
-        shapes = Shape.load_from_file(file)
+        shapes = PickleHandler.load_from_file(file)
         print(f"\nТип фигуры: {shapes.shape_type}")
         print(f"Площадь: {shapes.area()}")
         print(f"Периметр: {shapes.perimeter()}")

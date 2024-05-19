@@ -27,21 +27,5 @@ class Car():
     def stop(self):
         """остановка автомобиля"""
         self.speed = 0
-        
-    def save_to_file(self, file_name):
-        """
-        сохраняем объект в файл с помощью сериализиции
-        (преобразования объекта в поток байтов)
-        """
-        with open(file_name, 'wb') as f:
-            pickle.dump(self, f)
-            
-    
-    def load_from_file(self, file_name):
-        """
-        загружаем объект из файла с помощью десcириализации
-        (восстановление объекта их потока байтов)
-        """
-        with open(file_name, 'rb') as f:
-            return pickle.load(f)
+          
 

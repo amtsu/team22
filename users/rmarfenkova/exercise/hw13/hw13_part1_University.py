@@ -1,5 +1,6 @@
 import pickle
 from hw13_part1_Student import Student
+from class_PickleHandler import PickleHandler
 
 class University():
     def __init__(self):
@@ -26,19 +27,3 @@ class University():
         """метод подсчета студентов в уч. заведении"""
         return len(self.students_list)
         
-    def save_to_file(self, file_name):
-        """
-        сохраняем объект в файл с помощью сериализиции
-        (преобразования объекта в поток байтов)
-        """
-        with open(file_name, "wb") as f:
-            pickle.dump(self, f)
-            
-    def load_from_file(sels, file_name):
-        """
-        загружаем объект из файла с помощью дессириализации
-        (восстановление объекта их потока байтов)
-        """
-        with open(file_name, "rb") as f:
-            return pickle.load(f)
-

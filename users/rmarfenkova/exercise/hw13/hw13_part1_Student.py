@@ -1,4 +1,5 @@
 import pickle
+from class_PickleHandler import PickleHandler
 
 class Student():
     def  __init__(self, name: str, surname: str, age: int, address: str, list_estimates: list):
@@ -23,20 +24,4 @@ class Student():
         else:
             return "Список пуст"
 
-    def save_to_file(self, file_name):
-        """
-        сохраняем объект в файл с помощью сериализиции
-        (преобразования объекта в поток байтов)
-        """
-        with open(file_name, "wb") as f:
-            pickle.dump(self, f)
-
-    @staticmethod
-    def load_from_file(file_name):
-        """
-        загружаем объект из файла с помощью десириализации
-        (восстановление объекта их потока байтов)
-        """
-        with open(file_name, "rb") as f:
-            return pickle.load(f)
-            
+    
