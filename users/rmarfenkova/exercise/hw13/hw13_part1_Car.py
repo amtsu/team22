@@ -1,5 +1,3 @@
-import pickle
-
 class Car():
     def __init__(self, model, year_of_issue, color, door, speed):
         self.model = model
