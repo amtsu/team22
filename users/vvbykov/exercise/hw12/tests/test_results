@@ -1,0 +1,21 @@
+============================================================================= test session starts =============================================================================
+platform linux -- Python 3.10.10, pytest-8.1.1, pluggy-1.4.0
+rootdir: /home/jupyter-vladimirvbykov/github/team22/users/vvbykov/exercise/hw12/tests
+plugins: anyio-4.2.0
+collected 26 items
+
+test_bankaccount.py .                                                                                                                                                   [  3%]
+test_book.py .                                                                                                                                                          [  7%]
+test_car.py ...........                                                                                                                                                 [ 50%]
+test_circle.py ..                                                                                                                                                       [ 57%]
+test_institution.py ..                                                                                                                                                  [ 65%]
+test_matrix.py .                                                                                                                                                        [ 69%]
+test_mydate.py .                                                                                                                                                        [ 73%]
+test_point.py .                                                                                                                                                         [ 76%]
+test_polygone.py .                                                                                                                                                      [ 80%]
+test_rectangle.py .                                                                                                                                                     [ 84%]
+test_shoppingcart.py .                                                                                                                                                  [ 88%]
+test_student.py .                                                                                                                                                       [ 92%]
+test_triangle.py ..                                                                                                                                                     [100%]
+
+============================================================================= 26 passed in 0.23s ==============================================================================
