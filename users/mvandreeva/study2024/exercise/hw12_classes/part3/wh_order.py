@@ -35,6 +35,7 @@ class Order:
                     item["Количество"] -= num
                 else:
                     self.__order_list.remove(item)
+                warehouse_name.income(item["Наименование"], item["Категория"], item["Цена"], num) #Возвращаем продукты на склад
                     
     def show_order_list(self):
         return self.__order_list
