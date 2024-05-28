@@ -1,6 +1,4 @@
-import pickle
 import numpy as np
-from class_PickleHandler import PickleHandler
 
 class Matrix:
     def __init__(self, rows):
