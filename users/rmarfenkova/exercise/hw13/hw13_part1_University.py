@@ -1,6 +1,4 @@
-import pickle
 from hw13_part1_Student import Student
-from class_PickleHandler import PickleHandler
 
 class University():
     def __init__(self):

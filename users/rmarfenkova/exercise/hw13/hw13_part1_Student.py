@@ -1,5 +1,3 @@
-import pickle
-from class_PickleHandler import PickleHandler
 
 class Student():
     def  __init__(self, name: str, surname: str, age: int, address: str, list_estimates: list):
