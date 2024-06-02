@@ -16,6 +16,7 @@ with DAG(dag_id="level_all_items", start_date=datetime(2023, 12, 1), schedule="0
         print("start1 levelServiceProcessing")
         import sys
         print(sys.version)
+        pass
 
         tssp = LevelServiceProcessing()
         #tssp.load_url_by_default()
