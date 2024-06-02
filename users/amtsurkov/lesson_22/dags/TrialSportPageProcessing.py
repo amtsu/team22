@@ -184,10 +184,12 @@ class PriceSaleElement(Element):
 
 class TitleElement(Element):
     def get(self):
-        assert self.__is_page_ok()
-        text = self.__get_text()
-        normalization_text = self.__normalization(text)
-        return self.__type_convert(normalization_text)
+#        assert self.__is_page_ok()
+        if self.__is_page_ok():
+            text = self.__get_text()
+            normalization_text = self.__normalization(text)
+            return self.__type_convert(normalization_text)
+        return
 
     def __get_text(self):
         list_reports_data = self.__soup.findAll("h2")
@@ -200,7 +202,7 @@ class TitleElement(Element):
     def __is_page_ok(self):
         list_reports_data = self.__soup.findAll("h2")
         print(list_reports_data)
-        assert len(list_reports_data) == 5 or  len(list_reports_data) == 6
+#        assert len(list_reports_data) == 5 or  len(list_reports_data) == 6
         if len(list_reports_data) != 5 and len(list_reports_data) != 6:
             return False
         return True
@@ -324,6 +326,10 @@ class OnePageProcessor:
         """
         Формиует список состоящий из одного словаря с занчениями найденными на странице товара
         """
+        #print(self.__soup)
+        if not TitleElement(self.__soup).get():
+                return []
+
         return [
             {
                 "title": TitleElement(self.__soup).get(),
