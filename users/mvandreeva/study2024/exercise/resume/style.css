@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.resume{
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.common-info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-photo{
+    width: 200px;
+    height:0%;
+}
+
+.posision-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.grey-text{
+    color:grey
+}
+
+.block-header{
+    font-weight: normal;
+}
+
+.text-strong{
+    font-weight: bold;
+}
+
+.experience-table{
+    display: flex;
+    flex-direction: row;
+}
+
+.jobs-date{
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    /* justify-content: flex-start; */
+}
+
+.font-default {
+    font-family: var(--bloko-font-family-override);
+    --bloko-font-family-override: inter, "Helvetica Neue", sans-serif;
+    --bloko-font-family-header-override: inter, "Arial Narrow", "Roboto Condensed", arial, sans-serif;
+}
+
+.magritte-hh-day-theme {
+    --magritte-color-background-primary-v18-0-0: #ffffff;
+    --magritte-color-background-secondary-v18-0-0: #F1F4F9;
+    --magritte-color-background-tertiary-v18-0-0: #DCE3EB;
+    --magritte-color-background-accent-v18-0-0: #EDF6FF;
+    --magritte-color-background-accent-heavy-v18-0-0: #0070ff;
+    --magritte-color-background-positive-v18-0-0: #E8F9EC;
+    --magritte-color-background-positive-heavy-v18-0-0: #0dc267;
+    --magritte-color-background-negative-v18-0-0: #FEF2EF;
+    --magritte-color-background-negative-heavy-v18-0-0: #ff4d3a;
+    --magritte-color-background-warning-v18-0-0: #FFF3E6;
+    --magritte-color-background-warning-heavy-v18-0-0: #d17c09;
+    --magritte-color-background-special-v18-0-0: #F7F4FF;
+    --magritte-color-background-special-heavy-v18-0-0: #b99bf8;
+    --magritte-color-background-contrast-v18-0-0: #000000;
+    --magritte-color-background-body-v18-0-0: #ffffff;
+    --magritte-color-background-state-primary-hovered-v18-0-0: #ffffff;
+    --magritte-color-background-state-primary-pressed-v18-0-0: #ffffff;
+    --magritte-color-background-state-primary-disabled-v18-0-0: #ffffff7a;
+    --magritte-color-background-state-secondary-hovered-v18-0-0: #F1F4F9;
+    --magritte-color-background-state-secondary-pressed-v18-0-0: #F1F4F9;
+    --magritte-color-background-state-secondary-disabled-v18-0-0: #f1f4f97a;
+    --magritte-color-background-state-tertiary-disabled-v18-0-0: #f1f4f97a;
+    --magritte-color-background-state-tertiary-pressed-v18-0-0: #F1F4F9;
+    --magritte-color-background-state-tertiary-hovered-v18-0-0: #F1F4F9;
+    --magritte-color-background-state-accent-hovered-v18-0-0: #EDF6FF;
+    --magritte-color-background-state-accent-pressed-v18-0-0: #EDF6FF;
+    --magritte-color-background-state-accent-disabled-v18-0-0: #edf6ff7a;
+    --magritte-color-background-state-positive-hovered-v18-0-0: #E8F9EC;
+    --magritte-color-background-state-positive-pressed-v18-0-0: #E8F9EC;
+    --magritte-color-background-state-positive-disabled-v18-0-0: #e8f9ec7a;
+    --magritte-color-background-state-negative-hovered-v18-0-0: #FEF2EF;
+    --magritte-color-background-state-negative-pressed-v18-0-0: #FEF2EF;
+    --magritte-color-background-state-negative-disabled-v18-0-0: #fef2ef7a;
+    --magritte-color-background-state-warning-hovered-v18-0-0: #FFF3E6;
+    --magritte-color-background-state-warning-pressed-v18-0-0: #FFF3E6;
+    --magritte-color-background-state-warning-disabled-v18-0-0: #fff3e67a;
+    --magritte-color-background-state-special-hovered-v18-0-0: #F7F4FF;
+    --magritte-color-background-state-special-pressed-v18-0-0: #F7F4FF;
+    --magritte-color-background-state-special-disabled-v18-0-0: #f7f4ff7a;
+    --magritte-color-background-state-accent-heavy-hovered-v18-0-0: #2b7fff;
+    --magritte-color-background-state-accent-heavy-pressed-v18-0-0: #2b7fff;
+    --magritte-color-background-state-accent-heavy-disabled-v18-0-0: #0070ff7a;
+    --magritte-color-background-state-positive-heavy-hovered-v18-0-0: #5bcf83;
+    --magritte-color-background-state-positive-heavy-pressed-v18-0-0: #5bcf83;
+    --magritte-color-background-state-positive-heavy-disabled-v18-0-0: #0dc2677a;
+    --magritte-color-background-state-negative-heavy-hovered-v18-0-0: #fe725f;
+    --magritte-color-background-state-negative-heavy-pressed-v18-0-0: #fe725f;
+    --magritte-color-background-state-negative-heavy-disabled-v18-0-0: #ff4d3a7a;
+    --magritte-color-background-state-warning-heavy-hovered-v18-0-0: #e38805;
+    --magritte-color-background-state-warning-heavy-pressed-v18-0-0: #e38805;
+    Show All Properties (1201 more)
+}
