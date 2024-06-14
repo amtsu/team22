@@ -1,0 +1,14 @@
+version: '2'
+services:
+    web:
+        build: .
+        ports:
+            - "15000:5000"
+        volumes:
+            - .:/code
+        depends_on:
+            - redis
+        restart: always
+    redis:
+        image: redis
+        restart: always
