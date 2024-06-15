@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - /home/jupyter-amtsu/github/team22/library/streams/2024:/usr/share/nginx/html/team22/users/base
+      - ./static_site1:/usr/share/nginx/html/team22/users/site1
+      - ./static_site2:/usr/share/nginx/html/team22/users/site2
+      - /home/jupyter-therate/github/team22/users/aemareev/:/usr/share/nginx/html/team22/users/aemareev
+      - /home/jupyter-romantarasov91/github/team22/users/rstarasov/exercise/html/:/usr/share/nginx/html/team22/users/romantarasov91
+      - /home/jupyter-re-gi-na/github/team22/users/rmarfenkova/exercise/:/usr/share/nginx/html/team22/users/re-gi-na
+      - /home/jupyter-andvliv/github/team22/users/andvliv/exercise/html/:/usr/share/nginx/html/team22/users/andvliv
+      - /home/jupyter-annamargolina/github/team22/users/aomargolina/exercice/CV/:/usr/share/nginx/html/team22/users/annamargolina
+      - /home/jupyter-andromary/github/team22/users/mvandreeva/study2024/exercise/resume:/usr/share/nginx/html/team22/users/andromary
+      - /home/jupyter-anton-kuvalda/github/team22/users/anton-kuvalda/exercise/hw_html/:/usr/share/nginx/html/team22/users/anton-kuvalda
+      - /home/jupyter-verayohanga/github/team22/users/vstarasova/exercise/html/:/usr/share/nginx/html/team22/users/verayohanga
+    ports:
+      - 15000:80
