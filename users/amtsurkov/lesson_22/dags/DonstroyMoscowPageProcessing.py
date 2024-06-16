@@ -348,7 +348,15 @@ class ListPageProcessor:
         Формирует список слловарей, где каждый словарь представляет товар найденный на странице.
         Поиск элемента, его очистка, и преобразование также происходят на в данном методе.
         """
+
+        #list_data = self.__soup.findAll("div", class_="d-flat-list__priceOld")
+        #for k in list_data:
+        #    print(k)
+        #    print('----===---')
+
+
         l = []
+
         list_data = self.__soup.findAll("div", class_="d-flat-list")
         #print('---1111----')
         #print(list_data)
@@ -357,8 +365,10 @@ class ListPageProcessor:
 
             #print('---222---')
             #print(i)
+            #print(i.text)
             d = i.find_all("a", class_="d-flat-list__link")
             if not len(d):
+                print('continue link')
                 continue 
             url = d[0]["href"]
             title = ''#d[0].text
@@ -504,7 +514,10 @@ class ListPageProcessor:
 
 
             d = i.find_all("div", class_="d-flat-list__item _item3")
+            #project = ''
+            #kvartal = ''
             if not len(d):
+                print('continue 3')
                 continue 
             #project = d[0].text
             #kvartal = d[0].find_all("small")[0].text
@@ -520,16 +533,21 @@ class ListPageProcessor:
             #print(kvartal)
 
             d = i.find_all("div", class_="d-flat-list__item _item4")
+            #korpus = ''
+            #section = ''
             if not len(d):
+                print('continue 4')
                 continue 
             korpus = d[0].div.extract().text
             section = d[0].text
             section = section.replace('\n', '')
             section = section.rstrip()
-
             
             d = i.find_all("div", class_="d-flat-list__item _item6")
+            #nomer_title = ''
+            #nomer_room = ''
             if not len(d):
+                print('continue 6')
                 continue 
             nomer_title = d[0].div.extract().text
             nomer_room = d[0].text
@@ -541,7 +559,9 @@ class ListPageProcessor:
             #print(i)
             #print(i.text)
             d = i.find_all("div", class_="d-flat-list__item _item5")
+            #floor, floors = 0, 0
             if not len(d):
+                print('continue 5')
                 continue 
             d[0].div.extract()
             floor = d[0].text
@@ -554,14 +574,18 @@ class ListPageProcessor:
             floor, floors = int(floor), int(floors)
 
             d = i.find_all("div", class_="d-flat-list__item _item1")
+            #image_plan = ''
             if not len(d):
+                print('continue 1')
                 continue 
             f = d[0].find_all("img")
             image_plan = f[0]["src"]
 
 
             d = i.find_all("div", class_="d-flat-list__item _item7")
+            #area = ''
             if not len(d):
+                print('continue 7')
                 continue 
             #d[0] = d[0].div.extract()
             dd = d[0].div.extract()
@@ -573,7 +597,9 @@ class ListPageProcessor:
 
 
             d = i.find_all("div", class_="d-flat-list__item _item2")
+            #room = 0 
             if not len(d):
+                print('continue 2')
                 continue 
             #print(d)
             hh = d[0].div.extract()
@@ -592,7 +618,7 @@ class ListPageProcessor:
                 #print('-!!!!--')
                 #print('-!!!!--')
                 room = int(room)
-###                room = int(room)
+    ###            room = int(room)
                 #print('--')
             else:
                 room = 0
@@ -601,6 +627,42 @@ class ListPageProcessor:
 
 
             #print('----3333---')
+
+
+
+            d = i.find_all("div", class_="d-flat-list__priceOld")
+            #price_sale = price
+            price_sale = None
+            #print(d)
+            #print(d[0])
+            if d:
+                #print('len=', len(d))
+                #print(d[0])
+                #print(d[0].text)
+                price_sale_s = d[0].text
+                #price_sale = int(d[0].text[:-2])
+                price_sale = price_sale_s
+                price_sale = price_sale.replace("\n", "")
+                price_sale = price_sale.replace("₽", "")
+                price_sale = price_sale.replace("&nbsp;", "")
+                price_sale = price_sale.replace(" ", "")
+
+                price_sale = int(price_sale)
+
+            else:
+                d = i.find_all("span", class_="discount")
+                if d:
+                    price_sale_s = d[0].text
+                    if len(price_sale_s) > 6:
+                        try:
+                            price_sale = int(price_sale_s[:-6] + price_sale_s[-5:-2])
+                        except:
+                            price_sale = int(price_sale_s[:-7] + price_sale_s[-6:-3])
+                    else:
+                        price_sale = int(d[0].text[:-2])
+
+
+
 
 
             #d-flat-list__price
@@ -641,32 +703,14 @@ class ListPageProcessor:
                     price = 0
 
 
-            d = i.find_all("div", class_="d-flat-list__priceOld")
-            price_sale = price
-            #print(d)
-            #print(d[0])
-            if d:
-                price_sale_s = d[0].text
-                #price_sale = int(d[0].text[:-2])
-                price_sale = price_sale_s
-                price_sale = price_sale.replace("\n", "")
-                price_sale = price_sale.replace("₽", "")
-                price_sale = price_sale.replace("&nbsp;", "")
-                price_sale = price_sale.replace(" ", "")
 
-                price_sale = int(price_sale)
+            if not price_sale:
+                price_sale = price
 
-            else:
-                d = i.find_all("span", class_="discount")
-                if d:
-                    price_sale_s = d[0].text
-                    if len(price_sale_s) > 6:
-                        try:
-                            price_sale = int(price_sale_s[:-6] + price_sale_s[-5:-2])
-                        except:
-                            price_sale = int(price_sale_s[:-7] + price_sale_s[-6:-3])
-                    else:
-                        price_sale = int(d[0].text[:-2])
+
+            #if not image_plan or not area or not floor or not room:
+            #    print('continue not image_plan or not area or not floor or not room')
+                #continue
 
             #print('----3333---')
 
@@ -708,6 +752,9 @@ class ListPageProcessor:
                 print("not have floors_total in =", source_url)
                 ee["apartment_floors_total"] = None
 
+
+            #if not image_plan or not area or not floor or not room:
+            #    print(ee)
 
             l.append(ee)
 
@@ -760,7 +807,9 @@ class DonstroyMoscowServiceProcessing:
         url = "https://donstroy.moscow/full-search/?price%5B%5D=8.8&price%5B%5D=725.2&area%5B%5D=25&area%5B%5D=392&floor_number%5B%5D=1&floor_number%5B%5D=51&floor_first_last=false&discount=false&furnish=false&apartments=false&sort=price-asc&view_type=flats&view=list&page="
 
         self.__url_list = [
-            "https://donstroy.moscow/full-search/?price%5B%5D=8.8&price%5B%5D=725.2&area%5B%5D=25&area%5B%5D=392&floor_number%5B%5D=1&floor_number%5B%5D=51&floor_first_last=false&discount=false&furnish=false&apartments=false&sort=price-asc&view_type=flats&view=list&page="
+            #"https://donstroy.moscow/full-search/?price%5B%5D=8.8&price%5B%5D=725.2&area%5B%5D=25&area%5B%5D=392&floor_number%5B%5D=1&floor_number%5B%5D=51&floor_first_last=false&discount=false&furnish=false&apartments=false&sort=price-asc&view_type=flats&view=list&page="
+            #"https://donstroy.moscow/full-search/?price%5B%5D=8.8&price%5B%5D=725.2&area%5B%5D=25&area%5B%5D=392&floor_number%5B%5D=1&floor_number%5B%5D=51&floor_first_last=false&furnish=false&apartments=false&sort=price-asc&view_type=flats&view=list&page="
+            "https://donstroy.moscow/full-search/?price%5B%5D=1.1&price%5B%5D=725.2&area%5B%5D=25&area%5B%5D=392&floor_number%5B%5D=1&floor_number%5B%5D=51&sort=price-asc&view_type=flats&view=list&page="
         ]
 
         #discount=true
@@ -782,6 +831,7 @@ class DonstroyMoscowServiceProcessing:
             #for i in range(1, 200):
             #for i in range(1, 130):
             for i in range(1, 140):
+#            for i in range(1, 14):
             #for i in range(1, 3):
             #for i in range(1, 2):
             #for i in range(1, 22):

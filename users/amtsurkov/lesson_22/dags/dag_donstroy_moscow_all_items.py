@@ -7,7 +7,7 @@ from airflow.operators.bash import BashOperator
 # Обратите внимание на то как формируется путь к импорту созданных вами модулей
 from users.amtsu.d221204t1902.DonstroyMoscowPageProcessing import DonstroyMoscowServiceProcessing
 
-with DAG(dag_id="donstroy_moscow_items", start_date=datetime(2024, 2, 7), schedule="0 0 * * *") as dag:
+with DAG(dag_id="donstroy_moscow_items", start_date=datetime(2024, 6, 16), schedule="0 0 * * *") as dag:
 
     # первая задача в даге
     start = BashOperator(task_id="start", bash_command="echo start_load_data_from_tdonstroy_moscow")
@@ -15,7 +15,7 @@ with DAG(dag_id="donstroy_moscow_items", start_date=datetime(2024, 2, 7), schedu
     # вторая задача в даге
     @task()
     def airflow():
-       # pass
+        #pass
         print("start DonstroyMoscowProcessing")
         tssp = DonstroyMoscowServiceProcessing()
         tssp.load_url_by_default()
