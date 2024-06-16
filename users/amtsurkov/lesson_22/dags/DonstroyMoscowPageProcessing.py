@@ -763,6 +763,8 @@ class DonstroyMoscowServiceProcessing:
             "https://donstroy.moscow/full-search/?price%5B%5D=8.8&price%5B%5D=725.2&area%5B%5D=25&area%5B%5D=392&floor_number%5B%5D=1&floor_number%5B%5D=51&floor_first_last=false&discount=false&furnish=false&apartments=false&sort=price-asc&view_type=flats&view=list&page="
         ]
 
+        #discount=true
+    
         #for i in range(130):
         #for i in range(1):
         #    self.__url_list.append(url+str(i))
