@@ -25,9 +25,3 @@ class Triangle:
             return 'scalene'
         else:
             return 'not triangle'
-
-#Сооздадим несколько объектов данного класса
-triangle1 = Triangle(3, 3, 3)
-triangle2 = Triangle(3, 3, 4)
-triangle3 = Triangle(4, 5, 3)
-triangle4 = Triangle(6, 7, 8)

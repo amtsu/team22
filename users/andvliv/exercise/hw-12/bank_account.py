@@ -10,7 +10,7 @@ class BankAccount:
         return self.balance + x
 
     def withdrawal_money(self, x):
-        return self.balance - x
-
-#Создадим объект данного класса
-bank_acc1 = BankAccount(123456, 'Andrey Ivanchenko', 500)
+        if self.balance >= x:
+            return self.balance - x
+        if self.balance < x:
+            return "Not enough money"

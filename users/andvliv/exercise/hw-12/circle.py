@@ -9,7 +9,3 @@ class Circle:
         
     def calculate_perimeter(self):
         return 2 * 3.14 * self.radius
-
-#Создадим объект класса Circle
-circle1 = Circle(3, 'white')
-circle2 = Circle(5, 'black')

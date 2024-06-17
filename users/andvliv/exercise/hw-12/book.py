@@ -30,7 +30,4 @@ class Book:
     def get_publishers(self):
         return self.publishers
 
-#Создадим объект класса:
-book1 = Book('Old man adn the sea', 'Hemingway', 120, 'XX century books')
-book2 = Book('White fang', 'Jack London', 110, 'British literature')
              

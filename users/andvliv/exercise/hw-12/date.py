@@ -9,9 +9,3 @@ class Date:
 
     def compare(self, other_date):
         return (self.date - other_date.date).days
-        
-#Создадим объект данного класса
-date1 = Date(1998, 5, 15)
-date2 = Date(2000, 4, 16)
-
-print(date1.compare(date2))

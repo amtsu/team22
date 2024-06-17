@@ -26,6 +26,3 @@ class ShoppingCart:
             sum += i[0] * i[1]
         return sum
 
-#Создадим объект данного класса
-cart1 = ShoppingCart({})
-cart2 = ShoppingCart({'apple': [3, 4], 'meat': [1, 6]})
