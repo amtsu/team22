@@ -28,5 +28,3 @@ class Car:
         return stop
         
 
-car1 = Car('mazda', 2010, 'white', 4, 100)
-car1.car_year()
