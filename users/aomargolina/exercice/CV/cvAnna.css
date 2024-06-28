@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 300px;
+    margin-right: 300px;
+    text-align: center;
+}
+
+h1 {
+    color: rgb(128, 0, 45);
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0%;
+}
+
+h2 {
+
+}
+
+p {
+    background-color: rgb(230, 235, 218);
+    word-break: break-all;
+}
+
+img { 
+    margin-top: 0px;
+    width: 20%;
+}
+ul {
+    list-style-image:none;
+  }
