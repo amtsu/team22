@@ -15,5 +15,7 @@ services:
       - /home/jupyter-andromary/github/team22/users/mvandreeva/study2024/exercise/resume:/usr/share/nginx/html/team22/users/andromary
       - /home/jupyter-anton-kuvalda/github/team22/users/anton-kuvalda/exercise/hw_html/:/usr/share/nginx/html/team22/users/anton-kuvalda
       - /home/jupyter-verayohanga/github/team22/users/vstarasova/exercise/html/:/usr/share/nginx/html/team22/users/verayohanga
+      - /home/jupyter-slash3086/github/team22/users/kaanikin/exercise/html/:/usr/share/nginx/html/team22/users/slash3086
+      - /home/jupyter-arisova/github/team22/users/aaarisova/exercise/html/:/usr/share/nginx/html/team22/users/aaarisova
     ports:
       - 15000:80
