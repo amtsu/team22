@@ -121,7 +121,12 @@ class LevelServiceProcessing:
             for e in jsons["results"]:
                 number = '-1'
                 if e.get('number'):
-                    number = e['number'].split('-')[1]
+                    #number = e['number'].split('-')[1]
+                    if len(e['number'].split('-')) > 1:
+                        number = e['number'].split('-')[1]
+                    else:
+                        number = e['number']
+
                 el = {}
                 el[
                     "title"
