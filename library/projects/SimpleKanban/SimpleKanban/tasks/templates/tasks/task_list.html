@@ -1,0 +1,14 @@
+<!-- templates/tasks/task_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+</head>
+<body>
+    <h1>Задачи</h1>
+    <p>Тут должна быть главная стр со списком задач.</p>
+    <!-- You can add links to other pages here -->
+    <a href="{% url 'task_create' %}">Создать новую задачу</a>
+    <a href="{% url 'task_detail' pk=1 %}">View task details (Example)</a>
+</body>
+</html>

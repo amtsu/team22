@@ -1,0 +1,14 @@
+<!-- templates/tasks/task_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Details</title>
+</head>
+<body>
+    <h1>Task Details</h1>
+    <p>This is a placeholder for the task detail page.</p>
+    <!-- You can display task details here -->
+    <a href="{% url 'task_edit' pk=task.id %}">Edit this task</a>
+    <a href="{% url 'task_list' %}">Back to Task List</a>
+</body>
+</html>
