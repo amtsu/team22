@@ -7,32 +7,27 @@ from tasks.models import Task
 from tasks.forms import TaskForm
 
 
-#https://docs.djangoproject.com/en/5.0/ref/class-based-views/generic-editing/
-# https://docs.djangoproject.com/en/5.0/intro/tutorial03/
-# https://bootstrap-5.ru/docs/5.3/forms/input-group/
-# https://bootstrap5.ru/docs/formy/form-control
 class TaskListView(ListView):
     model = Task
-    template_name = 'tasks/task_list.html'
+    context_object_name = 'tasks'
+    # template_name = 'tasks/task_list.html'
 
 
 class TaskDeleteView(DeleteView):
     model = Task
     success_url = reverse_lazy('tasks/task-list')
-    template_name = 'tasks/task_delete.html'   #task_confirm_delete - можно переименовать
+    template_name = 'tasks/task_delete.html'
 
 
 class TaskUpdateView(UpdateView):
     model = Task
     form_class = TaskForm
-    # fields = ['title', 'description', 'execution_status', 'due_date']
     template_name = "tasks/task_edit.html"
     success_url = reverse_lazy('task_list')
 
 
 class TaskCreateView(CreateView):
     model = Task
-    # fields = ['title', 'description', 'execution_status', 'due_date']
     form_class = TaskForm
     template_name = 'tasks/task_create.html'
     success_url = reverse_lazy('task_list')
@@ -45,23 +40,3 @@ class TaskDetailView(DetailView):
 
 
 
-# from django.http import HttpResponse
-# from django.shortcuts import render
-
-# def base_site(request):
-#     return render(request, 'base_site.html')
-#
-#
-# def TaskListView(ListView):
-#     return render(request, 'tasks/task_list.html')
-#
-#
-# def create_task(request):
-#     return render(request, 'tasks/task.html')
-#
-#
-# def task_detail(request):
-#     return render(request, 'tasks/task.html')
-#
-# def delete_task(request):
-#     return render(request, 'tasks/task.html')

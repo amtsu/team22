@@ -1,14 +1,54 @@
-<!-- templates/tasks/task_list.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Task List</title>
-</head>
-<body>
-    <h1>Задачи</h1>
-    <p>Тут должна быть главная стр со списком задач.</p>
-    <!-- You can add links to other pages here -->
-    <a href="{% url 'task_create' %}">Создать новую задачу</a>
-    <a href="{% url 'task_detail' pk=1 %}">View task details (Example)</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+Мои задачи
+{% endblock title %}
+
+{% block content %}
+<h2 class="container-fluid text-bg-dark">Мои задачи</h2>
+<div class="d-flex flex-wrap">
+    {% for task in tasks %}
+    {% if task.execution_status == 'AC' %}
+    <a href="{% url 'task_detail' task.id %}" class="container card text-bg-primary mb-3"
+       style="max-width: 18rem; text-decoration:none">
+        <div class="card-header">{{ task.author }}</div>
+        <div class="card-body">
+            <p class="card-text">от {{ task.created_at }}</p>
+            <h5 class="card-title">{{ task.title|truncatechars:20 }}</h5>
+            <p class="card-text">{{ task.description|truncatechars:50 }}</p>
+        </div>
+    </a>
+    {% elif task.execution_status == 'CP' %}
+    <a href="{% url 'task_detail' task.id %}" class="container card text-bg-success mb-3"
+       style="max-width: 18rem; text-decoration:none">
+        <div class="card-header">{{ task.author }}</div>
+        <div class="card-body">
+            <p class="card-text">от {{ task.created_at }}</p>
+            <h5 class="card-title">{{ task.title|truncatechars:20 }}</h5>
+            <p class="card-text">{{ task.description|truncatechars:50 }}</p>
+        </div>
+    </a>
+    {% elif task.execution_status == 'CN' %}
+    <a href="{% url 'task_detail' task.id %}" class="container card text-bg-secondary mb-3"
+       style="max-width: 18rem; text-decoration:none">
+        <div class="card-header">{{ task.author }}</div>
+        <div class="card-body">
+            <p class="card-text">от {{ task.created_at }}</p>
+            <h5 class="card-title">{{ task.title|truncatechars:20 }}</h5>
+            <p class="card-text">{{ task.description|truncatechars:50 }}</p>
+        </div>
+    </a>
+    {% elif task.execution_status == 'EX' %}
+    <a href="{% url 'task_detail' task.id %}" class="container card text-bg-danger mb-3"
+       style="max-width: 18rem; text-decoration:none">
+        <div class="card-header">{{ task.author }}</div>
+        <div class="card-body">
+            <p class="card-text">от {{ task.created_at }}</p>
+            <h5 class="card-title">{{ task.title|truncatechars:20 }}</h5>
+            <p class="card-text">{{ task.description|truncatechars:100 }}</p>
+        </div>
+    </a>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock content %}
