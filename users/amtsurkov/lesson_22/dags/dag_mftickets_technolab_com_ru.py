@@ -15,9 +15,9 @@ from users.amtsu.d221204t1902.WildberriesPageProcessing import WildberriesServic
 with DAG(dag_id="mftickets_technolab_com_ru", start_date=datetime(2024, 9, 6, 14, 10), schedule="* * * * *") as dag:
 
     # первая задача в даге
-    start = BashOperator(task_id="start", bash_command="echo start_load_data_from_mftickets_technolab_com_ru")
+#    start = BashOperator(task_id="start", bash_command="echo start_load_data_from_mftickets_technolab_com_ru")
 
-    info = BashOperator(task_id="info", bash_command="curl --unix-socket /var/run/docker.sock http://localhost/version")
+#    info = BashOperator(task_id="info", bash_command="curl --unix-socket /var/run/docker.sock http://localhost/version")
     ## вторая задача в даге
     #@task()
     #def airflow():
@@ -43,11 +43,14 @@ with DAG(dag_id="mftickets_technolab_com_ru", start_date=datetime(2024, 9, 6, 14
     )
 
 
-    pass
 
+    pass
+    pass
     # третья задача в даге
-    end = BashOperator(task_id="end", bash_command="echo end_load_data_from_mftickets_technolab_com_ru")
+#    end = BashOperator(task_id="end", bash_command="echo end_load_data_from_mftickets_technolab_com_ru")
 
     # Set dependencies between tasks
     # Последовательность выполенния задач в даге
-    start >> info >> airflow >> end
+    #start >> info >> airflow >> end
+    #start >> airflow >> end
+    airflow
