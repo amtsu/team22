@@ -11,10 +11,11 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from config import TOKEN
 from keyboard_main import start_ikb
-from subscription_manager import SubscriptionManager
 
+from db_managers.subscription_manager import SubscriptionDatabaseManager
 from src_sports_ru.handlers import sports_router
-from src_sports_ru.db_manager import SportsDatabaseManager
+from db_managers.content_manager import SportsDatabaseManager
+
 from src_sports_ru.text_data import NBA_TAGS_LIST
 
 dp = Dispatcher(name=__name__)
@@ -36,7 +37,9 @@ async def send_out_content(bot: Bot):
         for tag in tags:
             if tag not in NBA_TAGS_LIST:
                 continue
-            with SubscriptionManager() as db:
+
+            with SubscriptionDatabaseManager() as db:
+
                 if not db.check_exist_subscription('sports', tag):
                     continue
                 else:
