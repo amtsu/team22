@@ -1,8 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-from config import DB_NAME
-from db_manager import SportsDatabaseManager
+from db_managers.content_manager import SportsDatabaseManager
 
 URL_NBA_NEWS = 'https://www.sports.ru/basketball/tournament/nba/'
 

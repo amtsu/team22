@@ -2,9 +2,9 @@ import sqlite3
 from config import DB_NAME
 
 
-class SubscriptionManager:
-    def __init__(self):
-        self.db_name = DB_NAME
+class SubscriptionDatabaseManager:
+    def __init__(self, db_name: str = DB_NAME):
+        self.db_name = db_name
         self.conn = sqlite3.connect(self.db_name)
         self.curs = self.conn.cursor()
 
@@ -58,6 +58,5 @@ class SubscriptionManager:
 
 # создание базы данных
 if __name__ == '__main__':
-    with SubscriptionManager() as db:
+    with SubscriptionDatabaseManager('../' + DB_NAME) as db:
         db.create_table()
-        print(db.check_exist_subscription('sports', 'Майами'))

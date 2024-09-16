@@ -4,8 +4,9 @@ from datetime import datetime
 from config import DB_NAME
 
 
-class SportsDatabaseManager:
-    def __init__(self, db_name=DB_NAME):
+class ContentDatabaseManager:
+    def __init__(self, table_name: str, db_name: str = DB_NAME):
+        self.table_name = table_name
         self.db_name = db_name
         self.conn = sqlite3.connect(self.db_name)
         self.curs = self.conn.cursor()
@@ -18,21 +19,23 @@ class SportsDatabaseManager:
         self.conn.close()
 
     def create_table(self):
-        """Создает таблицу content_sports_ru с полями title, link, tags, datetime и status."""
-        self.curs.execute("""CREATE TABLE IF NOT EXISTS content_sports_ru
-        (title TEXT, link TEXT PRIMARY KEY, tags TEXT, datetime DATETIME, status INTEGER DEFAULT 0)""")
+        """Создает таблицу table_name с полями title, link, tags, datetime и status."""
+        self.curs.execute(f'CREATE TABLE IF NOT EXISTS {self.table_name}'
+                          f'(title TEXT, link TEXT PRIMARY KEY, tags TEXT,'
+                          f'datetime DATETIME, status INTEGER DEFAULT 0)')
         self.conn.commit()
 
     def add_content(self, title, link, tags):
-        """Добавляет новый контент в таблицу content_sports_ru."""
+        """Добавляет новый контент в таблицу table_name."""
         current_time = datetime.now()
-        self.curs.execute("INSERT OR IGNORE INTO content_sports_ru (title, link, tags, datetime) VALUES (?, ?, ?, ?)",
+        self.curs.execute(f"INSERT OR IGNORE INTO {self.table_name}"
+                          f"(title, link, tags, datetime) VALUES (?, ?, ?, ?)",
                           (title, link, tags, current_time))
         self.conn.commit()
 
     def remove_content(self, link):
-        """Удаляет контент из таблицы content_sports_ru."""
-        self.curs.execute("DELETE FROM content_sports_ru WHERE link = ?",
+        """Удаляет контент из таблицы table_name."""
+        self.curs.execute(f"DELETE FROM {self.table_name} WHERE link = ?",
                           (link,))
         self.conn.commit()
 
@@ -58,8 +61,8 @@ class SportsDatabaseManager:
         self.conn.close()
 
 
-# создание базы данных
-if __name__ == '__main__':
-    with SportsDatabaseManager('../' + DB_NAME) as db:
+if __name__ == '__main__':  # Запустить для создания таблиц в БД
+    with ContentDatabaseManager('content_sports_ru', '../' + DB_NAME) as db:
         db.create_table()
-        print(db.check_new_content())
+    with ContentDatabaseManager('content_trial_sport_ru', '../' + DB_NAME) as db:
+        db.create_table()
