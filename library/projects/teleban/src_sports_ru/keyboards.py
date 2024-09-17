@@ -1,7 +1,7 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from config import DB_NAME
-from subscription_manager import SubscriptionManager
+
+from db_managers.subscription_manager import SubscriptionDatabaseManager
 from src_sports_ru.text_data import NBA_TAGS_LIST
 
 
@@ -15,7 +15,7 @@ async def sports_sections_ikb():
 
 
 async def sports_nba_ikb(user_id):
-    with SubscriptionManager() as db:
+    with SubscriptionDatabaseManager() as db:
         user_tags = db.get_user_tags(user_id, 'sports')
 
     builder = InlineKeyboardBuilder()

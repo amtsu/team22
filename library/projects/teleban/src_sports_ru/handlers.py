@@ -1,9 +1,9 @@
 from aiogram import F, Router
 from aiogram.types import CallbackQuery
 
-from config import DB_NAME
+
 from keyboard_main import start_ikb
-from subscription_manager import SubscriptionManager
+from db_managers.subscription_manager import SubscriptionDatabaseManager
 from src_sports_ru.keyboards import sports_sections_ikb, sports_nba_ikb
 
 sports_router = Router()
@@ -30,7 +30,9 @@ async def sports_callback(callback: CallbackQuery):
     user_id = callback.from_user.id
     source = 'sports'
     tag = callback.data[11:]
-    with SubscriptionManager() as db:
+
+    with SubscriptionDatabaseManager() as db:
+
         user_tags = db.get_user_tags(user_id, source)
 
         if tag in user_tags:
