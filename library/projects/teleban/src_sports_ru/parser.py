@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-from db_managers.content_manager import SportsDatabaseManager
+from db_managers.content_manager import ContentDatabaseManager
 
 URL_NBA_NEWS = 'https://www.sports.ru/basketball/tournament/nba/'
 
@@ -28,7 +28,7 @@ class SportsRuParser:
                 tags = [item.text for item in post_html.body.find_all('span', 'tags-list-item__title')]
                 tags = ','.join(tags)
 
-                with SportsDatabaseManager() as db:
+                with ContentDatabaseManager('content_sports_ru') as db:
                     db.add_content(post_title, link, tags)
 
             except Exception as e:
