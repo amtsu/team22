@@ -9,7 +9,7 @@ from telegram.ext import (ApplicationBuilder,
                           )
 
 from parse_admarginem import parse_price_admarginem
-from parser import parse_prices
+from base_parser import parse_prices
 
 load_dotenv()
 
