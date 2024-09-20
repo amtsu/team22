@@ -31,6 +31,7 @@ class SQLConnection:
 		conn.commit()
 		conn.close()
 
+
 	def select_all_from_db(self, db_name='products.db'):
 		conn = sqlite3.connect(self.db_name)
 		cursor = conn.cursor()
