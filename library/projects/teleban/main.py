@@ -11,10 +11,12 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from config import TOKEN
 from keyboard_main import start_ikb
+
 from db_managers.subscription_manager import SubscriptionDatabaseManager
 
 from src_sports_ru.handlers import sports_router
 from db_managers.content_manager import ContentDatabaseManager
+
 from src_sports_ru.text_data import NBA_TAGS_LIST
 
 dp = Dispatcher(name=__name__)
@@ -23,7 +25,9 @@ dp.include_routers(sports_router)
 
 async def send_out_content(bot: Bot):
     new_content = None
+
     with ContentDatabaseManager('content_sports_ru') as db:
+
         if db.check_new_content():
             new_content = db.get_new_content()
         else:
@@ -36,7 +40,9 @@ async def send_out_content(bot: Bot):
         for tag in tags:
             if tag not in NBA_TAGS_LIST:
                 continue
+
             with SubscriptionDatabaseManager() as db:
+
                 if not db.check_exist_subscription('sports', tag):
                     continue
                 else:
@@ -53,7 +59,9 @@ async def send_out_content(bot: Bot):
                 )
                 anti_duplicating_list.append((user_id, link))
 
+
         with ContentDatabaseManager('content_sports_ru') as db:
+
             db.update_status(link)
 
 

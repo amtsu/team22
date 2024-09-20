@@ -9,7 +9,8 @@ from telegram.ext import (ApplicationBuilder,
                           )
 
 from parse_admarginem import parse_price_admarginem
-from parser import parse_prices
+# from parser import parse_prices
+from parser_for_bot import main_parser_engin
 
 load_dotenv()
 
@@ -42,8 +43,9 @@ async def parse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
         "Собираю цены"
     )
-    result = parse_prices()
-    await update.message.reply_text(result)
+    engine = main_parser_engin()
+    for key, value in engine.items():
+        await update.message.reply_text(f'{key} - {value}руб')
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
