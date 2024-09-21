@@ -11,7 +11,9 @@ from telegram.ext import (ApplicationBuilder,
 
 from parse_admarginem import parse_price_admarginem
 from base_parser import parse_prices
-from crud_draft import save_user_link, get_user_links, del_user_links
+# from crud_draft import save_user_link, get_user_links, del_user_links
+from crud_db import save_user_link, get_user_links, del_user_links
+
 
 load_dotenv()
 
@@ -53,7 +55,8 @@ async def parse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
         "Собираю цены"
     )
-    result = parse_prices(update.effective_user.id)
+    links = get_user_links(update.effective_user.id)
+    result = parse_prices(links)
     await update.message.reply_text(result)
 
 
