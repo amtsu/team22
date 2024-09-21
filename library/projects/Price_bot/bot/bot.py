@@ -26,7 +26,6 @@ user_message = ""
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    sql = sql_connection.SQLConnection()
     await update.message.reply_text(
         """Команды, которые принимает бот:
         /hello - поздороваться
