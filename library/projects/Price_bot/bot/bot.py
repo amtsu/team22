@@ -11,7 +11,7 @@ from telegram.ext import (ApplicationBuilder,
 
 from parse_admarginem import parse_price_admarginem
 from base_parser import parse_prices
-from crud_draft import save_user_link, get_user_links
+from crud_draft import save_user_link, get_user_links, del_user_links
 
 load_dotenv()
 
@@ -30,6 +30,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         /parse - выводит информацию из парсеса цен
         /admarginem - находит цену на admarginem.ru
         /save_link - добавляет ссылку в парсер
+        /del_links - удаляет все ваши сохраненные ссылки
         /cancel - завершить текущую операцию
         """
     )
@@ -56,7 +57,15 @@ async def parse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
         "Собираю цены"
     )
-    result = parse_prices()
+    result = parse_prices(update.effective_user.id)
+    await update.message.reply_text(result)
+
+
+async def del_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(
+        "Удаляю все ваши сохраненные ссылки"
+    )
+    result = del_user_links(update.effective_user.id)
     await update.message.reply_text(result)
 
 
@@ -130,6 +139,7 @@ def main() -> None:
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("hello", hello))
     application.add_handler(CommandHandler("parse", parse))
+    application.add_handler(CommandHandler("del_links", del_links))
 
     application.add_handler(link_conv_handler)
     application.add_handler(admarginem_conv_handler)
