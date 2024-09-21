@@ -22,18 +22,21 @@ ASK_LINK_ADM = 2
 
 user_message = ""
 
+START_MESSAGE = """Команды, которые принимает бот:
+
+    /hello - поздороваться
+    /admarginem - находит цену на admarginem.ru
+
+    /save_link - добавляет ссылку в парсер
+    /parse - выводит информацию из парсеса цен
+    /del_links - удаляет все ваши сохраненные ссылки
+
+    /cancel - завершить текущую операцию
+    """
+
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(
-        """Команды, которые принимает бот:
-        /hello - поздороваться
-        /parse - выводит информацию из парсеса цен
-        /admarginem - находит цену на admarginem.ru
-        /save_link - добавляет ссылку в парсер
-        /del_links - удаляет все ваши сохраненные ссылки
-        /cancel - завершить текущую операцию
-        """
-    )
+    await update.message.reply_text(START_MESSAGE)
 
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -43,14 +46,7 @@ async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     # global user_message
     # user_message = update.message.text
-    await update.message.reply_text(
-        """Команды, которые принимает бот:
-        /hello - поздороваться
-        /parse - выводит информацию из парсеса цен
-        /admarginem - находит цену на admarginem.ru
-        /save_link - добавляет ссылку в парсер
-        """
-    )
+    await update.message.reply_text(START_MESSAGE)
 
 
 async def parse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:

@@ -5,8 +5,7 @@ FILENAME = 'users_links.json'
 
 
 def save_user_link(user_id, link):
-    if not os.path.exists('data'):
-        os.makedirs('data')
+    os.makedirs('data', exist_ok=True)
     file_path = os.path.join('data', FILENAME)
 
     if os.path.exists(file_path):
@@ -15,10 +14,7 @@ def save_user_link(user_id, link):
     else:
         data = {}
 
-    if str(user_id) in data:
-        data[str(user_id)].append(link)
-    else:
-        data[str(user_id)] = [link]
+    data.setdefault(str(user_id), []).append(link)
 
     with open(file_path, 'w') as file:
         json.dump(data, file, indent=4)
