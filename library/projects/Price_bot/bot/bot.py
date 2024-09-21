@@ -13,6 +13,7 @@ from parse_admarginem import parse_price_admarginem
 from base_parser import parse_prices
 # from crud_draft import save_user_link, get_user_links, del_user_links
 # from crud_db import save_user_link, get_user_links, del_user_links
+# from crud_db_class import save_user_link, get_user_links, del_user_links
 from crud_db_alch import save_user_link, get_user_links, del_user_links
 
 
