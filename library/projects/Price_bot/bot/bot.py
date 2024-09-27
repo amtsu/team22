@@ -2,6 +2,7 @@ import os
 import asyncio
 from dotenv import load_dotenv
 from telegram import Update
+import random
 from telegram.ext import (ApplicationBuilder,
                           CommandHandler,
                           MessageHandler,
@@ -12,7 +13,9 @@ from telegram.ext import (ApplicationBuilder,
 
 from parse_admarginem import parse_price_admarginem
 # from parser import parse_prices
-from parser_for_bot import main_parser_engin
+# from parser_for_bot import main_parser_engin
+from parser_for_bot_async import main_parser_engin
+
 
 load_dotenv()
 
@@ -44,9 +47,12 @@ async def admarginem(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
 
 async def parse_and_send_prices(context: ContextTypes.DEFAULT_TYPE):
     chat_id = context.job.chat_id
-    engine = main_parser_engin()
+    # engine = main_parser_engin()
+    engine = await main_parser_engin()
     for key, value in engine.items():
         await context.bot.send_message(chat_id=chat_id, text=f'{key} - {value}руб')
+    delay = random.uniform(3, 10)
+    await asyncio.sleep(delay)
 
 
 async def parse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
