@@ -13,6 +13,7 @@ from parse_admarginem import parse_price_admarginem
 from parser_for_bot import main_parser_engin
 
 load_dotenv()
+# тест, удалится ли ветка после мерджа
 
 TELEGRAM_TOKEN = os.getenv('BOT_TOKEN')
 
