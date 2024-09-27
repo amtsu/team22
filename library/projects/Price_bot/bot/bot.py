@@ -14,7 +14,8 @@ from telegram.ext import (ApplicationBuilder,
 from parse_admarginem import parse_price_admarginem
 # from parser import parse_prices
 # from parser_for_bot import main_parser_engin
-from parser_for_bot_async import main_parser_engin
+# from parser_for_bot_async import main_parser_engin
+from parser_for_bot_async_celery import main_parser_engin
 
 
 load_dotenv()
