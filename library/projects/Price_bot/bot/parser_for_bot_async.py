@@ -51,10 +51,9 @@ async def main_parser_engin():
         finally:
             print(result_dict)
 
-        # вынес в функция вызывающую парсер
-        # # Асинхронная задержка перед следующим запросом
-        # delay = random.uniform(3, 10)
-        # await asyncio.sleep(delay)
+        # Асинхронная задержка перед следующим запросом
+        delay = random.uniform(3, 10)
+        await asyncio.sleep(delay)
 
     return result_dict
 

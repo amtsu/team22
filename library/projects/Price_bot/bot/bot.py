@@ -51,8 +51,8 @@ async def parse_and_send_prices(context: ContextTypes.DEFAULT_TYPE):
     engine = await main_parser_engin()
     for key, value in engine.items():
         await context.bot.send_message(chat_id=chat_id, text=f'{key} - {value}руб')
-    delay = random.uniform(3, 10)
-    await asyncio.sleep(delay)
+    # delay = random.uniform(3, 10)
+    # await asyncio.sleep(delay)
 
 
 async def parse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
