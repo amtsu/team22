@@ -1,11 +1,13 @@
 import os
+import asyncio
 from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import (ApplicationBuilder,
                           CommandHandler,
                           MessageHandler,
                           ContextTypes,
-                          filters
+                          filters,
+                          JobQueue
                           )
 
 from parse_admarginem import parse_price_admarginem
@@ -23,7 +25,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
         """Команды, которые принимает бот:
         /hello - поздороваться
-        /parse - выводит информацию из парсеса цен
+        /parse - запускает мониторинг цены
+        /stop_parsing - выключает мониторинг цен
         /admarginem - находит цену на admarginem.ru
         """
     )
@@ -39,13 +42,43 @@ async def admarginem(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
     )
 
 
-async def parse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(
-        "Собираю цены"
-    )
+async def parse_and_send_prices(context: ContextTypes.DEFAULT_TYPE):
+    chat_id = context.job.chat_id
     engine = main_parser_engin()
     for key, value in engine.items():
-        await update.message.reply_text(f'{key} - {value}руб')
+        await context.bot.send_message(chat_id=chat_id, text=f'{key} - {value}руб')
+
+
+async def parse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text("Собираю цены")
+
+    if not context.job_queue.get_jobs_by_name(str(update.effective_chat.id)):
+        context.job_queue.run_repeating(
+            parse_and_send_prices,
+            interval=120,
+            first=2,
+            name=str(update.effective_chat.id),
+            chat_id=update.effective_chat.id
+        )
+        await update.message.reply_text("Парсинг запущен и будет обновляться каждые 2 минуты.")
+    else:
+        await update.message.reply_text("Парсинг уже запущен.")
+
+    # engine = main_parser_engin()
+    # for key, value in engine.items():
+    #     await update.message.reply_text(f'{key} - {value}руб')
+
+
+async def stop_parsing(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    jobs = context.job_queue.get_jobs_by_name(str(update.effective_chat.id))
+    if not jobs:
+        await update.message.reply_text("Нет запущенных задач для остановки.")
+        return
+
+    for job in jobs:
+        job.schedule_removal()
+
+    await update.message.reply_text("Парсинг остановлен.")
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -64,9 +97,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 def main() -> None:
     application = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
 
+    job_queue = JobQueue()
+    job_queue.set_application(application)
+
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("hello", hello))
     application.add_handler(CommandHandler("parse", parse))
+    application.add_handler(CommandHandler("stop_parsing", stop_parsing))
     application.add_handler(CommandHandler("admarginem", admarginem))
 
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
