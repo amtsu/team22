@@ -40,19 +40,19 @@ class ContentDatabaseManager:
         self.conn.commit()
 
     def update_status(self, link):
-        """Меняет статус на 1 для записи link из таблицы content_sports_ru."""
-        self.curs.execute("UPDATE content_sports_ru SET status = 1 WHERE link = ?",
+        """Меняет статус на 1 для записи link из таблицы table_name."""
+        self.curs.execute(f"UPDATE {self.table_name} SET status = 1 WHERE link = ?",
                           (link,))
         self.conn.commit()
 
     def check_new_content(self):
-        """Проверяет наличие новых записей в таблице content_sports_ru."""
-        self.curs.execute("SELECT EXISTS (SELECT 1 FROM content_sports_ru WHERE status = 0)")
+        """Проверяет наличие новых записей в таблице table_name."""
+        self.curs.execute(f"SELECT EXISTS (SELECT 1 FROM {self.table_name} WHERE status = 0)")
         return self.curs.fetchone()[0]
 
     def get_new_content(self):
-        """Возвращает все новые записи из таблицы content_sports_ru."""
-        self.curs.execute("SELECT title, link, tags FROM content_sports_ru WHERE status = 0")
+        """Возвращает все новые записи из таблицы table_name."""
+        self.curs.execute(f"SELECT title, link, tags FROM {self.table_name} WHERE status = 0")
         return self.curs.fetchall()
 
     def close(self):
