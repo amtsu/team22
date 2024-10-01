@@ -1,16 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
 
-
+from config import DB_NAME
 from db_managers.content_manager import ContentDatabaseManager
 
 
-URL_NBA_NEWS = 'https://www.sports.ru/basketball/tournament/nba/'
-
-
 class SportsRuParser:
-    def __init__(self, source_link):
-        self.__link = source_link
+    def __init__(self, db_path: str):
+        self.__db_path = db_path
+        self.__base_url = 'https://www.sports.ru'
+        self.__nba_news_link = self.__base_url + '/basketball/tournament/nba/'
 
     @staticmethod
     def get_soup(url: str) -> BeautifulSoup:
@@ -20,8 +19,8 @@ class SportsRuParser:
         return BeautifulSoup(requests.get(url).content, 'lxml')
 
     def get_new_content(self):
-        post_list_html: BeautifulSoup = self.get_soup(self.__link)
-        post_links = [item.get('href') for item in post_list_html.body.find_all('a', 'short-text')]
+        post_list_html: BeautifulSoup = self.get_soup(self.__nba_news_link)
+        post_links = [self.__base_url + item.get('href') for item in post_list_html.body.find_all('a', 'short-text')]
 
         for link in post_links:
             try:
@@ -30,9 +29,7 @@ class SportsRuParser:
                 tags = [item.text for item in post_html.body.find_all('span', 'tags-list-item__title')]
                 tags = ','.join(tags)
 
-
-                with ContentDatabaseManager('content_sports_ru') as db:
-
+                with ContentDatabaseManager('content_sports_ru', self.__db_path) as db:
                     db.add_content(post_title, link, tags)
 
             except Exception as e:
@@ -40,4 +37,4 @@ class SportsRuParser:
 
 
 if __name__ == "__main__":
-    SportsRuParser(URL_NBA_NEWS).get_new_content()
+    SportsRuParser('../' + DB_NAME).get_new_content()

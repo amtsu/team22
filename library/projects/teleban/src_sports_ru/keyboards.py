@@ -1,6 +1,5 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-
 from db_managers.subscription_manager import SubscriptionDatabaseManager
 from src_sports_ru.text_data import NBA_TAGS_LIST
 

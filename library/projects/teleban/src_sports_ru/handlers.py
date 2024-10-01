@@ -1,28 +1,11 @@
 from aiogram import F, Router
 from aiogram.types import CallbackQuery
 
-
-from keyboard_main import start_ikb
 from db_managers.subscription_manager import SubscriptionDatabaseManager
+from keyboard_main import start_ikb
 from src_sports_ru.keyboards import sports_sections_ikb, sports_nba_ikb
 
 sports_router = Router()
-
-
-# @sports_router.callback_query(F.data == 'sports')
-# async def subscribe_cmd(callback: CallbackQuery):
-#     user = callback.from_user
-#     main_choice = callback.data
-#     await callback.answer(f'Пользователь {user.full_name} подписался на {main_choice}')
-#     await callback.message.edit_reply_markup(reply_markup=await sports_sections_ikb())
-#
-#
-# @sports_router.callback_query(F.data == 'sports_nba')
-# async def subscribe_cmd(callback: CallbackQuery):
-#     user = callback.from_user
-#     main_choice = callback.data
-#     await callback.answer(f'Пользователь {user.full_name} подписался на {main_choice}')
-#     await callback.message.edit_reply_markup(reply_markup=await sports_nba_ikb())
 
 
 @sports_router.callback_query(F.data.startswith('sports_nba_'))
