@@ -48,7 +48,7 @@ async def main_parser_engin(links, chat_id):
             # last_min_price = db.filter(link=link, chat_id=chat_id).price
             # if last_min_price = None or last_min_price>price:
             #   db.filter(link=link, chat_id=chat_id).price=price
-            #   и если цена снизиалась, уже добавлять в словарь
+            #   и если цена снизиалась, уже добавлять в словарь на выдачу
             #   name = parser.name_parser(html)
             #   result_dict[name] = price
             name = parser.name_parser(html)
