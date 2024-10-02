@@ -1,4 +1,5 @@
 from time import sleep
+import os
 import traceback
 
 from selenium import webdriver
@@ -38,6 +39,8 @@ def parse_price_admarginem(url):
     driver.maximize_window()
     # Здесь и далее паузы, чтобы рассмотреть происходящее.
     sleep(PAUSE_DURATION_SECONDS)
+
+    os.makedirs('test_stuff', exist_ok=True)
 
     driver.save_screenshot('test_stuff/screenshot.png')
 

@@ -11,11 +11,12 @@ from telegram.ext import (ApplicationBuilder,
 
 from parse_admarginem import parse_price_admarginem
 from base_parser import parse_prices
+from parser_for_bot import main_parser_engin
 # from crud_draft import save_user_link, get_user_links, del_user_links
 from crud_db import save_user_link, get_user_links, del_user_links
 
-
 load_dotenv()
+# тест, удалится ли ветка после мерджа
 
 TELEGRAM_TOKEN = os.getenv('BOT_TOKEN')
 
@@ -56,8 +57,11 @@ async def parse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         "Собираю цены"
     )
     links = get_user_links(update.effective_user.id)
-    result = parse_prices(links)
-    await update.message.reply_text(result)
+    engine = main_parser_engin()
+    for key, value in engine.items():
+        await update.message.reply_text(f'{key} - {value}руб')
+    # result = parse_prices()
+    # await update.message.reply_text(result)
 
 
 async def del_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
