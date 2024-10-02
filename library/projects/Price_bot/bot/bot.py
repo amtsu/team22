@@ -107,7 +107,15 @@ async def del_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(result)
 
 
-async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def admarginem_ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(
+        "Пришли мне ссылку на кингу на admarginem.ru, и я узнаю цену"
+        "\n\nотмена операции: /cancel"
+    )
+    return ASK_LINK_ADM
+
+
+async def receive_and_parse_admarginem_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     """Обработчик ссылок с admarginem"""
     # global user_message
     user_message = update.message.text
