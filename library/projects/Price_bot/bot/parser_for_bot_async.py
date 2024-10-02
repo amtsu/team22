@@ -24,15 +24,16 @@ class Parser:
         return price_element.text.strip() if price_element else "Цена не найдена"
 
 
-async def main_parser_engin():
+async def main_parser_engin(links):
     # URL-адреса товаров для парсинга
-    coffee_bigest = 'https://vkusvill.ru/goods/drip-kofe-yellow-submarine-48-sht-95071.html'
-    coffee_biger = 'https://vkusvill.ru/goods/drip-kofe-yellow-submarine-24-sht-78591.html'
-    mini_cakes = 'https://vkusvill.ru/goods/korzinochki-mini-malina-klubnika-s-maslyanym-kremom-4-sht-88403.html'
-    pancake_cake = 'https://vkusvill.ru/goods/tort-blinnyy-shokoladnyy-29906.html'
-    carrot_cake = 'https://vkusvill.ru/goods/tort-morkovnyy-s-pekanom-postnyy-24734.html'
+    # coffee_bigest = 'https://vkusvill.ru/goods/drip-kofe-yellow-submarine-48-sht-95071.html'
+    # coffee_biger = 'https://vkusvill.ru/goods/drip-kofe-yellow-submarine-24-sht-78591.html'
+    # mini_cakes = 'https://vkusvill.ru/goods/korzinochki-mini-malina-klubnika-s-maslyanym-kremom-4-sht-88403.html'
+    # pancake_cake = 'https://vkusvill.ru/goods/tort-blinnyy-shokoladnyy-29906.html'
+    # carrot_cake = 'https://vkusvill.ru/goods/tort-morkovnyy-s-pekanom-postnyy-24734.html'
 
-    urls = [coffee_biger, coffee_bigest, mini_cakes, pancake_cake, carrot_cake]
+    # urls = [coffee_biger, coffee_bigest, mini_cakes, pancake_cake, carrot_cake]
+    urls = links
 
     result_dict = {}
 

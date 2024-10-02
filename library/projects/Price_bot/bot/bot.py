@@ -29,7 +29,11 @@ ASK_LINK_ADM = 2
 
 user_message = ""
 
-START_MESSAGE = """Команды, которые принимает бот:
+START_MESSAGE = """Привет! я помогаю мониторить цены.
+    /comands - команды управления ботом
+    """
+
+COMANDS = """Команды, которые принимает бот:
 
     /hello - поздороваться
     /admarginem - находит цену на admarginem.ru
@@ -42,8 +46,13 @@ START_MESSAGE = """Команды, которые принимает бот:
     """
 
 
+# базовые команды 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(START_MESSAGE)
+    await update.message.reply_text(COMANDS)
+
+
+async def comands(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(COMANDS)
 
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -53,20 +62,21 @@ async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     # global user_message
     # user_message = update.message.text
-    await update.message.reply_text(START_MESSAGE)
+    await update.message.reply_text(COMANDS)
 
 
+# управление парсером: старт, стоп, parse_and_send_prices
 async def parse_and_send_prices(context: ContextTypes.DEFAULT_TYPE):
     chat_id = context.job.chat_id
-    # engine = main_parser_engin()
-    engine = await main_parser_engin()
+    links = get_user_links(chat_id)
+    engine = await main_parser_engin(links)
     for key, value in engine.items():
         await context.bot.send_message(chat_id=chat_id, text=f'{key} - {value}руб')
     # delay = random.uniform(3, 10)
     # await asyncio.sleep(delay)
 
 
-async def parse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def start_parsing(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
         "Собираю цены"
     )
@@ -99,14 +109,7 @@ async def stop_parsing(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     await update.message.reply_text("Парсинг остановлен.")
 
 
-async def del_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(
-        "Удаляю все ваши сохраненные ссылки"
-    )
-    result = del_user_links(update.effective_user.id)
-    await update.message.reply_text(result)
-
-
+# операции с линками эдмаргинем: ask, receive_and_parse
 async def admarginem_ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
         "Пришли мне ссылку на кингу на admarginem.ru, и я узнаю цену"
@@ -130,6 +133,7 @@ async def receive_and_parse_admarginem_link(update: Update, context: ContextType
     return ConversationHandler.END
 
 
+# операции с линками: ask, save, show, del
 async def ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     await update.message.reply_text(
         "Пришлите мне ссылку, добавлю ее в список для парсинга"
@@ -149,6 +153,23 @@ async def receive_and_save_link(update: Update, context: ContextTypes.DEFAULT_TY
     return ConversationHandler.END
 
 
+async def del_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(
+        "Удаляю все ваши сохраненные ссылки"
+    )
+    result = del_user_links(update.effective_user.id)
+    await update.message.reply_text(result)
+
+
+async def show_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(
+        "Собираю ваши линки"
+    )
+    result = get_user_links(update.effective_user.id)  # ?поменять на update.effective_chat.id
+    await update.message.reply_text(result)
+
+
+# остановка сценариев
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     await update.message.reply_text("Операция отменена.")
     return ConversationHandler.END
@@ -177,8 +198,9 @@ def main() -> None:
     )
 
     application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("comands", comands))
     application.add_handler(CommandHandler("hello", hello))
-    application.add_handler(CommandHandler("parse", parse))
+    application.add_handler(CommandHandler("parse", start_parsing))
     application.add_handler(CommandHandler("stop_parsing", stop_parsing))
     application.add_handler(CommandHandler("del_links", del_links))
 
@@ -188,6 +210,7 @@ def main() -> None:
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_other_messages))
 
     application.run_polling()
+
 
 if __name__ == '__main__':
     main()
