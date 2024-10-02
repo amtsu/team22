@@ -24,7 +24,7 @@ class Parser:
         return price_element.text.strip() if price_element else "Цена не найдена"
 
 
-async def main_parser_engin(links):
+async def main_parser_engin(links, chat_id):
     # URL-адреса товаров для парсинга
     # coffee_bigest = 'https://vkusvill.ru/goods/drip-kofe-yellow-submarine-48-sht-95071.html'
     # coffee_biger = 'https://vkusvill.ru/goods/drip-kofe-yellow-submarine-24-sht-78591.html'
@@ -44,6 +44,13 @@ async def main_parser_engin(links):
         try:
             html = await parser.open_html()
             price = parser.main_price_parser(html)
+            # добавить апдейт минимальной цены, примерно так:
+            # last_min_price = db.filter(link=link, chat_id=chat_id).price
+            # if last_min_price = None or last_min_price>price:
+            #   db.filter(link=link, chat_id=chat_id).price=price
+            #   и если цена снизиалась, уже добавлять в словарь
+            #   name = parser.name_parser(html)
+            #   result_dict[name] = price
             name = parser.name_parser(html)
             result_dict[name] = price
             print('Данные сохранены:', {name: price})

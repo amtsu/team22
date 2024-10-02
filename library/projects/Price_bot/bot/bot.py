@@ -20,7 +20,6 @@ from parser_for_bot_async import main_parser_engin
 from crud_db import save_user_link, get_user_links, del_user_links
 
 load_dotenv()
-# тест, удалится ли ветка после мерджа
 
 TELEGRAM_TOKEN = os.getenv('BOT_TOKEN')
 
@@ -69,7 +68,7 @@ async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TY
 async def parse_and_send_prices(context: ContextTypes.DEFAULT_TYPE):
     chat_id = context.job.chat_id
     links = get_user_links(chat_id)
-    engine = await main_parser_engin(links)
+    engine = await main_parser_engin(links, chat_id)
     for key, value in engine.items():
         await context.bot.send_message(chat_id=chat_id, text=f'{key} - {value}руб')
     # delay = random.uniform(3, 10)
@@ -136,7 +135,8 @@ async def receive_and_parse_admarginem_link(update: Update, context: ContextType
 # операции с линками: ask, save, show, del
 async def ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     await update.message.reply_text(
-        "Пришлите мне ссылку, добавлю ее в список для парсинга"
+        "Пришлите мне ссылку, на продукт из vkusvill.ru"
+        "добавлю ее в список для парсинга"
         "\n\nотмена операции: /cancel"
     )
     return ASK_LINK
@@ -144,6 +144,10 @@ async def ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
 
 async def receive_and_save_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     user_link = update.message.text
+    if "vkusvill.ru" not in user_link:
+        await update.message.reply_text(
+            "Неверная ссылка, пока принимаю только продукты из vkusvill.ru")
+        return ASK_LINK  # чек, работает ли
     print(user_link)
     # await update.message.reply_text(f"Ссылка сохранена: {user_link}")
     await update.message.reply_text('Ссылка получена, сохраняю')
