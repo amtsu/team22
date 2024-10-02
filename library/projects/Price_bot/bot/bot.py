@@ -29,16 +29,18 @@ ASK_LINK_ADM = 2
 user_message = ""
 
 START_MESSAGE = """Привет! я помогаю мониторить цены.
-    /comands - команды управления ботом
+    /commands - команды управления ботом
     """
 
-COMANDS = """Команды, которые принимает бот:
+COMMANDS = """Команды, которые принимает бот:
 
     /hello - поздороваться
     /admarginem - находит цену на admarginem.ru
 
     /save_link - добавляет ссылку в парсер
-    /parse - выводит информацию из парсеса цен
+    /start_parsing - выводит информацию из парсеса цен
+    /stop_parsing - выводит информацию из парсеса цен
+    /show_links - показывает сохраенные ссылки
     /del_links - удаляет все ваши сохраненные ссылки
 
     /cancel - завершить текущую операцию
@@ -47,11 +49,11 @@ COMANDS = """Команды, которые принимает бот:
 
 # базовые команды 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(COMANDS)
+    await update.message.reply_text(START_MESSAGE)
 
 
-async def comands(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(COMANDS)
+async def commands(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(COMMANDS)
 
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -61,7 +63,7 @@ async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     # global user_message
     # user_message = update.message.text
-    await update.message.reply_text(COMANDS)
+    await update.message.reply_text(commands)
 
 
 # управление парсером: старт, стоп, parse_and_send_prices
@@ -202,10 +204,11 @@ def main() -> None:
     )
 
     application.add_handler(CommandHandler("start", start))
-    application.add_handler(CommandHandler("comands", comands))
+    application.add_handler(CommandHandler("commands", commands))
     application.add_handler(CommandHandler("hello", hello))
-    application.add_handler(CommandHandler("parse", start_parsing))
+    application.add_handler(CommandHandler("start_parsing", start_parsing))
     application.add_handler(CommandHandler("stop_parsing", stop_parsing))
+    application.add_handler(CommandHandler("show_links", show_links))
     application.add_handler(CommandHandler("del_links", del_links))
 
     application.add_handler(link_conv_handler)
