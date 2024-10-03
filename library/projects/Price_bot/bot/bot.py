@@ -63,7 +63,7 @@ async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     # global user_message
     # user_message = update.message.text
-    await update.message.reply_text(commands)
+    await update.message.reply_text(COMMANDS)
 
 
 # управление парсером: старт, стоп, parse_and_send_prices
