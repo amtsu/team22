@@ -138,7 +138,7 @@ async def receive_and_parse_admarginem_link(update: Update, context: ContextType
 async def ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     await update.message.reply_text(
         "Пришлите мне ссылку, на продукт из vkusvill.ru"
-        "добавлю ее в список для парсинга"
+        "\nДобавлю ее в список для парсинга"
         "\n\nотмена операции: /cancel"
     )
     return ASK_LINK
