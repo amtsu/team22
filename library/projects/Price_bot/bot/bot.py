@@ -46,7 +46,7 @@ async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(f'Hello, {update.effective_user.first_name}')
 
 
-async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
+async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # global user_message
     # user_message = update.message.text
     await update.message.reply_text(START_MESSAGE)
@@ -73,7 +73,6 @@ async def del_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def admarginem_ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    print('sdfsdfds')
     await update.message.reply_text(
         "Пришли мне ссылку на кингу на admarginem.ru, и я узнаю цену"
         "\n\nотмена операции: /cancel"
