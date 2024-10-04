@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import random
 import aiohttp
 import asyncio
+from crud_db import get_user_links
 
 
 class Parser:
@@ -24,7 +25,7 @@ class Parser:
         return price_element.text.strip() if price_element else "Цена не найдена"
 
 
-async def main_parser_engin(links, chat_id):
+async def main_parser_engin(chat_id):
     # URL-адреса товаров для парсинга
     # coffee_bigest = 'https://vkusvill.ru/goods/drip-kofe-yellow-submarine-48-sht-95071.html'
     # coffee_biger = 'https://vkusvill.ru/goods/drip-kofe-yellow-submarine-24-sht-78591.html'
@@ -33,7 +34,7 @@ async def main_parser_engin(links, chat_id):
     # carrot_cake = 'https://vkusvill.ru/goods/tort-morkovnyy-s-pekanom-postnyy-24734.html'
 
     # urls = [coffee_biger, coffee_bigest, mini_cakes, pancake_cake, carrot_cake]
-    urls = links
+    urls = get_user_links(chat_id)
 
     result_dict = {}
 

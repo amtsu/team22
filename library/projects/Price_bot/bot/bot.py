@@ -69,8 +69,8 @@ async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TY
 # управление парсером: старт, стоп, parse_and_send_prices
 async def parse_and_send_prices(context: ContextTypes.DEFAULT_TYPE):
     chat_id = context.job.chat_id
-    links = get_user_links(chat_id)
-    engine = await main_parser_engin(links, chat_id)
+    # links = get_user_links(chat_id)
+    engine = await main_parser_engin(chat_id)
     for key, value in engine.items():
         await context.bot.send_message(chat_id=chat_id, text=f'{key} - {value}руб')
     # delay = random.uniform(3, 10)
