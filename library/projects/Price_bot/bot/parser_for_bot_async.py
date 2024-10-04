@@ -12,7 +12,7 @@ class Parser:
     async def open_html(self):
         async with aiohttp.ClientSession() as session:
             async with session.get(self.url) as response:
-                return await response.text()
+                return await response.text() # if response else "Ошибка доступа к странице"
 
     def name_parser(self, html):
         soup = BeautifulSoup(html, 'html.parser')
@@ -23,6 +23,11 @@ class Parser:
         soup = BeautifulSoup(html, 'html.parser')
         price_element = soup.find('span', class_='js-datalayer-catalog-list-price hidden')
         return price_element.text.strip() if price_element else "Цена не найдена"
+
+    def get_name_and_price(self, html):
+        name = self.name_parser(html)
+        price = self.main_price_parser(html)
+        return name, price
 
 
 async def main_parser_engin(chat_id):
@@ -65,6 +70,7 @@ async def main_parser_engin(chat_id):
         await asyncio.sleep(delay)
 
     return result_dict
+
 
 # Чтобы запустить асинхронную функцию
 if __name__ == "__main__":

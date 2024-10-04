@@ -1,8 +1,10 @@
 import os
 import asyncio
+import requests
 from dotenv import load_dotenv
 from telegram import Update
 import random
+from http import HTTPStatus
 from telegram.ext import (ApplicationBuilder,
                           CommandHandler,
                           MessageHandler,
@@ -15,7 +17,7 @@ from telegram.ext import (ApplicationBuilder,
 from parse_admarginem import parse_price_admarginem
 # from parser import parse_prices
 # from parser_for_bot import main_parser_engin
-from parser_for_bot_async import main_parser_engin
+from parser_for_bot_async import main_parser_engin, Parser
 # from crud_draft import save_user_link, get_user_links, del_user_links
 from crud_db import save_user_link, get_user_links, del_user_links
 
@@ -146,16 +148,32 @@ async def ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
 
 async def receive_and_save_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     user_link = update.message.text
-    if "vkusvill.ru" not in user_link:
+    if "vkusvill.ru/goods/" not in user_link:
         await update.message.reply_text(
             "Неверная ссылка, пока принимаю только продукты из vkusvill.ru")
         return ASK_LINK  # чек, работает ли
-    print(user_link)
-    # await update.message.reply_text(f"Ссылка сохранена: {user_link}")
+
+    # проверка, что передана рабочая ссылка
+    # parser = Parser(user_link)
+    try:
+        requests.get(user_link)
+        # html = await parser.open_html()
+    except Exception as e:
+        print(e)
+        await update.message.reply_text(
+            "Неверный формат или нерабочая ссылка.")
+        return ASK_LINK   # снова показать инструкцию
+
+    # # проверка, что по ссылке есть цена товара
+    # price = parser.main_price_parser(html)
+    # if price == "Цена не найдена":
+    #     await update.message.reply_text(price)
+    #     return ASK_LINK
+
     await update.message.reply_text('Ссылка получена, сохраняю')
     all_links = save_user_link(update.effective_user.id, user_link)
-    print(all_links)
-    await update.message.reply_text("Ссылка сохранена")
+    # print(all_links)
+    await update.message.reply_text(f"Ссылка сохранена: {user_link}")
     return ConversationHandler.END
 
 
