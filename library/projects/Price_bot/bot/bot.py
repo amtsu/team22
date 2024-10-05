@@ -107,7 +107,7 @@ async def handle_vkusvill_links(update: Update, context: ContextTypes.DEFAULT_TY
     return ConversationHandler.END
 
 
-async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
+async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # global user_message
     # user_message = update.message.text
     await update.message.reply_text(COMMANDS)
