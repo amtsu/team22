@@ -1,10 +1,14 @@
-from bs4 import BeautifulSoup
-import random
-import aiohttp
 import asyncio
-from crud_db import (get_user_links,
-                     get_last_min_price,
-                     save_or_update_last_min_price)
+import random
+
+import aiohttp
+from bs4 import BeautifulSoup
+
+from crud_db import (
+    get_last_min_price,
+    get_user_links,
+    save_or_update_last_min_price,
+)
 
 
 class Parser:
@@ -14,17 +18,29 @@ class Parser:
     async def open_html(self):
         async with aiohttp.ClientSession() as session:
             async with session.get(self.url) as response:
-                return await response.text() # if response else "Ошибка доступа к странице"
+                return (
+                    await response.text()
+                )  # if response else "Ошибка доступа к странице"
 
     def name_parser(self, html):
-        soup = BeautifulSoup(html, 'html.parser')
-        name_element = soup.find('h1', class_='Product__title js-datalayer-catalog-list-name')
-        return name_element.text.strip() if name_element else "Название не найдено"
+        soup = BeautifulSoup(html, "html.parser")
+        name_element = soup.find(
+            "h1", class_="Product__title js-datalayer-catalog-list-name"
+        )
+        return (
+            name_element.text.strip()
+            if name_element
+            else "Название не найдено"
+        )
 
     def main_price_parser(self, html):
-        soup = BeautifulSoup(html, 'html.parser')
-        price_element = soup.find('span', class_='js-datalayer-catalog-list-price hidden')
-        return price_element.text.strip() if price_element else "Цена не найдена"
+        soup = BeautifulSoup(html, "html.parser")
+        price_element = soup.find(
+            "span", class_="js-datalayer-catalog-list-price hidden"
+        )
+        return (
+            price_element.text.strip() if price_element else "Цена не найдена"
+        )
 
     def get_name_and_price(self, html):
         name = self.name_parser(html)
@@ -43,7 +59,7 @@ async def main_parser_engin(chat_id):
 
         try:
             html = await parser.open_html()
-            name = parser.name_parser(html) # можно перенести ниже
+            name = parser.name_parser(html)  # можно перенести ниже
             price = parser.main_price_parser(html)
             # апдейт минимальной цены:
             last_min_price = get_last_min_price(chat_id, url)
@@ -52,11 +68,11 @@ async def main_parser_engin(chat_id):
             if last_min_price is None or last_min_price > int(price):
                 save_or_update_last_min_price(chat_id, url, price)
                 if last_min_price is not None:
-                    print('Минимальная цена обновлена:', {name: price})
+                    print("Минимальная цена обновлена:", {name: price})
                     result_dict[name] = price
 
         except Exception as e:
-            print(f'Ошибка: {e}')
+            print(f"Ошибка: {e}")
         finally:
             print(result_dict)
 

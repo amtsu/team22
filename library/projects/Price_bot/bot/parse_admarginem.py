@@ -1,14 +1,15 @@
-from time import sleep
 import os
 import traceback
+from time import sleep
 
+from bs4 import BeautifulSoup
 from selenium import webdriver
+
 # Импортируем классы для Chrome. Если у вас другой браузер - измените импорт.
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
-from bs4 import BeautifulSoup
 
 # Если у вас установлен другой браузер - импортируйте нужный драйвер.
 # from webdriver_manager.firefox import GeckoDriverManager
@@ -21,7 +22,7 @@ from bs4 import BeautifulSoup
 # TEST_URL = 'https://twentysix.ru/blog/stuff/143819.html'
 # TEST_URL = 'https://admarginem.ru/product/teoriya-kino-kratkij-putevoditel/'
 # TEST_URL = 'https://www.ozon.ru/product/zen-and-the-art-of-motorcycle-maintenance-dzen-i-iskusstvo-obsluzhivaniya-mototsiklov-kniga-na-1639529508/?utm_campaign=productpage_link&utm_medium=share_button&utm_source=smm'
-TEST_URL = 'https://kuper.ru/products/26157296-smetana-30-250-g'
+TEST_URL = "https://kuper.ru/products/26157296-smetana-30-250-g"
 # USERNAME = 'somany'
 # PASSWORD = 'somany123'
 PAUSE_DURATION_SECONDS = 1
@@ -40,9 +41,9 @@ def parse_price_admarginem(url):
     # Здесь и далее паузы, чтобы рассмотреть происходящее.
     sleep(PAUSE_DURATION_SECONDS)
 
-    os.makedirs('test_stuff', exist_ok=True)
+    os.makedirs("test_stuff", exist_ok=True)
 
-    driver.save_screenshot('test_stuff/screenshot.png')
+    driver.save_screenshot("test_stuff/screenshot.png")
 
     sleep(PAUSE_DURATION_SECONDS)
 
@@ -54,11 +55,11 @@ def parse_price_admarginem(url):
     print("HTML сохранен в файл output.html")
 
     try:
-        soup = BeautifulSoup(html, 'html.parser')
+        soup = BeautifulSoup(html, "html.parser")
 
         # ad_margimem_parser
         # ad_margimem_parser
-        pr = soup.find(class_='woocommerce-Price-amount amount')
+        pr = soup.find(class_="woocommerce-Price-amount amount")
         # json_script = soup.find('script', type='application/ld+json')
         price_text = pr.get_text(strip=True)
         # Удалить символ валюты и пробелы, если нужно

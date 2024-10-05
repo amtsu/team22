@@ -1,29 +1,32 @@
-import os
 import asyncio
+import os
+import random
+from http import HTTPStatus
+
 import requests
 from dotenv import load_dotenv
 from telegram import Update
-import random
-from http import HTTPStatus
-from telegram.ext import (ApplicationBuilder,
-                          CommandHandler,
-                          MessageHandler,
-                          ContextTypes,
-                          filters,
-                          ConversationHandler,
-                          JobQueue
-                          )
+from telegram.ext import (
+    ApplicationBuilder,
+    CommandHandler,
+    ContextTypes,
+    ConversationHandler,
+    JobQueue,
+    MessageHandler,
+    filters,
+)
 
+# from crud_draft import save_user_link, get_user_links, del_user_links
+from crud_db import del_user_links, get_user_links, save_user_link
 from parse_admarginem import parse_price_admarginem
+
 # from parser import parse_prices
 # from parser_for_bot import main_parser_engin
-from parser_for_bot_async import main_parser_engin, Parser
-# from crud_draft import save_user_link, get_user_links, del_user_links
-from crud_db import save_user_link, get_user_links, del_user_links
+from parser_for_bot_async import Parser, main_parser_engin
 
 load_dotenv()
 
-TELEGRAM_TOKEN = os.getenv('BOT_TOKEN')
+TELEGRAM_TOKEN = os.getenv("BOT_TOKEN")
 
 ASK_LINK = 1
 ASK_LINK_ADM = 2
@@ -59,15 +62,20 @@ async def commands(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(f'Hello, {update.effective_user.first_name}')
+    await update.message.reply_text(
+        f"Hello, {update.effective_user.first_name}"
+    )
 
 
-async def handle_vkusvill_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
+async def handle_vkusvill_links(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> str:
     user_link = update.message.text
-    await update.message.reply_text('Проверяю, что ссылка рабочая')
+    await update.message.reply_text("Проверяю, что ссылка рабочая")
     if "vkusvill.ru/goods/" not in user_link:
         await update.message.reply_text(
-            "Неверная ссылка, пока принимаю только товары из vkusvill.ru")
+            "Неверная ссылка, пока принимаю только товары из vkusvill.ru"
+        )
         return ASK_LINK  # чек, работает ли
 
     # проверка, что передана рабочая ссылка
@@ -76,18 +84,21 @@ async def handle_vkusvill_links(update: Update, context: ContextTypes.DEFAULT_TY
     except Exception as e:
         print(e)
         await update.message.reply_text(
-            "Неверный формат или нерабочая ссылка.")
+            "Неверный формат или нерабочая ссылка."
+        )
         return await update.message.reply_text(
             "Пришлите мне ссылку, на товар из vkusvill.ru"
             "\nДобавлю ее в список для парсинга"
-            )
-    await update.message.reply_text('Сохраняю')
+        )
+    await update.message.reply_text("Сохраняю")
     save_user_link(update.effective_user.id, user_link)
     await update.message.reply_text(f"Ссылка сохранена: {user_link}")
     return ConversationHandler.END
 
 
-async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
+async def handle_other_messages(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> str:
     # global user_message
     # user_message = update.message.text
     await update.message.reply_text(COMMANDS)
@@ -97,34 +108,53 @@ async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TY
 async def parse_and_send_prices(context: ContextTypes.DEFAULT_TYPE):
     chat_id = context.job.chat_id
     # links = get_user_links(chat_id)
-    checking_message = await context.bot.send_message(chat_id=chat_id, text="Проверяю цены")  # \n\n(это сообщение с автоудалением для тестирования, потом уберем)
+    checking_message = await context.bot.send_message(
+        chat_id=chat_id, text="Проверяю цены"
+    )  # \n\n(это сообщение с автоудалением для тестирования, потом уберем)
     pasing_results = await main_parser_engin(chat_id)
     if pasing_results == {}:
-        same_price_message = await context.bot.send_message(chat_id=chat_id, text="Цены пока не снизились")  # \n\n(это сообщение с автоудалением для тестирования, потом уберем)
+        same_price_message = await context.bot.send_message(
+            chat_id=chat_id, text="Цены пока не снизились"
+        )  # \n\n(это сообщение с автоудалением для тестирования, потом уберем)
         await asyncio.sleep(5)
-        await context.bot.delete_message(chat_id=chat_id, message_id=same_price_message.message_id)
+        await context.bot.delete_message(
+            chat_id=chat_id, message_id=same_price_message.message_id
+        )
     else:
-        await context.bot.send_message(chat_id=chat_id, text="Ура! Снизились цены на следующие товары из вашего списка:")
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text="Ура! Снизились цены на следующие товары из вашего списка:",
+        )
         for key, value in pasing_results.items():
-            await context.bot.send_message(chat_id=chat_id, text=f'{key} - {value}руб')
-    await context.bot.delete_message(chat_id=chat_id, message_id=checking_message.message_id)
+            await context.bot.send_message(
+                chat_id=chat_id, text=f"{key} - {value}руб"
+            )
+    await context.bot.delete_message(
+        chat_id=chat_id, message_id=checking_message.message_id
+    )
 
 
-async def start_parsing(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def start_parsing(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> None:
     if not context.job_queue.get_jobs_by_name(str(update.effective_chat.id)):
         context.job_queue.run_repeating(
             parse_and_send_prices,
             interval=240,
             first=2,
             name=str(update.effective_chat.id),
-            chat_id=update.effective_chat.id
+            chat_id=update.effective_chat.id,
         )
-        await update.message.reply_text("Парсинг запущен, проверяю цены каждые 2-5 минут.")
+        await update.message.reply_text(
+            "Парсинг запущен, проверяю цены каждые 2-5 минут."
+        )
     else:
         await update.message.reply_text("Парсинг уже запущен.")
 
 
-async def stop_parsing(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def stop_parsing(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> None:
     jobs = context.job_queue.get_jobs_by_name(str(update.effective_chat.id))
     if not jobs:
         await update.message.reply_text("Нет запущенных задач для остановки.")
@@ -137,7 +167,9 @@ async def stop_parsing(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 
 
 # операции с линками эдмаргинем: ask, receive_and_parse
-async def admarginem_ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def admarginem_ask_for_link(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> None:
     await update.message.reply_text(
         "Пришли мне ссылку на кингу на admarginem.ru, и я узнаю цену"
         "\n\nотмена операции: /cancel"
@@ -145,23 +177,28 @@ async def admarginem_ask_for_link(update: Update, context: ContextTypes.DEFAULT_
     return ASK_LINK_ADM
 
 
-async def receive_and_parse_admarginem_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
+async def receive_and_parse_admarginem_link(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> str:
     """Обработчик ссылок с admarginem"""
     # global user_message
     user_message = update.message.text
 
     if "admarginem.ru" not in user_message:
         await update.message.reply_text(
-            'Пока я принимаю только ссылки с admarginem.ru, и команды: см /start')
+            "Пока я принимаю только ссылки с admarginem.ru, и команды: см /start"
+        )
     else:
         price = parse_price_admarginem(user_message)
-        await update.message.reply_text('Ссылка получена, ищу цену')
-        await update.message.reply_text(f'Цена книги: {price}')
+        await update.message.reply_text("Ссылка получена, ищу цену")
+        await update.message.reply_text(f"Цена книги: {price}")
     return ConversationHandler.END
 
 
 # операции с линками: ask, save, show, del
-async def ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+async def ask_for_link(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> int:
     await update.message.reply_text(
         "Пришлите мне ссылку, на товар из vkusvill.ru"
         "\nДобавлю ее в список для парсинга"
@@ -170,11 +207,14 @@ async def ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
     return ASK_LINK
 
 
-async def receive_and_save_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+async def receive_and_save_link(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> int:
     user_link = update.message.text
     if "vkusvill.ru/goods/" not in user_link:
         await update.message.reply_text(
-            "Неверная ссылка, пока принимаю только товары из vkusvill.ru")
+            "Неверная ссылка, пока принимаю только товары из vkusvill.ru"
+        )
         return ASK_LINK  # чек, работает ли
 
     # проверка, что передана рабочая ссылка
@@ -185,8 +225,9 @@ async def receive_and_save_link(update: Update, context: ContextTypes.DEFAULT_TY
     except Exception as e:
         print(e)
         await update.message.reply_text(
-            "Неверный формат или нерабочая ссылка.")
-        return ASK_LINK   # снова показать инструкцию
+            "Неверный формат или нерабочая ссылка."
+        )
+        return ASK_LINK  # снова показать инструкцию
 
     # # проверка, что по ссылке есть цена товара
     # price = parser.main_price_parser(html)
@@ -194,7 +235,7 @@ async def receive_and_save_link(update: Update, context: ContextTypes.DEFAULT_TY
     #     await update.message.reply_text(price)
     #     return ASK_LINK
 
-    await update.message.reply_text('Ссылка получена, сохраняю')
+    await update.message.reply_text("Ссылка получена, сохраняю")
     # save_user_link(update.effective_user.id, user_link)
     all_links = save_user_link(update.effective_user.id, user_link)
     # print(all_links)
@@ -202,19 +243,21 @@ async def receive_and_save_link(update: Update, context: ContextTypes.DEFAULT_TY
     return ConversationHandler.END
 
 
-async def del_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(
-        "Удаляю все ваши сохраненные ссылки"
-    )
+async def del_links(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> None:
+    await update.message.reply_text("Удаляю все ваши сохраненные ссылки")
     result = del_user_links(update.effective_user.id)
     await update.message.reply_text(result)
 
 
-async def show_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(
-        "Собираю ваши линки"
-    )
-    result = get_user_links(update.effective_user.id)  # ?поменять на update.effective_chat.id
+async def show_links(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> None:
+    await update.message.reply_text("Собираю ваши линки")
+    result = get_user_links(
+        update.effective_user.id
+    )  # ?поменять на update.effective_chat.id
     await update.message.reply_text(result)
 
 
@@ -233,17 +276,26 @@ def main() -> None:
     link_conv_handler = ConversationHandler(
         entry_points=[CommandHandler("save_link", ask_for_link)],
         states={
-            ASK_LINK: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_and_save_link)],
+            ASK_LINK: [
+                MessageHandler(
+                    filters.TEXT & ~filters.COMMAND, receive_and_save_link
+                )
+            ],
         },
-        fallbacks=[CommandHandler("cancel", cancel)]
+        fallbacks=[CommandHandler("cancel", cancel)],
     )
 
     admarginem_conv_handler = ConversationHandler(
         entry_points=[CommandHandler("admarginem", admarginem_ask_for_link)],
         states={
-            ASK_LINK_ADM: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_and_parse_admarginem_link)],
+            ASK_LINK_ADM: [
+                MessageHandler(
+                    filters.TEXT & ~filters.COMMAND,
+                    receive_and_parse_admarginem_link,
+                )
+            ],
         },
-        fallbacks=[CommandHandler("cancel", cancel)]
+        fallbacks=[CommandHandler("cancel", cancel)],
     )
 
     application.add_handler(CommandHandler("start", start))
@@ -257,11 +309,20 @@ def main() -> None:
     application.add_handler(link_conv_handler)
     application.add_handler(admarginem_conv_handler)
 
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND & filters.Regex("vkusvill.ru/goods/"), handle_vkusvill_links))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_other_messages))
+    application.add_handler(
+        MessageHandler(
+            filters.TEXT
+            & ~filters.COMMAND
+            & filters.Regex("vkusvill.ru/goods/"),
+            handle_vkusvill_links,
+        )
+    )
+    application.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_other_messages)
+    )
 
     application.run_polling()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
