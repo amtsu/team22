@@ -2,7 +2,7 @@ import os
 import asyncio
 import requests
 from dotenv import load_dotenv
-from telegram import Update #, ParseMode
+from telegram import Update
 import random
 from http import HTTPStatus
 from telegram.ext import (ApplicationBuilder,
@@ -31,46 +31,26 @@ ASK_LINK_ADM = 2
 user_message = ""
 
 START_MESSAGE = """Привет! я помогаю мониторить цены.
-
-Отправьте мне ссылку на товар из vkusvill.ru
-Запустите мониторинг цен /start_parsing
-
-И я пришлю уведовление, когда цена сниизится
-
----
-
-/commands - остальные команды управления ботом
-"""
+    /commands - команды управления ботом
+    """
 
 COMMANDS = """Команды, которые принимает бот:
 
     /hello - поздороваться
+    /admarginem - находит цену на admarginem.ru
 
+    /save_link - добавляет ссылку в парсер
     /start_parsing - запустить мониторинг цен
-    /stop_parsing - остановить мониторинг цен
-
+    /stop_parsing - остновить мониторинг цен
     /show_links - показывает сохраненные ссылки
     /del_links - удаляет все ваши сохраненные ссылки
 
-    /admarginem - находит цену на admarginem.ru
-    /cancel - завершить операцию с admarginem
+    /cancel - завершить текущую операцию
     """
-
-
-BOTTOM_COMMANDS = [
-        ("start", "Основная информация"),
-        ("start_parsing", "Запустить мониторинг цен"),
-        ("stop_parsing", "остановить мониторинг цен"),
-        ("show_links", "показывает сохраненные ссылки"),
-        ("del_links", "удаляет все ваши сохраненные ссылки"),
-        ("commands", "посмотреть все команды"),
-        ("hello", "поздороваться")
-    ]
 
 
 # базовые команды
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await context.application.bot.set_my_commands(BOTTOM_COMMANDS)  # перенести в меин?
     await update.message.reply_text(START_MESSAGE)
 
 
@@ -153,7 +133,7 @@ async def stop_parsing(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     for job in jobs:
         job.schedule_removal()
 
-    await update.message.reply_text("Мониторинг цен остановлен.")
+    await update.message.reply_text("Парсинг остановлен.")
 
 
 # операции с линками эдмаргинем: ask, receive_and_parse
@@ -257,6 +237,7 @@ def main() -> None:
         },
         fallbacks=[CommandHandler("cancel", cancel)]
     )
+
     admarginem_conv_handler = ConversationHandler(
         entry_points=[CommandHandler("admarginem", admarginem_ask_for_link)],
         states={
