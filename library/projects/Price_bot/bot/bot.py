@@ -102,9 +102,9 @@ async def handle_vkusvill_links(update: Update, context: ContextTypes.DEFAULT_TY
             "\nДобавлю ее в список для парсинга"
             )
     await update.message.reply_text('Сохраняю')
-    save_user_link(update.effective_user.id, user_link)
-    await update.message.reply_text(f"Ссылка сохранена: {user_link}")
-    return ConversationHandler.END
+    result = save_user_link(update.effective_user.id, user_link)
+    await update.message.reply_text(result)
+    # return ConversationHandler.END
 
 
 async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -215,10 +215,9 @@ async def receive_and_save_link(update: Update, context: ContextTypes.DEFAULT_TY
     #     return ASK_LINK
 
     await update.message.reply_text('Ссылка получена, сохраняю')
-    # save_user_link(update.effective_user.id, user_link)
-    all_links = save_user_link(update.effective_user.id, user_link)
-    # print(all_links)
-    await update.message.reply_text(f"Ссылка сохранена: {user_link}")
+    result = save_user_link(update.effective_user.id, user_link)
+    print(result)
+    await update.message.reply_text(result)
     return ConversationHandler.END
 
 

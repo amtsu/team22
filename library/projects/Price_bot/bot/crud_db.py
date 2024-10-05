@@ -14,11 +14,22 @@ def save_user_link(user_id, link):
             UNIQUE(user_id, link)
         )
     ''')
-    cursor.execute('''
-        INSERT INTO user_links (user_id, link)
-        VALUES (?, ?)
-    ''', (str(user_id), link))
-    conn.commit()
+    # cursor.execute('''
+    #     INSERT INTO user_links (user_id, link)
+    #     VALUES (?, ?)
+    # ''', (str(user_id), link))
+    # conn.commit()
+
+    try:
+        cursor.execute('''
+            INSERT INTO user_links (user_id, link)
+            VALUES (?, ?)
+        ''', (str(user_id), link))
+        conn.commit()
+    except sqlite3.IntegrityError as e:
+        print(f"Ошибка: {e}")
+        return "Такая ссылка уже есть"
+
     # cursor.execute('''
     #     SELECT link FROM user_links
     #     WHERE user_id = ?
@@ -26,7 +37,7 @@ def save_user_link(user_id, link):
     # links = [row[0] for row in cursor.fetchall()]
     conn.close()
     # return links
-    return
+    return f"Ссылка сохранена: {link}"
 
 
 def get_last_min_price(user_id, link):
