@@ -17,7 +17,7 @@ from telegram.ext import (
 from crud_db import del_user_links, get_user_links, save_user_link
 from parse_admarginem import parse_price_admarginem
 
-from parser_for_bot_async import main_parser_engin
+from parser_for_bot_async import main_parser_engin, Parser
 
 load_dotenv()
 
@@ -42,7 +42,7 @@ START_MESSAGE = """Привет! я помогаю мониторить цены
 COMMANDS = """Команды, которые принимает бот:
 
     /hello - поздороваться
-    /hello - основная информация
+    /start - основная информация
 
     /start_parsing - запустить мониторинг цен
     /stop_parsing - остановить мониторинг цен
@@ -189,7 +189,13 @@ async def handle_and_save_vkusvill_link(
 
     # проверка, что передана рабочая ссылка
     try:
-        requests.get(user_link)
+        # requests.get(user_link)
+        parser = Parser(user_link)
+        html = await parser.open_html()
+        price = parser.main_price_parser(html)
+        if price == "Цена не найдена":
+            return await update.message.reply_text(
+                "Цена не найдена. Проверьте пожалуйста ссылку")
     except Exception as e:
         print(e)
         await update.message.reply_text(
