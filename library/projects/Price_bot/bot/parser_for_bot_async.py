@@ -45,25 +45,16 @@ async def main_parser_engin(chat_id):
             html = await parser.open_html()
             name = parser.name_parser(html) # можно перенести ниже
             price = parser.main_price_parser(html)
-            # добавить апдейт минимальной цены, примерно так:
+            # апдейт минимальной цены:
             last_min_price = get_last_min_price(chat_id, url)
             print(last_min_price)
-            print(price)
+            print(price, name)
             if last_min_price is None or last_min_price > int(price):
                 save_or_update_last_min_price(chat_id, url, price)
                 if last_min_price is not None:
                     print('Минимальная цена обновлена:', {name: price})
                     result_dict[name] = price
 
-            # last_min_price = db.filter(link=link, chat_id=chat_id).price
-            # if last_min_price = None or last_min_price>price:
-            #   db.filter(link=link, chat_id=chat_id).price=price
-            #   и если цена снизиалась, уже добавлять в словарь на выдачу
-            #   name = parser.name_parser(html)
-            #   result_dict[name] = price
-
-            # result_dict[name] = price
-            # print('Данные сохранены:', {name: price})
         except Exception as e:
             print(f'Ошибка: {e}')
         finally:
