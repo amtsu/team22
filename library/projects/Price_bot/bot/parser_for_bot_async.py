@@ -2,7 +2,9 @@ from bs4 import BeautifulSoup
 import random
 import aiohttp
 import asyncio
-from crud_db import get_user_links
+from crud_db import (get_user_links,
+                     get_last_min_price,
+                     save_or_update_last_min_price)
 
 
 class Parser:
@@ -31,14 +33,6 @@ class Parser:
 
 
 async def main_parser_engin(chat_id):
-    # URL-адреса товаров для парсинга
-    # coffee_bigest = 'https://vkusvill.ru/goods/drip-kofe-yellow-submarine-48-sht-95071.html'
-    # coffee_biger = 'https://vkusvill.ru/goods/drip-kofe-yellow-submarine-24-sht-78591.html'
-    # mini_cakes = 'https://vkusvill.ru/goods/korzinochki-mini-malina-klubnika-s-maslyanym-kremom-4-sht-88403.html'
-    # pancake_cake = 'https://vkusvill.ru/goods/tort-blinnyy-shokoladnyy-29906.html'
-    # carrot_cake = 'https://vkusvill.ru/goods/tort-morkovnyy-s-pekanom-postnyy-24734.html'
-
-    # urls = [coffee_biger, coffee_bigest, mini_cakes, pancake_cake, carrot_cake]
     urls = get_user_links(chat_id)
 
     result_dict = {}
@@ -49,17 +43,27 @@ async def main_parser_engin(chat_id):
 
         try:
             html = await parser.open_html()
+            name = parser.name_parser(html) # можно перенести ниже
             price = parser.main_price_parser(html)
             # добавить апдейт минимальной цены, примерно так:
+            last_min_price = get_last_min_price(chat_id, url)
+            print(last_min_price)
+            print(price)
+            if last_min_price is None or last_min_price > int(price):
+                save_or_update_last_min_price(chat_id, url, price)
+                if last_min_price is not None:
+                    print('Минимальная цена обновлена:', {name: price})
+                    result_dict[name] = price
+
             # last_min_price = db.filter(link=link, chat_id=chat_id).price
             # if last_min_price = None or last_min_price>price:
             #   db.filter(link=link, chat_id=chat_id).price=price
             #   и если цена снизиалась, уже добавлять в словарь на выдачу
             #   name = parser.name_parser(html)
             #   result_dict[name] = price
-            name = parser.name_parser(html)
-            result_dict[name] = price
-            print('Данные сохранены:', {name: price})
+
+            # result_dict[name] = price
+            # print('Данные сохранены:', {name: price})
         except Exception as e:
             print(f'Ошибка: {e}')
         finally:

@@ -40,16 +40,16 @@ COMMANDS = """Команды, которые принимает бот:
     /admarginem - находит цену на admarginem.ru
 
     /save_link - добавляет ссылку в парсер
-    /start_parsing - выводит информацию из парсеса цен
-    /stop_parsing - выводит информацию из парсеса цен
-    /show_links - показывает сохраенные ссылки
+    /start_parsing - запустить мониторинг цен
+    /stop_parsing - остновить мониторинг цен
+    /show_links - показывает сохраненные ссылки
     /del_links - удаляет все ваши сохраненные ссылки
 
     /cancel - завершить текущую операцию
     """
 
 
-# базовые команды 
+# базовые команды
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(START_MESSAGE)
 
@@ -72,27 +72,33 @@ async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TY
 async def parse_and_send_prices(context: ContextTypes.DEFAULT_TYPE):
     chat_id = context.job.chat_id
     # links = get_user_links(chat_id)
-    engine = await main_parser_engin(chat_id)
-    for key, value in engine.items():
-        await context.bot.send_message(chat_id=chat_id, text=f'{key} - {value}руб')
-    # delay = random.uniform(3, 10)
-    # await asyncio.sleep(delay)
+    checking_message = await context.bot.send_message(chat_id=chat_id, text="Проверяю цены")  # \n\n(это сообщение с автоудалением для тестирования, потом уберем)
+    pasing_results = await main_parser_engin(chat_id)
+    if pasing_results == {}:
+        same_price_message = await context.bot.send_message(chat_id=chat_id, text="Цены пока не снизились")  # \n\n(это сообщение с автоудалением для тестирования, потом уберем)
+        await asyncio.sleep(5)
+        await context.bot.delete_message(chat_id=chat_id, message_id=same_price_message.message_id)
+    else:
+        for key, value in pasing_results.items():
+            await context.bot.send_message(chat_id=chat_id, text="Ура! Снизились цены на следующие товары из вашего списка:")
+            await context.bot.send_message(chat_id=chat_id, text=f'{key} - {value}руб')
+    await context.bot.delete_message(chat_id=chat_id, message_id=checking_message.message_id)
 
 
 async def start_parsing(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(
-        "Собираю цены"
-    )
+    # await update.message.reply_text(
+    #     "Собираю цены"
+    # )
     # links = get_user_links(update.effective_user.id)
     if not context.job_queue.get_jobs_by_name(str(update.effective_chat.id)):
         context.job_queue.run_repeating(
             parse_and_send_prices,
-            interval=120,
+            interval=240,
             first=2,
             name=str(update.effective_chat.id),
             chat_id=update.effective_chat.id
         )
-        await update.message.reply_text("Парсинг запущен и будет обновляться каждые 2 минуты.")
+        await update.message.reply_text("Парсинг запущен, проверяю цены каждые 2-5 минут.")
     else:
         await update.message.reply_text("Парсинг уже запущен.")
     # engine = main_parser_engin()
@@ -171,6 +177,7 @@ async def receive_and_save_link(update: Update, context: ContextTypes.DEFAULT_TY
     #     return ASK_LINK
 
     await update.message.reply_text('Ссылка получена, сохраняю')
+    # save_user_link(update.effective_user.id, user_link)
     all_links = save_user_link(update.effective_user.id, user_link)
     # print(all_links)
     await update.message.reply_text(f"Ссылка сохранена: {user_link}")
