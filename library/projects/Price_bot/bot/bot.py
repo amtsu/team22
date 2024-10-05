@@ -25,7 +25,6 @@ load_dotenv()
 
 TELEGRAM_TOKEN = os.getenv('BOT_TOKEN')
 
-ASK_LINK = 1
 ASK_LINK_ADM = 2
 
 user_message = ""
@@ -56,7 +55,6 @@ COMMANDS = """Команды, которые принимает бот:
     /cancel - завершить операцию с admarginem
     """
 
-
 BOTTOM_COMMANDS = [
         ("start", "Основная информация"),
         ("start_parsing", "Запустить мониторинг цен"),
@@ -80,37 +78,6 @@ async def commands(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(f'Hello, {update.effective_user.first_name}')
-
-
-async def handle_vkusvill_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-    user_link = update.message.text
-    await update.message.reply_text('Проверяю, что ссылка рабочая')
-    if "vkusvill.ru/goods/" not in user_link:
-        await update.message.reply_text(
-            "Неверная ссылка, пока принимаю только товары из vkusvill.ru")
-        return ASK_LINK  # чек, работает ли
-
-    # проверка, что передана рабочая ссылка
-    try:
-        requests.get(user_link)
-    except Exception as e:
-        print(e)
-        await update.message.reply_text(
-            "Неверный формат или нерабочая ссылка.")
-        return await update.message.reply_text(
-            "Пришлите мне ссылку, на товар из vkusvill.ru"
-            "\nДобавлю ее в список для парсинга"
-            )
-    await update.message.reply_text('Сохраняю')
-    result = save_user_link(update.effective_user.id, user_link)
-    await update.message.reply_text(result)
-    # return ConversationHandler.END
-
-
-async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    # global user_message
-    # user_message = update.message.text
-    await update.message.reply_text(COMMANDS)
 
 
 # управление парсером: старт, стоп, parse_and_send_prices
@@ -139,7 +106,7 @@ async def start_parsing(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
             name=str(update.effective_chat.id),
             chat_id=update.effective_chat.id
         )
-        await update.message.reply_text("Парсинг запущен, проверяю цены каждые 2-5 минут.")
+        await update.message.reply_text("Мониторинг цен запущен, проверяю каждые 2-5 минут.")
     else:
         await update.message.reply_text("Парсинг уже запущен.")
 
@@ -180,45 +147,31 @@ async def receive_and_parse_admarginem_link(update: Update, context: ContextType
     return ConversationHandler.END
 
 
-# операции с линками: ask, save, show, del
-async def ask_for_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    await update.message.reply_text(
-        "Пришлите мне ссылку, на товар из vkusvill.ru"
-        "\nДобавлю ее в список для парсинга"
-        "\n\nотмена операции: /cancel"
-    )
-    return ASK_LINK
+# операции с линками вкусвилл: save, show, del
 
-
-async def receive_and_save_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+async def handle_and_save_vkusvill_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     user_link = update.message.text
+    await update.message.reply_text('Проверяю, что ссылка рабочая')
     if "vkusvill.ru/goods/" not in user_link:
         await update.message.reply_text(
             "Неверная ссылка, пока принимаю только товары из vkusvill.ru")
         return ASK_LINK  # чек, работает ли
 
     # проверка, что передана рабочая ссылка
-    # parser = Parser(user_link)
     try:
         requests.get(user_link)
-        # html = await parser.open_html()
     except Exception as e:
         print(e)
         await update.message.reply_text(
             "Неверный формат или нерабочая ссылка.")
-        return ASK_LINK   # снова показать инструкцию
-
-    # # проверка, что по ссылке есть цена товара
-    # price = parser.main_price_parser(html)
-    # if price == "Цена не найдена":
-    #     await update.message.reply_text(price)
-    #     return ASK_LINK
-
-    await update.message.reply_text('Ссылка получена, сохраняю')
+        return await update.message.reply_text(
+            "Пришлите мне ссылку, на товар из vkusvill.ru"
+            "\nДобавлю ее в список для парсинга"
+            )
+    await update.message.reply_text('Сохраняю')
     result = save_user_link(update.effective_user.id, user_link)
-    print(result)
     await update.message.reply_text(result)
-    return ConversationHandler.END
+    # return ConversationHandler.END
 
 
 async def del_links(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -243,19 +196,19 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     return ConversationHandler.END
 
 
+# обработка все остальных сообщений
+async def handle_other_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    # global user_message
+    # user_message = update.message.text
+    await update.message.reply_text(COMMANDS)
+
+
 def main() -> None:
     application = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
 
     job_queue = JobQueue()
     job_queue.set_application(application)
 
-    link_conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("save_link", ask_for_link)],
-        states={
-            ASK_LINK: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_and_save_link)],
-        },
-        fallbacks=[CommandHandler("cancel", cancel)]
-    )
     admarginem_conv_handler = ConversationHandler(
         entry_points=[CommandHandler("admarginem", admarginem_ask_for_link)],
         states={
@@ -272,10 +225,9 @@ def main() -> None:
     application.add_handler(CommandHandler("show_links", show_links))
     application.add_handler(CommandHandler("del_links", del_links))
 
-    application.add_handler(link_conv_handler)
     application.add_handler(admarginem_conv_handler)
 
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND & filters.Regex("vkusvill.ru/goods/"), handle_vkusvill_links))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND & filters.Regex("vkusvill.ru/goods/"), handle_and_save_vkusvill_link))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_other_messages))
 
     application.run_polling()
