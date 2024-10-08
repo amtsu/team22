@@ -1,10 +1,20 @@
-{% extends "base.html" %}
+{% extends "account/../base.html" %}
 
 {% block title %}
 Мои задачи
 {% endblock title %}
 
 {% block content %}
+    <!-- Проверка авторизации -->
+    <div class="auth-buttons">
+        {% if user.is_authenticated %}
+            <p>Добро пожаловать, {{ user.username }}!</p>
+            <a href="{% url 'account_logout' %}" class="btn btn-danger">Выйти</a>
+        {% else %}
+            <a href="{% url 'account_login' %}" class="btn btn-primary">Войти</a>
+        {% endif %}
+    </div>
+
 <h2 class="container-fluid text-bg-dark">Мои задачи</h2>
 <div class="d-flex flex-wrap">
     {% for task in tasks %}

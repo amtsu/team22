@@ -21,5 +21,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('tasks/', include('tasks.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('', include('tasks.urls')),  # Главная страница и все маршруты из tasks
 ]
