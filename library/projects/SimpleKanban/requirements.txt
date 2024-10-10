@@ -3,3 +3,4 @@ Django==5.1
 django-admin-berry==1.0.10
 django-admin-soft-dashboard==1.0.12
 sqlparse==0.5.1
+django-allauth == 65.0.1

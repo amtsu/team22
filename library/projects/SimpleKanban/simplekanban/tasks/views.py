@@ -1,10 +1,16 @@
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
 
-from tasks.models import Task
-from tasks.forms import TaskForm
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
+
+from .forms import TaskForm
+from .models import Task
+
+
+def home_view(request):
+    if request.user.is_authenticated:
+        return redirect('task_list')
+    return render(request, 'account/home.html')
 
 
 class TaskListView(ListView):

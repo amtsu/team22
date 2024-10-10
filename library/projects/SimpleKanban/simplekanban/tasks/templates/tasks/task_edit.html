@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Task</title>
-</head>
-<body>
-    <h1>Edit Task</h1>
-    <p>This is a placeholder for the edit task page.</p>
+{% extends "base.html" %}
+
+{% block title %}
+    Редактирование задачи
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid text-bg-dark p-4">
+    <h2>Редактирование задачи</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Update">
+        <input type="submit" class="btn btn-primary" value="Обновить">
     </form>
-    <a href="{% url 'task_list' %}">Back to Task List</a>
-</body>
-</html>
+    <a href="{% url 'task_list' %}" class="btn btn-secondary">Назад к списку задач</a>
+</div>
+{% endblock content %}
