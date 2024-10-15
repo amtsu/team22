@@ -11,9 +11,9 @@ async def trial_sport_ikb(user_id):
 
         for tag in TRIAL_SPORT_LIST:
             if tag in user_tags:
-                builder.button(text=f'🏃‍♀️ {tag}', callback_data=f'trial-sport_ikb{tag}')
+                builder.button(text=f'🏃‍♀️ {tag}', callback_data=f'trial-sport{tag}')
             else:
-                builder.button(text=f'{tag}', callback_data=f'trial-sport_ikb{tag}')
+                builder.button(text=f'{tag}', callback_data=f'trial-sport{tag}')
 
         builder.button(text='⏮ В главное меню', callback_data='sports_main_menu')
 
