@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Создание подзадачи</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="task">Основная задача:</label>
+            <select id="task" name="task" class="form-control">
+                {% for task in tasks %}
+                    <option value="{{ task.id }}">{{ task.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="title">Название подзадачи:</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Статус:</label>
+            <select id="status" name="status" class="form-control">
+                <option value="0">Не выполнено</option>
+                <option value="1">Выполнено</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Создать подзадачу</button>
+    </form>
+</div>
+{% endblock %}

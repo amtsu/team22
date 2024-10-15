@@ -1,17 +1,17 @@
-<!-- templates/tasks/delete_task.html -->
+{% extends "base.html" %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Delete Task</title>
+    <title>Удалить Задачу</title>
 </head>
 <body>
-    <h1>Delete Task</h1>
-    <p>This is a placeholder for the delete task page.</p>
+    <h1>Удалить Задачу</h1>
+    <p>Удаление стр.</p>
     <form method="post">
         {% csrf_token %}
-        <p>Are you sure you want to delete this task?</p>
+        <p>Удалить задачу и все связанные с ней подзадачи?</p>
         <input type="submit" value="Confirm Deletion">
     </form>
-    <a href="{% url 'task_list' %}">Back to Task List</a>
+    <a href="{% url 'task_list' %}">Назад к списку задач</a>
 </body>
 </html>

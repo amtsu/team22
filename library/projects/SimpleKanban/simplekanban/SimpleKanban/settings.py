@@ -53,24 +53,28 @@ INSTALLED_APPS = [
 # Настройки для django-allauth
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "optional"  # или "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # или "optional"
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # или 'username'
 ACCOUNT_USERNAME_REQUIRED = True
 
 # Настройки для использования Mailtrap.io
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-EMAIL_PORT = 587 #2525
-EMAIL_HOST_USER = '36b5acf9ce8ddc'  # ваш username от Mailtrap
-EMAIL_HOST_PASSWORD = 'b94482f5e07164'  # ваш пароль от Mailtrap
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-DEFAULT_FROM_EMAIL = 'anna.zakharova@mail.bk'  # укажите отправителя
+# EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+# EMAIL_PORT = 587 #2525
+# EMAIL_HOST_USER = '36b5acf9ce8ddc'  # username от Mailtrap
+# EMAIL_HOST_PASSWORD = 'b94482f5e07164'  #пароль от Mailtrap
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = 'anna.zakharova@mail.bk'
+
+# # Отключаем проверку SSL
+# import ssl
+# ssl._create_default_https_context = ssl._create_unverified_context
 
 # Google OAuth2 настройки
-GOOGLE_CLIENT_ID = os.environ.get('1018004617501-13d8lfqddr881rcc4sr45i5phrjjrad0.apps.googleusercontent.com')
-GOOGLE_CLIENT_SECRET = os.environ.get('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')
+# GOOGLE_CLIENT_ID = os.environ.get('1018004617501-13d8lfqddr881rcc4sr45i5phrjjrad0.apps.googleusercontent.com')
+# GOOGLE_CLIENT_SECRET = os.environ.get('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')
 
 # Аутентификация
 AUTHENTICATION_BACKENDS = [

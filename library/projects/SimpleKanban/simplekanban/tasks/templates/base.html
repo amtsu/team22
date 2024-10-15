@@ -13,13 +13,13 @@
 <header>
     <nav class="navbar navbar-expand-lg bg-body-secondary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'task_list' %}">
                 <img src="https://getbootstrap.ru/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30"
                      height="24"
                      class="d-inline-block align-text-top">
                 Kanban
             </a>
-            <a class="navbar-brand" href="#">{{ user.username}}</a>
+            <a class="navbar-brand" href="{% url 'home' %}">{{ user.username}}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Переключатель навигации">
                 <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,7 @@
                         <a class="nav-link" href="{% url 'task_create' %}">Создать задачу</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Статистика</a>
+                        <a class="nav-link" href={% url 'workgroup_list' %}>Пользователи</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
