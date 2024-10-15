@@ -15,7 +15,7 @@ class TrialSportRuParser:
         self.__base_url = 'https://trial-sport.ru'
 
     @staticmethod
-    def get_soup(url: str) -> BeautifulSoup:
+    def __get_soup(url: str) -> BeautifulSoup:
         """
         Метод делает из веб-страницы и возвращает объект BeautifulSoup для дальнейшего разбора.
         """
@@ -27,7 +27,7 @@ class TrialSportRuParser:
         Записывает все в БД.
         """
         # получаем HTML-страницу при помощи метода get_soup
-        post_list_html: BeautifulSoup = self.get_soup(self.__base_url + '/news.php')
+        post_list_html: BeautifulSoup = self.__get_soup(self.__base_url + '/news.php')
         # парсим с этой страницы ссылки на все статьи
         post_links = [self.__base_url + article.find('a').get('href') for article in
                       post_list_html.body.find_all('div', 'article')]
@@ -35,7 +35,7 @@ class TrialSportRuParser:
         for link in post_links:  # пробегаемся циклом по каждой ссылке
             try:
                 # получаем HTML-страницу при помощи метода get_soup
-                post_html: BeautifulSoup = self.get_soup(link)
+                post_html: BeautifulSoup = self.__get_soup(link)
                 # парсим название страницы
                 post_title = post_html.body.find('h2').text.strip()
                 # парсим теги со страницы
@@ -48,7 +48,7 @@ class TrialSportRuParser:
 
                 # записываем все в базу данных
                 with ContentDatabaseManager('content_trial_sport_ru', self.__db_path) as db:
-                    db.add_content(post_title, link, tags)
+                    db.add_content(post_title, link, 'trial_sport', tags)
 
             except Exception as e:  # выводим в консоль информацию о нерабочих ссылках
                 print(e, link)
