@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid text-bg-dark p-4">
+    <h2 class="text-light">Подтверждение удаления рабочей группы</h2>
+    <p class="text-light">Вы уверены, что хотите удалить рабочую группу "{{ object.title }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a href="{% url 'workgroup_list' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}

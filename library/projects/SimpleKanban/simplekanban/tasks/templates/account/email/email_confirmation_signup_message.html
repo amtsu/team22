@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+{% load account %}
+<h1>Уважаемый {{ user.username }}, спасибо за регистрацию в SimpleKanBan!</h1>
+<h3>Для активации учетной записи <a href="{{ activate_url }}">пройдите по ссылке</a></h3>
+</body>
+</html>

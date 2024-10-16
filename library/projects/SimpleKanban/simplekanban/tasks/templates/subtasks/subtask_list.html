@@ -1,47 +1,4 @@
-{#{% extends "base.html" %}#}
-{##}
-{#{% block title %}#}
-{#Мои задачи#}
-{#{% endblock title %}#}
-{##}
 {% extends "base.html" %}
-
-{% block title %}
-Мои задачи
-{% endblock title %}
-
-{% block content %}
-    <!-- Проверка авторизации -->
-    <div class="auth-buttons">
-        {% if user.is_authenticated %}
-            <p>Добро пожаловать, {{ user.username }}!</p>
-            <a href="{% url 'account_logout' %}" class="btn btn-danger">Выйти</a>
-        {% else %}
-            <a href="{% url 'account_login' %}" class="btn btn-primary">Войти</a>
-        {% endif %}
-    </div>
-
-<h2 class="container-fluid text-bg-dark">Мои задачи</h2>
-<div class="d-flex flex-wrap">
-    {% for task in tasks %}
-    {% with color_class=task.execution_status %}
-    <a href="{% url 'task_detail' task.id %}" class="container card mb-3"
-       style="max-width: 18rem; text-decoration:none; background-color: {% if color_class == 'AC' %} #007bff; {% elif color_class == 'CP' %} #28a745; {% elif color_class == 'CN' %} #6c757d; {% elif color_class == 'EX' %} #dc3545; {% endif %}">
-        <div class="card-header">{{ task.author }}</div>
-        <div class="card-body">
-            <p class="card-text">от {{ task.created_at }}</p>
-            <h5 class="card-title">{{ task.title|truncatechars:20 }}</h5>
-            <p class="card-text">{{ task.description|truncatechars:50 }}</p>
-        </div>
-    </a>
-    {% endwith %}
-    {% endfor %}
-</div>
-{% endblock content %}
-
-
-{##}
-{#{% extends "base.html" %}#}
 {##}
 {#{% block title %}#}
 {#Мои задачи#}
