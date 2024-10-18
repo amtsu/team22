@@ -8,3 +8,7 @@
 *.swp
 #for Mac
 .DS_Store
+/library/projects/teleban/src_rbc_ru_anton_kuvalda/config.py
+/library/projects/teleban/src_rbc_ru_anton_kuvalda/Parser5_Vento_sptax.py
+/library/projects/teleban/src_rbc_ru_anton_kuvalda/parser_sports_ru.py
+/library/projects/teleban/src_rbc_ru_anton_kuvalda/rbc_parser_by_chatgpt.py
