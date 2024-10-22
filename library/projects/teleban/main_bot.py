@@ -14,11 +14,13 @@ from db_managers.content_manager import ContentDatabaseManager, TABLE_NAMES
 from db_managers.subscription_manager import SubscriptionDatabaseManager
 from keyboard_main import start_ikb
 from src_sports_ru.handlers import sports_router
+from src_trial_sport_ru.handlers import trial_sport_router
 
 TOKEN = getenv("TELEBAN_TOKEN")
 
 dp = Dispatcher(name=__name__)
 dp.include_routers(sports_router)
+dp.include_routers(trial_sport_router)
 
 
 async def send_content(table: str, bot: Bot) -> None:
