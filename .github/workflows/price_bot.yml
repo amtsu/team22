@@ -3,7 +3,7 @@ name: Test Action
 on: 
   push:
     branches:
-      - main
+      - price_bot_develop
 
 jobs:
   test:
