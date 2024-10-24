@@ -1,6 +1,11 @@
 import sqlite3
+import os
 
-DB_NAME = "database.db"
+# DB_NAME = "database.db"
+
+DB_FOLDER = "database"
+DB_NAME = os.path.join(DB_FOLDER, "database.db")
+os.makedirs(DB_FOLDER, exist_ok=True)
 
 
 def save_user_link(user_id, link):
@@ -30,6 +35,21 @@ def save_user_link(user_id, link):
         return "Такая ссылка уже есть"
     conn.close()
     return f"Ссылка сохранена: {link}"
+
+
+def get_user_links(user_id):
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+    cursor.execute(
+        """
+        SELECT link FROM user_links
+        WHERE user_id = ?
+    """,
+        (str(user_id),),
+    )
+    links = [row[0] for row in cursor.fetchall()]
+    conn.close()
+    return links
 
 
 def get_last_min_price(user_id, link):
@@ -67,21 +87,6 @@ def save_or_update_last_min_price(user_id, link, last_min_price):
 
     conn.commit()
     conn.close()
-
-
-def get_user_links(user_id):
-    conn = sqlite3.connect(DB_NAME)
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        SELECT link FROM user_links
-        WHERE user_id = ?
-    """,
-        (str(user_id),),
-    )
-    links = [row[0] for row in cursor.fetchall()]
-    conn.close()
-    return links
 
 
 def del_user_links(user_id):
