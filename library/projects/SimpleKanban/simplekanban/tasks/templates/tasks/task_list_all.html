@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+Все задачи
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid text-bg-dark p-4">
+    <h1>Все задачи</h1>
+
+    <div class="mb-3">
+{#        <a href="{% url 'task_create' %}" class="btn btn-success">Создать задачу</a>#}
+        <a href="{% url 'company_list' %}" class="btn btn-secondary">Назад к списку компаний</a>
+    </div>
+
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Заголовок</th>
+                <th>Описание</th>
+                <th>Статус</th>
+                <th>Дата создания</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.get_execution_status_display }}</td>
+                <td>{{ task.created_at }}</td>
+                <td>
+{#                    <a href="{% url 'task_edit' company_id task.id %}" class="btn btn-warning">Редактировать</a>#}
+{#                    <a href="{% url 'task_delete' company_id task.id %}" class="btn btn-danger">Удалить</a>#}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">Нет задач для отображения.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
