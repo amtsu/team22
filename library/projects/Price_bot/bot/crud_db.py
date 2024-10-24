@@ -79,7 +79,7 @@ def save_or_update_last_min_price(user_id, link, last_min_price):
         """
         INSERT INTO user_links (user_id, link, last_min_price)
         VALUES (?, ?, ?)
-        ON CONFLICT(user_id, link) DO UPDATE 
+        ON CONFLICT(user_id, link) DO UPDATE
         SET last_min_price = excluded.last_min_price
     """,
         (str(user_id), link, last_min_price),

@@ -1,7 +1,7 @@
 import asyncio
 import os
 
-import requests
+# import requests
 from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import (
@@ -165,7 +165,8 @@ async def receive_and_parse_admarginem_link(
 
     if "admarginem.ru" not in user_message:
         await update.message.reply_text(
-            "Пока я принимаю только ссылки с admarginem.ru, и команды: см /start"
+            "Пока я принимаю только ссылки с admarginem.ru, "
+            "и команды: см /start"
         )
     else:
         price = parse_price_admarginem(user_message)
