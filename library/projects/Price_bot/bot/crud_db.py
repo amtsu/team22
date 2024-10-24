@@ -47,9 +47,12 @@ def get_user_links(user_id):
     """,
         (str(user_id),),
     )
-    links = [row[0] for row in cursor.fetchall()]
-    conn.close()
-    return links
+    # links = [row[0] for row in cursor.fetchall()]
+    # conn.close()
+    # return links
+    result = cursor.fetchall()  # Получаем все строки результата
+    conn.close()  # Закрываем соединение
+    return [row[0] for row in result]  # Возвращаем список ссылок
 
 
 def get_last_min_price(user_id, link):
@@ -117,11 +120,10 @@ def del_user_links(user_id):
     conn.close()
 
     if not links:
-        result = "Ссылки успешно удалены"
+        return "Ссылки успешно удалены"
     else:
-        result = "Что-то пошло не так"
-
-    return result
+        return "Что-то пошло не так"
+    # return result
 
 
 # заготовка для добавления новых колонок в бд
