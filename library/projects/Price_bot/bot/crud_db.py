@@ -121,9 +121,7 @@ def del_user_links(user_id):
 
     if not links:
         return "Ссылки успешно удалены"
-    else:
-        return "Что-то пошло не так"
-    # return result
+    return "Что-то пошло не так"
 
 
 # заготовка для добавления новых колонок в бд

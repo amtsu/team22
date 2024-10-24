@@ -187,8 +187,7 @@ async def handle_and_save_vkusvill_link(
             "Принимаю только ссылки на товары.\n"
             "Они расположены в разделе vkusvill.ru/goods/"
         )
-        # return None
-        return
+        return None
 
     # проверка, что передана рабочая ссылка
     try:
@@ -211,7 +210,7 @@ async def handle_and_save_vkusvill_link(
     await update.message.reply_text("Сохраняю")
     result = save_user_link(update.effective_user.id, user_link)
     await update.message.reply_text(result)
-    # return None
+    return None
 
 
 async def del_links(
