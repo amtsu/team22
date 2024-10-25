@@ -1,15 +1,25 @@
 import sqlite3
 import os
 
+
 # DB_NAME = "database.db"
 
-DB_FOLDER = "database"
-DB_NAME = os.path.join(DB_FOLDER, "database.db")
-os.makedirs(DB_FOLDER, exist_ok=True)
+# print("Текущая рабочая директория в другом файле:", os.getcwd())
+# DB_FOLDER = "database"
+# DB_NAME = os.path.join(DB_FOLDER, "database.db")
+# os.makedirs(DB_FOLDER, exist_ok=True)
+
+def get_db_connection():
+    DB_FOLDER = "data"
+    DB_NAME = os.path.join(DB_FOLDER, "database.db")
+    os.makedirs(DB_FOLDER, exist_ok=True)
+    return sqlite3.connect(DB_NAME)
 
 
 def save_user_link(user_id, link):
-    conn = sqlite3.connect(DB_NAME)
+    conn = get_db_connection()
+    # DB_NAME = initialize_database()
+    # conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     cursor.execute(
         """
@@ -38,7 +48,8 @@ def save_user_link(user_id, link):
 
 
 def get_user_links(user_id):
-    conn = sqlite3.connect(DB_NAME)
+    # conn = sqlite3.connect(DB_NAME)
+    conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
         """
@@ -56,6 +67,7 @@ def get_user_links(user_id):
 
 
 def get_last_min_price(user_id, link):
+    DB_NAME = initialize_database()
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -74,7 +86,8 @@ def get_last_min_price(user_id, link):
 
 
 def save_or_update_last_min_price(user_id, link, last_min_price):
-    conn = sqlite3.connect(DB_NAME)
+    # conn = sqlite3.connect(DB_NAME)
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     # Обновление или вставка цены
@@ -93,7 +106,8 @@ def save_or_update_last_min_price(user_id, link, last_min_price):
 
 
 def del_user_links(user_id):
-    conn = sqlite3.connect(DB_NAME)
+    # conn = sqlite3.connect(DB_NAME)
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     # Удаление всех ссылок для данного user_id
@@ -126,7 +140,8 @@ def del_user_links(user_id):
 
 # заготовка для добавления новых колонок в бд
 def add_new_column():
-    conn = sqlite3.connect(DB_NAME)
+    # conn = sqlite3.connect(DB_NAME)
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     # Добавляем новое поле last_min_price

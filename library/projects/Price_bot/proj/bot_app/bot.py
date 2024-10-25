@@ -1,6 +1,10 @@
 import asyncio
 import os
 
+# print("Текущая рабочая директория перед изменением:", os.getcwd())
+# os.chdir(os.path.dirname(os.path.abspath(__file__)))
+# print("Текущая рабочая директория после изменения:", os.getcwd())
+
 # import requests
 from typing import Optional
 from dotenv import load_dotenv
@@ -64,6 +68,11 @@ BOTTOM_COMMANDS = [
     ("commands", "посмотреть все команды"),
     ("hello", "поздороваться"),
 ]
+
+
+# print("Текущая рабочая директория перед изменением:", os.getcwd())
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+# print("Текущая рабочая директория после изменения:", os.getcwd())
 
 
 # базовые команды
@@ -228,7 +237,7 @@ async def show_links(
     result = get_user_links(
         update.effective_user.id
     )  # ?поменять на update.effective_chat.id
-    await update.message.reply_text(result)
+    await update.message.reply_text(result) # если нет таблицы, молчит
 
 
 # остановка сценариев
