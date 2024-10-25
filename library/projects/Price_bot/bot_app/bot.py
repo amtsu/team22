@@ -230,7 +230,7 @@ async def show_links(
     result = get_user_links(
         update.effective_user.id
     )  # ?поменять на update.effective_chat.id
-    await update.message.reply_text(result) # если нет таблицы, молчит
+    await update.message.reply_text(result)  # если нет таблицы, молчит
 
 
 # остановка сценариев
