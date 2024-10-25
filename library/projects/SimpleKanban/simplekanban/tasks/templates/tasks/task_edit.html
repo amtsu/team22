@@ -59,11 +59,16 @@
 
         <button type="submit" class="btn btn-primary">Обновить</button>
     </form>
-
-    {% if request.GET.company_id %}
-        <a href="{% url 'task_list' request.GET.company_id %}" class="btn btn-secondary">Назад к списку задач</a>  <!-- Назад к задачам компании -->
+    {% if company_id %}
+        <a href="{% url 'task_list' company_id %}" class="btn btn-secondary">Назад к списку задач компании</a>
     {% else %}
-        <a href="{% url 'task_list' %}" class="btn btn-secondary">Назад к списку задач</a>  <!-- Назад к общему списку задач -->
+        <a href="{% url 'task_list_all' %}" class="btn btn-secondary">Назад к списку задач</a>
     {% endif %}
+
+{#    {% if request.GET.company_id %}#}
+{#        <a href="{% url 'task_list' request.GET.company_id %}" class="btn btn-secondary">Назад к списку задач</a>  <!-- Назад к задачам компании -->#}
+{#    {% else %}#}
+{#        <a href="{% url 'task_list' %}" class="btn btn-secondary">Назад к списку задач</a>  <!-- Назад к общему списку задач -->#}
+{#    {% endif %}#}
 </div>
 {% endblock content %}

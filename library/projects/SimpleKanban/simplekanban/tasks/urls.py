@@ -6,7 +6,7 @@ urlpatterns = [
     path('', views.home_view, name='home'),
 
     # Задачи
-    path('tasks/', views.TaskListAllView.as_view(), name='task_list_all'),  # Новая строка
+    path('tasks/', views.TaskListAllView.as_view(), name='task_list_all'),  # Все задачи?
     path('companies/<int:company_id>/tasks/', views.TaskListView.as_view(), name='task_list'),  # Задачи для конкретной компании
     path('companies/<int:company_id>/task/<int:pk>/', views.TaskDetailView.as_view(), name='task_detail'),  # Детали задачи
     path('companies/<int:company_id>/task/create/', views.TaskCreateView.as_view(), name='task_create'),  # Создание задачи

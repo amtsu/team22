@@ -46,10 +46,10 @@
                 <td>{{ task.get_execution_status_display }}</td>
                 <td>{{ task.created_at }}</td>
                 <td>
-                    <a href="{% url 'task_edit' request.GET.company_id task.id %}" class="btn btn-warning">Редактировать</a>
-                    <form action="{% url 'task_delete' request.GET.company_id task.id %}" method="post" style="display:inline;">
+                    <a href="{% url 'task_edit' task.company.id task.id %}" class="btn btn-warning">Редактировать</a>
+                    <form action="{% url 'task_delete' task.company.id task.id %}" method="post" style="display:inline;">
                         {% csrf_token %}
-                        <input type="submit" class="btn btn-danger" value="Удалить" onclick="return confirm('Вы уверены, что хотите удалить эту задачу?');">
+                        <input type="submit" value="Удалить" class="btn btn-danger">
                     </form>
                 </td>
             </tr>
