@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем остальные файлы проекта в контейнер
 # COPY . .
-COPY bot .
+COPY bot_app .
 
 # Открываем порт (если требуется)
 EXPOSE 80

@@ -6,7 +6,7 @@ services:
       context: .  # Указываем контекст сборки
     volumes:
       # - .:/app
-      - sqlite_data:/app/database/  # Используем том для сохранения базы данных
+      - sqlite_data:/app/data/  # Используем том для сохранения базы данных
       # - sqlite_data:/app/ # Используем том для сохранения базы данных
     env_file:
       - ./.env
