@@ -3,10 +3,10 @@ import os
 
 
 def get_db_connection():
-    DB_FOLDER = "data"
-    DB_NAME = os.path.join(DB_FOLDER, "database.db")
-    os.makedirs(DB_FOLDER, exist_ok=True)
-    return sqlite3.connect(DB_NAME)
+    db_folder = "data"
+    db_name = os.path.join(db_folder, "database.db")
+    os.makedirs(db_folder, exist_ok=True)
+    return sqlite3.connect(db_name)
 
 
 def save_user_link(user_id, link):
