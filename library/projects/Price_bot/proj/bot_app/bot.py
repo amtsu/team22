@@ -1,10 +1,6 @@
 import asyncio
 import os
 
-# print("Текущая рабочая директория перед изменением:", os.getcwd())
-# os.chdir(os.path.dirname(os.path.abspath(__file__)))
-# print("Текущая рабочая директория после изменения:", os.getcwd())
-
 # import requests
 from typing import Optional
 from dotenv import load_dotenv
@@ -69,10 +65,7 @@ BOTTOM_COMMANDS = [
     ("hello", "поздороваться"),
 ]
 
-
-# print("Текущая рабочая директория перед изменением:", os.getcwd())
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-# print("Текущая рабочая директория после изменения:", os.getcwd())
 
 
 # базовые команды
