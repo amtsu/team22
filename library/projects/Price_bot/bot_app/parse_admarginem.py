@@ -1,5 +1,5 @@
 import os
-import traceback
+# import traceback
 from time import sleep
 
 from bs4 import BeautifulSoup
@@ -7,8 +7,8 @@ from selenium import webdriver
 
 # Импортируем классы для Chrome. Если у вас другой браузер - измените импорт.
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 
 # Если у вас установлен другой браузер - импортируйте нужный драйвер.
@@ -21,7 +21,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 # TEST_URL = 'https://ozon.ru/t/rRw3MDq'
 # TEST_URL = 'https://twentysix.ru/blog/stuff/143819.html'
 # TEST_URL = 'https://admarginem.ru/product/teoriya-kino-kratkij-putevoditel/'
-# TEST_URL = 'https://www.ozon.ru/product/zen-and-the-art-of-motorcycle-maintenance-dzen-i-iskusstvo-obsluzhivaniya-mototsiklov-kniga-na-1639529508/?utm_campaign=productpage_link&utm_medium=share_button&utm_source=smm'
+# TEST_URL = 'https://www.ozon.ru/product/
+# zen-and-the-art-of-motorcycle-maintenance-dzen-i-iskusstvo-obsluzhivaniya-mototsiklov-kniga-na-1639529508/'
 TEST_URL = "https://kuper.ru/products/26157296-smetana-30-250-g"
 # USERNAME = 'somany'
 # PASSWORD = 'somany123'
@@ -29,7 +30,8 @@ PAUSE_DURATION_SECONDS = 1
 
 
 def parse_price_admarginem(url):
-    # Проверка и установка (или обновление) драйвера для Chrome через DriverManager.
+    # Проверка и установка (или обновление) драйвера
+    # для Chrome через DriverManager.
     service = Service(executable_path=ChromeDriverManager().install())
     # Запуск веб-драйвера для Chrome.
     driver = webdriver.Chrome(service=service)
@@ -83,4 +85,4 @@ def parse_price_admarginem(url):
 
 
 if __name__ == "__main__":
-    parse_price(TEST_URL)
+    parse_price_admarginem(TEST_URL)

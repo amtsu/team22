@@ -161,4 +161,6 @@ todo.py
 
 price-bot-image.tar
 
-database/database.db
+bot_app/data/database.db
+
+other/

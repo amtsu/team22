@@ -1,15 +1,16 @@
 import sqlite3
 import os
 
-# DB_NAME = "database.db"
 
-DB_FOLDER = "database"
-DB_NAME = os.path.join(DB_FOLDER, "database.db")
-os.makedirs(DB_FOLDER, exist_ok=True)
+def get_db_connection():
+    db_folder = "data"
+    db_name = os.path.join(db_folder, "database.db")
+    os.makedirs(db_folder, exist_ok=True)
+    return sqlite3.connect(db_name)
 
 
 def save_user_link(user_id, link):
-    conn = sqlite3.connect(DB_NAME)
+    conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
         """
@@ -38,7 +39,7 @@ def save_user_link(user_id, link):
 
 
 def get_user_links(user_id):
-    conn = sqlite3.connect(DB_NAME)
+    conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
         """
@@ -47,13 +48,16 @@ def get_user_links(user_id):
     """,
         (str(user_id),),
     )
-    links = [row[0] for row in cursor.fetchall()]
-    conn.close()
-    return links
+    # links = [row[0] for row in cursor.fetchall()]
+    # conn.close()
+    # return links
+    result = cursor.fetchall()  # Получаем все строки результата
+    conn.close()  # Закрываем соединение
+    return [row[0] for row in result]  # Возвращаем список ссылок
 
 
 def get_last_min_price(user_id, link):
-    conn = sqlite3.connect(DB_NAME)
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     cursor.execute(
@@ -71,7 +75,7 @@ def get_last_min_price(user_id, link):
 
 
 def save_or_update_last_min_price(user_id, link, last_min_price):
-    conn = sqlite3.connect(DB_NAME)
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     # Обновление или вставка цены
@@ -79,7 +83,7 @@ def save_or_update_last_min_price(user_id, link, last_min_price):
         """
         INSERT INTO user_links (user_id, link, last_min_price)
         VALUES (?, ?, ?)
-        ON CONFLICT(user_id, link) DO UPDATE 
+        ON CONFLICT(user_id, link) DO UPDATE
         SET last_min_price = excluded.last_min_price
     """,
         (str(user_id), link, last_min_price),
@@ -90,7 +94,7 @@ def save_or_update_last_min_price(user_id, link, last_min_price):
 
 
 def del_user_links(user_id):
-    conn = sqlite3.connect(DB_NAME)
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     # Удаление всех ссылок для данного user_id
@@ -117,16 +121,13 @@ def del_user_links(user_id):
     conn.close()
 
     if not links:
-        result = "Ссылки успешно удалены"
-    else:
-        result = "Что-то пошло не так"
-
-    return result
+        return "Ссылки успешно удалены"
+    return "Что-то пошло не так"
 
 
 # заготовка для добавления новых колонок в бд
 def add_new_column():
-    conn = sqlite3.connect(DB_NAME)
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     # Добавляем новое поле last_min_price
