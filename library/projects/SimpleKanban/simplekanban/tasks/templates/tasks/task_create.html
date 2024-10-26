@@ -6,24 +6,29 @@
 
 {% block content %}
 <div class="container-fluid text-bg-dark p-4">
-    <h1>Создать Задачу</h1>
+    <h1>Создать задачу для {{ company.name }}</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
 
         <h3>Подзадачи:</h3>
         {{ subtasks.management_form }}
-        {% for subtask in subtasks %}
-            {{ subtask.as_p }}
-        {% endfor %}
+        <div id="subtasks">
+            {% for subtask in subtasks %}
+                {{ subtask.as_p }}
+            {% endfor %}
+        </div>
+        <button type="button" class="btn btn-outline-success" id="add-subtask">Добавить подзадачу</button>
 
-        <button type="submit" class="btn btn-primary">Отправить</button>
-        <a href="{% url 'task_list' %}" class="btn btn-secondary">Назад к списку задач</a>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Создать задачу</button>
+            <a href="{% url 'task_list' %}" class="btn btn-secondary">Назад к списку задач</a>
+        </div>
     </form>
 
     <div class="mt-3">
-        <button type="button" class="btn btn-outline-success">Сохранить в черновик</button>
-        <button type="button" class="btn btn-outline-danger">Удалить</button>
+        <button type="button" class="btn btn-outline-success" onclick="saveDraft()">Сохранить в черновик</button>
+        <button type="button" class="btn btn-outline-danger" onclick="deleteTask()">Удалить</button>
     </div>
 </div>
 
@@ -31,37 +36,31 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<script>
+    // Функция для добавления подзадачи
+    document.getElementById('add-subtask').onclick = function() {
+        var subtaskCount = document.getElementsByClassName('subtask').length; // Получаем текущее количество подзадач
+        var newSubtask = document.createElement('div'); // Создаем новый элемент для подзадачи
+        newSubtask.className = 'subtask'; // Добавляем класс для подзадачи
+        newSubtask.innerHTML = '<label for="id_subtasks-' + subtaskCount + '-title">Название подзадачи:</label>' +
+                               '<input type="text" name="subtasks-' + subtaskCount + '-title" id="id_subtasks-' + subtaskCount + '-title" required>' +
+                               '<input type="hidden" name="subtasks-' + subtaskCount + '-id" value="0">'; // Скрытое поле для id подзадачи
+        document.getElementById('subtasks').appendChild(newSubtask); // Добавляем новую подзадачу в контейнер
+    };
+
+    function saveDraft() {
+        // Логика сохранения в черновик (например, AJAX-запрос)
+        alert('Функция сохранения в черновик еще не реализована.');
+    }
+
+    function deleteTask() {
+        // Логика удаления задачи (например, подтверждение)
+        if (confirm('Вы уверены, что хотите удалить эту задачу?')) {
+            // Логика удаления задачи (например, AJAX-запрос или перенаправление на URL удаления)
+            alert('Задача была удалена.');
+        }
+    }
+</script>
+
 {% endblock content %}
-
-
-
-
-
-{#{% extends "base.html" %}#}
-{##}
-{#{% block title %}#}
-{#{{ task.title }}#}
-{#{% endblock title %}#}
-{##}
-{#{% block content %}#}
-{#<div class="container-fluid text-bg-dark p-4">#}
-{#    <h1>Создать Задачу</h1>#}
-{#    <form method="post">#}
-{#        {% csrf_token %}#}
-{#        {{ form.as_p }}#}
-{#        <button type="submit" class="btn btn-primary">Отправить</button>#}
-{#        <a href="{% url 'task_list' %}" class="btn btn-secondary">Назад к списку задач</a>#}
-{#    </form>#}
-{##}
-{#    <div class="mt-3">#}
-{#        <button type="button" class="btn btn-outline-success">Сохранить в черновик</button>#}
-{#        <button type="button" class="btn btn-outline-danger">Удалить</button>#}
-{#    </div>#}
-{#</div>#}
-{##}
-{#<!-- Optional JavaScript -->#}
-{#<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>#}
-{#<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>#}
-{#<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>#}
-{#{% endblock content %}#}
-{##}

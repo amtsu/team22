@@ -1,0 +1,318 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Задачи - SuperKanban</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static "img/favicon.png" %}" rel="icon">
+  <link href="{% static "img/apple-touch-icon.png" %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "vendor/bootstrap-icons/bootstrap-icons.css" %}" rel="stylesheet">
+  <link href="{% static "vendor/aos/aos.css" %}" rel="stylesheet">
+  <link href="{% static "vendor/animate.css/animate.min.css" %}" rel="stylesheet">
+  <link href="{% static "vendor/glightbox/css/glightbox.min.css" %}" rel="stylesheet">
+  <link href="{% static "vendor/swiper/swiper-bundle.min.css" %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static "css/main.css" %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Selecao
+  * Template URL: https://bootstrapmade.com/selecao-bootstrap-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="blog-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="static/img/logo.png" alt=""> -->
+        <h1 class="sitename">SuperKanban</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#">Стартовая страница</a></li>
+          <li><a href="task_create">Создать задачу</a></li>
+
+          <li class="dropdown"><a href="task_list"><span>Текущие задачи</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Текущие</a></li>
+              <li><a href="#">Горящие</a></li>
+              <li><a href="#">Просроченные</a></li>
+              <li><a href="#">Отмененные</a></li>
+            </ul>
+          </li>
+		  <li class="dropdown"><a href="#"><span>Пользователь</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Настройки</a></li>
+              <li><a href="#">Выйти</a></li>
+            </ul>
+          </li>
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+
+    </div><!-- End Page Title -->
+
+    <!-- Blog Posts Section -->
+    <section id="blog-posts" class="blog-posts section">
+
+      <div class="container">
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <article>
+
+              <div class="post-img">
+                <img src="{% static "img/blog/blog-1.jpg" %}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Текущие</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">Разработать front для страницы задач</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <img src="{% static "img/blog/blog-author.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <div class="post-meta">
+                  <p class="post-author">Саша Мареев</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Oct 07, 2024</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+          <div class="col-lg-4">
+            <article>
+
+              <div class="post-img">
+                <img src="{% static "img/blog/blog-2.jpg" %}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Горящие</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">Начните уже что-то делать</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <img src="{% static "img/blog/blog-author-2.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <div class="post-meta">
+                  <p class="post-author">Аня Арисова</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Oct 5, 2024</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+          <div class="col-lg-4">
+            <article>
+
+              <div class="post-img">
+                <img src="{% static "img/blog/blog-3.jpg" %}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Просроченные</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">Сопрячь figma с bootstrap</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <img src="{% static "img/blog/blog-author-3.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <div class="post-meta">
+                  <p class="post-author">Костя Аникин</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Oct 22, 2024</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+          <div class="col-lg-4">
+            <article>
+
+              <div class="post-img">
+                <img src="{% static "img/blog/blog-4.jpg" %}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Горящие</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">Срочно учим frontend и bootstrap</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <img src="{% static "img/blog/blog-author-4.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <div class="post-meta">
+                  <p class="post-author">Регина Марфенкова</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Jun 30, 2024</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+          <div class="col-lg-4">
+            <article>
+
+              <div class="post-img">
+                <img src="{% static "img/blog/blog-5.jpg" %}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Текущие</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">Странные люди что-то хотят</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <img src="{% static "img/blog/blog-author-5.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <div class="post-meta">
+                  <p class="post-author">Denis Peterson</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Jan 30, 2022</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+          <div class="col-lg-4">
+            <article>
+
+              <div class="post-img">
+                <img src="{% static "img/blog/blog-6.jpg" %}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Просроченные</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">И эти тоже</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <img src="{% static "img/blog/blog-author-6.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <div class="post-meta">
+                  <p class="post-author">Mika Lendon</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Feb 14, 2022</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+        </div>
+      </div>
+
+    </section><!-- /Blog Posts Section -->
+
+    <!-- Blog Pagination Section -->
+    <section id="blog-pagination" class="blog-pagination section">
+
+      <div class="container">
+        <div class="d-flex justify-content-center">
+          <ul>
+            <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#" class="active">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li>...</li>
+            <li><a href="#">10</a></li>
+            <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+
+    </section><!-- /Blog Pagination Section -->
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container">
+      <h3 class="sitename">SuperKanban</h3>
+      <p>Сможем припахать любого!</p>
+      <div class="social-links d-flex justify-content-center">
+        <a href=""><i class="bi bi-twitter-x"></i></a>
+        <a href=""><i class="bi bi-facebook"></i></a>
+        <a href=""><i class="bi bi-instagram"></i></a>
+        <a href=""><i class="bi bi-skype"></i></a>
+        <a href=""><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>Copyright</span> <strong class="px-1 sitename">SuperKanban Team</strong> <span>All Rights Reserved</span>
+        </div>
+        <div class="credits">
+
+          Designed by <a>SuperKanban Team</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+  <script src="{% static "vendor/php-email-form/validate.js" %}"></script>
+  <script src="{% static "vendor/aos/aos.js" %}"></script>
+  <script src="{% static "vendor/glightbox/js/glightbox.min.js" %}"></script>
+  <script src="{% static "vendor/imagesloaded/imagesloaded.pkgd.min.js" %}"></script>
+  <script src="{% static "vendor/isotope-layout/isotope.pkgd.min.js" %}"></script>
+  <script src="{% static "vendor/swiper/swiper-bundle.min.js" %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static "js/main.js" %}"></script>
+
+</body>
+
+</html>
