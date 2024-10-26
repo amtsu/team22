@@ -6,7 +6,7 @@ from os import getenv
 from aiogram import Bot, Dispatcher, html
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-from aiogram.filters import CommandStart
+from aiogram.filters import CommandStart, Command
 from aiogram.types import Message
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
@@ -15,6 +15,7 @@ from db_managers.subscription_manager import SubscriptionDatabaseManager
 from keyboard_main import start_ikb
 from src_sports_ru.handlers import sports_router
 from src_trial_sport_ru.handlers import trial_sport_router
+from text_content import HELP_MSG, INFO_MSG, SUBSCRIPTIONS_MSG
 
 TOKEN = getenv("TELEBAN_TOKEN")
 
@@ -71,6 +72,33 @@ async def command_start_handler(message: Message) -> None:
     This handler receives messages with `/start` command
     """
     await message.answer(f"Hello, {html.bold(message.from_user.full_name)}!", reply_markup=await start_ikb())
+
+
+@dp.message(Command("help"))
+async def command_help_handler(message: Message) -> None:
+    """
+    Этот обработчик отвечает на сообщения с командой `/help`
+    """
+    help_text = HELP_MSG
+    await message.answer(help_text, parse_mode=ParseMode.HTML)
+
+
+@dp.message(Command("info"))
+async def command_info_handler(message: Message) -> None:
+    """
+    Этот обработчик отвечает на сообщения с командой `/info`
+    """
+    info_text = INFO_MSG
+    await message.answer(info_text, parse_mode=ParseMode.HTML)
+
+
+@dp.message(Command("subscriptions"))
+async def command_subscriptions_handler(message: Message) -> None:
+    """
+    Этот обработчик отвечает на сообщения с командой `/subscriptions`
+    """
+    subscriptions_text = SUBSCRIPTIONS_MSG.format(user_name=html.bold(message.from_user.full_name))
+    await message.answer(subscriptions_text, parse_mode=ParseMode.HTML)
 
 
 async def main() -> None:
