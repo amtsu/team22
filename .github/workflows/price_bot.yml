@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - price_bot_develop
-  pull_request:
-    branches:
-      - price_bot_develop
+  # pull_request:
+  #   branches:
+  #     - price_bot_develop
 
 jobs:
     build_and_test:

@@ -4,6 +4,7 @@ services:
   bot:
     build:
       context: .  # Указываем контекст сборки
+    # image: findy1bz/price_bot:latest
     volumes:
       # - .:/app
       - sqlite_data:/app/data/  # Используем том для сохранения базы данных
