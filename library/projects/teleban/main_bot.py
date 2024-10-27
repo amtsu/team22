@@ -20,8 +20,10 @@ from text_content import HELP_MSG, INFO_MSG, SUBSCRIPTIONS_MSG
 TOKEN = getenv("TELEBAN_TOKEN")
 
 dp = Dispatcher(name=__name__)
-dp.include_routers(sports_router)
-dp.include_routers(trial_sport_router)
+dp.include_routers(
+    sports_router,
+    trial_sport_router,
+)
 
 
 async def send_content(table: str, bot: Bot) -> None:

@@ -67,11 +67,12 @@ class ContentDatabaseManager:
         self.conn.close()
 
 
+TABLE_NAMES = [
+    'content_sports_ru',
+    'content_trial_sport_ru',
+]
+
 if __name__ == '__main__':
-    TABLE_NAMES = [
-        'content_sports_ru',
-        'content_trial_sport_ru',
-    ]
     # Создание таблиц в БД
     for table in TABLE_NAMES:
         with ContentDatabaseManager(table, '../' + DB_NAME) as db:
