@@ -1,0 +1,29 @@
+name: Price_bot tests
+
+on:
+  pull_request:
+    branches:
+      - price_bot_develop
+
+jobs:
+    build_and_test:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.9'
+
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install -r library/projects/Price_bot/requirements.txt
+
+        - name: Test with flake8
+          run: |
+            pip install flake8 pep8-naming flake8-broken-line flake8-return
+            python -m flake8 library/projects/Price_bot
