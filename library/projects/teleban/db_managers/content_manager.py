@@ -4,11 +4,6 @@ from datetime import datetime
 from config import DB_NAME
 
 
-TABLE_NAMES = [
-        'content_sports_ru',
-        'content_trial_sport_ru',
-    ]
-
 class ContentDatabaseManager:
     def __init__(self, table_name: str, db_name: str = DB_NAME):
         self.table_name = table_name
@@ -71,6 +66,11 @@ class ContentDatabaseManager:
         self.curs.close()
         self.conn.close()
 
+
+TABLE_NAMES = [
+    'content_sports_ru',
+    'content_trial_sport_ru',
+]
 
 if __name__ == '__main__':
     # Создание таблиц в БД
