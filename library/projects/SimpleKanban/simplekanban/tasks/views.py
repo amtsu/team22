@@ -39,13 +39,8 @@ class CompanyDetailView(DetailView):
 def home_view(request):
     if request.user.is_authenticated:
         companies = Company.objects.all()  # Получаем все компании
-        return render(request, 'home.html', {'companies': companies})  # Передаем компании в шаблон
+        return render(request, 'account/home.html', {'companies': companies})  # Передаем компании в шаблон
     return render(request, 'account/home.html')  # Или другой шаблон для неаутентифицированных пользователей
-
-# def home_view(request):
-#     if request.user.is_authenticated:
-#         return redirect('task_list_all')
-#     return render(request, 'home.html') #'account/home.html')
 
 
 # Представление для просмотра списка Задач

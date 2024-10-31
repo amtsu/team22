@@ -34,19 +34,27 @@ class InviteForm(forms.Form):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['title', 'description', 'execution_status', 'due_date', 'assigned_user']
+        fields = ['title', 'description', 'execution_status', 'due_date', 'assigned_user', 'company']
         widgets = {
             'due_date': forms.DateInput(attrs={'type': 'date'}),
             'execution_status': forms.Select(choices=Task.EXECUTION_STATUS_CHOICES),
         }
 
-    #чтобы поле автор был автоматически заполнено текущим пользователем:
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)  # Получаем текущего пользователя
+        # Извлекаем пользователя из аргументов, если он передан
+        self.user = kwargs.pop('user', None) # Извлекаем пользователя, если он передан
         super().__init__(*args, **kwargs)
-        if user:
-            self.fields['author'].initial = user  # Устанавливаем текущего пользователя в качестве автора
-            self.fields['author'].widget.attrs['readonly'] = True  # Делаем поле автор только для чтения
+        # if self.user:
+        #     self.fields['author'].initial = self.user  # Устанавливаем текущего пользователя как автора
+        #     self.fields['author'].widget.attrs['readonly'] = True  # Делаем поле автор только для чтения
+
+    def save(self, commit=True):
+        task = super().save(commit=False)  # Не сохраняем еще
+        if self.user:  # Устанавливаем текущего пользователя как автора
+            task.author = self.user # Устанавливаем автора
+        if commit:  # Если нужно сохранить
+            task.save()
+        return task
 
 
 class SubTaskForm(forms.ModelForm):

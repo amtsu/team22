@@ -51,8 +51,8 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#">Стартовая страница</a></li>
-          <li><a href="task_create">Создать задачу</a></li>
+          <li><a href={% url 'task_list_all' %}>Стартовая страница</a></li>
+          <li><a href={% url 'company_list' %}>Рабочая группа</a></li>
 
           <li class="dropdown"><a href="task_list"><span>Текущие задачи</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
