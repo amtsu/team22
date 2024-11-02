@@ -48,7 +48,7 @@ class TrialSportRuParser:
 
                 # записываем все в базу данных
                 with ContentDatabaseManager('content_trial_sport_ru', self.__db_path) as db:
-                    db.add_content(post_title, link, 'trial_sport', tags)
+                    db.add_content(post_title, link, 'trial-sport', tags)
 
             except Exception as e:  # выводим в консоль информацию о нерабочих ссылках
                 print(e, link)

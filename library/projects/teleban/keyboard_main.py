@@ -5,7 +5,7 @@ async def start_ikb():
     builder = InlineKeyboardBuilder()
     builder.button(text='Новости спорта | sports.ru', callback_data='sports')
     builder.button(text='Триал Спорт | trial-sport.ru', callback_data='trial-sport')
-    builder.button(text='Заглушка #2', callback_data='Заглушка #2')
+    builder.button(text='Кинопоиск | kinopoisk.ru', callback_data='kinopoisk')
     builder.button(text='Заглушка #3', callback_data='Заглушка #3')
     builder.button(text='Мои подписки', callback_data='Мои подписки')
 

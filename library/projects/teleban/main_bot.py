@@ -15,6 +15,7 @@ from db_managers.subscription_manager import SubscriptionDatabaseManager
 from keyboard_main import start_ikb
 from src_sports_ru.handlers import sports_router
 from src_trial_sport_ru.handlers import trial_sport_router
+from src_kinopoisk_ru.handlers import kinopoisk_router
 from text_content import HELP_MSG, INFO_MSG, SUBSCRIPTIONS_MSG
 
 TOKEN = getenv("TELEBAN_TOKEN")
@@ -23,6 +24,7 @@ dp = Dispatcher(name=__name__)
 dp.include_routers(
     sports_router,
     trial_sport_router,
+    kinopoisk_router
 )
 
 
