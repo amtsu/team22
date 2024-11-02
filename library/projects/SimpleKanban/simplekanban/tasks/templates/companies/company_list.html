@@ -1,24 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %}
-Список компаний
-{% endblock title %}
+{% block title %}Список компаний - SuperKanban{% endblock %}
 
 {% block content %}
-<h1>Компании</h1>
+  <section class="page-content">
+    <h1>Компании</h1>
 
-<div>
-    <a href="{% url 'company_create' %}" class="btn btn-primary">Создать компанию</a>
-</div>
+    <div>
+        <a href="{% url 'company_create' %}" class="btn btn-primary">Создать компанию</a>
+    </div>
 
-<ul>
-    {% for company in companies %}
-        <li>
-            <a href="{% url 'company_detail' company.id %}">{{ company.name }}</a>
-            <!-- Кнопка для создания задачи -->
-            <a href="{% url 'task_create' company.id %}" class="btn btn-secondary">Создать задачу</a>
-        </li>
-    {% endfor %}
-</ul>
-
-{% endblock content %}
+    {% if companies %}
+      <ul>
+          {% for company in companies %}
+              <li>
+                  <a href="{% url 'company_detail' company.id %}">{{ company.name }}</a>
+                  <!-- Кнопка для создания задачи -->
+                  <a href="{% url 'task_create' company.id %}" class="btn btn-secondary">Создать задачу</a>
+              </li>
+          {% endfor %}
+      </ul>
+    {% else %}
+      <p>Нет компаний для отображения.</p> <!-- Сообщение, если нет компаний -->
+    {% endif %}
+  </section>
+{% endblock %}
