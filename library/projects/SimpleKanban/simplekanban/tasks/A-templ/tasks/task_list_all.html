@@ -76,7 +76,7 @@
               </div>
               <p class="post-category">{{ task.status }}</p>
               <h2 class="title">
-                <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
+                  <a href="{% url 'task_detail' company_id=task.company.id pk=task.id %}">{{ task.title }}</a>
               </h2>
               <div class="d-flex align-items-center">
                 <img src="{% static 'tasks/img/blog/blog-author.jpg' %}" alt="Автор" class="img-fluid post-author-img flex-shrink-0">

@@ -23,8 +23,31 @@
 
 ## Установка
 
-1. Клонируйте репозиторий:
-2. Создайте виртуальное окружение
-3. Установите зависимости
-4. Примените миграции и запустите сервер
+# 1. Клонируем репозиторий
+git clone <URL-репозитория>
+(git clone https://github.com/amtsu/team22.git)
+#  перейдите в папку проекта
+cd <имя-папки-репозитория>
+(cd team22/library/projects/SimpleKanban)
+
+# 2. Создаем виртуальное окружение и активируем его
+python -m venv .venv
+# Активация виртуального окружения
+# На macOS/Linux: source .venv/bin/activate  
+# На Windows используйте: .venv\Scripts\activate
+
+# 3. Устанавливаем зависимости
+pip install -r requirements.txt
+
+# 4. Создаем миграции и применяем их к базе данных
+python manage.py makemigrations
+python manage.py migrate
+
+# 5. Создаем суперпользователя для доступа к административной панели
+python manage.py createsuperuser
+# Введите имя пользователя, email, и пароль, следуя инструкциям
+
+# 6. Запускаем сервер
+python manage.py runserver
+
 5. Откройте браузер и перейдите по адресу
