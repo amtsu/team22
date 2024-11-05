@@ -46,28 +46,35 @@ def home_view(request):
 # Представление для просмотра списка Задач
 class TaskListView(ListView):
     model = Task
-    context_object_name = 'task'
-    template_name = 'tasks/task_list.html'
+    context_object_name = 'tasks'  # Имя контекста для доступа к задачам в шаблоне
+    template_name = 'task_list.html'
 
     def get_queryset(self):
-        return Task.objects.all()
+        # Получаем company_id из GET-запроса
+        company_id = self.request.GET.get('company_id')
+        if company_id:
+            return Task.objects.filter(company_id=company_id)  # Фильтруем по компании
+        return Task.objects.all()  # Возвращаем все задачи, если company_id не указан
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         company_id = self.request.GET.get('company_id')
 
+        # Если company_id указан, получаем соответствующую компанию
         if company_id:
-            context['tasks'] = context['tasks'].filter(company_id=company_id)
             context['selected_company'] = get_object_or_404(Company, id=company_id)
+        else:
+            context['selected_company'] = None  # Нет выбранной компании
 
-        context['companies'] = Company.objects.all()  # Отправляем все компании для возможной фильтрации
+        # Получаем все компании для отображения в фильтре
+        context['companies'] = Company.objects.all()
         return context
 
 
 # Представление для удаления Задачи
 class TaskDeleteView(DeleteView):
     model = Task
-    template_name = 'tasks/task_delete.html'
+    template_name = 'task_delete.html'
     context_object_name = 'task_delete'
     success_url = reverse_lazy('task_list')  # Убедитесь, что у вас правильно настроен success_url
 
@@ -81,7 +88,7 @@ class TaskDeleteView(DeleteView):
 # Представление для детальной информации о Задаче
 class TaskDetailView(DetailView):
     model = Task
-    template_name = 'tasks/task_detail.html'
+    template_name = 'task_detail.html'
     context_object_name = 'task'
 
     def get_context_data(self, **kwargs):
@@ -94,12 +101,20 @@ class TaskDetailView(DetailView):
 class TaskCreateView(CreateView):
     model = Task
     form_class = TaskForm
-    template_name = 'tasks/task_create.html'
+    template_name = 'task_create.html'
     context_object_name = 'task_create'
-    success_url = reverse_lazy('task_list')
+
+    # Заменяем success_url для перенаправления после создания задачи
+    def get_success_url(self):
+        return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        # Передаем company_id в контекст
+        context['company_id'] = self.kwargs.get('company_id')
+
+        # Проверяем, если данные переданы через POST, инициализируем подзадачи с данными
         if self.request.POST:
             context['subtasks'] = SubTaskFormSet(self.request.POST)
         else:
@@ -111,7 +126,7 @@ class TaskCreateView(CreateView):
         subtasks = context['subtasks']
         form.instance.author = self.request.user
 
-        # Связываем задачу с компанией, если это необходимо
+        # Связываем задачу с компанией
         company_id = self.kwargs.get('company_id')
         if company_id:
             form.instance.company = get_object_or_404(Company, id=company_id)
@@ -124,11 +139,10 @@ class TaskCreateView(CreateView):
         else:
             return self.form_invalid(form)
 
-
 class TaskUpdateView(UpdateView):
     model = Task
     form_class = TaskForm
-    template_name = 'tasks/task_edit.html'
+    template_name = 'task_edit.html'
     context_object_name = 'task'
 
     def get_context_data(self, **kwargs):
@@ -158,30 +172,6 @@ class TaskUpdateView(UpdateView):
     def get_success_url(self):
         # Перенаправление на список задач компании после сохранения
         return reverse_lazy('task_list', kwargs={'company_id': self.kwargs.get('company_id')})
-# class TaskUpdateView(UpdateView):
-#     model = Task
-#     form_class = TaskForm
-#     template_name = 'tasks/task_edit.html'
-#     context_object_name = 'task_edit'
-#     success_url = reverse_lazy('task_list')
-#
-#     def get_context_data(self, **kwargs):
-#         data = super().get_context_data(**kwargs)
-#         if self.request.POST:
-#             data['subtasks'] = SubTaskFormSet(self.request.POST, instance=self.object)
-#         else:
-#             data['subtasks'] = SubTaskFormSet(instance=self.object)
-#         return data
-#
-#     def form_invalid(self, form):
-#         context = self.get_context_data()
-#         context['subtasks'] = SubTaskFormSet(self.request.POST, instance=self.object)
-#         return self.render_to_response(context)
-#
-#     def get_success_url(self):
-#         # self.object.id для получения идентификатора задачи
-#         return reverse_lazy('task_detail', kwargs={'pk': self.object.id})
-#
 
 
 class TaskListAllView(ListView):
@@ -256,3 +246,29 @@ class TaskListAllView(ListView):
 #     model = WorkGroup
 #     context_object_name = 'workgroups'  # Это имя будет доступно в шаблоне
 #     template_name = 'workgroups/workgroup_list.html'  # Путь к шаблону
+
+
+# class TaskUpdateView(UpdateView):
+#     model = Task
+#     form_class = TaskForm
+#     template_name = 'tasks/task_edit.html'
+#     context_object_name = 'task_edit'
+#     success_url = reverse_lazy('task_list')
+#
+#     def get_context_data(self, **kwargs):
+#         data = super().get_context_data(**kwargs)
+#         if self.request.POST:
+#             data['subtasks'] = SubTaskFormSet(self.request.POST, instance=self.object)
+#         else:
+#             data['subtasks'] = SubTaskFormSet(instance=self.object)
+#         return data
+#
+#     def form_invalid(self, form):
+#         context = self.get_context_data()
+#         context['subtasks'] = SubTaskFormSet(self.request.POST, instance=self.object)
+#         return self.render_to_response(context)
+#
+#     def get_success_url(self):
+#         # self.object.id для получения идентификатора задачи
+#         return reverse_lazy('task_detail', kwargs={'pk': self.object.id})
+#

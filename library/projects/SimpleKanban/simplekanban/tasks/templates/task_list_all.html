@@ -84,171 +84,203 @@
     </div><!-- End Page Title -->
 
     <!-- Blog Posts Section -->
-    <section id="blog-posts" class="blog-posts section">
-
-      <div class="container">
+      <!-- Заменила Изменила Анна -->
+<section id="blog-posts" class="blog-posts section">
+    <div class="container">
         <div class="row gy-4">
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static "img/blog/blog-1.jpg" %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Текущие</p>
-
-              <h2 class="title">
-                <a href="blog-details.html">Разработать front для страницы задач</a>
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <img src="{% static "img/blog/blog-author.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author">Саша Мареев</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Oct 07, 2024</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static "img/blog/blog-2.jpg" %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Горящие</p>
-
-              <h2 class="title">
-                <a href="blog-details.html">Начните уже что-то делать</a>
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <img src="{% static "img/blog/blog-author-2.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author">Аня Арисова</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Oct 5, 2024</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static "img/blog/blog-3.jpg" %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Просроченные</p>
-
-              <h2 class="title">
-                <a href="blog-details.html">Сопрячь figma с bootstrap</a>
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <img src="{% static "img/blog/blog-author-3.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author">Костя Аникин</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Oct 22, 2024</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static "img/blog/blog-4.jpg" %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Горящие</p>
-
-              <h2 class="title">
-                <a href="blog-details.html">Срочно учим frontend и bootstrap</a>
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <img src="{% static "img/blog/blog-author-4.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author">Регина Марфенкова</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Jun 30, 2024</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static "img/blog/blog-5.jpg" %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Текущие</p>
-
-              <h2 class="title">
-                <a href="blog-details.html">Странные люди что-то хотят</a>
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <img src="{% static "img/blog/blog-author-5.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author">Denis Peterson</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Jan 30, 2022</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static "img/blog/blog-6.jpg" %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Просроченные</p>
-
-              <h2 class="title">
-                <a href="blog-details.html">И эти тоже</a>
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <img src="{% static "img/blog/blog-author-6.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author">Mika Lendon</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Feb 14, 2022</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </div><!-- End post list item -->
-
+            {% for task in tasks %}
+            <div class="col-lg-4">
+                <article>
+                    <div class="post-img">
+                        <img src="{{ task.image.url }}" alt="" class="img-fluid">
+                    </div>
+                    <p class="post-category">{{ task.category }}</p>
+                    <h2 class="title">
+                        <a href="{% url 'task_detail' company_id=task.company.id pk=task.id %}">{{ task.title }}</a>
+                    </h2>
+                    <div class="d-flex align-items-center">
+                        <img src="{{ task.author.profile_image.url }}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                        <div class="post-meta">
+                            <p class="post-author">{{ task.author }}</p>
+                            <p class="post-date">
+                                <time datetime="{{ task.created_at }}">{{ task.created_at|date:"M d, Y" }}</time>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {% empty %}
+            <p>No tasks available.</p>
+            {% endfor %}
         </div>
-      </div>
+    </div>
+</section>
 
-    </section><!-- /Blog Posts Section -->
+{#    <section id="blog-posts" class="blog-posts section">#}
+{##}
+{#      <div class="container">#}
+{#        <div class="row gy-4">#}
+{##}
+{#          <div class="col-lg-4">#}
+{#            <article>#}
+{##}
+{#              <div class="post-img">#}
+{#                <img src="{% static "img/blog/blog-1.jpg" %}" alt="" class="img-fluid">#}
+{#              </div>#}
+{##}
+{#              <p class="post-category">Текущие</p>#}
+{##}
+{#              <h2 class="title">#}
+{#                <a href="blog-details.html">Разработать front для страницы задач</a>#}
+{#              </h2>#}
+{##}
+{#              <div class="d-flex align-items-center">#}
+{#                <img src="{% static "img/blog/blog-author.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">#}
+{#                <div class="post-meta">#}
+{#                  <p class="post-author">Саша Мареев</p>#}
+{#                  <p class="post-date">#}
+{#                    <time datetime="2022-01-01">Oct 07, 2024</time>#}
+{#                  </p>#}
+{#                </div>#}
+{#              </div>#}
+{##}
+{#            </article>#}
+{#          </div><!-- End post list item -->#}
+{##}
+{#          <div class="col-lg-4">#}
+{#            <article>#}
+{##}
+{#              <div class="post-img">#}
+{#                <img src="{% static "img/blog/blog-2.jpg" %}" alt="" class="img-fluid">#}
+{#              </div>#}
+{##}
+{#              <p class="post-category">Горящие</p>#}
+{##}
+{#              <h2 class="title">#}
+{#                <a href="blog-details.html">Начните уже что-то делать</a>#}
+{#              </h2>#}
+{##}
+{#              <div class="d-flex align-items-center">#}
+{#                <img src="{% static "img/blog/blog-author-2.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">#}
+{#                <div class="post-meta">#}
+{#                  <p class="post-author">Аня Арисова</p>#}
+{#                  <p class="post-date">#}
+{#                    <time datetime="2022-01-01">Oct 5, 2024</time>#}
+{#                  </p>#}
+{#                </div>#}
+{#              </div>#}
+{##}
+{#            </article>#}
+{#          </div><!-- End post list item -->#}
+{##}
+{#          <div class="col-lg-4">#}
+{#            <article>#}
+{##}
+{#              <div class="post-img">#}
+{#                <img src="{% static "img/blog/blog-3.jpg" %}" alt="" class="img-fluid">#}
+{#              </div>#}
+{##}
+{#              <p class="post-category">Просроченные</p>#}
+{##}
+{#              <h2 class="title">#}
+{#                <a href="blog-details.html">Сопрячь figma с bootstrap</a>#}
+{#              </h2>#}
+{##}
+{#              <div class="d-flex align-items-center">#}
+{#                <img src="{% static "img/blog/blog-author-3.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">#}
+{#                <div class="post-meta">#}
+{#                  <p class="post-author">Костя Аникин</p>#}
+{#                  <p class="post-date">#}
+{#                    <time datetime="2022-01-01">Oct 22, 2024</time>#}
+{#                  </p>#}
+{#                </div>#}
+{#              </div>#}
+{##}
+{#            </article>#}
+{#          </div><!-- End post list item -->#}
+{##}
+{#          <div class="col-lg-4">#}
+{#            <article>#}
+{##}
+{#              <div class="post-img">#}
+{#                <img src="{% static "img/blog/blog-4.jpg" %}" alt="" class="img-fluid">#}
+{#              </div>#}
+{##}
+{#              <p class="post-category">Горящие</p>#}
+{##}
+{#              <h2 class="title">#}
+{#                <a href="blog-details.html">Срочно учим frontend и bootstrap</a>#}
+{#              </h2>#}
+{##}
+{#              <div class="d-flex align-items-center">#}
+{#                <img src="{% static "img/blog/blog-author-4.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">#}
+{#                <div class="post-meta">#}
+{#                  <p class="post-author">Регина Марфенкова</p>#}
+{#                  <p class="post-date">#}
+{#                    <time datetime="2022-01-01">Jun 30, 2024</time>#}
+{#                  </p>#}
+{#                </div>#}
+{#              </div>#}
+{##}
+{#            </article>#}
+{#          </div><!-- End post list item -->#}
+{##}
+{#          <div class="col-lg-4">#}
+{#            <article>#}
+{##}
+{#              <div class="post-img">#}
+{#                <img src="{% static "img/blog/blog-5.jpg" %}" alt="" class="img-fluid">#}
+{#              </div>#}
+{##}
+{#              <p class="post-category">Текущие</p>#}
+{##}
+{#              <h2 class="title">#}
+{#                <a href="blog-details.html">Странные люди что-то хотят</a>#}
+{#              </h2>#}
+{##}
+{#              <div class="d-flex align-items-center">#}
+{#                <img src="{% static "img/blog/blog-author-5.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">#}
+{#                <div class="post-meta">#}
+{#                  <p class="post-author">Denis Peterson</p>#}
+{#                  <p class="post-date">#}
+{#                    <time datetime="2022-01-01">Jan 30, 2022</time>#}
+{#                  </p>#}
+{#                </div>#}
+{#              </div>#}
+{##}
+{#            </article>#}
+{#          </div><!-- End post list item -->#}
+{##}
+{#          <div class="col-lg-4">#}
+{#            <article>#}
+{##}
+{#              <div class="post-img">#}
+{#                <img src="{% static "img/blog/blog-6.jpg" %}" alt="" class="img-fluid">#}
+{#              </div>#}
+{##}
+{#              <p class="post-category">Просроченные</p>#}
+{##}
+{#              <h2 class="title">#}
+{#                <a href="blog-details.html">И эти тоже</a>#}
+{#              </h2>#}
+{##}
+{#              <div class="d-flex align-items-center">#}
+{#                <img src="{% static "img/blog/blog-author-6.jpg" %}" alt="" class="img-fluid post-author-img flex-shrink-0">#}
+{#                <div class="post-meta">#}
+{#                  <p class="post-author">Mika Lendon</p>#}
+{#                  <p class="post-date">#}
+{#                    <time datetime="2022-01-01">Feb 14, 2022</time>#}
+{#                  </p>#}
+{#                </div>#}
+{#              </div>#}
+{##}
+{#            </article>#}
+{#          </div><!-- End post list item -->#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#    </section><!-- /Blog Posts Section -->#}
 
     <!-- Blog Pagination Section -->
     <section id="blog-pagination" class="blog-pagination section">

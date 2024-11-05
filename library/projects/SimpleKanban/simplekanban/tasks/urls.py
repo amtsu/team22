@@ -6,15 +6,12 @@ urlpatterns = [
     path('', views.home_view, name='home'),
 
     # Задачи
-    path('tasks/', views.TaskListAllView.as_view(), name='task_list_all'),  # Все задачи?
+    path('tasks/', views.TaskListAllView.as_view(), name='task_list_all'),  # Все задачи
     path('companies/<int:company_id>/tasks/', views.TaskListView.as_view(), name='task_list'),  # Задачи для конкретной компании
     path('companies/<int:company_id>/task/<int:pk>/', views.TaskDetailView.as_view(), name='task_detail'),  # Детали задачи
     path('companies/<int:company_id>/task/create/', views.TaskCreateView.as_view(), name='task_create'),  # Создание задачи
     path('companies/<int:company_id>/task/<int:pk>/edit/', views.TaskUpdateView.as_view(), name='task_edit'),  # Редактирование задачи
     path('companies/<int:company_id>/task/<int:pk>/delete/', views.TaskDeleteView.as_view(), name='task_delete'),  # Удаление задачи
-
-    # Общие задачи (если нужно, иначе можно убрать)
-    path('tasks_list/', views.TaskListView.as_view(), name='task_list'),  # Задачи без фильтрации по компании
 
     # Компании
     path('companies/', views.CompanyListView.as_view(), name='company_list'),  # Список компаний
@@ -32,3 +29,15 @@ urlpatterns = [
 # path('workgroup/create/', views.WorkGroupCreateView.as_view(), name='workgroup_create'),
 # path('workgroup/<int:pk>/edit/', views.WorkGroupUpdateView.as_view(), name='workgroup_edit'),
 # path('workgroup/<int:pk>/delete/', views.WorkGroupDeleteView.as_view(), name='workgroup_delete'),
+
+# # Задачи
+# path('tasks/', views.TaskListAllView.as_view(), name='task_list_all'),  # Все задачи? по компаниям?
+# # path('tasks/company/<int:company_id>/', views.TaskListByCompanyView.as_view(), name='task_list'), # Задачи по компании
+# path('companies/<int:company_id>/tasks/', views.TaskListView.as_view(), name='task_list'),  # Задачи для конкретной компании
+# path('companies/<int:company_id>/task/<int:pk>/', views.TaskDetailView.as_view(), name='task_detail'),  # Детали задачи
+# path('companies/<int:company_id>/task/create/', views.TaskCreateView.as_view(), name='task_create'),  # Создание задачи
+# path('companies/<int:company_id>/task/<int:pk>/edit/', views.TaskUpdateView.as_view(), name='task_edit'),  # Редактирование задачи
+# path('companies/<int:company_id>/task/<int:pk>/delete/', views.TaskDeleteView.as_view(), name='task_delete'),  # Удаление задачи
+#
+# # Общие задачи (если нужно, иначе можно убрать)
+# path('tasks_list/', views.TaskListView.as_view(), name='task_list'),  # Задачи без фильтрации по компании
