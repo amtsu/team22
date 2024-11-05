@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-import sqlite3
-
+from config import DB_NAME
+from db_managers/content_manager import ContentDatabaseManager
 
 class RbcNewsParser:
     def __init__(self):
@@ -74,58 +74,14 @@ class RbcNewsParser:
     def save_to_db(self, news_list):
         """
         Сохраняет собранные новости в базу данных SQLite.
-        Проверяет дублирующиеся ссылки и добавляет новые теги, если они уже существуют.
         """
         try:
-            # Подключаемся к базе данных SQLite
-            conn = sqlite3.connect(self.db_name)
-            cursor = conn.cursor()
+            with ContentDatabaseManager('content_sports_ru', self.__db_path) as db:
+                db.add_content(post_title, link, source, tags)
 
-            # Создаем таблицу, если она еще не существует
-            cursor.execute('''
-                CREATE TABLE IF NOT EXISTS news (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    title TEXT NOT NULL,
-                    link TEXT NOT NULL UNIQUE,
-                    tag TEXT NOT NULL
-                )
-            ''')
 
-            # Вставляем данные или обновляем теги для дубликатов
-            for news in news_list:
-                title, link, tag = news
-
-                # Проверяем, существует ли ссылка в базе данных
-                cursor.execute('SELECT tag FROM news WHERE link = ?', (link,))
-                result = cursor.fetchone()
-
-                if result:
-                    # Если ссылка существует, добавляем новый тег, если его еще нет
-                    existing_tags = result[0]
-                    if tag not in existing_tags:
-                        new_tags = existing_tags + ',' + tag
-                        cursor.execute('UPDATE news SET tag = ? WHERE link = ?', (new_tags, link))
-                        print(f"Обновлена запись: {title} | Ссылка: {link} | Новые теги: {new_tags}")
-                    else:
-                        print(f"Запись уже содержит тег: {title} | Ссылка: {link} | Теги: {existing_tags}")
-                else:
-                    # Если ссылки нет, добавляем новую запись
-                    cursor.execute('''
-                        INSERT INTO news (title, link, tag)
-                        VALUES (?, ?, ?)
-                    ''', (title, link, tag))
-                    print(f"Добавлена новая запись: {title} | Ссылка: {link} | Тег: {tag}")
-
-            # Сохраняем изменения и закрываем соединение
-            conn.commit()
-            print("Данные успешно сохранены в базу данных.")
-
-        except sqlite3.Error as e:
-            print(f"Ошибка работы с базой данных: {e}")
-
-        finally:
-            if conn:
-                conn.close()
+        except Exception as e:
+            print(e, link)
 
 
 if __name__ == "__main__":

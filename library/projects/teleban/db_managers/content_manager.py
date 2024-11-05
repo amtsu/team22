@@ -66,6 +66,32 @@ class ContentDatabaseManager:
         self.curs.close()
         self.conn.close()
 
+    def check_exist_link(self, link: str):
+        # Вставляем данные или обновляем теги для дубликатов
+        for news in news_list:
+            title, link, tag = news
+
+            # Проверяем, существует ли ссылка в базе данных
+            cursor.execute('SELECT tag FROM news WHERE link = ?', (link,))
+            result = cursor.fetchone()
+
+            if result:
+                # Если ссылка существует, добавляем новый тег, если его еще нет
+                existing_tags = result[0]
+                if tag not in existing_tags:
+                    new_tags = existing_tags + ',' + tag
+                    cursor.execute('UPDATE news SET tag = ? WHERE link = ?', (new_tags, link))
+                    print(f"Обновлена запись: {title} | Ссылка: {link} | Новые теги: {new_tags}")
+                else:
+                    print(f"Запись уже содержит тег: {title} | Ссылка: {link} | Теги: {existing_tags}")
+            else:
+                # Если ссылки нет, добавляем новую запись
+                cursor.execute('''
+                            INSERT INTO news (title, link, tag)
+                            VALUES (?, ?, ?)
+                        ''', (title, link, tag))
+                print(f"Добавлена новая запись: {title} | Ссылка: {link} | Тег: {tag}")
+
 
 TABLE_NAMES = [
     'content_sports_ru',
@@ -77,3 +103,4 @@ if __name__ == '__main__':
     for table in TABLE_NAMES:
         with ContentDatabaseManager(table, '../' + DB_NAME) as db:
             db.create_table()
+
