@@ -29,7 +29,7 @@ jobs:
           strip_components: 1
 
       - name: d-c stop start
-        uses: appleboy/ssh-action@v2
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.STUDY_DEPLOY_SERVER_HOST }}
           username: ${{ secrets.STUDY_DEPLOY_SERVER_USERNAME }}
