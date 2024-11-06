@@ -26,7 +26,9 @@ jobs:
           source: ${{ env.PATH_INPUT }}
           target: ${{ env.PATH_OUTPUT }}
           strip_components: 1
-      - name: Print Info
+      - name: Print Info SimpleKanban
         run: echo "Deployed SimpleKanban at http://absda.ru:31001"
+      - name: Print Info teleban
         run: echo "Deployed teleban at http://absda.ru:31003"
+      - name: Print Info Price_bot
         run: echo "Deployed Price_bot at http://absda.ru:31002"
