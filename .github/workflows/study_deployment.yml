@@ -1,0 +1,32 @@
+name: StudyDeployment
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  PATH_INPUT: .
+  PATH_OUTPUT: /home/dev_stand/team22
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.STUDY_DEPLOY_SERVER_HOST }}
+          port: ${{ secrets.STUDY_DEPLOY_SERVER_PORT }}
+          username: ${{ secrets.STUDY_DEPLOY_SERVER_USERNAME }}
+          key: ${{ secrets.STUDY_DEPLOY_SERVER_KEY }}
+          source: ${{ env.PATH_INPUT }}
+          target: ${{ env.PATH_OUTPUT }}
+          strip_components: 1
+      - name: Print Info
+        run: echo "Deployed SimpleKanban at http://absda.ru:31001"
+        run: echo "Deployed teleban at http://absda.ru:31003"
+        run: echo "Deployed Price_bot at http://absda.ru:31002"
