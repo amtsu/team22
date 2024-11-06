@@ -31,10 +31,10 @@ jobs:
       - name: d-c stop start
         uses: appleboy/ssh-action@v1.1.0
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
+          host: ${{ secrets.STUDY_DEPLOY_SERVER_HOST }}
+          username: ${{ secrets.STUDY_DEPLOY_SERVER_USERNAME }}
+          key: ${{ secrets.STUDY_DEPLOY_SERVER_KEY }}
+          port: ${{ secrets.STUDY_DEPLOY_SERVER_PORT }}
           script: |
             docker-compose down --rmi all
             docker-compose up --build -d
