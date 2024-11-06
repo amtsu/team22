@@ -27,6 +27,18 @@ jobs:
           source: ${{ env.PATH_INPUT }}
           target: ${{ env.PATH_OUTPUT }}
           strip_components: 1
+
+      - name: d-c stop start
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            docker-compose down --rmi all
+            docker-compose up --build -d
+
       - name: Print Info SimpleKanban
         run: echo "Deployed SimpleKanban at http://absda.ru:31001"
       - name: Print Info teleban
