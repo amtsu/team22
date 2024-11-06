@@ -1,0 +1,8 @@
+
+*.pyc
+/myproject/static
+/.idea
+/myproject/.idea
+/myproject/chroma.db
+/venv
+myproject/static.tar

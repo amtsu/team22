@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск по описанию аниме</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .search-container input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background-color: #45a049;
+        }
+        .anime-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .anime-item {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .anime-item h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333;
+        }
+        .anime-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .anime-item .field {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Поиск по описанию аниме</h1>
+
+    <div class="search-container">
+        <form method="get">
+            {{ form.as_p }}
+            <button type="submit">Искать</button>
+        </form>
+    </div>
+
+    {% if results %}
+        <h2>Результаты поиска ( {{ len_results }} {% if safe_search %}safe {% endif %}):</h2>
+        <ul class="anime-list">
+            {% for anime in results %}
+                <li class="anime-item">
+                    <h2>{{ anime.idx }}.
+                        {% if anime.title_orig %}
+                            {{ anime.title_orig }}
+                        {% else %}
+                            {{ anime.title }}
+                        {% endif %}
+                        {% if anime.title_ru and translate_to_russian %}
+                            ( {{ anime.title_ru }} )
+                        {% elif anime.title_en %}
+                            ( {{ anime.title_en }} )
+                        {% endif %}
+                        #{{anime.anime_id}}
+                    </h2>
+                    <p><span class="field">Ранг:</span> {{ anime.ranked }}</p>
+<!--                    <p><span class="field">Adult:</span> {{ anime.adult_score }}</p>-->
+                    <p><span class="field">Популярность:</span> {{ anime.popularity }}</p>
+                    <p><span class="field">Рейтинг:</span> {{ anime.rating }}</p>
+                    {% if anime.description_ru and translate_to_russian %}
+                        <p><span class="field">Описание:</span> {{ anime.description_ru }}</p>
+                    {% else %}
+                        <p><span class="field">Описание:</span> {{ anime.description }}</p>
+                    {% endif %}
+                    {% if anime.scenario and show_scenario_and_poster %}
+                        {% if anime.scenario_ru and translate_to_russian %}
+                        <p><span class="field">Сценарий:</span> {{ anime.scenario_ru }}</p>
+                        {% else %}
+                        <p><span class="field">Сценарий:</span> {{ anime.scenario }}</p>
+                        {% endif %}
+                    {% endif %}
+                    {% if anime.poster and show_scenario_and_poster %}
+                        {% if anime.poster_ru and translate_to_russian %}
+                            <p><span class="field">Постер:</span> {{ anime.poster_ru }}</p>
+                        {% else %}
+                            <p><span class="field">Постер:</span> {{ anime.poster }}</p>
+                        {% endif %}
+                    {% endif %}
+                    {% if anime.image0 or anime.image1 or anime.image2 or anime.image3 or anime.image4 %}
+                        <p>
+                            {% if anime.image0 %}
+                                <img height="480" src="{% static anime.image0 %}" alt="{{ anime.poster }}" />
+                            {% elif anime.image1 or anime.image2 or anime.image3 or anime.image4 or anime.image5 or anime.image6 %}
+                            0
+                            {% endif %}
+                            {% if anime.image1 %}
+                                <img height="480" src="{% static anime.image1 %}" alt="{{ anime.poster }}" />
+                            {% elif anime.image2 or anime.image3 or anime.image4 or anime.image5 or anime.image6 %}
+                            1
+                            {% endif %}
+                            {% if anime.image2 %}
+                                <img height="480" src="{% static anime.image2 %}" alt="{{ anime.poster }}" />
+                            {% elif anime.image3 or anime.image4 or anime.image5 or anime.image6 %}
+                            2
+                            {% endif %}
+                            {% if anime.image3 %}
+                                <img height="480" src="{% static anime.image3 %}" alt="{{ anime.poster }}" />
+                            {% elif anime.image4 or anime.image5 or anime.image6 %}
+                            3
+                            {% endif %}
+                            {% if anime.image4 %}
+                                <img height="480" src="{% static anime.image4 %}" alt="{{ anime.poster }}" />
+                            {% elif anime.image5 or anime.image6 %}
+                            4
+                            {% endif %}
+                            {% if anime.image5 %}
+                                <img height="480" src="{% static anime.image5 %}" alt="{{ anime.poster }}" />
+                            {% elif anime.image6 %}
+                            5
+                            {% endif %}
+                            {% if anime.image6 %}
+                                <img height="480" src="{% static anime.image6 %}" alt="{{ anime.poster }}" />
+                            {% endif %}
+                        </p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif query_submitted %}
+        <p>Ничего не найдено.</p>
+    {% endif %}
+</body>
+</html>
