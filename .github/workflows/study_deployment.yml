@@ -41,8 +41,8 @@ jobs:
             whoami
             echo '----'
             cd /home/dev_stand/
-            docker-compose down --rmi all
-            docker-compose up --build -d
+            /usr/bin/docker-compose down --rmi all
+            /usr/bin/docker-compose up --build -d
 
       - name: Print Info SimpleKanban
         run: echo "Deployed SimpleKanban at http://absda.ru:31001"
