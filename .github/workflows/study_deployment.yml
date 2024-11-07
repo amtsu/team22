@@ -37,8 +37,7 @@ jobs:
           port: ${{ secrets.STUDY_DEPLOY_SERVER_PORT }}
           script: |
             whoami
-            docker-compose down --rmi all
-            docker-compose up --build -d
+            ls
 
       - name: Print Info SimpleKanban
         run: echo "Deployed SimpleKanban at http://absda.ru:31001"
