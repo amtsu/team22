@@ -36,7 +36,7 @@ jobs:
           key: ${{ secrets.STUDY_DEPLOY_SERVER_KEY }}
           port: ${{ secrets.STUDY_DEPLOY_SERVER_PORT }}
           script: |
-            whoiam
+            whoami
             docker-compose down --rmi all
             docker-compose up --build -d
 
