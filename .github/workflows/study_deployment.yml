@@ -40,6 +40,7 @@ jobs:
             ls -la
             whoami
             echo '----'
+            cd /home/dev_stand/
             docker-compose down --rmi all
             docker-compose up --build -d
 
