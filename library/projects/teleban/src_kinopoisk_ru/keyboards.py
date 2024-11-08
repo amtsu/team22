@@ -17,5 +17,5 @@ async def kinopoisk_ikb(user_id):
 
         builder.button(text='⏮ В главное меню', callback_data='sports_main_menu')
 
-        builder.adjust(4)
+        builder.adjust(3)
         return builder.as_markup()

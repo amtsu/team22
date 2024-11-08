@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 from config import DB_NAME
 from db_managers.content_manager import ContentDatabaseManager
-
+from text_data import KINOPOISK_RU_DICTIONARY
 class KinopoiskRuParser:
     """
     Класс содержит методы для парсинга контента с сайта.
@@ -20,39 +20,50 @@ class KinopoiskRuParser:
         """
         return BeautifulSoup(requests.get(url).content, 'lxml')
 
-    def get_new_content(self):
+    def get_new_content(self, link):
         """
         Метод получает ссылки на все статьи, их заголовки и теги.
         Записывает все в БД.
         """
-        post_list_html: BeautifulSoup = self.__get_soup(self.__base_url + '/media/')
+        post_list_html: BeautifulSoup = self.__get_soup(link)
+        #print(3,link)
         # парсим с этой страницы ссылки на все статьи
         post_links = [self.__base_url + article.get('href') for article in
                       post_list_html.body.find_all('a', 'rHg73hUuhIU9jiVJ6itV')]
-        print(post_links,7)
+        #print(8, post_links)
+        return post_links
 
-        for link in post_links:  # пробегаемся циклом по каждой ссылке
-            try:
-                # получаем HTML-страницу при помощи метода get_soup
-                post_html: BeautifulSoup = self.__get_soup(link)
-                # парсим название страницы
-                post_title = post_html.body.find('span').text.strip()
-                print(post_title)
-                # парсим теги со страницы
-                tags = [tag.text for item in post_html.body.find_all('p', 'lite') for tag in item.find_all('a')]
-                # преобразуем список тегов в строку, указав их через запятую
-                tags = ','.join(tags)
+        # for link in post_links:  # пробегаемся циклом по каждой ссылке
+        #     try:
+        #         # получаем HTML-страницу при помощи метода get_soup
+        #         post_html: BeautifulSoup = self.__get_soup(link)
+        #         # парсим название страницы
+        #         post_title = post_html.body.find('span').text.strip()
+        #         print(post_title)
+        #         # парсим теги со страницы
+        #
+        #
+        #
+        #         tags = [tag.text for item in post_html.body.find_all('p', 'lite') for tag in item.find_all('a')]
+        #         # преобразуем список тегов в строку, указав их через запятую
+        #         tags = ','.join(tags)
+        #
+        #         if not tags:  # выбрасываем исключение, если на странице нет тегов
+        #             raise ValueError('Статья без тегов не нужна!')
+        #
+        #         # записываем все в базу данных
+        #         with ContentDatabaseManager('content_kinopoisk_ru', self.__db_path) as db:
+        #             db.add_content(post_title, link, 'kinopoisk', tags)
+        #
+        #     except Exception as e:  # выводим в консоль информацию о нерабочих ссылках
+        #         print(e, link)
 
-                if not tags:  # выбрасываем исключение, если на странице нет тегов
-                    raise ValueError('Статья без тегов не нужна!')
-
-                # записываем все в базу данных
-                with ContentDatabaseManager('content_kinopoisk_ru', self.__db_path) as db:
-                    db.add_content(post_title, link, 'kinopoisk', tags)
-
-            except Exception as e:  # выводим в консоль информацию о нерабочих ссылках
-                print(e, link)
-
+    def get_all_news(self):
+        for val in KINOPOISK_RU_DICTIONARY.values():
+            link = self.__base_url + val
+            #print(link)
+            post_list = self.get_new_content(link)
+            #print (post_list)
 
 if __name__ == "__main__":
-    KinopoiskRuParser('../' + DB_NAME).get_new_content()
+    KinopoiskRuParser('../' + DB_NAME).get_all_news()
