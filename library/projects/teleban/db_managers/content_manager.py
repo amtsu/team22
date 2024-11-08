@@ -70,6 +70,7 @@ class ContentDatabaseManager:
 TABLE_NAMES = [
     'content_sports_ru',
     'content_trial_sport_ru',
+    'content_kinopoisk_ru',
 ]
 
 if __name__ == '__main__':

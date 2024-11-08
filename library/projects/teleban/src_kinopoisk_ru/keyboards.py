@@ -1,7 +1,7 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from db_managers.subscription_manager import SubscriptionDatabaseManager
-from src_kinopoisk_ru.text_data import KINOPOISK_RU_LIST
+from src_kinopoisk_ru.text_data import KINOPOISK_RU_DICTIONARY
 
 async def kinopoisk_ikb(user_id):
     with SubscriptionDatabaseManager() as db:
@@ -9,7 +9,7 @@ async def kinopoisk_ikb(user_id):
 
         builder = InlineKeyboardBuilder()
 
-        for tag in KINOPOISK_RU_LIST:
+        for tag in KINOPOISK_RU_DICTIONARY.keys():
             if tag in user_tags:
                 builder.button(text=f'🎬 {tag}', callback_data=f'kinopoisk_{tag}')
             else:
