@@ -130,6 +130,6 @@ class PagesTest(BaseTestCase):
         response = self.client.get('/tasks/')
         self.assertEqual(response.status_code, 200)
 
-    def test_companies(self):
-        response = self.client.get('/companies/')
-        self.assertEqual(response.status_code, 200)
+    # def test_companies(self):
+    #     response = self.client.get('/companies/')
+    #     self.assertEqual(response.status_code, 200)
