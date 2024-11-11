@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+#import sys
+#import os
+#sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config import DB_NAME
 from db_managers.content_manager import ContentDatabaseManager
 class HabrComParser:
@@ -25,8 +25,10 @@ class HabrComParser:
         #print(post_links)
         for link in post_links:
             try:
+                print('!-------!')
                 post_html: BeautifulSoup = self.get_soup(link)
                 post_title = post_html.body.find('h1', 'tm-title tm-title_h1').text.strip()
+                print(post_title)
                 #tags = [item.text for item in post_html.body.find_all('span', 'tags-list-item__title')]
                 tags = [span.text for a in post_html.body.find_all('a', 'tm-publication-hub__link') for span in
                         a.find_all('span')]
