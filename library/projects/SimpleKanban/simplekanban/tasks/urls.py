@@ -1,5 +1,7 @@
 from django.urls import path
+
 from . import views
+
 
 urlpatterns = [
     # Главная страница
@@ -7,6 +9,7 @@ urlpatterns = [
 
     # Задачи
     path('tasks/', views.TaskListAllView.as_view(), name='task_list_all'),  # Все задачи
+    # path('', lambda request: redirect('task_list_all') if request.user.is_authenticated else welcome_view, name='home'),
     path('companies/<int:company_id>/tasks/', views.TaskListView.as_view(), name='task_list'),  # Задачи для конкретной компании
     path('companies/<int:company_id>/task/<int:pk>/', views.TaskDetailView.as_view(), name='task_detail'),  # Детали задачи
     path('companies/<int:company_id>/task/create/', views.TaskCreateView.as_view(), name='task_create'),  # Создание задачи
@@ -17,6 +20,9 @@ urlpatterns = [
     path('companies/', views.CompanyListView.as_view(), name='company_list'),  # Список компаний
     path('companies/create/', views.CompanyCreateView.as_view(), name='company_create'),  # Создание компании
     path('companies/<int:pk>/', views.CompanyDetailView.as_view(), name='company_detail'),  # Детали компании
+
+    # path('login/', views.login_view, name='custom_login'),  # ваш новый URL
+    # path('signup/', views.signup_view, name='custom_signup'),  # например, для регистрации
 ]
 
 # Подзадачи - эти маршруты больше не нужны, так как подзадачи обрабатываются через formset

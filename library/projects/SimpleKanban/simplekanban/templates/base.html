@@ -38,7 +38,7 @@
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
 {#<a href="{% url 'home' %}" class="logo d-flex align-items-center">#}
-        <h1 class="sitename">SuperKanban</h1>
+        <h1 class="sitename">SimpleKanban</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -46,7 +46,7 @@
           <li><a href="{% url 'home' %}">Стартовая страница</a></li>
           <li><a href="{% url 'company_list' %}">Рабочая группа</a></li>
           <li class="dropdown">
-            <a href="{% #"><span>Текущие задачи</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <a href="#"><span>Текущие задачи</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="#">Текущие</a></li>
               <li><a href="#">Горящие</a></li>
@@ -57,8 +57,8 @@
           <li class="dropdown">
             <a href="#"><span>Пользователь</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="#">Настройки</a></li>
-              <li><a href="#">Выйти</a></li>
+{#              <li><a href="#">Настройки</a></li>#}
+              <li><a href="{% url 'account_logout' %}">Выйти</a></li>
             </ul>
           </li>
         </ul>
@@ -83,21 +83,21 @@
   <!-- Footer -->
   <footer id="footer" class="footer dark-background">
     <div class="container">
-      <h3 class="sitename">SuperKanban</h3>
-      <p>Сможем припахать любого!</p>
-      <div class="social-links d-flex justify-content-center">
-        <a href="#"><i class="bi bi-twitter-x"></i></a>
-        <a href="#"><i class="bi bi-facebook"></i></a>
-        <a href="#"><i class="bi bi-instagram"></i></a>
-        <a href="#"><i class="bi bi-skype"></i></a>
-        <a href="#"><i class="bi bi-linkedin"></i></a>
-      </div>
-      <div class="copyright">
-        <strong>SuperKanban Team</strong> All Rights Reserved
-      </div>
-      <div class="credits">
-        Designed by <a href="#">SuperKanban Team</a>
-      </div>
+      <h3 class="sitename">SimpleKanban</h3>
+        <p>Эффективно управляйте проектами с помощью Kanban.</p>
+{#      <div class="social-links d-flex justify-content-center">#}
+{#        <a href="#"><i class="bi bi-twitter-x"></i></a>#}
+{#        <a href="#"><i class="bi bi-facebook"></i></a>#}
+{#        <a href="#"><i class="bi bi-instagram"></i></a>#}
+{#        <a href="#"><i class="bi bi-skype"></i></a>#}
+{#        <a href="#"><i class="bi bi-linkedin"></i></a>#}
+{#      </div>#}
+{#      <div class="copyright">#}
+{#        <strong>SuperKanban Team</strong>#}
+{#      </div>#}
+{#      <div class="credits">#}
+{#        Designed by <a href="#">SuperKanban Team</a>#}
+{#      </div>#}
     </div>
   </footer>
 

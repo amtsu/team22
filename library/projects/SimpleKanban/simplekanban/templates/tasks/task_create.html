@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Создание задачи - SuperKanban{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+
+      <!-- Форма создания задачи -->
+      <section id="task-form" class="section">
+        <div class="container">
+          <form method="post">
+            {% csrf_token %}
+            <h4>Создаем задачу</h4>
+            <p>Необходимо заполнить следующие поля. Обязательные поля помечены *</p>
+
+            {{ form.as_p }}
+
+            <h4>Подзадачи</h4>
+            <p>Добавьте подзадачи, если необходимо:</p>
+
+            {{ subtasks.management_form }}
+            {% for subtask_form in subtasks %}
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  {{ subtask_form.title }}
+                </div>
+                <div class="col-md-6 form-group">
+                  {{ subtask_form.task }}
+                </div>
+              </div>
+            {% endfor %}
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Создать задачу и подзадачи</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block title %}Создание задачи - SuperKanban{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<div class="container">#}
+{#  <div class="row">#}
+{#    <div class="col-lg-8">#}
+{##}
+{#      <!-- Форма создания задачи -->#}
+{#      <section id="task-form" class="section">#}
+{#        <div class="container">#}
+{#          <form action="{% url 'task_create' company_id=company_id %}" method="post">#}
+{#            {% csrf_token %}#}
+{#            <h4>Создаем задачу</h4>#}
+{#            <p>Необходимо заполнить следующие поля. Обязательные поля помечены *</p>#}
+{##}
+{#            <div class="row">#}
+{#              <div class="col-md-6 form-group">#}
+{#                <input name="name" type="text" class="form-control" placeholder="Имя исполнителя*" required>#}
+{#              </div>#}
+{#              <div class="col-md-6 form-group">#}
+{#                <input name="due_date" type="date" class="form-control" placeholder="Дата выполнения*" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="row">#}
+{#              <div class="col form-group">#}
+{#                <textarea name="description" class="form-control" placeholder="Описание задачи*" required></textarea>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="text-center">#}
+{#              <button type="submit" class="btn btn-primary">Создать!</button>#}
+{#            </div>#}
+{#          </form>#}
+{#        </div>#}
+{#      </section>#}
+{##}
+{#      <!-- Форма создания подзадачи -->#}
+{#      <section id="subtask-form" class="subtask-form section mt-5">#}
+{#        <div class="container">#}
+{#          <form action="" method="post">#}
+{#            {% csrf_token %}#}
+{#            <h4>Создаем подзадачу</h4>#}
+{#            <p>Необходимо заполнить следующие поля. Обязательные поля помечены *</p>#}
+{##}
+{#            <div class="row">#}
+{#              <div class="col-md-6 form-group">#}
+{#                <input name="subtask_name" type="text" class="form-control" placeholder="Имя исполнителя подзадачи*" required>#}
+{#              </div>#}
+{#              <div class="col-md-6 form-group">#}
+{#                <input name="subtask_date" type="date" class="form-control" placeholder="Дата выполнения подзадачи*" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="row">#}
+{#              <div class="col form-group">#}
+{#                <textarea name="subtask_description" class="form-control" placeholder="Описание подзадачи*" required></textarea>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="text-center">#}
+{#              <button type="submit" class="btn btn-primary">Создать подзадачу</button>#}
+{#            </div>#}
+{#          </form>#}
+{#        </div>#}
+{#      </section>#}
+{##}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{#{% endblock %}#}
