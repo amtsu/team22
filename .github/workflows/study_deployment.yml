@@ -40,8 +40,10 @@ jobs:
             ls -la
             whoami
             echo '----'
+            cd ${{ env.PATH_OUTPUT }}/library/projects/SimpleKanban/simplekanban
+            ls -la
+            ./manage.py test
             cd /home/dev_stand/
-            python manage.py test
             /usr/bin/docker-compose down --rmi all
             /usr/bin/docker-compose up --build -d
           
