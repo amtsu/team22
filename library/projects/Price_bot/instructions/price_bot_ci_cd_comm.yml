@@ -1,0 +1,82 @@
+name: Price_bot CI/CD  # Название workflow, отображается в интерфейсе GitHub Actions.
+
+on:  # Определение событий, которые запускают workflow.
+  push:  # Запускать workflow при пуше в указанные ветки.
+    branches:
+      - price_bot_develop  # Ветка, при пуше в которую запускается workflow.
+
+  # pull_request:  # Закомментированная секция для возможного запуска workflow при pull request.
+  #   branches:
+  #     - price_bot_develop  # Если раскомментировать, будет запускаться при PR в эту ветку.
+
+jobs:  # Определение всех задач (jobs) для этого workflow.
+
+    build_and_test:  # Имя задачи, отвечающей за сборку и тестирование кода.
+      runs-on: ubuntu-latest  # Выбор виртуальной машины с последней версией Ubuntu для выполнения этой задачи.
+
+      steps:  # Последовательные шаги, которые будут выполнены в задаче.
+        - name: Checkout code  # Шаг проверки кода из репозитория.
+          uses: actions/checkout@v2  # Использование готового действия GitHub для проверки кода.
+
+        - name: Set up Python  # Шаг настройки Python среды.
+          uses: actions/setup-python@v2  # Использование действия GitHub для установки Python.
+          with:
+            python-version: '3.9'  # Версия Python, которая будет установлена.
+
+        - name: Install dependencies  # Шаг установки зависимостей.
+          run: |
+            python -m pip install --upgrade pip  # Обновление pip до последней версии.
+            pip install -r library/projects/Price_bot/requirements.txt  # Установка зависимостей из requirements.txt.
+
+        - name: Test with flake8  # Шаг для проверки кода с помощью flake8.
+          run: |
+            pip install flake8 pep8-naming flake8-broken-line flake8-return  # Установка инструментов для проверки стиля.
+            python -m flake8 library/projects/Price_bot  # Запуск flake8 для анализа кода на ошибки стиля.
+
+    build_and_push_to_docker_hub:  # Имя задачи для сборки и отправки образа на Docker Hub.
+        name: Build and push Docker image to Docker Hub  # Имя задачи, отображаемое в интерфейсе GitHub.
+        runs-on: ubuntu-latest  # Использование последней версии Ubuntu для этой задачи.
+        needs: build_and_test  # Эта задача запускается только после успешного выполнения `build_and_test`.
+
+        steps:  # Шаги для сборки и отправки Docker-образа.
+        - name: Check out the repo  # Шаг проверки кода из репозитория.
+          uses: actions/checkout@v2  # Использование действия GitHub для проверки кода.
+
+        - name: Set up Docker Buildx  # Настройка Docker Buildx для кроссплатформенной сборки.
+          uses: docker/setup-buildx-action@v1  # Использование действия для настройки Buildx.
+
+        - name: Login to Docker  # Вход в Docker Hub для последующей загрузки образа.
+          uses: docker/login-action@v1  # Использование действия для входа в Docker Hub.
+          with:
+            username: ${{ secrets.DOCKER_USERNAME }}  # Имя пользователя из секретов.
+            password: ${{ secrets.DOCKER_PASSWORD }}  # Пароль из секретов.
+
+        - name: Push to Docker Hub  # Шаг для сборки и отправки образа на Docker Hub.
+          uses: docker/build-push-action@v2  # Использование действия для сборки и отправки образа.
+          with:
+            push: true  # Указывает на необходимость загрузки собранного образа.
+            context: library/projects/Price_bot  # Контекст сборки, папка с Dockerfile.
+            tags: ${{ secrets.DOCKER_USERNAME }}/price_bot:latest  # Тег для загружаемого образа.
+
+    deploy:  # Задача для развертывания на удаленном сервере.
+        runs-on: ubuntu-latest  # Использование последней версии Ubuntu для этой задачи.
+        needs: build_and_push_to_docker_hub  # Запускается только после успешного выполнения `build_and_push_to_docker_hub`.
+
+        steps:  # Шаги для развертывания на удаленном сервере.
+            - name: executing remote ssh commands to deploy  # Название шага для выполнения команд через SSH.
+              uses: appleboy/ssh-action@master  # Использование действия для выполнения SSH-команд.
+              with:
+                host: ${{ secrets.SERVER_HOST }}  # IP-адрес или домен сервера, из секретов.
+                username: ${{ secrets.SERVER_USER }}  # Имя пользователя для SSH, из секретов.
+                key: ${{ secrets.SERVER_SSH_KEY }}  # Приватный ключ для SSH, из секретов.
+                passphrase: ${{ secrets.SERVER_PASSPHRASE }}  # Пароль для ключа SSH, из секретов.
+                script: |  # Набор команд для выполнения на удаленном сервере.
+                  sudo docker-compose stop  # Остановка текущих контейнеров.
+                  sudo docker system prune -f  # Очистка ненужных данных Docker для освобождения места.
+                  sudo docker-compose rm bot  # Удаление контейнера `bot`.
+                  sudo docker pull ${{ secrets.DOCKER_USERNAME }}/price_bot:latest  # Загрузка нового образа с Docker Hub.
+                  rm .env  # Удаление старого файла .env.
+                  touch .env  # Создание нового файла .env.
+                  echo BOT_TOKEN=${{ secrets.BOT_TOKEN }} >> .env  # Добавление токена бота в .env.
+                  echo DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }} >> .env  # Добавление имени пользователя Docker в .env.
+                  sudo docker-compose up -d  # Запуск контейнеров с обновленным образом и переменными окружения.
