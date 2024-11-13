@@ -66,7 +66,6 @@ jobs:
                 script: |
                   sudo docker-compose stop
                   sudo docker system prune -f
-                  sudo docker-compose rm bot
                   sudo docker pull ${{ secrets.DOCKER_USERNAME }}/price_bot:latest
                   rm .env
                   touch .env
