@@ -1,89 +1,84 @@
 import requests
 from bs4 import BeautifulSoup
 from config import DB_NAME
-from db_managers/content_manager import ContentDatabaseManager
 
 class RbcNewsParser:
-    def __init__(self):
-        self.__base_url = 'https://www.rbc.ru'
-        self.__sections = {
-            '/economics': 'economics',
-            '/politics': 'politics',
-            '/business': 'business',
-            '/technology_and_media': 'technology_and_media'
-        }
-        # Путь к базе данных
-        self.db_name = 'teleban.sqlite3'
-
-    @staticmethod
-    def __get_soup(url: str) -> BeautifulSoup:
+    def __init__(self, db_path: str):
         """
-        Получает страницу и возвращает объект BeautifulSoup для парсинга.
+        Инициализация парсера РБК.
+        """
+        self.__db_path = db_path
+        self.__base_url = 'https://www.rbc.ru'
+        self.__economics_url = self.__base_url + '/economics'
+        self.__politics_url = self.__base_url + '/politics'
+        self.__business_url = self.__base_url + '/business'
+        self.__tech_media_url = self.__base_url + '/technology_and_media'
+        self.__sections = {
+            'Экономика': self.__economics_url,
+            'Политика': self.__politics_url,
+            'Бизнес': self.__business_url,
+            'Технологии и медиа': self.__tech_media_url,
+        }
+
+    def __parse_rbc_section(self, url, section_tag):
+        """
+        Парсит заголовки новостей из указанного раздела.
         """
         response = requests.get(url)
         if response.status_code == 200:
-            return BeautifulSoup(response.content, 'html.parser')
+            soup = BeautifulSoup(response.text, 'lxml')
+            news_blocks = soup.find_all('a', class_='item__link')
+
+            news_list = []
+            for block in news_blocks:
+                title = block.get_text(strip=True)  # Заголовок новости
+                link = block['href']  # Ссылка на новость
+                news_list.append([title, link, section_tag])
+            return news_list
         else:
-            raise Exception(f"Ошибка доступа к {url}: {response.status_code}")
+            print(f"Ошибка доступа к сайту: {response.status_code}")
+            return []
 
-    def __parse_section(self, section_url: str, section_tag: str):
+    def __parse_rbc_news(self):
         """
-        Парсит заголовки и ссылки из раздела и возвращает их.
-        """
-        full_url = self.__base_url + section_url
-        soup = self.__get_soup(full_url)
-
-        news_blocks = soup.find_all('a', class_='item__link')
-
-        news_list = []
-        for block in news_blocks:
-            title = block.get_text(strip=True)
-            link = block['href']
-            news_list.append([title, link, section_tag])
-
-        return news_list
-
-    def get_all_news(self):
-        """
-        Парсит все разделы и возвращает список новостей с тегами.
+        Парсит новости из всех разделов РБК.
         """
         all_news = []
-        for section_url, section_tag in self.__sections.items():
-            try:
-                news = self.__parse_section(section_url, section_tag)
-                all_news.extend(news)
-            except Exception as e:
-                print(f"Ошибка при парсинге раздела {section_tag}: {e}")
-
+        for tag, url in self.__sections.items():
+            print("Парсинг раздела " + tag + "...")
+            news = self.__parse_rbc_section(url, tag)
+            all_news.extend(news)
         return all_news
 
     def get_new_content(self):
         """
-        Собирает новые новости из всех разделов и выводит их.
+        Сбор новостей из всех разделов, их вывод с проверкой на дублирование.
         """
-        print("Сбор новых новостей...")
-        new_content = self.get_all_news()
+        news_data = self.__parse_rbc_news()
+        result = []
 
-        # Пример обработки — вывод новостей
-        for i, news in enumerate(new_content, 1):
-            print(f"{i}. Заголовок: {news[0]}\nСсылка: {news[1]}\nТег: {news[2]}\n")
+        # Обработка новостей и проверка на дублирование
+        for news in news_data:
+            title, url, tag = news
 
-        # Сохранение новостей в базу данных
-        self.save_to_db(new_content)
+            # Проверяем, существует ли ссылка уже в списке result
+            existing_item = next((item for item in result if item[1] == url), None)
+            if existing_item:
+                # Если ссылка существует, добавляем тег, если его ещё нет
+                if tag not in existing_item[3]:
+                    existing_item[3] += ',' + tag
+            else:
+                # Если ссылка не найдена, добавляем новую запись
+                result.append([title, url, 'rbc', tag])
 
-    def save_to_db(self, news_list):
-        """
-        Сохраняет собранные новости в базу данных SQLite.
-        """
-        try:
-            with ContentDatabaseManager('content_sports_ru', self.__db_path) as db:
-                db.add_content(post_title, link, source, tags)
+        # Финальный вывод
+        for i, item in enumerate(result, 1):
+            print(str(i) + ". Заголовок: " + item[0] + "\nСсылка: " + item[1] + "\nТег: " + item[3] + "\n")
 
+        #print(result)
 
-        except Exception as e:
-            print(e, link)
+        return result
 
 
 if __name__ == "__main__":
-    parser = RbcNewsParser()
-    parser.get_new_content()  # Сбор и сохранение новых новостей
+    RbcNewsParser(DB_NAME).get_new_content()
