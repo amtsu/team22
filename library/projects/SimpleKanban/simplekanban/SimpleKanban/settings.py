@@ -12,16 +12,16 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
+# Чтение .env файла
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-!-m$!g#7nt6tx)m4*69kpg6d4d0+zcw^^*i%4te8=ew@*+v_52"
+# Секретный ключ Django
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -57,24 +57,19 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # или "optional"
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # или 'username'
 ACCOUNT_USERNAME_REQUIRED = True
 
-# Настройки для использования Mailtrap.io
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Настройки почты
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-# EMAIL_PORT = 587 #2525
-# EMAIL_HOST_USER = ''  # username от Mailtrap
-# EMAIL_HOST_PASSWORD = ''  #пароль от Mailtrap
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
-DEFAULT_FROM_EMAIL = 'anna.zakharova@mail.bk'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = os.getenv('EMAIL_HOST')
+# EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
+# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+# EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
 
-# # Отключаем проверку SSL
-# import ssl
-# ssl._create_default_https_context = ssl._create_unverified_context
-
-# Google OAuth2 настройки
-# GOOGLE_CLIENT_ID = os.environ.get('-.apps.googleusercontent.com')
-# GOOGLE_CLIENT_SECRET = os.environ.get('-')
+# Google OAuth2
+# GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
+# GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
 
 # Аутентификация
 AUTHENTICATION_BACKENDS = [
@@ -101,7 +96,9 @@ ROOT_URLCONF = "SimpleKanban.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        'DIRS': ['templates'],
+        'DIRS': [
+            BASE_DIR / "templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -116,14 +113,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "SimpleKanban.wsgi.application"
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'), #СКРЫТ
+        'PASSWORD': os.getenv('DB_PASSWORD', 'default_password'),  # Пароль, значение по умолчанию # Пароль берется из .env
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -162,22 +162,10 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'tasks', "static"),
+    os.path.join(BASE_DIR, "static"),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-# Настройка брокера очередей (Redis)
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-
-# Для периодических задач
-CELERY_BEAT_SCHEDULE = {
-    'check-overdue-tasks-every-day': {
-        'task': 'tasks.tasks.check_and_notify_overdue_tasks',
-        'schedule': 86400.0,  # Интервал: 1 день (в секундах)
-    },
-}
