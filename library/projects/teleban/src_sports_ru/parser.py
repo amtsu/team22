@@ -1,50 +1,90 @@
+import logging
+from datetime import datetime
+
 import requests
 from bs4 import BeautifulSoup
 
-from config import DB_NAME
-from db_managers.content_manager import ContentDatabaseManager
+from data import ContentBase
+
+logging.basicConfig(level=logging.ERROR)
 
 
 class SportsRuParser:
-    def __init__(self, db_path: str):
-        self.__db_path = db_path
-        self.__base_url = 'https://www.sports.ru'
-        self.__nba_news_link = self.__base_url + '/basketball/tournament/nba/'
-        self.__nfl_news_link = self.__base_url + '/amfootball/tournament/nfl/'
-        self.__nhl_news_link = self.__base_url + '/hockey/tournament/nhl/'
+    """
+    Класс для парсинга контента с сайта sports.ru.
+    """
+    BASE_URL = 'https://www.sports.ru'
+
+    def __init__(self):
+        self.sports_sections = {
+            'sports_nba': f"{self.BASE_URL}/basketball/tournament/nba/",
+            'sports_nfl': f"{self.BASE_URL}/amfootball/tournament/nfl/",
+            'sports_nhl': f"{self.BASE_URL}/hockey/tournament/nhl/"
+        }
 
     @staticmethod
     def __get_soup(url: str) -> BeautifulSoup:
         """
-        Метод делает из веб-страницы объект BeautifulSoup и возвращает его для дальнейшего разбора.
+        Возвращает объект BeautifulSoup для указанного URL.
         """
-        return BeautifulSoup(requests.get(url).content, 'lxml')
+        response = requests.get(url)
+        response.raise_for_status()  # Проверка статуса ответа
+        return BeautifulSoup(response.content, 'lxml')
 
-    def __news_feed_parsing(self, news_link: str, source: str):
+    def __fetch_news_links(self, news_link: str) -> list[str]:
         """
-        Метод принимает относительную ссылку для сайта sports.ru и записывает новости с этой страницы в БД.
+        Получает список ссылок на статьи с указанной страницы.
         """
-        post_list_html: BeautifulSoup = self.__get_soup(news_link)
-        post_links = [self.__base_url + item.get('href') for item in post_list_html.body.find_all('a', 'short-text')]
+        soup = self.__get_soup(news_link)
+        return [
+            f"{self.BASE_URL}{element.get('href')}"
+            for element in soup.find_all('a', class_='short-text')
+        ]
 
-        for link in post_links:
+    def __parse_article(self, link: str, source: str) -> ContentBase:
+        """
+        Парсит статью и создает объект ContentBase.
+        """
+        soup = self.__get_soup(link)
+        title = soup.find('h1', class_='document-header__title').text.strip()
+        tags = [tag.text for tag in soup.find_all('span', class_='tags-list-item__title')]
+
+        return ContentBase(
+            title=title,
+            link=link,
+            source=source,
+            tags=tags,
+            date_time=datetime.now(),
+            status=False
+        )
+
+    def __news_feed_parsing(self, news_link: str, source: str) -> list[ContentBase]:
+        """
+        Парсит новости с указанной ссылки и возвращает список объектов ContentBase.
+        """
+        news_links = self.__fetch_news_links(news_link)
+        result = []
+
+        for link in news_links:
             try:
-                post_html: BeautifulSoup = self.__get_soup(link)
-                post_title = post_html.body.find('h1', 'document-header__title').text.strip()
-                tags = [item.text for item in post_html.body.find_all('span', 'tags-list-item__title')]
-                tags = ','.join(tags)
-
-                with ContentDatabaseManager('content_sports_ru', self.__db_path) as db:
-                    db.add_content(post_title, link, source, tags)
-
+                result.append(self.__parse_article(link, source))
             except Exception as e:
-                print(e, link)
+                logging.error(f"Ошибка при обработке ссылки {link}: {e}")
 
-    def get_new_content(self):
-        self.__news_feed_parsing(self.__nba_news_link, 'sports_nba')
-        self.__news_feed_parsing(self.__nfl_news_link, 'sports_nfl')
-        self.__news_feed_parsing(self.__nhl_news_link, 'sports_nhl')
+        return result
+
+    def get_new_content(self) -> list[ContentBase]:
+        """
+        Собирает и возвращает все новости со всех указанных источников.
+        """
+        result = []
+
+        for source, link in self.sports_sections.items():
+            result.extend(self.__news_feed_parsing(link, source))
+
+        return result
 
 
 if __name__ == "__main__":
-    SportsRuParser('../' + DB_NAME).get_new_content()
+    for article in SportsRuParser().get_new_content():
+        print(article.source, article.title)
