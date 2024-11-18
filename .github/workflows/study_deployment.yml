@@ -42,7 +42,7 @@ jobs:
             echo '----'
             cd ${{ env.PATH_OUTPUT }}/library/projects/SimpleKanban/simplekanban
             ls -la
-            ./manage.py test
+            python3 manage.py test
             cd /home/dev_stand/
             /usr/bin/docker-compose down --rmi all
             /usr/bin/docker-compose up --build -d
