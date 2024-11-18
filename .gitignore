@@ -4,6 +4,7 @@
 .ipynb_checkpoints
 .idea
 /env
+.env
 #ignore vi temporary files
 *.swp
 #for Mac
