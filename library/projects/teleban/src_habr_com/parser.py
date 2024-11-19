@@ -36,7 +36,7 @@ class HabrComParser:
                 print(tags)
 
                 with ContentDatabaseManager('content_habr_com', self.__db_path) as db:
-                    db.add_content(post_title, link, tags)
+                    db.add_content(post_title, link, 'habr', tags)
 
             except Exception as e:
                 print(e, link)
