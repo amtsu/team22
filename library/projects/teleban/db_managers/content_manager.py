@@ -1,7 +1,7 @@
 import sqlite3
 from datetime import datetime
 
-from config import DB_NAME
+from config_old import DB_NAME
 
 
 class ContentDatabaseManager:
@@ -18,51 +18,62 @@ class ContentDatabaseManager:
         self.curs.close()
         self.conn.close()
 
-    def create_table(self):
-        """Создает таблицу table_name с полями title, link, tags, datetime и status."""
-        self.curs.execute(f'CREATE TABLE IF NOT EXISTS {self.table_name}'
-                          f'(title TEXT, link TEXT PRIMARY KEY, tags TEXT,'
-                          f'datetime DATETIME, status INTEGER DEFAULT 0)')
+    def create_table(self) -> None:
+        """Создает таблицу с полями title, link, source, tags, datetime и status."""
+        self.curs.execute(f"""
+            CREATE TABLE IF NOT EXISTS {self.table_name} (
+                title TEXT,
+                link TEXT PRIMARY KEY,
+                source TEXT,
+                tags TEXT,
+                datetime DATETIME,
+                status INTEGER DEFAULT 0
+            )
+        """)
         self.conn.commit()
 
-    def add_content(self, title, link, tags):
-        """Добавляет новый контент в таблицу table_name."""
+    def add_content(self, title: str, link: str, source: str, tags: str) -> None:
+        """Добавляет новый контент в таблицу с полем source."""
         current_time = datetime.now()
-        self.curs.execute(f"INSERT OR IGNORE INTO {self.table_name}"
-                          f"(title, link, tags, datetime) VALUES (?, ?, ?, ?)",
-                          (title, link, tags, current_time))
+        self.curs.execute(f"""
+            INSERT OR IGNORE INTO {self.table_name} (title, link, source, tags, datetime) 
+            VALUES (?, ?, ?, ?, ?)
+        """, (title, link, source, tags, current_time))
         self.conn.commit()
 
-    def remove_content(self, link):
-        """Удаляет контент из таблицы table_name."""
-        self.curs.execute(f"DELETE FROM {self.table_name} WHERE link = ?",
-                          (link,))
+    def remove_content(self, link: str) -> None:
+        """Удаляет контент по ссылке."""
+        self.curs.execute(f"DELETE FROM {self.table_name} WHERE link = ?", (link,))
         self.conn.commit()
 
-    def update_status(self, link):
-        """Меняет статус на 1 для записи link из таблицы content_sports_ru."""
-        self.curs.execute("UPDATE content_sports_ru SET status = 1 WHERE link = ?",
-                          (link,))
+    def update_status(self, link: str) -> None:
+        """Обновляет статус записи по ссылке."""
+        self.curs.execute(f"UPDATE {self.table_name} SET status = 1 WHERE link = ?", (link,))
         self.conn.commit()
 
-    def check_new_content(self):
-        """Проверяет наличие новых записей в таблице content_sports_ru."""
-        self.curs.execute("SELECT EXISTS (SELECT 1 FROM content_sports_ru WHERE status = 0)")
-        return self.curs.fetchone()[0]
+    def check_new_content(self) -> bool:
+        """Проверяет наличие новых записей."""
+        self.curs.execute(f"SELECT EXISTS (SELECT 1 FROM {self.table_name} WHERE status = 0)")
+        return bool(self.curs.fetchone()[0])
 
-    def get_new_content(self):
-        """Возвращает все новые записи из таблицы content_sports_ru."""
-        self.curs.execute("SELECT title, link, tags FROM content_sports_ru WHERE status = 0")
+    def get_new_content(self) -> list[tuple[str, str, str, str]]:
+        """Возвращает все новые записи."""
+        self.curs.execute(f"SELECT title, link, source, tags FROM {self.table_name} WHERE status = 0")
         return self.curs.fetchall()
 
     def close(self):
-        """Закрывает соединение с базой данных."""
+        """Закрывает соединение с базой данных. Не использовать без необходимости!"""
         self.curs.close()
         self.conn.close()
 
 
-if __name__ == '__main__':  # Запустить для создания таблиц в БД
-    with ContentDatabaseManager('content_sports_ru', '../' + DB_NAME) as db:
-        db.create_table()
-    with ContentDatabaseManager('content_trial_sport_ru', '../' + DB_NAME) as db:
-        db.create_table()
+TABLE_NAMES = [
+    'content_sports_ru',
+    'content_trial_sport_ru',
+]
+
+if __name__ == '__main__':
+    # Создание таблиц в БД
+    for table in TABLE_NAMES:
+        with ContentDatabaseManager(table, '../' + DB_NAME) as db:
+            db.create_table()

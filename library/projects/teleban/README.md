@@ -1,10 +1,15 @@
 # TeleBAN
 
-#### Названия таблицы в класс ParserDatabaseManager передаем в виде базового URL сайта с использованием нижних подчеркиваний и префикса 'content_'.
+### Для запуска бота:
 
-Например:
+1) Создать переменную окружения "TELEBAN_TOKEN" с токеном бота
+2) Создать в корневом каталоге фаил .env параметрами подключения к PostgreSQL:
+DB_HOST,
+DB_PORT,
+DB_NAME,
+DB_USER,
+DB_PASS
+3) Запустить фаил main_parser.py на исполнение каждые 5 минут
+4) Запустить фаил main_bot.py
 
-https://www.sports.ru/ -> content_sports_ru
-
-https://trial-sport.ru/ -> content_trial_sport_ru
 

@@ -1,0 +1,136 @@
+{% extends '../base_allauth.html' %}  <!-- Подключаем базовый шаблон -->
+
+{% block title %}Добро пожаловать в Simple KanBan{% endblock %}  <!-- Заголовок страницы -->
+
+{% block content %}
+    <div class="container text-center">
+        <h1>Добро пожаловать в Simple KanBan</h1>
+
+        <p>Мы помогаем вам эффективно управлять проектами и задачами с помощью Kanban. Вы можете фильтровать задачи по компаниям, а также отслеживать их статус и сроки выполнения.</p>
+
+        {% if user.is_authenticated %}
+            <h2>Задачи</h2>
+            <!-- Форма для фильтра по компании -->
+            <form method="get" action="">
+                <label for="company">Фильтр по компании:</label>
+                <select name="company_id" id="company">
+                    <option value="">Все компании</option>
+                    {% for company in companies %}
+                        <option value="{{ company.id }}" {% if company.id|stringformat:"s" == selected_company_id %}selected{% endif %}>{{ company.name }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Применить</button>
+            </form>
+
+            <!-- Таблица с задачами -->
+            <div class="task-list mt-4">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Описание</th>
+                            <th>Компания</th>
+                            <th>Статус</th>
+                            <th>Срок</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for task in tasks %}
+                            <tr>
+                                <td>{{ task.title }}</td>
+                                <td>{{ task.description }}</td>
+                                <td>{{ task.company.name }}</td>
+                                <td>{{ task.get_execution_status_display }}</td>
+                                <td>{{ task.due_date }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="5">Нет задач для отображения.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <h2>Вход в систему</h2>
+            <form method="post" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                {{ form.as_p }}  <!-- Отображение полей формы -->
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </form>
+            <div class="links">
+                <p>Еще нет аккаунта? <a href="{% url 'account_signup' %}">Зарегистрируйтесь</a></p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="ru">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Добро пожаловать в Simple KanBan</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Simple KanBan</h1>#}
+{#    <div class="container">#}
+{#        {% if user.is_authenticated %}#}
+{#            <h2>Задачи</h2>#}
+{#            <!-- Форма для фильтра по компании -->#}
+{#            <form method="get" action="">#}
+{#                <label for="company">Фильтр по компании:</label>#}
+{#                <select name="company_id" id="company">#}
+{#                    <option value="">Все компании</option>#}
+{#                    {% for company in companies %}#}
+{#                        <option value="{{ company.id }}" {% if company.id|stringformat:"s" == selected_company_id %}selected{% endif %}>{{ company.name }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#                <button type="submit">Применить</button>#}
+{#            </form>#}
+{##}
+{#            <!-- Таблица с задачами -->#}
+{#            <div class="task-list">#}
+{#                <table>#}
+{#                    <thead>#}
+{#                        <tr>#}
+{#                            <th>Название</th>#}
+{#                            <th>Описание</th>#}
+{#                            <th>Компания</th>#}
+{#                            <th>Статус</th>#}
+{#                            <th>Срок</th>#}
+{#                        </tr>#}
+{#                    </thead>#}
+{#                    <tbody>#}
+{#                        {% for task in tasks %}#}
+{#                            <tr>#}
+{#                                <td>{{ task.title }}</td>#}
+{#                                <td>{{ task.description }}</td>#}
+{#                                <td>{{ task.company.name }}</td>#}
+{#                                <td>{{ task.get_execution_status_display }}</td>#}
+{#                                <td>{{ task.due_date }}</td>#}
+{#                            </tr>#}
+{#                        {% empty %}#}
+{#                            <tr>#}
+{#                                <td colspan="5">Нет задач для отображения.</td>#}
+{#                            </tr>#}
+{#                        {% endfor %}#}
+{#                    </tbody>#}
+{#                </table>#}
+{#            </div>#}
+{#        {% else %}#}
+{#            <!-- Форма входа, если пользователь не аутентифицирован -->#}
+{#            <h2>Вход в систему</h2>#}
+{#            <form method="post" action="{% url 'account_login' %}">#}
+{#                {% csrf_token %}#}
+{#                {{ form.as_p }}  <!-- Отображение полей формы -->#}
+{#                <button type="submit">Войти</button>#}
+{#            </form>#}
+{#            <div class="links">#}
+{#                <p>Еще нет аккаунта? <a href="{% url 'account_signup' %}">Зарегистрируйтесь</a></p>#}
+{#            </div>#}
+{#        {% endif %}#}
+{#    </div>#}
+{#</body>#}
+{#</html>#}

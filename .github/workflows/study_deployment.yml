@@ -1,0 +1,56 @@
+name: StudyDeployment
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  PATH_INPUT: .
+  PATH_OUTPUT: /home/dev_stand/team22
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+
+      - name: Deploy to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.STUDY_DEPLOY_SERVER_HOST }}
+          port: ${{ secrets.STUDY_DEPLOY_SERVER_PORT }}
+          username: ${{ secrets.STUDY_DEPLOY_SERVER_USERNAME }}
+          key: ${{ secrets.STUDY_DEPLOY_SERVER_KEY }}
+          source: ${{ env.PATH_INPUT }}
+          target: ${{ env.PATH_OUTPUT }}
+          strip_components: 1
+
+      - name: d-c stop start
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.STUDY_DEPLOY_SERVER_HOST }}
+          username: ${{ secrets.STUDY_DEPLOY_SERVER_USERNAME }}
+          key: ${{ secrets.STUDY_DEPLOY_SERVER_KEY }}
+          port: ${{ secrets.STUDY_DEPLOY_SERVER_PORT }}
+          script: |
+            pwd
+            ls -la
+            whoami
+            echo '----'
+            cd ${{ env.PATH_OUTPUT }}/library/projects/SimpleKanban/simplekanban
+            ls -la
+            ./manage.py test
+            cd /home/dev_stand/
+            /usr/bin/docker-compose down --rmi all
+            /usr/bin/docker-compose up --build -d
+          
+
+      - name: Print Info SimpleKanban
+        run: echo "Deployed SimpleKanban at http://absda.ru:31001"
+      - name: Print Info teleban
+        run: echo "Deployed teleban at http://absda.ru:31003"
+      - name: Print Info Price_bot
+        run: echo "Deployed Price_bot at http://absda.ru:31002"
