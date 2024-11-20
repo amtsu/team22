@@ -3,8 +3,8 @@ name: StudyDeployment
 on:
   push:
     branches: ["main"]
-  # pull_request:
-  #   branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 env:
   PATH_INPUT: .
