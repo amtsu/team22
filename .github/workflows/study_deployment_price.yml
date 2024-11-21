@@ -41,7 +41,7 @@ jobs:
             sudo docker-compose rm bot
             rm .env
             touch .env
-            echo BOT_TOKEN= ${{ secrets.MLVN_PRICE2_BOT_TOKEN }} >> .env
+            echo BOT_TOKEN = ${{ secrets.MLVN_PRICE2_BOT_TOKEN }} >> .env
             sudo docker-compose up -d
 
       # - name: Print Info SimpleKanban
