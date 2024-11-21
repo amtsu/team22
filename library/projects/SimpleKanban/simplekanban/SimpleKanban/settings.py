@@ -71,6 +71,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
 # GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # Отключаем проверку email
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # Разрешаем использовать email для входа
+
 # Аутентификация
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # Стандартная аутентификация Django
