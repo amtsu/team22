@@ -15,8 +15,11 @@ urlpatterns = [
     path('companies/<int:company_id>/task/<int:pk>/edit/', views.TaskUpdateView.as_view(), name='task_edit'),  # Редактирование задачи
     path('companies/<int:company_id>/task/<int:pk>/delete/', views.TaskDeleteView.as_view(), name='task_delete'),  # Удаление задачи
 
-    # Компании
-    path('companies/', views.CompanyListView.as_view(), name='company_list'),  # Список компаний
-    path('companies/create/', views.CompanyCreateView.as_view(), name='company_create'),  # Создание компании
-    path('companies/<int:pk>/', views.CompanyDetailView.as_view(), name='company_detail'),  # Детали компании
+    #Компании
+    path('companies/', views.CompanyListView.as_view(), name='company_list'),
+    # path('companies/post_invite/', views.InviteUserView.as_view(), name='post_invite'),  # Новый маршрут для AJAX
+    path('companies/create/', views.CompanyCreateView.as_view(), name='company_create'),
+    path('companies/<int:pk>/', views.CompanyDetailView.as_view(), name='company_detail'),
+    path('companies/<int:pk>/edit/', views.CompanyEditView.as_view(), name='company_edit'),
+    path('companies/<int:pk>/delete/', views.CompanyDeleteView.as_view(), name='company_delete'),
 ]

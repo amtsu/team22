@@ -4,40 +4,135 @@
 {% block title %}Создание задачи - SuperKanban{% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="row">
+<style>
+  /* Ярко-оранжевая кнопка */
+  .btn-orange {
+    background-color: #ff6f00; /* Яркий оранжевый цвет */
+    color: white;
+    border: none;
+  }
+
+  .btn-orange:hover {
+    background-color: #e65c00; /* Темнее при наведении */
+  }
+
+  /* Подсветка полей при фокусе */
+  .form-control:focus {
+    border-color: #ff6f00; /* Оранжевый цвет при фокусе */
+    box-shadow: 0 0 5px rgba(255, 111, 0, 0.5); /* Оранжевая тень */
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
     <div class="col-lg-8">
 
       <!-- Форма создания задачи -->
-      <section id="task-form" class="section">
-        <div class="container">
-          <form method="post">
-            {% csrf_token %}
-            <h4>Создаем задачу</h4>
-            <p>Необходимо заполнить следующие поля. Обязательные поля помечены *</p>
+      <section id="task-form" class="section shadow p-4 mb-5 bg-white rounded">
+        <form method="post" class="needs-validation" novalidate>
+          {% csrf_token %}
 
-            {{ form.as_p }}
+          <h3 class="mb-4">Создаем задачу</h3>
+          <p class="text-muted">Необходимо заполнить следующие поля. Обязательные поля помечены *</p>
 
-            <h4>Подзадачи</h4>
-            <p>Добавьте подзадачи, если необходимо:</p>
+          <!-- Поле Название задачи -->
+          <div class="form-group mb-3">
+            <label for="task-title">Название задачи*</label>
+            <input type="text" id="task-title" name="task-title" class="form-control" placeholder="Введите название задачи" required>
+          </div>
 
-            {{ subtasks.management_form }}
-            {% for subtask_form in subtasks %}
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  {{ subtask_form.title }}
-                </div>
-                <div class="col-md-6 form-group">
-                  {{ subtask_form.task }}
-                </div>
-              </div>
-            {% endfor %}
+          <!-- Выбор исполнителя -->
+          <div class="form-group mb-3">
+            <label for="executor">Имя исполнителя*</label>
+            <select id="executor" name="executor" class="form-control" required>
+              <option value="">Выберите исполнителя</option>
+              {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+              {% endfor %}
+            </select>
+          </div>
 
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">Создать задачу и подзадачи</button>
-            </div>
-          </form>
-        </div>
+          <!-- Поле Дата выполнения -->
+          <div class="form-group mb-3">
+            <label for="due-date">Дата выполнения*</label>
+            <input type="date" id="due-date" name="due-date" class="form-control" required>
+          </div>
+
+          <!-- Выбор статуса задачи -->
+          <div class="form-group mb-3">
+            <label for="status">Статус задачи*</label>
+            <select id="status" name="status" class="form-control" required>
+              <option value="AC" selected>активная</option>
+              <option value="EX">просроченная</option>
+              <option value="CP">завершенная</option>
+              <option value="CN">отмененная</option>
+            </select>
+          </div>
+
+          <!-- Описание задачи -->
+          <div class="form-group mb-4">
+            <label for="task-desc">Описание задачи*</label>
+            <textarea id="task-desc" name="task-desc" class="form-control" rows="4" placeholder="Введите описание задачи" required></textarea>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-orange btn-lg">Создать!</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Форма создания подзадачи -->
+      <section id="subtask-form" class="section shadow p-4 bg-white rounded">
+        <form method="post" class="needs-validation" novalidate>
+          {% csrf_token %}
+
+          <h3 class="mb-4">Создаем подзадачу</h3>
+          <p class="text-muted">Необходимо заполнить следующие поля. Обязательные поля помечены *</p>
+
+          <!-- Поле Название подзадачи -->
+          <div class="form-group mb-3">
+            <label for="subtask-title">Название подзадачи*</label>
+            <input type="text" id="subtask-title" name="subtask-title" class="form-control" placeholder="Введите название подзадачи" required>
+          </div>
+
+          <!-- Выбор исполнителя для подзадачи -->
+          <div class="form-group mb-3">
+            <label for="executor-subtask">Имя исполнителя*</label>
+            <select id="executor-subtask" name="executor-subtask" class="form-control" required>
+              <option value="">Выберите исполнителя</option>
+              {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+{#          <!-- Поле Дата выполнения подзадачи -->#}
+{#          <div class="form-group mb-3">#}
+{#            <label for="due-date-subtask">Дата выполнения*</label>#}
+{#            <input type="date" id="due-date-subtask" name="due-date-subtask" class="form-control" required>#}
+{#          </div>#}
+
+          <!-- Выбор статуса подзадачи -->
+          <div class="form-group mb-3">
+            <label for="status-subtask">Статус подзадачи*</label>
+            <select id="status-subtask" name="status-subtask" class="form-control" required>
+              <option value="AC" selected>активная</option>
+              <option value="EX">просроченная</option>
+              <option value="CP">завершенная</option>
+              <option value="CN">отмененная</option>
+            </select>
+          </div>
+
+          <!-- Описание подзадачи -->
+          <div class="form-group mb-4">
+            <label for="subtask-desc">Описание подзадачи*</label>
+            <textarea id="subtask-desc" name="subtask-desc" class="form-control" rows="4" placeholder="Введите описание подзадачи" required></textarea>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-orange btn-lg">Создать!</button>
+          </div>
+        </form>
       </section>
 
     </div>
@@ -45,6 +140,8 @@
 </div>
 {% endblock %}
 
+
+{##}
 {#{% extends 'base.html' %}#}
 {#{% load static %}#}
 {##}

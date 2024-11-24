@@ -1,12 +1,234 @@
-{#{% extends "base.html" %}#}
+{% extends "base.html" %}
 
 {% block content %}
-<h1>Создать компанию</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Создать</button>
-</form>
-<a href="{% url 'company_list' %}">Назад к списку компаний</a>
+  <style>
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+
+    select[multiple] option:checked {
+      background-color: #ff9800;
+      color: white;
+    }
+
+    select[multiple] {
+      height: 150px;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    select[multiple]:focus {
+      border-color: #ff9800;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 8px 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #888;
+      color: white;
+      text-decoration: none;
+    }
+
+    .btn:hover,
+    .btn:focus {
+      background-color: #ff9800;
+    }
+  </style>
+
+  <div class="form-container">
+    <h1>Создать компанию</h1>
+    <form method="post" id="company-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="id_name">Название компании:</label>
+          {{ form.name }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_members">Выберите участников:</label>
+          {{ form.members }}
+        </div>
+
+        <div class="btn-group">
+          <button type="submit" class="btn">Создать</button>
+          <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>
+        </div>
+    </form>
+  </div>
 {% endblock %}
 
+
+{#{% extends "base.html" %}#}
+{##}
+{#{% block content %}#}
+{#  <style>#}
+{#    .form-container {#}
+{#      max-width: 600px;#}
+{#      margin: 0 auto;#}
+{#      padding: 20px;#}
+{#      border: 1px solid #ccc;#}
+{#      border-radius: 8px;#}
+{#      background-color: #f9f9f9;#}
+{#    }#}
+{##}
+{#    select[multiple] option:checked {#}
+{#      background-color: #ff9800;#}
+{#      color: white;#}
+{#    }#}
+{##}
+{#    select[multiple] {#}
+{#      height: 150px;#}
+{#      width: 100%;#}
+{#      padding: 10px;#}
+{#      border: 1px solid #ccc;#}
+{#      border-radius: 5px;#}
+{#    }#}
+{##}
+{#    select[multiple]:focus {#}
+{#      border-color: #ff9800;#}
+{#    }#}
+{##}
+{#    .btn-group {#}
+{#      display: flex;#}
+{#      justify-content: space-between;#}
+{#      margin-top: 20px;#}
+{#      gap: 10px;#}
+{#    }#}
+{##}
+{#    .btn {#}
+{#      padding: 8px 12px;#}
+{#      font-size: 14px;#}
+{#      border: none;#}
+{#      border-radius: 5px;#}
+{#      cursor: pointer;#}
+{#      background-color: #888;#}
+{#      color: white;#}
+{#      text-decoration: none;#}
+{#    }#}
+{##}
+{#    .btn:hover,#}
+{#    .btn:focus {#}
+{#      background-color: #ff9800;#}
+{#    }#}
+{##}
+{#    .invite-email-group button {#}
+{#      font-size: 14px;#}
+{#      padding: 5px 10px;#}
+{#      margin-left: 10px;#}
+{#      background-color: #ff9800;#}
+{#      border-radius: 5px;#}
+{#      cursor: pointer;#}
+{#      border: none;#}
+{#    }#}
+{##}
+{#    .invite-email-group button:hover {#}
+{#      background-color: #e68900;#}
+{#    }#}
+{##}
+{#    .invite-email-group {#}
+{#      display: flex;#}
+{#      align-items: center;#}
+{#      margin-bottom: 10px;#}
+{#    }#}
+{##}
+{#    .invite-email-group input {#}
+{#      padding: 8px;#}
+{#      font-size: 14px;#}
+{#      width: 250px;#}
+{#      border: 1px solid #ccc;#}
+{#      border-radius: 5px;#}
+{#      margin-right: 10px;#}
+{#    }#}
+{#  </style>#}
+{##}
+{#  <div class="form-container">#}
+{#    <h1>Создать компанию</h1>#}
+{#    <form method="post" id="company-form">#}
+{#        {% csrf_token %}#}
+{##}
+{#        <div class="form-group">#}
+{#          <label for="id_name">Название компании:</label>#}
+{#          {{ form.name }}#}
+{#        </div>#}
+{##}
+{#        <div class="form-group">#}
+{#          <label for="id_members">Выберите участников:</label>#}
+{#          {{ form.members }}#}
+{#        </div>#}
+{##}
+{#        <div class="form-group invite-emails-container" id="invite-emails-container">#}
+{#          <label>Пригласить новых пользователей (Email):</label>#}
+{#          <div class="invite-email-group">#}
+{#            <input type="email" name="invite_email[]" id="invite-email" placeholder="Введите email для приглашения">#}
+{#            <button type="button" class="btn" onclick="sendInvitation()">Отправить приглашение</button>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="btn-group">#}
+{#          <button type="submit" class="btn">Создать</button>#}
+{#          <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>#}
+{#        </div>#}
+{#    </form>#}
+{#  </div>#}
+{##}
+{#  <script>#}
+{#    function sendInvitation() {#}
+{#      const emailInput = document.getElementById('invite-email');#}
+{#      const email = emailInput.value.trim();#}
+{##}
+{#      if (email) {#}
+{#        // Отправляем AJAX запрос на сервер#}
+{#        fetch('/companies/create/', {  // Путь, который нужно настроить в Django для обработки AJAX#}
+{#          method: 'POST',#}
+{#          headers: {#}
+{#            'Content-Type': 'application/json',#}
+{#            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value#}
+{#          },#}
+{#          body: JSON.stringify({ email: email })#}
+{#        })#}
+{#        .then(response => response.json())#}
+{#        .then(data => {#}
+{#          if (data.success) {#}
+{#            // Очистить поле ввода email#}
+{#            emailInput.value = '';#}
+{##}
+{#            // Добавить нового пользователя в список участников#}
+{#            const membersSelect = document.getElementById('id_members');#}
+{#            const option = document.createElement('option');#}
+{#            option.value = data.user_id;#}
+{#            option.textContent = data.username;#}
+{#            membersSelect.appendChild(option);#}
+{##}
+{#            alert('Приглашение отправлено');#}
+{#          } else {#}
+{#            alert("Ошибка при отправке приглашения");#}
+{#          }#}
+{#        })#}
+{#        .catch(error => {#}
+{#          console.error('Ошибка:', error);#}
+{#          alert("Ошибка при отправке приглашения");#}
+{#        });#}
+{#      } else {#}
+{#        alert("Введите email для приглашения.");#}
+{#      }#}
+{#    }#}
+{#  </script>#}
+{#{% endblock %}#}
