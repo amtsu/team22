@@ -5,144 +5,147 @@
 
 {% block content %}
 <style>
-  .btn-orange {
-    background-color: #ff6f00;
-    color: white;
-    border: none;
+  /* Общий стиль контейнера */
+  .section {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
   }
 
-  .btn-orange:hover {
-    background-color: #e65c00;
+  /* Заголовки */
+  h3 {
+    font-weight: bold;
+    color: #333;
+  }
+
+  p.text-muted {
+    font-size: 14px;
+    color: #777;
+  }
+
+  /* Поля формы */
+  .form-control {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
   }
 
   .form-control:focus {
     border-color: #ff6f00;
     box-shadow: 0 0 5px rgba(255, 111, 0, 0.5);
   }
+
+  /* Кнопка создания */
+  .btn-orange {
+    background-color: #ff6f00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .btn-orange:hover {
+    background-color: #e65c00;
+  }
 </style>
 
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-lg-10">
-      <section id="task-form" class="section shadow p-4 mb-5 bg-white rounded">
+    <div class="col-lg-8">
+      <!-- Форма создания задачи -->
+      <section class="section">
         <form method="post" novalidate>
           {% csrf_token %}
 
-          <h3 class="mb-4">Создание задачи</h3>
-          {% if form.errors %}
-            <div class="alert alert-danger">
-              <ul>
-                {% for error in form.non_field_errors %}
-                  <li>{{ error }}</li>
-                {% endfor %}
-                {% for field, errors in form.errors.items %}
-                  <li>{{ field }}: {{ errors|join:", " }}</li>
-                {% endfor %}
-              </ul>
-            </div>
-          {% endif %}
+          <h3 class="mb-4">Создаем задачу</h3>
+          <p class="text-muted">Необходимо заполнить следующие поля. Обязательные поля помечены *</p>
 
-          <!-- Поле Название задачи -->
+          <!-- Поле Имя исполнителя -->
           <div class="form-group mb-3">
-            {{ form.title.label_tag }}
-            {{ form.title }}
-          </div>
-
-          <!-- Поле Описание задачи -->
-          <div class="form-group mb-3">
-            {{ form.description.label_tag }}
-            {{ form.description }}
-          </div>
-
-          <!-- Поле Исполнитель -->
-          <div class="form-group mb-3">
-            {{ form.assigned_user.label_tag }}
-            {{ form.assigned_user }}
+            <label for="executor">Имя исполнителя*</label>
+            <select id="executor" name="executor" class="form-control" required>
+              <option value="">Выберите исполнителя</option>
+              {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+              {% endfor %}
+            </select>
           </div>
 
           <!-- Поле Дата выполнения -->
           <div class="form-group mb-3">
-            {{ form.due_date.label_tag }}
-            {{ form.due_date }}
+            <label for="due-date">Дата выполнения*</label>
+            <input type="date" id="due-date" name="due-date" class="form-control" required>
           </div>
 
-          <!-- Поле Статус -->
+          <!-- Поле Группа пользователей -->
           <div class="form-group mb-3">
-            {{ form.execution_status.label_tag }}
-            {{ form.execution_status }}
+            <label for="group">Группа пользователей</label>
+            <input type="text" id="group" name="group" class="form-control" placeholder="Введите группу пользователей">
           </div>
 
-          <!-- Подзадачи -->
-          <section id="subtasks">
-            <h4 class="mb-3">Подзадачи</h4>
-            {{ subtasks.management_form }}
-            <div id="subtasks-container">
-              {% for form in subtasks %}
-                <div class="form-group shadow-sm p-3 mb-3 bg-light rounded">
-                  <h5>Подзадача {{ forloop.counter }}</h5>
-                  <div>
-                    {{ form.title.label_tag }}
-                    {{ form.title }}
-                  </div>
-                  <div>
-                    {{ form.task.label_tag }}
-                    {{ form.task }}
-                  </div>
-                  <button type="button" class="btn btn-danger remove-subtask mt-2">Удалить подзадачу</button>
-                </div>
-              {% endfor %}
-            </div>
-            <button type="button" id="add-subtask" class="btn btn-primary mt-3">Добавить подзадачу</button>
-          </section>
+          <!-- Поле Описание задачи -->
+          <div class="form-group mb-4">
+            <label for="task-desc">Описание задачи*</label>
+            <textarea id="task-desc" name="task-desc" class="form-control" rows="4" placeholder="Введите описание задачи" required></textarea>
+          </div>
 
-          <div class="text-center mt-4">
-            <button type="submit" class="btn btn-orange btn-lg">Создать!</button>
+          <div class="text-center">
+            <button type="submit" class="btn-orange">Создать!</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Форма создания подзадачи -->
+      <section class="section">
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          <h3 class="mb-4">Создаем подзадачу</h3>
+          <p class="text-muted">Необходимо заполнить следующие поля. Обязательные поля помечены *</p>
+
+          <!-- Поле Имя исполнителя -->
+          <div class="form-group mb-3">
+            <label for="executor-subtask">Имя исполнителя*</label>
+            <select id="executor-subtask" name="executor-subtask" class="form-control" required>
+              <option value="">Выберите исполнителя</option>
+              {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Поле Дата выполнения -->
+          <div class="form-group mb-3">
+            <label for="due-date-subtask">Дата выполнения*</label>
+            <input type="date" id="due-date-subtask" name="due-date-subtask" class="form-control" required>
+          </div>
+
+          <!-- Поле Группа пользователей -->
+          <div class="form-group mb-3">
+            <label for="group-subtask">Группа пользователей</label>
+            <input type="text" id="group-subtask" name="group-subtask" class="form-control" placeholder="Введите группу пользователей">
+          </div>
+
+          <!-- Поле Описание задачи -->
+          <div class="form-group mb-4">
+            <label for="subtask-desc">Описание задачи*</label>
+            <textarea id="subtask-desc" name="subtask-desc" class="form-control" rows="4" placeholder="Введите описание задачи" required></textarea>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn-orange">Создать!</button>
           </div>
         </form>
       </section>
     </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const subtasksContainer = document.getElementById('subtasks-container');
-    const addSubtaskButton = document.getElementById('add-subtask');
-    let totalForms = document.getElementById('id_subtasks-TOTAL_FORMS');
-
-    addSubtaskButton.addEventListener('click', function () {
-      const newFormIndex = totalForms.value;
-      const emptyFormHtml = `
-        <div class="form-group shadow-sm p-3 mb-3 bg-light rounded">
-          <h5>Подзадача ${parseInt(newFormIndex) + 1}</h5>
-          <div>
-            <label for="id_subtasks-${newFormIndex}-title">Название подзадачи:</label>
-            <input type="text" name="subtasks-${newFormIndex}-title" class="form-control" id="id_subtasks-${newFormIndex}-title">
-          </div>
-          <div>
-            <label for="id_subtasks-${newFormIndex}-task">Задача:</label>
-            <select name="subtasks-${newFormIndex}-task" class="form-control" id="id_subtasks-${newFormIndex}-task">
-              <option value="">---------</option>
-              {% for task in form.instance.task_set.all %}
-                <option value="{{ task.id }}">{{ task.title }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <button type="button" class="btn btn-danger remove-subtask mt-2">Удалить подзадачу</button>
-        </div>
-      `;
-      subtasksContainer.insertAdjacentHTML('beforeend', emptyFormHtml);
-      totalForms.value = parseInt(newFormIndex) + 1;
-    });
-
-    subtasksContainer.addEventListener('click', function (e) {
-      if (e.target.classList.contains('remove-subtask')) {
-        e.target.closest('.form-group').remove();
-        totalForms.value = subtasksContainer.querySelectorAll('.form-group').length;
-      }
-    });
-  });
-</script>
 {% endblock %}
 
 
