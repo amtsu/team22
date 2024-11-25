@@ -31,48 +31,29 @@ class CompanyCreateView(View):
     def post(self, request):
         form = CompanyForm(request.POST)
         if form.is_valid():
-            company = form.save()
+            company = form.save()  # Сохраняем компанию
 
-            # Получаем email для приглашения
+            # Получаем email для приглашений
             invite_emails = request.POST.getlist('invite_email[]')
             for email in invite_emails:
                 user, created = User.objects.get_or_create(
                     email=email,
-                    defaults={'username': email}
+                    defaults={'username': email.split('@')[0]}  # Генерируем username из email
                 )
                 if created:
-                    self.send_invitation(company, request.user, email)
-                company.members.add(user)
+                    self.send_invitation(company, request.user, email)  # Отправляем приглашение
+                company.members.add(user)  # Добавляем пользователя в компанию
 
-            return redirect('company_list')
+            return redirect('company_list')  # Перенаправляем на список компаний
 
-        return render(request, 'tasks/create_company.html', {'form': form})
+        return render(request, 'tasks/companies/company_create.html', {'form': form})
 
     def send_invitation(self, company, sender, email):
+        """Отправка приглашения на email"""
         subject = f'Приглашение в компанию {company.name}'
         message = f'Вы были приглашены {sender.email} присоединиться к компании {company.name}.'
-        send_mail(subject, message, sender.email, [email])
+        send_mail(subject, message, sender.email, [email])  # Отправляем email-приглашение
 
-    def post_invite(self, request):
-        if request.is_ajax() and request.method == "POST":
-            email = request.POST.get('email')
-            user, created = User.objects.get_or_create(
-                email=email,
-                defaults={'username': email}
-            )
-            if created:
-                company = Company.objects.get(id=request.POST.get('company_id'))
-                company.members.add(user)
-
-                return JsonResponse({
-                    'success': True,
-                    'user_id': user.id,
-                    'username': user.username
-                })
-            else:
-                return JsonResponse({'success': False, 'message': 'User already exists'}, status=400)
-
-        return JsonResponse({'success': False}, status=400)
 
 # class CompanyCreateView(CreateView):
 #     model = Company
@@ -168,6 +149,7 @@ class CompanyDeleteView(DeleteView):
     template_name = 'tasks/companies/company_confirm_delete.html'  # Шаблон подтверждения удаления
     success_url = reverse_lazy('company_list')  # Перенаправление на список компаний после успешного удаления
 
+
 # Представление для просмотра списка Задач
 class TaskListView(ListView):
     model = Task
@@ -222,47 +204,75 @@ class TaskDetailView(DetailView):
         context['subtasks'] = self.object.subtasks.all()
         return context
 
+#
+# class TaskCreateView(CreateView):
+#     model = Task
+#     form_class = TaskForm
+#     template_name = 'tasks/task_create.html'
+#     context_object_name = 'task_create'
+#
+#     # Заменяем success_url для перенаправления после создания задачи
+#     def get_success_url(self):
+#         return reverse_lazy('tasks/task_list', kwargs={'company_id': self.kwargs['company_id']})
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#
+#         # Передаем company_id в контекст
+#         context['company_id'] = self.kwargs.get('company_id')
+#
+#         # Проверяем, если данные переданы через POST, инициализируем подзадачи с данными
+#         if self.request.POST:
+#             context['subtasks'] = SubTaskFormSet(self.request.POST)
+#         else:
+#             context['subtasks'] = SubTaskFormSet()
+#         return context
+#
+#     def form_valid(self, form):
+#         context = self.get_context_data()
+#         subtasks = context['subtasks']
+#         form.instance.author = self.request.user
+#
+#         # Связываем задачу с компанией
+#         company_id = self.kwargs.get('company_id')
+#         if company_id:
+#             form.instance.company = get_object_or_404(Company, id=company_id)
+#
+#         if subtasks.is_valid():
+#             response = super().form_valid(form)
+#             subtasks.instance = self.object
+#             subtasks.save()
+#             return response
+#         else:
+#             return self.form_invalid(form)
+
 
 class TaskCreateView(CreateView):
     model = Task
     form_class = TaskForm
     template_name = 'tasks/task_create.html'
-    context_object_name = 'task_create'
 
-    # Заменяем success_url для перенаправления после создания задачи
-    def get_success_url(self):
-        return reverse_lazy('tasks/task_list', kwargs={'company_id': self.kwargs['company_id']})
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        company_id = self.kwargs.get('company_id')
+        company = get_object_or_404(Company, id=company_id)
+        kwargs['company'] = company  # Передаем компанию в форму
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # Передаем company_id в контекст
-        context['company_id'] = self.kwargs.get('company_id')
-
-        # Проверяем, если данные переданы через POST, инициализируем подзадачи с данными
-        if self.request.POST:
-            context['subtasks'] = SubTaskFormSet(self.request.POST)
-        else:
-            context['subtasks'] = SubTaskFormSet()
+        company_id = self.kwargs.get('company_id')
+        context['users'] = get_object_or_404(Company, id=company_id).members.all()  # Для отображения в шаблоне
         return context
 
     def form_valid(self, form):
-        context = self.get_context_data()
-        subtasks = context['subtasks']
-        form.instance.author = self.request.user
-
-        # Связываем задачу с компанией
         company_id = self.kwargs.get('company_id')
-        if company_id:
-            form.instance.company = get_object_or_404(Company, id=company_id)
+        form.instance.company = get_object_or_404(Company, id=company_id)
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
-        if subtasks.is_valid():
-            response = super().form_valid(form)
-            subtasks.instance = self.object
-            subtasks.save()
-            return response
-        else:
-            return self.form_invalid(form)
+    def get_success_url(self):
+        return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
 
 
 class TaskUpdateView(UpdateView):

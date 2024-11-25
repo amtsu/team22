@@ -11,23 +11,6 @@
       background-color: #f9f9f9;
     }
 
-    select[multiple] option:checked {
-      background-color: #ff9800;
-      color: white;
-    }
-
-    select[multiple] {
-      height: 150px;
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    select[multiple]:focus {
-      border-color: #ff9800;
-    }
-
     .btn-group {
       display: flex;
       justify-content: space-between;
@@ -50,30 +33,326 @@
     .btn:focus {
       background-color: #ff9800;
     }
+
+    .invite-email-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .invite-email-group input {
+      padding: 8px;
+      font-size: 14px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .invite-email-group button {
+      font-size: 14px;
+      padding: 5px 10px;
+      background-color: #ff9800;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .invite-email-group button:hover {
+      background-color: #e68900;
+    }
+
+    /* Стили для списка участников */
+    .member-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .member-list li {
+      padding: 8px;
+      background-color: #f9f9f9;
+      margin-bottom: 5px;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .member-list li button {
+      background-color: #f44336;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
   </style>
 
   <div class="form-container">
     <h1>Создать компанию</h1>
-    <form method="post" id="company-form">
-        {% csrf_token %}
+    <form method="post">
+      {% csrf_token %}
 
-        <div class="form-group">
-          <label for="id_name">Название компании:</label>
-          {{ form.name }}
-        </div>
+      <!-- Название компании -->
+      <div class="form-group">
+        <label for="id_name">Название компании:</label>
+        {{ form.name }}
+      </div>
 
-        <div class="form-group">
-          <label for="id_members">Выберите участников:</label>
-          {{ form.members }}
-        </div>
+      <!-- Список участников -->
+      <div class="form-group">
+        <label for="id_members">Выберите участников:</label>
+        <ul class="member-list" id="member-list">
+          {% for member in company_members %}
+            <li>
+              {{ member.username }}
+              <form method="post" action="{% url 'remove_member' member.id company.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Удалить</button>
+              </form>
+            </li>
+          {% empty %}
+            <li>У компании еще нет участников.</li>
+          {% endfor %}
+        </ul>
+      </div>
 
-        <div class="btn-group">
-          <button type="submit" class="btn">Создать</button>
-          <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>
+      <!-- Поля для добавления новых email-адресов -->
+      <div class="form-group invite-emails-container" id="invite-emails-container">
+        <label>Пригласить новых пользователей (Email):</label>
+        <div class="invite-email-group">
+          <input type="email" id="invite_email" name="invite_email" placeholder="Введите email для приглашения">
+          <button type="button" class="btn" onclick="inviteEmail()">Пригласить</button>
         </div>
+      </div>
+
+      <!-- Кнопки управления -->
+      <div class="btn-group">
+        <button type="submit" class="btn">Создать</button>
+        <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>
+      </div>
     </form>
   </div>
+
+  <script>
+    function inviteEmail() {
+      const emailInput = document.getElementById('invite_email');
+      const email = emailInput.value.trim();
+
+      if (email) {
+        // Пример: Отправить запрос на сервер для добавления участника
+        fetch("{% url 'invite_email' company.id %}", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+          },
+          body: JSON.stringify({ "email": email })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Если добавлен новый участник, обновляем список участников
+            const memberList = document.getElementById('member-list');
+            const newMember = document.createElement('li');
+            newMember.textContent = data.username;
+            const removeButton = document.createElement('button');
+            removeButton.textContent = "Удалить";
+            removeButton.onclick = function() {
+              removeMember(data.user_id);
+            };
+            newMember.appendChild(removeButton);
+            memberList.appendChild(newMember);
+            emailInput.value = ""; // Очистить поле после добавления
+          } else {
+            alert('Ошибка: Не удалось найти пользователя с таким email.');
+          }
+        })
+        .catch(error => {
+          console.error('Ошибка при добавлении пользователя:', error);
+        });
+      } else {
+        alert('Введите email для приглашения.');
+      }
+    }
+
+    // Функция для удаления участника (если добавлен через email)
+    function removeMember(userId) {
+      fetch("{% url 'remove_member' userId company.id %}", {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": "{{ csrf_token }}"
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Удаление элемента из списка
+          document.getElementById('member-list').removeChild(document.querySelector(`li[data-user-id='${userId}']`));
+        }
+      });
+    }
+  </script>
 {% endblock %}
+
+
+{#{% extends "base.html" %}#}
+{##}
+{#{% block content %}#}
+{#  <style>#}
+{#    .form-container {#}
+{#      max-width: 600px;#}
+{#      margin: 0 auto;#}
+{#      padding: 20px;#}
+{#      border: 1px solid #ccc;#}
+{#      border-radius: 8px;#}
+{#      background-color: #f9f9f9;#}
+{#    }#}
+{##}
+{#    select[multiple] option:checked {#}
+{#      background-color: #ff9800;#}
+{#      color: white;#}
+{#    }#}
+{##}
+{#    select[multiple] {#}
+{#      height: 150px;#}
+{#      width: 100%;#}
+{#      padding: 10px;#}
+{#      border: 1px solid #ccc;#}
+{#      border-radius: 5px;#}
+{#    }#}
+{##}
+{#    select[multiple]:focus {#}
+{#      border-color: #ff9800;#}
+{#    }#}
+{##}
+{#    .btn-group {#}
+{#      display: flex;#}
+{#      justify-content: space-between;#}
+{#      margin-top: 20px;#}
+{#      gap: 10px;#}
+{#    }#}
+{##}
+{#    .btn {#}
+{#      padding: 8px 12px;#}
+{#      font-size: 14px;#}
+{#      border: none;#}
+{#      border-radius: 5px;#}
+{#      cursor: pointer;#}
+{#      background-color: #888;#}
+{#      color: white;#}
+{#      text-decoration: none;#}
+{#    }#}
+{##}
+{#    .btn:hover,#}
+{#    .btn:focus {#}
+{#      background-color: #ff9800;#}
+{#    }#}
+{#  </style>#}
+{##}
+{#  <div class="form-container">#}
+{#    <h1>Создать компанию</h1>#}
+{#    <form method="post" id="company-form">#}
+{#        {% csrf_token %}#}
+{##}
+{#        <div class="form-group">#}
+{#          <label for="id_name">Название компании:</label>#}
+{#          {{ form.name }}#}
+{#        </div>#}
+{##}
+{#        <div class="form-group">#}
+{#          <label for="id_members">Выберите участников:</label>#}
+{#          {{ form.members }}#}
+{#        </div>#}
+{##}
+{#        <!-- Добавляем поле для ввода email -->#}
+{#        <div class="form-group">#}
+{#          <label for="id_email">Пригласить по email:</label>#}
+{#          <input type="email" name="email" id="id_email" class="form-control" placeholder="Email сотрудника">#}
+{#        </div>#}
+{##}
+{#        <div class="btn-group">#}
+{#          <button type="submit" class="btn">Создать</button>#}
+{#          <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>#}
+{#        </div>#}
+{#    </form>#}
+{#  </div>#}
+{#{% endblock %}#}
+
+
+{#{% extends "base.html" %}#}
+{##}
+{#{% block content %}#}
+{#  <style>#}
+{#    .form-container {#}
+{#      max-width: 600px;#}
+{#      margin: 0 auto;#}
+{#      padding: 20px;#}
+{#      border: 1px solid #ccc;#}
+{#      border-radius: 8px;#}
+{#      background-color: #f9f9f9;#}
+{#    }#}
+{##}
+{#    select[multiple] option:checked {#}
+{#      background-color: #ff9800;#}
+{#      color: white;#}
+{#    }#}
+{##}
+{#    select[multiple] {#}
+{#      height: 150px;#}
+{#      width: 100%;#}
+{#      padding: 10px;#}
+{#      border: 1px solid #ccc;#}
+{#      border-radius: 5px;#}
+{#    }#}
+{##}
+{#    select[multiple]:focus {#}
+{#      border-color: #ff9800;#}
+{#    }#}
+{##}
+{#    .btn-group {#}
+{#      display: flex;#}
+{#      justify-content: space-between;#}
+{#      margin-top: 20px;#}
+{#      gap: 10px;#}
+{#    }#}
+{##}
+{#    .btn {#}
+{#      padding: 8px 12px;#}
+{#      font-size: 14px;#}
+{#      border: none;#}
+{#      border-radius: 5px;#}
+{#      cursor: pointer;#}
+{#      background-color: #888;#}
+{#      color: white;#}
+{#      text-decoration: none;#}
+{#    }#}
+{##}
+{#    .btn:hover,#}
+{#    .btn:focus {#}
+{#      background-color: #ff9800;#}
+{#    }#}
+{#  </style>#}
+{##}
+{#  <div class="form-container">#}
+{#    <h1>Создать компанию</h1>#}
+{#    <form method="post" id="company-form">#}
+{#        {% csrf_token %}#}
+{##}
+{#        <div class="form-group">#}
+{#          <label for="id_name">Название компании:</label>#}
+{#          {{ form.name }}#}
+{#        </div>#}
+{##}
+{#        <div class="form-group">#}
+{#          <label for="id_members">Выберите участников:</label>#}
+{#          {{ form.members }}#}
+{#        </div>#}
+{##}
+{#        <div class="btn-group">#}
+{#          <button type="submit" class="btn">Создать</button>#}
+{#          <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>#}
+{#        </div>#}
+{#    </form>#}
+{#  </div>#}
+{#{% endblock %}#}
 
 
 {#{% extends "base.html" %}#}
