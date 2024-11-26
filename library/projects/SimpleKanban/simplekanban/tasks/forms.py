@@ -10,7 +10,8 @@ class CompanyForm(forms.ModelForm):
     invitees = forms.CharField(
         required=False,
         widget=forms.Textarea(
-            attrs={'class': 'form-control', 'placeholder': 'Введите email для приглашения, разделяя их запятой'})
+            attrs={'class': 'form-control', 'placeholder': 'Введите email для приглашения, разделяя их запятой'}
+        )
     )
 
     class Meta:
@@ -20,6 +21,11 @@ class CompanyForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название компании'}),
             'members': forms.SelectMultiple(attrs={'class': 'form-control'}),
         }
+
+    # Делает поле 'members' необязательным
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['members'].required = False
 
 # class CompanyForm(forms.ModelForm):
 #     class Meta:
