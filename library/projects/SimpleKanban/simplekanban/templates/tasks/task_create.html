@@ -137,8 +137,51 @@
             <label for="subtask-desc">Описание задачи*</label>
             <textarea id="subtask-desc" name="subtask-desc" class="form-control" rows="4" placeholder="Введите описание задачи" required></textarea>
           </div>
+function inviteEmail() {
+  const emailInput = document.getElementById('invite_email');
+  const email = emailInput.value.trim();
+  const selectedMembers = [];
+
+  // Собираем выбранных пользователей
+  const userSelect = document.getElementById('user_select');
+  const selectedOptions = userSelect.selectedOptions;
+  for (let option of selectedOptions) {
+    selectedMembers.push({
+      type: 'registered',
+      id: option.value
+    });
+  }
+
+  if (email) {
+    selectedMembers.push({
+      type: 'email',
+      email: email
+    });
+  }
+
+  // Сохраняем в скрытое поле
+  document.getElementById('selected_members').value = JSON.stringify(selectedMembers);
+
+  // Отправляем данные на сервер
+  fetch("{% url 'company_create' %}", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": "{{ csrf_token }}"
+    },
+    body: JSON.stringify({
+      selected_members: selectedMembers
+    })
+  }).then(response => response.json())
+    .then(data => {
+      // Обработка успешного добавления
+    }).catch(error => {
+      console.error('Ошибка:', error);
+    });
+}
 
           <div class="text-center">
+            <input type="hidden" name="selected_members" id="selected_members" value="{{ selected_members | default:'' }}">
             <button type="submit" class="btn-orange">Создать!</button>
           </div>
         </form>

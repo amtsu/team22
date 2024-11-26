@@ -7,6 +7,12 @@ from .models import Task, SubTask, Company
 
 
 class CompanyForm(forms.ModelForm):
+    invitees = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={'class': 'form-control', 'placeholder': 'Введите email для приглашения, разделяя их запятой'})
+    )
+
     class Meta:
         model = Company
         fields = ['name', 'members']
@@ -15,11 +21,20 @@ class CompanyForm(forms.ModelForm):
             'members': forms.SelectMultiple(attrs={'class': 'form-control'}),
         }
 
-    def clean_owner(self):
-        owner = self.cleaned_data.get('owner')
-        if not owner:
-            raise forms.ValidationError('Компания должна иметь владельца.')
-        return owner
+# class CompanyForm(forms.ModelForm):
+#     class Meta:
+#         model = Company
+#         fields = ['name', 'members']
+#         widgets = {
+#             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название компании'}),
+#             'members': forms.SelectMultiple(attrs={'class': 'form-control'}),
+#         }
+#
+#     def clean_owner(self):
+#         owner = self.cleaned_data.get('owner')
+#         if not owner:
+#             raise forms.ValidationError('Компания должна иметь владельца.')
+#         return owner
 
 
 class InviteForm(forms.Form):

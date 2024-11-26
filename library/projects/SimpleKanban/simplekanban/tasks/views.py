@@ -1,4 +1,3 @@
-from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
@@ -9,6 +8,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView, ListView, D
 
 from .forms import TaskForm, SubTaskFormSet, CompanyForm
 from .models import Task, Company
+import json
 
 
 # Представление для просмотра списка компаний
@@ -21,73 +21,159 @@ class CompanyListView(ListView):
         return Company.objects.all()  # Возвращает все объекты компании
 
 
-# Представление для создания компании
-
 class CompanyCreateView(View):
+
     def get(self, request):
+        all_users = User.objects.all()
         form = CompanyForm()
-        return render(request, 'tasks/companies/company_create.html', {'form': form})
+        return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
 
     def post(self, request):
         form = CompanyForm(request.POST)
+
         if form.is_valid():
-            company = form.save()  # Сохраняем компанию
+            company = form.save()
 
-            # Получаем email для приглашений
-            invite_emails = request.POST.getlist('invite_email[]')
-            for email in invite_emails:
-                user, created = User.objects.get_or_create(
-                    email=email,
-                    defaults={'username': email.split('@')[0]}  # Генерируем username из email
-                )
-                if created:
-                    self.send_invitation(company, request.user, email)  # Отправляем приглашение
-                company.members.add(user)  # Добавляем пользователя в компанию
+            # Обработка выбранных участников и приглашенных по email
+            selected_members = json.loads(request.POST.get('selected_members', '[]'))
+            members = []
 
-            return redirect('company_list')  # Перенаправляем на список компаний
+            for member in selected_members:
+                if member['type'] == 'registered':
+                    # Если участник выбран из зарегистрированных пользователей
+                    user = User.objects.get(id=member['id'])
+                    members.append(user)
+                elif member['type'] == 'email':
+                    # Если участник приглашен по email
+                    user, created = User.objects.get_or_create(
+                        email=member['email'],
+                        defaults={'username': member['email'].split('@')[0]}
+                    )
+                    members.append(user)
 
-        return render(request, 'tasks/companies/company_create.html', {'form': form})
+                    if created:
+                        # Отправляем приглашение новому пользователю
+                        self.send_invitation(company, request.user, member['email'])
+
+            # Заполняем поле members
+            company.members.set(members)  # Используем set для множественных пользователей
+
+            return redirect('company_list')  # Перенаправление на список компаний
+        else:
+            print(form.errors)  # Для отладки
+            all_users = User.objects.all()
+            return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
 
     def send_invitation(self, company, sender, email):
-        """Отправка приглашения на email"""
-        subject = f'Приглашение в компанию {company.name}'
+        """Функция для отправки приглашения по email."""
+        subject = f'Приглашение присоединиться к компании {company.name}'
         message = f'Вы были приглашены {sender.email} присоединиться к компании {company.name}.'
-        send_mail(subject, message, sender.email, [email])  # Отправляем email-приглашение
+        send_mail(subject, message, sender.email, [email])
 
 
-# class CompanyCreateView(CreateView):
-#     model = Company
-#     form_class = CompanyForm
-#     template_name = 'tasks/companies/company_create.html'
-#     success_url = reverse_lazy('company_list')  # Переход на список компаний после создания
+class CompanyEditView(View):
+    def get(self, request, pk):
+        company = Company.objects.get(pk=pk)
+        all_users = User.objects.all()
+        form = CompanyForm(instance=company)
+        return render(request, 'tasks/companies/company_edit.html', {'form': form, 'company': company, 'all_users': all_users})
+
+    def post(self, request, pk):
+        company = Company.objects.get(pk=pk)
+        form = CompanyForm(request.POST, instance=company)
+
+        if form.is_valid():
+            company = form.save()
+
+            # Обрабатываем приглашения и добавляем участников
+            invite_emails = request.POST.getlist('invite_email[]')
+            for email in invite_emails:
+                user, created = User.objects.get_or_create(email=email)
+                if created:
+                    # Отправляем приглашение, если пользователь новый
+                    self.send_invitation(company, request.user, email)
+
+                # Добавляем пользователя в компанию
+                company.members.add(user)
+
+            return redirect('company_edit', pk=company.pk)  # Перенаправление на редактирование компании
+
+        else:
+            print(form.errors)  # Вывод ошибок формы для отладки
+            all_users = User.objects.all()
+            return render(request, 'tasks/companies/company_edit.html', {'form': form, 'company': company, 'all_users': all_users})
+
+    def send_invitation(self, company, sender, email):
+        subject = f'Приглашение присоединиться к компании {company.name}'
+        message = f'Вы были приглашены {sender.email} присоединиться к компании {company.name}.'
+        send_mail(subject, message, sender.email, [email])
+
+# class CompanyCreateView(View):
+#     def get(self, request):
+#         all_users = User.objects.all()
+#         form = CompanyForm()
+#         return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
 #
-#     def form_valid(self, form):
-#         # Устанавливаем текущего пользователя как владельца компании
-#         form.instance.owner = self.request.user
-#         # Сохраняем компанию
-#         response = super().form_valid(form)
+#     def post(self, request):
+#         form = CompanyForm(request.POST)
+#         if form.is_valid():
+#             # Сохраняем компанию
+#             company = form.save()
 #
-#         # Получаем список email для приглашений
-#         invite_emails = self.request.POST.getlist('invite_email')
+#             # Обрабатываем список участников
+#             selected_members = request.POST.get('selected_members')
+#             if selected_members:
+#                 members_list = json.loads(selected_members)
+#                 for member in members_list:
+#                     if member['type'] == 'registered':
+#                         user = User.objects.get(id=member['id'])
+#                         company.members.add(user)
+#                     elif member['type'] == 'email':
+#                         user, created = User.objects.get_or_create(
+#                             email=member['email'],
+#                             defaults={'username': member['email'].split('@')[0]}
+#                         )
+#                         company.members.add(user)
 #
-#         for invite_email in invite_emails:
-#             if invite_email:  # Проверка, что поле не пустое
-#                 # Проверка, существует ли email в базе данных
-#                 user = User.objects.filter(email=invite_email).first()
-#                 if not user:
-#                     # Если пользователь не найден, отправляем приглашение
-#                     send_mail(
-#                         'Приглашение в программу',
-#                         f'Вы приглашены в компанию {form.instance.name} в приложении SuperKanban.',
-#                         'noreply@superkanban.com',
-#                         [invite_email]
+#             return redirect('company_list')  # Перенаправляем на список компаний
+#         else:
+#             # Отображаем форму с ошибками
+#             print(form.errors)  # Для отладки
+#             all_users = User.objects.all()
+#             return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
+
+# # Представление для создания компании
+# class CompanyCreateView(View):
+#
+#     def get(self, request):
+#         # Получаем всех зарегистрированных пользователей
+#         all_users = User.objects.all()
+#         form = CompanyForm()
+#         return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
+#
+#     def post(self, request):
+#         form = CompanyForm(request.POST)
+#         if form.is_valid():
+#             company = form.save()  # Сохраняем компанию
+#
+#             # Обрабатываем выбранных и приглашенных участников
+#             selected_members = request.POST.getlist('members[]')
+#             for member in selected_members:
+#                 if 'type' in member and member['type'] == 'registered':
+#                     user = User.objects.get(id=member['id'])
+#                     company.members.add(user)
+#                 elif 'type' in member and member['type'] == 'email':
+#                     user, created = User.objects.get_or_create(
+#                         email=member['email'],
+#                         defaults={'username': member['email'].split('@')[0]}
 #                     )
-#                     # Логика для добавления временного пользователя
-#                     # Пример: создаем пользователя и добавляем его в компанию
-#                     new_user = User.objects.create_user(email=invite_email, username=invite_email.split('@')[0])
-#                     form.instance.members.add(new_user)
+#                     company.members.add(user)
 #
-#         return response
+#             return redirect('company_list')  # Перенаправляем на список компаний
+#
+#         # Если форма не валидна, отображаем её снова
+#         all_users = User.objects.all()
+#         return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
 
 
 # Представление для детальной информации о компании
@@ -107,34 +193,34 @@ def home_view(request):
         # Если не аутентифицирован, показываем приветственную страницу
         return render(request, 'account/welcome.html')
 
-
-class CompanyEditView(UpdateView):
-    model = Company
-    form_class = CompanyForm
-    template_name = 'tasks/companies/company_edit.html'
-
-    def form_valid(self, form):
-        # Сохраняем изменения
-        company = form.save()
-
-        # Обрабатываем приглашения и добавляем участников
-        invite_emails = self.request.POST.getlist('invite_email[]')
-        for email in invite_emails:
-            user, created = User.objects.get_or_create(email=email)
-            if created:
-                # Отправляем приглашение, если пользователь новый
-                self.send_invitation(company, self.request.user, email)
-
-            # Добавляем пользователя в компанию
-            company.members.add(user)
-
-        return redirect('company_edit', pk=company.pk)  # Перенаправление на редактирование компании
-
-    def send_invitation(self, company, sender, email):
-        subject = f'Приглашение присоединиться к компании {company.name}'
-        message = f'Вы были приглашены {sender.email} присоединиться к компании {company.name}.'
-        send_mail(subject, message, sender.email, [email])
-
+#
+# class CompanyEditView(UpdateView):
+#     model = Company
+#     form_class = CompanyForm
+#     template_name = 'tasks/companies/company_edit.html'
+#
+#     def form_valid(self, form):
+#         # Сохраняем изменения
+#         company = form.save()
+#
+#         # Обрабатываем приглашения и добавляем участников
+#         invite_emails = self.request.POST.getlist('invite_email[]')
+#         for email in invite_emails:
+#             user, created = User.objects.get_or_create(email=email)
+#             if created:
+#                 # Отправляем приглашение, если пользователь новый
+#                 self.send_invitation(company, self.request.user, email)
+#
+#             # Добавляем пользователя в компанию
+#             company.members.add(user)
+#
+#         return redirect('company_edit', pk=company.pk)  # Перенаправление на редактирование компании
+#
+#     def send_invitation(self, company, sender, email):
+#         subject = f'Приглашение присоединиться к компании {company.name}'
+#         message = f'Вы были приглашены {sender.email} присоединиться к компании {company.name}.'
+#         send_mail(subject, message, sender.email, [email])
+#
 
 # def remove_member(request, member_id, company_id):
 #     company = get_object_or_404(Company, id=company_id)

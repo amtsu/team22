@@ -73,12 +73,6 @@ class Task(models.Model):
         related_name='assigned_tasks',
         verbose_name='Назначенный пользователь'
     )
-    # work_group = models.ForeignKey(
-    #     'WorkGroup',
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     blank=True,
-    #     verbose_name='Рабочая группа')
 
     def __str__(self):
         return self.title
@@ -126,30 +120,3 @@ class SubTask(models.Model):
     class Meta:
         verbose_name = "Подзадача"
         verbose_name_plural = "Подзадачи"
-
-
-# class WorkGroup(models.Model):
-#     title = models.CharField(
-#         max_length=100,
-#         unique=True,
-#         verbose_name='Название группы'
-#     )
-#     owner = models.ForeignKey(
-#         User,
-#         on_delete=models.CASCADE,
-#         related_name='workgroup_owner',
-#         verbose_name='Владелец'
-#     )
-#     admins = models.ManyToManyField(
-#         User,
-#         related_name='workgroup_admins',
-#         verbose_name='Администраторы',
-#         blank=True
-#     )
-#
-#     def __str__(self):
-#         return self.title
-#
-#     class Meta:
-#         verbose_name = 'Рабочая группа'
-#         verbose_name_plural = 'Рабочие группы'
