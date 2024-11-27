@@ -78,27 +78,6 @@ class InviteForm(forms.Form):
 #             task.save()
 #         return task
 #
-
-class SubTaskForm(forms.ModelForm):
-    class Meta:
-        model = SubTask
-        fields = ['title', 'task']
-        widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название подзадачи*'}),
-            'task': forms.Select(attrs={'class': 'form-control'}),
-        }
-
-
-# Создаем formset для подзадач, связанный с моделью задачи
-SubTaskFormSet = inlineformset_factory(
-    Task,
-    SubTask,
-    form=SubTaskForm,
-    extra=1,
-    can_delete=True
-)
-
-
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
@@ -120,3 +99,25 @@ class TaskForm(forms.ModelForm):
             self.fields['assigned_user'].queryset = self.company.members.all()
         else:
             self.fields['assigned_user'].queryset = User.objects.none()  # Если компания не указана, скрываем всех
+
+
+class SubTaskForm(forms.ModelForm):
+    class Meta:
+        model = SubTask
+        fields = ['title', 'task']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название подзадачи*'}),
+            'task': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+
+# Создаем formset для подзадач, связанный с моделью задачи
+SubTaskFormSet = inlineformset_factory(
+    Task,
+    SubTask,
+    form=SubTaskForm,
+    extra=1,
+    can_delete=True
+)
+
+

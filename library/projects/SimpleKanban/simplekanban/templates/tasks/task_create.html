@@ -66,130 +66,524 @@
           <h3 class="mb-4">Создаем задачу</h3>
           <p class="text-muted">Необходимо заполнить следующие поля. Обязательные поля помечены *</p>
 
-          <!-- Поле Имя исполнителя -->
+          <!-- Поле Название задачи -->
           <div class="form-group mb-3">
-            <label for="executor">Имя исполнителя*</label>
+            <label for="task-title">Название задачи*</label>
+            <input type="text" id="task-title" name="task-title" class="form-control" required>
+          </div>
+
+          <!-- Поле Исполнитель задачи -->
+          <div class="form-group mb-3">
+            <label for="executor">Исполнитель задачи*</label>
             <select id="executor" name="executor" class="form-control" required>
               <option value="">Выберите исполнителя</option>
-              {% for user in users %}
+              {% for user in company_users %}
                 <option value="{{ user.id }}">{{ user.username }}</option>
               {% endfor %}
             </select>
           </div>
 
-          <!-- Поле Дата выполнения -->
+          <!-- Поле Дата выполнения задачи -->
           <div class="form-group mb-3">
             <label for="due-date">Дата выполнения*</label>
             <input type="date" id="due-date" name="due-date" class="form-control" required>
           </div>
 
-          <!-- Поле Группа пользователей -->
+          <!-- Поле Статус задачи -->
           <div class="form-group mb-3">
-            <label for="group">Группа пользователей</label>
-            <input type="text" id="group" name="group" class="form-control" placeholder="Введите группу пользователей">
-          </div>
-
-          <!-- Поле Описание задачи -->
-          <div class="form-group mb-4">
-            <label for="task-desc">Описание задачи*</label>
-            <textarea id="task-desc" name="task-desc" class="form-control" rows="4" placeholder="Введите описание задачи" required></textarea>
-          </div>
-
-          <div class="text-center">
-            <button type="submit" class="btn-orange">Создать!</button>
-          </div>
-        </form>
-      </section>
-
-      <!-- Форма создания подзадачи -->
-      <section class="section">
-        <form method="post" novalidate>
-          {% csrf_token %}
-
-          <h3 class="mb-4">Создаем подзадачу</h3>
-          <p class="text-muted">Необходимо заполнить следующие поля. Обязательные поля помечены *</p>
-
-          <!-- Поле Имя исполнителя -->
-          <div class="form-group mb-3">
-            <label for="executor-subtask">Имя исполнителя*</label>
-            <select id="executor-subtask" name="executor-subtask" class="form-control" required>
-              <option value="">Выберите исполнителя</option>
-              {% for user in users %}
-                <option value="{{ user.id }}">{{ user.username }}</option>
-              {% endfor %}
+            <label for="status">Статус*</label>
+            <select id="status" name="status" class="form-control" required>
+              <option value="AC">Активная</option>
+              <option value="EX">Просроченная</option>
+              <option value="CP">Завершенная</option>
+              <option value="CN">Отмененная</option>
             </select>
           </div>
 
-          <!-- Поле Дата выполнения -->
-          <div class="form-group mb-3">
-            <label for="due-date-subtask">Дата выполнения*</label>
-            <input type="date" id="due-date-subtask" name="due-date-subtask" class="form-control" required>
-          </div>
-
-          <!-- Поле Группа пользователей -->
-          <div class="form-group mb-3">
-            <label for="group-subtask">Группа пользователей</label>
-            <input type="text" id="group-subtask" name="group-subtask" class="form-control" placeholder="Введите группу пользователей">
-          </div>
-
           <!-- Поле Описание задачи -->
           <div class="form-group mb-4">
-            <label for="subtask-desc">Описание задачи*</label>
-            <textarea id="subtask-desc" name="subtask-desc" class="form-control" rows="4" placeholder="Введите описание задачи" required></textarea>
+            <label for="task-desc">Описание задачи</label>
+            <textarea id="task-desc" name="task-desc" class="form-control" rows="4" placeholder="Введите описание задачи"></textarea>
           </div>
-function inviteEmail() {
-  const emailInput = document.getElementById('invite_email');
-  const email = emailInput.value.trim();
-  const selectedMembers = [];
 
-  // Собираем выбранных пользователей
-  const userSelect = document.getElementById('user_select');
-  const selectedOptions = userSelect.selectedOptions;
-  for (let option of selectedOptions) {
-    selectedMembers.push({
-      type: 'registered',
-      id: option.value
-    });
-  }
+          <!-- Форма подзадач -->
+          <section class="section">
+            <h3 class="mb-4">Создаем подзадачи</h3>
+            <div id="subtasks-container"></div>
+            <div class="text-center mb-4">
+              <button type="button" class="btn-orange" onclick="addSubtask()">Добавить подзадачу</button>
+            </div>
 
-  if (email) {
-    selectedMembers.push({
-      type: 'email',
-      email: email
-    });
-  }
-
-  // Сохраняем в скрытое поле
-  document.getElementById('selected_members').value = JSON.stringify(selectedMembers);
-
-  // Отправляем данные на сервер
-  fetch("{% url 'company_create' %}", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-CSRFToken": "{{ csrf_token }}"
-    },
-    body: JSON.stringify({
-      selected_members: selectedMembers
-    })
-  }).then(response => response.json())
-    .then(data => {
-      // Обработка успешного добавления
-    }).catch(error => {
-      console.error('Ошибка:', error);
-    });
-}
-
-          <div class="text-center">
-            <input type="hidden" name="selected_members" id="selected_members" value="{{ selected_members | default:'' }}">
-            <button type="submit" class="btn-orange">Создать!</button>
-          </div>
+            <input type="hidden" name="subtasks" id="subtasks-data">
+            <div class="text-center">
+              <button type="submit" class="btn-orange">Создать задачу и подзадачи!</button>
+            </div>
+          </section>
         </form>
       </section>
     </div>
   </div>
 </div>
+
+<script>
+  // Контейнер для подзадач
+  const subtasksContainer = document.getElementById('subtasks-container');
+  let subtaskCount = 0;
+
+  // Функция для добавления новой подзадачи
+  function addSubtask() {
+    subtaskCount++;
+
+    const subtaskHtml = `
+      <div class="form-group mb-3" id="subtask-${subtaskCount}">
+        <h4>Подзадача ${subtaskCount}</h4>
+        <label for="subtask-title-${subtaskCount}">Название подзадачи*</label>
+        <input type="text" id="subtask-title-${subtaskCount}" class="form-control" required>
+
+        <label for="executor-subtask-${subtaskCount}">Исполнитель подзадачи*</label>
+        <select id="executor-subtask-${subtaskCount}" class="form-control" required>
+          <option value="">Выберите исполнителя</option>
+          {% for user in company_users %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="due-date-subtask-${subtaskCount}">Дата выполнения*</label>
+        <input type="date" id="due-date-subtask-${subtaskCount}" class="form-control" required>
+
+        <label for="subtask-desc-${subtaskCount}">Описание подзадачи</label>
+        <textarea id="subtask-desc-${subtaskCount}" class="form-control" rows="2" placeholder="Введите описание подзадачи"></textarea>
+      </div>
+    `;
+
+    subtasksContainer.insertAdjacentHTML('beforeend', subtaskHtml);
+  }
+
+  // Обработка отправки формы подзадач
+  document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Собираем данные всех подзадач
+    const subtasks = [];
+    for (let i = 1; i <= subtaskCount; i++) {
+      const subtaskTitle = document.getElementById(`subtask-title-${i}`).value;
+      const executor = document.getElementById(`executor-subtask-${i}`).value;
+      const dueDate = document.getElementById(`due-date-subtask-${i}`).value;
+      const description = document.getElementById(`subtask-desc-${i}`).value;
+
+      if (subtaskTitle && executor && dueDate) {
+        subtasks.push({
+          subtaskTitle,
+          executor,
+          dueDate,
+          description,
+        });
+      }
+    }
+
+    // Сохраняем данные в скрытое поле и отправляем
+    document.getElementById('subtasks-data').value = JSON.stringify(subtasks);
+    this.submit();
+  });
+</script>
+
 {% endblock %}
+
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block title %}Создание задачи - SuperKanban{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<style>#}
+{#  /* Общий стиль контейнера */#}
+{#  .section {#}
+{#    background-color: #fff;#}
+{#    border-radius: 10px;#}
+{#    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);#}
+{#    padding: 20px;#}
+{#    margin-bottom: 20px;#}
+{#  }#}
+{##}
+{#  /* Заголовки */#}
+{#  h3 {#}
+{#    font-weight: bold;#}
+{#    color: #333;#}
+{#  }#}
+{##}
+{#  p.text-muted {#}
+{#    font-size: 14px;#}
+{#    color: #777;#}
+{#  }#}
+{##}
+{#  /* Поля формы */#}
+{#  .form-control {#}
+{#    border: 1px solid #ddd;#}
+{#    border-radius: 5px;#}
+{#    padding: 10px;#}
+{#    font-size: 14px;#}
+{#  }#}
+{##}
+{#  .form-control:focus {#}
+{#    border-color: #ff6f00;#}
+{#    box-shadow: 0 0 5px rgba(255, 111, 0, 0.5);#}
+{#  }#}
+{##}
+{#  /* Кнопка создания */#}
+{#  .btn-orange {#}
+{#    background-color: #ff6f00;#}
+{#    color: #fff;#}
+{#    border: none;#}
+{#    border-radius: 5px;#}
+{#    padding: 10px 20px;#}
+{#    font-size: 16px;#}
+{#    font-weight: bold;#}
+{#    cursor: pointer;#}
+{#  }#}
+{##}
+{#  .btn-orange:hover {#}
+{#    background-color: #e65c00;#}
+{#  }#}
+{#</style>#}
+{##}
+{#<div class="container mt-5">#}
+{#  <div class="row justify-content-center">#}
+{#    <div class="col-lg-8">#}
+{#      <!-- Форма создания задачи -->#}
+{#      <section class="section">#}
+{#        <form method="post" novalidate>#}
+{#          {% csrf_token %}#}
+{##}
+{#          <h3 class="mb-4">Создаем задачу</h3>#}
+{#          <p class="text-muted">Необходимо заполнить следующие поля. Обязательные поля помечены *</p>#}
+{##}
+{#          <!-- Поле Название задачи -->#}
+{#          <div class="form-group mb-3">#}
+{#            <label for="task-title">Название задачи*</label>#}
+{#            <input type="text" id="task-title" name="task-title" class="form-control" required>#}
+{#          </div>#}
+{##}
+{#          <!-- Поле Имя исполнителя задачи -->#}
+{#          <div class="form-group mb-3">#}
+{#            <label for="executor">Исполнитель задачи*</label>#}
+{#            <select id="executor" name="executor" class="form-control" required>#}
+{#              <option value="">Выберите исполнителя</option>#}
+{#              {% for user in company_users %}#}
+{#                <option value="{{ user.id }}">{{ user.username }}</option>#}
+{#              {% endfor %}#}
+{#            </select>#}
+{#          </div>#}
+{##}
+{#          <!-- Поле Дата выполнения задачи -->#}
+{#          <div class="form-group mb-3">#}
+{#            <label for="due-date">Дата выполнения*</label>#}
+{#            <input type="date" id="due-date" name="due-date" class="form-control" required>#}
+{#          </div>#}
+{##}
+{#          <!-- Поле Статус задачи -->#}
+{#          <div class="form-group mb-3">#}
+{#            <label for="status">Статус*</label>#}
+{#            <select id="status" name="status" class="form-control" required>#}
+{#              <option value="AC">Активная</option>#}
+{#              <option value="EX">Просроченная</option>#}
+{#              <option value="CP">Завершенная</option>#}
+{#              <option value="CN">Отмененная</option>#}
+{#            </select>#}
+{#          </div>#}
+{##}
+{#          <!-- Поле Описание задачи -->#}
+{#          <div class="form-group mb-4">#}
+{#            <label for="task-desc">Описание задачи</label>#}
+{#            <textarea id="task-desc" name="task-desc" class="form-control" rows="4" placeholder="Введите описание задачи"></textarea>#}
+{#          </div>#}
+{##}
+{#          <div class="text-center">#}
+{#            <button type="submit" class="btn-orange">Создать!</button>#}
+{#          </div>#}
+{#        </form>#}
+{#      </section>#}
+{##}
+{#      <!-- Форма создания подзадач с возможностью добавления нескольких подзадач -->#}
+{#      <section class="section">#}
+{#        <h3 class="mb-4">Создаем подзадачи</h3>#}
+{#        <p class="text-muted">Вы можете добавить несколько подзадач. Обязательные поля помечены *</p>#}
+{##}
+{#        <div id="subtasks-container">#}
+{#          <!-- Контейнер для подзадач -->#}
+{#        </div>#}
+{##}
+{#        <div class="text-center mb-4">#}
+{#          <button type="button" class="btn-orange" onclick="addSubtask()">Добавить подзадачу</button>#}
+{#        </div>#}
+{##}
+{#        <form method="post" id="subtasks-form" novalidate>#}
+{#          {% csrf_token %}#}
+{#          <input type="hidden" name="subtasks" id="subtasks-data">#}
+{##}
+{#          <div class="text-center">#}
+{#            <button type="submit" class="btn-orange">Создать подзадачи!</button>#}
+{#          </div>#}
+{#        </form>#}
+{#      </section>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<script>#}
+{#  // Контейнер для подзадач#}
+{#  const subtasksContainer = document.getElementById('subtasks-container');#}
+{#  let subtaskCount = 0;#}
+{##}
+{#  // Функция для добавления новой подзадачи#}
+{#  function addSubtask() {#}
+{#    subtaskCount++;#}
+{##}
+{#    const subtaskHtml = `#}
+{#      <div class="form-group mb-3" id="subtask-${subtaskCount}">#}
+{#        <h4>Подзадача ${subtaskCount}</h4>#}
+{#        <label for="subtask-title-${subtaskCount}">Название подзадачи*</label>#}
+{#        <input type="text" id="subtask-title-${subtaskCount}" class="form-control" required>#}
+{##}
+{#        <label for="executor-subtask-${subtaskCount}">Исполнитель подзадачи*</label>#}
+{#        <select id="executor-subtask-${subtaskCount}" class="form-control" required>#}
+{#          <option value="">Выберите исполнителя</option>#}
+{#          {% for user in company_users %}#}
+{#            <option value="{{ user.id }}">{{ user.username }}</option>#}
+{#          {% endfor %}#}
+{#        </select>#}
+{##}
+{#        <label for="due-date-subtask-${subtaskCount}">Дата выполнения*</label>#}
+{#        <input type="date" id="due-date-subtask-${subtaskCount}" class="form-control" required>#}
+{##}
+{#        <label for="subtask-desc-${subtaskCount}">Описание подзадачи</label>#}
+{#        <textarea id="subtask-desc-${subtaskCount}" class="form-control" rows="2" placeholder="Введите описание подзадачи"></textarea>#}
+{#      </div>#}
+{#    `;#}
+{##}
+{#    subtasksContainer.insertAdjacentHTML('beforeend', subtaskHtml);#}
+{#  }#}
+{##}
+{#  // Обработка отправки формы подзадач#}
+{#  document.getElementById('subtasks-form').addEventListener('submit', function(event) {#}
+{#    event.preventDefault();#}
+{##}
+{#    // Собираем данные всех подзадач#}
+{#    const subtasks = [];#}
+{#    for (let i = 1; i <= subtaskCount; i++) {#}
+{#      const subtaskTitle = document.getElementById(`subtask-title-${i}`).value;#}
+{#      const executor = document.getElementById(`executor-subtask-${i}`).value;#}
+{#      const dueDate = document.getElementById(`due-date-subtask-${i}`).value;#}
+{#      const description = document.getElementById(`subtask-desc-${i}`).value;#}
+{##}
+{#      if (subtaskTitle && executor && dueDate) {#}
+{#        subtasks.push({#}
+{#          subtaskTitle,#}
+{#          executor,#}
+{#          dueDate,#}
+{#          description,#}
+{#        });#}
+{#      }#}
+{#    }#}
+{##}
+{#    // Сохраняем данные в скрытое поле и отправляем#}
+{#    document.getElementById('subtasks-data').value = JSON.stringify(subtasks);#}
+{#    this.submit();#}
+{#  });#}
+{#</script>#}
+{#{% endblock %}#}
+
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block title %}Создание задачи - SuperKanban{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<style>#}
+{#  /* Общий стиль контейнера */#}
+{#  .section {#}
+{#    background-color: #fff;#}
+{#    border-radius: 10px;#}
+{#    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);#}
+{#    padding: 20px;#}
+{#    margin-bottom: 20px;#}
+{#  }#}
+{##}
+{#  /* Заголовки */#}
+{#  h3 {#}
+{#    font-weight: bold;#}
+{#    color: #333;#}
+{#  }#}
+{##}
+{#  p.text-muted {#}
+{#    font-size: 14px;#}
+{#    color: #777;#}
+{#  }#}
+{##}
+{#  /* Поля формы */#}
+{#  .form-control {#}
+{#    border: 1px solid #ddd;#}
+{#    border-radius: 5px;#}
+{#    padding: 10px;#}
+{#    font-size: 14px;#}
+{#  }#}
+{##}
+{#  .form-control:focus {#}
+{#    border-color: #ff6f00;#}
+{#    box-shadow: 0 0 5px rgba(255, 111, 0, 0.5);#}
+{#  }#}
+{##}
+{#  /* Кнопка создания */#}
+{#  .btn-orange {#}
+{#    background-color: #ff6f00;#}
+{#    color: #fff;#}
+{#    border: none;#}
+{#    border-radius: 5px;#}
+{#    padding: 10px 20px;#}
+{#    font-size: 16px;#}
+{#    font-weight: bold;#}
+{#    cursor: pointer;#}
+{#  }#}
+{##}
+{#  .btn-orange:hover {#}
+{#    background-color: #e65c00;#}
+{#  }#}
+{#</style>#}
+{##}
+{#<div class="container mt-5">#}
+{#  <div class="row justify-content-center">#}
+{#    <div class="col-lg-8">#}
+{#      <!-- Форма создания задачи -->#}
+{#      <section class="section">#}
+{#        <form method="post" novalidate>#}
+{#          {% csrf_token %}#}
+{##}
+{#          <h3 class="mb-4">Создаем задачу</h3>#}
+{#          <p class="text-muted">Необходимо заполнить следующие поля. Обязательные поля помечены *</p>#}
+{##}
+{#          <!-- Поле Имя исполнителя -->#}
+{#          <div class="form-group mb-3">#}
+{#            <label for="executor">Имя исполнителя*</label>#}
+{#            <select id="executor" name="executor" class="form-control" required>#}
+{#              <option value="">Выберите исполнителя</option>#}
+{#              {% for user in users %}#}
+{#                <option value="{{ user.id }}">{{ user.username }}</option>#}
+{#              {% endfor %}#}
+{#            </select>#}
+{#          </div>#}
+{##}
+{#          <!-- Поле Дата выполнения -->#}
+{#          <div class="form-group mb-3">#}
+{#            <label for="due-date">Дата выполнения*</label>#}
+{#            <input type="date" id="due-date" name="due-date" class="form-control" required>#}
+{#          </div>#}
+{##}
+{#          <!-- Поле Группа пользователей -->#}
+{#          <div class="form-group mb-3">#}
+{#            <label for="group">Группа пользователей</label>#}
+{#            <input type="text" id="group" name="group" class="form-control" placeholder="Введите группу пользователей">#}
+{#          </div>#}
+{##}
+{#          <!-- Поле Описание задачи -->#}
+{#          <div class="form-group mb-4">#}
+{#            <label for="task-desc">Описание задачи*</label>#}
+{#            <textarea id="task-desc" name="task-desc" class="form-control" rows="4" placeholder="Введите описание задачи" required></textarea>#}
+{#          </div>#}
+{##}
+{#          <div class="text-center">#}
+{#            <button type="submit" class="btn-orange">Создать!</button>#}
+{#          </div>#}
+{#        </form>#}
+{#      </section>#}
+{##}
+{#      <!-- Форма создания подзадачи -->#}
+{#      <section class="section">#}
+{#        <form method="post" novalidate>#}
+{#          {% csrf_token %}#}
+{##}
+{#          <h3 class="mb-4">Создаем подзадачу</h3>#}
+{#          <p class="text-muted">Необходимо заполнить следующие поля. Обязательные поля помечены *</p>#}
+{##}
+{#          <!-- Поле Имя исполнителя -->#}
+{#          <div class="form-group mb-3">#}
+{#            <label for="executor-subtask">Имя исполнителя*</label>#}
+{#            <select id="executor-subtask" name="executor-subtask" class="form-control" required>#}
+{#              <option value="">Выберите исполнителя</option>#}
+{#              {% for user in users %}#}
+{#                <option value="{{ user.id }}">{{ user.username }}</option>#}
+{#              {% endfor %}#}
+{#            </select>#}
+{#          </div>#}
+{##}
+{#          <!-- Поле Дата выполнения -->#}
+{#          <div class="form-group mb-3">#}
+{#            <label for="due-date-subtask">Дата выполнения*</label>#}
+{#            <input type="date" id="due-date-subtask" name="due-date-subtask" class="form-control" required>#}
+{#          </div>#}
+{##}
+{#          <!-- Поле Группа пользователей -->#}
+{#          <div class="form-group mb-3">#}
+{#            <label for="group-subtask">Группа пользователей</label>#}
+{#            <input type="text" id="group-subtask" name="group-subtask" class="form-control" placeholder="Введите группу пользователей">#}
+{#          </div>#}
+{##}
+{#          <!-- Поле Описание задачи -->#}
+{#          <div class="form-group mb-4">#}
+{#            <label for="subtask-desc">Описание задачи*</label>#}
+{#            <textarea id="subtask-desc" name="subtask-desc" class="form-control" rows="4" placeholder="Введите описание задачи" required></textarea>#}
+{#          </div>#}
+{#function inviteEmail() {#}
+{#  const emailInput = document.getElementById('invite_email');#}
+{#  const email = emailInput.value.trim();#}
+{#  const selectedMembers = [];#}
+{##}
+{#  // Собираем выбранных пользователей#}
+{#  const userSelect = document.getElementById('user_select');#}
+{#  const selectedOptions = userSelect.selectedOptions;#}
+{#  for (let option of selectedOptions) {#}
+{#    selectedMembers.push({#}
+{#      type: 'registered',#}
+{#      id: option.value#}
+{#    });#}
+{#  }#}
+{##}
+{#  if (email) {#}
+{#    selectedMembers.push({#}
+{#      type: 'email',#}
+{#      email: email#}
+{#    });#}
+{#  }#}
+{##}
+{#  // Сохраняем в скрытое поле#}
+{#  document.getElementById('selected_members').value = JSON.stringify(selectedMembers);#}
+{##}
+{#  // Отправляем данные на сервер#}
+{#  fetch("{% url 'company_create' %}", {#}
+{#    method: "POST",#}
+{#    headers: {#}
+{#      "Content-Type": "application/json",#}
+{#      "X-CSRFToken": "{{ csrf_token }}"#}
+{#    },#}
+{#    body: JSON.stringify({#}
+{#      selected_members: selectedMembers#}
+{#    })#}
+{#  }).then(response => response.json())#}
+{#    .then(data => {#}
+{#      // Обработка успешного добавления#}
+{#    }).catch(error => {#}
+{#      console.error('Ошибка:', error);#}
+{#    });#}
+
+{##}
+{#          <div class="text-center">#}
+{#            <input type="hidden" name="selected_members" id="selected_members" value="{{ selected_members | default:'' }}">#}
+{#            <button type="submit" class="btn-orange">Создать!</button>#}
+{#          </div>#}
+{#        </form>#}
+{#      </section>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{#{% endblock %}#}
 
 
 {#{% extends 'base.html' %}#}

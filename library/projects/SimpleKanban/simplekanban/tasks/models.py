@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 
-
 class Company(models.Model):
     name = models.CharField(
         max_length=255
@@ -79,16 +78,15 @@ class Task(models.Model):
 
     def clean(self):
         # Проверка, что дата завершения не может быть в прошлом
-        if self.due_date < timezone.now().date():
+        if self.due_date and self.due_date < timezone.now().date():
             raise ValidationError('Дата завершения не может быть в прошлом.')
 
         # Проверка, что дата завершения не может быть ранее даты создания
-        if self.created_at and self.due_date < self.created_at.date():
+        if self.created_at is None or (self.due_date and self.due_date < self.created_at.date()):
             raise ValidationError('Дата завершения не может быть ранее даты создания.')
 
     def save(self, *args, **kwargs):
         # Обновление статуса на основе даты завершения
-        # Проверяем, что `due_date` не пустое, перед сравнением с текущей датой
         if self.due_date and self.due_date < timezone.now().date():
             self.execution_status = 'EX'  # Обновляем статус, если задача просрочена
         super().save(*args, **kwargs)
@@ -96,6 +94,37 @@ class Task(models.Model):
     class Meta:
         verbose_name = "Задача"
         verbose_name_plural = "Задачи"
+    #
+    # def clean(self):
+    #     print(f"created_at: {self.created_at}, due_date: {self.due_date}")
+    #
+    #     # Проверка, что дата завершения не может быть в прошлом
+    #     if self.due_date < timezone.now().date():
+    #         raise ValidationError('Дата завершения не может быть в прошлом.')
+    #
+    #     # Проверка, что дата завершения не может быть ранее даты создания
+    #     if self.created_at is None or self.due_date < self.created_at.date():
+    #         raise ValidationError('Дата завершения не может быть ранее даты создания.')
+    #
+    # # def clean(self):
+    # #     # Проверка, что дата завершения не может быть в прошлом
+    # #     if self.due_date < timezone.now().date():
+    # #         raise ValidationError('Дата завершения не может быть в прошлом.')
+    # #
+    # #     # Проверка, что дата завершения не может быть ранее даты создания
+    # #     if self.created_at and self.due_date < self.created_at.date():
+    # #         raise ValidationError('Дата завершения не может быть ранее даты создания.')
+    #
+    # def save(self, *args, **kwargs):
+    #     # Обновление статуса на основе даты завершения
+    #     # Проверяем, что `due_date` не пустое, перед сравнением с текущей датой
+    #     if self.due_date and self.due_date < timezone.now().date():
+    #         self.execution_status = 'EX'  # Обновляем статус, если задача просрочена
+    #     super().save(*args, **kwargs)
+    #
+    # class Meta:
+    #     verbose_name = "Задача"
+    #     verbose_name_plural = "Задачи"
 
 
 class SubTask(models.Model):

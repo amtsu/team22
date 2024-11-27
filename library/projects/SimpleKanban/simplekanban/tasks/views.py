@@ -332,6 +332,39 @@ class TaskDetailView(DetailView):
 #         else:
 #             return self.form_invalid(form)
 
+# class TaskCreateView(CreateView):
+#     model = Task
+#     form_class = TaskForm
+#     template_name = 'tasks/task_create.html'
+#
+#     def get_form_kwargs(self):
+#         kwargs = super().get_form_kwargs()
+#         company_id = self.kwargs.get('company_id')  # Получаем company_id из URL
+#         company = get_object_or_404(Company, id=company_id)  # Получаем компанию
+#         kwargs['company'] = company  # Передаем компанию в форму
+#         return kwargs
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         company_id = self.kwargs.get('company_id')
+#         company = get_object_or_404(Company, id=company_id)
+#         context['users'] = company.members.all()  # Пользователи компании для отображения в выпадающем списке
+#         return context
+#
+#     def form_valid(self, form):
+#         company_id = self.kwargs.get('company_id')
+#         form.instance.company = get_object_or_404(Company, id=company_id)
+#         form.instance.author = self.request.user  # Автор задачи - текущий пользователь
+#         return super().form_valid(form)
+#
+#     def get_success_url(self):
+#         return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
+
+import json
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
+from .models import Task, SubTask, Company
 
 class TaskCreateView(CreateView):
     model = Task
@@ -348,17 +381,67 @@ class TaskCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         company_id = self.kwargs.get('company_id')
-        context['users'] = get_object_or_404(Company, id=company_id).members.all()  # Для отображения в шаблоне
+        company = get_object_or_404(Company, id=company_id)
+        context['company_users'] = company.members.all()  # Список пользователей компании
         return context
 
     def form_valid(self, form):
+        # Получаем компанию, которая привязана к задаче
         company_id = self.kwargs.get('company_id')
-        form.instance.company = get_object_or_404(Company, id=company_id)
-        form.instance.author = self.request.user
+        company = get_object_or_404(Company, id=company_id)
+        form.instance.company = company
+        form.instance.author = self.request.user  # Привязываем автора задачи (пользователя)
+
+        # Сохраняем задачу
+        task = form.save()
+
+        # Получаем данные подзадач и сохраняем их
+        subtasks_data = self.request.POST.get('subtasks')
+        if subtasks_data:
+            subtasks = json.loads(subtasks_data)  # Десериализуем JSON
+            for subtask_data in subtasks:
+                SubTask.objects.create(
+                    task=task,
+                    title=subtask_data['subtaskTitle'],
+                    assigned_user_id=subtask_data['executor'],  # Убедитесь, что это ID пользователя
+                    due_date=subtask_data['dueDate'],
+                    description=subtask_data.get('description', '')
+                )
+
+        # Возвращаем стандартное поведение сохранения формы
         return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
+
+#
+# class TaskCreateView(CreateView):
+#     model = Task
+#     form_class = TaskForm
+#     template_name = 'tasks/task_create.html'
+#
+#     def get_form_kwargs(self):
+#         kwargs = super().get_form_kwargs()
+#         company_id = self.kwargs.get('company_id')
+#         company = get_object_or_404(Company, id=company_id)
+#         kwargs['company'] = company  # Передаем компанию в форму
+#         return kwargs
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         company_id = self.kwargs.get('company_id')
+#         company = get_object_or_404(Company, id=company_id)
+#         context['company_users'] = company.members.all()  # Список пользователей компании
+#         return context
+#
+#     def form_valid(self, form):
+#         company_id = self.kwargs.get('company_id')
+#         form.instance.company = get_object_or_404(Company, id=company_id)
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
+#
+#     def get_success_url(self):
+#         return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
 
 
 class TaskUpdateView(UpdateView):
