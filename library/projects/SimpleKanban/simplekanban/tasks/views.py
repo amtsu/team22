@@ -224,10 +224,8 @@ class TaskDetailView(DetailView):
 #             for subtask_data in subtasks:
 #                 SubTask.objects.create(
 #                     task=task,
-#                     title=subtask_data['subtaskTitle'],
-#                     assigned_user_id=subtask_data['executor'],  # Убедитесь, что это ID пользователя
-#                     due_date=subtask_data['dueDate'],
-#                     description=subtask_data.get('description', '')
+#                     title=subtask_data['subtaskTitle'],  # Поле title модели SubTask
+#                     status=subtask_data.get('status', False)  # Поле status модели SubTask
 #                 )
 #
 #         # Возвращаем стандартное поведение сохранения формы
@@ -254,10 +252,16 @@ class TaskCreateView(CreateView):
         company_id = self.kwargs.get('company_id')
         company = get_object_or_404(Company, id=company_id)
         context['company_users'] = company.members.all()  # Список пользователей компании
+
+        # Создаем formset для подзадач
+        if self.request.POST:
+            context['subtask_formset'] = SubTaskFormSet(self.request.POST)
+        else:
+            context['subtask_formset'] = SubTaskFormSet()
+
         return context
 
     def form_valid(self, form):
-        # Получаем компанию, которая привязана к задаче
         company_id = self.kwargs.get('company_id')
         company = get_object_or_404(Company, id=company_id)
         form.instance.company = company
@@ -266,18 +270,13 @@ class TaskCreateView(CreateView):
         # Сохраняем задачу
         task = form.save()
 
-        # Получаем данные подзадач и сохраняем их
-        subtasks_data = self.request.POST.get('subtasks')
-        if subtasks_data:
-            subtasks = json.loads(subtasks_data)  # Десериализуем JSON
-            for subtask_data in subtasks:
-                SubTask.objects.create(
-                    task=task,
-                    title=subtask_data['subtaskTitle'],  # Поле title модели SubTask
-                    status=subtask_data.get('status', False)  # Поле status модели SubTask
-                )
+        # Получаем и сохраняем подзадачи
+        subtask_formset = SubTaskFormSet(self.request.POST)
+        if subtask_formset.is_valid():
+            # Сохраняем все подзадачи
+            subtask_formset.instance = task  # Привязываем подзадачи к только что созданной задаче
+            subtask_formset.save()
 
-        # Возвращаем стандартное поведение сохранения формы
         return super().form_valid(form)
 
     def get_success_url(self):
