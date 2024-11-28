@@ -5,12 +5,30 @@ from .models import Company, Task
 from .forms import CompanyForm, TaskForm
 
 
-class CompanyCreationTest(TestCase):
-
-    def setUp(self):
+class BaseTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        """ Фикстуры, общие для всех тестов """
         # Создаем пользователя для использования в тестах
-        self.user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
+        cls.user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
 
+        # Создаем компанию для использования в тестах  и назначаем владельца
+        cls.company = Company.objects.create(name='Test Company', owner=cls.user)
+
+
+class CompanyModelTest(BaseTestCase):
+    def test_company_creation(self):
+        # Используем общую фикстуру company, которая уже создана
+        self.assertEqual(self.company.name, 'Test Company')
+        self.assertEqual(self.company.owner, self.user)
+
+    def test_members_relation(self):
+        # Проверяем добавление участников в компанию
+        self.company.members.add(self.user)
+        self.assertIn(self.user, self.company.members.all())
+
+
+class CompanyCreationTest(BaseTestCase):
     def test_create_company_success(self):
         ''' Тест, который проверяет успешное создание компании'''
         # Данные для создания компании
@@ -36,13 +54,8 @@ class CompanyCreationTest(TestCase):
         self.assertIn(self.user, company.members.all())  # Проверяем, что пользователь - член компании
 
 
-class TaskCreationTest(TestCase):
+class TaskCreationTest(BaseTestCase):
     ''' Тест, который проверяет создание задачи'''
-    def setUp(self):
-        # Создаем пользователя для теста
-        self.user = User.objects.create_user(username='testuser', password='password', email='user@example.com')
-        # Создаем компанию для теста
-        self.company = Company.objects.create(name='Test Company')
 
     def test_task_creation(self):
         # Данные для создания задачи
@@ -68,13 +81,9 @@ class TaskCreationTest(TestCase):
         self.assertEqual(task.company, self.company)  # Проверяем, что задача относится к правильной компании
 
 
-class TaskEditingTest(TestCase):
+class TaskEditingTest(BaseTestCase):
     ''' Тест, который проверяет редактирование задачи'''
     def setUp(self):
-        # Создаем пользователя для теста
-        self.user = User.objects.create_user(username='testuser', password='password', email='user@example.com')
-        # Создаем компанию для теста
-        self.company = Company.objects.create(name='Test Company')
         # Создаем задачу для редактирования
         self.task = Task.objects.create(
             title='Оригинал Task',
@@ -115,8 +124,12 @@ class TaskEditingTest(TestCase):
         self.assertEqual(updated_task.company, self.company)  # Проверяем, что задача по-прежнему относится к правильной компании
 
 
-class PagesTest(TestCase):
+class PagesTest(BaseTestCase):
 
     def test_task_list_all(self):
         response = self.client.get('/tasks/')
         self.assertEqual(response.status_code, 200)
+
+    # def test_companies(self):
+    #     response = self.client.get('/companies/')
+    #     self.assertEqual(response.status_code, 200)

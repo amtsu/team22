@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Задачи - SuperKanban{% endblock %}
+
+{% block content %}
+  <!-- Your page content goes here -->
+  <section id="blog-posts" class="blog-posts section">
+    <div class="container">
+      <div class="row gy-4">
+        {% for task in tasks %}
+        <div class="col-lg-4">
+          <article>
+            <div class="post-img">
+              <img src="{{ task.image.url }}" alt="" class="img-fluid">
+            </div>
+            <p class="post-category">{{ task.category }}</p>
+            <h2 class="title">
+              <a href="{% url 'task_detail' company_id=task.company.id pk=task.id %}">{{ task.title }}</a>
+            </h2>
+            <div class="d-flex align-items-center">
+              <img src="{{ task.author.profile_image.url }}" alt="" class="img-fluid post-author-img flex-shrink-0">
+              <div class="post-meta">
+                <p class="post-author">{{ task.author }}</p>
+                <p class="post-date">
+                  <time datetime="{{ task.created_at }}">{{ task.created_at|date:"M d, Y" }}</time>
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+        {% empty %}
+        <p>No tasks available.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

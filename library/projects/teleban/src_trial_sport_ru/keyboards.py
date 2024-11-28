@@ -1,12 +1,14 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from db_managers.subscription_manager import SubscriptionDatabaseManager
+from data import session_factory, SubscriptionRepository
 from src_trial_sport_ru.text_data import TRIAL_SPORT_LIST
 
 
 async def trial_sport_ikb(user_id):
-    with SubscriptionDatabaseManager() as db:
-        user_tags = db.get_user_tags(user_id, 'trial-sport')
+    # with SubscriptionDatabaseManager() as db:
+    #     user_tags = db.get_user_tags(user_id, 'trial-sport')
+    with session_factory() as session:
+        user_tags = SubscriptionRepository(session).get_user_tags(user_id, 'trial-sport')
 
         builder = InlineKeyboardBuilder()
 

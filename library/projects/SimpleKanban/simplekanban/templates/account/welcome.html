@@ -1,0 +1,31 @@
+{#{% extends '../base_allauth.html' %}  <!-- Подключаем базовый шаблон -->#}
+{% extends "account/base_entrance.html" %}
+
+
+{% block content %}
+    <div class="container text-center" style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 20px;">Добро пожаловать в Simple KanBan</h1>
+
+        <p style="font-size: 1rem; margin-bottom: 20px;">
+            Мы помогаем вам эффективно управлять проектами и задачами с помощью Kanban.
+        </p>
+
+        <h2 style="font-size: 1.5rem; margin-top: 30px; margin-bottom: 15px;">Вход в систему</h2>
+
+        <form method="post" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary" style="background-color: #ef6603; border: none; color: #fff; padding: 10px 20px; font-size: 1.1rem; margin-top: 10px;">
+                Войти
+            </button>
+        </form>
+
+        <div class="links" style="font-size: 0.9rem; margin-top: 20px;">
+            <p>Еще нет аккаунта?
+                <a href="{% url 'account_signup' %}" style="color: #ef6603; text-decoration: none;">
+                    Зарегистрируйтесь
+                </a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
