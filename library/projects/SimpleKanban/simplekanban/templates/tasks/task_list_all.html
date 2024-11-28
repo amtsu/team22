@@ -4,269 +4,20 @@
 {#{% block title %}Задачи - SuperKanban{% endblock %}#}
 {##}
 {#{% block content %}#}
-{#  <div class="container-fluid">#}
-{#    <div class="row">#}
-{#      <!-- Фильтр сверху -->#}
-{#      <div class="col-12">#}
-{#        <div class="filter-section" id="filter-top">#}
-{#          <form method="get" id="company-filter-form">#}
-{#            <label for="company-select">Выберите компанию:</label>#}
-{#            <select id="company-select" name="company_id" class="form-select" onchange="this.form.submit();">#}
-{#              <option value="" {% if not selected_company %}selected{% endif %}>Все компании</option>#}
-{#              {% for company in companies %}#}
-{#                <option value="{{ company.id }}" {% if selected_company and company.id == selected_company.id %}selected{% endif %}>#}
-{#                  {{ company.name }}#}
-{#                </option>#}
-{#              {% endfor %}#}
-{#            </select>#}
-{#          </form>#}
-{#        </div>#}
-{#      </div>#}
-{##}
-{#      <!-- Основной контент с задачами -->#}
-{#      <div class="col-md-12">#}
-{#        <section id="blog-posts" class="blog-posts section">#}
-{#          <div class="container">#}
-{#            <div class="row gy-4">#}
-{#              {% for task in tasks %}#}
-{#                <div class="col-lg-4">#}
-{#                  <article>#}
-{#                    <div class="post-img">#}
-{#                      {% if task.image %}#}
-{#                        <img src="{{ task.image.url }}" alt="{{ task.title }}" class="img-fluid">#}
-{#                      {% else %}#}
-{#                        <img src="{% static 'img/default-task-image.jpg' %}" alt="{{ task.title }}" class="img-fluid">#}
-{#                      {% endif %}#}
-{#                    </div>#}
-{#                    <p class="post-category">{{ task.category }}</p>#}
-{#                    <h2 class="title">#}
-{#                      <a href="{% url 'task_detail' company_id=task.company.id pk=task.id %}">{{ task.title }}</a>#}
-{#                    </h2>#}
-{#                    <div class="d-flex align-items-center">#}
-{#                      <img src="{{ task.author.profile_image.url }}" alt="{{ task.author }}" class="img-fluid post-author-img flex-shrink-0">#}
-{#                      <div class="post-meta">#}
-{#                        <p class="post-author">{{ task.assigned_user }}</p>#}
-{#                        <p class="post-date">#}
-{#                          <time datetime="{{ task.due_date }}">{{ task.due_date|date:"M d, Y" }}</time>#}
-{#                        </p>#}
-{#                      </div>#}
-{#                    </div>#}
-{##}
-{#                    <!-- Кнопка для раскрытия подзадач -->#}
-{#                    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#subtasks-{{ task.id }}" aria-expanded="false" aria-controls="subtasks-{{ task.id }}">#}
-{#                        Показать подзадачи#}
-{#                    </button>#}
-{##}
-{#                    <!-- Блок с подзадачами -->#}
-{#                    <div class="collapse" id="subtasks-{{ task.id }}">#}
-{#                        <ul class="list-group mt-2">#}
-{#                            {% for subtask in task.subtasks.all %}#}
-{#                                <li class="list-group-item">#}
-{#                                    <h6>{{ subtask.title }}</h6>#}
-{#                                    <p>Дедлайн: <time datetime="{{ subtask.due_date }}">{{ subtask.due_date|date:"M d, Y" }}</time></p>#}
-{#                                    <p>Исполнитель: {{ subtask.assigned_user }}</p>#}
-{#                                    <p>Статус: {% if subtask.status %} Выполнено {% else %} Не выполнено {% endif %}</p>#}
-{#                                </li>#}
-{#                            {% empty %}#}
-{#                                <li class="list-group-item text-muted">Нет подзадач</li>#}
-{#                            {% endfor %}#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                  </article>#}
-{#                </div>#}
-{#              {% empty %}#}
-{#                <p>Задачи не найдены.</p>#}
-{#              {% endfor %}#}
-{#            </div>#}
-{#          </div>#}
-{#        </section>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
-{#{% endblock %}#}
-
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}Задачи - SuperKanban{% endblock %}
-
-{% block content %}
-  <style>
-    .task-card {
-      width: 240px; /* Уменьшена ширина карточки */
-      height: 110px; /* Высота карточки */
-      padding: 6px; /* Уменьшены отступы */
-      margin: 4px; /* Отступы между карточками */
-      background-color: #fff;
-      border-radius: 4px; /* Скругленные углы */
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; /* Равномерное распределение элементов */
-      overflow: hidden; /* Обрезка содержимого */
-      text-overflow: ellipsis; /* Троеточие для длинных строк */
-      transition: transform 0.2s; /* Анимация при наведении */
-    }
-
-    .task-card:hover {
-      transform: translateY(-3px); /* Легкий подъем при наведении */
-    }
-
-    .task-card .btn-link {
-      font-size: 11px; /* Увеличен размер текста кнопки, чтобы она была читаемой */
-      color: #ff6f00; /* Ярко-оранжевый цвет */
-      text-decoration: none;
-    }
-
-    .task-card .btn-link:hover {
-      color: #e65c00; /* Немного темнее при наведении */
-      text-decoration: underline;
-    }
-
-    /* Контейнер для карточек задач */
-    .task-cards-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly; /* Равномерное распределение карточек */
-    }
-
-    .col-lg-4 {
-      display: flex;
-      justify-content: center; /* Центрирование карточек */
-    }
-
-    .post-meta {
-      font-size: 0.8rem; /* Уменьшен размер шрифта для метаданных */
-      line-height: 1.3; /* Уменьшено расстояние между строками */
-      margin-bottom: 4px; /* Добавлен небольшой отступ */
-    }
-
-    .list-group-item {
-      font-size: 0.75rem; /* Уменьшен размер шрифта для подзадач */
-      line-height: 1.3; /* Легкое расстояние между строками */
-      margin-bottom: 4px; /* Отступ между подзадачами */
-    }
-
-    .title {
-      font-size: 12px; /* Уменьшен размер шрифта заголовка */
-      font-weight: bold;
-      white-space: nowrap; /* Текст в одну строку */
-      overflow: hidden; /* Обрезка текста */
-      text-overflow: ellipsis; /* Добавление троеточия */
-      line-height: 1.1; /* Уменьшено межстрочное расстояние */
-      margin-bottom: 6px; /* Добавлен отступ снизу */
-    }
-
-    .description {
-      font-size: 10px; /* Уменьшен размер шрифта описания */
-      line-height: 1.2; /* Уменьшено расстояние между строками */
-      max-height: 30px; /* Ограничена высота описания */
-      overflow: hidden; /* Обрезка текста */
-      display: -webkit-box;
-      -webkit-line-clamp: 3; /* Ограничено количество строк */
-      -webkit-box-orient: vertical;
-      margin-bottom: 6px; /* Отступ снизу */
-    }
-
-    /* Для раскрывающегося списка подзадач */
-    .collapse ul.list-group {
-      padding-left: 0;
-    }
-
-    .collapse ul.list-group li {
-      padding: 3px 5px; /* Меньше отступов для компактного отображения */
-    }
-  </style>
-
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Фильтр сверху -->
-      <div class="col-12">
-        <div class="filter-section" id="filter-top">
-          <form method="get" id="company-filter-form">
-            <label for="company-select">Выберите компанию:</label>
-            <select id="company-select" name="company_id" class="form-select" onchange="this.form.submit();">
-              <option value="" {% if not selected_company %}selected{% endif %}>Все компании</option>
-              {% for company in companies %}
-                <option value="{{ company.id }}" {% if selected_company and company.id == selected_company.id %}selected{% endif %}>
-                  {{ company.name }}
-                </option>
-              {% endfor %}
-            </select>
-          </form>
-        </div>
-      </div>
-
-      <!-- Основной контент с задачами -->
-      <div class="col-md-12">
-        <section id="blog-posts" class="blog-posts section">
-          <div class="container">
-            <div class="task-cards-container">
-              {% for task in tasks %}
-                <div class="col-lg-4">
-                  <article class="task-card">
-                    <p class="post-category">{{ task.category }}</p>
-                    <h2 class="title">
-                      <a href="{% url 'task_detail' company_id=task.company.id pk=task.id %}">{{ task.title }}</a>
-                    </h2>
-                    <div class="post-meta">
-                      <p>Исполнитель: {{ task.assigned_user }}</p>
-                      <p>Дедлайн: <time datetime="{{ task.due_date }}">{{ task.due_date|date:"M d, Y" }}</time></p>
-                      <p>Статус: {{ task.get_status_display }}</p>
-                    </div>
-
-                    <!-- Кнопка для раскрытия подзадач -->
-                    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#subtasks-{{ task.id }}" aria-expanded="false" aria-controls="subtasks-{{ task.id }}">
-                        Показать подзадачи
-                    </button>
-
-                    <!-- Блок с подзадачами -->
-                    <div class="collapse" id="subtasks-{{ task.id }}">
-                        <ul class="list-group mt-2">
-                            {% for subtask in task.subtasks.all %}
-                                <li class="list-group-item">
-                                    {{ subtask.title }} <!-- Только название подзадачи -->
-                                </li>
-                            {% empty %}
-                                <li class="list-group-item text-muted">Нет подзадач</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                  </article>
-                </div>
-              {% empty %}
-                <p>Задачи не найдены.</p>
-              {% endfor %}
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-{% endblock %}
-
-
-{##}
-{#{% extends 'base.html' %}#}
-{#{% load static %}#}
-{##}
-{#{% block title %}Задачи - SuperKanban{% endblock %}#}
-{##}
-{#{% block content %}#}
 {#  <style>#}
 {#    .task-card {#}
-{#      width: 140px; /* Ширина карточки */#}
-{#      height: 180px; /* Высота карточки */#}
-{#      padding: 6px; /* Внутренние отступы */#}
+{#      width: 240px; /* Уменьшена ширина карточки */#}
+{#      height: 110px; /* Высота карточки */#}
+{#      padding: 6px; /* Уменьшены отступы */#}
 {#      margin: 4px; /* Отступы между карточками */#}
 {#      background-color: #fff;#}
-{#      border-radius: 4px; /* Слегка скругленные углы */#}
+{#      border-radius: 4px; /* Скругленные углы */#}
 {#      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Легкая тень */#}
 {#      display: flex;#}
 {#      flex-direction: column;#}
-{#      justify-content: space-between;#}
+{#      justify-content: space-between; /* Равномерное распределение элементов */#}
 {#      overflow: hidden; /* Обрезка содержимого */#}
-{#      text-overflow: ellipsis; /* Троеточие для текста */#}
+{#      text-overflow: ellipsis; /* Троеточие для длинных строк */#}
 {#      transition: transform 0.2s; /* Анимация при наведении */#}
 {#    }#}
 {##}
@@ -275,7 +26,7 @@
 {#    }#}
 {##}
 {#    .task-card .btn-link {#}
-{#      font-size: 10px; /* Размер текста для кнопки */#}
+{#      font-size: 11px; /* Увеличен размер текста кнопки, чтобы она была читаемой */#}
 {#      color: #ff6f00; /* Ярко-оранжевый цвет */#}
 {#      text-decoration: none;#}
 {#    }#}
@@ -289,42 +40,54 @@
 {#    .task-cards-container {#}
 {#      display: flex;#}
 {#      flex-wrap: wrap;#}
-{#      justify-content: space-evenly; /* Промежутки между карточками */#}
+{#      justify-content: space-evenly; /* Равномерное распределение карточек */#}
 {#    }#}
 {##}
-{#    /* Контейнер для каждой карточки */#}
 {#    .col-lg-4 {#}
 {#      display: flex;#}
 {#      justify-content: center; /* Центрирование карточек */#}
 {#    }#}
 {##}
 {#    .post-meta {#}
-{#      font-size: 0.9rem; /* Шрифт для метаданных */#}
-{#      line-height: 1.2; /* Расстояние между строками метаданных */#}
+{#      font-size: 0.8rem; /* Уменьшен размер шрифта для метаданных */#}
+{#      line-height: 1.3; /* Уменьшено расстояние между строками */#}
+{#      margin-bottom: 4px; /* Добавлен небольшой отступ */#}
 {#    }#}
 {##}
 {#    .list-group-item {#}
-{#      font-size: 0.75rem; /* Шрифт для подзадач */#}
-{#      line-height: 1.3; /* Расстояния между строками в подзадачах */#}
+{#      font-size: 0.75rem; /* Уменьшен размер шрифта для подзадач */#}
+{#      line-height: 1.3; /* Легкое расстояние между строками */#}
+{#      margin-bottom: 4px; /* Отступ между подзадачами */#}
 {#    }#}
 {##}
 {#    .title {#}
-{#      font-size: 12px; /* Размер шрифта заголовка */#}
+{#      font-size: 12px; /* Уменьшен размер шрифта заголовка */#}
 {#      font-weight: bold;#}
 {#      white-space: nowrap; /* Текст в одну строку */#}
-{#      overflow: hidden; /* Обрезка текста, если он не вмещается */#}
-{#      text-overflow: ellipsis; /* Добавление троеточия, если текст не вмещается */#}
-{#      line-height: 1.1; /* Межстрочное расстояния */#}
+{#      overflow: hidden; /* Обрезка текста */#}
+{#      text-overflow: ellipsis; /* Добавление троеточия */#}
+{#      line-height: 1.1; /* Уменьшено межстрочное расстояние */#}
+{#      margin-bottom: 6px; /* Добавлен отступ снизу */#}
 {#    }#}
 {##}
 {#    .description {#}
-{#      font-size: 10px; /* Размер шрифта описания */#}
-{#      line-height: 1.2; /* Расстояние между строками */#}
-{#      max-height: 30px; /* Ограничение высоты описания */#}
+{#      font-size: 10px; /* Уменьшен размер шрифта описания */#}
+{#      line-height: 1.2; /* Уменьшено расстояние между строками */#}
+{#      max-height: 30px; /* Ограничена высота описания */#}
 {#      overflow: hidden; /* Обрезка текста */#}
 {#      display: -webkit-box;#}
-{#      -webkit-line-clamp: 3; /* Ограничение количества строк */#}
+{#      -webkit-line-clamp: 3; /* Ограничено количество строк */#}
 {#      -webkit-box-orient: vertical;#}
+{#      margin-bottom: 6px; /* Отступ снизу */#}
+{#    }#}
+{##}
+{#    /* Для раскрывающегося списка подзадач */#}
+{#    .collapse ul.list-group {#}
+{#      padding-left: 0;#}
+{#    }#}
+{##}
+{#    .collapse ul.list-group li {#}
+{#      padding: 3px 5px; /* Меньше отступов для компактного отображения */#}
 {#    }#}
 {#  </style>#}
 {##}
@@ -375,10 +138,7 @@
 {#                        <ul class="list-group mt-2">#}
 {#                            {% for subtask in task.subtasks.all %}#}
 {#                                <li class="list-group-item">#}
-{#                                    <h6>{{ subtask.title }}</h6>#}
-{#                                    <p>Дедлайн: <time datetime="{{ subtask.due_date }}">{{ subtask.due_date|date:"M d, Y" }}</time></p>#}
-{#                                    <p>Исполнитель: {{ subtask.assigned_user }}</p>#}
-{#                                    <p>Статус: {% if subtask.status %} Выполнено {% else %} Не выполнено {% endif %}</p>#}
+{#                                    {{ subtask.title }} <!-- Только название подзадачи -->#}
 {#                                </li>#}
 {#                            {% empty %}#}
 {#                                <li class="list-group-item text-muted">Нет подзадач</li>#}
@@ -397,3 +157,59 @@
 {#    </div>#}
 {#  </div>#}
 {#{% endblock %}#}
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Все задачи
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="mt-4">Список задач</h1>
+
+    <!-- Фильтр по компаниям -->
+    <div class="mb-4">
+        <form method="get" id="filter-form">
+            <label for="company-select">Фильтровать по компании:</label>
+            <select id="company-select" name="company_id" class="form-select" onchange="this.form.submit();">
+                <option value="" {% if not selected_company %}selected{% endif %}>Все компании</option>
+                {% for company in companies %}
+                    <option value="{{ company.id }}" {% if selected_company and company.id == selected_company.id %}selected{% endif %}>
+                        {{ company.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+
+    <!-- Список задач -->
+    <div class="row">
+        {% for task in tasks %}
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ task.title }}</h5>
+                        <p class="card-text">{{ task.description|truncatechars:100 }}</p>
+                        <p class="card-text">
+                            <small class="text-muted">Компания: {{ task.company.name }}</small><br>
+                            <small class="text-muted">Дедлайн: {{ task.due_date|date:"d.m.Y" }}</small><br>
+                            <small class="text-muted">Статус: {{ task.get_status_display }}</small>
+                        </p>
+                        <a href="{% url 'task_detail' company_id=task.company.id pk=task.id %}" class="btn btn-primary btn-sm">Подробнее</a>
+                        <a href="{% url 'task_edit' company_id=task.company.id pk=task.id %}" class="btn btn-warning btn-sm">Редактировать</a>
+                        <form action="{% url 'task_delete' company_id=task.company.id pk=task.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="submit" value="Удалить" class="btn btn-danger btn-sm">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Задачи отсутствуют.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+
+

@@ -133,30 +133,56 @@ class CompanyDeleteView(DeleteView):
     success_url = reverse_lazy('company_list')  # Перенаправление на список компаний после успешного удаления
 
 
-# Представление для просмотра списка Задач
+# # Представление для просмотра списка Задач
+# class TaskListView(ListView):
+#     model = Task
+#     context_object_name = 'tasks'  # Имя контекста для доступа к задачам в шаблоне
+#     template_name = 'tasks/task_list.html'
+#
+#     def get_queryset(self):
+#         # Получаем company_id из GET-запроса
+#         company_id = self.request.GET.get('company_id')
+#         if company_id:
+#             return Task.objects.filter(company_id=company_id)  # Фильтруем по компании
+#         return Task.objects.all()  # Возвращаем все задачи, если company_id не указан
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         company_id = self.request.GET.get('company_id')
+#
+#         # Если company_id указан, получаем соответствующую компанию
+#         if company_id:
+#             context['selected_company'] = get_object_or_404(Company, id=company_id)
+#         else:
+#             context['selected_company'] = None  # Нет выбранной компании
+#
+#         # Получаем все компании для отображения в фильтре
+#         context['companies'] = Company.objects.all()
+#         return context
+
+
 class TaskListView(ListView):
     model = Task
-    context_object_name = 'tasks'  # Имя контекста для доступа к задачам в шаблоне
-    template_name = 'tasks/task_list.html'
+    context_object_name = 'tasks'
+    template_name = 'tasks/task_list_all.html'  # Убедитесь, что этот путь соответствует вашему шаблону
 
     def get_queryset(self):
-        # Получаем company_id из GET-запроса
         company_id = self.request.GET.get('company_id')
-        if company_id:
-            return Task.objects.filter(company_id=company_id)  # Фильтруем по компании
-        return Task.objects.all()  # Возвращаем все задачи, если company_id не указан
+        if company_id:  # Если указана компания
+            return Task.objects.filter(company_id=company_id)
+        return Task.objects.all()  # Возвращаем все задачи, если компания не выбрана
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         company_id = self.request.GET.get('company_id')
 
-        # Если company_id указан, получаем соответствующую компанию
+        # Если компания выбрана, добавляем её в контекст
         if company_id:
             context['selected_company'] = get_object_or_404(Company, id=company_id)
         else:
-            context['selected_company'] = None  # Нет выбранной компании
+            context['selected_company'] = None  # Все компании
 
-        # Получаем все компании для отображения в фильтре
+        # Передаем список всех компаний в шаблон
         context['companies'] = Company.objects.all()
         return context
 
@@ -186,53 +212,6 @@ class TaskDetailView(DetailView):
         # Получаем все подзадачи:
         context['subtasks'] = self.object.subtasks.all()
         return context
-
-
-# class TaskCreateView(CreateView):
-#     model = Task
-#     form_class = TaskForm
-#     template_name = 'tasks/task_create.html'
-#
-#     def get_form_kwargs(self):
-#         kwargs = super().get_form_kwargs()
-#         company_id = self.kwargs.get('company_id')
-#         company = get_object_or_404(Company, id=company_id)
-#         kwargs['company'] = company  # Передаем компанию в форму
-#         return kwargs
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         company_id = self.kwargs.get('company_id')
-#         company = get_object_or_404(Company, id=company_id)
-#         context['company_users'] = company.members.all()  # Список пользователей компании
-#         return context
-#
-#     def form_valid(self, form):
-#         # Получаем компанию, которая привязана к задаче
-#         company_id = self.kwargs.get('company_id')
-#         company = get_object_or_404(Company, id=company_id)
-#         form.instance.company = company
-#         form.instance.author = self.request.user  # Привязываем автора задачи (пользователя)
-#
-#         # Сохраняем задачу
-#         task = form.save()
-#
-#         # Получаем данные подзадач и сохраняем их
-#         subtasks_data = self.request.POST.get('subtasks')
-#         if subtasks_data:
-#             subtasks = json.loads(subtasks_data)  # Десериализуем JSON
-#             for subtask_data in subtasks:
-#                 SubTask.objects.create(
-#                     task=task,
-#                     title=subtask_data['subtaskTitle'],  # Поле title модели SubTask
-#                     status=subtask_data.get('status', False)  # Поле status модели SubTask
-#                 )
-#
-#         # Возвращаем стандартное поведение сохранения формы
-#         return super().form_valid(form)
-#
-#     def get_success_url(self):
-#         return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
 
 
 class TaskCreateView(CreateView):
@@ -318,23 +297,49 @@ class TaskUpdateView(UpdateView):
         return reverse_lazy('tasks/task_list', kwargs={'company_id': self.kwargs.get('company_id')})
 
 
+# class TaskListAllView(ListView):
+#     model = Task
+#     template_name = 'tasks/task_list_all.html'  # Шаблон для отображения всех задач
+#     context_object_name = 'tasks'
+#
+#     def get_queryset(self):
+#         # Получаем company_id из GET-запроса
+#         company_id = self.request.GET.get('company_id')
+#
+#         # Фильтруем задачи по company_id, если он указан
+#         if company_id:
+#             return Task.objects.filter(company__id=company_id)
+#
+#         return Task.objects.all()  # Возвращает все задачи, если company_id не указан
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['company_id'] = self.request.GET.get('company_id')  # Динамически передаем ID компании
+#         context['companies'] = Company.objects.all()  # Получаем список всех компаний для отображения в селекте
+#         return context
+
 class TaskListAllView(ListView):
     model = Task
-    template_name = 'tasks/task_list_all.html'  # Шаблон для отображения всех задач
+    template_name = 'tasks/task_list_all.html'
     context_object_name = 'tasks'
 
     def get_queryset(self):
-        # Получаем company_id из GET-запроса
         company_id = self.request.GET.get('company_id')
-
-        # Фильтруем задачи по company_id, если он указан
-        if company_id:
+        if company_id:  # Если выбрана компания
             return Task.objects.filter(company__id=company_id)
-
-        return Task.objects.all()  # Возвращает все задачи, если company_id не указан
+        return Task.objects.all()  # Если выбраны все компании
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['company_id'] = self.request.GET.get('company_id')  # Динамически передаем ID компании
-        context['companies'] = Company.objects.all()  # Получаем список всех компаний для отображения в селекте
+        company_id = self.request.GET.get('company_id', '')
+
+        context['company_id'] = company_id  # Для сохранения выбора компании в фильтре
+        context['companies'] = Company.objects.all()  # Список всех компаний
+
+        # Добавляем выбранную компанию в контекст
+        if company_id:
+            context['selected_company'] = Company.objects.filter(id=company_id).first()
+        else:
+            context['selected_company'] = None
+
         return context
