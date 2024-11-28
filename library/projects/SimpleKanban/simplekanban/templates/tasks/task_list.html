@@ -1,3 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Список задач
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid text-bg-dark p-4">
+    <h1>Список задач</h1>
+
+    <!-- Переключатель между списком и карточками -->
+    <div class="d-flex justify-content-end mb-3">
+        <a href="?view=list{% if selected_company %}&company_id={{ selected_company.id }}{% endif %}"
+           class="btn btn-secondary {% if view_mode == 'list' %}active{% endif %}">
+            Список
+        </a>
+        <a href="?view=cards{% if selected_company %}&company_id={{ selected_company.id }}{% endif %}"
+           class="btn btn-secondary {% if view_mode == 'cards' %}active{% endif %}">
+            Карточки
+        </a>
+    </div>
+
+    <!-- Фильтр по группам -->
+    <div class="mb-3">
+        <form method="get">
+            <label for="company-select">Выберите группу:</label>
+            <select id="company-select" name="company_id" class="form-select" onchange="this.form.submit();">
+                <option value="" {% if not selected_company %}selected{% endif %}>Все группы</option>
+                {% for company in companies %}
+                    <option value="{{ company.id }}" {% if company.id == selected_company.id %}selected{% endif %}>
+                        {{ company.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+
+    <!-- Кнопка "Создать задачу" -->
+    <div class="mb-3">
+        {% if selected_company %}
+            <a href="{% url 'task_create' selected_company.id %}" class="btn btn-success">Создать задачу</a>
+        {% else %}
+            <a class="btn btn-success disabled" aria-disabled="true">Создать задачу</a>
+        {% endif %}
+        <a href="{% url 'company_list' %}" class="btn btn-secondary">Назад к списку групп</a>
+    </div>
+
+    <!-- Отображение задач в зависимости от режима -->
+    {% if view_mode == 'cards' %}
+        <div class="row">
+            {% for task in tasks %}
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ task.title }}</h5>
+                            <p class="card-text">{{ task.description }}</p>
+                            <p class="card-text"><small class="text-muted">Дата завершения: {{ task.due_date }}</small></p>
+                            <p class="card-text">
+                                <small class="text-muted">Статус:
+                                    <span class="badge
+                                        {% if task.execution_status == 'AC' %}bg-success{% elif task.execution_status == 'EX' %}bg-danger{% elif task.execution_status == 'CP' %}bg-primary{% elif task.execution_status == 'CN' %}bg-secondary{% endif %}">
+                                        {{ task.get_execution_status_display }}
+                                    </span>
+                                </small>
+                            </p>
+                            <a href="{% url 'task_detail' task.id %}" class="btn btn-primary">Подробнее</a>
+                            <a href="{% url 'task_edit' task.company.id task.id %}" class="btn btn-warning">Редактировать</a>
+                            <form action="{% url 'task_delete' task.company.id task.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="submit" value="Удалить" class="btn btn-danger">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <!-- Отображение задач в виде списка -->
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Заголовок</th>
+                    <th>Описание</th>
+                    <th>Статус</th>
+                    <th>Дата завершения</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>
+                            <span class="badge
+                                {% if task.execution_status == 'AC' %}bg-success{% elif task.execution_status == 'EX' %}bg-danger{% elif task.execution_status == 'CP' %}bg-primary{% elif task.execution_status == 'CN' %}bg-secondary{% endif %}">
+                                {{ task.get_execution_status_display }}
+                            </span>
+                        </td>
+                        <td>{{ task.created_at }}</td>
+                        <td>
+                            <a href="{% url 'task_edit' task.company.id task.id %}" class="btn btn-warning">Редактировать</a>
+                            <form action="{% url 'task_delete' task.company.id task.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="submit" value="Удалить" class="btn btn-danger">
+                            </form>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">Нет задач для отображения.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock content %}
+
+
 {#{% extends "base.html" %}#}
 {##}
 {#{% block title %}#}
@@ -88,110 +208,110 @@
 {#    {% endif %}#}
 {#</div>#}
 {#{% endblock content %}#}
-
-
-{% extends "base.html" %}
-
-{% block title %}
-    Список задач
-{% endblock title %}
-
-{% block content %}
-<div class="container-fluid text-bg-dark p-4">
-    <h1>Список задач</h1>
-
-    <!-- Переключатель между списком и карточками -->
-    <div class="d-flex justify-content-end mb-3">
-        <a href="?view=list{% if selected_company %}&company_id={{ selected_company.id }}{% endif %}"
-           class="btn btn-secondary {% if view_mode == 'list' %}active{% endif %}">
-            Список
-        </a>
-        <a href="?view=cards{% if selected_company %}&company_id={{ selected_company.id }}{% endif %}"
-           class="btn btn-secondary {% if view_mode == 'cards' %}active{% endif %}">
-            Карточки
-        </a>
-    </div>
-
-    <!-- Фильтр по компании -->
-    <div class="mb-3">
-        <form method="get">
-            <label for="company-select">Выберите компанию:</label>
-            <select id="company-select" name="company_id" class="form-select" onchange="this.form.submit();">
-                <option value="" {% if not selected_company %}selected{% endif %}>Все компании</option>
-                {% for company in companies %}
-                    <option value="{{ company.id }}" {% if company.id == selected_company.id %}selected{% endif %}>
-                        {{ company.name }}
-                    </option>
-                {% endfor %}
-            </select>
-        </form>
-    </div>
-
-    <!-- Кнопка "Создать задачу" -->
-    <div class="mb-3">
-        {% if selected_company %}  <!-- Проверяем, выбрана ли компания -->
-            <a href="{% url 'task_create' selected_company.id %}" class="btn btn-success">Создать задачу</a>
-        {% else %}
-            <a class="btn btn-success disabled" aria-disabled="true">Создать задачу</a>
-        {% endif %}
-        <a href="{% url 'company_list' %}" class="btn btn-secondary">Назад к списку компаний</a>
-    </div>
-
-    <!-- Отображение задач в зависимости от режима -->
-    {% if view_mode == 'cards' %}
-        <div class="row">
-            {% for task in tasks %}
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ task.title }}</h5>
-                            <p class="card-text">{{ task.description }}</p>
-                            <p class="card-text"><small class="text-muted">Дата завершения: {{ task.due_date }}</small></p>
-                            <a href="{% url 'task_detail' task.id %}" class="btn btn-primary">Подробнее</a>
-                            <a href="{% url 'task_edit' task.company.id task.id %}" class="btn btn-warning">Редактировать</a>
-                            <form action="{% url 'task_delete' task.company.id task.id %}" method="post" style="display:inline;">
-                                {% csrf_token %}
-                                <input type="submit" value="Удалить" class="btn btn-danger">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <!-- Отображение задач в виде списка -->
-        <table class="table table-dark table-striped">
-            <thead>
-                <tr>
-                    <th>Заголовок</th>
-                    <th>Описание</th>
-                    <th>Статус</th>
-                    <th>Дата завершения</th>
-                    <th>Действия</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for task in tasks %}
-                    <tr>
-                        <td>{{ task.title }}</td>
-                        <td>{{ task.description }}</td>
-                        <td>{{ task.get_execution_status_display }}</td>
-                        <td>{{ task.created_at }}</td>
-                        <td>
-                            <a href="{% url 'task_edit' task.company.id task.id %}" class="btn btn-warning">Редактировать</a>
-                            <form action="{% url 'task_delete' task.company.id task.id %}" method="post" style="display:inline;">
-                                {% csrf_token %}
-                                <input type="submit" value="Удалить" class="btn btn-danger">
-                            </form>
-                        </td>
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="5" class="text-center">Нет задач для отображения.</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
-</div>
-{% endblock content %}
+{##}
+{##}
+{#{% extends "base.html" %}#}
+{##}
+{#{% block title %}#}
+{#    Список задач#}
+{#{% endblock title %}#}
+{##}
+{#{% block content %}#}
+{#<div class="container-fluid text-bg-dark p-4">#}
+{#    <h1>Список задач</h1>#}
+{##}
+{#    <!-- Переключатель между списком и карточками -->#}
+{#    <div class="d-flex justify-content-end mb-3">#}
+{#        <a href="?view=list{% if selected_company %}&company_id={{ selected_company.id }}{% endif %}"#}
+{#           class="btn btn-secondary {% if view_mode == 'list' %}active{% endif %}">#}
+{#            Список#}
+{#        </a>#}
+{#        <a href="?view=cards{% if selected_company %}&company_id={{ selected_company.id }}{% endif %}"#}
+{#           class="btn btn-secondary {% if view_mode == 'cards' %}active{% endif %}">#}
+{#            Карточки#}
+{#        </a>#}
+{#    </div>#}
+{##}
+{#    <!-- Фильтр по группам -->#}
+{#    <div class="mb-3">#}
+{#        <form method="get">#}
+{#            <label for="company-select">Выберите группу:</label>#}
+{#            <select id="company-select" name="company_id" class="form-select" onchange="this.form.submit();">#}
+{#                <option value="" {% if not selected_company %}selected{% endif %}>Все группы</option>#}
+{#                {% for company in companies %}#}
+{#                    <option value="{{ company.id }}" {% if company.id == selected_company.id %}selected{% endif %}>#}
+{#                        {{ company.name }}#}
+{#                    </option>#}
+{#                {% endfor %}#}
+{#            </select>#}
+{#        </form>#}
+{#    </div>#}
+{##}
+{#    <!-- Кнопка "Создать задачу" -->#}
+{#    <div class="mb-3">#}
+{#        {% if selected_company %}  <!-- Проверяем, выбрана ли группа -->#}
+{#            <a href="{% url 'task_create' selected_company.id %}" class="btn btn-success">Создать задачу</a>#}
+{#        {% else %}#}
+{#            <a class="btn btn-success disabled" aria-disabled="true">Создать задачу</a>#}
+{#        {% endif %}#}
+{#        <a href="{% url 'company_list' %}" class="btn btn-secondary">Назад к списку групп</a>#}
+{#    </div>#}
+{##}
+{#    <!-- Отображение задач в зависимости от режима -->#}
+{#    {% if view_mode == 'cards' %}#}
+{#        <div class="row">#}
+{#            {% for task in tasks %}#}
+{#                <div class="col-md-4">#}
+{#                    <div class="card mb-3">#}
+{#                        <div class="card-body">#}
+{#                            <h5 class="card-title">{{ task.title }}</h5>#}
+{#                            <p class="card-text">{{ task.description }}</p>#}
+{#                            <p class="card-text"><small class="text-muted">Дата завершения: {{ task.due_date }}</small></p>#}
+{#                            <a href="{% url 'task_detail' task.id %}" class="btn btn-primary">Подробнее</a>#}
+{#                            <a href="{% url 'task_edit' task.company.id task.id %}" class="btn btn-warning">Редактировать</a>#}
+{#                            <form action="{% url 'task_delete' task.company.id task.id %}" method="post" style="display:inline;">#}
+{#                                {% csrf_token %}#}
+{#                                <input type="submit" value="Удалить" class="btn btn-danger">#}
+{#                            </form>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    {% else %}#}
+{#        <!-- Отображение задач в виде списка -->#}
+{#        <table class="table table-dark table-striped">#}
+{#            <thead>#}
+{#                <tr>#}
+{#                    <th>Заголовок</th>#}
+{#                    <th>Описание</th>#}
+{#                    <th>Статус</th>#}
+{#                    <th>Дата завершения</th>#}
+{#                    <th>Действия</th>#}
+{#                </tr>#}
+{#            </thead>#}
+{#            <tbody>#}
+{#                {% for task in tasks %}#}
+{#                    <tr>#}
+{#                        <td>{{ task.title }}</td>#}
+{#                        <td>{{ task.description }}</td>#}
+{#                        <td>{{ task.get_execution_status_display }}</td>#}
+{#                        <td>{{ task.created_at }}</td>#}
+{#                        <td>#}
+{#                            <a href="{% url 'task_edit' task.company.id task.id %}" class="btn btn-warning">Редактировать</a>#}
+{#                            <form action="{% url 'task_delete' task.company.id task.id %}" method="post" style="display:inline;">#}
+{#                                {% csrf_token %}#}
+{#                                <input type="submit" value="Удалить" class="btn btn-danger">#}
+{#                            </form>#}
+{#                        </td>#}
+{#                    </tr>#}
+{#                {% empty %}#}
+{#                    <tr>#}
+{#                        <td colspan="5" class="text-center">Нет задач для отображения.</td>#}
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#            </tbody>#}
+{#        </table>#}
+{#    {% endif %}#}
+{#</div>#}
+{#{% endblock content %}#}

@@ -1,3 +1,196 @@
+{#{% extends "base.html" %}#}
+{#{% load static %}#}
+{##}
+{#{% block title %}#}
+{#    Редактирование задачи#}
+{#{% endblock title %}#}
+{##}
+{#{% block content %}#}
+{#<style>#}
+{#    .btn-secondary {#}
+{#        background-color: #f7f7f7;#}
+{#        color: #333;#}
+{#        border: 1px solid #ddd;#}
+{#    }#}
+{##}
+{#    .btn-primary {#}
+{#        background-color: #ff6f00;#}
+{#        color: white;#}
+{#        border: none;#}
+{#    }#}
+{##}
+{#    .btn-danger {#}
+{#        background-color: #dc3545;#}
+{#        color: white;#}
+{#        border: none;#}
+{#    }#}
+{##}
+{#    .form-control {#}
+{#        margin-bottom: 10px;#}
+{#    }#}
+{##}
+{#    .subtask-form {#}
+{#        background-color: #f9f9f9;#}
+{#        padding: 15px;#}
+{#        border-radius: 5px;#}
+{#        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);#}
+{#        margin-bottom: 15px;#}
+{#    }#}
+{##}
+{#    .subtask-form:hover {#}
+{#        background-color: #f0f0f0;#}
+{#    }#}
+{##}
+{#    .subtask-form label {#}
+{#        font-weight: bold;#}
+{#    }#}
+{##}
+{#    .remove-subtask {#}
+{#        align-self: flex-start;#}
+{#    }#}
+{##}
+{#    .form-group {#}
+{#        margin-bottom: 15px;#}
+{#    }#}
+{##}
+{#    .form-select, .form-control {#}
+{#        width: 100%;#}
+{#    }#}
+{##}
+{#    .btn-secondary.mb-3 {#}
+{#        margin-top: 15px;#}
+{#    }#}
+{##}
+{#    .text-center {#}
+{#        text-align: center;#}
+{#    }#}
+{#</style>#}
+{##}
+{#<div class="container">#}
+{#    <h2 class="text-center mb-4">Редактирование задачи</h2>#}
+{##}
+{#    <form method="post">#}
+{#        {% csrf_token %}#}
+{##}
+{#        <!-- Основная форма задачи -->#}
+{#        <div class="form-group mb-3">#}
+{#            <label for="task-title">Задача:</label>#}
+{#            {{ form.title }}  <!-- Тема задачи -->#}
+{#        </div>#}
+{##}
+{#        <div class="form-group mb-3">#}
+{#            <label for="task-description">Описание:</label>#}
+{#            {{ form.description }}  <!-- Описание задачи -->#}
+{#        </div>#}
+{##}
+{#        <div class="form-group mb-3">#}
+{#            <label for="task-status">Статус выполнения:</label>#}
+{#            {{ form.execution_status }}  <!-- Статус выполнения -->#}
+{#        </div>#}
+{##}
+{#        <div class="form-group mb-3">#}
+{#            <label for="task-due-date">Дата завершения:</label>#}
+{#            {{ form.due_date }}  <!-- Дата завершения -->#}
+{#        </div>#}
+{##}
+{#        <div class="form-group mb-3">#}
+{#            <label for="assigned-user">Назначенный пользователь:</label>#}
+{#            {{ form.assigned_user }}  <!-- Исполнитель -->#}
+{#        </div>#}
+{##}
+{#        <div class="form-group mb-3">#}
+{#            <label for="company">Группа:</label>#}
+{#            {{ form.company }}  <!-- Группа -->#}
+{#        </div>#}
+{##}
+{#        <!-- Блок подзадач -->#}
+{#        <h3 class="mt-4">Подзадачи</h3>#}
+{#        <div id="subtask_forms">#}
+{#            {% for subtask in subtasks %}#}
+{#                <div class="subtask-form d-flex align-items-center mb-3">#}
+{#                    <div class="flex-grow-1">#}
+{#                        <!-- Название подзадачи -->#}
+{#                        <div class="form-group">#}
+{#                            <label for="subtask-{{ subtask.id }}-title">Название подзадачи:</label>#}
+{#                            <input type="text" name="subtasks[{{ forloop.counter0 }}][title]"#}
+{#                                   id="subtask-{{ subtask.id }}-title" value="{{ subtask.title }}"#}
+{#                                   class="form-control" required>#}
+{#                        </div>#}
+{##}
+{#                        <!-- Исполнитель подзадачи -->#}
+{#                        <div class="form-group">#}
+{#                            <label for="subtask-{{ subtask.id }}-assignee">Исполнитель:</label>#}
+{#                            <select name="subtasks[{{ forloop.counter0 }}][assigned_user]"#}
+{#                                    id="subtask-{{ subtask.id }}-assignee" class="form-select">#}
+{#                                {% for user in users %}#}
+{#                                    <option value="{{ user.id }}"#}
+{#                                            {% if user == subtask.assigned_user %}selected{% endif %}>#}
+{#                                        {{ user.username }}#}
+{#                                    </option>#}
+{#                                {% endfor %}#}
+{#                            </select>#}
+{#                        </div>#}
+{##}
+{#                        <!-- Статус подзадачи -->#}
+{#                        <div class="form-group">#}
+{#                            <label for="subtask-{{ subtask.id }}-status">Статус подзадачи:</label>#}
+{#                            <select name="subtasks[{{ forloop.counter0 }}][status]"#}
+{#                                    id="subtask-{{ subtask.id }}-status" class="form-select">#}
+{#                                <option value="False" {% if not subtask.status %}selected{% endif %}>Не выполнено</option>#}
+{#                                <option value="True" {% if subtask.status %}selected{% endif %}>Выполнено</option>#}
+{#                            </select>#}
+{#                        </div>#}
+{##}
+{#                        <!-- Описание подзадачи -->#}
+{#                        <div class="form-group">#}
+{#                            <label for="subtask-{{ subtask.id }}-description">Описание подзадачи:</label>#}
+{#                            <textarea name="subtasks[{{ forloop.counter0 }}][description]"#}
+{#                                      id="subtask-{{ subtask.id }}-description" class="form-control">{{ subtask.description }}</textarea>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <!-- Кнопка удаления подзадачи -->#}
+{#                    <button type="button" class="btn btn-danger btn-sm ms-2 remove-subtask">Удалить</button>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{##}
+{#        <!-- Кнопка добавления подзадачи -->#}
+{#        <button type="button" class="btn btn-secondary mb-3" id="add-subtask">Добавить подзадачу</button>#}
+{##}
+{#        <!-- Кнопка для отправки формы -->#}
+{#        <button type="submit" class="btn btn-primary">Обновить задачу</button>#}
+{#    </form>#}
+{##}
+{#    <!-- Кнопка для возврата к списку задач -->#}
+{#    {% if company_id %}#}
+{#        <a href="{% url 'tasks:task_list' company_id=company_id %}" class="btn btn-secondary mt-3">Назад к списку задач компании</a>#}
+{#    {% else %}#}
+{#        <a href="{% url 'tasks:task_list_all' %}" class="btn btn-secondary mt-3">Назад к списку задач</a>#}
+{#    {% endif %}#}
+{#</div>#}
+{##}
+{#<script>#}
+{#    document.addEventListener('DOMContentLoaded', function() {#}
+{#        // Добавить подзадачу#}
+{#        document.getElementById('add-subtask').addEventListener('click', function() {#}
+{#            const subtaskForms = document.getElementById('subtask_forms');#}
+{#            const newSubtask = subtaskForms.children[0].cloneNode(true);#}
+{#            newSubtask.querySelector('input').value = '';#}
+{#            newSubtask.querySelector('textarea').value = '';#}
+{#            subtaskForms.appendChild(newSubtask);#}
+{#        });#}
+{##}
+{#        // Удалить подзадачу#}
+{#        document.getElementById('subtask_forms').addEventListener('click', function(event) {#}
+{#            if (event.target.classList.contains('remove-subtask')) {#}
+{#                event.target.closest('.subtask-form').remove();#}
+{#            }#}
+{#        });#}
+{#    });#}
+{#</script>#}
+{##}
+{#{% endblock content %}#}
+
 {% extends "base.html" %}
 {% load static %}
 
@@ -37,32 +230,8 @@
         margin-bottom: 15px;
     }
 
-    .subtask-form:hover {
-        background-color: #f0f0f0;
-    }
-
-    .subtask-form label {
-        font-weight: bold;
-    }
-
-    .remove-subtask {
-        align-self: flex-start;
-    }
-
     .form-group {
         margin-bottom: 15px;
-    }
-
-    .form-select, .form-control {
-        width: 100%;
-    }
-
-    .btn-secondary.mb-3 {
-        margin-top: 15px;
-    }
-
-    .text-center {
-        text-align: center;
     }
 </style>
 
@@ -74,120 +243,83 @@
 
         <!-- Основная форма задачи -->
         <div class="form-group mb-3">
-            <label for="task-title">Задача:</label>
-            {{ form.title }}  <!-- Тема задачи -->
+            <label for="task-title">Название задачи:</label>
+            {{ form.title.errors }}
+            {{ form.title }}
         </div>
 
         <div class="form-group mb-3">
-            <label for="task-description">Описание:</label>
-            {{ form.description }}  <!-- Описание задачи -->
+            <label for="task-description">Описание задачи:</label>
+            {{ form.description.errors }}
+            {{ form.description }}
         </div>
 
         <div class="form-group mb-3">
             <label for="task-status">Статус выполнения:</label>
-            {{ form.execution_status }}  <!-- Статус выполнения -->
+            {{ form.execution_status.errors }}
+            {{ form.execution_status }}
         </div>
 
         <div class="form-group mb-3">
             <label for="task-due-date">Дата завершения:</label>
-            {{ form.due_date }}  <!-- Дата завершения -->
+            {{ form.due_date.errors }}
+            {{ form.due_date }}
         </div>
 
         <div class="form-group mb-3">
             <label for="assigned-user">Назначенный пользователь:</label>
-            {{ form.assigned_user }}  <!-- Исполнитель -->
+            {{ form.assigned_user.errors }}
+            {{ form.assigned_user }}
         </div>
 
         <div class="form-group mb-3">
-            <label for="company">Компания:</label>
-            {{ form.company }}  <!-- Компания -->
+            <label for="company">Группа:</label>
+            {{ form.company.errors }}
+            {{ form.company }}
         </div>
 
         <!-- Блок подзадач -->
         <h3 class="mt-4">Подзадачи</h3>
-        <div id="subtask_forms">
-            {% for subtask in subtasks %}
-                <div class="subtask-form d-flex align-items-center mb-3">
-                    <div class="flex-grow-1">
-                        <!-- Название подзадачи -->
-                        <div class="form-group">
-                            <label for="subtask-{{ subtask.id }}-title">Название подзадачи:</label>
-                            <input type="text" name="subtasks[{{ forloop.counter0 }}][title]"
-                                   id="subtask-{{ subtask.id }}-title" value="{{ subtask.title }}"
-                                   class="form-control" required>
-                        </div>
-
-                        <!-- Исполнитель подзадачи -->
-                        <div class="form-group">
-                            <label for="subtask-{{ subtask.id }}-assignee">Исполнитель:</label>
-                            <select name="subtasks[{{ forloop.counter0 }}][assigned_user]"
-                                    id="subtask-{{ subtask.id }}-assignee" class="form-select">
-                                {% for user in users %}
-                                    <option value="{{ user.id }}"
-                                            {% if user == subtask.assigned_user %}selected{% endif %}>
-                                        {{ user.username }}
-                                    </option>
-                                {% endfor %}
-                            </select>
-                        </div>
-
-                        <!-- Статус подзадачи -->
-                        <div class="form-group">
-                            <label for="subtask-{{ subtask.id }}-status">Статус подзадачи:</label>
-                            <select name="subtasks[{{ forloop.counter0 }}][status]"
-                                    id="subtask-{{ subtask.id }}-status" class="form-select">
-                                <option value="False" {% if not subtask.status %}selected{% endif %}>Не выполнено</option>
-                                <option value="True" {% if subtask.status %}selected{% endif %}>Выполнено</option>
-                            </select>
-                        </div>
-
-                        <!-- Описание подзадачи -->
-                        <div class="form-group">
-                            <label for="subtask-{{ subtask.id }}-description">Описание подзадачи:</label>
-                            <textarea name="subtasks[{{ forloop.counter0 }}][description]"
-                                      id="subtask-{{ subtask.id }}-description" class="form-control">{{ subtask.description }}</textarea>
-                        </div>
-                    </div>
-                    <!-- Кнопка удаления подзадачи -->
-                    <button type="button" class="btn btn-danger btn-sm ms-2 remove-subtask">Удалить</button>
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <div class="subtask-form">
+                {{ form.id }}
+                <div class="form-group">
+                    <label for="subtask-{{ forloop.counter0 }}-title">Название подзадачи:</label>
+                    {{ form.title.errors }}
+                    {{ form.title }}
                 </div>
-            {% endfor %}
-        </div>
 
-        <!-- Кнопка добавления подзадачи -->
-        <button type="button" class="btn btn-secondary mb-3" id="add-subtask">Добавить подзадачу</button>
+                <div class="form-group">
+                    <label for="subtask-{{ forloop.counter0 }}-assignee">Исполнитель:</label>
+                    {{ form.assigned_user.errors }}
+                    {{ form.assigned_user }}
+                </div>
+
+                <div class="form-group">
+                    <label for="subtask-{{ forloop.counter0 }}-status">Статус:</label>
+                    {{ form.status.errors }}
+                    {{ form.status }}
+                </div>
+
+                <div class="form-group">
+                    <label for="subtask-{{ forloop.counter0 }}-description">Описание:</label>
+                    {{ form.description.errors }}
+                    {{ form.description }}
+                </div>
+            </div>
+        {% endfor %}
 
         <!-- Кнопка для отправки формы -->
-        <button type="submit" class="btn btn-primary">Обновить задачу</button>
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
     </form>
 
     <!-- Кнопка для возврата к списку задач -->
     {% if company_id %}
-{#        <a href="{% url 'tasks:task_list' company_id=company_id %}" class="btn btn-secondary mt-3">Назад к списку задач компании</a>#}
+        <a href="{% url 'task_list' company_id=company_id %}" class="btn btn-secondary mt-3">Назад к задачам компании</a>
     {% else %}
-        <a href="{% url 'tasks:task_list_all' %}" class="btn btn-secondary mt-3">Назад к списку задач</a>
+        <a href="{% url 'task_list_all' %}" class="btn btn-secondary mt-3">Назад ко всем задачам</a>
     {% endif %}
+
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Добавить подзадачу
-        document.getElementById('add-subtask').addEventListener('click', function() {
-            const subtaskForms = document.getElementById('subtask_forms');
-            const newSubtask = subtaskForms.children[0].cloneNode(true);
-            newSubtask.querySelector('input').value = '';
-            newSubtask.querySelector('textarea').value = '';
-            subtaskForms.appendChild(newSubtask);
-        });
-
-        // Удалить подзадачу
-        document.getElementById('subtask_forms').addEventListener('click', function(event) {
-            if (event.target.classList.contains('remove-subtask')) {
-                event.target.closest('.subtask-form').remove();
-            }
-        });
-    });
-</script>
-
 {% endblock content %}
-

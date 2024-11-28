@@ -49,16 +49,26 @@ class TaskForm(forms.ModelForm):
             'execution_status': forms.Select(attrs={'class': 'form-control'}),
             'assigned_user': forms.Select(attrs={'class': 'form-control'}),
         }
+    #
+    # def __init__(self, *args, **kwargs):
+    #     self.company = kwargs.pop('company', None)  # Получаем компанию из вьюхи
+    #     super().__init__(*args, **kwargs)
+    #
+    #     # Фильтруем поле assigned_user только для пользователей компании
+    #     if self.company:
+    #         self.fields['assigned_user'].queryset = self.company.members.all()
+    #     else:
+    #         self.fields['assigned_user'].queryset = User.objects.none()  # Если компания не указана, скрываем всех
 
     def __init__(self, *args, **kwargs):
-        self.company = kwargs.pop('company', None)  # Получаем компанию из вьюхи
-        super().__init__(*args, **kwargs)
+        company = kwargs.pop('company', None)  # Получаем компанию из вьюхи
+        super().__init__(*args, **kwargs)  # Сначала вызываем super()
 
         # Фильтруем поле assigned_user только для пользователей компании
-        if self.company:
-            self.fields['assigned_user'].queryset = self.company.members.all()
+        if company:
+            self.fields['assigned_user'].queryset = company.members.all()  # users, которые принадлежат компании
         else:
-            self.fields['assigned_user'].queryset = User.objects.none()  # Если компания не указана, скрываем всех
+            self.fields['assigned_user'].queryset = User.objects.none()  # Нет пользователей, если компании нет
 
 
 class SubTaskForm(forms.ModelForm):

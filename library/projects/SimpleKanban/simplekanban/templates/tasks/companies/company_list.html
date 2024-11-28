@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Список компаний - SuperKanban{% endblock %}
+{% block title %}Список групп - SuperKanban{% endblock %}
 
 {% block content %}
   <style>
@@ -75,10 +75,10 @@
   </style>
 
   <section class="page-content">
-    <h1>Компании</h1>
+    <h1>Группы</h1>
 
     <div class="actions">
-        <a href="{% url 'company_create' %}" class="btn btn-orange">Создать компанию</a>
+        <a href="{% url 'company_create' %}" class="btn btn-orange">Создать группу</a>
     </div>
 
     {% if companies %}
@@ -90,7 +90,7 @@
           {% endfor %}
       </ul>
     {% else %}
-      <p class="no-companies-message">Нет компаний для отображения.</p>
+      <p class="no-companies-message">Нет групп для отображения.</p>
     {% endif %}
   </section>
 {% endblock %}

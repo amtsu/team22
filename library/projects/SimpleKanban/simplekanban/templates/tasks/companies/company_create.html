@@ -83,16 +83,27 @@
       cursor: pointer;
       border: none;
     }
+
+    /* Стили для выпадающего списка */
+    .form-group select {
+      width: 100%; /* Делаем select на всю ширину контейнера */
+      padding: 8px; /* Добавляем отступы */
+      font-size: 14px; /* Размер шрифта, соответствующий другим полям */
+      border: 1px solid #ccc; /* Рамка, как у других полей ввода */
+      border-radius: 5px; /* Скругленные углы */
+      background-color: #fff; /* Белый фон */
+      box-sizing: border-box; /* Включаем padding и border в ширину элемента */
+    }
   </style>
 
   <div class="form-container">
-    <h1>Создать компанию</h1>
+    <h1>Создать группу</h1>
     <form id="company-form" method="post">
       {% csrf_token %}
 
-      <!-- Название компании -->
+      <!-- Название группы -->
       <div class="form-group">
-        <label for="id_name">Название компании:</label>
+        <label for="id_name">Название группы:</label>
         {{ form.name }}
       </div>
 
@@ -127,7 +138,7 @@
       <!-- Кнопки управления -->
       <div class="btn-group">
         <button type="submit" class="btn">Создать</button>
-        <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>
+        <a href="{% url 'company_list' %}" class="btn">Назад к списку групп</a>
       </div>
     </form>
   </div>
@@ -309,13 +320,13 @@
 {#  </style>#}
 {##}
 {#  <div class="form-container">#}
-{#    <h1>Создать компанию</h1>#}
-{#    <form method="post">#}
+{#    <h1>Создать группу</h1>#}
+{#    <form id="company-form" method="post">#}
 {#      {% csrf_token %}#}
 {##}
-{#      <!-- Название компании -->#}
+{#      <!-- Название группы -->#}
 {#      <div class="form-group">#}
-{#        <label for="id_name">Название компании:</label>#}
+{#        <label for="id_name">Название группы:</label>#}
 {#        {{ form.name }}#}
 {#      </div>#}
 {##}
@@ -344,10 +355,13 @@
 {#        <ul class="member-list" id="member-list"></ul>#}
 {#      </div>#}
 {##}
+{#      <!-- Скрытое поле для хранения выбранных и приглашенных участников -->#}
+{#      <input type="hidden" id="selected_members" name="selected_members">#}
+{##}
 {#      <!-- Кнопки управления -->#}
 {#      <div class="btn-group">#}
 {#        <button type="submit" class="btn">Создать</button>#}
-{#        <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>#}
+{#        <a href="{% url 'company_list' %}" class="btn">Назад к списку групп</a>#}
 {#      </div>#}
 {#    </form>#}
 {#  </div>#}
@@ -356,6 +370,7 @@
 {#    // Храним список приглашенных и выбранных пользователей#}
 {#    const selectedMembers = [];#}
 {##}
+{#    // Функция для добавления email в список приглашений#}
 {#    function inviteEmail() {#}
 {#      const emailInput = document.getElementById('invite_email');#}
 {#      const email = emailInput.value.trim();#}
@@ -394,6 +409,7 @@
 {#      });#}
 {#    }#}
 {##}
+{#    // Функция для удаления участника из списка#}
 {#    function removeMember(member) {#}
 {#      const index = selectedMembers.indexOf(member);#}
 {#      if (index > -1) {#}
@@ -402,6 +418,7 @@
 {#      }#}
 {#    }#}
 {##}
+{#    // Обработчик изменения выбора пользователей из списка#}
 {#    document.getElementById('id_registered_users').addEventListener('change', function () {#}
 {#      const select = this;#}
 {#      Array.from(select.selectedOptions).forEach(option => {#}
@@ -420,6 +437,19 @@
 {#      });#}
 {#      // Сбрасываем выбор в select, чтобы можно было выбрать того же пользователя заново#}
 {#      select.selectedIndex = -1;#}
+{#    });#}
+{##}
+{#    // Функция для подготовки данных перед отправкой формы#}
+{#    document.getElementById('company-form').addEventListener('submit', function(event) {#}
+{#      // Остановим стандартное поведение формы#}
+{#      event.preventDefault();#}
+{##}
+{#      // Подготовим данные для отправки#}
+{#      const hiddenInput = document.getElementById('selected_members');#}
+{#      hiddenInput.value = JSON.stringify(selectedMembers);#}
+{##}
+{#      // Программно отправим форму#}
+{#      this.submit();#}
 {#    });#}
 {#  </script>#}
 {#{% endblock %}#}

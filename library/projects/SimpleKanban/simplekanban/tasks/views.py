@@ -261,41 +261,92 @@ class TaskCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
 
+class TaskUpdateView(UpdateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'tasks/task_edit.html'
+
+    def get_object(self, queryset=None):
+        # Убедитесь, что вы получаете задачу по ID
+        return get_object_or_404(Task, pk=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Передаем дополнительные данные (например, users и company_id, если нужно)
+        context['users'] = User.objects.all()  # Пример: передаем список всех пользователей
+        return context
+
+    def form_valid(self, form):
+        # После успешной проверки формы сохраняем данные
+        form.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        # Устанавливаем URL для перехода после успешного редактирования
+        return reverse_lazy('task_list')  # Или другой путь
+#
+# class TaskUpdateView(UpdateView):
+#     model = Task
+#     form_class = TaskForm
+#     template_name = 'tasks/task_edit.html'
+#     context_object_name = 'task'
+#
+#     def get_context_data(self, **kwargs):
+#         data = super().get_context_data(**kwargs)
+#         # Получаем идентификатор компании из URL
+#         company_id = self.kwargs.get('company_id')
+#         data['company_id'] = company_id  # передаем company_id в шаблон
+#         # Загрузка подзадач через formset
+#         if self.request.POST:
+#             data['subtasks'] = SubTaskFormSet(self.request.POST, instance=self.object)
+#         else:
+#             data['subtasks'] = SubTaskFormSet(instance=self.object)
+#         return data
+#
+#     def form_valid(self, form):
+#         context = self.get_context_data()
+#         subtasks = context['subtasks']
+#         # Сохраняем задачу и подзадачи вместе
+#         if form.is_valid() and subtasks.is_valid():
+#             form.save()
+#             subtasks.instance = self.object
+#             subtasks.save()
+#             return super().form_valid(form)
+#         else:
+#             return self.form_invalid(form)
+#
+#     def get_success_url(self):
+#         # Перенаправление на список задач компании после сохранения
+#         return reverse_lazy('tasks/task_list', kwargs={'company_id': self.kwargs.get('company_id')})
+#
 
 class TaskUpdateView(UpdateView):
     model = Task
     form_class = TaskForm
     template_name = 'tasks/task_edit.html'
-    context_object_name = 'task'
+
+    def get_object(self, queryset=None):
+        # Получаем задачу по её ID
+        return get_object_or_404(Task, pk=self.kwargs['pk'])
 
     def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
-        # Получаем идентификатор компании из URL
-        company_id = self.kwargs.get('company_id')
-        data['company_id'] = company_id  # передаем company_id в шаблон
-        # Загрузка подзадач через formset
-        if self.request.POST:
-            data['subtasks'] = SubTaskFormSet(self.request.POST, instance=self.object)
-        else:
-            data['subtasks'] = SubTaskFormSet(instance=self.object)
-        return data
+        context = super().get_context_data(**kwargs)
+        # Получаем ID компании из URL
+        company_id = self.kwargs['company_id']
+        company = get_object_or_404(Company, id=company_id)
+        context['users'] = company.members.all()  # Фильтруем пользователей по компании
+        context['company_id'] = company.id  # Добавляем ID компании в контекст
+        return context
 
     def form_valid(self, form):
-        context = self.get_context_data()
-        subtasks = context['subtasks']
-        # Сохраняем задачу и подзадачи вместе
-        if form.is_valid() and subtasks.is_valid():
-            form.save()
-            subtasks.instance = self.object
-            subtasks.save()
-            return super().form_valid(form)
-        else:
-            return self.form_invalid(form)
+        # Сохраняем данные формы
+        form.save()
+        return super().form_valid(form)
 
     def get_success_url(self):
-        # Перенаправление на список задач компании после сохранения
-        return reverse_lazy('tasks/task_list', kwargs={'company_id': self.kwargs.get('company_id')})
-
+        # После успешного редактирования задачи переходим на список задач компании
+        company_id = self.kwargs['company_id']
+        return reverse_lazy('tasks:task_list', kwargs={'company_id': company_id})
 
 # class TaskListAllView(ListView):
 #     model = Task

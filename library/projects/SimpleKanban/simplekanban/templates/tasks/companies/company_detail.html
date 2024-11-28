@@ -55,9 +55,9 @@
 </style>
 
 <div class="content-container">
-    <h1>Детали компании: {{ company.name }}</h1>
+    <h1>Детали группы: {{ company.name }}</h1>
     <p class="company-owner">Владелец: {{ company.owner.username }}</p> <!-- Исправлено отображение владельца -->
-    <p><strong>Члены компании:</strong></p>
+    <p><strong>Члены группы:</strong></p>
     <ul>
         {% for member in company.members.all %}
         <li>{{ member.username }}</li>
@@ -65,7 +65,7 @@
     </ul>
 
     <h2>Связанные задачи</h2>
-    <!-- Проверка задач для компании -->
+    <!-- Проверка задач для групп -->
     {% if company.tasks.exists %}
         <ul>
         {% for task in company.tasks.all %}
@@ -75,7 +75,7 @@
         {% endfor %}
         </ul>
     {% else %}
-        <p>У этой компании пока нет задач.</p>
+        <p>У этой группы пока нет задач.</p>
     {% endif %}
 
     <!-- Кнопки управления -->
@@ -83,17 +83,17 @@
         <!-- Кнопка для создания новой задачи -->
         <a href="{% url 'task_create' company.id %}" class="btn">Создать задачу</a>
 
-        <!-- Кнопка для редактирования компании -->
-        <a href="{% url 'company_edit' company.id %}" class="btn">Редактировать компанию</a>
+        <!-- Кнопка для редактирования групп -->
+        <a href="{% url 'company_edit' company.id %}" class="btn">Редактировать группу</a>
 
-        <!-- Кнопка "Назад к списку компаний" -->
-        <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>
+        <!-- Кнопка "Назад к списку групп" -->
+        <a href="{% url 'company_list' %}" class="btn">Назад к списку групп</a>
 
-        <!-- Кнопка для удаления компании с подтверждением -->
+        <!-- Кнопка для удаления группы с подтверждением -->
         <form action="{% url 'company_delete' company.id %}" method="post" style="display: inline;">
             {% csrf_token %}
-            <button type="submit" class="btn" onclick="return confirm('Вы уверены, что хотите удалить эту компанию и связанные с ней задачи?');">
-                Удалить компанию
+            <button type="submit" class="btn" onclick="return confirm('Вы уверены, что хотите удалить эту группу и связанные с ней задачи?');">
+                Удалить группу
             </button>
         </form>
     </div>

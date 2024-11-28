@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Редактировать компанию - SuperKanban{% endblock %}
+{% block title %}Редактировать группу - SuperKanban{% endblock %}
 
 {% block content %}
   <style>
@@ -94,13 +94,13 @@
   </style>
 
   <div class="form-container">
-    <h1>Редактировать компанию</h1>
+    <h1>Редактировать группу</h1>
     <form method="post">
         {% csrf_token %}
 
-        <!-- Поле для названия компании -->
+        <!-- Поле для названия группы -->
         <div class="form-group">
-          <label for="id_name">Название компании:</label>
+          <label for="id_name">Название группы:</label>
           {{ form.name }}
         </div>
 
@@ -132,7 +132,7 @@
         <!-- Группа кнопок с отступами -->
         <div class="btn-group">
           <button type="submit" class="btn">Сохранить изменения</button>
-          <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>
+          <a href="{% url 'company_list' %}" class="btn">Назад к списку групп</a>
         </div>
     </form>
   </div>
