@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
 from .forms import TaskForm, SubTaskFormSet, CompanyForm
-from .models import Task, Company
+from .models import Task, Company, SubTask
 import json
 
 
@@ -108,73 +108,6 @@ class CompanyEditView(View):
         message = f'Вы были приглашены {sender.email} присоединиться к компании {company.name}.'
         send_mail(subject, message, sender.email, [email])
 
-# class CompanyCreateView(View):
-#     def get(self, request):
-#         all_users = User.objects.all()
-#         form = CompanyForm()
-#         return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
-#
-#     def post(self, request):
-#         form = CompanyForm(request.POST)
-#         if form.is_valid():
-#             # Сохраняем компанию
-#             company = form.save()
-#
-#             # Обрабатываем список участников
-#             selected_members = request.POST.get('selected_members')
-#             if selected_members:
-#                 members_list = json.loads(selected_members)
-#                 for member in members_list:
-#                     if member['type'] == 'registered':
-#                         user = User.objects.get(id=member['id'])
-#                         company.members.add(user)
-#                     elif member['type'] == 'email':
-#                         user, created = User.objects.get_or_create(
-#                             email=member['email'],
-#                             defaults={'username': member['email'].split('@')[0]}
-#                         )
-#                         company.members.add(user)
-#
-#             return redirect('company_list')  # Перенаправляем на список компаний
-#         else:
-#             # Отображаем форму с ошибками
-#             print(form.errors)  # Для отладки
-#             all_users = User.objects.all()
-#             return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
-
-# # Представление для создания компании
-# class CompanyCreateView(View):
-#
-#     def get(self, request):
-#         # Получаем всех зарегистрированных пользователей
-#         all_users = User.objects.all()
-#         form = CompanyForm()
-#         return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
-#
-#     def post(self, request):
-#         form = CompanyForm(request.POST)
-#         if form.is_valid():
-#             company = form.save()  # Сохраняем компанию
-#
-#             # Обрабатываем выбранных и приглашенных участников
-#             selected_members = request.POST.getlist('members[]')
-#             for member in selected_members:
-#                 if 'type' in member and member['type'] == 'registered':
-#                     user = User.objects.get(id=member['id'])
-#                     company.members.add(user)
-#                 elif 'type' in member and member['type'] == 'email':
-#                     user, created = User.objects.get_or_create(
-#                         email=member['email'],
-#                         defaults={'username': member['email'].split('@')[0]}
-#                     )
-#                     company.members.add(user)
-#
-#             return redirect('company_list')  # Перенаправляем на список компаний
-#
-#         # Если форма не валидна, отображаем её снова
-#         all_users = User.objects.all()
-#         return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
-
 
 # Представление для детальной информации о компании
 class CompanyDetailView(DetailView):
@@ -193,43 +126,7 @@ def home_view(request):
         # Если не аутентифицирован, показываем приветственную страницу
         return render(request, 'account/welcome.html')
 
-#
-# class CompanyEditView(UpdateView):
-#     model = Company
-#     form_class = CompanyForm
-#     template_name = 'tasks/companies/company_edit.html'
-#
-#     def form_valid(self, form):
-#         # Сохраняем изменения
-#         company = form.save()
-#
-#         # Обрабатываем приглашения и добавляем участников
-#         invite_emails = self.request.POST.getlist('invite_email[]')
-#         for email in invite_emails:
-#             user, created = User.objects.get_or_create(email=email)
-#             if created:
-#                 # Отправляем приглашение, если пользователь новый
-#                 self.send_invitation(company, self.request.user, email)
-#
-#             # Добавляем пользователя в компанию
-#             company.members.add(user)
-#
-#         return redirect('company_edit', pk=company.pk)  # Перенаправление на редактирование компании
-#
-#     def send_invitation(self, company, sender, email):
-#         subject = f'Приглашение присоединиться к компании {company.name}'
-#         message = f'Вы были приглашены {sender.email} присоединиться к компании {company.name}.'
-#         send_mail(subject, message, sender.email, [email])
-#
 
-# def remove_member(request, member_id, company_id):
-#     company = get_object_or_404(Company, id=company_id)
-#     member = get_object_or_404(User, id=member_id)
-#
-#     if member in company.members.all():
-#         company.members.remove(member)  # Удаляем участника из компании
-#
-#     return redirect('company_edit', company_id=company.id)  # Перенаправляем обратно на страницу редактирования компании
 class CompanyDeleteView(DeleteView):
     model = Company
     template_name = 'tasks/companies/company_confirm_delete.html'  # Шаблон подтверждения удаления
@@ -290,47 +187,6 @@ class TaskDetailView(DetailView):
         context['subtasks'] = self.object.subtasks.all()
         return context
 
-#
-# class TaskCreateView(CreateView):
-#     model = Task
-#     form_class = TaskForm
-#     template_name = 'tasks/task_create.html'
-#     context_object_name = 'task_create'
-#
-#     # Заменяем success_url для перенаправления после создания задачи
-#     def get_success_url(self):
-#         return reverse_lazy('tasks/task_list', kwargs={'company_id': self.kwargs['company_id']})
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#
-#         # Передаем company_id в контекст
-#         context['company_id'] = self.kwargs.get('company_id')
-#
-#         # Проверяем, если данные переданы через POST, инициализируем подзадачи с данными
-#         if self.request.POST:
-#             context['subtasks'] = SubTaskFormSet(self.request.POST)
-#         else:
-#             context['subtasks'] = SubTaskFormSet()
-#         return context
-#
-#     def form_valid(self, form):
-#         context = self.get_context_data()
-#         subtasks = context['subtasks']
-#         form.instance.author = self.request.user
-#
-#         # Связываем задачу с компанией
-#         company_id = self.kwargs.get('company_id')
-#         if company_id:
-#             form.instance.company = get_object_or_404(Company, id=company_id)
-#
-#         if subtasks.is_valid():
-#             response = super().form_valid(form)
-#             subtasks.instance = self.object
-#             subtasks.save()
-#             return response
-#         else:
-#             return self.form_invalid(form)
 
 # class TaskCreateView(CreateView):
 #     model = Task
@@ -339,8 +195,8 @@ class TaskDetailView(DetailView):
 #
 #     def get_form_kwargs(self):
 #         kwargs = super().get_form_kwargs()
-#         company_id = self.kwargs.get('company_id')  # Получаем company_id из URL
-#         company = get_object_or_404(Company, id=company_id)  # Получаем компанию
+#         company_id = self.kwargs.get('company_id')
+#         company = get_object_or_404(Company, id=company_id)
 #         kwargs['company'] = company  # Передаем компанию в форму
 #         return kwargs
 #
@@ -348,23 +204,38 @@ class TaskDetailView(DetailView):
 #         context = super().get_context_data(**kwargs)
 #         company_id = self.kwargs.get('company_id')
 #         company = get_object_or_404(Company, id=company_id)
-#         context['users'] = company.members.all()  # Пользователи компании для отображения в выпадающем списке
+#         context['company_users'] = company.members.all()  # Список пользователей компании
 #         return context
 #
 #     def form_valid(self, form):
+#         # Получаем компанию, которая привязана к задаче
 #         company_id = self.kwargs.get('company_id')
-#         form.instance.company = get_object_or_404(Company, id=company_id)
-#         form.instance.author = self.request.user  # Автор задачи - текущий пользователь
+#         company = get_object_or_404(Company, id=company_id)
+#         form.instance.company = company
+#         form.instance.author = self.request.user  # Привязываем автора задачи (пользователя)
+#
+#         # Сохраняем задачу
+#         task = form.save()
+#
+#         # Получаем данные подзадач и сохраняем их
+#         subtasks_data = self.request.POST.get('subtasks')
+#         if subtasks_data:
+#             subtasks = json.loads(subtasks_data)  # Десериализуем JSON
+#             for subtask_data in subtasks:
+#                 SubTask.objects.create(
+#                     task=task,
+#                     title=subtask_data['subtaskTitle'],
+#                     assigned_user_id=subtask_data['executor'],  # Убедитесь, что это ID пользователя
+#                     due_date=subtask_data['dueDate'],
+#                     description=subtask_data.get('description', '')
+#                 )
+#
+#         # Возвращаем стандартное поведение сохранения формы
 #         return super().form_valid(form)
 #
 #     def get_success_url(self):
 #         return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
 
-import json
-from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
-from .models import Task, SubTask, Company
 
 class TaskCreateView(CreateView):
     model = Task
@@ -402,10 +273,8 @@ class TaskCreateView(CreateView):
             for subtask_data in subtasks:
                 SubTask.objects.create(
                     task=task,
-                    title=subtask_data['subtaskTitle'],
-                    assigned_user_id=subtask_data['executor'],  # Убедитесь, что это ID пользователя
-                    due_date=subtask_data['dueDate'],
-                    description=subtask_data.get('description', '')
+                    title=subtask_data['subtaskTitle'],  # Поле title модели SubTask
+                    status=subtask_data.get('status', False)  # Поле status модели SubTask
                 )
 
         # Возвращаем стандартное поведение сохранения формы
@@ -413,35 +282,6 @@ class TaskCreateView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
-
-#
-# class TaskCreateView(CreateView):
-#     model = Task
-#     form_class = TaskForm
-#     template_name = 'tasks/task_create.html'
-#
-#     def get_form_kwargs(self):
-#         kwargs = super().get_form_kwargs()
-#         company_id = self.kwargs.get('company_id')
-#         company = get_object_or_404(Company, id=company_id)
-#         kwargs['company'] = company  # Передаем компанию в форму
-#         return kwargs
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         company_id = self.kwargs.get('company_id')
-#         company = get_object_or_404(Company, id=company_id)
-#         context['company_users'] = company.members.all()  # Список пользователей компании
-#         return context
-#
-#     def form_valid(self, form):
-#         company_id = self.kwargs.get('company_id')
-#         form.instance.company = get_object_or_404(Company, id=company_id)
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
-#
-#     def get_success_url(self):
-#         return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
 
 
 class TaskUpdateView(UpdateView):
