@@ -42,29 +42,29 @@
       </a>
     <nav id="navmenu" class="navmenu">
           <ul>
-            <li>
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="companyDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  Список задач
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="companyDropdown">
-                  <!-- Ссылка на все задачи без фильтрации -->
-                  <li><a class="dropdown-item" href="{% url 'task_list_all' %}">Все задачи</a></li>
-                  <!-- Ссылки на задачи для каждой компании -->
-                  {% for company in companies %}
-                    <li>
-                      <a class="dropdown-item" href="{% url 'task_list' company.id %}">
-                        {{ company.name }}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              </div>
-            </li>
+{#            <li>#}
+{#              <div class="dropdown">#}
+{#                <button class="btn btn-secondary dropdown-toggle" type="button" id="companyDropdown" data-bs-toggle="dropdown" aria-expanded="false">#}
+{#                  Список задач#}
+{#                </button>#}
+{#                <ul class="dropdown-menu" aria-labelledby="companyDropdown">#}
+{#                  <!-- Ссылка на все задачи без фильтрации -->#}
+{#                  <li><a class="dropdown-item" href="{% url 'task_list_all' %}">Все задачи</a></li>#}
+{#                  <!-- Ссылки на задачи для каждой компании -->#}
+{#                  {% for company in companies %}#}
+{#                    <li>#}
+{#                      <a class="dropdown-item" href="{% url 'task_list' company.id %}">#}
+{#                        {{ company.name }}#}
+{#                      </a>#}
+{#                    </li>#}
+{#                  {% endfor %}#}
+{#                </ul>#}
+{#              </div>#}
+{#            </li>#}
 {#          </ul>#}
 {#        <ul>#}
             <li><a href="{% url 'home' %}">Задачи</a></li>
-            <li><a href="{% url 'company_list' %}">Создай компанию</a></li>
+            <li><a href="{% url 'company_list' %}">Мои группы</a></li>
             <li class="dropdown">
                 <a href="#"><span>Текущие задачи</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
