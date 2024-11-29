@@ -1,27 +1,211 @@
-{% extends "../base.html" %}
+{% extends "base.html" %}
 
-{% block title %}Список компаний - SuperKanban{% endblock %}
+{% block title %}Список групп - SuperKanban{% endblock %}
 
 {% block content %}
-  <section class="page-content">
-    <h1>Компании</h1>
+  <style>
+    /* Style for the orange button */
+    .btn-orange {
+      background-color: #ff6f00; /* Orange color */
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-    <div>
-        <a href="{% url 'company_create' %}" class="btn btn-primary">Создать компанию</a>
+    .btn-orange:hover {
+      background-color: #e68900; /* Slightly darker on hover */
+    }
+
+    /* Ensure footer is always at the bottom */
+    html, body {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-content {
+      flex: 1;
+      text-align: center; /* Центрируем контент */
+    }
+
+    /* Basic styles for company list */
+    .company-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 20px auto; /* Центрируем список и добавляем отступы */
+      max-width: 600px; /* Ограничиваем ширину списка */
+    }
+
+    .company-item {
+      display: flex;
+      justify-content: left; /* Центрируем элементы списка */
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .company-name {
+      font-weight: bold;
+      font-size: 1.1em;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .company-name:hover {
+      color: #ff9800;
+    }
+
+    /* Style for the message when no companies exist */
+    .no-companies-message {
+      color: #777;
+      font-style: italic;
+      margin-top: 20px;
+    }
+
+    /* Footer styling to ensure it's at the bottom */
+    footer {
+      margin-top: auto;
+    }
+  </style>
+
+  <section class="page-content">
+    <h1>Группы</h1>
+
+    <div class="actions">
+        <a href="{% url 'company_create' %}" class="btn btn-orange">Создать группу</a>
     </div>
 
     {% if companies %}
-      <ul>
+      <ul class="company-list">
           {% for company in companies %}
-              <li>
-                  <a href="{% url 'company_detail' company.id %}">{{ company.name }}</a>
-                  <!-- Кнопка для создания задачи -->
-                  <a href="{% url 'task_create' company.id %}" class="btn btn-secondary">Создать задачу</a>
+              <li class="company-item">
+                  <a href="{% url 'company_detail' company.id %}" class="company-name">{{ company.name }}</a>
               </li>
           {% endfor %}
       </ul>
     {% else %}
-      <p>Нет компаний для отображения.</p> <!-- Сообщение, если нет компаний -->
+      <p class="no-companies-message">Нет групп для отображения.</p>
     {% endif %}
   </section>
 {% endblock %}
+
+
+{#{% extends "base.html" %}#}
+{##}
+{#{% block title %}Список компаний - SuperKanban{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#  <style>#}
+{#    /* Style for the orange button */#}
+{#    .btn-orange {#}
+{#      background-color: #ff6f00; /* Orange color */#}
+{#      color: white;#}
+{#      border: none;#}
+{#      padding: 10px 15px;#}
+{#      text-decoration: none;#}
+{#      font-size: 16px;#}
+{#      border-radius: 5px;#}
+{#      cursor: pointer;#}
+{#    }#}
+{##}
+{#    .btn-orange:hover {#}
+{#      background-color: #e68900; /* Slightly darker on hover */#}
+{#    }#}
+{##}
+{#    /* Ensure footer is always at the bottom */#}
+{#    html, body {#}
+{#      min-height: 100%;#}
+{#      display: flex;#}
+{#      flex-direction: column;#}
+{#      margin: 0;#}
+{#      padding: 0;#}
+{#    }#}
+{##}
+{#    .page-content {#}
+{#      flex: 1;#}
+{#    }#}
+{##}
+{#    /* Basic styles for company list */#}
+{#    .company-list {#}
+{#      list-style-type: none;#}
+{#      padding: 0;#}
+{#      margin-top: 20px;#}
+{#    }#}
+{##}
+{#    .company-item {#}
+{#      display: flex;#}
+{#      justify-content: space-between;#}
+{#      align-items: center;#}
+{#      padding: 10px 0;#}
+{#      border-bottom: 1px solid #ddd;#}
+{#    }#}
+{##}
+{#    .company-name {#}
+{#      font-weight: bold;#}
+{#      font-size: 1.1em;#}
+{#      text-decoration: none;#}
+{#      color: #333;#}
+{#    }#}
+{##}
+{#    .company-name:hover {#}
+{#      color: #ff9800;#}
+{#    }#}
+{##}
+{#    /* Контейнер для кнопок "Редактировать" и "Удалить" */#}
+{#    .company-actions {#}
+{#      display: flex;#}
+{#      justify-content: flex-end; /* Выравниваем кнопки справа */#}
+{#      gap: 10px; /* Добавляем расстояние между кнопками */#}
+{#    }#}
+{##}
+{#    /* Style for the message when no companies exist */#}
+{#    .no-companies-message {#}
+{#      color: #777;#}
+{#      font-style: italic;#}
+{#      margin-top: 20px;#}
+{#    }#}
+{##}
+{#    /* Footer styling to ensure it's at the bottom */#}
+{#    footer {#}
+{#      margin-top: auto;#}
+{#    }#}
+{#  </style>#}
+{##}
+{#  <section class="page-content">#}
+{#    <h1>Компании</h1>#}
+{##}
+{#    <div class="actions">#}
+{#        <a href="{% url 'company_create' %}" class="btn btn-orange">Создать компанию</a>#}
+{#    </div>#}
+{##}
+{#    {% if companies %}#}
+{#      <ul class="company-list">#}
+{#          {% for company in companies %}#}
+{#              <li class="company-item">#}
+{#                  <a href="{% url 'company_detail' company.id %}" class="company-name">{{ company.name }}</a>#}
+{##}
+{#                  <!-- Контейнер для кнопок редактирования и удаления -->#}
+{#                  <div class="company-actions">#}
+{#                    <!-- Кнопка для редактирования компании -->#}
+{#                    <a href="{% url 'company_edit' company.id %}" class="btn btn-orange">Редактировать</a>#}
+{##}
+{#                    <!-- Кнопка для удаления компании с подтверждением -->#}
+{#                    <form action="{% url 'company_delete' company.id %}" method="POST" style="display:inline;" onsubmit="return confirm('Вы уверены, что хотите удалить эту компанию?');">#}
+{#                        {% csrf_token %}#}
+{#                        <button type="submit" class="btn btn-orange">Удалить</button>#}
+{#                    </form>#}
+{#                  </div>#}
+{#              </li>#}
+{#          {% endfor %}#}
+{#      </ul>#}
+{#    {% else %}#}
+{#      <p class="no-companies-message">Нет компаний для отображения.</p>#}
+{#    {% endif %}#}
+{#  </section>#}
+{#{% endblock %}#}
