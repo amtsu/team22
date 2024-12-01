@@ -6,15 +6,16 @@ from typing import Sequence
 
 from aiogram import Bot, Dispatcher, html
 from aiogram.client.default import DefaultBotProperties
-from aiogram.enums import ParseMode
+from aiogram.enums.parse_mode import ParseMode
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from data import session_factory, ContentRepository, ContentBase, SubscriptionRepository
-from start_keyboard import start_ikb
+from src_overclockers_ru.handlers import overclockers_router
 from src_sports_ru.handlers import sports_router
 from src_trial_sport_ru.handlers import trial_sport_router
+from start_keyboard import start_ikb
 from text_content import HELP_MSG, INFO_MSG, SUBSCRIPTIONS_MSG
 
 TOKEN = getenv("TELEBAN_TOKEN")
@@ -23,49 +24,8 @@ dp = Dispatcher(name=__name__)
 dp.include_routers(
     sports_router,
     trial_sport_router,
+    overclockers_router,
 )
-
-
-# async def send_content(table: str, bot: Bot) -> None:
-#     # проверка наличия нового контента
-#     with ContentDatabaseManager(table) as content_db:
-#         if not content_db.check_new_content():
-#             return None
-#         new_content = content_db.get_new_content()
-#
-#     # перебор нового контента для рассылки
-#     anti_duplicating_list = []  # храним историю рассылки, чтобы исключить дублирование
-#
-#     for title, link, source, tags in new_content:
-#         tags = tags.split(',')
-#
-#         for tag in tags:
-#             with SubscriptionDatabaseManager() as db:
-#                 if not db.check_exist_subscription(source, tag):  # проверка наличия подписчиков на тег
-#                     continue
-#                 user_list = db.get_tag_users(source, tag)  # получение пользователей для рассылки
-#
-#             # перебор пользователей и рассылка им новости
-#             for user_id in user_list:
-#                 if (user_id, link) in anti_duplicating_list:  # проверка, что новость ранее не высылалась
-#                     continue
-#
-#                 # отправка сообщения
-#                 await bot.send_message(
-#                     chat_id=user_id,
-#                     text=f'<b>{title}</b>\n'
-#                          f'{link}'
-#                 )
-#                 anti_duplicating_list.append((user_id, link))  # добавляем в историю рассылки
-#                 await asyncio.sleep(1)
-#
-#         with ContentDatabaseManager(table) as db:
-#             db.update_status(link)  # меняем статус на "Отправлено"
-#
-#
-# async def send_content_main(bot: Bot) -> None:
-#     for table in TABLE_NAMES:
-#         await send_content(table, bot)
 
 
 async def send_content(bot: Bot) -> None:

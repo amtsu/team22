@@ -17,8 +17,6 @@ async def handle_subscription(callback: CallbackQuery, source: str, keyboard_fun
     user_id = callback.from_user.id
     tag = callback.data.removeprefix(f'{source}_')
 
-    # with SubscriptionDatabaseManager() as db:
-    #     user_tags = db.get_user_tags(user_id, source)
     with session_factory() as session:
         db = SubscriptionRepository(session)
         user_tags = db.get_user_tags(user_id, source)

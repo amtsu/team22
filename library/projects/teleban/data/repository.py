@@ -91,8 +91,9 @@ class ContentRepository:
                 continue
 
             self.session.add(instance)
+            self.session.commit()
 
-        self.session.commit()
+        # self.session.commit()
         return True
 
     def remove_content(self, link: str) -> bool:
@@ -128,9 +129,9 @@ class ContentRepository:
 
     def exists_by_link(self, link: str) -> bool:
         """Проверяет наличие записи по ссылке."""
-        return self.session.execute(
+        return bool(self.session.execute(
             select(exists().where(ContentBase.link == link))
-        ).scalar()
+        ).scalar())
 
     def add_tag(self, link: str, new_tag: str) -> bool:
         """Добавляет новый тег в список tags, если его еще нет."""
@@ -156,13 +157,13 @@ class ContentRepository:
 
     def remove_old_content(self) -> None:
         """
-        Удаляет записи, которые старше 14 дней и у которых статус True.
+        Удаляет записи, которые старше 2 дней и у которых статус True.
         """
-        required_time = datetime.now() - timedelta(days=14)
+        required_time = datetime.now() - timedelta(days=2)
 
         self.session.execute(
             delete(ContentBase)
-            .where(ContentBase.status is True)
+            .where(ContentBase.status.is_(True))
             .where(ContentBase.date_time < required_time)
         )
 
