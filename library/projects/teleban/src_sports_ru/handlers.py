@@ -2,7 +2,7 @@ from aiogram import F, Router
 from aiogram.types import CallbackQuery
 
 from data import session_factory, SubscriptionRepository
-from start_keyboard import start_ikb
+from keyboards import start_ikb
 from src_sports_ru.keyboards import sports_sections_ikb, sports_nba_ikb, sports_nfl_ikb, sports_nhl_ikb
 
 sports_router = Router()
