@@ -2,7 +2,7 @@ from aiogram import F, Router
 from aiogram.types import CallbackQuery
 
 from data import session_factory, SubscriptionRepository
-from src_auto.keyboards import auto_ikb
+from src_auto_ru.keyboards import auto_ikb
 
 auto_router = Router()
 

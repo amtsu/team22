@@ -11,6 +11,7 @@ from config import settings
 from handlers import main_router
 from services import send_content
 from src_overclockers_ru.handlers import overclockers_router
+from src_rbc_ru.handlers import rbc_router
 from src_sports_ru.handlers import sports_router
 from src_trial_sport_ru.handlers import trial_sport_router
 
@@ -22,6 +23,7 @@ dp.include_routers(
     sports_router,
     trial_sport_router,
     overclockers_router,
+    rbc_router,
 )
 
 

@@ -1,8 +1,9 @@
-from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 
 from data import ContentBase
+from src_auto_ru.text_data import AUTO_DICT
+
 
 class AutoRuParser:
     BASE_URL = 'https://auto.ru'
@@ -11,16 +12,7 @@ class AutoRuParser:
         """
         Инициализация парсера для Auto.ru.
         """
-        self.__sections = {
-            'Новости': '/mag/theme/news/',
-            'Тесты': '/mag/theme/tests/',
-            'Видео': '/mag/theme/video/',
-            'Разбор': '/mag/theme/razbor/',
-            'Игры': '/mag/theme/games/',
-            'Подборки': '/mag/theme/lists/',
-            'Учебник': '/mag/theme/uchebnik/',
-            'Про бизнес': '/mag/theme/pro_business/',
-        }
+        self.__sections = AUTO_DICT
 
     @staticmethod
     def __parse_auto_section(url, section_tag):
@@ -73,7 +65,8 @@ class AutoRuParser:
 
         return result
 
+
 if __name__ == "__main__":
     content_list = AutoRuParser().get_new_content()
-    for i, item in enumerate(content_list, 1):
+    for item in content_list:
         print(item.title, item.link, item.date_time, item.status)
