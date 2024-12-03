@@ -16,7 +16,7 @@ async def overclockers_ikb(user_id):
             else:
                 builder.button(text=f'{tag}', callback_data=f'overclockers_{tag}')
 
-        builder.button(text='⏮ В главное меню', callback_data='overclockers_main_menu')
+        builder.button(text='⏮ В главное меню', callback_data='sports_main_menu')
 
         builder.adjust(2)
         return builder.as_markup()
