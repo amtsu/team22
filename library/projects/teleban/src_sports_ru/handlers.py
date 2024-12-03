@@ -2,7 +2,7 @@ from aiogram import F, Router
 from aiogram.types import CallbackQuery
 
 from data import session_factory, SubscriptionRepository
-from start_keyboard import start_ikb
+from keyboards import start_ikb
 from src_sports_ru.keyboards import sports_sections_ikb, sports_nba_ikb, sports_nfl_ikb, sports_nhl_ikb
 
 sports_router = Router()
@@ -17,8 +17,6 @@ async def handle_subscription(callback: CallbackQuery, source: str, keyboard_fun
     user_id = callback.from_user.id
     tag = callback.data.removeprefix(f'{source}_')
 
-    # with SubscriptionDatabaseManager() as db:
-    #     user_tags = db.get_user_tags(user_id, source)
     with session_factory() as session:
         db = SubscriptionRepository(session)
         user_tags = db.get_user_tags(user_id, source)

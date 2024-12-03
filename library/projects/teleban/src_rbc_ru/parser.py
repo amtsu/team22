@@ -72,4 +72,4 @@ if __name__ == "__main__":
     content_list = RbcRuParser().get_new_content()
     for i, item in enumerate(content_list, 1):
         print(item.title, item.link, item.date_time, item.status)
-        # pass
+

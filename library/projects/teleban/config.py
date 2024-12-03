@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     DB_USER: str
     DB_PASS: str
 
+    TELEBAN_TOKEN: str
+
     @property
     def database_url_asyncpg(self) -> str:
         """Возвращает URL подключения к БД для драйвера asyncpg"""
@@ -21,7 +23,7 @@ class Settings(BaseSettings):
         return f"postgresql+psycopg2://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
 
     # model_config = SettingsConfigDict(env_file="../.env")
-    model_config = SettingsConfigDict(env_file=os.path.join(os.path.dirname(__file__), "../.env"))
+    model_config = SettingsConfigDict(env_file=os.path.join(os.path.dirname(__file__), ".env"))
 
 
 # Создаём экземпляр настроек, чтобы использовать в приложении
