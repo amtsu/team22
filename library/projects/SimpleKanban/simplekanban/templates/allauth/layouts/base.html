@@ -32,7 +32,31 @@
 
   <!-- Main CSS File -->
   <link href="{% static 'css/main.css' %}" rel="stylesheet">
+  <style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
 
+    main {
+        flex-grow: 1;
+    }
+
+    footer {
+        margin-top: auto;
+    }
+
+    /* Скрыть поле для "Запомнить меня" */
+    .form-check {
+        display: none;
+    }
+
+    /* Скрыть текст "Обязательное поле" */
+    .form-error {
+        display: none;
+    }
+  </style>
 </head>
 
 <body class="blog-page">
@@ -51,45 +75,33 @@
 
     <!-- Page Title -->
     <div class="page-title dark-background">
-        <div class="container position-relative">
-{#            <h1>{% trans "Sign In" %}</h1>#}
-{#            <p>{% trans "If you have not created an account yet, please sign up first." %}</p>#}
-{#            <nav class="breadcrumbs">#}
-{#                <ol>#}
-{#                    <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>#}
-{#                    <li class="current">{% trans "Sign In" %}</li>#}
-{#                </ol>#}
-{#            </nav>#}
-        </div>
+      <div class="container position-relative">
+      </div>
     </div><!-- End Page Title -->
 
     {% block content %}
-        <section id="login-section" class="login-section section">
-            <div class="container" data-aos="fade-up">
-                {% if not SOCIALACCOUNT_ONLY %}
-                    <form method="post" action="{% url 'account_login' %}">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="username">{% trans "Username or email" %}</label>
-                            {{ form.username }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="password">{% trans "Password" %}</label>
-                            {{ form.password }}
-                            <a href="{% url 'account_reset_password' %}">{% trans "Forgot your password?" %}</a>
-                        </div>
-                        <div class="form-check">
-                            {{ form.remember }}
-                            <label for="remember">{% trans "Remember me" %}</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">{% trans "Sign In" %}</button>
-                    </form>
-                {% endif %}
-                {% if SOCIALACCOUNT_ENABLED %}
-                    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-                {% endif %}
-            </div>
-        </section>
+      <section id="login-section" class="login-section section">
+        <div class="container" data-aos="fade-up">
+          {% if not SOCIALACCOUNT_ONLY %}
+            <form method="post" action="{% url 'account_login' %}">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="username">{% trans "Username or email" %}</label>
+                {{ form.username }}
+              </div>
+              <div class="mb-3">
+                <label for="password">{% trans "Password" %}</label>
+                {{ form.password }}
+                <a href="{% url 'account_reset_password' %}">{% trans "Forgot your password?" %}</a>
+              </div>
+              <button type="submit" class="btn btn-primary">{% trans "Sign In" %}</button>
+            </form>
+          {% endif %}
+          {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+          {% endif %}
+        </div>
+      </section>
     {% endblock content %}
 
   </main>
@@ -98,19 +110,7 @@
   <footer id="footer" class="footer dark-background">
     <div class="container">
       <h3 class="sitename">SimpleKanban</h3>
-      <p>Эффективно управляйте проектами с помощью Kanban.</p>
-{#      <div class="social-links d-flex justify-content-center">#}
-{#        <a href="#"><i class="bi bi-twitter-x"></i></a>#}
-{#        <a href="#"><i class="bi bi-instagram"></i></a>#}
-{#        <a href="#"><i class="bi bi-skype"></i></a>#}
-{#        <a href="#"><i class="bi bi-linkedin"></i></a>#}
-{#      </div>#}
-{#      <div class="copyright">#}
-{#        <strong>SuperKanban Team</strong>#}
-{#      </div>#}
-{#      <div class="credits">#}
-{#        <a href="#">SuperKanban Team</a>#}
-{#      </div>#}
+      <p>Сможем припахать любого!</p>
     </div>
   </footer>
 
@@ -130,11 +130,6 @@
   <script src="{% static 'js/main.js' %}"></script>
 
   {% block extra_body %}
-    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'assets/js/main.js' %}"></script>
   {% endblock extra_body %}
 
 </body>

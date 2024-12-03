@@ -118,13 +118,13 @@
       </div>
 
       <!-- Поля для добавления новых email-адресов -->
-      <div class="form-group invite-emails-container">
+      <!-- <div class="form-group invite-emails-container">
         <label>Пригласить новых пользователей (Email):</label>
         <div class="invite-email-group">
           <input type="email" id="invite_email" placeholder="Введите email для приглашения">
           <button type="button" class="btn" onclick="inviteEmail()">Пригласить</button>
         </div>
-      </div>
+      </div> -->
 
       <!-- Список выбранных и приглашенных участников -->
       <div class="form-group">
@@ -231,7 +231,6 @@
   </script>
 {% endblock %}
 
-
 {#{% extends "base.html" %}#}
 {##}
 {#{% block content %}#}
@@ -316,6 +315,17 @@
 {#      color: white;#}
 {#      cursor: pointer;#}
 {#      border: none;#}
+{#    }#}
+{##}
+{#    /* Стили для выпадающего списка */#}
+{#    .form-group select {#}
+{#      width: 100%; /* Делаем select на всю ширину контейнера */#}
+{#      padding: 8px; /* Добавляем отступы */#}
+{#      font-size: 14px; /* Размер шрифта, соответствующий другим полям */#}
+{#      border: 1px solid #ccc; /* Рамка, как у других полей ввода */#}
+{#      border-radius: 5px; /* Скругленные углы */#}
+{#      background-color: #fff; /* Белый фон */#}
+{#      box-sizing: border-box; /* Включаем padding и border в ширину элемента */#}
 {#    }#}
 {#  </style>#}
 {##}
