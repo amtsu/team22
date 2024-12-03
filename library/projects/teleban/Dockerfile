@@ -13,9 +13,6 @@ RUN apt-get update && apt-get install -y \
 # Устанавливаем рабочую директорию
 WORKDIR /teleban
 
-# Устанавливаем переменную окружения для токена телеграм-бота
-ENV TELEBAN_TOKEN=5706807992:AAH0rah9wE2krHdosA2IgfkpudTCFk2kSlQ
-
 # Обновляем pip до последней версии
 RUN pip install --upgrade pip
 
