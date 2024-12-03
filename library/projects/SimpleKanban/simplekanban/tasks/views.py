@@ -235,7 +235,7 @@ class TaskCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
+        return reverse_lazy('company_detail', kwargs={'company_id': self.kwargs['company_id']})
 
 
 class TaskDeleteView(DeleteView):
