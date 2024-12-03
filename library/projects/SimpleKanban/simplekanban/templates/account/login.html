@@ -1,62 +1,204 @@
+<!-- templates/account/login.html -->
 {% extends "account/base_entrance.html" %}
 {% load i18n %}
 {% load static %}
 {% load allauth account %}
+
 {% block head_title %}
     {% trans "Sign In" %}
 {% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign In" %}
-    {% endelement %}
-    {% if not SOCIALACCOUNT_ONLY %}
-        {% setvar link %}
-            <a href="{{ signup_url }}">
-            {% endsetvar %}
-            {% setvar end_link %}
-            </a>
-        {% endsetvar %}
-        {% element p %}
-            {% blocktranslate %}If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.{% endblocktranslate %}
-        {% endelement %}
-        {% url 'account_login' as login_url %}
-        {% element form form=form method="post" action=login_url tags="entrance,login" %}
-            {% slot body %}
+    <style>
+        /* Стили для входной формы */
+        .entrance-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button.btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #808080; /* Серый цвет */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button.btn-submit:hover {
+            background-color: #ff6600; /* Ярко оранжевый цвет при наведении */
+        }
+
+        small {
+            font-size: 12px;
+            color: #ff6600;
+        }
+
+        a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .button-group {
+            margin-top: 20px;
+        }
+    </style>
+
+    <div class="entrance-container">
+        <h1>{% trans "Вход" %}</h1>
+
+        {% if not SOCIALACCOUNT_ONLY %}
+            <p>
+                Если у вас ещё нет учётной записи, пожалуйста,
+                <a href="{{ signup_url }}">зарегистрируйтесь</a> сначала.
+            </p>
+
+            <form method="post" action="{% url 'account_login' %}">
                 {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
-                {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-                {% element button type="submit" tags="prominent,login" %}
-                    {% trans "Sign In" %}
-                {% endelement %}
-            {% endslot %}
-        {% endelement %}
-    {% endif %}
-    {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
-        {% element hr %}
-        {% endelement %}
-        {% element button_group vertical=True %}
-            {% if PASSKEY_LOGIN_ENABLED %}
-                {% element button type="submit" form="mfa_login" id="passkey_login" tags="prominent,login,outline,primary" %}
-                    {% trans "Sign in with a passkey" %}
-                {% endelement %}
-            {% endif %}
-            {% if LOGIN_BY_CODE_ENABLED %}
-                {% element button href=request_login_code_url tags="prominent,login,outline,primary" %}
-                    {% trans "Mail me a sign-in code" %}
-                {% endelement %}
-            {% endif %}
-        {% endelement %}
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {% if field.name == 'remember' %}
+                            <!-- Скрываем поле "Запомнить меня" -->
+                            <div style="display: none;">
+                                {{ field }}
+                            </div>
+                        {% else %}
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.help_text %}
+                                <small>{{ field.help_text }}</small>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-submit">Войти</button>
+            </form>
+        {% endif %}
+
+        {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
+            <hr>
+            <div class="button-group">
+                {% if PASSKEY_LOGIN_ENABLED %}
+                    <button type="submit" form="mfa_login" id="passkey_login" class="btn btn-outline-primary">
+                        Войти с использованием ключа
+                    </button>
+                {% endif %}
+                {% if LOGIN_BY_CODE_ENABLED %}
+                    <a href="{{ request_login_code_url }}" class="btn btn-outline-primary">
+                        Отправить мне код для входа
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        {% endif %}
+    </div>
 {% endblock content %}
-{% block extra_body %}
-    {{ block.super }}
-    {% if PASSKEY_LOGIN_ENABLED %}
-        {% include "mfa/webauthn/snippets/login_script.html" with button_id="passkey_login" %}
-    {% endif %}
-{% endblock %}
+
+{#{% extends "account/base_entrance.html" %}#}
+{#{% load i18n %}#}
+{#{% load static %}#}
+{#{% load allauth account %}#}
+{#{% block head_title %}#}
+{#    {% trans "Sign In" %}#}
+{#{% endblock head_title %}#}
+{#{% block content %}#}
+{#    {% element h1 %}#}
+{#        {% trans "Sign In" %}#}
+{#    {% endelement %}#}
+{#    {% if not SOCIALACCOUNT_ONLY %}#}
+{#        {% setvar link %}#}
+{#            <a href="{{ signup_url }}">#}
+{#            {% endsetvar %}#}
+{#            {% setvar end_link %}#}
+{#            </a>#}
+{#        {% endsetvar %}#}
+{#        {% element p %}#}
+{#            {% blocktranslate %}If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.{% endblocktranslate %}#}
+{#        {% endelement %}#}
+{#        {% url 'account_login' as login_url %}#}
+{#        {% element form form=form method="post" action=login_url tags="entrance,login" %}#}
+{#            {% slot body %}#}
+{#                {% csrf_token %}#}
+{#                {% element fields form=form unlabeled=True %}#}
+{#                {% endelement %}#}
+{#                {{ redirect_field }}#}
+{#            {% endslot %}#}
+{#            {% slot actions %}#}
+{#                {% element button type="submit" tags="prominent,login" %}#}
+{#                    {% trans "Sign In" %}#}
+{#                {% endelement %}#}
+{#            {% endslot %}#}
+{#        {% endelement %}#}
+{#    {% endif %}#}
+{#    {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}#}
+{#        {% element hr %}#}
+{#        {% endelement %}#}
+{#        {% element button_group vertical=True %}#}
+{#            {% if PASSKEY_LOGIN_ENABLED %}#}
+{#                {% element button type="submit" form="mfa_login" id="passkey_login" tags="prominent,login,outline,primary" %}#}
+{#                    {% trans "Sign in with a passkey" %}#}
+{#                {% endelement %}#}
+{#            {% endif %}#}
+{#            {% if LOGIN_BY_CODE_ENABLED %}#}
+{#                {% element button href=request_login_code_url tags="prominent,login,outline,primary" %}#}
+{#                    {% trans "Mail me a sign-in code" %}#}
+{#                {% endelement %}#}
+{#            {% endif %}#}
+{#        {% endelement %}#}
+{#    {% endif %}#}
+{#    {% if SOCIALACCOUNT_ENABLED %}#}
+{#        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}#}
+{#    {% endif %}#}
+{#{% endblock content %}#}
+{#{% block extra_body %}#}
+{#    {{ block.super }}#}
+{#    {% if PASSKEY_LOGIN_ENABLED %}#}
+{#        {% include "mfa/webauthn/snippets/login_script.html" with button_id="passkey_login" %}#}
+{#    {% endif %}#}
+{#{% endblock %}#}
