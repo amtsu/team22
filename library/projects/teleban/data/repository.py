@@ -48,6 +48,15 @@ class SubscriptionRepository:
             )
         ).scalars().all()
 
+    def get_user_subscriptions(self, user_id: int) -> list[tuple[str, str]]:
+        """Возвращает все подписки пользователя списком кортежей (source, tag)."""
+        results = self.session.execute(
+            select(SubscriptionBase.source, SubscriptionBase.tag).where(
+                SubscriptionBase.user_id == user_id
+            )
+        ).all()
+        return [(row.source, row.tag) for row in results]
+
     def _get_subscription(self, user_id: int, source: str, tag: str) -> SubscriptionBase:
         """Возвращает запись подписки по user_id, source и tag, или вызывает исключение, если запись не найдена."""
         instance = self.session.execute(
@@ -159,7 +168,7 @@ class ContentRepository:
         """
         Удаляет записи, которые старше 2 дней и у которых статус True.
         """
-        required_time = datetime.now() - timedelta(days=2)
+        required_time = datetime.now() - timedelta(days=30)
 
         self.session.execute(
             delete(ContentBase)

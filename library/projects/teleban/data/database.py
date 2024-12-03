@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import sessionmaker
 
-from data.config import settings
+from config import settings
 
 # Создаем синхронный и асинхронный движки
 sync_engine = create_engine(

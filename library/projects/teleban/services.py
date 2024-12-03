@@ -2,6 +2,7 @@ import asyncio
 from typing import Sequence
 
 from aiogram import Bot
+from aiogram.types import Message
 
 from data import session_factory, ContentRepository, ContentBase, SubscriptionRepository
 
@@ -46,3 +47,7 @@ async def send_content(bot: Bot) -> None:
 
         with session_factory() as session:
             ContentRepository(session).update_status(link)  # смена статуса на "отправлено"
+
+
+async def delete_subscriptions(message: Message) -> None:
+    pass
