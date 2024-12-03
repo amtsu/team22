@@ -12,12 +12,15 @@
             margin: 0;
             padding: 20px;
         }
+
         h1 {
             color: #333;
         }
+
         .search-container {
             margin-bottom: 20px;
         }
+
         .search-container input[type="text"] {
             width: 300px;
             padding: 10px;
@@ -34,9 +37,11 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
         .search-container button:hover {
             background-color: #45a049;
         }
+
         .anime-list {
             list-style-type: none;
             padding: 0;
@@ -61,101 +66,172 @@
             font-weight: bold;
             color: #333;
         }
+
+        .pagination {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .pagination a {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+        .pagination a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .pagination span {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f4f4f9;
+        }
     </style>
 </head>
 <body>
-    <h1>Поиск по описанию аниме</h1>
+<h1>Поиск по описанию аниме</h1>
 
-    <div class="search-container">
-        <form method="get">
-            {{ form.as_p }}
-            <button type="submit">Искать</button>
-        </form>
-    </div>
+<div class="search-container">
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Искать</button>
+    </form>
+</div>
 
-    {% if results %}
-        <h2>Результаты поиска ( {{ len_results }} {% if safe_search %}safe {% endif %}):</h2>
-        <ul class="anime-list">
-            {% for anime in results %}
-                <li class="anime-item">
-                    <h2>{{ anime.idx }}.
-                        {% if anime.title_orig %}
-                            {{ anime.title_orig }}
-                        {% else %}
-                            {{ anime.title }}
-                        {% endif %}
-                        {% if anime.title_ru and translate_to_russian %}
-                            ( {{ anime.title_ru }} )
-                        {% elif anime.title_en %}
-                            ( {{ anime.title_en }} )
-                        {% endif %}
-                        #{{anime.anime_id}}
-                    </h2>
-                    <p><span class="field">Ранг:</span> {{ anime.ranked }}</p>
-<!--                    <p><span class="field">Adult:</span> {{ anime.adult_score }}</p>-->
-                    <p><span class="field">Популярность:</span> {{ anime.popularity }}</p>
-                    <p><span class="field">Рейтинг:</span> {{ anime.rating }}</p>
-                    {% if anime.description_ru and translate_to_russian %}
-                        <p><span class="field">Описание:</span> {{ anime.description_ru }}</p>
-                    {% else %}
-                        <p><span class="field">Описание:</span> {{ anime.description }}</p>
-                    {% endif %}
-                    {% if anime.scenario and show_scenario_and_poster %}
-                        {% if anime.scenario_ru and translate_to_russian %}
-                        <p><span class="field">Сценарий:</span> {{ anime.scenario_ru }}</p>
-                        {% else %}
-                        <p><span class="field">Сценарий:</span> {{ anime.scenario }}</p>
-                        {% endif %}
-                    {% endif %}
-                    {% if anime.poster and show_scenario_and_poster %}
-                        {% if anime.poster_ru and translate_to_russian %}
-                            <p><span class="field">Постер:</span> {{ anime.poster_ru }}</p>
-                        {% else %}
-                            <p><span class="field">Постер:</span> {{ anime.poster }}</p>
-                        {% endif %}
-                    {% endif %}
-                    {% if anime.image0 or anime.image1 or anime.image2 or anime.image3 or anime.image4 %}
-                        <p>
-                            {% if anime.image0 %}
-                                <img height="480" src="{% static anime.image0 %}" alt="{{ anime.poster }}" />
-                            {% elif anime.image1 or anime.image2 or anime.image3 or anime.image4 or anime.image5 or anime.image6 %}
-                            0
-                            {% endif %}
-                            {% if anime.image1 %}
-                                <img height="480" src="{% static anime.image1 %}" alt="{{ anime.poster }}" />
-                            {% elif anime.image2 or anime.image3 or anime.image4 or anime.image5 or anime.image6 %}
-                            1
-                            {% endif %}
-                            {% if anime.image2 %}
-                                <img height="480" src="{% static anime.image2 %}" alt="{{ anime.poster }}" />
-                            {% elif anime.image3 or anime.image4 or anime.image5 or anime.image6 %}
-                            2
-                            {% endif %}
-                            {% if anime.image3 %}
-                                <img height="480" src="{% static anime.image3 %}" alt="{{ anime.poster }}" />
-                            {% elif anime.image4 or anime.image5 or anime.image6 %}
-                            3
-                            {% endif %}
-                            {% if anime.image4 %}
-                                <img height="480" src="{% static anime.image4 %}" alt="{{ anime.poster }}" />
-                            {% elif anime.image5 or anime.image6 %}
-                            4
-                            {% endif %}
-                            {% if anime.image5 %}
-                                <img height="480" src="{% static anime.image5 %}" alt="{{ anime.poster }}" />
-                            {% elif anime.image6 %}
-                            5
-                            {% endif %}
-                            {% if anime.image6 %}
-                                <img height="480" src="{% static anime.image6 %}" alt="{{ anime.poster }}" />
-                            {% endif %}
-                        </p>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% elif query_submitted %}
-        <p>Ничего не найдено.</p>
+{% if results %}
+<h2>Результаты поиска ( результатов: {{ len_results }}{% if safe_search %} safe{% endif %}, заняло: {{took_time}} сек
+    ):</h2>
+<ul class="anime-list">
+    {% for anime in results %}
+    <li class="anime-item">
+        <h2>{{ anime.idx }}.
+            {% if anime.title_orig %}
+            {{ anime.title_orig }}
+            {% else %}
+            {{ anime.title }}
+            {% endif %}
+            {% if anime.title_ru and translate_to_russian %}
+            ( {{ anime.title_ru }} )
+            {% elif anime.title_en %}
+            ( {{ anime.title_en }} )
+            {% endif %}
+            ( {{anime.season}} )
+            #{{anime.anime_id}}
+
+            <a href="?query={{ anime.anime_id }}&{% for key, value in request.GET.items %}{% if key != 'query' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}">
+                <button>Найти похожее</button>
+            </a>
+        </h2>
+
+        <p><span class="field">Жанры:</span> {{ anime.genres }}
+            {% if anime.predicted_genres and anime.predicted_genres == anime.genres %} (совпадают с предсказанными){% endif %}</p>
+         {% if anime.predicted_genres and anime.predicted_genres != anime.genres %}
+            <p><span class="field">Предсказанные жанры:</span> {{ anime.predicted_genres }}</p>
+         {% endif %}
+        {% if anime.ranked  %}
+        <p><span class="field">Ранг:</span> {{ anime.ranked }}</p>
+        {% endif %}
+        <p><span class="field">Популярность:</span> {{ anime.popularity }}</p>
+        <p><span class="field">Рейтинг:</span> {{ anime.rating }}</p>
+        {% if anime.image_is_adult and anime.image_adult_reason %}
+        <p><span class="field">Причина:</span> {{ anime.image_adult_reason }}</p>
+        {% endif %}
+        {% if anime.description_ru and translate_to_russian %}
+        <p><span class="field">Описание:</span> {{ anime.description_ru }} ( {{ anime.adult_score|floatformat:4 }} )</p>
+        {% else %}
+        <p><span class="field">Описание:</span> {{ anime.description }} ( {{ anime.adult_score|floatformat:4 }} )</p>
+        {% endif %}
+        {% if anime.scenario and show_scenario_and_poster %}
+        {% if anime.scenario_ru and translate_to_russian %}
+        <p><span class="field">Сценарий:</span> {{ anime.scenario_ru }}</p>
+        {% else %}
+        <p><span class="field">Сценарий:</span> {{ anime.scenario }}</p>
+        {% endif %}
+        {% endif %}
+        {% if anime.poster and show_scenario_and_poster %}
+        {% if anime.poster_ru and translate_to_russian %}
+        <p><span class="field">Постер:</span> {{ anime.poster_ru }}</p>
+        {% else %}
+        <p><span class="field">Постер:</span> {{ anime.poster }}</p>
+        {% endif %}
+        {% endif %}
+        {% if anime.image0 or anime.image1 or anime.image2 or anime.image3 or anime.image4 %}
+        <p>
+            {% if anime.image0 %}
+            <a href="/static/{{ anime.image0 }}">
+                <img height="320" src="/static/{{ anime.image0 }}" alt="{{ anime.poster }}"/>
+            </a>
+            {% elif anime.image1 or anime.image2 or anime.image3 or anime.image4 or anime.image5 or anime.image6 %}
+            0
+            {% endif %}
+            {% if anime.image1 %}
+            <a href="/static/{{ anime.image1 }}"><img height="320" src="/static/thumb/{{ anime.image1 }}.thumb.jpg"
+                                                      alt="{{ anime.poster }}"/></a>
+            {% elif anime.image2 or anime.image3 or anime.image4 or anime.image5 or anime.image6 %}
+            1
+            {% endif %}
+            {% if anime.image2 %}
+            <a href="/static/{{ anime.image2 }}"><img height="320" src="/static/thumb/{{ anime.image2 }}.thumb.jpg"
+                                                      alt="{{ anime.poster }}"/></a>
+            {% elif anime.image3 or anime.image4 or anime.image5 or anime.image6 %}
+            2
+            {% endif %}
+            {% if anime.image3 %}
+            <a href="/static/{{ anime.image3 }}"><img height="270" src="/static/thumb/{{ anime.image3 }}.thumb.jpg"
+                                                      alt="{{ anime.poster }}"/></a>
+            {% elif anime.image4 or anime.image5 or anime.image6 %}
+            3
+            {% endif %}
+            {% if anime.image4 %}
+            <a href="/static/{{ anime.image4 }}"><img height="270" src="/static/thumb/{{ anime.image4 }}.thumb.jpg"
+                                                      alt="{{ anime.poster }}"/></a>
+            {% elif anime.image5 or anime.image6 %}
+            4
+            {% endif %}
+            {% if anime.image5 %}
+            <a href="/static/{{ anime.image5 }}"><img height="270" src="/static/thumb/{{ anime.image5 }}.thumb.jpg"
+                                                      alt="{{ anime.poster }}"/></a>
+            {% elif anime.image6 %}
+            5
+            {% endif %}
+            {% if anime.image6 %}
+            <a href="/static/{{ anime.image6 }}"><img height="270" src="/static/thumb/{{ anime.image6 }}.thumb.jpg"
+                                                      alt="{{ anime.poster }}"/></a>
+            {% endif %}
+        </p>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% elif query_submitted %}
+<p>Ничего не найдено.</p>
+{% endif %}
+
+
+{% if results.has_other_pages %}
+<div class="pagination">
+    {% if results.has_previous %}
+    <a href="?page=1{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|urlencode }}{% endif %}{% endfor %}">Первая</a>
+    <a href="?page={{ results.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|urlencode }}{% endif %}{% endfor %}">&laquo;
+        Назад</a>
     {% endif %}
+
+    <span>Страница {{ results.number }} из {{ results.paginator.num_pages }}</span>
+
+    {% if results.has_next %}
+    <a href="?page={{ results.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|urlencode }}{% endif %}{% endfor %}">Вперед
+        &raquo;</a>
+    <a href="?page={{ results.paginator.num_pages }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|urlencode }}{% endif %}{% endfor %}">Последняя</a>
+    {% endif %}
+</div>
+{% endif %}
+
 </body>
 </html>

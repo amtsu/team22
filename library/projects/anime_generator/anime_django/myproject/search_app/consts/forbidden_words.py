@@ -1,0 +1,1 @@
+FORBIDDEN_WORDS = {" rape", " sex", " humiliat", " erotic"}
