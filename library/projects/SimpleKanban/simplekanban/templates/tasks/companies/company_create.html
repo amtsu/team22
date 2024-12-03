@@ -147,25 +147,25 @@
     // Храним список приглашенных и выбранных пользователей
     const selectedMembers = [];
 
-    // Функция для добавления email в список приглашений
-    function inviteEmail() {
-      const emailInput = document.getElementById('invite_email');
-      const email = emailInput.value.trim();
-
-      if (email && !selectedMembers.some(member => member.email === email)) {
-        // Добавляем новый email в список приглашенных
-        const newMember = {
-          type: 'email',  // Тип - приглашение по email
-          email: email,
-          displayName: email,
-        };
-        selectedMembers.push(newMember);
-        updateMemberList();
-        emailInput.value = ""; // Очистить поле после добавления
-      } else {
-        alert('Введите корректный email для приглашения или этот email уже добавлен.');
-      }
-    }
+{#    // Функция для добавления email в список приглашений#}
+{#    function inviteEmail() {#}
+{#      const emailInput = document.getElementById('invite_email');#}
+{#      const email = emailInput.value.trim();#}
+{##}
+{#      if (email && !selectedMembers.some(member => member.email === email)) {#}
+{#        // Добавляем новый email в список приглашенных#}
+{#        const newMember = {#}
+{#          type: 'email',  // Тип - приглашение по email#}
+{#          email: email,#}
+{#          displayName: email,#}
+{#        };#}
+{#        selectedMembers.push(newMember);#}
+{#        updateMemberList();#}
+{#        emailInput.value = ""; // Очистить поле после добавления#}
+{#      } else {#}
+{#        alert('Введите корректный email для приглашения или этот email уже добавлен.');#}
+{#      }#}
+{#    }#}
 
     // Функция для обновления списка участников
     function updateMemberList() {
