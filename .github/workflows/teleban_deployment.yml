@@ -46,8 +46,8 @@ jobs:
             echo DB_USER = ${{ secrets.TELEBAN_DB_USER }} >> .env
             echo DB_PASS = ${{ secrets.TELEBAN_DB_PASS }} >> .env
             
-            docker compose down --rmi all
-            docker compose up --build -d
+            docker-compose down --rmi all
+            docker-compose up --build -d
 
       - name: Print Info teleban
         run: echo "Deployed teleban at http://absda.ru:31003"
