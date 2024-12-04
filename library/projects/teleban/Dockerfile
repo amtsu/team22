@@ -4,6 +4,7 @@ FROM python:3.12.4-slim
 # Устанавливаем системные зависимости
 RUN apt-get update && apt-get install -y \
     gcc \
+    libpq-dev \
     libffi-dev \
     libssl-dev \
     python3-dev \

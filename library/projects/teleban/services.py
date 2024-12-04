@@ -2,7 +2,7 @@ import asyncio
 from typing import Sequence
 
 from aiogram import Bot
-from aiogram.types import Message
+from aiogram.exceptions import TelegramBadRequest
 
 from data import session_factory, ContentRepository, ContentBase, SubscriptionRepository
 
@@ -37,17 +37,17 @@ async def send_content(bot: Bot) -> None:
                     continue
 
                 # отправка сообщения
-                await bot.send_message(
-                    chat_id=user_id,
-                    text=f'<b>{title}</b>\n'
-                         f'{link}'
-                )
+                try:
+                    await bot.send_message(
+                        chat_id=user_id,
+                        text=f'<b>{title}</b>\n'
+                             f'{link}'
+                    )
+                except TelegramBadRequest as err:
+                    print(f'user_id={user_id}', err)
+
                 anti_duplicating_list.append((user_id, link))  # добавляем в историю рассылки
-                await asyncio.sleep(1)  # не забыть убрать в проде
+                # await asyncio.sleep(1)  # не забыть убрать в проде
 
         with session_factory() as session:
             ContentRepository(session).update_status(link)  # смена статуса на "отправлено"
-
-
-async def delete_subscriptions(message: Message) -> None:
-    pass
