@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .  # Указываем контекст сборки
+    # image: findy1bz/price_bot:latest
+    volumes:
+      # - .:/app
+      - sqlite_data:/app/data/  # Используем том для сохранения базы данных
+      # - sqlite_data:/app/ # Используем том для сохранения базы данных
+    env_file:
+      - ./.env
+
+volumes:
+  sqlite_data:  # Создаём том для хранения базы данных

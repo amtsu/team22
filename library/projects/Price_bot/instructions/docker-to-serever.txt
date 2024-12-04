@@ -1,0 +1,16 @@
+docker build -t price-bot-image .
+# docker run -d --name price-bot-container price-bot-image
+
+ssh find_y@87.242.119.60
+ls
+rm price-bot-image.tar
+
+docker save -o price-bot-image.tar price-bot-image
+scp price-bot-image.tar find_y@87.242.119.60:
+
+ssh find_y@87.242.119.60
+sudo docker load -i price-bot-image.tar
+sudo docker run -d --name price-bot-container price-bot-image
+
+sudo docker stop price-bot-container
+sudo docker start price-bot-container
