@@ -56,7 +56,7 @@
 
 <div class="content-container">
     <h1>Детали группы: {{ company.name }}</h1>
-    <p class="company-owner">Владелец: {{ company.owner.username }}</p> <!-- Исправлено отображение владельца -->
+{#    <p class="company-owner">Владелец: {{ company.owner.username }}</p> <!-- Исправлено отображение владельца -->#}
     <p><strong>Члены группы:</strong></p>
     <ul>
         {% for member in company.members.all %}

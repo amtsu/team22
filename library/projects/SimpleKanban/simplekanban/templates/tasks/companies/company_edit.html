@@ -3,418 +3,141 @@
 {% block title %}Редактировать группу - SuperKanban{% endblock %}
 
 {% block content %}
-  <style>
-    /* Стили для центрирования формы */
-    .form-container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background-color: #f9f9f9;
-    }
+<style>
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
 
-    .btn {
-      background-color: #ccc;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      display: inline-block;
-    }
+  .btn {
+    background-color: #ccc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+  }
 
-    .btn:hover {
-      background-color: #ff6f00;
-    }
+  .btn:hover {
+    background-color: #ff6f00;
+  }
 
-    .btn-group {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
+  .btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
 
-    .invite-email-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
+  .members-list {
+    list-style-type: none;
+    padding: 0;
+  }
 
-    .invite-email-group input {
-      padding: 8px;
-      font-size: 14px;
-      width: 250px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-right: 10px;
-    }
+  .member-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
 
-    .invite-email-group button {
-      font-size: 14px;
-      padding: 5px 10px;
-      background-color: #ff9800;
-      border-radius: 5px;
-      cursor: pointer;
-      border: none;
-    }
+  .remove-btn {
+    color: red;
+    cursor: pointer;
+  }
 
-    .invite-email-group button:hover {
-      background-color: #e68900;
-    }
+  .remove-btn:hover {
+    color: #ff6f00;
+  }
+</style>
 
-    .btn-group button {
-      margin-right: 10px;
-    }
+<div class="form-container">
+  <h1>Редактировать компанию</h1>
+  <form method="post">
+    {% csrf_token %}
 
-    .members-list {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
+    <div class="form-group">
+      <label for="id_name">Название компании:</label>
+      {{ form.name }}
+    </div>
 
-    .member-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px;
-      margin: 5px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
+    <div class="form-group">
+      <label for="id_members">Добавить участника:</label>
+      {{ form.members }}
+    </div>
 
-    .remove-btn {
-      cursor: pointer;
-      color: red;
-    }
+    <ul class="members-list" id="member-list"></ul>
 
-    .remove-btn:hover {
-      color: #ff6f00;
-    }
-  </style>
+    <!-- Скрытое поле для передачи списка участников -->
+    <input type="hidden" id="selected_members" name="selected_members">
 
-  <div class="form-container">
-    <h1>Редактировать группу</h1>
-    <form method="post">
-        {% csrf_token %}
+    <div class="btn-group">
+      <button type="submit" class="btn">Сохранить изменения</button>
+      <a href="{% url 'company_list' %}" class="btn">Назад</a>
+    </div>
+  </form>
+</div>
 
-        <!-- Поле для названия группы -->
-        <div class="form-group">
-          <label for="id_name">Название группы:</label>
-          {{ form.name }}
-        </div>
+<script>
+  // Инициализация списка участников
+  let selectedMembers = {{ selected_members_json|safe }} || [];
 
-        <!-- Поле для выбора участников (существующих) -->
-        <div class="form-group">
-          <label for="id_members">Выберите участников:</label>
-          {{ form.members }}
-        </div>
+  function updateMemberList() {
+    const memberList = document.getElementById('member-list');
+    memberList.innerHTML = ''; // Очищаем список
 
-        <!-- Список пользователей, которых пригласили -->
-        <div class="form-group">
-          <label for="new_members">Приглашенные участники:</label>
-          <ul class="members-list">
-            {% for email in new_email_fields %}
-              <li class="member-item">
-                {{ email }}
-                <span class="remove-btn" onclick="removeEmail('{{ email }}')">&#10005;</span>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-
-        <!-- Поля для добавления новых участников -->
-        <div class="form-group invite-email-group">
-            <input type="email" name="invite_email[]" placeholder="Введите email для приглашения">
-            <button type="button" class="btn" onclick="addEmailField()">Пригласить еще</button>
-        </div>
-
-        <!-- Группа кнопок с отступами -->
-        <div class="btn-group">
-          <button type="submit" class="btn">Сохранить изменения</button>
-          <a href="{% url 'company_list' %}" class="btn">Назад к списку групп</a>
-        </div>
-    </form>
-  </div>
-
-  <script>
-    function addEmailField() {
-      const container = document.querySelector('.invite-email-group');
-      const newField = document.createElement('div');
-      newField.className = 'invite-email-group';
-      newField.innerHTML = `
-        <input type="email" name="invite_email[]" placeholder="Введите email для приглашения">
-        <button type="button" class="btn" onclick="removeEmailField(this)">Удалить</button>
+    selectedMembers.forEach(member => {
+      const listItem = document.createElement('li');
+      listItem.classList.add('member-item');
+      listItem.innerHTML = `
+        ${member.username}
+        <span class="remove-btn" onclick="removeMember(${member.id})">&#10005;</span>
       `;
-      container.parentElement.appendChild(newField);
-    }
+      memberList.appendChild(listItem);
+    });
 
-    function removeEmailField(button) {
-      button.parentElement.remove();
-    }
+    // Обновляем скрытое поле с участниками
+    document.getElementById('selected_members').value = JSON.stringify(selectedMembers);
+  }
 
-    // Функция для удаления email из списка
-    function removeEmail(email) {
-      const li = document.querySelector(`li:contains(${email})`);
-      if (li) {
-        li.remove();
+  function addMember(userId, username) {
+    // Проверяем, добавлен ли уже участник
+    if (!selectedMembers.some(member => member.id === userId)) {
+      selectedMembers.push({ id: userId, username: username });
+      updateMemberList();
+    }
+  }
+
+  function removeMember(userId) {
+    // Удаляем участника из списка
+    selectedMembers = selectedMembers.filter(member => member.id !== userId);
+    updateMemberList();
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Заполняем список участников при загрузке
+    updateMemberList();
+
+    // Обработчик для добавления новых участников
+    const memberSelect = document.getElementById('id_members');
+    memberSelect.addEventListener('change', function () {
+      const selectedOption = this.options[this.selectedIndex];
+      const userId = selectedOption.value;
+      const username = selectedOption.text;
+
+      if (userId) {
+        addMember(userId, username);
+        this.selectedIndex = 0; // Сбрасываем выбор
       }
-    }
-  </script>
+    });
+  });
+</script>
 {% endblock %}
-
-
-
-{#{% extends "base.html" %}#}
-{##}
-{#{% block title %}Редактировать компанию - SuperKanban{% endblock %}#}
-{##}
-{#{% block content %}#}
-{#  <style>#}
-{#    /* Стили для центрирования формы */#}
-{#    .form-container {#}
-{#      max-width: 600px;#}
-{#      margin: 0 auto;#}
-{#      padding: 20px;#}
-{#      border: 1px solid #ccc;#}
-{#      border-radius: 8px;#}
-{#      background-color: #f9f9f9;#}
-{#    }#}
-{##}
-{#    .btn {#}
-{#      background-color: #ccc;#}
-{#      color: white;#}
-{#      border: none;#}
-{#      padding: 10px 15px;#}
-{#      font-size: 16px;#}
-{#      border-radius: 5px;#}
-{#      cursor: pointer;#}
-{#      display: inline-block;#}
-{#    }#}
-{##}
-{#    .btn:hover {#}
-{#      background-color: #ff6f00;#}
-{#    }#}
-{##}
-{#    .btn-group {#}
-{#      display: flex;#}
-{#      justify-content: space-between;#}
-{#      margin-top: 20px;#}
-{#    }#}
-{##}
-{#    .invite-email-group {#}
-{#      display: flex;#}
-{#      align-items: center;#}
-{#      margin-bottom: 10px;#}
-{#    }#}
-{##}
-{#    .invite-email-group input {#}
-{#      padding: 8px;#}
-{#      font-size: 14px;#}
-{#      width: 250px;#}
-{#      border: 1px solid #ccc;#}
-{#      border-radius: 5px;#}
-{#      margin-right: 10px;#}
-{#    }#}
-{##}
-{#    .invite-email-group button {#}
-{#      font-size: 14px;#}
-{#      padding: 5px 10px;#}
-{#      background-color: #ff9800;#}
-{#      border-radius: 5px;#}
-{#      cursor: pointer;#}
-{#      border: none;#}
-{#    }#}
-{##}
-{#    .invite-email-group button:hover {#}
-{#      background-color: #e68900;#}
-{#    }#}
-{##}
-{#    .btn-group button {#}
-{#      margin-right: 10px;#}
-{#    }#}
-{#  </style>#}
-{##}
-{#  <div class="form-container">#}
-{#    <h1>Редактировать компанию</h1>#}
-{#    <form method="post">#}
-{#        {% csrf_token %}#}
-{##}
-{#        <!-- Поле для названия компании -->#}
-{#        <div class="form-group">#}
-{#          <label for="id_name">Название компании:</label>#}
-{#          {{ form.name }}#}
-{#        </div>#}
-{##}
-{#        <!-- Поле для выбора участников (существующих) -->#}
-{#        <div class="form-group">#}
-{#          <label for="id_members">Выберите участников:</label>#}
-{#          {{ form.members }}#}
-{#        </div>#}
-{##}
-{#        <!-- Скрытые поля для новых участников -->#}
-{#        <div id="new-members">#}
-{#          {% for email_field in new_email_fields %}#}
-{#            <input type="hidden" name="invite_email[]" value="{{ email_field }}">#}
-{#          {% endfor %}#}
-{#        </div>#}
-{##}
-{#        <!-- Поля для добавления новых участников -->#}
-{#        <div class="form-group invite-email-group">#}
-{#            <input type="email" name="invite_email[]" placeholder="Введите email для приглашения">#}
-{#            <button type="button" class="btn" onclick="addEmailField()">Пригласить еще</button>#}
-{#        </div>#}
-{##}
-{#        <!-- Группа кнопок с отступами -->#}
-{#        <div class="btn-group">#}
-{#          <button type="submit" class="btn">Сохранить изменения</button>#}
-{#          <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>#}
-{#        </div>#}
-{#    </form>#}
-{#  </div>#}
-{##}
-{#  <script>#}
-{#    function addEmailField() {#}
-{#      const container = document.querySelector('.invite-email-group');#}
-{#      const newField = document.createElement('div');#}
-{#      newField.className = 'invite-email-group';#}
-{#      newField.innerHTML = `#}
-{#        <input type="email" name="invite_email[]" placeholder="Введите email для приглашения">#}
-{#        <button type="button" class="btn" onclick="removeEmailField(this)">Удалить</button>#}
-{#      `;#}
-{#      container.parentElement.appendChild(newField);#}
-{#    }#}
-{##}
-{#    function removeEmailField(button) {#}
-{#      button.parentElement.remove();#}
-{#    }#}
-{#  </script>#}
-{#{% endblock %}#}
-
-{##}
-{#{% extends "base.html" %}#}
-{##}
-{#{% block title %}Редактировать компанию - SuperKanban{% endblock %}#}
-{##}
-{#{% block content %}#}
-{#  <style>#}
-{#    /* Стили для центрирования формы */#}
-{#    .form-container {#}
-{#      max-width: 600px; /* Ограничиваем ширину формы */#}
-{#      margin: 0 auto; /* Центрируем форму */#}
-{#      padding: 20px;#}
-{#      border: 1px solid #ccc;#}
-{#      border-radius: 8px;#}
-{#      background-color: #f9f9f9;#}
-{#    }#}
-{##}
-{#    /* Стили для кнопок */#}
-{#    .btn {#}
-{#      background-color: #ccc; /* Серый цвет по умолчанию */#}
-{#      color: white;#}
-{#      border: none;#}
-{#      padding: 10px 15px;#}
-{#      text-decoration: none;#}
-{#      font-size: 16px;#}
-{#      border-radius: 5px;#}
-{#      cursor: pointer;#}
-{#      display: inline-block;#}
-{#    }#}
-{##}
-{#    .btn:hover {#}
-{#      background-color: #ff6f00; /* Оранжевый цвет при наведении */#}
-{#    }#}
-{##}
-{#    /* Группа кнопок с отступами */#}
-{#    .btn-group {#}
-{#      display: flex;#}
-{#      justify-content: space-between;#}
-{#      margin-top: 20px;#}
-{#    }#}
-{##}
-{#    /* Стили для поля ввода участников */#}
-{#    .invite-email-group {#}
-{#      display: flex;#}
-{#      align-items: center;#}
-{#      margin-bottom: 10px;#}
-{#    }#}
-{##}
-{#    .invite-email-group input {#}
-{#      padding: 8px;#}
-{#      font-size: 14px;#}
-{#      width: 250px;#}
-{#      border: 1px solid #ccc;#}
-{#      border-radius: 5px;#}
-{#      margin-right: 10px;#}
-{#    }#}
-{##}
-{#    .invite-email-group button {#}
-{#      font-size: 14px;#}
-{#      padding: 5px 10px;#}
-{#      background-color: #ff9800;#}
-{#      border-radius: 5px;#}
-{#      cursor: pointer;#}
-{#      border: none;#}
-{#    }#}
-{##}
-{#    .invite-email-group button:hover {#}
-{#      background-color: #e68900;#}
-{#    }#}
-{##}
-{#    /* Отступы между кнопками */#}
-{#    .btn-group button {#}
-{#      margin-right: 10px; /* Отступ между кнопками */#}
-{#    }#}
-{##}
-{#  </style>#}
-{##}
-{#  <div class="form-container">#}
-{#    <h1>Редактировать компанию</h1>#}
-{#    <form method="post">#}
-{#        {% csrf_token %}#}
-{##}
-{#        <!-- Поле для названия компании -->#}
-{#        <div class="form-group">#}
-{#          <label for="id_name">Название компании:</label>#}
-{#          {{ form.name }}#}
-{#        </div>#}
-{##}
-{#        <!-- Поле для выбора участников (существующих) -->#}
-{#        <div class="form-group">#}
-{#          <label for="id_members">Выберите участников:</label>#}
-{#          {{ form.members }}#}
-{#        </div>#}
-{##}
-{#        <!-- Поля для добавления новых участников -->#}
-{#        <div class="form-group invite-email-group">#}
-{#          <input type="email" name="invite_email[]" placeholder="Введите email для приглашения">#}
-{#          <button type="button" class="btn" onclick="addEmailField()">Пригласить еще</button>#}
-{#        </div>#}
-{##}
-{#        <!-- Группа кнопок с отступами -->#}
-{#        <div class="btn-group">#}
-{#          <button type="submit" class="btn">Сохранить изменения</button>#}
-{#          <a href="{% url 'company_list' %}" class="btn">Назад к списку компаний</a>#}
-{#        </div>#}
-{#    </form>#}
-{#  </div>#}
-{##}
-{#  <script>#}
-{#    // Функция для добавления нового поля email#}
-{#    function addEmailField() {#}
-{#      const container = document.querySelector('.invite-email-group');#}
-{#      const newField = document.createElement('div');#}
-{#      newField.className = 'invite-email-group';#}
-{#      newField.innerHTML = `#}
-{#        <input type="email" name="invite_email[]" placeholder="Введите email для приглашения">#}
-{#        <button type="button" class="btn" onclick="removeEmailField(this)">Удалить</button>#}
-{#      `;#}
-{#      container.parentElement.appendChild(newField);#}
-{#    }#}
-{##}
-{#    // Функция для удаления поля email#}
-{#    function removeEmailField(button) {#}
-{#      button.parentElement.remove();#}
-{#    }#}
-{#  </script>#}
-{#{% endblock %}#}
