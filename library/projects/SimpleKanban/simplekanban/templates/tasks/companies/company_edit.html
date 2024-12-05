@@ -71,7 +71,12 @@
 
     <div class="form-group">
       <label for="id_members">Добавить участника:</label>
-      {{ form.members }}
+      <select id="id_members">
+        <option value="">-- Выберите участника --</option>
+        {% for user in all_users %}
+          <option value="{{ user.id }}" {% if user.id in selected_members_ids %}disabled{% endif %}>{{ user.username }}</option>
+        {% endfor %}
+      </select>
     </div>
 
     <ul class="members-list" id="member-list"></ul>
@@ -106,6 +111,17 @@
 
     // Обновляем скрытое поле с участниками
     document.getElementById('selected_members').value = JSON.stringify(selectedMembers);
+
+    // Обновляем доступность опций в списке
+    const memberSelect = document.getElementById('id_members');
+    Array.from(memberSelect.options).forEach(option => {
+      const userId = option.value;
+      if (selectedMembers.some(member => member.id === parseInt(userId))) {
+        option.disabled = true;  // Disable the option if the user is already selected
+      } else {
+        option.disabled = false; // Enable the option if the user is not selected
+      }
+    });
   }
 
   function addMember(userId, username) {
@@ -141,3 +157,4 @@
   });
 </script>
 {% endblock %}
+
