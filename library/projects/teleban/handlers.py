@@ -1,7 +1,7 @@
-from aiogram import Router, Bot
+from aiogram import Router, Bot, F
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart, Command
-from aiogram.types import Message
+from aiogram.types import Message, CallbackQuery
 
 from keyboards import start_ikb
 from text_data import HELP_MSG, INFO_MSG, SUBS_MSG, START_MSG, FB_MSG
@@ -46,20 +46,6 @@ async def command_subscriptions_handler(message: Message) -> None:
     text = SUBS_MSG.format(user_name=user_name)
     await message.answer(text=text, reply_markup=await start_ikb())
 
-    # user_id = message.from_user.id
-    # user_name = message.from_user.full_name or message.from_user.username
-    # subscriptions_text = SUBS_MSG.format(user_name=user_name)
-    # await message.answer(text=subscriptions_text, parse_mode=ParseMode.HTML)
-    #
-    # with session_factory() as session:
-    #     subscriptions = SubscriptionRepository(session).get_user_subscriptions(user_id)
-    # result = []
-    # for source, tag in subscriptions:
-    #     result.append(f'{source} {tag}')
-    # result = '\n'.join(result)
-    #
-    # await message.answer(text=result)
-
 
 @main_router.message()
 async def feedback_handler(message: Message, bot: Bot) -> None:
@@ -79,3 +65,12 @@ async def feedback_handler(message: Message, bot: Bot) -> None:
             await message.answer(FB_MSG)
         except Exception as err:
             print(f'Не удалось отправить сообщение user={user}', err)
+
+
+@main_router.callback_query(F.data.startswith('main_menu'))
+async def main_menu_callback(callback: CallbackQuery):
+    """
+    Этот обработчик возвращает пользователю главное меню.
+    """
+    await callback.answer(f'Возвращаемся в главное меню...')
+    await callback.message.edit_reply_markup(reply_markup=await start_ikb())

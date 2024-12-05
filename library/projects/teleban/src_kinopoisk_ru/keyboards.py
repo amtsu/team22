@@ -16,7 +16,7 @@ async def kinopoisk_ikb(user_id):
             else:
                 builder.button(text=f'{tag}', callback_data=f'kinopoisk_{tag}')
 
-        builder.button(text='⏮ В главное меню', callback_data='sports_main_menu')
+        builder.button(text='⏮ В главное меню', callback_data='main_menu')
 
         builder.adjust(3)
         return builder.as_markup()
