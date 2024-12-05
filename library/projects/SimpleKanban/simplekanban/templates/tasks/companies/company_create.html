@@ -118,13 +118,14 @@
       </div>
 
       <!-- Поля для добавления новых email-адресов -->
-      <div class="form-group invite-emails-container">
+      <!-- <div class="form-group invite-emails-container">
         <label>Пригласить новых пользователей (Email):</label>
         <div class="invite-email-group">
           <input type="email" id="invite_email" placeholder="Введите email для приглашения">
           <button type="button" class="btn" onclick="inviteEmail()">Пригласить</button>
         </div>
-      </div>
+      </div> -->
+
 
       <!-- Список выбранных и приглашенных участников -->
       <div class="form-group">
@@ -147,25 +148,25 @@
     // Храним список приглашенных и выбранных пользователей
     const selectedMembers = [];
 
-    // Функция для добавления email в список приглашений
-    function inviteEmail() {
-      const emailInput = document.getElementById('invite_email');
-      const email = emailInput.value.trim();
-
-      if (email && !selectedMembers.some(member => member.email === email)) {
-        // Добавляем новый email в список приглашенных
-        const newMember = {
-          type: 'email',  // Тип - приглашение по email
-          email: email,
-          displayName: email,
-        };
-        selectedMembers.push(newMember);
-        updateMemberList();
-        emailInput.value = ""; // Очистить поле после добавления
-      } else {
-        alert('Введите корректный email для приглашения или этот email уже добавлен.');
-      }
-    }
+{#    // Функция для добавления email в список приглашений#}
+{#    function inviteEmail() {#}
+{#      const emailInput = document.getElementById('invite_email');#}
+{#      const email = emailInput.value.trim();#}
+{##}
+{#      if (email && !selectedMembers.some(member => member.email === email)) {#}
+{#        // Добавляем новый email в список приглашенных#}
+{#        const newMember = {#}
+{#          type: 'email',  // Тип - приглашение по email#}
+{#          email: email,#}
+{#          displayName: email,#}
+{#        };#}
+{#        selectedMembers.push(newMember);#}
+{#        updateMemberList();#}
+{#        emailInput.value = ""; // Очистить поле после добавления#}
+{#      } else {#}
+{#        alert('Введите корректный email для приглашения или этот email уже добавлен.');#}
+{#      }#}
+{#    }#}
 
     // Функция для обновления списка участников
     function updateMemberList() {
@@ -230,7 +231,6 @@
     });
   </script>
 {% endblock %}
-
 
 {#{% extends "base.html" %}#}
 {##}
@@ -316,6 +316,17 @@
 {#      color: white;#}
 {#      cursor: pointer;#}
 {#      border: none;#}
+{#    }#}
+{##}
+{#    /* Стили для выпадающего списка */#}
+{#    .form-group select {#}
+{#      width: 100%; /* Делаем select на всю ширину контейнера */#}
+{#      padding: 8px; /* Добавляем отступы */#}
+{#      font-size: 14px; /* Размер шрифта, соответствующий другим полям */#}
+{#      border: 1px solid #ccc; /* Рамка, как у других полей ввода */#}
+{#      border-radius: 5px; /* Скругленные углы */#}
+{#      background-color: #fff; /* Белый фон */#}
+{#      box-sizing: border-box; /* Включаем padding и border в ширину элемента */#}
 {#    }#}
 {#  </style>#}
 {##}

@@ -1,0 +1,61 @@
+{% extends "account/base_manage.html" %}
+{% load allauth i18n %}
+{% block head_title %}
+    {% trans "Sign Out" %}
+{% endblock head_title %}
+{% block content %}
+    <style>
+        /* Центрирование заголовка и текста без растягивания */
+        .sign-out-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;  /* Уменьшаем высоту */
+            text-align: center;
+        }
+
+        /* Стиль для кнопки выхода */
+        .btn-logout {
+            background-color: #007bff; /* начальный цвет */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease !important; /* плавное изменение цвета */
+        }
+
+        /* Эффект при наведении */
+        .btn-logout:hover {
+            background-color: #ff6600 !important; /* ярко-оранжевый цвет */
+        }
+
+        /* Уменьшение хедера на 2 см */
+        header {
+            padding-left: 2cm;
+            padding-right: 2cm;
+        }
+    </style>
+
+    <div class="sign-out-container">
+    {% element h1 %}
+        {% trans "Sign Out" %}
+    {% endelement %}
+    {% element p %}
+        {% trans 'Are you sure you want to sign out?' %}
+    {% endelement %}
+    {% url 'account_logout' as action_url %}
+    {% element form method="post" action=action_url no_visible_fields=True %}
+        {% slot body %}
+            {% csrf_token %}
+            {{ redirect_field }}
+        {% endslot %}
+        {% slot actions %}
+            {% element button type="submit" %}
+                {% trans 'Sign Out' %}
+            {% endelement %}
+        {% endslot %}
+    {% endelement %}
+{% endblock content %}

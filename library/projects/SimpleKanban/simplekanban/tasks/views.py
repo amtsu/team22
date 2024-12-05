@@ -24,9 +24,17 @@ class CompanyListView(ListView):
 class CompanyCreateView(View):
 
     def get(self, request):
-        all_users = User.objects.all()
         form = CompanyForm()
-        return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
+        all_users = User.objects.all()
+        return render(
+            request,
+            'tasks/companies/company_create.html',
+            {
+                'form': form,
+                'all_users': all_users,
+                'selected_members': [],
+            }
+        )
 
     def post(self, request):
         form = CompanyForm(request.POST)
@@ -36,39 +44,47 @@ class CompanyCreateView(View):
 
             # Обработка выбранных участников и приглашенных по email
             selected_members = json.loads(request.POST.get('selected_members', '[]'))
-            members = []
+            new_members = []
 
             for member in selected_members:
                 if member['type'] == 'registered':
                     # Если участник выбран из зарегистрированных пользователей
                     user = User.objects.get(id=member['id'])
-                    members.append(user)
-                elif member['type'] == 'email':
+                    new_members.append(user)
+                # elif member['type'] == 'email':
                     # Если участник приглашен по email
-                    user, created = User.objects.get_or_create(
-                        email=member['email'],
-                        defaults={'username': member['email'].split('@')[0]}
-                    )
-                    members.append(user)
+                    # user, created = User.objects.get_or_create(
+                    #     email=member['email'],
+                    #     defaults={'username': member['email'].split('@')[0]}
+                    # )
+                    # new_members.append(user)
 
-                    if created:
-                        # Отправляем приглашение новому пользователю
-                        self.send_invitation(company, request.user, member['email'])
+                    # if created:
+                    #     # Отправляем приглашение новому пользователю
+                    #     self.send_invitation(company, request.user, member['email'])
 
             # Заполняем поле members
-            company.members.set(members)  # Используем set для множественных пользователей
+            company.members.set(new_members)  # Заменяем всех участников новыми
 
             return redirect('company_list')  # Перенаправление на список компаний
         else:
             print(form.errors)  # Для отладки
             all_users = User.objects.all()
-            return render(request, 'tasks/companies/company_create.html', {'form': form, 'all_users': all_users})
+            return render(
+                request,
+                'tasks/companies/company_create.html',
+                {
+                    'form': form,
+                    'all_users': all_users,
+                    'selected_members': [],
+                }
+            )
 
-    def send_invitation(self, company, sender, email):
-        """Функция для отправки приглашения по email."""
-        subject = f'Приглашение присоединиться к компании {company.name}'
-        message = f'Вы были приглашены {sender.email} присоединиться к компании {company.name}.'
-        send_mail(subject, message, sender.email, [email])
+    # def send_invitation(self, company, sender, email):
+    #     """Функция для отправки приглашения по email."""
+    #     subject = f'Приглашение присоединиться к компании {company.name}'
+    #     message = f'Вы были приглашены {sender.email} присоединиться к компании {company.name}.'
+    #     send_mail(subject, message, sender.email, [email])
 
 
 class CompanyEditView(View):
@@ -76,7 +92,24 @@ class CompanyEditView(View):
         company = Company.objects.get(pk=pk)
         all_users = User.objects.all()
         form = CompanyForm(instance=company)
-        return render(request, 'tasks/companies/company_edit.html', {'form': form, 'company': company, 'all_users': all_users})
+
+        # Собираем текущих участников компании
+        selected_members = [
+            {"id": user.id, "username": user.username}
+            for user in company.members.all()
+        ]
+
+        return render(
+            request,
+            'tasks/companies/company_edit.html',
+            {
+                'form': form,
+                'company': company,
+                'all_users': all_users,
+                'selected_members': selected_members,
+                'selected_members_json': json.dumps(selected_members),
+            }
+        )
 
     def post(self, request, pk):
         company = Company.objects.get(pk=pk)
@@ -85,28 +118,47 @@ class CompanyEditView(View):
         if form.is_valid():
             company = form.save()
 
-            # Обрабатываем приглашения и добавляем участников
-            invite_emails = request.POST.getlist('invite_email[]')
-            for email in invite_emails:
-                user, created = User.objects.get_or_create(email=email)
-                if created:
-                    # Отправляем приглашение, если пользователь новый
-                    self.send_invitation(company, request.user, email)
+            # Обработка участников
+            try:
+                selected_members = json.loads(request.POST.get('selected_members', '[]'))
+            except json.JSONDecodeError:
+                selected_members = []
 
-                # Добавляем пользователя в компанию
-                company.members.add(user)
+            members = []
+            for member in selected_members:
+                try:
+                    user = User.objects.get(id=member['id'])
+                    members.append(user)
+                except User.DoesNotExist:
+                    continue  # Пропускаем, если пользователь не найден
 
-            return redirect('company_edit', pk=company.pk)  # Перенаправление на редактирование компании
+            company.members.set(members)  # Обновляем список участников
+
+            return redirect('company_detail', pk=company.pk)
 
         else:
-            print(form.errors)  # Вывод ошибок формы для отладки
             all_users = User.objects.all()
-            return render(request, 'tasks/companies/company_edit.html', {'form': form, 'company': company, 'all_users': all_users})
+            try:
+                selected_members = json.loads(request.POST.get('selected_members', '[]'))
+            except json.JSONDecodeError:
+                selected_members = []
 
-    def send_invitation(self, company, sender, email):
-        subject = f'Приглашение присоединиться к компании {company.name}'
-        message = f'Вы были приглашены {sender.email} присоединиться к компании {company.name}.'
-        send_mail(subject, message, sender.email, [email])
+            return render(
+                request,
+                'tasks/companies/company_edit.html',
+                {
+                    'form': form,
+                    'company': company,
+                    'all_users': all_users,
+                    'selected_members': selected_members,
+                    'selected_members_json': json.dumps(selected_members),
+                }
+            )
+
+    # def send_invitation(self, company, sender, email):
+    #     subject = f'Приглашение присоединиться к компании {company.name}'
+    #     message = f'Вы были приглашены {sender.email} присоединиться к компании {company.name}.'
+    #     send_mail(subject, message, sender.email, [email])
 
 
 # Представление для детальной информации о компании
@@ -176,7 +228,6 @@ class TaskDeleteView(DeleteView):
         return reverse_lazy('company_detail', kwargs={'company_id': self.kwargs['company_id']})
 
 
-
 # Представление для детальной информации о Задаче
 class TaskDetailView(DetailView):
     model = Task
@@ -235,7 +286,8 @@ class TaskCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('task_list', kwargs={'company_id': self.kwargs['company_id']})
+        company_id = self.kwargs.get('company_id')  # Получаем ID компании из URL
+        return reverse_lazy('company_detail', kwargs={'pk': company_id})  # Используем company_id для перенаправления на компанию
 
 
 class TaskDeleteView(DeleteView):

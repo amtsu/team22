@@ -105,8 +105,9 @@
 
 {% block content %}
 <div class="container">
-  <div class="row">
-    <div class="col-lg-8">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+
       <!-- Форма создания задачи -->
       <section id="task-form" class="section">
         <div class="container">
@@ -125,24 +126,13 @@
 
             <div id="subtask-formset">
                 {% for form in subtask_formset %}
-                <div class="row mb-3">
-                    <div class="col-md-6 form-group">
+                <div class="row mb-2">
+                    <!-- Оставляем только поле для названия подзадачи -->
+                    <div class="col-md-9 form-group">
                         {{ form.title }}
                     </div>
-                    <div class="col-md-6 form-group">
-                        {{ form.task }}
-                    </div>
-                    <div class="col-md-6 form-group">
-                        {{ form.executor }}
-                    </div>
-                    <div class="col-md-6 form-group">
-                        {{ form.due_date }}
-                    </div>
-                    <div class="col-md-6 form-group">
-                        {{ form.description }}
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <button type="button" class="btn btn-danger" onclick="removeSubtask(this)">Удалить</button>
+                    <div class="col-md-3 form-group">
+                        <button type="button" class="btn btn-grey remove-btn" onclick="removeSubtask(this)">Удалить</button>
                     </div>
                 </div>
                 {% endfor %}
@@ -150,11 +140,11 @@
 
             <!-- Кнопка для добавления подзадач -->
             <div class="text-center mb-4">
-              <button type="button" class="btn btn-secondary" onclick="addSubtask()">Добавить подзадачу</button>
+              <button type="button" class="btn btn-grey" onclick="addSubtask()">Добавить подзадачу</button>
             </div>
 
             <div class="text-center">
-              <button type="submit" class="btn btn-primary">Создать задачу и подзадачи</button>
+              <button type="submit" class="btn btn-warning" style="background-color: #ff6600;">Создать задачу и подзадачи</button>
             </div>
           </form>
         </div>
@@ -170,41 +160,16 @@
   // Функция для добавления новой подзадачи
   function addSubtask() {
     const newForm = document.createElement('div');
-    newForm.classList.add('form-row', 'mb-3');
+    newForm.classList.add('form-row', 'mb-2');
 
     // Создаем HTML код для новой подзадачи
     newForm.innerHTML = `
-      <div class="col-md-6 form-group">
+      <div class="col-md-9 form-group">
         <label for="id_subtask-${formIndex}-title">Название подзадачи*</label>
         <input type="text" name="subtasks-${formIndex}-title" required class="form-control" id="id_subtask-${formIndex}-title">
       </div>
-      <div class="col-md-6 form-group">
-        <label for="id_subtask-${formIndex}-task">Задача*</label>
-        <select name="subtasks-${formIndex}-task" required class="form-control" id="id_subtask-${formIndex}-task">
-          {% for task in tasks %}
-            <option value="{{ task.id }}">{{ task.title }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="col-md-6 form-group">
-        <label for="id_subtask-${formIndex}-executor">Исполнитель*</label>
-        <select name="subtasks-${formIndex}-executor" required class="form-control" id="id_subtask-${formIndex}-executor">
-          <option value="">Выберите исполнителя</option>
-          {% for user in company_users %}
-            <option value="{{ user.id }}">{{ user.username }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="col-md-6 form-group">
-        <label for="id_subtask-${formIndex}-due_date">Дата выполнения*</label>
-        <input type="date" name="subtasks-${formIndex}-due_date" required class="form-control" id="id_subtask-${formIndex}-due_date">
-      </div>
-      <div class="col-md-6 form-group">
-        <label for="id_subtask-${formIndex}-description">Описание подзадачи</label>
-        <textarea name="subtasks-${formIndex}-description" class="form-control" id="id_subtask-${formIndex}-description"></textarea>
-      </div>
-      <div class="col-md-6 form-group">
-        <button type="button" class="btn btn-danger" onclick="removeSubtask(this)">Удалить</button>
+      <div class="col-md-3 form-group">
+        <button type="button" class="btn btn-grey remove-btn" onclick="removeSubtask(this)">Удалить</button>
       </div>
     `;
 
@@ -228,3 +193,290 @@
 </script>
 
 {% endblock %}
+
+<style>
+  /* Стили для кнопок */
+  .btn-grey {
+    background-color: #ccc;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn-grey:hover {
+    background-color: #ff6600;
+    color: white;
+  }
+
+  .btn-danger {
+    background-color: #ccc;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn-danger:hover {
+    background-color: #ff6600;
+    color: white;
+  }
+
+  /* Центрируем форму в прямоугольнике */
+  #task-form .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Заголовок формы */
+  #task-form h4 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  /* Поля формы */
+  #task-form .form-group {
+    margin-bottom: 10px;
+  }
+
+  /* Кнопка для отправки формы */
+  .btn-warning {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+  }
+
+  .btn-warning:hover {
+    background-color: #e65c00;
+  }
+
+  /* Разделение для добавления подзадач */
+  #subtask-formset .form-row {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Ширина для колонок */
+  .form-group {
+    width: 100%;
+  }
+
+  /* Разделение строк в подзадачах */
+  .remove-btn {
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+  }
+
+  /* Для кнопки "Удалить" у всех подзадач - рядом */
+  #subtask-formset .form-row .remove-btn {
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+    margin-left: 10px;
+  }
+
+  /* Разделение для кнопки "Удалить" у последующих подзадач */
+  #subtask-formset .form-row .remove-btn.mt-2 {
+    margin-top: 5px;
+  }
+
+  /* Разделение между полем ввода и кнопкой "Удалить" */
+  #subtask-formset .form-row .col-md-9 {
+    padding-right: 5px;
+  }
+
+  /* Обрезаем ширину формы, делаем компактнее */
+  .container {
+    max-width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  /* Ширина кнопок */
+  .btn {
+    width: 100%;
+  }
+</style>
+
+{##}
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block title %}Создание задачи - SuperKanban{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<div class="container">#}
+{#  <div class="row justify-content-center">#}
+{#    <div class="col-lg-8">#}
+{#      <!-- Форма создания задачи -->#}
+{#      <section id="task-form" class="section">#}
+{#        <div class="container">#}
+{#          <form method="post">#}
+{#            {% csrf_token %}#}
+{#            <h4>Создаем задачу</h4>#}
+{#            <p>Необходимо заполнить следующие поля. Обязательные поля помечены *</p>#}
+{##}
+{#            {{ form.as_p }}#}
+{##}
+{#            <!-- Подзадачи -->#}
+{#            <h4>Подзадачи</h4>#}
+{#            <p>Добавьте подзадачи, если необходимо:</p>#}
+{##}
+{#            {{ subtask_formset.management_form }}#}
+{##}
+{#            <div id="subtask-formset">#}
+{#                {% for form in subtask_formset %}#}
+{#                <div class="row mb-3">#}
+{#                    <!-- Оставляем только поле для названия подзадачи -->#}
+{#                    <div class="col-md-6 form-group">#}
+{#                        {{ form.title }}#}
+{#                    </div>#}
+{#                    <div class="col-md-6 form-group">#}
+{#                        <button type="button" class="btn btn-grey" onclick="removeSubtask(this)">Удалить</button>#}
+{#                    </div>#}
+{#                </div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{##}
+{#            <!-- Кнопка для добавления подзадач -->#}
+{#            <div class="text-center mb-4">#}
+{#              <button type="button" class="btn btn-grey" onclick="addSubtask()">Добавить подзадачу</button>#}
+{#            </div>#}
+{##}
+{#            <div class="text-center">#}
+{#              <button type="submit" class="btn btn-warning" style="background-color: #ff6600;">Создать задачу и подзадачи</button>#}
+{#            </div>#}
+{#          </form>#}
+{#        </div>#}
+{#      </section>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<script>#}
+{#  // Индекс для новых форм в formset#}
+{#  let formIndex = {{ subtask_formset.management_form.initial.TOTAL_FORMS }};#}
+{##}
+{#  // Функция для добавления новой подзадачи#}
+{#  function addSubtask() {#}
+{#    const newForm = document.createElement('div');#}
+{#    newForm.classList.add('form-row', 'mb-3');#}
+{##}
+{#    // Создаем HTML код для новой подзадачи#}
+{#    newForm.innerHTML = `#}
+{#      <div class="col-md-6 form-group">#}
+{#        <label for="id_subtask-${formIndex}-title">Название подзадачи*</label>#}
+{#        <input type="text" name="subtasks-${formIndex}-title" required class="form-control" id="id_subtask-${formIndex}-title">#}
+{#      </div>#}
+{#      <div class="col-md-6 form-group">#}
+{#        <button type="button" class="btn btn-grey" onclick="removeSubtask(this)">Удалить</button>#}
+{#      </div>#}
+{#    `;#}
+{##}
+{#    // Добавляем новый элемент формы в контейнер#}
+{#    document.getElementById('subtask-formset').appendChild(newForm);#}
+{##}
+{#    // Обновляем количество форм в formset#}
+{#    formIndex++;#}
+{#    document.querySelector('input[name="subtasks-TOTAL_FORMS"]').value = formIndex;#}
+{#  }#}
+{##}
+{#  // Функция для удаления подзадачи#}
+{#  function removeSubtask(button) {#}
+{#    const formRow = button.closest('.form-row');#}
+{#    formRow.remove();#}
+{##}
+{#    // Обновляем количество форм в formset#}
+{#    formIndex--;#}
+{#    document.querySelector('input[name="subtasks-TOTAL_FORMS"]').value = formIndex;#}
+{#  }#}
+{#</script>#}
+{##}
+{#{% endblock %}#}
+{##}
+{#<style>#}
+{#  /* Стили для кнопок */#}
+{#  .btn-grey {#}
+{#    background-color: #ccc;#}
+{#    color: white;#}
+{#    border: none;#}
+{#    transition: background-color 0.3s ease, color 0.3s ease;#}
+{#  }#}
+{##}
+{#  .btn-grey:hover {#}
+{#    background-color: #ff6600;#}
+{#    color: white;#}
+{#  }#}
+{##}
+{#  /* Стили для кнопки добавления подзадачи */#}
+{#  .btn-secondary {#}
+{#    background-color: #6c757d;#}
+{#    color: white;#}
+{#    border: none;#}
+{#    transition: background-color 0.3s ease, color 0.3s ease;#}
+{#  }#}
+{##}
+{#  .btn-secondary:hover {#}
+{#    background-color: #ff6600;#}
+{#    color: white;#}
+{#  }#}
+{##}
+{#  /* Центрируем форму в прямоугольнике */#}
+{#  #task-form .container {#}
+{#    display: flex;#}
+{#    flex-direction: column;#}
+{#    justify-content: center;#}
+{#    align-items: center;#}
+{#    padding: 20px;#}
+{#    background-color: #f8f9fa;#}
+{#    border-radius: 10px;#}
+{#    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);#}
+{#  }#}
+{##}
+{#  /* Заголовок формы */#}
+{#  #task-form h4 {#}
+{#    margin-bottom: 20px;#}
+{#    font-size: 24px;#}
+{#    font-weight: bold;#}
+{#  }#}
+{##}
+{#  /* Поля формы */#}
+{#  #task-form .form-group {#}
+{#    margin-bottom: 15px;#}
+{#  }#}
+{##}
+{#  /* Кнопка для отправки формы */#}
+{#  .btn-warning {#}
+{#    background-color: #ff6600;#}
+{#    color: white;#}
+{#    border: none;#}
+{#  }#}
+{##}
+{#  .btn-warning:hover {#}
+{#    background-color: #e65c00;#}
+{#  }#}
+{##}
+{#  /* Разделение для добавления подзадач */#}
+{#  #subtask-formset .form-row {#}
+{#    display: flex;#}
+{#    align-items: center;#}
+{#  }#}
+{##}
+{#  /* Ширина для колонок */#}
+{#  .form-group {#}
+{#    width: 100%;#}
+{#  }#}
+{##}
+{#  /* Разделение строк в подзадачах */#}
+{#  #subtask-formset .form-group button {#}
+{#    width: 100%;#}
+{#    padding: 8px;#}
+{#    text-align: center;#}
+{#  }#}
+{#</style>#}
