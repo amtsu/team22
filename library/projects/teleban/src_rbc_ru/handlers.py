@@ -2,14 +2,14 @@ from aiogram import F, Router
 from aiogram.types import CallbackQuery
 
 from data import session_factory, SubscriptionRepository
-from src_trial_sport_ru.keyboards import trial_sport_ikb
+from src_rbc_ru.keyboards import rbc_ikb
 
-trial_sport_router = Router()
+rbc_router = Router()
 
 
-@trial_sport_router.callback_query(F.data.startswith('trial-sport_'))
+@rbc_router.callback_query(F.data.startswith('rbc_'))
 async def handle_subscription(callback: CallbackQuery):
-    source = 'trial-sport'
+    source = 'rbc'
     user_id = callback.from_user.id
     tag = callback.data.removeprefix(f'{source}_')
 
@@ -20,18 +20,18 @@ async def handle_subscription(callback: CallbackQuery):
         if tag in user_tags:
             db.remove_subscription(user_id, source, tag)
             await callback.answer(f'Вы отписались от {tag}')
-            await callback.message.edit_reply_markup(reply_markup=await trial_sport_ikb(user_id))
+            await callback.message.edit_reply_markup(reply_markup=await rbc_ikb(user_id))
         else:
             db.add_subscription(user_id, source, tag)
             await callback.answer(f'Вы подписались на {tag})')
-            await callback.message.edit_reply_markup(reply_markup=await trial_sport_ikb(user_id))
+            await callback.message.edit_reply_markup(reply_markup=await rbc_ikb(user_id))
 
 
-@trial_sport_router.callback_query(F.data.startswith('trial-sport'))
-async def trial_sports_callback(callback: CallbackQuery):
+@rbc_router.callback_query(F.data.startswith('rbc'))
+async def rbc_callback(callback: CallbackQuery):
     user_id = callback.from_user.id
     data = callback.data
     match data:
-        case 'trial-sport':
-            await callback.answer(f'Вы выбрали спортивный магазин | trial-sport.ru')
-            await callback.message.edit_reply_markup(reply_markup=await trial_sport_ikb(user_id))
+        case 'rbc':
+            await callback.answer(f'Вы выбрали новостной сайт | rbc.ru')
+            await callback.message.edit_reply_markup(reply_markup=await rbc_ikb(user_id))

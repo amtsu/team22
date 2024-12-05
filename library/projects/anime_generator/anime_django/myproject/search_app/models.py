@@ -29,6 +29,11 @@ class Anime(models.Model):
     title_en = models.TextField(null=True, blank=True)
     title_ru = models.TextField(null=True, blank=True)
     adult_score = models.FloatField(null=True, blank=True)
+    image_is_adult = models.BooleanField(null=True)
+    image_adult_reason = models.TextField(null=True, blank=True)
+    genres = models.TextField(null=True, blank=True)
+    predicted_genres = models.TextField(null=True, blank=True)
+    season = models.TextField(null=True, blank=True)
 
     # Новое поле для хранения вектора
     description_vector = models.BinaryField(null=True, blank=True)  # Хранение вектора в бинарном формате

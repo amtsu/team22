@@ -33,8 +33,6 @@ def sports_params(source: str, name_dict: dict[str, str], icon: str):
 
 
 async def sports_subscription_ikb(source: str, name_dict: dict[str, str], icon: str, user_id: int):
-    # with SubscriptionDatabaseManager() as db:
-    #     user_tags = db.get_user_tags(user_id, source)
     with session_factory() as session:
         user_tags = SubscriptionRepository(session).get_user_tags(user_id, source)
 

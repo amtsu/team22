@@ -1,0 +1,6 @@
+services:
+  teleban:
+    build: .
+    container_name: teleban_app
+    restart: always
+

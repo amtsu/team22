@@ -1,3 +1,103 @@
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block title %}Создание задачи - SuperKanban{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<div class="container">#}
+{#  <div class="row">#}
+{#    <div class="col-lg-8">#}
+{##}
+{#      <!-- Форма создания задачи -->#}
+{#      <section id="task-form" class="section">#}
+{#        <div class="container">#}
+{#          <form method="post">#}
+{#            {% csrf_token %}#}
+{#            <h4>Создаем задачу</h4>#}
+{#            <p>Необходимо заполнить следующие поля. Обязательные поля помечены *</p>#}
+{##}
+{#            {{ form.as_p }}#}
+{##}
+{#            <!-- Подзадачи -->#}
+{#            <h4>Подзадачи</h4>#}
+{#            <p>Добавьте подзадачи, если необходимо:</p>#}
+{##}
+{#            {{ subtasks.management_form }}#}
+{#            {% for subtask_form in subtasks %}#}
+{#              <div class="row">#}
+{#                <div class="col-md-6 form-group">#}
+{#                  {{ subtask_form.title }}#}
+{#                </div>#}
+{#                <div class="col-md-6 form-group">#}
+{#                  {{ subtask_form.task }}#}
+{#                </div>#}
+{#                <div class="col-md-6 form-group">#}
+{#                  {{ subtask_form.executor }}#}
+{#                </div>#}
+{#                <div class="col-md-6 form-group">#}
+{#                  {{ subtask_form.due_date }}#}
+{#                </div>#}
+{#                <div class="col-md-6 form-group">#}
+{#                  {{ subtask_form.description }}#}
+{#                </div>#}
+{#              </div>#}
+{#            {% endfor %}#}
+{##}
+{#            <!-- Кнопка для добавления подзадач -->#}
+{#            <div class="text-center mb-4">#}
+{#              <button type="button" class="btn btn-secondary" onclick="addSubtask()">Добавить подзадачу</button>#}
+{#            </div>#}
+{##}
+{#            <div class="text-center">#}
+{#              <button type="submit" class="btn btn-primary">Создать задачу и подзадачи</button>#}
+{#            </div>#}
+{#          </form>#}
+{#        </div>#}
+{#      </section>#}
+{##}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<script>#}
+{#  // Функция для добавления подзадач#}
+{#  let subtaskCount = {{ subtasks.management_form.count|default:0 }};#}
+{#  function addSubtask() {#}
+{#    subtaskCount++;#}
+{##}
+{#    const subtaskHtml = `#}
+{#      <div class="row">#}
+{#        <div class="col-md-6 form-group">#}
+{#          <label for="id_subtask-${subtaskCount}-title">Название подзадачи*</label>#}
+{#          <input type="text" name="subtask-${subtaskCount}-title" required class="form-control" id="id_subtask-${subtaskCount}-title">#}
+{#        </div>#}
+{#        <div class="col-md-6 form-group">#}
+{#          <label for="id_subtask-${subtaskCount}-executor">Исполнитель*</label>#}
+{#          <select name="subtask-${subtaskCount}-executor" required class="form-control" id="id_subtask-${subtaskCount}-executor">#}
+{#            <option value="">Выберите исполнителя</option>#}
+{#            {% for user in company_users %}#}
+{#              <option value="{{ user.id }}">{{ user.username }}</option>#}
+{#            {% endfor %}#}
+{#          </select>#}
+{#        </div>#}
+{#        <div class="col-md-6 form-group">#}
+{#          <label for="id_subtask-${subtaskCount}-due_date">Дата выполнения*</label>#}
+{#          <input type="date" name="subtask-${subtaskCount}-due_date" required class="form-control" id="id_subtask-${subtaskCount}-due_date">#}
+{#        </div>#}
+{#        <div class="col-md-6 form-group">#}
+{#          <label for="id_subtask-${subtaskCount}-description">Описание подзадачи</label>#}
+{#          <textarea name="subtask-${subtaskCount}-description" class="form-control" id="id_subtask-${subtaskCount}-description"></textarea>#}
+{#        </div>#}
+{#      </div>#}
+{#    `;#}
+{##}
+{#    const container = document.getElementById("subtasks-container");#}
+{#    container.insertAdjacentHTML('beforeend', subtaskHtml);#}
+{#  }#}
+{#</script>#}
+{##}
+{#{% endblock %}#}
+
 {% extends 'base.html' %}
 {% load static %}
 
@@ -7,6 +107,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-6">
+
       <!-- Форма создания задачи -->
       <section id="task-form" class="section">
         <div class="container">

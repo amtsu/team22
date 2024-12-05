@@ -2,17 +2,17 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import sessionmaker
 
-from data.config import settings
+from config import settings
 
 # Создаем синхронный и асинхронный движки
 sync_engine = create_engine(
     url=settings.database_url_psycopg,
-    echo=True,
+    echo=False,
 )
 
 async_engine = create_async_engine(
     url=settings.database_url_asyncpg,
-    echo=True,
+    echo=False,
 )
 
 # Создаем фабрики сессий
