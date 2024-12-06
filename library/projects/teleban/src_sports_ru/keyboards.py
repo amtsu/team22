@@ -11,7 +11,7 @@ async def sports_sections_ikb():
     builder.button(text='NBA | National Basketball Association', callback_data='sports_nba')
     builder.button(text='NFL | National Football League', callback_data='sports_nfl')
     builder.button(text='NHL | National Hockey League', callback_data='sports_nhl')
-    builder.button(text='⏮ В главное меню', callback_data='sports_main_menu')
+    builder.button(text='⏮ В главное меню', callback_data='main_menu')
 
     builder.adjust(1)
     return builder.as_markup()
@@ -44,7 +44,7 @@ async def sports_subscription_ikb(source: str, name_dict: dict[str, str], icon: 
         else:
             builder.button(text=f'{team_name}', callback_data=f'{source}_{tag}')
 
-    builder.button(text='⏮ В главное меню', callback_data='sports_main_menu')
+    builder.button(text='⏮ В главное меню', callback_data='main_menu')
 
     builder.adjust(2)
     return builder.as_markup()

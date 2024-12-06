@@ -1,20 +1,20 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from data import session_factory, SubscriptionRepository
-from src_trial_sport_ru.text_data import TRIAL_SPORT_LIST
+from src_habr_com.text_data import HABR_LIST
 
 
-async def trial_sport_ikb(user_id):
+async def habr_ikb(user_id):
     with session_factory() as session:
-        user_tags = SubscriptionRepository(session).get_user_tags(user_id, 'trial-sport')
+        user_tags = SubscriptionRepository(session).get_user_tags(user_id, 'habr')
 
         builder = InlineKeyboardBuilder()
 
-        for tag in TRIAL_SPORT_LIST:
+        for tag in HABR_LIST:
             if tag in user_tags:
-                builder.button(text=f'🏃 {tag}', callback_data=f'trial-sport_{tag}')
+                builder.button(text=f'🏃 {tag}', callback_data=f'habr_{tag}')
             else:
-                builder.button(text=f'{tag}', callback_data=f'trial-sport_{tag}')
+                builder.button(text=f'{tag}', callback_data=f'habr_{tag}')
 
         builder.button(text='⏮ В главное меню', callback_data='main_menu')
 

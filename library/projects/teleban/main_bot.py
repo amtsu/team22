@@ -10,6 +10,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from config import settings
 from handlers import main_router
 from services import send_content
+from src_habr_com.handlers import habr_router
 from src_overclockers_ru.handlers import overclockers_router
 from src_rbc_ru.handlers import rbc_router
 from src_sports_ru.handlers import sports_router
@@ -24,6 +25,7 @@ dp.include_routers(
     trial_sport_router,
     overclockers_router,
     rbc_router,
+    habr_router,
 )
 
 
@@ -31,7 +33,7 @@ async def main() -> None:
     bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     scheduler = AsyncIOScheduler(timezone='Europe/Moscow')
     scheduler.start()
-    scheduler.add_job(send_content, 'interval', seconds=30, args=(bot,))
+    scheduler.add_job(send_content, 'interval', seconds=60, args=(bot,))
     await dp.start_polling(bot)
 
 

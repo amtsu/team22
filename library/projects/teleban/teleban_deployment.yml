@@ -37,11 +37,10 @@ jobs:
           script: |
             cd ${{ env.PATH_OUTPUT }}/library/projects/teleban
             rm .env
-            
             touch .env
             echo TELEBAN_TOKEN = ${{ secrets.TELEBAN_TOKEN }} >> .env
             echo DB_HOST = ${{ secrets.TELEBAN_DB_HOST }} >> .env
-            echo DB_PORT = 5432 >> .env
+            echo DB_PORT = ${{ secrets.TELEBAN_DB_PORT }} >> .env
             echo DB_NAME = ${{ secrets.TELEBAN_DB_NAME }} >> .env
             echo DB_USER = ${{ secrets.TELEBAN_DB_USER }} >> .env
             echo DB_PASS = ${{ secrets.TELEBAN_DB_PASS }} >> .env

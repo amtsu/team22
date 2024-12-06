@@ -2,7 +2,6 @@ from aiogram import F, Router
 from aiogram.types import CallbackQuery
 
 from data import session_factory, SubscriptionRepository
-from keyboards import start_ikb
 from src_sports_ru.keyboards import sports_sections_ikb, sports_nba_ikb, sports_nfl_ikb, sports_nhl_ikb
 
 sports_router = Router()
@@ -58,6 +57,4 @@ async def sports_callback(callback: CallbackQuery):
         case 'sports_nhl':
             await callback.answer(f'Вы выбрали NHL')
             await callback.message.edit_reply_markup(reply_markup=await sports_nhl_ikb(user_id))
-        case _:
-            await callback.answer(f'Возвращаемся в главное меню...')
-            await callback.message.edit_reply_markup(reply_markup=await start_ikb())
+

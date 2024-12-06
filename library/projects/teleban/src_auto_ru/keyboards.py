@@ -16,7 +16,7 @@ async def auto_ikb(user_id):
             else:
                 builder.button(text=f'{tag}', callback_data=f'auto_{tag}')
 
-        builder.button(text='⏮ В главное меню', callback_data='auto_main_menu')
+        builder.button(text='⏮ В главное меню', callback_data='main_menu')
 
         builder.adjust(1)
         return builder.as_markup()
