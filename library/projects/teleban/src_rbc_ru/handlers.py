@@ -23,7 +23,7 @@ async def handle_subscription(callback: CallbackQuery):
             await callback.message.edit_reply_markup(reply_markup=await rbc_ikb(user_id))
         else:
             db.add_subscription(user_id, source, tag)
-            await callback.answer(f'Вы подписались на {tag})')
+            await callback.answer(f'Вы подписались на {tag}')
             await callback.message.edit_reply_markup(reply_markup=await rbc_ikb(user_id))
 
 
