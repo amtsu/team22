@@ -1,80 +1,3 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}Детали задачи - SuperKanban{% endblock %}
-
-{% block content %}
-<main class="main">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <!-- Blog Details Section -->
-        <section id="blog-details" class="blog-details section">
-          <div class="container">
-            <article class="article">
-              <h2 class="title">{{ task.title }}</h2>
-              <div class="meta-top">
-                <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">{{ task.author.username }}</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="{{ task.created_at|date:'Y-m-d' }}">{{ task.created_at|date:'d M, Y' }}</time></a></li>
-                </ul>
-              </div><!-- End meta top -->
-
-              <div class="content">
-                <p>{{ task.description }}</p>
-                <p>Статус: {{ task.get_execution_status_display }}</p>
-                <p>Дата завершения: {{ task.due_date }}</p>
-                <p>Назначенный пользователь: {{ task.assigned_user }}</p>
-              </div><!-- End post content -->
-
-              <div class="meta-bottom">
-                <i class="bi bi-folder"></i>
-                <ul class="cats">
-                  <li><a href="#">{{ task.company.name }}</a></li>
-                </ul>
-              </div><!-- End meta bottom -->
-
-              <!-- Кнопки действий -->
-              <div class="action-buttons mt-4">
-                <!-- Кнопка назад -->
-                <a href="{% url 'task_list_all' %}" class="btn btn-secondary">Назад</a>
-
-                <!-- Кнопка редактирования -->
-                <a href="{% url 'task_edit' company_id=task.company.id pk=task.id %}" class="btn btn-primary">Редактировать</a>
-
-                <!-- Кнопка удаления -->
-                <form action="{% url 'task_delete' company_id=task.company.id pk=task.id  %}" method="post" style="display:inline;">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-danger" onclick="return confirm('Вы уверены, что хотите удалить эту задачу?');">Удалить</button>
-                </form>
-              </div><!-- End action-buttons -->
-            </article>
-          </div>
-        </section><!-- /Blog Details Section -->
-
-        <!-- Подзадачи Section -->
-        <section id="subtasks" class="subtasks section">
-          <div class="container">
-            <h4>Подзадачи</h4>
-            <ul>
-              {% for subtask in task.subtasks.all %}
-                <li>
-                  {{ subtask.title }} - {% if subtask.status %}Выполнена{% else %}Не выполнена{% endif %}
-                </li>
-              {% empty %}
-                <li>Подзадачи отсутствуют</li>
-              {% endfor %}
-            </ul>
-          </div>
-        </section><!-- /Подзадачи Section -->
-
-      </div>
-    </div>
-  </div>
-</main>
-{% endblock %}
-
-
 {#{% extends 'base.html' %}#}
 {#{% load static %}#}
 {##}
@@ -110,6 +33,21 @@
 {#                  <li><a href="#">{{ task.company.name }}</a></li>#}
 {#                </ul>#}
 {#              </div><!-- End meta bottom -->#}
+{##}
+{#              <!-- Кнопки действий -->#}
+{#              <div class="action-buttons mt-4">#}
+{#                <!-- Кнопка назад -->#}
+{#                <a href="{% url 'task_list_all' %}" class="btn btn-secondary">Назад</a>#}
+{##}
+{#                <!-- Кнопка редактирования -->#}
+{#                <a href="{% url 'task_edit' company_id=task.company.id pk=task.id %}" class="btn btn-primary">Редактировать</a>#}
+{##}
+{#                <!-- Кнопка удаления -->#}
+{#                <form action="{% url 'task_delete' company_id=task.company.id pk=task.id  %}" method="post" style="display:inline;">#}
+{#                  {% csrf_token %}#}
+{#                  <button type="submit" class="btn btn-danger" onclick="return confirm('Вы уверены, что хотите удалить эту задачу?');">Удалить</button>#}
+{#                </form>#}
+{#              </div><!-- End action-buttons -->#}
 {#            </article>#}
 {#          </div>#}
 {#        </section><!-- /Blog Details Section -->#}
@@ -135,3 +73,118 @@
 {#  </div>#}
 {#</main>#}
 {#{% endblock %}#}
+{##}
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Детали задачи - SuperKanban{% endblock %}
+
+{% block content %}
+<main class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- Blog Details Section -->
+        <section id="blog-details" class="blog-details section">
+          <div class="container">
+            <article class="article">
+              <h2 class="title">{{ task.title }}</h2>
+              <div class="meta-top">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">{{ task.author.username }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="{{ task.created_at|date:'Y-m-d' }}">{{ task.created_at|date:'d M, Y' }}</time></a></li>
+                </ul>
+              </div><!-- End meta top -->
+
+              <div class="content">
+                <p>{{ task.description }}</p>
+                <p>Статус: {{ task.get_execution_status_display }}</p>
+                <p>Дата завершения: {{ task.due_date }}</p>
+                <p>Назначенный пользователь: {{ task.assigned_user }}</p>
+
+                <!-- Отображение файла, если он есть -->
+                {% if task.attachment %}
+                  <p>Прикрепленный файл: <a href="{{ task.attachment.url }}" download>Скачать</a></p>
+                {% endif %}
+              </div><!-- End post content -->
+
+              <div class="meta-bottom">
+                <i class="bi bi-folder"></i>
+                <ul class="cats">
+                  <li><a href="#">{{ task.company.name }}</a></li>
+                </ul>
+              </div><!-- End meta bottom -->
+
+              <!-- Кнопки действий -->
+              <div class="action-buttons mt-4">
+                <!-- Кнопка назад -->
+                <a href="{% url 'task_list_all' %}" class="btn btn-secondary">Назад</a>
+
+                <!-- Кнопка редактирования -->
+                <a href="{% url 'task_edit' company_id=task.company.id pk=task.id %}" class="btn btn-primary">Редактировать</a>
+
+                <!-- Кнопка удаления -->
+                <form action="{% url 'task_delete' company_id=task.company.id pk=task.id  %}" method="post" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger" onclick="return confirm('Вы уверены, что хотите удалить эту задачу?');">Удалить</button>
+                </form>
+              </div><!-- End action-buttons -->
+            </article>
+          </div>
+        </section><!-- /Blog Details Section -->
+
+        <!-- Подзадачи Section -->
+        <section id="subtasks" class="subtasks section">
+          <div class="container">
+            <h4>Подзадачи</h4>
+            <ul>
+              {% for subtask in task.subtasks.all %}
+                <li>
+                  <input type="checkbox" {% if subtask.status %}checked{% endif %} class="subtask-checkbox" data-subtask-id="{{ subtask.id }}">
+                  {{ subtask.title }}
+                </li>
+              {% empty %}
+                <li>Подзадачи отсутствуют</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </section><!-- /Подзадачи Section -->
+
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Находим все чекбоксы подзадач
+    const checkboxes = document.querySelectorAll('.subtask-checkbox');
+
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const subtaskId = this.dataset.subtaskId;
+        const completed = this.checked;
+
+        // Отправляем запрос на сервер для обновления статуса подзадачи
+        fetch(`/tasks/${subtaskId}/toggle_status/`, {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ completed: completed })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Обновляем цвет текста на основе обновленного состояния
+            this.closest('li').style.color = completed ? 'green' : 'black';
+          }
+        });
+      });
+    });
+  });
+</script>
