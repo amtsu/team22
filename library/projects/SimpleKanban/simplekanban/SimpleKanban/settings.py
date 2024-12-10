@@ -95,6 +95,10 @@ MIDDLEWARE = [
 # URL конфигурация
 ROOT_URLCONF = "SimpleKanban.urls"
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 # Шаблоны
 TEMPLATES = [
     {
