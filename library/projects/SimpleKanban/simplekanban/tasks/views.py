@@ -2,13 +2,25 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.views import View
+# from django.http import JsonResponse
+from django.utils import timezone
+from django.core.files.storage import default_storage
+from django.core.files import File
 
-from django.core.mail import send_mail
+
+# from django.core.mail import send_mail
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
 from .forms import TaskForm, SubTaskFormSet, CompanyForm
 from .models import Task, Company, SubTask
 import json
+
+
+# def toggle_subtask_status(request, subtask_id):
+#     subtask = get_object_or_404(SubTask, id=subtask_id)
+#     subtask.status = not subtask.status
+#     subtask.save()
+#     return JsonResponse({'success': True})
 
 
 # Представление для просмотра списка компаний
@@ -52,16 +64,16 @@ class CompanyCreateView(View):
                     user = User.objects.get(id=member['id'])
                     new_members.append(user)
                 # elif member['type'] == 'email':
-                    # Если участник приглашен по email
-                    # user, created = User.objects.get_or_create(
-                    #     email=member['email'],
-                    #     defaults={'username': member['email'].split('@')[0]}
-                    # )
-                    # new_members.append(user)
+                # Если участник приглашен по email
+                # user, created = User.objects.get_or_create(
+                #     email=member['email'],
+                #     defaults={'username': member['email'].split('@')[0]}
+                # )
+                # new_members.append(user)
 
-                    # if created:
-                    #     # Отправляем приглашение новому пользователю
-                    #     self.send_invitation(company, request.user, member['email'])
+                # if created:
+                #     # Отправляем приглашение новому пользователю
+                #     self.send_invitation(company, request.user, member['email'])
 
             # Заполняем поле members
             company.members.set(new_members)  # Заменяем всех участников новыми
@@ -191,6 +203,12 @@ class TaskListView(ListView):
     template_name = 'tasks/task_list_all.html'  # Убедитесь, что этот путь соответствует вашему шаблону
 
     def get_queryset(self):
+        # Обновляем статус всех просроченных активных задач
+        Task.objects.filter(
+            execution_status='active',  # Проверяем только активные задачи
+            due_date__lt=timezone.now()  # Срок выполнения задачи истёк
+        ).update(execution_status='overdue')
+
         company_id = self.request.GET.get('company_id')
         if company_id:  # Если указана компания
             return Task.objects.filter(company_id=company_id)
@@ -216,6 +234,7 @@ class TaskDeleteView(DeleteView):
     model = Task
     template_name = 'task_delete.html'
     context_object_name = 'tasks/task_delete'
+
     # success_url = reverse_lazy('tasks/task_list')  # Убедитесь, что у вас правильно настроен success_url
 
     def get_context_data(self, **kwargs):
@@ -277,7 +296,7 @@ class TaskCreateView(CreateView):
         task = form.save()
 
         # Получаем и сохраняем подзадачи
-        subtask_formset = SubTaskFormSet(self.request.POST)
+        subtask_formset = SubTaskFormSet(self.request.POST, self.request.FILES)
         if subtask_formset.is_valid():
             # Сохраняем все подзадачи
             subtask_formset.instance = task  # Привязываем подзадачи к только что созданной задаче
@@ -287,23 +306,25 @@ class TaskCreateView(CreateView):
 
     def get_success_url(self):
         company_id = self.kwargs.get('company_id')  # Получаем ID компании из URL
-        return reverse_lazy('company_detail', kwargs={'pk': company_id})  # Используем company_id для перенаправления на компанию
+        return reverse_lazy('company_detail',
+                            kwargs={'pk': company_id})  # Используем company_id для перенаправления на компанию
 
 
-class TaskDeleteView(DeleteView):
-    model = Task
-    template_name = 'task_delete.html'
-    context_object_name = 'task'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        company = self.object.company
-        context['company'] = company if company else None
-        return context
-
-    def get_success_url(self):
-        # Возвращаем URL страницы с деталями компании
-        return reverse_lazy('company_detail', kwargs={'pk': self.object.company.id})
+#
+# class TaskDeleteView(DeleteView):
+#     model = Task
+#     template_name = 'task_delete.html'
+#     context_object_name = 'task'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         company = self.object.company
+#         context['company'] = company if company else None
+#         return context
+#
+#     def get_success_url(self):
+#         # Возвращаем URL страницы с деталями компании
+#         return reverse_lazy('company_detail', kwargs={'pk': self.object.company.id})
 
 
 class TaskUpdateView(UpdateView):
@@ -315,6 +336,28 @@ class TaskUpdateView(UpdateView):
         # Получаем задачу по её ID
         return get_object_or_404(Task, pk=self.kwargs['pk'])
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        company_id = self.kwargs['company_id']
+        company = get_object_or_404(Company, id=company_id)
+        print(f"Company ID: {company.id}, Members: {list(company.members.all())}")
+        kwargs['company'] = company
+        # print(f"company.members.all(): {company.members.all().values_list('id', 'username')}")  # Для проверки
+        print(f"Company ID: {company.id}, Members: {company.members.all()}")
+
+        # Пополнение начальных данных из instance
+        if self.object:
+            kwargs['initial'] = {
+                'due_date': self.object.due_date.strftime('%Y-%m-%d'),
+                'assigned_user': self.object.assigned_user.id,
+            }
+        # print(form.cleaned_data.get('assigned_user'))
+        # Печать начальных данных 'assigned_user' перед передачей в шаблон
+        assigned_user_initial = kwargs['initial'].get('assigned_user')
+        print("Initial assigned user ID:", assigned_user_initial)  # Отображение в консоли
+
+        return kwargs
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Получаем ID компании из URL
@@ -322,17 +365,60 @@ class TaskUpdateView(UpdateView):
         company = get_object_or_404(Company, id=company_id)
         context['users'] = company.members.all()  # Фильтруем пользователей по компании
         context['company_id'] = company.id  # Добавляем ID компании в контекст
+        # Отладка
+        # print(f"Company ID: {company.id}")
+        # print(f"Company Members: {company.members.all()}")  # Проверяем пользователей компании
+
+        # Обновляем queryset для assigned_user
+        context['form'].fields['assigned_user'].queryset = company.members.all()
+        # print(f"Company ID: {company.id}")
+        # print(f"Company Members: {list(company.members.all())}")  # Проверяем пользователей компании
+
+        context['users'] = company.members.all()  # Добавляем всех пользователей компании
+
+        # Передаем SubTaskFormSet
+        if self.request.POST:
+            context['formset'] = SubTaskFormSet(self.request.POST, instance=self.object)
+        else:
+            context['formset'] = SubTaskFormSet(instance=self.object)
         return context
 
     def form_valid(self, form):
-        # Сохраняем данные формы
-        form.save()
-        return super().form_valid(form)
+        context = self.get_context_data()
+        formset = context['formset']
+
+        if formset.is_valid():
+            self.object = form.save()  # Сохраняем задачу
+
+            # Удаление текущего файла, если пользователь запросил это
+            if self.request.POST.get('remove_attachment'):
+                if self.object.attachment:
+                    self.object.attachment.delete()  # Удаляем файл из файловой системы
+                    self.object.attachment = None
+
+            # Обработка нового файла, если он был загружен
+            uploaded_file = self.request.FILES.get('attachment')
+            if uploaded_file:
+                if self.object.attachment:  # Удаляем старый файл, если он есть
+                    self.object.attachment.delete()
+                self.object.attachment.save(uploaded_file.name, File(uploaded_file))
+
+            # Сохраняем данные формсета
+            formset.instance = self.object
+            formset.save()
+
+            return super().form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    # def get_success_url(self):
+    #     # После успешного редактирования задачи переходим на список задач компании
+    #     company_id = self.kwargs['company_id']
+    #     return reverse_lazy('tasks:task_list', kwargs={'company_id': company_id})
 
     def get_success_url(self):
-        # После успешного редактирования задачи переходим на список задач компании
-        company_id = self.kwargs['company_id']
-        return reverse_lazy('tasks:task_list', kwargs={'company_id': company_id})
+        company_id = self.kwargs.get('company_id')  # Получаем ID компании из URL
+        return reverse_lazy('company_detail', kwargs={'pk': company_id})  # Перенаправление на страницу компании
 
 
 class TaskListAllView(ListView):
@@ -341,6 +427,12 @@ class TaskListAllView(ListView):
     context_object_name = 'tasks'
 
     def get_queryset(self):
+        # Обновляем статус всех просроченных активных задач
+        Task.objects.filter(
+            execution_status='active',  # Проверяем только активные задачи
+            due_date__lt=timezone.now()  # Срок выполнения задачи истёк
+        ).update(execution_status='overdue')
+
         company_id = self.request.GET.get('company_id')
         if company_id:  # Если выбрана компания
             return Task.objects.filter(company__id=company_id)
