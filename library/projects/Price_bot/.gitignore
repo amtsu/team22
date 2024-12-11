@@ -158,3 +158,9 @@ credentials.json
 token.json
 
 todo.py
+
+price-bot-image.tar
+
+bot_app/data/database.db
+
+other/
