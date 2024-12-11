@@ -1,9 +1,11 @@
 name: Price_bot tests
 
 on:
+  push:
+    branches: ["main", "price_bot_develop"]
   pull_request:
-    branches:
-      - price_bot_develop
+    branches: ["main", "price_bot_develop"]
+
 
 jobs:
     build_and_test:

@@ -2,11 +2,10 @@ name: Price_bot CI/CD
 
 on:
   push:
-    branches:
-      - price_bot_develop
-  # pull_request:
-  #   branches:
-  #     - price_bot_develop
+    branches: ["main", "price_bot_develop"]
+  pull_request:
+    branches: ["main", "price_bot_develop"]
+
 
 jobs:
     build_and_test:
