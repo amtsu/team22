@@ -1,4 +1,4 @@
-name: StudyDeployment
+name: StudyDeployment Price_bot
 
 on:
   push:
