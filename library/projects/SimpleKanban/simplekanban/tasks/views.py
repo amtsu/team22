@@ -2,25 +2,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.views import View
-# from django.http import JsonResponse
 from django.utils import timezone
-from django.core.files.storage import default_storage
 from django.core.files import File
 
 
-# from django.core.mail import send_mail
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
 from .forms import TaskForm, SubTaskFormSet, CompanyForm
 from .models import Task, Company, SubTask
 import json
-
-
-# def toggle_subtask_status(request, subtask_id):
-#     subtask = get_object_or_404(SubTask, id=subtask_id)
-#     subtask.status = not subtask.status
-#     subtask.save()
-#     return JsonResponse({'success': True})
 
 
 # Представление для просмотра списка компаний
@@ -183,9 +173,6 @@ class CompanyDetailView(DetailView):
 def home_view(request):
     if request.user.is_authenticated:
         return redirect('task_list_all')
-        # Если пользователь аутентифицирован, показываем список всех задач
-        # companies = Company.objects.all()
-        # return render(request, 'tasks/task_list_all.html', {'companies': companies})
     else:
         # Если не аутентифицирован, показываем приветственную страницу
         return render(request, 'account/welcome.html')
@@ -234,8 +221,6 @@ class TaskDeleteView(DeleteView):
     model = Task
     template_name = 'task_delete.html'
     context_object_name = 'tasks/task_delete'
-
-    # success_url = reverse_lazy('tasks/task_list')  # Убедитесь, что у вас правильно настроен success_url
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -310,23 +295,6 @@ class TaskCreateView(CreateView):
                             kwargs={'pk': company_id})  # Используем company_id для перенаправления на компанию
 
 
-#
-# class TaskDeleteView(DeleteView):
-#     model = Task
-#     template_name = 'task_delete.html'
-#     context_object_name = 'task'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         company = self.object.company
-#         context['company'] = company if company else None
-#         return context
-#
-#     def get_success_url(self):
-#         # Возвращаем URL страницы с деталями компании
-#         return reverse_lazy('company_detail', kwargs={'pk': self.object.company.id})
-
-
 class TaskUpdateView(UpdateView):
     model = Task
     form_class = TaskForm
@@ -365,15 +333,9 @@ class TaskUpdateView(UpdateView):
         company = get_object_or_404(Company, id=company_id)
         context['users'] = company.members.all()  # Фильтруем пользователей по компании
         context['company_id'] = company.id  # Добавляем ID компании в контекст
-        # Отладка
-        # print(f"Company ID: {company.id}")
-        # print(f"Company Members: {company.members.all()}")  # Проверяем пользователей компании
 
         # Обновляем queryset для assigned_user
         context['form'].fields['assigned_user'].queryset = company.members.all()
-        # print(f"Company ID: {company.id}")
-        # print(f"Company Members: {list(company.members.all())}")  # Проверяем пользователей компании
-
         context['users'] = company.members.all()  # Добавляем всех пользователей компании
 
         # Передаем SubTaskFormSet
@@ -410,11 +372,6 @@ class TaskUpdateView(UpdateView):
             return super().form_valid(form)
         else:
             return self.form_invalid(form)
-
-    # def get_success_url(self):
-    #     # После успешного редактирования задачи переходим на список задач компании
-    #     company_id = self.kwargs['company_id']
-    #     return reverse_lazy('tasks:task_list', kwargs={'company_id': company_id})
 
     def get_success_url(self):
         company_id = self.kwargs.get('company_id')  # Получаем ID компании из URL

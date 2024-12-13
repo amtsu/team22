@@ -105,7 +105,7 @@
 
                 <!-- Отображение файла, если он есть -->
                 {% if task.attachment %}
-                  <p>Прикрепленный файл: <a href="{{ task.attachment.url }}" download>Скачать</a></p>
+                  <p>Прикрепленный файл: <a href="{{ task.attachment.url }}" download>{{ task.attachment.name }}</a></p>
                 {% endif %}
               </div><!-- End post content -->
 
