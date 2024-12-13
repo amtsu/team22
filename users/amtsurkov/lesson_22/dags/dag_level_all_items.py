@@ -8,7 +8,7 @@ from users.amtsu.d221204t1902.LevelPageProcessing import LevelServiceProcessing
 
 #with DAG(dag_id="level_all_items", start_date=datetime(2022, 12, 3), schedule="0 0 * * *") as dag:
 #with DAG(dag_id="level_all_items", start_date=datetime(2023, 12, 1), schedule="0 0 * * *") as dag:
-with DAG(dag_id="level_all_items", start_date=datetime(2024, 5, 24), schedule="0 0 * * *") as dag:
+with DAG(dag_id="level_all_items", start_date=datetime(2024, 12, 11), schedule="0 0 * * *") as dag:
 
     start = BashOperator(task_id="start", bash_command="echo start_load_data_from_level")
 
