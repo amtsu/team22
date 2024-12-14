@@ -1,10 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 
-
 from text_data import KINOPOISK_RU_DICTIONARY
 
 
+# пока не работает
 class KinopoiskRuParser:
     """
     Класс содержит методы для парсинга контента с сайта.
