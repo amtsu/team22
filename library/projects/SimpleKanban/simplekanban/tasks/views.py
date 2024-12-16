@@ -12,6 +12,24 @@ from .forms import TaskForm, SubTaskFormSet, CompanyForm
 from .models import Task, Company, SubTask
 import json
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def toggle_subtask_status(request, subtask_id):
+    if request.method == 'POST':
+        try:
+            subtask = SubTask.objects.get(pk=subtask_id)
+            data = json.loads(request.body)
+            completed = data.get('completed', False)  # Извлекаем статус из запроса
+            subtask.status = completed  # Обновляем поле статус
+            subtask.save()  # Сохраняем изменения в базе данных
+            return JsonResponse({'success': True})
+        except SubTask.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Подзадача не найдена'}, status=404)
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+    return JsonResponse({'success': False, 'error': 'Неверный метод запроса'}, status=405)
 
 # Представление для просмотра списка компаний
 class CompanyListView(ListView):

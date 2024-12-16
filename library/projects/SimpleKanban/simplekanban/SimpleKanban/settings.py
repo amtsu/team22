@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     'tasks',
+    'django_celery_beat',
 ]
 
 # Настройки для django-allauth
@@ -176,3 +177,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Настройка брокера сообщений (Redis)
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+# Настройка хранилища результатов (опционально)
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
