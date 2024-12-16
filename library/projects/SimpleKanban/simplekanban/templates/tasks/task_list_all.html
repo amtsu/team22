@@ -5,90 +5,108 @@
 {##}
 {#{% block content %}#}
 {#  <style>#}
-{#    .task-cards-container {#}
-{#      display: flex;#}
-{#      flex-wrap: wrap;#}
-{#      gap: 16px; /* Промежутки между карточками */#}
-{#      justify-content: center;#}
-{#    }#}
+{#  /* Основные стили для карточек */#}
+{#.task-card {#}
+{#  width: 100%; /* Карточки занимают 100% от доступной ширины контейнера */#}
+{#  max-width: 240px; /* Максимальная ширина карточки */#}
+{#  min-height: 180px; /* Минимальная высота карточки */#}
+{#  padding: 10px; /* Уменьшены отступы внутри карточки */#}
+{#  margin: 8px; /* Отступы между карточками */#}
+{#  background-color: #fff;#}
+{#  border-radius: 4px;#}
+{#  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Легкая тень */#}
+{#  display: flex;#}
+{#  flex-direction: column;#}
+{#  justify-content: space-between; /* Распределение контента по высоте */#}
+{#  text-align: left;#}
+{#  overflow: hidden;#}
+{#  transition: transform 0.2s;#}
+{#}#}
 {##}
-{#    .task-card {#}
-{#      position: relative;#}
-{#      width: 300px;#}
-{#      padding: 12px;#}
-{#      background-color: #fff;#}
-{#      border-radius: 8px;#}
-{#      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);#}
-{#      display: flex;#}
-{#      flex-direction: column;#}
-{#      justify-content: space-between;#}
-{#      transition: transform 0.2s, box-shadow 0.2s;#}
-{#    }#}
+{#/* Подъем карточки при наведении */#}
+{#.task-card:hover {#}
+{#  transform: translateY(-5px);#}
+{#}#}
 {##}
-{#    .task-card:hover {#}
-{#      transform: translateY(-5px);#}
-{#      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);#}
-{#    }#}
+{#/* Статус задачи */#}
+{#.task-status span {#}
+{#  padding: 4px 8px; /* Уменьшены отступы */#}
+{#  font-size: 13px; /* Меньший размер шрифта */#}
+{#  font-weight: bold;#}
+{#  color: white;#}
+{#  border-radius: 5px;#}
+{#  display: inline-block;#}
+{#  margin-bottom: 8px; /* Уменьшены отступы */#}
+{#}#}
 {##}
-{#    .task-status {#}
-{#      position: absolute;#}
-{#      top: 10px;#}
-{#      right: 10px;#}
-{#      padding: 4px 8px;#}
-{#      border-radius: 4px;#}
-{#      font-size: 12px;#}
-{#      font-weight: bold;#}
-{#      color: #fff;#}
-{#      background-color: #007bff; /* Синий цвет статуса */#}
-{#    }#}
+{#/* Цветовые метки для статусов */#}
+{#.badge.bg-primary {#}
+{#  background-color: #007bff; /* Активная */#}
+{#}#}
 {##}
-{#    .task-status.bg-info {#}
-{#      background-color: #17a2b8; /* Информационный */#}
-{#    }#}
+{#.badge.bg-danger {#}
+{#  background-color: #dc3545; /* Просроченная */#}
+{#}#}
 {##}
-{#    .task-status.bg-success {#}
-{#      background-color: #28a745; /* Успешный */#}
-{#    }#}
+{#.badge.bg-success {#}
+{#  background-color: #28a745; /* Завершенная */#}
+{#}#}
 {##}
-{#    .task-status.bg-danger {#}
-{#      background-color: #dc3545; /* Ошибка */#}
-{#    }#}
+{#.badge.bg-secondary {#}
+{#  background-color: #6c757d; /* Отмененная */#}
+{#}#}
 {##}
-{#    .title {#}
-{#      font-size: 16px;#}
-{#      font-weight: bold;#}
-{#      margin-bottom: 10px;#}
-{#      color: #333;#}
-{#    }#}
+{#/* Контейнер для карточек задач */#}
+{#.task-cards-container {#}
+{#  display: grid;#}
+{#  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Автоматическая сетка */#}
+{#  gap: 16px; /* Расстояние между карточками */#}
+{#  justify-content: center;#}
+{#}#}
 {##}
-{#    .post-meta {#}
-{#      font-size: 0.9rem;#}
-{#      line-height: 1.5;#}
-{#    }#}
+{#/* Метка "содержит подзадачи" */#}
+{#.contains-subtasks {#}
+{#  font-size: 11px; /* Меньший размер шрифта */#}
+{#  color: #ff6f00; /* Ярко-оранжевый */#}
+{#  font-weight: bold;#}
+{#  margin-top: 8px;#}
+{#  margin-bottom: 8px;#}
+{#  text-align: center; /* Центрирование метки */#}
+{#}#}
 {##}
-{#    .subtasks-indicator {#}
-{#      margin-top: 10px;#}
-{#      font-size: 12px;#}
-{#      font-weight: bold;#}
-{#      color: #ff6f00; /* Оранжевый текст */#}
-{#    }#}
+{#/* Заголовок задачи */#}
+{#.title {#}
+{#  font-size: 11px; /* Меньший размер шрифта */#}
+{#  font-weight: bold;#}
+{#  white-space: nowrap;#}
+{#  overflow: hidden;#}
+{#  text-overflow: ellipsis;#}
+{#  line-height: 1.2; /* Уменьшен межстрочный интервал */#}
+{#  margin-bottom: 6px;#}
+{#}#}
 {##}
-{#    @media (max-width: 768px) {#}
-{#      .task-card {#}
-{#        width: 100%;#}
-{#      }#}
-
-{#    }#}
+{#/* Описание задачи */#}
+{#.description {#}
+{#  font-size: 9px; /* Меньший размер шрифта */#}
+{#  line-height: 1.3; /* Уменьшен межстрочный интервал */#}
+{#  max-height: 30px;#}
+{#  overflow: hidden;#}
+{#  display: -webkit-box;#}
+{#  -webkit-line-clamp: 3;#}
+{#  -webkit-box-orient: vertical;#}
+{#  margin-bottom: 6px;#}
+{#}#}
+{#                      #}
 {#  </style>#}
 {##}
 {#  <div class="container-fluid">#}
 {#    <div class="row">#}
-{#      <!-- Фильтр -->#}
-{#      <div class="col-12 mb-3">#}
-{#        <div class="filter-section text-center">#}
+{#      <!-- Фильтр сверху -->#}
+{#      <div class="col-12">#}
+{#        <div class="filter-section" id="filter-top">#}
 {#          <form method="get" id="company-filter-form">#}
 {#            <label for="company-select">Выберите группу:</label>#}
-{#            <select id="company-select" name="company_id" class="form-select w-auto d-inline-block" onchange="this.form.submit();">#}
+{#            <select id="company-select" name="company_id" class="form-select" onchange="this.form.submit();">#}
 {#              <option value="" {% if not selected_company %}selected{% endif %}>Все группы</option>#}
 {#              {% for company in companies %}#}
 {#                <option value="{{ company.id }}" {% if selected_company and company.id == selected_company.id %}selected{% endif %}>#}
@@ -100,27 +118,40 @@
 {#        </div>#}
 {#      </div>#}
 {##}
-{#      <!-- Задачи -->#}
+{#      <!-- Основной контент с задачами -->#}
 {#      <div class="col-md-12">#}
 {#        <section id="blog-posts" class="blog-posts section">#}
 {#          <div class="container">#}
 {#            <div class="task-cards-container">#}
 {#              {% for task in tasks %}#}
-{#                <article class="task-card">#}
-{#                  <span class="task-status bg-{{ task.status_class }}">#}
-{#                    {{ task.get_status_display }}#}
-{#                  </span>#}
+{#                <div class="task-card">#}
+{#                  <!-- Статус задачи -->#}
+{#                  <div class="task-status">#}
+{#                    {% if task.execution_status == 'AC' %}#}
+{#                        <span class="badge bg-primary">активная</span>#}
+{#                    {% elif task.execution_status == 'EX' %}#}
+{#                        <span class="badge bg-danger">просроченная</span>#}
+{#                    {% elif task.execution_status == 'CP' %}#}
+{#                        <span class="badge bg-success">завершенная</span>#}
+{#                    {% elif task.execution_status == 'CN' %}#}
+{#                        <span class="badge bg-secondary">отмененная</span>#}
+{#                    {% else %}#}
+{#                        <span class="badge bg-light">неизвестный статус</span>#}
+{#                    {% endif %}#}
+{#                  </div>#}
 {#                  <h2 class="title">#}
 {#                    <a href="{% url 'task_detail' company_id=task.company.id pk=task.id %}">{{ task.title }}</a>#}
 {#                  </h2>#}
 {#                  <div class="post-meta">#}
 {#                    <p>Исполнитель: {{ task.assigned_user }}</p>#}
-{#                    <p>Дедлайн: <time datetime="{{ task.due_date }}">{{ task.due_date|date:"d M Y" }}</time></p>#}
+{#                    <p>Дедлайн: <time datetime="{{ task.due_date }}">{{ task.due_date|date:"M d, Y" }}</time></p>#}
 {#                  </div>#}
-{#                  {% if task.subtasks.exists %}#}
-{#                    <div class="subtasks-indicator">Содержит подзадачи</div>#}
+{##}
+{#                  <!-- Если есть подзадачи, показываем метку -->#}
+{#                  {% if task.subtasks.all %}#}
+{#                    <p class="contains-subtasks">Содержит подзадачи</p>#}
 {#                  {% endif %}#}
-{#                </article>#}
+{#                </div>#}
 {#              {% empty %}#}
 {#                <p>Задачи не найдены.</p>#}
 {#              {% endfor %}#}
@@ -141,17 +172,17 @@
   <style>
   /* Основные стили для карточек */
 .task-card {
-  width: 100%; /* Карточки занимают 100% от доступной ширины контейнера */
-  max-width: 240px; /* Максимальная ширина карточки */
-  min-height: 180px; /* Минимальная высота карточки */
-  padding: 10px; /* Уменьшены отступы внутри карточки */
-  margin: 8px; /* Отступы между карточками */
+  width: 100%;
+  max-width: 240px;
+  min-height: 180px;
+  padding: 10px;
+  margin: 8px;
   background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Распределение контента по высоте */
+  justify-content: space-between;
   text-align: left;
   overflow: hidden;
   transition: transform 0.2s;
@@ -164,65 +195,65 @@
 
 /* Статус задачи */
 .task-status span {
-  padding: 4px 8px; /* Уменьшены отступы */
-  font-size: 13px; /* Меньший размер шрифта */
+  padding: 4px 8px;
+  font-size: 13px;
   font-weight: bold;
   color: white;
   border-radius: 5px;
   display: inline-block;
-  margin-bottom: 8px; /* Уменьшены отступы */
+  margin-bottom: 8px;
 }
 
 /* Цветовые метки для статусов */
 .badge.bg-primary {
-  background-color: #007bff; /* Активная */
+  background-color: #007bff;
 }
 
 .badge.bg-danger {
-  background-color: #dc3545; /* Просроченная */
+  background-color: #dc3545;
 }
 
 .badge.bg-success {
-  background-color: #28a745; /* Завершенная */
+  background-color: #28a745;
 }
 
 .badge.bg-secondary {
-  background-color: #6c757d; /* Отмененная */
+  background-color: #6c757d;
 }
 
 /* Контейнер для карточек задач */
 .task-cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Автоматическая сетка */
-  gap: 16px; /* Расстояние между карточками */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
   justify-content: center;
 }
 
 /* Метка "содержит подзадачи" */
 .contains-subtasks {
-  font-size: 11px; /* Меньший размер шрифта */
-  color: #ff6f00; /* Ярко-оранжевый */
+  font-size: 11px;
+  color: #ff6f00;
   font-weight: bold;
   margin-top: 8px;
   margin-bottom: 8px;
-  text-align: center; /* Центрирование метки */
+  text-align: center;
 }
 
 /* Заголовок задачи */
 .title {
-  font-size: 11px; /* Меньший размер шрифта */
+  font-size: 11px;
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.2; /* Уменьшен межстрочный интервал */
+  line-height: 1.2;
   margin-bottom: 6px;
 }
 
 /* Описание задачи */
 .description {
-  font-size: 9px; /* Меньший размер шрифта */
-  line-height: 1.3; /* Уменьшен межстрочный интервал */
+  font-size: 9px;
+  line-height: 1.3;
   max-height: 30px;
   overflow: hidden;
   display: -webkit-box;
@@ -230,7 +261,20 @@
   -webkit-box-orient: vertical;
   margin-bottom: 6px;
 }
-                      
+
+/* Стили для прикреплённого файла */
+.file-attachment {
+  margin-top: 8px;
+  font-size: 16px;
+  color: #007bff;
+  display: flex;
+  align-items: center;
+}
+
+.file-attachment i {
+  font-size: 16px;
+  color: #007bff;
+}
   </style>
 
   <div class="container-fluid">
@@ -273,13 +317,26 @@
                         <span class="badge bg-light">неизвестный статус</span>
                     {% endif %}
                   </div>
+
+                  <!-- Заголовок задачи -->
                   <h2 class="title">
                     <a href="{% url 'task_detail' company_id=task.company.id pk=task.id %}">{{ task.title }}</a>
                   </h2>
+
+                  <!-- Исполнитель и дедлайн -->
                   <div class="post-meta">
                     <p>Исполнитель: {{ task.assigned_user }}</p>
                     <p>Дедлайн: <time datetime="{{ task.due_date }}">{{ task.due_date|date:"M d, Y" }}</time></p>
                   </div>
+
+                  <!-- Если есть прикреплённый файл, показываем значок -->
+                  {% if task.attachment %}
+                    <div class="file-attachment">
+                      <a href="{{ task.attachment.url }}" target="_blank" title="Скачать файл">
+                        <i class="fa fa-paperclip" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  {% endif %}
 
                   <!-- Если есть подзадачи, показываем метку -->
                   {% if task.subtasks.all %}
@@ -296,156 +353,3 @@
     </div>
   </div>
 {% endblock %}
-
-
-{#{% extends 'base.html' %}#}
-{#{% load static %}#}
-{##}
-{#{% block title %}Задачи - SuperKanban{% endblock %}#}
-{##}
-{#{% block content %}#}
-{#  <style>#}
-{#    /* Основной контейнер */#}
-{#    .task-cards-container {#}
-{#      display: flex;#}
-{#      flex-wrap: wrap; /* Перенос элементов на следующую строку */#}
-{#      gap: 16px; /* Расстояние между карточками */#}
-{#      justify-content: center; /* Центрирование карточек */#}
-{#    }#}
-{##}
-{#    .task-card {#}
-{#      width: 300px; /* Ширина карточки */#}
-{#      padding: 12px;#}
-{#      margin: 0; /* Убираем внешние отступы */#}
-{#      background-color: #fff;#}
-{#      border-radius: 8px; /* Скругленные углы */#}
-{#      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */#}
-{#      display: flex;#}
-{#      flex-direction: column;#}
-{#      justify-content: space-between;#}
-{#      transition: transform 0.2s, box-shadow 0.2s; /* Анимация при наведении */#}
-{#    }#}
-{##}
-{#    .task-card:hover {#}
-{#      transform: translateY(-5px); /* Легкий подъем при наведении */#}
-{#      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Усиленная тень при наведении */#}
-{#    }#}
-{##}
-{#    .task-card .btn-link {#}
-{#      font-size: 12px;#}
-{#      color: #ff6f00; /* Оранжевый цвет */#}
-{#      text-decoration: none;#}
-{#    }#}
-{##}
-{#    .task-card .btn-link:hover {#}
-{#      color: #e65c00; /* Темнее при наведении */#}
-{#      text-decoration: underline;#}
-{#    }#}
-{##}
-{#    .post-meta {#}
-{#      font-size: 0.9rem; /* Чуть крупнее для удобства чтения */#}
-{#      line-height: 1.5;#}
-{#    }#}
-{##}
-{#    .title {#}
-{#      font-size: 16px;#}
-{#      font-weight: bold;#}
-{#      margin-bottom: 10px;#}
-{#      color: #333;#}
-{#    }#}
-{##}
-{#    .description {#}
-{#      font-size: 14px;#}
-{#      color: #666;#}
-{#      margin-bottom: 10px;#}
-{#      overflow: hidden;#}
-{#      display: -webkit-box;#}
-{#      -webkit-line-clamp: 3; /* Ограничение текста до 3 строк */#}
-{#      -webkit-box-orient: vertical;#}
-{#    }#}
-{##}
-{#    /* Для кнопки подзадач */#}
-{#    .collapse ul.list-group {#}
-{#      padding-left: 0;#}
-{#    }#}
-{##}
-{#    .collapse ul.list-group li {#}
-{#      padding: 5px 8px;#}
-{#      font-size: 12px;#}
-{#    }#}
-{##}
-{#    .list-group-item {#}
-{#      border: none;#}
-{#      border-bottom: 1px solid #e0e0e0;#}
-{#    }#}
-{##}
-{#    /* Адаптивность */#}
-{#    @media (max-width: 768px) {#}
-{#      .task-card {#}
-{#        width: 100%; /* Карточка на всю ширину экрана */#}
-{#      }#}
-{#    }#}
-{#  </style>#}
-{##}
-{#  <div class="container-fluid">#}
-{#    <div class="row">#}
-{#      <!-- Фильтр сверху -->#}
-{#      <div class="col-12 mb-3">#}
-{#        <div class="filter-section text-center">#}
-{#          <form method="get" id="company-filter-form">#}
-{#            <label for="company-select">Выберите группу:</label>#}
-{#            <select id="company-select" name="company_id" class="form-select w-auto d-inline-block" onchange="this.form.submit();">#}
-{#              <option value="" {% if not selected_company %}selected{% endif %}>Все группы</option>#}
-{#              {% for company in companies %}#}
-{#                <option value="{{ company.id }}" {% if selected_company and company.id == selected_company.id %}selected{% endif %}>#}
-{#                  {{ company.name }}#}
-{#                </option>#}
-{#              {% endfor %}#}
-{#            </select>#}
-{#          </form>#}
-{#        </div>#}
-{#      </div>#}
-{##}
-{#      <!-- Основной контент с задачами -->#}
-{#      <div class="col-md-12">#}
-{#        <section id="blog-posts" class="blog-posts section">#}
-{#          <div class="container">#}
-{#            <div class="task-cards-container">#}
-{#              {% for task in tasks %}#}
-{#                <article class="task-card">#}
-{#                  <p class="post-category">{{ task.category }}</p>#}
-{#                  <h2 class="title">#}
-{#                    <a href="{% url 'task_detail' company_id=task.company.id pk=task.id %}">{{ task.title }}</a>#}
-{#                  </h2>#}
-{#                  <div class="post-meta">#}
-{#                    <p>Исполнитель: {{ task.assigned_user }}</p>#}
-{#                    <p>Дедлайн: <time datetime="{{ task.due_date }}">{{ task.due_date|date:"d M Y" }}</time></p>#}
-{#                    <p>Статус: <span class="badge bg-info">{{ task.get_status_display }}</span></p>#}
-{#                  </div>#}
-{##}
-{#                  <!-- Кнопка для подзадач -->#}
-{#                  <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#subtasks-{{ task.id }}" aria-expanded="false" aria-controls="subtasks-{{ task.id }}">#}
-{#                    Показать подзадачи#}
-{#                  </button>#}
-{##}
-{#                  <!-- Подзадачи -->#}
-{#                  <div class="collapse" id="subtasks-{{ task.id }}">#}
-{#                    <ul class="list-group mt-2">#}
-{#                      {% for subtask in task.subtasks.all %}#}
-{#                        <li class="list-group-item">{{ subtask.title }}</li>#}
-{#                      {% empty %}#}
-{#                        <li class="list-group-item text-muted">Нет подзадач</li>#}
-{#                      {% endfor %}#}
-{#                    </ul>#}
-{#                  </div>#}
-{#                </article>#}
-{#              {% empty %}#}
-{#                <p>Задачи не найдены.</p>#}
-{#              {% endfor %}#}
-{#            </div>#}
-{#          </div>#}
-{#        </section>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
-{#{% endblock %}#}

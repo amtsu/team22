@@ -216,22 +216,6 @@ class TaskListView(ListView):
         return context
 
 
-# Представление для удаления Задачи
-class TaskDeleteView(DeleteView):
-    model = Task
-    template_name = 'task_delete.html'
-    context_object_name = 'tasks/task_delete'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        company = self.object.company  # Предполагается, что у задачи есть поле company
-        context['company'] = company if company else None
-        return context
-
-    def get_success_url(self):
-        return reverse_lazy('company_detail', kwargs={'company_id': self.kwargs['company_id']})
-
-
 # Представление для детальной информации о Задаче
 class TaskDetailView(DetailView):
     model = Task
@@ -295,6 +279,22 @@ class TaskCreateView(CreateView):
                             kwargs={'pk': company_id})  # Используем company_id для перенаправления на компанию
 
 
+class TaskDeleteView(DeleteView):
+    model = Task
+    template_name = 'task_delete.html'
+    context_object_name = 'task'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        company = self.object.company
+        context['company'] = company if company else None
+        return context
+
+    def get_success_url(self):
+        # Возвращаем URL страницы с деталями компании
+        return reverse_lazy('company_detail', kwargs={'pk': self.object.company.id})
+
+
 class TaskUpdateView(UpdateView):
     model = Task
     form_class = TaskForm
@@ -333,9 +333,15 @@ class TaskUpdateView(UpdateView):
         company = get_object_or_404(Company, id=company_id)
         context['users'] = company.members.all()  # Фильтруем пользователей по компании
         context['company_id'] = company.id  # Добавляем ID компании в контекст
+        # Отладка
+        # print(f"Company ID: {company.id}")
+        # print(f"Company Members: {company.members.all()}")  # Проверяем пользователей компании
 
         # Обновляем queryset для assigned_user
         context['form'].fields['assigned_user'].queryset = company.members.all()
+        # print(f"Company ID: {company.id}")
+        # print(f"Company Members: {list(company.members.all())}")  # Проверяем пользователей компании
+
         context['users'] = company.members.all()  # Добавляем всех пользователей компании
 
         # Передаем SubTaskFormSet
@@ -372,6 +378,11 @@ class TaskUpdateView(UpdateView):
             return super().form_valid(form)
         else:
             return self.form_invalid(form)
+
+    # def get_success_url(self):
+    #     # После успешного редактирования задачи переходим на список задач компании
+    #     company_id = self.kwargs['company_id']
+    #     return reverse_lazy('tasks:task_list', kwargs={'company_id': company_id})
 
     def get_success_url(self):
         company_id = self.kwargs.get('company_id')  # Получаем ID компании из URL
