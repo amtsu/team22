@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'tasks',
     'django_celery_beat',
+    'commands',
 ]
 
 # Настройки для django-allauth
@@ -185,3 +186,9 @@ CELERY_TASK_SERIALIZER = 'json'
 
 # Настройка хранилища результатов (опционально)
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+CELERY_ENABLE_UTC = True
+CELERY_TIMEZONE = 'Europe/Moscow'  # Укажите ваш часовой пояс
+
+# Включаем поддержку пропущенных задач
+CELERY_BEAT_SCHEDULE_TIMEZONE = 'Europe/Moscow'
