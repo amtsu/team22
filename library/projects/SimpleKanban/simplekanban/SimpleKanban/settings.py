@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'tasks',
     'django_celery_beat',
     'commands',
+    'django_select2',
 ]
 
 # Настройки для django-allauth
@@ -192,3 +193,14 @@ CELERY_TIMEZONE = 'Europe/Moscow'  # Укажите ваш часовой поя
 
 # Включаем поддержку пропущенных задач
 CELERY_BEAT_SCHEDULE_TIMEZONE = 'Europe/Moscow'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    'select2': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+}
+
+SELECT2_CACHE_BACKEND = 'select2'

@@ -93,7 +93,7 @@ class Task(models.Model):
 
     def save(self, *args, **kwargs):
         # Обновление статуса на основе даты завершения
-        if self.due_date and self.due_date < timezone.now():
+        if self.due_date and self.due_date < timezone.now().date():
             self.execution_status = 'EX'  # Обновляем статус, если задача просрочена
         super().save(*args, **kwargs)
 

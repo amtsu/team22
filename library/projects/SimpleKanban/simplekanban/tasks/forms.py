@@ -1,4 +1,5 @@
 from django import forms
+from django_select2.forms import ModelSelect2MultipleWidget
 from django.forms.models import inlineformset_factory
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
@@ -6,7 +7,38 @@ from django.core.mail import send_mail
 from .models import Task, SubTask, Company
 
 
+# class CompanyForm(forms.ModelForm):
+#     invitees = forms.CharField(
+#         required=False,
+#         widget=forms.Textarea(
+#             attrs={'class': 'form-control', 'placeholder': 'Введите email для приглашения, разделяя их запятой'}
+#         )
+#     )
+#
+#     class Meta:
+#         model = Company
+#         fields = ['name', 'members']
+#         widgets = {
+#             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название компании'}),
+#             'members': forms.SelectMultiple(attrs={'class': 'form-control'}),
+#         }
+#
+#     # Делает поле 'members' необязательным
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.fields['members'].required = False
+
 class CompanyForm(forms.ModelForm):
+    members = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),
+        widget=ModelSelect2MultipleWidget(
+            search_fields=['username__icontains', 'email__icontains'],
+            attrs={'style': 'width: 100%;'}
+        ),
+        required=False,
+        label='Участники'
+    )
+
     invitees = forms.CharField(
         required=False,
         widget=forms.Textarea(
@@ -19,10 +51,8 @@ class CompanyForm(forms.ModelForm):
         fields = ['name', 'members']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название компании'}),
-            'members': forms.SelectMultiple(attrs={'class': 'form-control'}),
         }
 
-    # Делает поле 'members' необязательным
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['members'].required = False
