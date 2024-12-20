@@ -2,10 +2,21 @@ from time import sleep
 
 from data import session_factory, ContentRepository
 from src_habr_com.parser import HabrComParser
+from src_igromania_ru.parser import IgromaniaRuParser
 from src_overclockers_ru.parser import OverclockersRuParser
 from src_rbc_ru.parser import RbcRuParser
+from src_smart_lab_ru.parser import SmartLabRuParser
 from src_sports_ru.parser import SportsRuParser
-from src_trial_sport_ru.parser import TrialSportRuParser
+
+# Список источников
+SOURCE_LIST = [
+    SportsRuParser,
+    IgromaniaRuParser,
+    RbcRuParser,
+    HabrComParser,
+    OverclockersRuParser,
+    SmartLabRuParser,
+]
 
 
 class MainParser:
@@ -23,15 +34,6 @@ class MainParser:
 
                 sleep(10)
 
-
-# Список источников
-SOURCE_LIST = [
-    SportsRuParser,
-    TrialSportRuParser,
-    RbcRuParser,
-    HabrComParser,
-    OverclockersRuParser,
-]
 
 if __name__ == '__main__':
     try:

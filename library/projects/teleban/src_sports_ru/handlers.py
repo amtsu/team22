@@ -57,4 +57,3 @@ async def sports_callback(callback: CallbackQuery):
         case 'sports_nhl':
             await callback.answer(f'Вы выбрали NHL')
             await callback.message.edit_reply_markup(reply_markup=await sports_nhl_ikb(user_id))
-

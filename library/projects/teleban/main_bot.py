@@ -11,10 +11,11 @@ from config import settings
 from handlers import main_router
 from services import send_content
 from src_habr_com.handlers import habr_router
+from src_igromania_ru.handlers import igromania_router
 from src_overclockers_ru.handlers import overclockers_router
 from src_rbc_ru.handlers import rbc_router
+from src_smart_lab_ru.handlers import smart_lab_router
 from src_sports_ru.handlers import sports_router
-from src_trial_sport_ru.handlers import trial_sport_router
 
 TOKEN = settings.TELEBAN_TOKEN
 
@@ -22,10 +23,11 @@ dp = Dispatcher(name=__name__)
 dp.include_routers(
     main_router,
     sports_router,
-    trial_sport_router,
+    igromania_router,
     overclockers_router,
     rbc_router,
     habr_router,
+    smart_lab_router,
 )
 
 
