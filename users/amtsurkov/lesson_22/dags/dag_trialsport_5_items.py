@@ -9,7 +9,7 @@ from users.amtsu.d221204t1902.TrialSportPageProcessing import TrialSportServiceP
 
 #with DAG(dag_id="trialsport_5_items", start_date=datetime(2022, 1, 1), schedule="0 0 * * *") as dag:
 #with DAG(dag_id="trialsport_5_items", start_date=datetime(2023, 12, 1), schedule="0 0 * * *") as dag:
-with DAG(dag_id="trialsport_5_items", start_date=datetime(2024, 5, 24), schedule="0 0 * * *") as dag:
+with DAG(dag_id="trialsport_5_items", start_date=datetime(2024, 12, 11), schedule="0 0 * * *") as dag:
 
     #pass
     # первая задача в даге
@@ -18,7 +18,6 @@ with DAG(dag_id="trialsport_5_items", start_date=datetime(2024, 5, 24), schedule
     # вторая задача в даге
     @task()
     def airflow():
-        pass
         print("start TrialSportServiceProcessing")
         tssp = TrialSportServiceProcessing()
         tssp.load_url_by_default()
