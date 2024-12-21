@@ -405,6 +405,39 @@ class TaskUpdateView(UpdateView):
         return reverse_lazy('company_detail', kwargs={'pk': company_id})  # Перенаправление на страницу компании
 
 
+# class TaskListAllView(ListView):
+#     model = Task
+#     template_name = 'tasks/task_list_all.html'
+#     context_object_name = 'tasks'
+#
+#     def get_queryset(self):
+#         # Обновляем статус всех просроченных активных задач
+#         Task.objects.filter(
+#             execution_status='active',  # Проверяем только активные задачи
+#             due_date__lt=timezone.now()  # Срок выполнения задачи истёк
+#         ).update(execution_status='overdue')
+#
+#         company_id = self.request.GET.get('company_id')
+#         if company_id:  # Если выбрана компания
+#             return Task.objects.filter(company__id=company_id)
+#         return Task.objects.all()  # Если выбраны все компании
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         company_id = self.request.GET.get('company_id', '')
+#
+#         context['company_id'] = company_id  # Для сохранения выбора компании в фильтре
+#         context['companies'] = Company.objects.all()  # Список всех компаний
+#
+#         # Добавляем выбранную компанию в контекст
+#         if company_id:
+#             context['selected_company'] = Company.objects.filter(id=company_id).first()
+#         else:
+#             context['selected_company'] = None
+#
+#         return context
+
+
 class TaskListAllView(ListView):
     model = Task
     template_name = 'tasks/task_list_all.html'
@@ -413,21 +446,34 @@ class TaskListAllView(ListView):
     def get_queryset(self):
         # Обновляем статус всех просроченных активных задач
         Task.objects.filter(
-            execution_status='active',  # Проверяем только активные задачи
+            execution_status='AC',  # Проверяем только активные задачи
             due_date__lt=timezone.now()  # Срок выполнения задачи истёк
-        ).update(execution_status='overdue')
+        ).update(execution_status='EX')
 
+        # Получаем параметры фильтрации из GET-запроса
         company_id = self.request.GET.get('company_id')
-        if company_id:  # Если выбрана компания
-            return Task.objects.filter(company__id=company_id)
-        return Task.objects.all()  # Если выбраны все компании
+        execution_status = self.request.GET.get('execution_status')
+
+        # Фильтруем задачи по компании и статусу
+        queryset = Task.objects.all()
+        if company_id:  # Фильтрация по компании
+            queryset = queryset.filter(company__id=company_id)
+        if execution_status:  # Фильтрация по статусу
+            queryset = queryset.filter(execution_status=execution_status)
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        company_id = self.request.GET.get('company_id', '')
 
-        context['company_id'] = company_id  # Для сохранения выбора компании в фильтре
-        context['companies'] = Company.objects.all()  # Список всех компаний
+        # Получаем параметры фильтрации из GET-запроса
+        company_id = self.request.GET.get('company_id', '')
+        execution_status = self.request.GET.get('execution_status', '')
+
+        # Передаём фильтры в контекст для сохранения состояния в шаблоне
+        context['company_id'] = company_id
+        context['execution_status'] = execution_status
+        context['companies'] = Company.objects.all()
 
         # Добавляем выбранную компанию в контекст
         if company_id:

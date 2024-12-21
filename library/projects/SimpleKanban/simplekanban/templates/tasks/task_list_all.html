@@ -277,79 +277,95 @@
 }
   </style>
 
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Фильтр сверху -->
-      <div class="col-12">
-        <div class="filter-section" id="filter-top">
-          <form method="get" id="company-filter-form">
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Фильтр задач -->
+    <div class="col-12">
+      <form method="get">
+        <div class="row">
+          <!-- Фильтр по компании -->
+          <div class="col-md-6">
             <label for="company-select">Выберите группу:</label>
             <select id="company-select" name="company_id" class="form-select" onchange="this.form.submit();">
               <option value="" {% if not selected_company %}selected{% endif %}>Все группы</option>
               {% for company in companies %}
-                <option value="{{ company.id }}" {% if selected_company and company.id == selected_company.id %}selected{% endif %}>
+                <option value="{{ company.id }}" {% if company_id == company.id|stringformat:"s" %}selected{% endif %}>
                   {{ company.name }}
                 </option>
               {% endfor %}
             </select>
-          </form>
+          </div>
+
+          <!-- Фильтр по статусу -->
+          <div class="col-md-6">
+            <label for="status-select">Выберите статус:</label>
+            <select id="status-select" name="execution_status" class="form-select" onchange="this.form.submit();">
+              <option value="" {% if not execution_status %}selected{% endif %}>Все статусы</option>
+              <option value="AC" {% if execution_status == 'AC' %}selected{% endif %}>Активные</option>
+              <option value="EX" {% if execution_status == 'EX' %}selected{% endif %}>Просроченные</option>
+              <option value="CP" {% if execution_status == 'CP' %}selected{% endif %}>Завершённые</option>
+              <option value="CN" {% if execution_status == 'CN' %}selected{% endif %}>Отменённые</option>
+            </select>
+          </div>
         </div>
-      </div>
+      </form>
+    </div>
 
-      <!-- Основной контент с задачами -->
-      <div class="col-md-12">
-        <section id="blog-posts" class="blog-posts section">
-          <div class="container">
-            <div class="task-cards-container">
-              {% for task in tasks %}
-                <div class="task-card">
-                  <!-- Статус задачи -->
-                  <div class="task-status">
-                    {% if task.execution_status == 'AC' %}
-                        <span class="badge bg-primary">активная</span>
-                    {% elif task.execution_status == 'EX' %}
-                        <span class="badge bg-danger">просроченная</span>
-                    {% elif task.execution_status == 'CP' %}
-                        <span class="badge bg-success">завершенная</span>
-                    {% elif task.execution_status == 'CN' %}
-                        <span class="badge bg-secondary">отмененная</span>
-                    {% else %}
-                        <span class="badge bg-light">неизвестный статус</span>
-                    {% endif %}
-                  </div>
-
-                  <!-- Заголовок задачи -->
-                  <h2 class="title">
-                    <a href="{% url 'task_detail' company_id=task.company.id pk=task.id %}">{{ task.title }}</a>
-                  </h2>
-
-                  <!-- Исполнитель и дедлайн -->
-                  <div class="post-meta">
-                    <p>Исполнитель: {{ task.assigned_user }}</p>
-                    <p>Дедлайн: <time datetime="{{ task.due_date }}">{{ task.due_date|date:"M d, Y" }}</time></p>
-                  </div>
-
-                  <!-- Если есть прикреплённый файл, показываем значок -->
-                  {% if task.attachment %}
-                    <div class="file-attachment">
-                      <a href="{{ task.attachment.url }}" target="_blank" title="Скачать файл">
-                        <i class="fa fa-paperclip" aria-hidden="true"></i>
-                      </a>
-                    </div>
-                  {% endif %}
-
-                  <!-- Если есть подзадачи, показываем метку -->
-                  {% if task.subtasks.all %}
-                    <p class="contains-subtasks">Содержит подзадачи</p>
+    <!-- Основной контент с задачами -->
+    <div class="col-md-12">
+      <section id="blog-posts" class="blog-posts section">
+        <div class="container">
+          <div class="task-cards-container">
+            {% for task in tasks %}
+              <div class="task-card">
+                <!-- Статус задачи -->
+                <div class="task-status">
+                  {% if task.execution_status == 'AC' %}
+                      <span class="badge bg-primary">активная</span>
+                  {% elif task.execution_status == 'EX' %}
+                      <span class="badge bg-danger">просроченная</span>
+                  {% elif task.execution_status == 'CP' %}
+                      <span class="badge bg-success">завершенная</span>
+                  {% elif task.execution_status == 'CN' %}
+                      <span class="badge bg-secondary">отмененная</span>
+                  {% else %}
+                      <span class="badge bg-light">неизвестный статус</span>
                   {% endif %}
                 </div>
-              {% empty %}
-                <p>Задачи не найдены.</p>
-              {% endfor %}
-            </div>
+
+                <!-- Заголовок задачи -->
+                <h2 class="title">
+                  <a href="{% url 'task_detail' company_id=task.company.id pk=task.id %}">{{ task.title }}</a>
+                </h2>
+
+                <!-- Исполнитель и дедлайн -->
+                <div class="post-meta">
+                  <p>Исполнитель: {{ task.assigned_user }}</p>
+                  <p>Дедлайн: <time datetime="{{ task.due_date }}">{{ task.due_date|date:"M d, Y" }}</time></p>
+                </div>
+
+                <!-- Если есть прикреплённый файл -->
+                {% if task.attachment %}
+                  <div class="file-attachment">
+                    <a href="{{ task.attachment.url }}" target="_blank" title="Скачать файл">
+                      <i class="fa fa-paperclip" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                {% endif %}
+
+                <!-- Если есть подзадачи -->
+                {% if task.subtasks.all %}
+                  <p class="contains-subtasks">Содержит подзадачи</p>
+                {% endif %}
+              </div>
+            {% empty %}
+              <p>Задачи не найдены.</p>
+            {% endfor %}
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   </div>
+</div>
 {% endblock %}
