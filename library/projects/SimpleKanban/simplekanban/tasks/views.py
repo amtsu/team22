@@ -328,16 +328,14 @@ class TaskUpdateView(UpdateView):
         company = get_object_or_404(Company, id=company_id)
         print(f"Company ID: {company.id}, Members: {list(company.members.all())}")
         kwargs['company'] = company
-        # print(f"company.members.all(): {company.members.all().values_list('id', 'username')}")  # Для проверки
-        print(f"Company ID: {company.id}, Members: {company.members.all()}")
 
         # Пополнение начальных данных из instance
         if self.object:
             kwargs['initial'] = {
-                'due_date': self.object.due_date.strftime('%Y-%m-%d'),
-                'assigned_user': self.object.assigned_user.id,
+                'due_date': self.object.due_date.strftime('%Y-%m-%d') if self.object.due_date else None,
+                'assigned_user': self.object.assigned_user.id if self.object.assigned_user else None,
             }
-        # print(form.cleaned_data.get('assigned_user'))
+
         # Печать начальных данных 'assigned_user' перед передачей в шаблон
         assigned_user_initial = kwargs['initial'].get('assigned_user')
         print("Initial assigned user ID:", assigned_user_initial)  # Отображение в консоли
