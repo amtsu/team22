@@ -10,6 +10,11 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
+  {{ form.media }}
+  <link href="{% static 'django_select2/django_select2.css' %}" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
   <!-- Favicons -->
   <link href="{% static 'img/favicon.png' %}" rel="icon">
   <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
@@ -65,15 +70,15 @@
 {#        <ul>#}
             <li><a href="{% url 'home' %}">Задачи</a></li>
             <li><a href="{% url 'company_list' %}">Мои группы</a></li>
-            <li class="dropdown">
-                <a href="#"><span>Текущие задачи</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                    <li><a href="#">Текущие</a></li>
-                    <li><a href="#">Горящие</a></li>
-                    <li><a href="#">Просроченные</a></li>
-                    <li><a href="#">Отмененные</a></li>
-                </ul>
-            </li>
+{#            <li class="dropdown">#}
+{#                <a href="#"><span>Текущие задачи</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>#}
+{#                <ul>#}
+{#                    <li><a href="#">Текущие</a></li>#}
+{#                    <li><a href="#">Горящие</a></li>#}
+{#                    <li><a href="#">Просроченные</a></li>#}
+{#                    <li><a href="#">Отмененные</a></li>#}
+{#                </ul>#}
+{#            </li>#}
             <li class="dropdown">
                 <a href="#"><span>Пользователь</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
@@ -157,6 +162,7 @@
 
   <!-- Main JS File -->
   <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'django_select2/django_select2.js' %}"></script>
 
 </body>
 </html>

@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
@@ -14,6 +16,7 @@ urlpatterns = [
     path('companies/<int:company_id>/task/create/', views.TaskCreateView.as_view(), name='task_create'),  # Создание задачи
     path('companies/<int:company_id>/task/<int:pk>/edit/', views.TaskUpdateView.as_view(), name='task_edit'),  # Редактирование задачи
     path('companies/<int:company_id>/task/<int:pk>/delete/', views.TaskDeleteView.as_view(), name='task_delete'),  # Удаление задачи
+    path('tasks/<int:subtask_id>/toggle_status/', views.toggle_subtask_status, name='toggle_subtask_status'),
 
     #Компании
     path('companies/', views.CompanyListView.as_view(), name='company_list'),
@@ -23,3 +26,6 @@ urlpatterns = [
     path('companies/<int:pk>/edit/', views.CompanyEditView.as_view(), name='company_edit'),
     path('companies/<int:pk>/delete/', views.CompanyDeleteView.as_view(), name='company_delete'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

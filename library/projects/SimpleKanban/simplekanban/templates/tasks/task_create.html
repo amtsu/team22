@@ -44,10 +44,16 @@
             </div>
 
             <!-- Файл прикрепления -->
+<!-- Файл прикрепления -->
             <div class="form-group">
                 <label for="id_attachment">Прикрепите файл</label>
+                <input type="file" name="attachment" id="id_attachment" accept=".pdf,.docx,.jpg,.png">
                 {{ form.attachment }}  <!-- Используем FormField, чтобы поле стало кликабельным -->
+                {% if task.attachment %}
+                    <p>Скачать файл: <a href="{{ task.attachment.url }}" download>{{ task.attachment.name }}</a></p>
+                {% endif %}
             </div>
+
 
             <div class="text-center">
               <button type="submit" class="btn btn-warning" style="background-color: #ff6600;">Создать задачу и подзадачи</button>

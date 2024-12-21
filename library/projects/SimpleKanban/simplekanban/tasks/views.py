@@ -2,26 +2,34 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.views import View
-# from django.http import JsonResponse
 from django.utils import timezone
-from django.core.files.storage import default_storage
 from django.core.files import File
 
 
-# from django.core.mail import send_mail
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
 from .forms import TaskForm, SubTaskFormSet, CompanyForm
 from .models import Task, Company, SubTask
 import json
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
-# def toggle_subtask_status(request, subtask_id):
-#     subtask = get_object_or_404(SubTask, id=subtask_id)
-#     subtask.status = not subtask.status
-#     subtask.save()
-#     return JsonResponse({'success': True})
-
+@csrf_exempt
+def toggle_subtask_status(request, subtask_id):
+    if request.method == 'POST':
+        try:
+            subtask = SubTask.objects.get(pk=subtask_id)
+            data = json.loads(request.body)
+            completed = data.get('completed', False)  # Извлекаем статус из запроса
+            subtask.status = completed  # Обновляем поле статус
+            subtask.save()  # Сохраняем изменения в базе данных
+            return JsonResponse({'success': True})
+        except SubTask.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Подзадача не найдена'}, status=404)
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+    return JsonResponse({'success': False, 'error': 'Неверный метод запроса'}, status=405)
 
 # Представление для просмотра списка компаний
 class CompanyListView(ListView):
@@ -183,9 +191,6 @@ class CompanyDetailView(DetailView):
 def home_view(request):
     if request.user.is_authenticated:
         return redirect('task_list_all')
-        # Если пользователь аутентифицирован, показываем список всех задач
-        # companies = Company.objects.all()
-        # return render(request, 'tasks/task_list_all.html', {'companies': companies})
     else:
         # Если не аутентифицирован, показываем приветственную страницу
         return render(request, 'account/welcome.html')
@@ -227,24 +232,6 @@ class TaskListView(ListView):
         # Передаем список всех компаний в шаблон
         context['companies'] = Company.objects.all()
         return context
-
-
-# Представление для удаления Задачи
-class TaskDeleteView(DeleteView):
-    model = Task
-    template_name = 'task_delete.html'
-    context_object_name = 'tasks/task_delete'
-
-    # success_url = reverse_lazy('tasks/task_list')  # Убедитесь, что у вас правильно настроен success_url
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        company = self.object.company  # Предполагается, что у задачи есть поле company
-        context['company'] = company if company else None
-        return context
-
-    def get_success_url(self):
-        return reverse_lazy('company_detail', kwargs={'company_id': self.kwargs['company_id']})
 
 
 # Представление для детальной информации о Задаче
@@ -310,21 +297,20 @@ class TaskCreateView(CreateView):
                             kwargs={'pk': company_id})  # Используем company_id для перенаправления на компанию
 
 
-#
-# class TaskDeleteView(DeleteView):
-#     model = Task
-#     template_name = 'task_delete.html'
-#     context_object_name = 'task'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         company = self.object.company
-#         context['company'] = company if company else None
-#         return context
-#
-#     def get_success_url(self):
-#         # Возвращаем URL страницы с деталями компании
-#         return reverse_lazy('company_detail', kwargs={'pk': self.object.company.id})
+class TaskDeleteView(DeleteView):
+    model = Task
+    template_name = 'task_delete.html'
+    context_object_name = 'task'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        company = self.object.company
+        context['company'] = company if company else None
+        return context
+
+    def get_success_url(self):
+        # Возвращаем URL страницы с деталями компании
+        return reverse_lazy('company_detail', kwargs={'pk': self.object.company.id})
 
 
 class TaskUpdateView(UpdateView):
@@ -342,16 +328,14 @@ class TaskUpdateView(UpdateView):
         company = get_object_or_404(Company, id=company_id)
         print(f"Company ID: {company.id}, Members: {list(company.members.all())}")
         kwargs['company'] = company
-        # print(f"company.members.all(): {company.members.all().values_list('id', 'username')}")  # Для проверки
-        print(f"Company ID: {company.id}, Members: {company.members.all()}")
 
         # Пополнение начальных данных из instance
         if self.object:
             kwargs['initial'] = {
-                'due_date': self.object.due_date.strftime('%Y-%m-%d'),
-                'assigned_user': self.object.assigned_user.id,
+                'due_date': self.object.due_date.strftime('%Y-%m-%d') if self.object.due_date else None,
+                'assigned_user': self.object.assigned_user.id if self.object.assigned_user else None,
             }
-        # print(form.cleaned_data.get('assigned_user'))
+
         # Печать начальных данных 'assigned_user' перед передачей в шаблон
         assigned_user_initial = kwargs['initial'].get('assigned_user')
         print("Initial assigned user ID:", assigned_user_initial)  # Отображение в консоли
@@ -421,6 +405,39 @@ class TaskUpdateView(UpdateView):
         return reverse_lazy('company_detail', kwargs={'pk': company_id})  # Перенаправление на страницу компании
 
 
+# class TaskListAllView(ListView):
+#     model = Task
+#     template_name = 'tasks/task_list_all.html'
+#     context_object_name = 'tasks'
+#
+#     def get_queryset(self):
+#         # Обновляем статус всех просроченных активных задач
+#         Task.objects.filter(
+#             execution_status='active',  # Проверяем только активные задачи
+#             due_date__lt=timezone.now()  # Срок выполнения задачи истёк
+#         ).update(execution_status='overdue')
+#
+#         company_id = self.request.GET.get('company_id')
+#         if company_id:  # Если выбрана компания
+#             return Task.objects.filter(company__id=company_id)
+#         return Task.objects.all()  # Если выбраны все компании
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         company_id = self.request.GET.get('company_id', '')
+#
+#         context['company_id'] = company_id  # Для сохранения выбора компании в фильтре
+#         context['companies'] = Company.objects.all()  # Список всех компаний
+#
+#         # Добавляем выбранную компанию в контекст
+#         if company_id:
+#             context['selected_company'] = Company.objects.filter(id=company_id).first()
+#         else:
+#             context['selected_company'] = None
+#
+#         return context
+
+
 class TaskListAllView(ListView):
     model = Task
     template_name = 'tasks/task_list_all.html'
@@ -429,21 +446,34 @@ class TaskListAllView(ListView):
     def get_queryset(self):
         # Обновляем статус всех просроченных активных задач
         Task.objects.filter(
-            execution_status='active',  # Проверяем только активные задачи
+            execution_status='AC',  # Проверяем только активные задачи
             due_date__lt=timezone.now()  # Срок выполнения задачи истёк
-        ).update(execution_status='overdue')
+        ).update(execution_status='EX')
 
+        # Получаем параметры фильтрации из GET-запроса
         company_id = self.request.GET.get('company_id')
-        if company_id:  # Если выбрана компания
-            return Task.objects.filter(company__id=company_id)
-        return Task.objects.all()  # Если выбраны все компании
+        execution_status = self.request.GET.get('execution_status')
+
+        # Фильтруем задачи по компании и статусу
+        queryset = Task.objects.all()
+        if company_id:  # Фильтрация по компании
+            queryset = queryset.filter(company__id=company_id)
+        if execution_status:  # Фильтрация по статусу
+            queryset = queryset.filter(execution_status=execution_status)
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        company_id = self.request.GET.get('company_id', '')
 
-        context['company_id'] = company_id  # Для сохранения выбора компании в фильтре
-        context['companies'] = Company.objects.all()  # Список всех компаний
+        # Получаем параметры фильтрации из GET-запроса
+        company_id = self.request.GET.get('company_id', '')
+        execution_status = self.request.GET.get('execution_status', '')
+
+        # Передаём фильтры в контекст для сохранения состояния в шаблоне
+        context['company_id'] = company_id
+        context['execution_status'] = execution_status
+        context['companies'] = Company.objects.all()
 
         # Добавляем выбранную компанию в контекст
         if company_id:

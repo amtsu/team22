@@ -1,114 +1,3 @@
-{#{% extends "base.html" %}#}
-{#{% load static %}#}
-{##}
-{#{% block title %}#}
-{#    Редактирование задачи#}
-{#{% endblock title %}#}
-{##}
-{#{% block content %}#}
-{#<div class="container">#}
-{#  <div class="row justify-content-center">#}
-{#    <div class="col-lg-6">#}
-{##}
-{#      <!-- Форма редактирования задачи -->#}
-{#      <section id="task-form" class="section">#}
-{#        <div class="container">#}
-{#          <form method="post">#}
-{#            {% csrf_token %}#}
-{#            <h4>Редактируем задачу</h4>#}
-{##}
-{#            {{ form.non_field_errors }}#}
-{#            <div class="form-group">#}
-{#                {{ form.title.label_tag }} {{ form.title }}#}
-{#            </div>#}
-{#            <div class="form-group">#}
-{#                {{ form.description.label_tag }} {{ form.description }}#}
-{#            </div>#}
-{#            <div class="form-group">#}
-{#                {{ form.execution_status.label_tag }} {{ form.execution_status }}#}
-{#            </div>#}
-{#            <div class="form-group">#}
-{#                {{ form.due_date.label_tag }} {{ form.due_date }}#}
-{#            </div>#}
-{#            <div class="form-group">#}
-{#                {{ form.assigned_user.label_tag }} {{ form.assigned_user }}#}
-{#            </div>#}
-{##}
-{#            <!-- Подзадачи -->#}
-{#            <h4>Подзадачи</h4>#}
-{#            <p>Добавьте или удалите подзадачи:</p>#}
-{##}
-{#            {{ formset.management_form }}#}
-{##}
-{#            <div id="subtask-formset">#}
-{#                {% for form in formset %}#}
-{#                <div class="form-row mb-2">#}
-{#                    <div class="col-md-9 form-group">#}
-{#                        {{ form.title }}#}
-{#                    </div>#}
-{#                    <div class="col-md-3 form-group">#}
-{#                        <button type="button" class="btn btn-grey remove-btn" onclick="removeSubtask(this)">Удалить</button>#}
-{#                    </div>#}
-{#                </div>#}
-{#                {% endfor %}#}
-{#            </div>#}
-{##}
-{#            <!-- Кнопка для добавления подзадач -->#}
-{#            <div class="text-center mb-4">#}
-{#              <button type="button" class="btn btn-grey" onclick="addSubtask()">Добавить подзадачу</button>#}
-{#            </div>#}
-{##}
-{#            <div class="text-center">#}
-{#              <button type="submit" class="btn btn-warning" style="background-color: #ff6600;">Сохранить изменения</button>#}
-{#            </div>#}
-{#          </form>#}
-{#        </div>#}
-{#      </section>#}
-{#    </div>#}
-{#  </div>#}
-{#</div>#}
-{##}
-{#<script>#}
-{#  // Индекс для новых форм в formset#}
-{#  let formIndex = {{ formset.management_form.initial.TOTAL_FORMS }};#}
-{##}
-{#  // Функция для добавления новой подзадачи#}
-{#  function addSubtask() {#}
-{#    const newForm = document.createElement('div');#}
-{#    newForm.classList.add('form-row', 'mb-2');#}
-{##}
-{#    // Создаем HTML код для новой подзадачи#}
-{#    newForm.innerHTML = `#}
-{#      <div class="col-md-9 form-group">#}
-{#        <label for="id_subtask-${formIndex}-title">Название подзадачи*</label>#}
-{#        <input type="text" name="subtasks-${formIndex}-title" required class="form-control" id="id_subtask-${formIndex}-title">#}
-{#      </div>#}
-{#      <div class="col-md-3 form-group">#}
-{#        <button type="button" class="btn btn-grey remove-btn" onclick="removeSubtask(this)">Удалить</button>#}
-{#      </div>#}
-{#    `;#}
-{##}
-{#    // Добавляем новый элемент формы в контейнер#}
-{#    document.getElementById('subtask-formset').appendChild(newForm);#}
-{##}
-{#    // Обновляем количество форм в formset#}
-{#    formIndex++;#}
-{#    document.querySelector('input[name="subtasks-TOTAL_FORMS"]').value = formIndex;#}
-{#  }#}
-{##}
-{#  // Функция для удаления подзадачи#}
-{#  function removeSubtask(button) {#}
-{#    const formRow = button.closest('.form-row');#}
-{#    formRow.remove();#}
-{##}
-{#    // Обновляем количество форм в formset#}
-{#    formIndex--;#}
-{#    document.querySelector('input[name="subtasks-TOTAL_FORMS"]').value = formIndex;#}
-{#  }#}
-{#</script>#}
-{##}
-{#{% endblock %}#}
-
 {% extends "base.html" %}
 {% load static %}
 
@@ -123,7 +12,7 @@
       <!-- Форма редактирования задачи -->
       <section id="task-form" class="section">
         <div class="container">
-          <form method="post" enctype="multipart/form-data">
+          <form method="post" enctype="multipart/form-data" id="task-edit-form">
             {% csrf_token %}
             <h4>Редактируем задачу</h4>
 
@@ -160,6 +49,7 @@
                 <div class="col-md-4 text-md-right">
                   {% if task.attachment %}
                     <button type="button" class="btn btn-danger btn-sm" onclick="removeAttachment()">Очистить</button>
+                    <input type="checkbox" name="attachment-clear" style="display:none;">
                   {% endif %}
                 </div>
               </div>
@@ -285,258 +175,29 @@
     const clearCheckbox = document.querySelector('input[name="attachment-clear"]');
     if (clearCheckbox) {
       clearCheckbox.checked = true;
+
+      // AJAX запрос на сервер для удаления файла
+      const form = document.getElementById('task-edit-form');
+      const formData = new FormData(form);
+      formData.append('attachment-clear', 'true');
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Обновить интерфейс
+          document.querySelector('.file-upload p').textContent = 'Файл отсутствует.';
+          document.querySelector('.file-upload input[type=file]').value = '';
+        } else {
+          alert('Ошибка при удалении файла.');
+        }
+      })
+      .catch(error => console.error('Ошибка:', error));
     }
   }
 </script>
 
 {% endblock %}
-
-{#{% extends "base.html" %}#}
-{#{% load static %}#}
-{##}
-{#{% block title %}#}
-{#    Редактирование задачи#}
-{#{% endblock title %}#}
-{##}
-{#{% block content %}#}
-{#<div class="container">#}
-{#  <div class="row justify-content-center">#}
-{#    <div class="col-lg-6">#}
-{##}
-{#      <!-- Форма редактирования задачи -->#}
-{#      <section id="task-form" class="section">#}
-{#        <div class="container">#}
-{#          <form method="post" enctype="multipart/form-data">#}
-{#            {% csrf_token %}#}
-{#            <h4>Редактируем задачу</h4>#}
-{##}
-{#            {{ form.non_field_errors }}#}
-{#            <div class="form-group">#}
-{#                {{ form.title.label_tag }} {{ form.title }}#}
-{#            </div>#}
-{#            <div class="form-group">#}
-{#                {{ form.description.label_tag }} {{ form.description }}#}
-{#            </div>#}
-{#            <div class="form-group">#}
-{#                {{ form.execution_status.label_tag }} {{ form.execution_status }}#}
-{#            </div>#}
-{#            <div class="form-group">#}
-{#                {{ form.due_date.label_tag }} {{ form.due_date }}#}
-{#            </div>#}
-{#            <div class="form-group">#}
-{#                {{ form.assigned_user.label_tag }} {{ form.assigned_user }}#}
-{#            </div>#}
-{##}
-{#            <!-- Работа с прикрепленным файлом -->#}
-{#            <h4>Файл</h4>#}
-{#            {% if task.attachment %}#}
-{#            <div class="form-group">#}
-{#                <label>Текущий файл:</label>#}
-{#                <p>#}
-{#                    <a href="{{ task.attachment.url }}" download>Скачать прикрепленный файл</a>#}
-{#                    <button type="button" class="btn btn-danger btn-sm" onclick="removeAttachment()">Удалить файл</button>#}
-{#                </p>#}
-{#            </div>#}
-{#            {% endif %}#}
-{#            <div class="form-group">#}
-{#                {{ form.attachment.label_tag }}#}
-{#                {{ form.attachment }}#}
-{#            </div>#}
-{##}
-{#            <!-- Подзадачи -->#}
-{#            <h4>Подзадачи</h4>#}
-{#            <p>Добавьте или удалите подзадачи:</p>#}
-{##}
-{#            {{ formset.management_form }}#}
-{##}
-{#            <div id="subtask-formset">#}
-{#                {% for form in formset %}#}
-{#                <div class="form-row mb-2">#}
-{#                    <div class="col-md-9 form-group">#}
-{#                        {{ form.title }}#}
-{#                    </div>#}
-{#                    <div class="col-md-3 form-group">#}
-{#                        <button type="button" class="btn btn-grey remove-btn" onclick="removeSubtask(this)">Удалить</button>#}
-{#                    </div>#}
-{#                </div>#}
-{#                {% endfor %}#}
-{#            </div>#}
-{##}
-{#            <!-- Кнопка для добавления подзадач -->#}
-{#            <div class="text-center mb-4">#}
-{#              <button type="button" class="btn btn-grey" onclick="addSubtask()">Добавить подзадачу</button>#}
-{#            </div>#}
-{##}
-{#            <div class="text-center">#}
-{#              <button type="submit" class="btn btn-warning" style="background-color: #ff6600;">Сохранить изменения</button>#}
-{#            </div>#}
-{#          </form>#}
-{#        </div>#}
-{#      </section>#}
-{#    </div>#}
-{#  </div>#}
-{#</div>#}
-{##}
-{#<script>#}
-{#  // Индекс для новых форм в formset#}
-{#  let formIndex = {{ formset.management_form.initial.TOTAL_FORMS }};#}
-{##}
-{#  // Функция для добавления новой подзадачи#}
-{#  function addSubtask() {#}
-{#    const newForm = document.createElement('div');#}
-{#    newForm.classList.add('form-row', 'mb-2');#}
-{##}
-{#    // Создаем HTML код для новой подзадачи#}
-{#    newForm.innerHTML = `#}
-{#      <div class="col-md-9 form-group">#}
-{#        <label for="id_subtask-${formIndex}-title">Название подзадачи*</label>#}
-{#        <input type="text" name="subtasks-${formIndex}-title" required class="form-control" id="id_subtask-${formIndex}-title">#}
-{#      </div>#}
-{#      <div class="col-md-3 form-group">#}
-{#        <button type="button" class="btn btn-grey remove-btn" onclick="removeSubtask(this)">Удалить</button>#}
-{#      </div>#}
-{#    `;#}
-{##}
-{#    // Добавляем новый элемент формы в контейнер#}
-{#    document.getElementById('subtask-formset').appendChild(newForm);#}
-{##}
-{#    // Обновляем количество форм в formset#}
-{#    formIndex++;#}
-{#    document.querySelector('input[name="subtasks-TOTAL_FORMS"]').value = formIndex;#}
-{#  }#}
-{##}
-{#  // Функция для удаления подзадачи#}
-{#  function removeSubtask(button) {#}
-{#    const formRow = button.closest('.form-row');#}
-{#    formRow.remove();#}
-{##}
-{#    // Обновляем количество форм в formset#}
-{#    formIndex--;#}
-{#    document.querySelector('input[name="subtasks-TOTAL_FORMS"]').value = formIndex;#}
-{#  }#}
-{##}
-{#  // Функция для удаления текущего файла#}
-{#  function removeAttachment() {#}
-{#    const hiddenField = document.createElement('input');#}
-{#    hiddenField.type = 'hidden';#}
-{#    hiddenField.name = 'remove_attachment';#}
-{#    hiddenField.value = '1';#}
-{#    document.querySelector('form').appendChild(hiddenField);#}
-{##}
-{#    // Уведомление пользователя#}
-{#    alert("Файл будет удалён после сохранения формы.");#}
-{#    const fileSection = document.querySelector('.form-group');#}
-{#    fileSection.innerHTML = '<p>Файл будет удалён после сохранения.</p>';#}
-{#  }#}
-{#</script>#}
-{##}
-{#{% endblock %}#}
-
-{#{% extends "base.html" %}#}
-{#{% load static %}#}
-{##}
-{#{% block title %}#}
-{#    Редактирование задачи#}
-{#{% endblock title %}#}
-{##}
-{#{% block content %}#}
-{#<style>#}
-{#    .btn-secondary {#}
-{#        background-color: #f7f7f7;#}
-{#        color: #333;#}
-{#        border: 1px solid #ddd;#}
-{#    }#}
-{##}
-{#    .btn-primary {#}
-{#        background-color: #ff6f00;#}
-{#        color: white;#}
-{#        border: none;#}
-{#    }#}
-{##}
-{#    .btn-danger {#}
-{#        background-color: #dc3545;#}
-{#        color: white;#}
-{#        border: none;#}
-{#    }#}
-{##}
-{#    .form-control {#}
-{#        margin-bottom: 10px;#}
-{#    }#}
-{##}
-{#    .subtask-form {#}
-{#        background-color: #f9f9f9;#}
-{#        padding: 15px;#}
-{#        border-radius: 5px;#}
-{#        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);#}
-{#        margin-bottom: 15px;#}
-{#    }#}
-{##}
-{#    .form-group {#}
-{#        margin-bottom: 15px;#}
-{#    }#}
-{#</style>#}
-{##}
-{#<div class="container">#}
-{#    <h2 class="text-center mb-4">Редактирование задачи</h2>#}
-{##}
-{#    <form method="post">#}
-{#        {% csrf_token %}#}
-{##}
-{#        <!-- Основная форма задачи -->#}
-{#        <div class="form-group mb-3">#}
-{#            <label for="task-title">Название задачи:</label>#}
-{#            {{ form.title.errors }}#}
-{#            {{ form.title }}#}
-{#        </div>#}
-{##}
-{#        <div class="form-group mb-3">#}
-{#            <label for="task-description">Описание задачи:</label>#}
-{#            {{ form.description.errors }}#}
-{#            {{ form.description }}#}
-{#        </div>#}
-{##}
-{#        <div class="form-group mb-3">#}
-{#            <label for="task-status">Статус выполнения:</label>#}
-{#            {{ form.execution_status.errors }}#}
-{#            {{ form.execution_status }}#}
-{#        </div>#}
-{##}
-{#        <div class="form-group mb-3">#}
-{#            <label for="task-due-date">Дата завершения:</label>#}
-{#            {{ form.due_date.errors }}#}
-{#            {{ form.due_date }}#}
-{#        </div>#}
-{##}
-{#        <div class="form-group mb-3">#}
-{#            <label for="assigned-user">Назначенный пользователь:</label>#}
-{#            {{ form.assigned_user.errors }}#}
-{#            {{ form.assigned_user }}#}
-{#        </div>#}
-{##}
-{#        <!-- Блок подзадач -->#}
-{#        <h3 class="mt-4">Подзадачи</h3>#}
-{#        {{ formset.management_form }}#}
-{#        {% for form in formset %}#}
-{#            <div class="subtask-form">#}
-{#                {{ form.id }}#}
-{#                <div class="form-group">#}
-{#                    <label for="subtask-{{ forloop.counter0 }}-title">Название подзадачи:</label>#}
-{#                    {{ form.title.errors }}#}
-{#                    {{ form.title }}#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{##}
-{#        <!-- Кнопка для отправки формы -->#}
-{#        <button type="submit" class="btn btn-primary">Сохранить изменения</button>#}
-{#    </form>#}
-{##}
-{#    <!-- Кнопка для возврата к списку задач -->#}
-{#    {% if company_id %}#}
-{#        <a href="{% url 'task_list' company_id=company_id %}" class="btn btn-secondary mt-3">Назад к задачам компании</a>#}
-{#    {% else %}#}
-{#        <a href="{% url 'task_list_all' %}" class="btn btn-secondary mt-3">Назад ко всем задачам</a>#}
-{#    {% endif %}#}
-{##}
-{#</div>#}
-{#{% endblock content %}#}

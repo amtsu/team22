@@ -105,7 +105,7 @@
 
                 <!-- Отображение файла, если он есть -->
                 {% if task.attachment %}
-                  <p>Прикрепленный файл: <a href="{{ task.attachment.url }}" download>Скачать</a></p>
+                  <p>Прикрепленный файл: <a href="{{ task.attachment.url }}" download><i class="bi bi-paperclip"></i> Скачать файл</a></p>
                 {% endif %}
               </div><!-- End post content -->
 
@@ -139,10 +139,15 @@
           <div class="container">
             <h4>Подзадачи</h4>
             <ul>
-              {% for subtask in task.subtasks.all %}
+              {% for subtask in subtasks %}
                 <li>
-                  <input type="checkbox" {% if subtask.status %}checked{% endif %} class="subtask-checkbox" data-subtask-id="{{ subtask.id }}">
-                  {{ subtask.title }}
+                  <input type="checkbox"
+                         {% if subtask.status %}checked{% endif %}
+                         class="subtask-checkbox"
+                         data-subtask-id="{{ subtask.id }}">
+                  <span style="color: {% if subtask.status %}green{% else %}black{% endif %};">
+                    {{ subtask.title }}
+                  </span>
                 </li>
               {% empty %}
                 <li>Подзадачи отсутствуют</li>
@@ -157,10 +162,8 @@
 </main>
 {% endblock %}
 
-
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Находим все чекбоксы подзадач
     const checkboxes = document.querySelectorAll('.subtask-checkbox');
 
     checkboxes.forEach(checkbox => {
@@ -173,16 +176,23 @@
           method: 'POST',
           headers: {
             'X-CSRFToken': '{{ csrf_token }}',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ completed: completed })
+          body: JSON.stringify({ completed: completed }),
         })
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            // Обновляем цвет текста на основе обновленного состояния
-            this.closest('li').style.color = completed ? 'green' : 'black';
+            this.nextElementSibling.style.color = completed ? 'green' : 'black';
+          } else {
+            alert('Ошибка обновления подзадачи');
+            this.checked = !completed; // Вернуть галочку в исходное состояние
           }
+        })
+        .catch(error => {
+          console.error('Ошибка:', error);
+          alert('Ошибка связи с сервером');
+          this.checked = !completed; // Вернуть галочку в исходное состояние
         });
       });
     });

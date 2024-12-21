@@ -1,142 +1,120 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <style>
-    .form-container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background-color: #f9f9f9;
+<style>
+  .form-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+    .btn-remove {
+        background-color: transparent;  /* Убираем фон */
+        border: none;  /* Убираем рамку */
+        color: #f44336;  /* Красный цвет */
+        font-size: 18px;  /* Размер шрифта */
+        cursor: pointer;  /* Курсор указатель */
     }
 
-    .btn-group {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-      gap: 10px;
+    .btn-remove:hover {
+        color: #d32f2f;  /* Цвет при наведении */
     }
 
-    .btn {
-      padding: 8px 12px;
-      font-size: 14px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      background-color: #888;
-      color: white;
-      text-decoration: none;
-    }
+  .form-section {
+    width: 45%;
+  }
 
-    .btn:hover,
-    .btn:focus {
-      background-color: #ff9800;
-    }
+  .btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+  }
 
-    .invite-email-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
+  .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #888;
+    color: white;
+    text-decoration: none;
+  }
 
-    .invite-email-group input {
-      padding: 8px;
-      font-size: 14px;
-      width: 250px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-right: 10px;
-    }
+  .btn:hover,
+  .btn:focus {
+    background-color: #ff9800;
+  }
 
-    .invite-email-group button {
-      font-size: 14px;
-      padding: 5px 10px;
-      background-color: #ff9800;
-      border-radius: 5px;
-      cursor: pointer;
-      border: none;
-    }
+  .member-list {
+    list-style: none;
+    padding: 0;
+  }
 
-    .invite-email-group button:hover {
-      background-color: #e68900;
-    }
+  .member-list li {
+    padding: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
 
-    /* Стили для списка участников */
-    .member-list {
-      list-style: none;
-      padding: 0;
-    }
+  .member-list li button {
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+    border: none;
+  }
 
-    .member-list li {
-      padding: 8px;
-      background-color: #f9f9f9;
-      margin-bottom: 5px;
-      border-radius: 4px;
-      display: flex;
-      justify-content: space-between;
-    }
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
 
-    .member-list li button {
-      background-color: #f44336;
-      color: white;
-      cursor: pointer;
-      border: none;
-    }
+  .search-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+</style>
 
-    /* Стили для выпадающего списка */
-    .form-group select {
-      width: 100%; /* Делаем select на всю ширину контейнера */
-      padding: 8px; /* Добавляем отступы */
-      font-size: 14px; /* Размер шрифта, соответствующий другим полям */
-      border: 1px solid #ccc; /* Рамка, как у других полей ввода */
-      border-radius: 5px; /* Скругленные углы */
-      background-color: #fff; /* Белый фон */
-      box-sizing: border-box; /* Включаем padding и border в ширину элемента */
-    }
-  </style>
-
-  <div class="form-container">
+<div class="form-container">
+  <div class="form-section">
     <h1>Создать группу</h1>
     <form id="company-form" method="post">
       {% csrf_token %}
 
-      <!-- Название группы -->
       <div class="form-group">
         <label for="id_name">Название группы:</label>
         {{ form.name }}
       </div>
 
-      <!-- Выбор участников из зарегистрированных пользователей -->
       <div class="form-group">
-        <label for="id_registered_users">Выберите зарегистрированных пользователей:</label>
-        <select id="id_registered_users" name="registered_users" multiple>
+        <label for="id_registered_users">Поиск пользователей:</label>
+        <input type="text" id="user-search" class="search-input" placeholder="Введите имя пользователя">
+        <select id="id_registered_users" name="registered_users" multiple size="10">
           {% for user in all_users %}
             <option value="{{ user.id }}">{{ user.username }}</option>
           {% endfor %}
         </select>
       </div>
 
-      <!-- Поля для добавления новых email-адресов -->
-      <!-- <div class="form-group invite-emails-container">
-        <label>Пригласить новых пользователей (Email):</label>
-        <div class="invite-email-group">
-          <input type="email" id="invite_email" placeholder="Введите email для приглашения">
-          <button type="button" class="btn" onclick="inviteEmail()">Пригласить</button>
-        </div>
-      </div> -->
-
-
-      <!-- Список выбранных и приглашенных участников -->
-      <div class="form-group">
-        <label>Выбранные и приглашенные участники:</label>
-        <ul class="member-list" id="member-list"></ul>
-      </div>
-
-      <!-- Скрытое поле для хранения выбранных и приглашенных участников -->
       <input type="hidden" id="selected_members" name="selected_members">
 
-      <!-- Кнопки управления -->
       <div class="btn-group">
         <button type="submit" class="btn">Создать</button>
         <a href="{% url 'company_list' %}" class="btn">Назад к списку групп</a>
@@ -144,10 +122,238 @@
     </form>
   </div>
 
-  <script>
-    // Храним список приглашенных и выбранных пользователей
-    const selectedMembers = [];
+  <div class="form-section">
+    <h2>Выбранные участники</h2>
+    <ul class="member-list" id="member-list"></ul>
+  </div>
+</div>
 
+<script>
+  const selectedMembers = [];
+
+  function updateMemberList() {
+    const memberList = document.getElementById('member-list');
+    memberList.innerHTML = '';
+
+    selectedMembers.forEach(member => {
+      const listItem = document.createElement('li');
+      listItem.textContent = member.displayName;
+
+      const removeButton = document.createElement('button');
+      removeButton.innerHTML = "&times;";  // Используем символ × (крестик)
+      removeButton.className = "btn-remove";  // Добавляем класс для стилизации
+      removeButton.onclick = function() {
+        removeMember(member);
+      };
+      listItem.appendChild(removeButton);
+      memberList.appendChild(listItem);
+    });
+
+    updateSelectOptions();
+  }
+
+  function removeMember(member) {
+    const index = selectedMembers.findIndex(m => m.id === member.id);
+    if (index > -1) {
+      selectedMembers.splice(index, 1);
+      updateMemberList();
+    }
+  }
+
+  function updateSelectOptions() {
+    const select = document.getElementById('id_registered_users');
+    Array.from(select.options).forEach(option => {
+      option.disabled = selectedMembers.some(member => member.id === option.value);
+    });
+  }
+
+  document.getElementById('id_registered_users').addEventListener('change', function () {
+    const select = this;
+    Array.from(select.selectedOptions).forEach(option => {
+      const userId = option.value;
+      const username = option.text;
+
+      if (!selectedMembers.some(member => member.id === userId)) {
+        selectedMembers.push({
+          type: 'registered',
+          id: userId,
+          displayName: username,
+        });
+        updateMemberList();
+      }
+    });
+    select.selectedIndex = -1;
+  });
+
+  document.getElementById('user-search').addEventListener('input', function() {
+    const searchValue = this.value.toLowerCase();
+    const select = document.getElementById('id_registered_users');
+    Array.from(select.options).forEach(option => {
+      const username = option.text.toLowerCase();
+      option.style.display = username.includes(searchValue) ? '' : 'none';
+    });
+  });
+
+  document.getElementById('company-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const hiddenInput = document.getElementById('selected_members');
+    hiddenInput.value = JSON.stringify(selectedMembers);
+    this.submit();
+  });
+</script>
+{% endblock %}
+
+
+{#{% extends "base.html" %}#}
+{##}
+{#{% block content %}#}
+{#  <style>#}
+{#    .form-container {#}
+{#      max-width: 600px;#}
+{#      margin: 0 auto;#}
+{#      padding: 20px;#}
+{#      border: 1px solid #ccc;#}
+{#      border-radius: 8px;#}
+{#      background-color: #f9f9f9;#}
+{#    }#}
+{##}
+{#    .btn-group {#}
+{#      display: flex;#}
+{#      justify-content: space-between;#}
+{#      margin-top: 20px;#}
+{#      gap: 10px;#}
+{#    }#}
+{##}
+{#    .btn {#}
+{#      padding: 8px 12px;#}
+{#      font-size: 14px;#}
+{#      border: none;#}
+{#      border-radius: 5px;#}
+{#      cursor: pointer;#}
+{#      background-color: #888;#}
+{#      color: white;#}
+{#      text-decoration: none;#}
+{#    }#}
+{##}
+{#    .btn:hover,#}
+{#    .btn:focus {#}
+{#      background-color: #ff9800;#}
+{#    }#}
+{##}
+{#    .invite-email-group {#}
+{#      display: flex;#}
+{#      align-items: center;#}
+{#      margin-bottom: 10px;#}
+{#    }#}
+{##}
+{#    .invite-email-group input {#}
+{#      padding: 8px;#}
+{#      font-size: 14px;#}
+{#      width: 250px;#}
+{#      border: 1px solid #ccc;#}
+{#      border-radius: 5px;#}
+{#      margin-right: 10px;#}
+{#    }#}
+{##}
+{#    .invite-email-group button {#}
+{#      font-size: 14px;#}
+{#      padding: 5px 10px;#}
+{#      background-color: #ff9800;#}
+{#      border-radius: 5px;#}
+{#      cursor: pointer;#}
+{#      border: none;#}
+{#    }#}
+{##}
+{#    .invite-email-group button:hover {#}
+{#      background-color: #e68900;#}
+{#    }#}
+{##}
+{#    /* Стили для списка участников */#}
+{#    .member-list {#}
+{#      list-style: none;#}
+{#      padding: 0;#}
+{#    }#}
+{##}
+{#    .member-list li {#}
+{#      padding: 8px;#}
+{#      background-color: #f9f9f9;#}
+{#      margin-bottom: 5px;#}
+{#      border-radius: 4px;#}
+{#      display: flex;#}
+{#      justify-content: space-between;#}
+{#    }#}
+{##}
+{#    .member-list li button {#}
+{#      background-color: #f44336;#}
+{#      color: white;#}
+{#      cursor: pointer;#}
+{#      border: none;#}
+{#    }#}
+{##}
+{#    /* Стили для выпадающего списка */#}
+{#    .form-group select {#}
+{#      width: 100%; /* Делаем select на всю ширину контейнера */#}
+{#      padding: 8px; /* Добавляем отступы */#}
+{#      font-size: 14px; /* Размер шрифта, соответствующий другим полям */#}
+{#      border: 1px solid #ccc; /* Рамка, как у других полей ввода */#}
+{#      border-radius: 5px; /* Скругленные углы */#}
+{#      background-color: #fff; /* Белый фон */#}
+{#      box-sizing: border-box; /* Включаем padding и border в ширину элемента */#}
+{#    }#}
+{#  </style>#}
+{##}
+{#  <div class="form-container">#}
+{#    <h1>Создать группу</h1>#}
+{#    <form id="company-form" method="post">#}
+{#      {% csrf_token %}#}
+{##}
+{#      <!-- Название группы -->#}
+{#      <div class="form-group">#}
+{#        <label for="id_name">Название группы:</label>#}
+{#        {{ form.name }}#}
+{#      </div>#}
+{##}
+{#      <!-- Выбор участников из зарегистрированных пользователей -->#}
+{#      <div class="form-group">#}
+{#        <label for="id_registered_users">Выберите зарегистрированных пользователей:</label>#}
+{#        <select id="id_registered_users" name="registered_users" multiple>#}
+{#          {% for user in all_users %}#}
+{#            <option value="{{ user.id }}">{{ user.username }}</option>#}
+{#          {% endfor %}#}
+{#        </select>#}
+{#      </div>#}
+{##}
+{#      <!-- Поля для добавления новых email-адресов -->#}
+{#      <!-- <div class="form-group invite-emails-container">#}
+{#        <label>Пригласить новых пользователей (Email):</label>#}
+{#        <div class="invite-email-group">#}
+{#          <input type="email" id="invite_email" placeholder="Введите email для приглашения">#}
+{#          <button type="button" class="btn" onclick="inviteEmail()">Пригласить</button>#}
+{#        </div>#}
+{#      </div> -->#}
+{##}
+{##}
+{#      <!-- Список выбранных и приглашенных участников -->#}
+{#      <div class="form-group">#}
+{#        <label>Выбранные и приглашенные участники:</label>#}
+{#        <ul class="member-list" id="member-list"></ul>#}
+{#      </div>#}
+{##}
+{#      <!-- Скрытое поле для хранения выбранных и приглашенных участников -->#}
+{#      <input type="hidden" id="selected_members" name="selected_members">#}
+{##}
+{#      <!-- Кнопки управления -->#}
+{#      <div class="btn-group">#}
+{#        <button type="submit" class="btn">Создать</button>#}
+{#        <a href="{% url 'company_list' %}" class="btn">Назад к списку групп</a>#}
+{#      </div>#}
+{#    </form>#}
+{#  </div>#}
+{##}
+{#  <script>#}
+{#    // Храним список приглашенных и выбранных пользователей#}
+{#    const selectedMembers = [];#}
+{##}
 {#    // Функция для добавления email в список приглашений#}
 {#    function inviteEmail() {#}
 {#      const emailInput = document.getElementById('invite_email');#}
@@ -167,70 +373,70 @@
 {#        alert('Введите корректный email для приглашения или этот email уже добавлен.');#}
 {#      }#}
 {#    }#}
-
-    // Функция для обновления списка участников
-    function updateMemberList() {
-      const memberList = document.getElementById('member-list');
-      memberList.innerHTML = '';
-
-      selectedMembers.forEach(member => {
-        const listItem = document.createElement('li');
-        listItem.textContent = member.displayName;
-
-        const removeButton = document.createElement('button');
-        removeButton.textContent = "Удалить";
-        removeButton.onclick = function() {
-          removeMember(member);
-        };
-        listItem.appendChild(removeButton);
-        memberList.appendChild(listItem);
-      });
-    }
-
-    // Функция для удаления участника из списка
-    function removeMember(member) {
-      const index = selectedMembers.indexOf(member);
-      if (index > -1) {
-        selectedMembers.splice(index, 1);
-        updateMemberList();
-      }
-    }
-
-    // Обработчик изменения выбора пользователей из списка
-    document.getElementById('id_registered_users').addEventListener('change', function () {
-      const select = this;
-      Array.from(select.selectedOptions).forEach(option => {
-        const userId = option.value;
-        const username = option.text;
-
-        if (!selectedMembers.some(member => member.id === userId)) {
-          // Добавляем выбранного пользователя в список
-          selectedMembers.push({
-            type: 'registered',  // Тип - зарегистрированный пользователь
-            id: userId,
-            displayName: username,
-          });
-          updateMemberList();
-        }
-      });
-      // Сбрасываем выбор в select, чтобы можно было выбрать того же пользователя заново
-      select.selectedIndex = -1;
-    });
-
-    // Функция для подготовки данных перед отправкой формы
-    document.getElementById('company-form').addEventListener('submit', function(event) {
-      // Остановим стандартное поведение формы
-      event.preventDefault();
-
-      // Подготовим данные для отправки
-      const hiddenInput = document.getElementById('selected_members');
-      hiddenInput.value = JSON.stringify(selectedMembers);
-
-      // Программно отправим форму
-      this.submit();
-    });
-  </script>
-{% endblock %}
+{##}
+{#    // Функция для обновления списка участников#}
+{#    function updateMemberList() {#}
+{#      const memberList = document.getElementById('member-list');#}
+{#      memberList.innerHTML = '';#}
+{##}
+{#      selectedMembers.forEach(member => {#}
+{#        const listItem = document.createElement('li');#}
+{#        listItem.textContent = member.displayName;#}
+{##}
+{#        const removeButton = document.createElement('button');#}
+{#        removeButton.textContent = "Удалить";#}
+{#        removeButton.onclick = function() {#}
+{#          removeMember(member);#}
+{#        };#}
+{#        listItem.appendChild(removeButton);#}
+{#        memberList.appendChild(listItem);#}
+{#      });#}
+{#    }#}
+{##}
+{#    // Функция для удаления участника из списка#}
+{#    function removeMember(member) {#}
+{#      const index = selectedMembers.indexOf(member);#}
+{#      if (index > -1) {#}
+{#        selectedMembers.splice(index, 1);#}
+{#        updateMemberList();#}
+{#      }#}
+{#    }#}
+{##}
+{#    // Обработчик изменения выбора пользователей из списка#}
+{#    document.getElementById('id_registered_users').addEventListener('change', function () {#}
+{#      const select = this;#}
+{#      Array.from(select.selectedOptions).forEach(option => {#}
+{#        const userId = option.value;#}
+{#        const username = option.text;#}
+{##}
+{#        if (!selectedMembers.some(member => member.id === userId)) {#}
+{#          // Добавляем выбранного пользователя в список#}
+{#          selectedMembers.push({#}
+{#            type: 'registered',  // Тип - зарегистрированный пользователь#}
+{#            id: userId,#}
+{#            displayName: username,#}
+{#          });#}
+{#          updateMemberList();#}
+{#        }#}
+{#      });#}
+{#      // Сбрасываем выбор в select, чтобы можно было выбрать того же пользователя заново#}
+{#      select.selectedIndex = -1;#}
+{#    });#}
+{##}
+{#    // Функция для подготовки данных перед отправкой формы#}
+{#    document.getElementById('company-form').addEventListener('submit', function(event) {#}
+{#      // Остановим стандартное поведение формы#}
+{#      event.preventDefault();#}
+{##}
+{#      // Подготовим данные для отправки#}
+{#      const hiddenInput = document.getElementById('selected_members');#}
+{#      hiddenInput.value = JSON.stringify(selectedMembers);#}
+{##}
+{#      // Программно отправим форму#}
+{#      this.submit();#}
+{#    });#}
+{#  </script>#}
+{#{% endblock %}#}
 
 {#{% extends "base.html" %}#}
 {##}
