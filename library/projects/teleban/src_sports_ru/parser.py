@@ -1,5 +1,4 @@
 import logging
-from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
@@ -37,7 +36,7 @@ class SportsRuParser:
         """
         soup = self.__get_soup(news_link)
         return [
-            f"{self.BASE_URL}{element.get('href')}"
+            self.BASE_URL + element.get('href')
             for element in soup.find_all('a', class_='short-text')
         ]
 
@@ -54,8 +53,6 @@ class SportsRuParser:
             link=link,
             source=source,
             tags=tags,
-            date_time=datetime.now(),
-            status=False
         )
 
     def __news_feed_parsing(self, news_link: str, source: str) -> list[ContentBase]:
