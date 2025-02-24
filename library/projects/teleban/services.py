@@ -2,7 +2,7 @@ import asyncio
 from typing import Sequence
 
 from aiogram import Bot
-from aiogram.exceptions import TelegramBadRequest
+from aiogram.exceptions import TelegramBadRequest, TelegramForbiddenError, TelegramAPIError
 
 from data import session_factory, ContentRepository, ContentBase, SubscriptionRepository
 
@@ -44,6 +44,10 @@ async def send_content(bot: Bot) -> None:
                              f'{link}'
                     )
                 except TelegramBadRequest as err:
+                    print(f'user_id={user_id}', err)
+                except TelegramForbiddenError as err:
+                    print(f'user_id={user_id}', err)
+                except TelegramAPIError as err:
                     print(f'user_id={user_id}', err)
 
                 anti_duplicating_list.append((user_id, link))  # добавляем в историю рассылки
